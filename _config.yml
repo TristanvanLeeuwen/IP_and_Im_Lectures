@@ -1,0 +1,8 @@
+# Book settings
+title: 10 Luctures on Inverse Problems and Imaging
+author: Tristan van Leeuwen and Christoph Brune
+logo: logo.png
+
+latex:
+  latex_documents:
+    targetname: book.tex

@@ -1,0 +1,26 @@
+- file: intro
+  numbered: true
+
+- file: what_is
+- file: discrete_ip_regularization
+- file: ip_function_spaces
+- file: statistical_perspective
+- file: variational_formulations
+- file: numerical_optimisation
+- file: applications
+  sections:
+    - file: image_processing
+    - file: tomography
+    - file: wavefield_imaging
+    - file: magnetic_resonance_imaging
+- file: preliminaries
+  sections:
+    - file: linear_algebra
+    - file: functional_analysis
+    - file: statistics
+    - file: variational_analysis
+    - file: convex_analysis
+- file: examples
+  sections:
+    - file: example_markdown
+    - file: example_notebook
