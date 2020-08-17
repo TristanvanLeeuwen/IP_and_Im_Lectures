@@ -1,9 +1,5 @@
 # Welcome to Inverse Problems and Imaging
 
-## Content
-
-
-## Using these lecture notes
 In the subsequent chapters we introduce basic concepts related to inverse problems and visit various viewpoints on inverse problems. The main recurring themes are
 
 * Modelling (chapters ...)
