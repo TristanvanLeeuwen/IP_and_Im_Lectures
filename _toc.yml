@@ -21,6 +21,7 @@
   chapters:
   - file: linear_algebra
   - file: functional_analysis
+  - file: fourier_sampling
   - file: statistics
   - file: variational_analysis
   - file: convex_analysis
