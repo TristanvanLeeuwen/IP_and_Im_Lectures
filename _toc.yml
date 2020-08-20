@@ -26,7 +26,6 @@
   - file: variational_analysis
   - file: convex_analysis
 
-- part: Examples
+- part: Reference
   chapters:
-  - file: example_markdown
-  - file: example_notebook
+  - file: bibliography
