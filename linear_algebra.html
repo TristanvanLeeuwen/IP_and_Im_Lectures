@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>8.1. Linear algebra &#8212; 10 Luctures on Inverse Problems and Imaging</title>
+    <title>1. Linear algebra &#8212; 10 Lectures on Inverse Problems and Imaging</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -39,8 +39,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="8.2. Functional analysis" href="functional_analysis.html" />
-    <link rel="prev" title="8. Preliminaries" href="preliminaries.html" />
+    <link rel="next" title="2. Functional analysis" href="functional_analysis.html" />
+    <link rel="prev" title="4. Magnetic Resonance Imaging" href="magnetic_resonance_imaging.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -62,7 +62,7 @@
   <img src="_static/logo.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">10 Luctures on Inverse Problems and Imaging</h1>
+  <h1 class="site-logo" id="site-title">10 Lectures on Inverse Problems and Imaging</h1>
   
 </a>
 </div>
@@ -73,14 +73,12 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Welcome to Inverse Problems and Imaging
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
+  <p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is.html">
    1. What is an inverse problem
@@ -111,46 +109,80 @@
    6. Numerical optimisation for inverse problems
   </a>
  </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Applications
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="applications.html">
-   7. Applications
+  <a class="reference internal" href="image_processing.html">
+   1. Image processing
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tomography.html">
+   2. Computed Tomography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wavefield_imaging.html">
+   3. Wavefield Imaging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="magnetic_resonance_imaging.html">
+   4. Magnetic Resonance Imaging
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active">
-  <a class="reference internal" href="preliminaries.html">
-   8. Preliminaries
+  <a class="current reference internal" href="#">
+   1. Linear algebra
   </a>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     8.1. Linear algebra
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="functional_analysis.html">
-     8.2. Functional analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="statistics.html">
-     8.3. Statistics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="variational_analysis.html">
-     8.4. Variational analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="convex_analysis.html">
-     8.5. Convex analysis
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="examples.html">
-   9. Examples
+  <a class="reference internal" href="functional_analysis.html">
+   2. Functional analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fourier_sampling.html">
+   3. Fourier transform, distributions and sampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   4. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="variational_analysis.html">
+   5. Variational analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convex_analysis.html">
+   6. Convex analysis
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   1. Bibliography
   </a>
  </li>
 </ul>
@@ -158,10 +190,6 @@
 </nav>
 
  <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
 
 </div>
 
@@ -206,6 +234,18 @@
 </div>
         <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        
+        <a class="edit-button" href="https://github.com/TristanvanLeeuwen/IP_and_Im_Lectures/edit/master/linear_algebra.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -222,7 +262,19 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vector-spaces">
+   1.1. Vector spaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrices">
+   1.2. Matrices
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -232,8 +284,146 @@
               <div>
                 
   <div class="section" id="linear-algebra">
-<h1><span class="section-number">8.1. </span>Linear algebra<a class="headerlink" href="#linear-algebra" title="Permalink to this headline">¶</a></h1>
-<p>Blablabla.</p>
+<h1><span class="section-number">1. </span>Linear algebra<a class="headerlink" href="#linear-algebra" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="vector-spaces">
+<h2><span class="section-number">1.1. </span>Vector spaces<a class="headerlink" href="#vector-spaces" title="Permalink to this headline">¶</a></h2>
+<p>We consider <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> as the vector space of tuples <span class="math notranslate nohighlight">\(u = (u_1, u_2, \ldots, u_n)\)</span>. Linear combinations are defined elementwise in the usual way.</p>
+<div class="admonition-vector-norms admonition">
+<p class="admonition-title">Vector norms</p>
+<p>Let <span class="math notranslate nohighlight">\(u \in \mathbb{C}^n\)</span>. The vector <span class="math notranslate nohighlight">\(p\)</span>-norm is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+\|u\|_p = \left(\sum_{i=1}^n |u_i|^p\right)^{1/p}.
+\]</div>
+<p>Often-used ones are <span class="math notranslate nohighlight">\(p=1\)</span> (Manhattan distance), <span class="math notranslate nohighlight">\(p=2\)</span> (Euclidian norm) and <span class="math notranslate nohighlight">\(p=\infty\)</span> (supremum norm). The norms are all <em>equivalent</em> and obey the following inequalities</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\|u\|_{\infty} \leq \|u\|_2 \leq \sqrt{n} \|u\|_{\infty},\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\|u\|_{2} \leq \|u\|_1 \leq \sqrt{n} \|u\|_{2},\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\|u\|_{\infty} \leq \|u\|_1 \leq n \|u\|_{\infty},\)</span></p></li>
+</ul>
+</div>
+<div class="admonition-inner-product admonition">
+<p class="admonition-title">Inner product</p>
+<p>Let <span class="math notranslate nohighlight">\(u, v \in \mathbb{C}^n\)</span>. The inner product is defined as</p>
+<div class="math notranslate nohighlight">
+\[\langle u, v\rangle = \sum_{i=1}^n u_i \overline{v_i},\]</div>
+<p>with <span class="math notranslate nohighlight">\(\overline{\cdot}\)</span> denoting the complex conjugate. The inner product is sometimes denoted by <span class="math notranslate nohighlight">\(u^*v\)</span> with <span class="math notranslate nohighlight">\(\cdot^*\)</span> denoting the complex-conjugate-transpose.</p>
+</div>
+</div>
+<div class="section" id="matrices">
+<h2><span class="section-number">1.2. </span>Matrices<a class="headerlink" href="#matrices" title="Permalink to this headline">¶</a></h2>
+<p>A linear operator <span class="math notranslate nohighlight">\(A: \mathbb{C}^n \rightarrow \mathbb{C}^m\)</span> can be represented as a matrix with elements <span class="math notranslate nohighlight">\(a_{ij}\)</span>, <span class="math notranslate nohighlight">\(i \in \{1, 2, \ldots, m\}\)</span>, <span class="math notranslate nohighlight">\(j \in \{1, 2, \ldots, n\}\)</span>.</p>
+<div class="admonition-invertible-matrices admonition">
+<p class="admonition-title">Invertible matrices</p>
+<p>A square matrix <span class="math notranslate nohighlight">\(A \in \mathbb{C}^{n\times n}\)</span> is invertible if it has rank <span class="math notranslate nohighlight">\(n\)</span>, or equivalently, if <span class="math notranslate nohighlight">\(\text{det}(A) \not=0\)</span>. We have the following useful identities</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((AB)^{-1} = B^{-1}A^{-1}.\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((A + B)^{-1} = A^{-1} - A^{-1}(I + BA^{-1})^{-1}BA^{-1} = A^{-1} - (A + AB^{-1}A)^{-1}.\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((I + A)^{-1} = I - A + A^2 - A^3 + \ldots (\text{when}\quad \|A\|\leq 1).\)</span></p></li>
+</ul>
+</div>
+<div class="admonition-eigenvalue-decomposition admonition">
+<p class="admonition-title">Eigenvalue decomposition</p>
+<p>A matrix <span class="math notranslate nohighlight">\(A \in \mathbb{C}^{n\times n}\)</span> is called <em>diagonalizable</em> if there exists an invertible matrix <span class="math notranslate nohighlight">\(U \in \mathbb{C}^{n\times n}\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+A = U\Lambda U^{-1},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(U = [u_1, u_2, \ldots, u_n]\)</span> consists of the eigenvectors of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(\Lambda\)</span> is a diagonal matrix containing the eigenvalues <span class="math notranslate nohighlight">\(\lambda_i\)</span> of <span class="math notranslate nohighlight">\(A\)</span>. If <span class="math notranslate nohighlight">\(A\)</span> is Hermitian (i.e., <span class="math notranslate nohighlight">\(a_{ij} = \overline{a_{ji}}\)</span>), the eigenvectors are orthogonal and we can normalize them such that <span class="math notranslate nohighlight">\(U^*U = I\)</span>. The matrix <span class="math notranslate nohighlight">\(A\)</span> is invertible if all eigenvalues are non-zero, in which case we have</p>
+<div class="math notranslate nohighlight">
+\[
+A^{-1} = U\Lambda^{-1} U^{-1}.
+\]</div>
+<p>Not all matrices are diagonalizable, however, in which case the matrix is called <em>defective</em>.</p>
+</div>
+<div class="admonition-singular-value-decomposition admonition">
+<p class="admonition-title">Singular value decomposition</p>
+<p>All matrices <span class="math notranslate nohighlight">\(A \in \mathbb{C}^{m\times n}\)</span> have a <em>singular value decomposition</em></p>
+<div class="math notranslate nohighlight">
+\[
+A = U\Sigma {V}^*,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(U \in \mathbb{C}^{m\times m}\)</span> and <span class="math notranslate nohighlight">\(V \in \mathbb{C}^{n\times n}\)</span> consist of the left and right singular vectors and <span class="math notranslate nohighlight">\(\Sigma \in \mathbb{C}^{m\times n}\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span>.
+In particular we have <span class="math notranslate nohighlight">\(U^*U = I\)</span>, <span class="math notranslate nohighlight">\(V^*V = I\)</span> and <span class="math notranslate nohighlight">\(\sigma_i \geq 0\)</span>. If the matrix has rank <span class="math notranslate nohighlight">\(k\)</span>, the first <span class="math notranslate nohighlight">\(k\)</span> singular values are non-zero while the remaining ones are zero. The first <span class="math notranslate nohighlight">\(k\)</span> left and right singular vectors form an orthonormal basis for the column space and row space of <span class="math notranslate nohighlight">\(A\)</span>. The matrix <span class="math notranslate nohighlight">\(\Sigma\)</span> is structured as follows</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\Sigma =
+\left(\begin{matrix}
+\Sigma_{k} 				&amp; 0_{k \times (n - k)}     \\
+0_{(m - k) \times k}    &amp; 0_{(m - k) \times (n-k)} \\
+\end{matrix}\right),
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(k = \min(m,n)\)</span> and <span class="math notranslate nohighlight">\(\Sigma_k\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_k \geq 0\)</span> and <span class="math notranslate nohighlight">\(0_{p\times q}\)</span> denotes an <span class="math notranslate nohighlight">\(p\times q\)</span> matrix with all zeros. In particular we have <span class="math notranslate nohighlight">\(U^*U = I\)</span>, <span class="math notranslate nohighlight">\(V^*V = I\)</span>.
+The singular value decomposition is related to the eigendecompositions of <span class="math notranslate nohighlight">\(A^*A\)</span> and <span class="math notranslate nohighlight">\(AA^*\)</span> as follows</p>
+<div class="math notranslate nohighlight">
+\[
+A^* A = V\Sigma^*\Sigma V^*,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+AA^* = U\Sigma{\Sigma}^* U^*.
+\]</div>
+</div>
+<div class="admonition-pseudo-inverse admonition">
+<p class="admonition-title">Pseudo-inverse</p>
+<p>The <em>pseudo inverse</em> of a matrix <span class="math notranslate nohighlight">\(A\in\mathbb{C}^{m\times n}\)</span> is defined in terms of its SVD as</p>
+<div class="math notranslate nohighlight">
+\[
+A^\dagger = V_k\Sigma_k^{-1}{U_k}^* ,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> is the rank of the matrix, <span class="math notranslate nohighlight">\(V_k \in \mathbb{C}^{n\times k}\)</span> contains the first <span class="math notranslate nohighlight">\(k\)</span> right singular vectors, <span class="math notranslate nohighlight">\(U_k \in \mathbb{C}^{m \times k}\)</span> contains the first <span class="math notranslate nohighlight">\(k\)</span> right singular vectors and <span class="math notranslate nohighlight">\(\Sigma_k \in \mathbb{C}^{k\times k}\)</span> contains the non-zero singular values.
+When <span class="math notranslate nohighlight">\(m &gt; n\)</span> and <span class="math notranslate nohighlight">\(A\)</span> has rank <span class="math notranslate nohighlight">\(n\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[
+A^{\dagger} = (A^* A)^{-1}A^* ,
+\]</div>
+<p>in which case <span class="math notranslate nohighlight">\(A^\dagger A = I\)</span> (it is a left inverse).
+When <span class="math notranslate nohighlight">\(m &lt; n\)</span> and <span class="math notranslate nohighlight">\(A\)</span> has rank <span class="math notranslate nohighlight">\(m\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[
+A^{\dagger} = A(A{A}^* )^{-1},
+\]</div>
+<p>in which case <span class="math notranslate nohighlight">\(AA^\dagger = I\)</span> (it is a right inverse).</p>
+</div>
+<div class="admonition-matrix-functions admonition">
+<p class="admonition-title">Matrix functions</p>
+<p>We can define a matrix function of a diagonalizable matrix as</p>
+<div class="math notranslate nohighlight">
+\[
+f(A) = Uf(\Lambda)U^{-1},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(A = U\Lambda U^{-1}\)</span> and <span class="math notranslate nohighlight">\(f(\Lambda)\)</span> is a diagonal matrix with entries <span class="math notranslate nohighlight">\(f(\lambda_i)\)</span>.</p>
+</div>
+<div class="admonition-matrix-norms admonition">
+<p class="admonition-title">Matrix norms</p>
+<p>Based on these we can define the <em>induced matrix norm</em></p>
+<div class="math notranslate nohighlight">
+\[
+\|A\|_p = \max_{x} \frac{\|Ax\|_p}{\|x\|_p}.
+\]</div>
+<p>In particular, we have</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\|A\|_1 = \max_j \sum_{i=1}^m |a_{ij}|,\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\|A\|_2 = \sigma_1,\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\|A\|_\infty = \max_i \sum_{j=1}^n |a_{ij}|.\)</span></p></li>
+</ul>
+<p>Besides having the usual properties of a norm, we have the following useful inequality</p>
+<div class="math notranslate nohighlight">
+\[
+\|AB\|_p \leq \|A\|_p \|B\|_p,
+\]</div>
+<p>Two other matrix norms worth mentioning are the <em>Frobenius norm</em></p>
+<div class="math notranslate nohighlight">
+\[
+\|A\|_F = \sqrt{\sum_{ij} |a_{ij}|^2} = \sqrt{\sum_{i} \sigma_i^2},
+\]</div>
+<p>and the <em>nuclear norm</em></p>
+<div class="math notranslate nohighlight">
+\[
+\|A\|_* = \sum_{i=1}^k \sigma_i.
+\]</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -264,8 +454,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="preliminaries.html" title="previous page"><span class="section-number">8. </span>Preliminaries</a>
-    <a class='right-next' id="next-link" href="functional_analysis.html" title="next page"><span class="section-number">8.2. </span>Functional analysis</a>
+    <a class='left-prev' id="prev-link" href="magnetic_resonance_imaging.html" title="previous page"><span class="section-number">4. </span>Magnetic Resonance Imaging</a>
+    <a class='right-next' id="next-link" href="functional_analysis.html" title="next page"><span class="section-number">2. </span>Functional analysis</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -274,7 +464,6 @@
         
           By Tristan van Leeuwen and Christoph Brune<br/>
         
-            &copy; Copyright 2020.<br/>
       </p>
     </div>
   </footer>

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>6. Numerical optimisation for inverse problems &#8212; 10 Luctures on Inverse Problems and Imaging</title>
+    <title>6. Numerical optimisation for inverse problems &#8212; 10 Lectures on Inverse Problems and Imaging</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -39,7 +39,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="7. Applications" href="applications.html" />
+    <link rel="next" title="1. Image processing" href="image_processing.html" />
     <link rel="prev" title="5. Variational formulations for inverse problems" href="variational_formulations.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,7 +62,7 @@
   <img src="_static/logo.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">10 Luctures on Inverse Problems and Imaging</h1>
+  <h1 class="site-logo" id="site-title">10 Lectures on Inverse Problems and Imaging</h1>
   
 </a>
 </div>
@@ -73,13 +73,11 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Welcome to Inverse Problems and Imaging
-  </a>
- </li>
-</ul>
+  <p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is.html">
@@ -111,19 +109,80 @@
    6. Numerical optimisation for inverse problems
   </a>
  </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Applications
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="applications.html">
-   7. Applications
+  <a class="reference internal" href="image_processing.html">
+   1. Image processing
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="preliminaries.html">
-   8. Preliminaries
+  <a class="reference internal" href="tomography.html">
+   2. Computed Tomography
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="examples.html">
-   9. Examples
+  <a class="reference internal" href="wavefield_imaging.html">
+   3. Wavefield Imaging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="magnetic_resonance_imaging.html">
+   4. Magnetic Resonance Imaging
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_algebra.html">
+   1. Linear algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functional_analysis.html">
+   2. Functional analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fourier_sampling.html">
+   3. Fourier transform, distributions and sampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   4. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="variational_analysis.html">
+   5. Variational analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convex_analysis.html">
+   6. Convex analysis
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   1. Bibliography
   </a>
  </li>
 </ul>
@@ -131,10 +190,6 @@
 </nav>
 
  <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
 
 </div>
 
@@ -179,6 +234,18 @@
 </div>
         <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        
+        <a class="edit-button" href="https://github.com/TristanvanLeeuwen/IP_and_Im_Lectures/edit/master/numerical_optimisation.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -195,7 +262,76 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-order-methods">
+   6.1. First order methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#second-order-methods">
+   6.2. Second order methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proximal-gradient-methods">
+   6.3. Proximal gradient methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#primal-dual-methods">
+   6.4. Primal-dual methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   6.5. Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convex-conjugates">
+     6.5.1. Convex conjugates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subdifferentials">
+     6.5.2. Subdifferentials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-dual-method-for-tv-denoising">
+     6.5.3. A dual method for TV denoising
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#steepest-descent">
+     6.5.4. Steepest descent
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rosenbrock">
+     6.5.5. Rosenbrock
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#soft-tresholding">
+     6.5.6. Soft tresholding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-prima-dual-method-for-tv-denoising">
+     6.5.7. A Prima-dual method for TV denoising
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#splitting-methods">
+     6.5.8. Splitting methods
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -206,6 +342,469 @@
                 
   <div class="section" id="numerical-optimisation-for-inverse-problems">
 <h1><span class="section-number">6. </span>Numerical optimisation for inverse problems<a class="headerlink" href="#numerical-optimisation-for-inverse-problems" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="first-order-methods">
+<h2><span class="section-number">6.1. </span>First order methods<a class="headerlink" href="#first-order-methods" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="second-order-methods">
+<h2><span class="section-number">6.2. </span>Second order methods<a class="headerlink" href="#second-order-methods" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="proximal-gradient-methods">
+<h2><span class="section-number">6.3. </span>Proximal gradient methods<a class="headerlink" href="#proximal-gradient-methods" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="primal-dual-methods">
+<h2><span class="section-number">6.4. </span>Primal-dual methods<a class="headerlink" href="#primal-dual-methods" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="exercises">
+<h2><span class="section-number">6.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="convex-conjugates">
+<h3><span class="section-number">6.5.1. </span>Convex conjugates<a class="headerlink" href="#convex-conjugates" title="Permalink to this headline">¶</a></h3>
+<p>Compute the convex conjugates of the following primal functionals <span class="math notranslate nohighlight">\(J : X \rightarrow \mathbb{R} \cup
+\{ \infty \}\)</span>, i.e. the dual functionals <span class="math notranslate nohighlight">\(J^*: X^*\rightarrow \mathbb{R} \cup \{ \infty \}\)</span> of,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(J(u) = \left\| u \right\|_{L^2(\Omega)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(J(u) = \frac{\alpha}{2} \left\| u \right\|_{L^2(\Omega)}^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(J(u) = \left\| u \right\|_{L^1(\Omega)}\)</span>.</p></li>
+</ul>
+<p><strong>Hint</strong>: Remark, that in the dual formulation, due to the supremum, there holds equality in the Hölder inequality.</p>
+</div>
+<div class="section" id="subdifferentials">
+<h3><span class="section-number">6.5.2. </span>Subdifferentials<a class="headerlink" href="#subdifferentials" title="Permalink to this headline">¶</a></h3>
+<p>Compute the subdifferentials <span class="math notranslate nohighlight">\(\partial f(x)\)</span> of the following functions:</p>
+<ul class="simple">
+<li><p>The Euclidean norm <span class="math notranslate nohighlight">\(f:\mathbb{R}^n \rightarrow \mathbb{R}, x \, \mapsto
+  \left\|x\right\|_{\ell^2}\)</span></p></li>
+<li><p>The characteristic function of the positive quadrant,
+<span class="math notranslate nohighlight">\(\,f = \chi_K, \, \text{ with } \, K:=\left\{ x \in \mathbb{R}^n \,:\, x_j \geq 0, \text{ for all } \, 1 \leq j \leq n \right\}\)</span>.</p></li>
+</ul>
+<p>https://en.wikipedia.org/wiki/Characteristic_function_(convex_analysis)</p>
+</div>
+<div class="section" id="a-dual-method-for-tv-denoising">
+<h3><span class="section-number">6.5.3. </span>A dual method for TV denoising<a class="headerlink" href="#a-dual-method-for-tv-denoising" title="Permalink to this headline">¶</a></h3>
+<p><strong>Proof</strong> that the Rudin-Osher-Fatemi (ROF) minimization for denoising with <span class="math notranslate nohighlight">\(L^2\)</span> data fidelity and TV regularisation:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{2}\|u - f\|_{L^2}^2 + \alpha \text{TV}(u)\]</div>
+<p>is equivalent (in the sense of the same local minima) to the following dual minimization problem</p>
+<div class="math notranslate nohighlight">
+\[J(g) := \frac{1}{2} \int_\Omega \left(\alpha \nabla \cdot  g - f\right)^2 \rightarrow \min_g\]</div>
+<p>under the constraint <span class="math notranslate nohighlight">\(\lVert g \rVert_{L^\infty} \leq 1\)</span>. This is a constrained quadratic optimisation problem. The constraint should be interpreted as <span class="math notranslate nohighlight">\(|g(x)|_{l^2}^2 \leq 1,\, \forall x \in \Omega\)</span>.</p>
+<p><strong>Write code</strong> which performs the explicit discretisation</p>
+<div class="math notranslate nohighlight">
+\[g_{k+\frac{1}{2}} = g_k + \beta \: \nabla \left(\alpha \nabla \cdot g_k -f\right)\]</div>
+<div class="math notranslate nohighlight">
+\[g_{k+1} = \Pi(g_{k+\frac{1}{2}})\qquad\qquad\quad\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Pi(g) := \frac{g}{\lVert g \rVert}_{L^\infty}\)</span> denotes a projection onto the unit circle. You can easily discretize the divergence and gradient as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grad</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="mi">0</span><span class="p">))</span><span class="o">/</span><span class="n">h</span>
+<span class="n">div</span> <span class="o">=</span> <span class="o">-</span><span class="n">grad</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+<p><strong>Test</strong> your implementation on a 1D step function with additional random Gaussian noise.</p>
+<p><strong>Compare</strong> the solutions for different values of <span class="math notranslate nohighlight">\(\alpha\)</span> and choose the step size <span class="math notranslate nohighlight">\(\beta\)</span> adequately.</p>
+<p>Hint: Use the primal optimality condition of the ROF model (with exact, dual definition of TV), to be able to visualise the primal solution <span class="math notranslate nohighlight">\(u^*\)</span> out of the corresponding, computed dual solution <span class="math notranslate nohighlight">\(g^*\)</span>.</p>
+<p>Example code is shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># grid \Omega = [0,1]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> 
+
+<span class="c1"># parameters</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">1e-1</span>
+
+<span class="c1"># make data</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">heaviside</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">f_delta</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/numerical_optimisation_5_0.png" src="_images/numerical_optimisation_5_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="steepest-descent">
+<h3><span class="section-number">6.5.4. </span>Steepest descent<a class="headerlink" href="#steepest-descent" title="Permalink to this headline">¶</a></h3>
+<p>Consider the following fixed point iteration for minimizing a given function <span class="math notranslate nohighlight">\(f : \mathbb{R}^n \rightarrow \mathbb{R}\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+u^{(k+1)} = u^{(k)} - \alpha \nabla f(u^{(k)}),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(f\)</span> is twice continuously differentiable and strictly convex:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu I \preceq \nabla^2 f(u) \preceq L I,
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(0 &lt; \mu &lt; L &lt; \infty\)</span>.</p>
+<ul class="simple">
+<li><p>Show that the fixed point iteration converges linearly for <span class="math notranslate nohighlight">\(0 &lt; \alpha &lt; 2/L\)</span>.</p></li>
+</ul>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Rate_of_convergence#Basic_definition">Linear convergence</a> implies that <span class="math notranslate nohighlight">\(\exists 0 &lt; \rho &lt; 1\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[\|u^{(k+1)} - u^*\| \leq \rho \|u^{(k)} - u*\|,\]</div>
+<p>where <span class="math notranslate nohighlight">\(u^*\)</span>. To show this we start from the iteration and substract the fixed-point and use that <span class="math notranslate nohighlight">\(\nabla f(u^*) = 0\)</span> to get</p>
+<div class="math notranslate nohighlight">
+\[(u^{(k+1)} - u^*) = (u^{(k)} - u^*) - \alpha (\nabla f(u^{(k)}) - \nabla f (u^*)).\]</div>
+<p>Next use Taylor to express</p>
+<div class="math notranslate nohighlight">
+\[\nabla f(u^{(k)}) - \nabla f (u^*) = \nabla^2 f(\eta^{(k)}) (u^{(k)} - u^*),\]</div>
+<p>with <span class="math notranslate nohighlight">\(\eta^{(k)} = t u^{(k)} + (1-t)u^*\)</span> for some <span class="math notranslate nohighlight">\(t \in [0,1]\)</span>. We then get</p>
+<div class="math notranslate nohighlight">
+\[\|u^{(k+1)} - u^*\|_2 \leq \|I - \alpha \nabla^2 f(\eta^{(k)})\|_2 \|u^{(k)} - u^*\|_2.\]</div>
+<p>For linear convergence we need <span class="math notranslate nohighlight">\(\|I - \alpha \nabla^2 f(\eta^{(k)})\|_2 &lt; 1\)</span>. We use that <span class="math notranslate nohighlight">\(\|A\|_2 = \sigma_{\max}(A)\)</span>. (cf. <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_norm#Special_cases">Matrix norms</a>)
+Since the eigenvalues of <span class="math notranslate nohighlight">\(\nabla^2 f\)</span> are bounded by <span class="math notranslate nohighlight">\(L\)</span> we need <span class="math notranslate nohighlight">\(0 &lt; \alpha &lt; 2/L\)</span> to ensure this.</p>
+</div>
+<ul class="simple">
+<li><p>Determine the value of <span class="math notranslate nohighlight">\(\alpha\)</span> for which the iteration converges fastest.</p></li>
+</ul>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>The smaller the bound on the constant <span class="math notranslate nohighlight">\(\rho\)</span>, the faster the convergence. We have</p>
+<div class="math notranslate nohighlight">
+\[\|I - \alpha \nabla^2 f(\eta^{(k)})\|_2 = \ \max (|1 - \alpha \mu|, |1 - \alpha L|).\]</div>
+<p>We obtain the smalles possible value by making both terms equal, for which we need</p>
+<div class="math notranslate nohighlight">
+\[(1 - \alpha \mu) = -(1 - \alpha L),\]</div>
+<p>this gives us an optimal value of <span class="math notranslate nohighlight">\(\alpha = 2/(\mu + L)\)</span>.</p>
+</div>
+</div>
+<div class="section" id="rosenbrock">
+<h3><span class="section-number">6.5.5. </span>Rosenbrock<a class="headerlink" href="#rosenbrock" title="Permalink to this headline">¶</a></h3>
+<p>We are going to test various optimization methods on the Rosenbrock function</p>
+<div class="math notranslate nohighlight">
+\[
+f(x,y) = (a - x)^2 + b(y - x^2)^2,
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(a = 1\)</span> and <span class="math notranslate nohighlight">\(b = 100\)</span>. The function has a global minimum at <span class="math notranslate nohighlight">\((a, a^2)\)</span>.</p>
+<ul class="simple">
+<li><p>Write a function to compute the Rosenbrock function, its gradient and the Hessian for given input <span class="math notranslate nohighlight">\((x,y)\)</span>. Visualize the function on <span class="math notranslate nohighlight">\([-3,3]^2\)</span> and indicate the neighborhood around the minimum where <span class="math notranslate nohighlight">\(f\)</span> is convex.</p></li>
+<li><p>Implement the method from exercise 1 and test convergence from various initial points. Does the method always convergce? How small do you need to pick <span class="math notranslate nohighlight">\(\alpha\)</span>? How fast?</p></li>
+<li><p>Implement a linesearch strategy to ensure that <span class="math notranslate nohighlight">\(\alpha_k\)</span> satisfies the Wolfe conditions, does <span class="math notranslate nohighlight">\(\alpha\)</span> vary a lot?</p></li>
+</ul>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<ul class="simple">
+<li><p>In de code below, we show a graph of the function and determine the region of convexity by computing the eigenvalues of the Hessian (should be positive)</p></li>
+<li><p>We observe linear convergence for small enough <span class="math notranslate nohighlight">\(\alpha\)</span></p></li>
+<li><p>Using a linesearch we obtain faster convergence by allowing larger steps in the beginning.</p></li>
+</ul>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">line_search</span>
+
+<span class="c1"># rosenbrock function</span>
+<span class="k">def</span> <span class="nf">rosenbrock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">x1</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="o">**</span><span class="mi">2</span><span class="p">)])</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">12</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x1</span><span class="o">*</span><span class="n">b</span><span class="p">],[</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">x1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">b</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">H</span>
+
+<span class="c1"># steepest descent</span>
+<span class="k">def</span> <span class="nf">steep</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">niter</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">niter</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">niter</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">fk</span><span class="p">,</span><span class="n">gk</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">gk</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="c1"># steepest descent with linesearch</span>
+<span class="k">def</span> <span class="nf">steep_wolfe</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">alpha0</span><span class="p">,</span><span class="n">niter</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">niter</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">niter</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">fk</span><span class="p">,</span><span class="n">gk</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">pk</span> <span class="o">=</span> <span class="o">-</span><span class="n">alpha0</span><span class="o">*</span><span class="n">gk</span> <span class="c1">#reference stepsize</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">line_search</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">rosenbrock</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">rosenbrock</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">pk</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">alpha</span><span class="p">:</span> <span class="c1"># check if linesearch was successfull</span>
+            <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">pk</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># if not, use regular step</span>
+            <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">pk</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot of the Rosenbrock function</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">xx1</span><span class="p">,</span><span class="n">xx2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">fs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">rosenbrock</span><span class="p">((</span><span class="n">x1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">x2</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+        
+<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx1</span><span class="p">,</span><span class="n">xx2</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x101fb41290&gt;]
+</pre></div>
+</div>
+<img alt="_images/numerical_optimisation_9_1.png" src="_images/numerical_optimisation_9_1.png" />
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># determine region of convexity by computing eigenvalues of the Hessian</span>
+<span class="n">e1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="n">e2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">Hs</span> <span class="o">=</span> <span class="n">rosenbrock</span><span class="p">((</span><span class="n">x1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">x2</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+        <span class="n">e1</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="n">e2</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">Hs</span><span class="p">)</span>
+        
+<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx1</span><span class="p">,</span><span class="n">xx2</span><span class="p">,(</span><span class="n">e1</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">e2</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">),</span><span class="n">levels</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1020153650&gt;]
+</pre></div>
+</div>
+<img alt="_images/numerical_optimisation_10_1.png" src="_images/numerical_optimisation_10_1.png" />
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># run steepest descent</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">12122</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.99</span><span class="o">/</span><span class="n">L</span>
+<span class="n">maxiter</span> <span class="o">=</span> <span class="mi">50000</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">steep</span><span class="p">(</span><span class="n">rosenbrock</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">],</span><span class="n">alpha</span><span class="p">,</span><span class="n">maxiter</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">maxiter</span><span class="p">,</span><span class="n">maxiter</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx1</span><span class="p">,</span><span class="n">xx2</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">xs</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="n">k</span><span class="p">,(</span><span class="o">.</span><span class="mi">99993</span><span class="p">)</span><span class="o">**</span><span class="n">k</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/numerical_optimisation_11_0.png" src="_images/numerical_optimisation_11_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># run steepest descent with linesearch</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">12122</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.99</span><span class="o">/</span><span class="n">L</span>
+<span class="n">maxiter</span> <span class="o">=</span> <span class="mi">50000</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">steep_wolfe</span><span class="p">(</span><span class="n">rosenbrock</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">],</span><span class="mf">1.99</span><span class="o">/</span><span class="n">L</span><span class="p">,</span><span class="mi">50000</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">maxiter</span><span class="p">,</span><span class="n">maxiter</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx1</span><span class="p">,</span><span class="n">xx2</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">xs</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="n">k</span><span class="p">,(</span><span class="o">.</span><span class="mi">99993</span><span class="p">)</span><span class="o">**</span><span class="n">k</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/opt/anaconda3/lib/python3.7/site-packages/scipy/optimize/linesearch.py:466: LineSearchWarning: The line search algorithm did not converge
+  warn('The line search algorithm did not converge', LineSearchWarning)
+/opt/anaconda3/lib/python3.7/site-packages/scipy/optimize/linesearch.py:314: LineSearchWarning: The line search algorithm did not converge
+  warn('The line search algorithm did not converge', LineSearchWarning)
+</pre>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11d88ffd0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x11d8941d0&gt;]
+</pre></div>
+</div>
+<img alt="_images/numerical_optimisation_12_2.png" src="_images/numerical_optimisation_12_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="soft-tresholding">
+<h3><span class="section-number">6.5.6. </span>Soft tresholding<a class="headerlink" href="#soft-tresholding" title="Permalink to this headline">¶</a></h3>
+<p>In efficient splitting methods, e.g. in Split Bregman, see next exercise below, subproblems often can be reduced to proximal steps, like soft shrinkage.</p>
+<ul class="simple">
+<li><p>Hence, show in 1D <span class="math notranslate nohighlight">\((\Omega \subset \mathbb{R})\)</span>, that a solution <span class="math notranslate nohighlight">\(z^* : \Omega \rightarrow \mathbb{R}\)</span> of the functional</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+	\min_z \frac{1}{2}\left\| z-f \right\|_{L^2(\Omega)}^2 + \alpha \left\| z \right\|_{L^1(\Omega)}
+\]</div>
+<p>is explicitly given by the application of the soft shrinkage operator <span class="math notranslate nohighlight">\(S_\alpha(f)\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split} z^* = S_\alpha(f) := \left\{
+\begin{align*}
+&amp;f - \alpha , &amp;\text{if}\: f &gt; \alpha \\
+&amp;0,           &amp;\text{if}\: -\alpha \leq f \leq \alpha\\
+&amp;f + \alpha , &amp;\text{if}\: f &lt; -\alpha
+\end{align*}
+\right\}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>What would happen with this formula if we would go from convex regularization to nonconvex regularization, i.e. <span class="math notranslate nohighlight">\(L^p(\Omega)\)</span> with <span class="math notranslate nohighlight">\(0 &lt; p &lt; 1\)</span> instead of <span class="math notranslate nohighlight">\(L^1(\Omega)\)</span> in the regularization? (This is a difficult question. Search for hard shrinkage to get an idea.)</p></li>
+</ul>
+</div>
+<div class="section" id="a-prima-dual-method-for-tv-denoising">
+<h3><span class="section-number">6.5.7. </span>A Prima-dual method for TV denoising<a class="headerlink" href="#a-prima-dual-method-for-tv-denoising" title="Permalink to this headline">¶</a></h3>
+<p>In the lecture we have introduced with Split-Bregman, or equivalently Alternating direction method of multipliers (ADMM), a splitting method, with which we can solve the ROF model</p>
+<div class="math notranslate nohighlight">
+\[ \min_u \frac{1}{2} \left\| u-f \right\|_{L^2(\Omega)} + \alpha \left\| \nabla u \right\|_{L^1(\Omega)}\]</div>
+<p>efficiently in an alternating primal-dual fashion.</p>
+<ul class="simple">
+<li><p>Derive the splitting method in 1D <span class="math notranslate nohighlight">\((\Omega \subset \mathbb{R})\)</span> analogous to the lecture for the ROF model, implement it in Python and test it for different step sizes and regularisation parameters for a step function with additive Gaussian noise.</p></li>
+<li><p>How do the subproblems of the splitting algorithm change, if we make the transition from denoising to reconstruction with an operator <span class="math notranslate nohighlight">\(K:\Omega \rightarrow \Omega\)</span>, without introducing additional constraints? Which property would the operator <span class="math notranslate nohighlight">\(K\)</span> need, such that the whole method could still be realised efficiently via FFT and DCT inside?</p></li>
+</ul>
+</div>
+<div class="section" id="splitting-methods">
+<h3><span class="section-number">6.5.8. </span>Splitting methods<a class="headerlink" href="#splitting-methods" title="Permalink to this headline">¶</a></h3>
+<p>The aim is to solve the following variational problem</p>
+<div class="math notranslate nohighlight">
+\[\min_u \frac{1}{2} \|Ku - f^{\delta}\|_2^2 + \alpha \|Lu\|_1,\]</div>
+<p>where <span class="math notranslate nohighlight">\(K\)</span> is a given forward operator (matrix) and <span class="math notranslate nohighlight">\(L\)</span> is a discretisation of the second derivative operator.</p>
+<ol class="simple">
+<li><p>Describe and implement a splitting method; you can be creative here – multiple answers are possible</p></li>
+<li><p>Compare your method with the basic subgradient-descent method implemented below</p></li>
+<li><p>(bonus) Find a suitable value for <span class="math notranslate nohighlight">\(\alpha\)</span> using the discrepancy principle</p></li>
+</ol>
+<p>Some code to get you started is shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># forward operator</span>
+<span class="k">def</span> <span class="nf">getK</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">h</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">xx</span> <span class="o">-</span> <span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">K</span><span class="p">,</span><span class="n">x</span>
+
+<span class="c1"># define regularization operator</span>
+<span class="k">def</span> <span class="nf">getL</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">L</span>
+
+<span class="c1"># define grid and operators</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-2</span>
+<span class="n">K</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">getK</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">getL</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># true solution and corresponding data</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="mf">0.5</span><span class="o">-</span><span class="n">x</span><span class="p">),</span><span class="mf">0.3</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">K</span><span class="nd">@u</span>
+
+<span class="c1"># noisy data</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="n">f</span> <span class="o">+</span> <span class="n">delta</span><span class="o">*</span><span class="n">noise</span>
+
+<span class="c1"># plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">f_delta</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/numerical_optimisation_16_0.png" src="_images/numerical_optimisation_16_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># example implementation of subgradient-descent</span>
+<span class="k">def</span> <span class="nf">subgradient</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">f_delta</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">niter</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">objective</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">niter</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">niter</span><span class="p">):</span>
+        <span class="c1"># keep track of function value</span>
+        <span class="n">objective</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">K</span><span class="nd">@u</span> <span class="o">-</span> <span class="n">f_delta</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">L</span><span class="nd">@u</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># compute (sub) gradient</span>
+        <span class="n">gr</span> <span class="o">=</span> <span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">T</span><span class="o">@</span><span class="p">(</span><span class="n">K</span><span class="nd">@u</span> <span class="o">-</span> <span class="n">f_delta</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">L</span><span class="o">.</span><span class="n">T</span><span class="nd">@np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">L</span><span class="nd">@u</span><span class="p">))</span>
+        <span class="c1"># update with stepsize t</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="n">t</span><span class="o">*</span><span class="n">gr</span>
+    <span class="k">return</span> <span class="n">u</span><span class="p">,</span> <span class="n">objective</span>
+
+<span class="c1"># get data</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-2</span>
+
+<span class="n">K</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">getK</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">getL</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="mf">0.5</span><span class="o">-</span><span class="n">x</span><span class="p">),</span><span class="mf">0.3</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="n">K</span><span class="nd">@u</span> <span class="o">+</span> <span class="n">delta</span><span class="o">*</span><span class="n">noise</span>
+
+<span class="c1"># parameters</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="n">niter</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mf">1e-2</span>
+
+<span class="c1"># run subgradient descent</span>
+<span class="n">uhat</span><span class="p">,</span> <span class="n">objective</span> <span class="o">=</span> <span class="n">subgradient</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">f_delta</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">niter</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;objective value&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;ground truth&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">uhat</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;reconstruction&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;u(x)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;u(x)&#39;)
+</pre></div>
+</div>
+<img alt="_images/numerical_optimisation_17_1.png" src="_images/numerical_optimisation_17_1.png" />
+</div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -237,7 +836,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="variational_formulations.html" title="previous page"><span class="section-number">5. </span>Variational formulations for inverse problems</a>
-    <a class='right-next' id="next-link" href="applications.html" title="next page"><span class="section-number">7. </span>Applications</a>
+    <a class='right-next' id="next-link" href="image_processing.html" title="next page"><span class="section-number">1. </span>Image processing</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -246,7 +845,6 @@
         
           By Tristan van Leeuwen and Christoph Brune<br/>
         
-            &copy; Copyright 2020.<br/>
       </p>
     </div>
   </footer>

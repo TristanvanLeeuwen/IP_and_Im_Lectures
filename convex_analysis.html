@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>8.5. Convex analysis &#8212; 10 Luctures on Inverse Problems and Imaging</title>
+    <title>6. Convex analysis &#8212; 10 Lectures on Inverse Problems and Imaging</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -39,8 +39,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="9. Examples" href="examples.html" />
-    <link rel="prev" title="8.4. Variational analysis" href="variational_analysis.html" />
+    <link rel="next" title="1. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="5. Variational analysis" href="variational_analysis.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -62,7 +62,7 @@
   <img src="_static/logo.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">10 Luctures on Inverse Problems and Imaging</h1>
+  <h1 class="site-logo" id="site-title">10 Lectures on Inverse Problems and Imaging</h1>
   
 </a>
 </div>
@@ -73,14 +73,12 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Welcome to Inverse Problems and Imaging
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
+  <p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is.html">
    1. What is an inverse problem
@@ -111,46 +109,80 @@
    6. Numerical optimisation for inverse problems
   </a>
  </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Applications
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="applications.html">
-   7. Applications
+  <a class="reference internal" href="image_processing.html">
+   1. Image processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tomography.html">
+   2. Computed Tomography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wavefield_imaging.html">
+   3. Wavefield Imaging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="magnetic_resonance_imaging.html">
+   4. Magnetic Resonance Imaging
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_algebra.html">
+   1. Linear algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functional_analysis.html">
+   2. Functional analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fourier_sampling.html">
+   3. Fourier transform, distributions and sampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   4. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="variational_analysis.html">
+   5. Variational analysis
   </a>
  </li>
  <li class="toctree-l1 current active">
-  <a class="reference internal" href="preliminaries.html">
-   8. Preliminaries
+  <a class="current reference internal" href="#">
+   6. Convex analysis
   </a>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="linear_algebra.html">
-     8.1. Linear algebra
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="functional_analysis.html">
-     8.2. Functional analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="statistics.html">
-     8.3. Statistics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="variational_analysis.html">
-     8.4. Variational analysis
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     8.5. Convex analysis
-    </a>
-   </li>
-  </ul>
  </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="examples.html">
-   9. Examples
+  <a class="reference internal" href="bibliography.html">
+   1. Bibliography
   </a>
  </li>
 </ul>
@@ -158,10 +190,6 @@
 </nav>
 
  <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
 
 </div>
 
@@ -206,6 +234,18 @@
 </div>
         <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        
+        <a class="edit-button" href="https://github.com/TristanvanLeeuwen/IP_and_Im_Lectures/edit/master/convex_analysis.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -232,7 +272,7 @@
               <div>
                 
   <div class="section" id="convex-analysis">
-<h1><span class="section-number">8.5. </span>Convex analysis<a class="headerlink" href="#convex-analysis" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">6. </span>Convex analysis<a class="headerlink" href="#convex-analysis" title="Permalink to this headline">¶</a></h1>
 </div>
 
     <script type="text/x-thebe-config">
@@ -263,8 +303,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="variational_analysis.html" title="previous page"><span class="section-number">8.4. </span>Variational analysis</a>
-    <a class='right-next' id="next-link" href="examples.html" title="next page"><span class="section-number">9. </span>Examples</a>
+    <a class='left-prev' id="prev-link" href="variational_analysis.html" title="previous page"><span class="section-number">5. </span>Variational analysis</a>
+    <a class='right-next' id="next-link" href="bibliography.html" title="next page"><span class="section-number">1. </span>Bibliography</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -273,7 +313,6 @@
         
           By Tristan van Leeuwen and Christoph Brune<br/>
         
-            &copy; Copyright 2020.<br/>
       </p>
     </div>
   </footer>

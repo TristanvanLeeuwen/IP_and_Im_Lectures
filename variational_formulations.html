@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>5. Variational formulations for inverse problems &#8212; 10 Luctures on Inverse Problems and Imaging</title>
+    <title>5. Variational formulations for inverse problems &#8212; 10 Lectures on Inverse Problems and Imaging</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -62,7 +62,7 @@
   <img src="_static/logo.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">10 Luctures on Inverse Problems and Imaging</h1>
+  <h1 class="site-logo" id="site-title">10 Lectures on Inverse Problems and Imaging</h1>
   
 </a>
 </div>
@@ -73,13 +73,11 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Welcome to Inverse Problems and Imaging
-  </a>
- </li>
-</ul>
+  <p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is.html">
@@ -111,19 +109,80 @@
    6. Numerical optimisation for inverse problems
   </a>
  </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Applications
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="applications.html">
-   7. Applications
+  <a class="reference internal" href="image_processing.html">
+   1. Image processing
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="preliminaries.html">
-   8. Preliminaries
+  <a class="reference internal" href="tomography.html">
+   2. Computed Tomography
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="examples.html">
-   9. Examples
+  <a class="reference internal" href="wavefield_imaging.html">
+   3. Wavefield Imaging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="magnetic_resonance_imaging.html">
+   4. Magnetic Resonance Imaging
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_algebra.html">
+   1. Linear algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functional_analysis.html">
+   2. Functional analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fourier_sampling.html">
+   3. Fourier transform, distributions and sampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   4. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="variational_analysis.html">
+   5. Variational analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convex_analysis.html">
+   6. Convex analysis
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   1. Bibliography
   </a>
  </li>
 </ul>
@@ -131,10 +190,6 @@
 </nav>
 
  <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
 
 </div>
 
@@ -179,6 +234,18 @@
 </div>
         <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        
+        <a class="edit-button" href="https://github.com/TristanvanLeeuwen/IP_and_Im_Lectures/edit/master/variational_formulations.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -195,7 +262,73 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis">
+   5.1. Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-pdes">
+   5.2. Linear PDEs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-linear-pdes">
+   5.3. Non-linear PDEs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   5.4. Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#well-posedness-and-optimality-conditions">
+     5.4.1. Well-posedness and optimality conditions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#well-posedness-of-the-rof-model">
+     5.4.2. Well-posedness of the ROF model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deconvolution-using-the-l-1-norm">
+     5.4.3. Deconvolution using the
+     <span class="math notranslate nohighlight">
+      \(L_1\)
+     </span>
+     norm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#frechet-derivatives">
+     5.4.4. Fréchet derivatives
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ell-2-denoising">
+     5.4.5.
+     <span class="math notranslate nohighlight">
+      \(\ell_2\)
+     </span>
+     -denoising
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ell-1-denoising">
+     5.4.6.
+     <span class="math notranslate nohighlight">
+      \(\ell_1\)
+     </span>
+     -denoising
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -206,6 +339,232 @@
                 
   <div class="section" id="variational-formulations-for-inverse-problems">
 <h1><span class="section-number">5. </span>Variational formulations for inverse problems<a class="headerlink" href="#variational-formulations-for-inverse-problems" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="analysis">
+<h2><span class="section-number">5.1. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="linear-pdes">
+<h2><span class="section-number">5.2. </span>Linear PDEs<a class="headerlink" href="#linear-pdes" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="non-linear-pdes">
+<h2><span class="section-number">5.3. </span>Non-linear PDEs<a class="headerlink" href="#non-linear-pdes" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="exercises">
+<h2><span class="section-number">5.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="well-posedness-and-optimality-conditions">
+<h3><span class="section-number">5.4.1. </span>Well-posedness and optimality conditions<a class="headerlink" href="#well-posedness-and-optimality-conditions" title="Permalink to this headline">¶</a></h3>
+<p>The following functionals are given (for <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> and <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{2 \times 2}\)</span> an invertible matrix):</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(J_1: \mathbb{R} \rightarrow \mathbb{R}, u \mapsto \frac{1}2(u-f)^2 + \alpha|u|\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(J_2: \mathbb{R} \rightarrow \mathbb{R}, u \mapsto |u-f| + \alpha u^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(J_3: \mathbb{R}^2 \rightarrow \mathbb{R}, u \mapsto \frac{1}2\Vert A u - f\Vert_{\ell^2}^2  + \alpha \Vert u \Vert_{\ell^2}\)</span></p></li>
+</ul>
+<p>For the optimisation problems <span class="math notranslate nohighlight">\(J_i(u) \rightarrow \min_u\)</span> perform the following analysis:</p>
+<p><strong>Proof</strong>, that a minimum exists (use the fundamental theorem of optimisation) and <strong>proof</strong> that it is unique.</p>
+<p><strong>Compute</strong> the optimality conditions and thereof (using cases) a solution formula dependent on <span class="math notranslate nohighlight">\(f\)</span>. It holds for <span class="math notranslate nohighlight">\(p\in\partial\left\|u\right\|_{\ell^2}\)</span> that
+<span class="math notranslate nohighlight">\($p = \frac{u}{\left\|u\right\|_{\ell^2}} \text{ for } \; u\neq 0 \text{, and }\)</span>$
+<span class="math notranslate nohighlight">\($p \in \mathrm{B}_1(0) \quad \text{ for } \; u = 0\, \qquad\)</span>$
+where <span class="math notranslate nohighlight">\(\mathrm{B}_1(0)\)</span> denotes the unit ball around <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>Hint: Remark, that for <span class="math notranslate nohighlight">\(J_3\)</span> no explicit solution formula can be given. Hence, use the following substitution
+<span class="math notranslate nohighlight">\(c:=\frac{\alpha}{\left\|u\right\|_{\ell^2}}\)</span> and provide a solution formula dependent on <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(f\)</span>.</p>
+</div>
+<div class="section" id="well-posedness-of-the-rof-model">
+<h3><span class="section-number">5.4.2. </span>Well-posedness of the ROF model<a class="headerlink" href="#well-posedness-of-the-rof-model" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>For existence of a solution, verify why the TV functional is lower semi-continuous in the corresponding topology.</p></li>
+<li><p>Does the Rudin-Osher-Fatemi model have a unique minimizer? Why or why not?</p></li>
+</ul>
+</div>
+<div class="section" id="deconvolution-using-the-l-1-norm">
+<h3><span class="section-number">5.4.3. </span>Deconvolution using the <span class="math notranslate nohighlight">\(L_1\)</span> norm<a class="headerlink" href="#deconvolution-using-the-l-1-norm" title="Permalink to this headline">¶</a></h3>
+<p>For given data <span class="math notranslate nohighlight">\(f\)</span> and a convolution kernel <span class="math notranslate nohighlight">\(k\)</span> we study the following regularized variational method:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\left\| k \ast u - f \right\|_{L^2(\Omega)}^2 \:+\: \alpha \: \int_\Omega | (\mathcal{F}u)(w) | \: dw \: \rightarrow \: \min_{u} 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\((\mathcal{F}u)(w)\)</span> denotes the Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> at wave number <span class="math notranslate nohighlight">\(w\)</span>. Similar to the lecture, find an explicit representation of the solution of the problem using the <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution_theorem">convolution theorem</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/Plancherel_theorem">Plancherel theorem</a>. For simplicity you can assume that everything is real valued.</p>
+<p>Hint: The derivative of the absolute value function is multivalued (you need cases).</p>
+</div>
+<div class="section" id="frechet-derivatives">
+<h3><span class="section-number">5.4.4. </span>Fréchet derivatives<a class="headerlink" href="#frechet-derivatives" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(\Omega \subset \mathbb{R}^2\)</span> and <span class="math notranslate nohighlight">\(\Sigma \subset \mathbb{R}^2\)</span>. Compute the Fréchet derivatives of the following functionals:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(J(u) = \frac{1}{2} \left\| \nabla u \right\|_{L^2(\Omega)}^2\)</span> where <span class="math notranslate nohighlight">\(u \in W^{1,2}(\Omega)\)</span>.</p></li>
+</ul>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>We have <span class="math notranslate nohighlight">\(J(u + h) = \textstyle{\frac{1}{2}}\|\nabla u + \nabla h\|^2 = \textstyle{\frac{1}{2}}\|\nabla u\|^2 +  \int_{\Omega}\nabla u(x) \cdot \nabla h(x) \mathrm{d}x + \textstyle{\frac{1}{2}}\|\nabla h\|^2\)</span>. This suggests that <span class="math notranslate nohighlight">\(DJ(u) : U \rightarrow \mathbb{R}\)</span> can be defined as <span class="math notranslate nohighlight">\(DJ(u)v = \int_{\Omega}\nabla u(x) \cdot \nabla v(x) \mathrm{d}x\)</span>. Indeed, we can verify that</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{\|h\|\rightarrow 0} \frac{\left| \int_{\Omega}\nabla h (x) \cdot \nabla h(x)\mathrm{d}x \right|}{\sqrt{\int_{\Omega} |h(x)|^2 + |\nabla h(x) \cdot \nabla h(x) | \mathrm{d}x}} = 0.
+\]</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(J(u) = \frac{1}{2} \left\| Ku-f \right\|_{L^2(\Sigma)}^2\)</span> where <span class="math notranslate nohighlight">\(K: L^2(\Omega) \rightarrow L^2(\Sigma)\)</span> is a compact linear operator, <span class="math notranslate nohighlight">\(u : \Omega \rightarrow \mathbb{R}\)</span> and <span class="math notranslate nohighlight">\(f : \Sigma \rightarrow \mathbb{R}\)</span>.</p></li>
+</ul>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>We have <span class="math notranslate nohighlight">\(J(u+h) = J(u) + \langle Ku - f, Kv \rangle + \textstyle{\frac{1}{2}}\|Kv\|^2.\)</span> This suggests letting <span class="math notranslate nohighlight">\(DJ(u)v = \langle Ku - f, Kv\rangle = \langle K^*(Ku - f), v\rangle\)</span>. Indeed</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{\|h\|\rightarrow 0}\frac{\|Kh\|^2_{L^2}}{\|h\|_{L^2}} = 0,
+\]</div>
+<p>because <span class="math notranslate nohighlight">\(K\)</span> is bounded.</p>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(J(\mathbf{v}) = \frac{1}{2} \left\| \partial_t f + \nabla\cdot(f \mathbf{v}) \right\|_{L^2(\Omega \times [0,T])}^2\)</span>
+where <span class="math notranslate nohighlight">\(f\)</span> here represents an image sequence, i.e. <span class="math notranslate nohighlight">\(f: \Omega \times [0,T] \rightarrow \mathbb{R}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> denotes a desired vector field, i.e. <span class="math notranslate nohighlight">\(\mathbf{v}: \Omega \times [0,T] \rightarrow \mathbb{R}^2\)</span>.</p></li>
+</ul>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>Here, we have <span class="math notranslate nohighlight">\(J(\mathbf{v} + \mathbf{h}) = J(\mathbf{v}) + \langle \partial_t f + \nabla \cdot (f\mathbf{v}),  \nabla \cdot (f\mathbf{h})\rangle + \textstyle{\frac{1}{2}}\|\nabla \cdot (f\mathbf{h})\|^2\)</span>, suggesting</p>
+<div class="math notranslate nohighlight">
+\[
+DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nabla \cdot (f(x,t)\mathbf{v}(x,t))\right)\left(\nabla \cdot (f(x,t)\mathbf{v}(x,t))\right) \mathrm{d}t\mathrm{d}x.
+\]</div>
+</div>
+</div>
+<div class="section" id="ell-2-denoising">
+<h3><span class="section-number">5.4.5. </span><span class="math notranslate nohighlight">\(\ell_2\)</span>-denoising<a class="headerlink" href="#ell-2-denoising" title="Permalink to this headline">¶</a></h3>
+<p>Consider the Tikhonov functional for denoising (in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[
+\min\limits_u\textstyle{\frac{1}{2}}\left\|u-f\right\|_2^2 + \frac{\alpha}{2}\left\|u\right\|_2^2.
+\]</div>
+<ul class="simple">
+<li><p>Give the solution of this variational problem explicitly.</p></li>
+<li><p>Generate in Python a random 1x128 vector with 5 non-zero coefficients (entries) and add aussian noise with standard deviation <span class="math notranslate nohighlight">\(\sigma = 0.05\)</span> (see example below)</p></li>
+<li><p>Denoise the vector by solving the variational problem. What happens for different regularisation parameters <span class="math notranslate nohighlight">\(\alpha = \left\{0.01, 0.05, 0.1, 0.2\right\}\)</span>?. Consider in particular <span class="math notranslate nohighlight">\(\alpha=0.1\)</span>. <em>Is the solution sparse?</em></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># parameters</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># generate spiky signal with random amplitudes</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">u</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">k</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+<span class="c1"># generate noisy signal</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11a5250d0&gt;]
+</pre></div>
+</div>
+<img alt="_images/variational_formulations_7_1.png" src="_images/variational_formulations_7_1.png" />
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<ul class="simple">
+<li><p>The solution is given by <span class="math notranslate nohighlight">\(u = (1 + \alpha)^{-1}f.\)</span></p></li>
+<li><p>The results are shown below (click <code class="docutils literal notranslate"><span class="pre">+</span></code> to show the code), showing that (as expected), the result is only scaled down. This obviously reduces the noise level but also effects the amplitude of the spikes.</p></li>
+</ul>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># parameters</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># random seed</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># generate spiky signal with random amplitudes</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">u</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">k</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+<span class="c1"># generate noisy signal</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># denoise</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">uhat</span> <span class="o">=</span> <span class="n">f</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ground truth&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">uhat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;denoised signal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/variational_formulations_9_0.png" src="_images/variational_formulations_9_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="ell-1-denoising">
+<h3><span class="section-number">5.4.6. </span><span class="math notranslate nohighlight">\(\ell_1\)</span>-denoising<a class="headerlink" href="#ell-1-denoising" title="Permalink to this headline">¶</a></h3>
+<p>Repeat the previous exercise for the <span class="math notranslate nohighlight">\(\ell_1\)</span>-densoining problem</p>
+<div class="math notranslate nohighlight">
+\[
+\min\limits_u\textstyle{\frac{1}{2}}\left\|u-f\right\|_2^2 + \alpha \left\|u\right\|_1.
+\]</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>The exact solution known as <em>soft tresholding</em>. A derivation can be found <a class="reference external" href="https://math.stackexchange.com/questions/471339/derivation-of-soft-thresholding-operator-proximal-operator-of-l-1-norm">here</a></p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># soft tresholding operation</span>
+<span class="k">def</span> <span class="nf">soft</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># import libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># parameters</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># random seed</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># generate spiky signal with random amplitudes</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">u</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">k</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+<span class="c1"># generate noisy signal</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># denoise</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">uhat</span> <span class="o">=</span> <span class="n">soft</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ground truth&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">uhat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;denoised signal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/variational_formulations_12_0.png" src="_images/variational_formulations_12_0.png" />
+</div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -246,7 +605,6 @@
         
           By Tristan van Leeuwen and Christoph Brune<br/>
         
-            &copy; Copyright 2020.<br/>
       </p>
     </div>
   </footer>

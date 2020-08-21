@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>7.3. Wavefield Imaging &#8212; 10 Luctures on Inverse Problems and Imaging</title>
+    <title>3. Wavefield Imaging &#8212; 10 Lectures on Inverse Problems and Imaging</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -39,8 +39,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="7.4. Magnetic Resonance Imaging" href="magnetic_resonance_imaging.html" />
-    <link rel="prev" title="7.2. Computed Tomography" href="tomography.html" />
+    <link rel="next" title="4. Magnetic Resonance Imaging" href="magnetic_resonance_imaging.html" />
+    <link rel="prev" title="2. Computed Tomography" href="tomography.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -62,7 +62,7 @@
   <img src="_static/logo.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">10 Luctures on Inverse Problems and Imaging</h1>
+  <h1 class="site-logo" id="site-title">10 Lectures on Inverse Problems and Imaging</h1>
   
 </a>
 </div>
@@ -73,14 +73,12 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Welcome to Inverse Problems and Imaging
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
+  <p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is.html">
    1. What is an inverse problem
@@ -111,41 +109,80 @@
    6. Numerical optimisation for inverse problems
   </a>
  </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Applications
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="image_processing.html">
+   1. Image processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tomography.html">
+   2. Computed Tomography
+  </a>
+ </li>
  <li class="toctree-l1 current active">
-  <a class="reference internal" href="applications.html">
-   7. Applications
-  </a>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="image_processing.html">
-     7.1. Image processing
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="tomography.html">
-     7.2. Computed Tomography
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     7.3. Wavefield Imaging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="magnetic_resonance_imaging.html">
-     7.4. Magnetic Resonance Imaging
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="preliminaries.html">
-   8. Preliminaries
+  <a class="current reference internal" href="#">
+   3. Wavefield Imaging
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="examples.html">
-   9. Examples
+  <a class="reference internal" href="magnetic_resonance_imaging.html">
+   4. Magnetic Resonance Imaging
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_algebra.html">
+   1. Linear algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functional_analysis.html">
+   2. Functional analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fourier_sampling.html">
+   3. Fourier transform, distributions and sampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   4. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="variational_analysis.html">
+   5. Variational analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convex_analysis.html">
+   6. Convex analysis
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   1. Bibliography
   </a>
  </li>
 </ul>
@@ -153,10 +190,6 @@
 </nav>
 
  <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
 
 </div>
 
@@ -201,6 +234,18 @@
 </div>
         <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        
+        <a class="edit-button" href="https://github.com/TristanvanLeeuwen/IP_and_Im_Lectures/edit/master/wavefield_imaging.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -217,7 +262,92 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#forward-modelling">
+   3.1. Forward modelling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analytic-solution">
+     3.1.1. Analytic solution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-modelling">
+     3.1.2. Numerical modelling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis">
+   3.2. Analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#source-localization">
+     3.2.1. Source localization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inverse-scattering">
+     3.2.2. Inverse scattering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reconstruction">
+   3.3. Reconstruction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inverse-source-problem">
+     3.3.1. Inverse source problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     3.3.2. Inverse scattering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#waveform-tomography">
+     3.3.3. Waveform tomography
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   3.4. Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     3.4.1. Inverse source problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     3.4.2. Inverse scattering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-scattering-potentials">
+     3.4.3. Non-scattering potentials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parameter-estimation">
+     3.4.4. Parameter estimation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -227,7 +357,943 @@
               <div>
                 
   <div class="section" id="wavefield-imaging">
-<h1><span class="section-number">7.3. </span>Wavefield Imaging<a class="headerlink" href="#wavefield-imaging" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">3. </span>Wavefield Imaging<a class="headerlink" href="#wavefield-imaging" title="Permalink to this headline">¶</a></h1>
+<p>In many applications, acoustic or electromagnetic waves are harnessed to <em>see</em> things; under-water acoustics, radar, sonar, medical ultrasound, ground penetrating radar, seismic imaging, global seismology. In some of these applications the measurements are <em>passive</em>; we record waves that are emitted by the object of investigation and we try to infer its location, size, etc. In <em>active</em> measurements, waves are generated and the response of the object is recorded. An example of such an application is shown in <a class="reference internal" href="#seismic"><span class="std std-numref">Fig. 3.1</span></a>.</p>
+<div class="figure align-default" id="seismic">
+<a class="reference internal image-reference" href="_images/seismic.png"><img alt="_images/seismic.png" src="_images/seismic.png" style="height: 150px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Acquisition setup of a bat and an active marine seismic survey.</span><a class="headerlink" href="#seismic" title="Permalink to this image">¶</a></p>
+</div>
+<p>In order to treat the inverse problem, we must first understand the <em>forward problem</em>. In its most rudimentary form, the wave-equation is given by</p>
+<div class="math notranslate nohighlight" id="equation-waveequation">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-waveequation" title="Permalink to this equation">¶</a></span>\[L[c]v(t,x) = q(t,x),\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[
+L[c] = \left[\frac{1}{c(x)^2}\frac{\partial^2}{\partial t^2} - \nabla^2 \right],
+\]</div>
+<p>and where <span class="math notranslate nohighlight">\(v : \mathbb{R} \times \mathbb{R}^n \rightarrow \mathbb{R}\)</span> denotes the wavefield, <span class="math notranslate nohighlight">\(c : \mathbb{R}^n \rightarrow \mathbb{R}\)</span> is the speed of propagation and <span class="math notranslate nohighlight">\(q : \mathbb{R} \times \mathbb{R}^n \rightarrow \mathbb{R}\)</span> is a source term. We will assume that the source has compact support in both space and time and is square integrable.</p>
+<p>To define a unique solution of <a class="reference internal" href="#equation-waveequation">(3.2)</a> we need to supply boundary and initial conditions. In the applications discussed above one typically considers an unbounded domain (<span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>) and Cauchy initial conditions <span class="math notranslate nohighlight">\(v(0,x) = 0\)</span>, <span class="math notranslate nohighlight">\(\frac{\partial v}{\partial t}(0,x) = 0\)</span>.</p>
+<p>In scattering experiments it is common to rewrite the wave-equation in terms of an incoming and a scattered wavefield, <span class="math notranslate nohighlight">\(v = v_i + v_s\)</span>, and a scattering potential, <span class="math notranslate nohighlight">\(u(x) = c(x)^{-2} - c_0^{-2}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-scattering">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-scattering" title="Permalink to this equation">¶</a></span>\[L[c_0]v_i(t,x) = q(t,x), \quad L[c_0]v_s(t,x) = -u(x)\frac{\partial^2 v}{\partial t^2}(t,x).\]</div>
+<p>Under a <em>weak scattering</em> assumption, we may ignore the interaction of <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v_s\)</span> and replace <span class="math notranslate nohighlight">\(v\)</span> in <a class="reference internal" href="#equation-scattering">(3.3)</a> by <span class="math notranslate nohighlight">\(v_i\)</span>.</p>
+<p>The measurements are typically taken to be the (scattered) wavefield restricted to <span class="math notranslate nohighlight">\([0,T] \times \Delta\)</span> where <span class="math notranslate nohighlight">\(\Delta \subset \mathbb{R}^n\)</span> may be a manifold or a set of points. The data may then be denoted by <span class="math notranslate nohighlight">\(f(t,r)\)</span>.
+In active experiments, it is common practice to consider measurements for a collection of source terms. The sources may be point-sources, in which case <span class="math notranslate nohighlight">\(q(t,x) = w(t)\delta(x - s)\)</span> with <span class="math notranslate nohighlight">\(s \in  \Sigma\)</span>. Alternatively, the incident field <span class="math notranslate nohighlight">\(v_i\)</span> may be given and parametrized by <span class="math notranslate nohighlight">\(s \in  \Sigma\)</span>. We may then denote the data by <span class="math notranslate nohighlight">\(f(t,s,r)\)</span> with <span class="math notranslate nohighlight">\(s\in \Sigma\)</span>, <span class="math notranslate nohighlight">\(r\in \Delta\)</span> and <span class="math notranslate nohighlight">\(t\in [0,T]\)</span>.</p>
+<p>Based on this basic setup, we will discuss three possible inverse problems:</p>
+<ul class="simple">
+<li><p><strong>Inverse source problem:</strong> Recover the source <span class="math notranslate nohighlight">\(q\)</span> from the measurements for known (and constant) <span class="math notranslate nohighlight">\(c(x)\equiv c_0\)</span>.</p></li>
+<li><p><strong>Inverse scattering:</strong> Recover the scattering potential <span class="math notranslate nohighlight">\(u(x)\)</span> from measurements of the scattered field for multiple (known) sources, assuming that <span class="math notranslate nohighlight">\(c_0\)</span> is known.</p></li>
+<li><p><strong>Waveform tomography:</strong> Recover <span class="math notranslate nohighlight">\(c(x)\)</span> from measurements of the total wavefield for multiple (known) sources.</p></li>
+</ul>
+<p>Below you will find some typical examples of inverse problems that come up in practice.</p>
+<ul class="simple">
+<li><p><strong>Earth-quake localization:</strong> An earthquake described by a source term <span class="math notranslate nohighlight">\(w(t)q(x)\)</span> is recorded by multiple seimosgraphs at locations <span class="math notranslate nohighlight">\(\Delta = \{r_k\}_{k=1}^n\)</span>. The goal is to recover <span class="math notranslate nohighlight">\(q\)</span> in order to determine the location of the earthquake.</p></li>
+<li><p><strong>Passive sonar:</strong> Soundwaves emitted from an unidentified target are recorded using an array <span class="math notranslate nohighlight">\(\Delta = \{x_0 + rp \, | \, r\in[-h,h] \}\)</span>, where <span class="math notranslate nohighlight">\(p\in\mathbb{S}^2\)</span> denotes the orientation of the array and <span class="math notranslate nohighlight">\(h\)</span> its width. The goal is to recover the source term <span class="math notranslate nohighlight">\(w(t)q(x)\)</span> to determine the origin and nature of the source.</p></li>
+<li><p><strong>Radar imaging:</strong> Incident plane waves, parametrized by direction <span class="math notranslate nohighlight">\(s \in \Sigma \subset \mathbb{S}^{2}\)</span>, are send into the medium and their reflected response is recorded by an array. The goal is retreive the scattering potential.</p></li>
+<li><p><strong>Full waveform inversion:</strong> In exploration seismology, the goal is to recover <span class="math notranslate nohighlight">\(c\)</span> from measurements of the total wavefield on the surface: <span class="math notranslate nohighlight">\(\Sigma = \Delta = \{x \,|\, n\cdot x = 0\}\)</span>.</p></li>
+<li><p><strong>Ultrasound tomography:</strong> The goal is to recover <span class="math notranslate nohighlight">\(c\)</span> from the total wavefield for sources and receivers surrounding the object.</p></li>
+</ul>
+<p>A few prominent examples of acquisition setups we will consider here are the following:</p>
+<ul class="simple">
+<li><p><strong>Point-sources:</strong> <span class="math notranslate nohighlight">\(q(t,x) = w(t)\delta(x - s)\)</span>.
+\item Incoming plane waves with frequency <span class="math notranslate nohighlight">\(\omega\)</span> and direction <span class="math notranslate nohighlight">\(\xi\)</span>: <span class="math notranslate nohighlight">\(v_i(t,x) = \sin(\omega(t - \xi\cdot x/c))\)</span></p></li>
+<li><p><strong>Point-measurements along a hyperplane:</strong> <span class="math notranslate nohighlight">\(\Delta = \{x \in \mathbb{R}^n\, |\, n\cdot x = x_0\}\)</span>.</p></li>
+<li><p><strong>Point-measurements on the sphere:</strong> <span class="math notranslate nohighlight">\(\Delta = \{x \in \mathbb{R}^n \, | \, \|x\| = \rho\}\)</span>.</p></li>
+</ul>
+<p>We will further assume that the quantities of interest are compactly supported in both space and time and that the measurement time <span class="math notranslate nohighlight">\(T\)</span> is large enough to capture all the required information. This situation is sketched in <a class="reference internal" href="#assumption"><span class="std std-numref">Fig. 3.2</span></a>.</p>
+<div class="figure align-default" id="assumption">
+<a class="reference internal image-reference" href="_images/assumption.png"><img alt="_images/assumption.png" src="_images/assumption.png" style="height: 150px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.2 </span><span class="caption-text">All information on the compactly supported source term is captured in the light cone defined by  <span class="math notranslate nohighlight">\(t = c\cdot x\)</span>. We assume that <span class="math notranslate nohighlight">\(T\)</span> is large enough to capture the complete intersection of the light cone with <span class="math notranslate nohighlight">\(\Delta\)</span>.</span><a class="headerlink" href="#assumption" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="forward-modelling">
+<h2><span class="section-number">3.1. </span>Forward modelling<a class="headerlink" href="#forward-modelling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="analytic-solution">
+<h3><span class="section-number">3.1.1. </span>Analytic solution<a class="headerlink" href="#analytic-solution" title="Permalink to this headline">¶</a></h3>
+<p>For a general source term we may express the solution as a convolution</p>
+<div class="math notranslate nohighlight">
+\[
+v(t,x) = \int\!\!\int g(t-t',x,x') q(t',x')\mathrm{d}t'\mathrm{d}x',
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(g\)</span> is the Green function, obeying</p>
+<div class="math notranslate nohighlight">
+\[
+L[c]g(t,t',x,x') =  \delta(t-t')\delta(x-x').
+\]</div>
+<p>For <span class="math notranslate nohighlight">\(c(x) \equiv c\)</span> we have <span class="math notranslate nohighlight">\(g(t,t',x,x')\equiv g(t-t',x-x')\)</span> and the Green functions are given by:</p>
+<div class="math notranslate nohighlight">
+\[
+g(t,x) = \frac{1}{2c}H(t - |x|/c),
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(n=1\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+g(t,x) = \frac{1}{2\pi c\sqrt{c^2t^2 - |x|^2}}H(t - |x|/c),
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(n=2\)</span>, and</p>
+<div class="math notranslate nohighlight">
+\[
+g(t,x) = \frac{1}{4\pi |x|} \delta(t - |x|/c),
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(n=3\)</span>. Note that these are the <em>causal</em> Green functions; they propagate information forward in time. The *a-causal* or <em>time-reversed</em> Green functions also satisfy the wave-equation.</p>
+<p>The solution for non-constant <span class="math notranslate nohighlight">\(c\)</span> can be constructed by solving an integral equation</p>
+<div class="math notranslate nohighlight">
+\[
+v = g_0*q - g_0*\left(u\cdot \frac{\partial^2 v}{\partial t^2}\right),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(*\)</span> denotes convolution, <span class="math notranslate nohighlight">\(g\)</span> is the Green function for <span class="math notranslate nohighlight">\(c(x) \equiv c_0\)</span> and <span class="math notranslate nohighlight">\(u = c^{-2} - c_0^{-2}\)</span>.</p>
+</div>
+<div class="section" id="numerical-modelling">
+<h3><span class="section-number">3.1.2. </span>Numerical modelling<a class="headerlink" href="#numerical-modelling" title="Permalink to this headline">¶</a></h3>
+<p>For non-constant <span class="math notranslate nohighlight">\(c\)</span>, such closed-form expression are generally not available. The most basic method for solving the wave equation numerically is the Leap-Frog method. For <span class="math notranslate nohighlight">\(n=1\)</span>, the method may be expressed as follows. Introducing <span class="math notranslate nohighlight">\(v_{ij} \equiv v(i\Delta t, j\Delta x)\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{v_{i+1,j} - 2v_{i,j} + v_{i-1,j}}{c_{ij}^2\Delta t^2} - \frac{v_{i,j+1} - 2v_{i,j} + v_{i,j-1}}{\Delta x^2} = q_{ij} + \mathcal{O}(\Delta x^2) + \mathcal{O}(\Delta t^2).
+\]</div>
+<p>We need to truncate the spatial domain to <span class="math notranslate nohighlight">\([-L,L]\)</span> in order to compute solutions. We need boundary conditions that will let waves leave the domain with reflecting of the artificial boundary. The simplest are so-called radiation boundary conditions, that impose a one-way wave equation in the direction normal to the boundary:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial v}{\partial t}(t,\pm L) = \pm c(\pm L)\frac{\partial v}{\partial x}(t,\pm L),
+\]</div>
+<p>which can be discretized using finite-differences as well.</p>
+<p>Ignoring the higher order terms leads to</p>
+<div class="math notranslate nohighlight">
+\[
+\widetilde v_{i+1,j} = 2\widetilde v_{i,j} - \widetilde v_{i-1,j} + \frac{c_{ij}^2\Delta t^2}{\Delta x^2}\left(\widetilde v_{i,j+1} - 2\widetilde v_{i,j} + \widetilde v_{i,j-1} + \widetilde q_{i,j}\right),\quad j=-J+1, \ldots, J-1,
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\widetilde{v}_{i+1,-J} = \widetilde{v}_{i,-J} + \frac{c_{i,-J}\Delta t}{\Delta x}\left(\widetilde v_{i,-J+1} - \widetilde v_{i,-J}\right),
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\widetilde{v}_{i+1,J} = \widetilde{v}_{i,J} + \frac{c_{i,J}\Delta t}{\Delta x}\left(\widetilde v_{i,J} - \widetilde v_{i,J-1}\right),
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\widetilde v_{0,j} = \widetilde v_{1,j} = 0\)</span> and <span class="math notranslate nohighlight">\(\widetilde q_{i,j} = \Delta x^2 q(i\Delta t, j \Delta x)\)</span>.</p>
+<p>The <em>accuracy</em> of the approximation follows directly from the higher order terms we left out. Another important aspect is <em>stability</em>, which tells us how errors propagate. Since the equations are all linear, errors will propagate according to the same recursion relation. One way of studying this is <em>von Neumann stability analysis</em>, where we study the behaviour of individual components of the error: <span class="math notranslate nohighlight">\(e_{ij} = g^i\exp(\imath j\theta)\)</span>. This yields to following quadratic equation for <span class="math notranslate nohighlight">\(g\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+g^2 - 2g + 1 = 2\gamma g(\cos(\theta\Delta x)-1),
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\gamma = \frac{c\Delta t}{\Delta  x}\)</span>. To ensure stability, we need <span class="math notranslate nohighlight">\(|g|\leq 1\)</span> for all <span class="math notranslate nohighlight">\(\theta\)</span>, which requires that <span class="math notranslate nohighlight">\(\gamma\leq 1\)</span>.</p>
+</div>
+</div>
+<div class="section" id="analysis">
+<h2><span class="section-number">3.2. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="source-localization">
+<h3><span class="section-number">3.2.1. </span>Source localization<a class="headerlink" href="#source-localization" title="Permalink to this headline">¶</a></h3>
+<p>Define forward map</p>
+<div class="math notranslate nohighlight">
+\[
+f = Kq,
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[
+Kq(t,x) = \int\int g(t-t',x-x')q(t',x')\mathrm{d}x'\mathrm{d}t'.
+\]</div>
+<p>Data are measured at locations <span class="math notranslate nohighlight">\(x \in \Delta\)</span> and <span class="math notranslate nohighlight">\(t\in[0,T]\)</span>.</p>
+<ul class="simple">
+<li><p><strong>Uniqueness.</strong> Can we find sources <span class="math notranslate nohighlight">\(r_0\)</span> for which <span class="math notranslate nohighlight">\(\|Kr_0\| = 0\)</span>? Yes! First define <span class="math notranslate nohighlight">\(w_0(t,x)\)</span> compactly supported in <span class="math notranslate nohighlight">\([0,T] \times \Omega\)</span> so that <span class="math notranslate nohighlight">\(w_0(t,x) = 0\)</span> for <span class="math notranslate nohighlight">\(x\in P\)</span> and set</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+r_0(t,x) = L[c]w_0(t,x),
+\]</div>
+<p>then <span class="math notranslate nohighlight">\(Kr_0 = w_0\)</span>, which is zero for <span class="math notranslate nohighlight">\(x\in \Delta\)</span> and <span class="math notranslate nohighlight">\(t\in[0,T]\)</span>.</p>
+<ul class="simple">
+<li><p><strong>Stability.</strong> We can also construct sources that radiate an arbitraliy small amount of energy by picking <span class="math notranslate nohighlight">\(w_{\epsilon}\)</span> such that <span class="math notranslate nohighlight">\(\|w_{\epsilon}\| = \mathcal{O}(\epsilon)\)</span> and <span class="math notranslate nohighlight">\(\|Lw_{\epsilon}\| = \mathcal{O}(1)\)</span> as <span class="math notranslate nohighlight">\(\epsilon\downarrow 0\)</span>. Then <span class="math notranslate nohighlight">\(K(q + r_{\epsilon}) = d + w_{\epsilon}\)</span> and small perturbation in data leads to large perturbation in the solution.</p></li>
+</ul>
+<p>This will be explored in more detail in the assignments.</p>
+</div>
+<div class="section" id="inverse-scattering">
+<h3><span class="section-number">3.2.2. </span>Inverse scattering<a class="headerlink" href="#inverse-scattering" title="Permalink to this headline">¶</a></h3>
+<p>Under the weak scatterin assumption, the scattered field is given by</p>
+<div class="math notranslate nohighlight">
+\[
+v_s(t,x) = \int\int u(x')\frac{\partial^2 v_i}{\partial t^2}(t',x')g(t-t',x,x')\mathrm{d}t'\mathrm{d}x',
+\]</div>
+<p>which we measure at <span class="math notranslate nohighlight">\(x \in \Delta\)</span> and <span class="math notranslate nohighlight">\(t\in [0,T]\)</span>. Can we construct <span class="math notranslate nohighlight">\(u\)</span> such that <span class="math notranslate nohighlight">\(u(x')\frac{\partial^2 v_i}{\partial t^2}(t',x')\)</span> is a non-radiating source? Following the approach described earlier, we start with <span class="math notranslate nohighlight">\(w_0(t,x)\)</span> which is zero for <span class="math notranslate nohighlight">\(x \in \Delta\)</span>. Then, we want to decompose the resulting non-radiating source in two components: <span class="math notranslate nohighlight">\(u \cdot \frac{\partial^2 v_i}{\partial t^2}\)</span>. We can probably manage this for one incoming wavefield, but can we find a potential that is non-scattering for multiple incoming waves?
+In the assignments we will explore non-radiating sources in more detail.</p>
+</div>
+</div>
+<div class="section" id="reconstruction">
+<h2><span class="section-number">3.3. </span>Reconstruction<a class="headerlink" href="#reconstruction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="inverse-source-problem">
+<h3><span class="section-number">3.3.1. </span>Inverse source problem<a class="headerlink" href="#inverse-source-problem" title="Permalink to this headline">¶</a></h3>
+<p>We study a variant of the inverse source problem in which <span class="math notranslate nohighlight">\(q(t,x) = \delta(t)u(x)\)</span> and <span class="math notranslate nohighlight">\(u\)</span> is compactly supported on <span class="math notranslate nohighlight">\(\Omega \subset \mathbb{R}^n\)</span>. The foward operator for constant <span class="math notranslate nohighlight">\(c\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[
+Ku(t,x) = \int_{\Omega} u(x')g(t,x-x') \mathrm{d}x',
+\]</div>
+<p>with measurements on the sphere with radius <span class="math notranslate nohighlight">\(\rho\)</span>.
+A popular techique to solve the inverse problem is <em>backpropagation</em>, which is based on applying the adjoint of the forward operator to the data. The adjoint operator in this case is given by</p>
+<div class="math notranslate nohighlight">
+\[
+K^* f(x) = \int_{\Delta}\int_0^T g(t',x'-x)f(t',x') \mathrm{d}x'\mathrm{d}t'.
+\]</div>
+<p>We see that <span class="math notranslate nohighlight">\(p = K^* f\)</span> can be obtained by solving</p>
+<div class="math notranslate nohighlight">
+\[
+L[c]w(t,x) = \int_{\Delta}f(t,x')\delta(x-x')\mathrm{d}x',
+\]</div>
+<p>using the time-reversed Green function and evaluating at <span class="math notranslate nohighlight">\(t=0\)</span>, i.e. <span class="math notranslate nohighlight">\(p(x) = w(0,x)\)</span>.</p>
+<p>To see why this works, we study the normal operator
+<span class="math notranslate nohighlight">\(K^*K\)</span>. In the temporal Fourier domain, for <span class="math notranslate nohighlight">\(c = 1\)</span>, the operator becomes</p>
+<div class="math notranslate nohighlight">
+\[
+\widehat{f}(\omega,x) = \int_{\Omega}  u(x') \frac{\exp(\imath\omega|x-x'|)}{|x-x'|}\mathrm{d}x',
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+u(x) = \int \int_{\Delta} \widehat{f}(\omega,x') \frac{\exp(-\imath\omega|x'-x|)}{|x'-x|} \mathrm{d}x'\mathrm{d}\omega.
+\]</div>
+<p>so</p>
+<div class="math notranslate nohighlight">
+\[
+K^* Ku(x) = \int \int_{\Delta}\int_{\Omega} f(x') \frac{\exp(\imath\omega|x''-x'|)}{|x''-x'|} \frac{\exp(-\imath\omega|x''-x|)}{|x''-x|} \mathrm{d}x'\mathrm{d}x''\mathrm{d}\omega.
+\]</div>
+<p>For <span class="math notranslate nohighlight">\(|x''| \gg |x|\)</span> we can approximate it as <span class="math notranslate nohighlight">\(|x'' - x| \approx |x''| + x\cdot x''/|x''|\)</span> and likewise for <span class="math notranslate nohighlight">\(|x'' - x'|\)</span>. This is called the <em>far-field approximation</em>. Introducing <span class="math notranslate nohighlight">\(\xi'' = x''/|x''| = x''/\rho\)</span> on the unit sphere, we find</p>
+<div class="math notranslate nohighlight">
+\[
+K^* {K}u(x) = \rho\int_{\Omega} u(x') \int\int\exp(\imath\omega \xi''\cdot(x'-x)) \mathrm{d}\xi''\mathrm{d}\omega\mathrm{d}x'.
+\]</div>
+<p>The kernel</p>
+<div class="math notranslate nohighlight">
+\[
+k(x-x') = \int\int \exp(\imath\omega \xi''\cdot(x'-x)) \mathrm{d}\xi''\mathrm{d}\omega,
+\]</div>
+<p>is sometimes refered to as the <em>point-spread function</em>.</p>
+<p>Under ideal conditions, i.e, measurements are available for <em>all</em> frequencies <span class="math notranslate nohighlight">\(\omega\in\mathbb{R}\)</span>, integration over <span class="math notranslate nohighlight">\(\omega\)</span> yields</p>
+<div class="math notranslate nohighlight">
+\[
+k(x) = \int \delta(\xi\cdot x) \mathrm{d}\xi.
+\]</div>
+<p>We only get contributions to the integral for directions orthogonal to <span class="math notranslate nohighlight">\(x\)</span>, because <span class="math notranslate nohighlight">\(\delta(\xi\cdot x)=0\)</span> whenever <span class="math notranslate nohighlight">\(\xi\cdot x \not=0\)</span>. We thus integrate over a circle only. Substituting <span class="math notranslate nohighlight">\(\xi \cdot x = |\xi| |x| \cos \theta  = |x|\cos \theta\)</span> we obtain</p>
+<div class="math notranslate nohighlight">
+\[
+k(x) = \frac{1}{|x|}\int_0^{2\pi} \delta(|x|\cos\theta) \mathrm{d}\theta = \frac{1}{|x|}.
+\]</div>
+<p>Thus with a perfect acquisition we have <span class="math notranslate nohighlight">\(k(x' - x) = \frac{1}{|x - x'|}\)</span>. Since this corresponds to the Green function of the Poisson equation, it suggests that we may retrieve <span class="math notranslate nohighlight">\(u\)</span> by applying a filter to the backprojected data:</p>
+<div class="math notranslate nohighlight">
+\[
+u = \nabla^2 (K^*f).
+\]</div>
+<p>This filtering can also be implemented in the Fourier domain by multiplying by <span class="math notranslate nohighlight">\(|\xi|^2\)</span>. An example is shown below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">laplace</span>
+
+<span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">dt</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Solve n-dim wave equation using Leap-Frog scheme: u_{n+1} = Au_n + Bu_{n-1} + Cq_n&#39;&#39;&#39;</span>
+    <span class="c1"># define some quantities</span>
+    <span class="n">gamma</span> <span class="o">=</span> <span class="n">dt</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="n">dx</span>
+    <span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">nx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">L</span><span class="o">/</span><span class="n">dx</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">q</span><span class="p">,(</span><span class="n">nx</span><span class="o">**</span><span class="n">n</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
+    <span class="c1"># define matrices</span>
+    <span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">L</span> <span class="o">=</span> <span class="n">getMatrices</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="c1"># main loop</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="o">**</span><span class="n">n</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">u</span><span class="p">[:,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">L</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">C</span><span class="nd">@q</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">u</span>
+    
+<span class="k">def</span> <span class="nf">getMatrices</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+
+    <span class="c1"># setup matrices</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="n">gamma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+    <span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">gamma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">gamma</span>
+    <span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma</span>
+    <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">nx</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma</span>
+    <span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">gamma</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
+        <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
+        <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">b</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">gamma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
+        <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">c</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">L</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">l</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+        <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">a</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">a</span><span class="p">[:,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">nx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+        <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">b</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">b</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">b</span><span class="p">[:,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">nx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">gamma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+        <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">c</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">c</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">c</span><span class="p">[:,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">nx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">L</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">l</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">)),</span><span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">nx</span><span class="p">))</span> <span class="o">+</span> <span class="n">sp</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">l</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">)))</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">L</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">1e-2</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="o">.</span><span class="mf">5e-2</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">L</span><span class="o">/</span><span class="n">dx</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># define source term</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+<span class="n">u</span><span class="p">[</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">10</span><span class="p">:</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">10</span><span class="p">:</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="o">*</span><span class="n">nx</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
+<span class="n">q</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># forward solve</span>
+<span class="n">w_forward</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">dt</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># sample wavefield</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel_multi_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">xs</span><span class="o">/</span><span class="n">dx</span> <span class="o">+</span> <span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="p">],[</span><span class="n">ys</span><span class="o">//</span><span class="n">dx</span> <span class="o">+</span> <span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="p">]],</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">),</span> <span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">w_forward</span><span class="p">[</span><span class="n">I</span><span class="p">,:]</span>
+
+<span class="c1"># define adjoint source</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="o">*</span><span class="n">nx</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
+<span class="n">r</span><span class="p">[</span><span class="n">I</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">d</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># adjoint solve</span>
+<span class="n">w_adjoint</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">dt</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gray</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="s1">&#39;r*&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">w_forward</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">)),</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;t = 0&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="s1">&#39;r*&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">w_forward</span><span class="p">[:,</span><span class="mi">101</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">)),</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;t = 0.5&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="s1">&#39;r*&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">w_forward</span><span class="p">[:,</span><span class="mi">200</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">)),</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;t = 1&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="s1">&#39;r*&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">w_adjoint</span><span class="p">[:,</span><span class="mi">200</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">)),</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="s1">&#39;r*&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">w_adjoint</span><span class="p">[:,</span><span class="mi">101</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">)),</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="s1">&#39;r*&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">w_adjoint</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">)),</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/wavefield_imaging_2_0.png" src="_images/wavefield_imaging_2_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3><span class="section-number">3.3.2. </span>Inverse scattering<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Assuming point sources for the incident field, <span class="math notranslate nohighlight">\(c = 1\)</span>, and a compactly supported <span class="math notranslate nohighlight">\(u\)</span>, we can express the forward operator as</p>
+<div class="math notranslate nohighlight">
+\[
+Ku(t,r,s) = \int_{\Omega} u(x) \frac{\delta''(t - |x - r| - |x - s|))}{|x - r||x - s|}\mathrm{d}x,
+\]</div>
+<p>so the data <span class="math notranslate nohighlight">\(f(t,s,r)\)</span> is the integral of the scattering potential, <span class="math notranslate nohighlight">\(u\)</span>, along an ellips. Conversely, we can think of the response of a single scattering point <span class="math notranslate nohighlight">\(x'\)</span> as a hyperbola in <span class="math notranslate nohighlight">\((t,s,r)\)</span>. This is illustrated in <a class="reference internal" href="#ellips"><span class="std std-numref">Fig. 3.3</span></a>.</p>
+<p>The adjoint operator here is given by</p>
+<div class="math notranslate nohighlight">
+\[
+K^* f(x) = \int_\Delta \int_\Sigma \int_{0}^T f(t,r,s)\frac{\delta''(t - |x - r| - |x - s|))}{|x - r||x - s|} \mathrm{d}t\mathrm{d}s\mathrm{d}r.
+\]</div>
+<p>As with the inverse source problem, applying the adjoint already yields an image. This is called <em>migration</em> in practice.</p>
+<p>The foward operator has a nice expression in the Fourier domain when using far field measurements. The derivation is left as an excersise.</p>
+<div class="figure align-default" id="ellips">
+<a class="reference internal image-reference" href="_images/scattering.png"><img alt="_images/scattering.png" src="_images/scattering.png" style="height: 150px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.3 </span><span class="caption-text">A single data point <span class="math notranslate nohighlight">\(f(t,s,r)\)</span> is the integral of the scattering potential along an ellips: <span class="math notranslate nohighlight">\(|x - s| + |x - r| = t\)</span>. Likewise, a single point of <span class="math notranslate nohighlight">\(f(x)\)</span> contributes to <span class="math notranslate nohighlight">\(d\)</span> along a hyperola <span class="math notranslate nohighlight">\(t = |x - s| + |x - r|\)</span>.</span><a class="headerlink" href="#ellips" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="waveform-tomography">
+<h3><span class="section-number">3.3.3. </span>Waveform tomography<a class="headerlink" href="#waveform-tomography" title="Permalink to this headline">¶</a></h3>
+<p>Here, we aim to recover <span class="math notranslate nohighlight">\(c\)</span> directly from a non-linear equation</p>
+<div class="math notranslate nohighlight">
+\[
+K(c) = f,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(K\)</span> solves <span class="math notranslate nohighlight">\(L[c]v = \delta(\cdot - s)w\)</span> and samples the solution. i.e.,</p>
+<div class="math notranslate nohighlight">
+\[
+f(t,s,r) = \int g(t-t',r,s)w(t')\mathrm{d}t'
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(t\in [0,T]\)</span>, <span class="math notranslate nohighlight">\(s\in \Sigma\)</span> and <span class="math notranslate nohighlight">\(r\in\Delta\)</span>.</p>
+<p>We can solve such a non-linear equation using Newton’s method:</p>
+<div class="math notranslate nohighlight">
+\[
+c_{k+1} = c_k - D{K}(c_k)^{-1}({K}(c_k) - d),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(DK(c_k)\)</span> denotes the <em>Fréchet derivative</em> which generalizes the notion of a derivative and obeys</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{\|h\|\rightarrow 0} \frac{\|K(c + h) - {K}(c) - DK(c)h\|}{\|h\|} = 0.
+\]</div>
+<p>We find</p>
+<div class="math notranslate nohighlight">
+\[
+DK(c)\delta c = -\int\int \frac{\delta c (x')}{2c(x')}\frac{\partial^2 v}{\partial t^2}(t',x')g(t-t',x-x')\mathrm{d}t'\mathrm{d}x',
+\]</div>
+<p>where the incident field, <span class="math notranslate nohighlight">\(v\)</span>, satisfies <span class="math notranslate nohighlight">\(L[c]v = \delta(\cdot - s)w\)</span>. In a finite-dimensional setting, <span class="math notranslate nohighlight">\(DK\)</span> would be the Jacobian of <span class="math notranslate nohighlight">\(K\)</span>.</p>
+<p>Approximating the inverse using backprojection we obtain</p>
+<div class="math notranslate nohighlight">
+\[
+c_{k+1} = c_k - \alpha_k DK(c_k)^{\dagger}(K(c_k) - d),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha_k\)</span> is a scaling factor. Again, we see that backprojection plays a prominant role. It turns out that this iteration is equivalent to a steepest descent method applied to <span class="math notranslate nohighlight">\(J(c) = \|K(c) - d\|^2\)</span>.</p>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2><span class="section-number">3.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3><span class="section-number">3.4.1. </span>Inverse source problem<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Take <span class="math notranslate nohighlight">\(n=1\)</span>, <span class="math notranslate nohighlight">\(c=1\)</span> and source term <span class="math notranslate nohighlight">\(\delta(t)u(x)\)</span> with <span class="math notranslate nohighlight">\(u\)</span> square integrable and supported on <span class="math notranslate nohighlight">\([-\frac{1}{2},\frac{1}{2}]\)</span> and measurements at <span class="math notranslate nohighlight">\(x = 1\)</span> for <span class="math notranslate nohighlight">\(t\in [0,T]\)</span>.</p></li>
+</ul>
+<p>Show that the forward operator can be expressed as</p>
+<div class="math notranslate nohighlight">
+\[
+f(t) = Ku(t) = \int_{1-t}^{\frac{1}{2}} u(x')\mathrm{d}x',
+\]</div>
+<p>and that the operator is bounded.</p>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>For <span class="math notranslate nohighlight">\(n = 1\)</span> the solution to the wave equation with the given source term is given by</p>
+<div class="math notranslate nohighlight">
+\[v(t,x) = \frac{1}{2}\int_{-1/2}^{1/2} \int \delta(t')u(x') H(t - t' - |x - x'|)\mathrm{d}t'\mathrm{d}x' =  \frac{1}{2}\int u(x)  H(t - |x - x'|) \mathrm{d}x'.\]</div>
+<p>For measurements at <span class="math notranslate nohighlight">\(x = 1\)</span> this simplifies to</p>
+<div class="math notranslate nohighlight">
+\[f(t) = v(t,1) = \frac{1}{2}\int_{-1/2}^{1/2} u(x')  H(t - |1 - x'|) \mathrm{d}x'.\]</div>
+<p>This leads to the desired expression becuase we need <span class="math notranslate nohighlight">\(t \geq (1-x')\)</span>.
+To show that this a bounded operator consider</p>
+<div class="math notranslate nohighlight">
+\[\|f\|^2 = \int_0^T \left(\frac{1}{2}\int_{\max(\min(1-t,1/2),0)}^{1/2} u(x')\mathrm{d}x'\right)^2 \mathrm{d}t \leq \frac{1}{4}\int_0^T (1/2-\max(\min(1-t,1/2),0))\int_{-1/2}^{1/2} u(x')^2 \mathrm{d}x\mathrm{d}t = C \|u\|_2^2,\]</div>
+<p>where we have used the Cauchy-Schwarz inequality to bound <span class="math notranslate nohighlight">\(\left(\int_a^b u(x) \mathrm{d}x\right)^2 \leq \left(\int_a^b 1 \mathrm{d}x \right)\left(\int_a^b u(x)^2 \mathrm{d}x \right).\)</span></p>
+</div>
+<ul class="simple">
+<li><p>Show that <span class="math notranslate nohighlight">\(u\)</span> can <em>in principle</em> be reconstructed from <span class="math notranslate nohighlight">\(f(t)\)</span> with <span class="math notranslate nohighlight">\(T = \frac{3}{2}\)</span> with the following reconstruction formula:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\widetilde{u}(x) = f'(1 - x).
+\]</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>For <span class="math notranslate nohighlight">\(1/2 \leq t \leq 3/2\)</span> we have <span class="math notranslate nohighlight">\(f(t) = (1/2)\int_{1-t}^{1/2} u(x) \mathrm{d}x\)</span>, so <span class="math notranslate nohighlight">\(f'(t) = u(1-t)/2\)</span>.</p>
+</div>
+<ul class="simple">
+<li><p>Show that <span class="math notranslate nohighlight">\(v_{\epsilon}(x) = \sin(2\pi\epsilon x)\)</span> is an almost non-radiating source in the sense that <span class="math notranslate nohighlight">\(\|K v_{\epsilon}\|/\|v_{\epsilon}\| = \mathcal{O}(\epsilon^{-1})\)</span> as <span class="math notranslate nohighlight">\(\epsilon \rightarrow \infty\)</span>.</p></li>
+</ul>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>Integration brings out a factor <span class="math notranslate nohighlight">\(\epsilon^{-1}\)</span>, whereas the norm of <span class="math notranslate nohighlight">\(v_{\epsilon}\)</span> is <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> as <span class="math notranslate nohighlight">\(\epsilon \rightarrow \infty\)</span>.</p>
+</div>
+<ul class="simple">
+<li><p>Now consider noisy measurements <span class="math notranslate nohighlight">\(f^{\delta}(t) = K u(t) + \delta \sin(t/\delta)\)</span> and show that the error in the reconstruction is of order 1, i.e.,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\|\widetilde{u} - u\| = \mathcal{O}(1),
+\]</div>
+<p>as <span class="math notranslate nohighlight">\(\delta\downarrow 0\)</span>.</p>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>Using the reconstruction formula we derived before we see that the particular noise term leads to a constant factor.</p>
+</div>
+<ul class="simple">
+<li><p>In conclusion, is this inverse source problem well-posed? Why (not)?</p></li>
+</ul>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>We conclude that the problem is not well-posed as we cannot uniquely and stably reconstruct the solution.</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h3><span class="section-number">3.4.2. </span>Inverse scattering<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Consider the inverse scattering problem for <span class="math notranslate nohighlight">\(n=3\)</span>, <span class="math notranslate nohighlight">\(c=1\)</span>, with the incident field resulting from point-sources on the sphere with radius <span class="math notranslate nohighlight">\(\rho\)</span> and measurements on the same sphere. The scattering potential is supported on the unit sphere.</p>
+<ul class="simple">
+<li><p>Show that for <span class="math notranslate nohighlight">\(\rho \gg 1\)</span>, the measurements are given by</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\widehat f(\omega,\xi,\eta) \propto \omega^2\widehat{u}(\omega (\xi - \eta)),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\widehat{u}\)</span> is the spatial Fourier transform of the scattering potential, <span class="math notranslate nohighlight">\(u\)</span>, and <span class="math notranslate nohighlight">\(\xi,\eta\)</span> are points on the unit sphere.</p>
+<div class="clip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>We start from the forward operator</p>
+<div class="math notranslate nohighlight">
+\[f(t,r,s) = Ku(t,r,s) = \int_{\Omega} u(x) \frac{\delta''(t - |x - r| - |x - s|)}{|x-r||x-s|}\mathrm{d}x.\]</div>
+<p>After Fourier transform in <span class="math notranslate nohighlight">\(t\)</span> we get</p>
+<div class="math notranslate nohighlight">
+\[\widehat{f}(\omega,r,s) = \omega^2\int_{\Omega}u(x)\frac{\exp(\imath\omega(|x-r|+|x-s|))}{|x-r||x-s|}.\]</div>
+<p>With the far-field approximation (<span class="math notranslate nohighlight">\(\rho = |r| = |s| \gg |x|\)</span>) <span class="math notranslate nohighlight">\(|x-s| \approx |s| + x\cdot s / |s|\)</span> and <span class="math notranslate nohighlight">\(|x-r| \approx |r| + x\cdot r / |r|\)</span> and introducing <span class="math notranslate nohighlight">\(\xi = s/|s|\)</span>, <span class="math notranslate nohighlight">\(\eta = r/|r|\)</span> we get</p>
+<div class="math notranslate nohighlight">
+\[\widehat{f}(\omega,\xi,\eta) \approx \frac{\omega^2 e^{2\imath\omega \rho}}{\rho^2}\int_{\Omega} 
+\frac{\exp(\imath\omega x\cdot(\xi + \eta))}{\rho^2} u(x)\mathrm{d}x,\]</div>
+<p>which can be interpreted as a Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> evaluated at wavenumber <span class="math notranslate nohighlight">\(\omega (\xi + \eta)\)</span>.</p>
+</div>
+<ul class="simple">
+<li><p>Assuming that measurements are available for <span class="math notranslate nohighlight">\(\omega \in [\omega_0,\omega_1]\)</span>, sketch which wavenumbers of <span class="math notranslate nohighlight">\(u\)</span> can be stably reconstructed. In what sense is the problem ill-posed?</p></li>
+</ul>
+<div class="clip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>We can retrieve <span class="math notranslate nohighlight">\(u\)</span> from <span class="math notranslate nohighlight">\(\widehat{u}\)</span> if we have samples of its Fourier transform everywhere. However, the data only gives us samples <span class="math notranslate nohighlight">\(\omega (\xi + \eta)\)</span>, where <span class="math notranslate nohighlight">\(\xi,\eta \in \mathbb{S}^2\)</span>. We can thus recover all samples in the unit sphere with radius <span class="math notranslate nohighlight">\(2\omega_1\)</span>.</p>
+</div>
+</div>
+<div class="section" id="non-scattering-potentials">
+<h3><span class="section-number">3.4.3. </span>Non-scattering potentials<a class="headerlink" href="#non-scattering-potentials" title="Permalink to this headline">¶</a></h3>
+<p>For <span class="math notranslate nohighlight">\(n=2\)</span>, <span class="math notranslate nohighlight">\(L=1\)</span>, <span class="math notranslate nohighlight">\(c=1\)</span>, with a single incident plane wave, <span class="math notranslate nohighlight">\(v_i(t,x) = \sin(\omega(t - \xi\cdot x))\)</span>, with direction <span class="math notranslate nohighlight">\(\xi\)</span> and measurements parallel to the direction of propagation at the opposite end of the scattering potential. Use the Python code shown below to generate data for a given scattering potential, <span class="math notranslate nohighlight">\(r\)</span>.</p>
+<ul class="simple">
+<li><p>Determine suitable <span class="math notranslate nohighlight">\(\Delta t\)</span>, <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(T\)</span> and generate data for scattering potential <span class="math notranslate nohighlight">\(u(x) = \exp(-200|x|^2)\)</span> and an incident plane wave with <span class="math notranslate nohighlight">\(\xi = (1,0)\)</span> and <span class="math notranslate nohighlight">\(\omega = 10\pi\)</span>.</p></li>
+<li><p>Construct a non-scattering potential for this incident field and measurements by using the result you obtained in the previous exercise.</p></li>
+<li><p>Can you construct a non-scattering potential that is invisible from multiple directions?</p></li>
+</ul>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">dt</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;Solve n-dim wave equation using Leap-Frog scheme: u_{n+1} = Au_n + Bu_{n-1} + Cq_n&#39;&#39;&#39;</span>
+	<span class="c1"># define some quantities</span>
+	<span class="n">gamma</span> <span class="o">=</span> <span class="n">dt</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="n">dx</span>
+	<span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+	<span class="n">nx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">L</span><span class="o">/</span><span class="n">dx</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+	<span class="c1">#</span>
+	<span class="n">q</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">nx</span><span class="o">**</span><span class="n">n</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
+	<span class="c1"># define matrices</span>
+	<span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">L</span> <span class="o">=</span> <span class="n">getMatrices</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+	
+	<span class="c1"># main loop</span>
+	<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="o">**</span><span class="n">n</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
+	
+	<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+		<span class="n">u</span><span class="p">[:,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">L</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">C</span><span class="nd">@q</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span>
+	
+	<span class="k">return</span> <span class="n">u</span>
+
+<span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">dt</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+	<span class="c1"># define some quantities</span>
+	<span class="n">gamma</span> <span class="o">=</span> <span class="n">dt</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="n">dx</span>
+	<span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+	<span class="n">nx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">L</span><span class="o">/</span><span class="n">dx</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+	
+	<span class="c1">#</span>
+	<span class="n">u</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">nx</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
+	
+	<span class="c1"># define matrices</span>
+	<span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">L</span> <span class="o">=</span> <span class="n">getMatrices</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+	
+	<span class="c1"># main loop</span>
+	<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="o">**</span><span class="n">n</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
+	
+	<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+		<span class="n">q</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="p">[:,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[:,</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">L</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">c</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+	
+	<span class="k">return</span> <span class="n">u</span>
+
+<span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="n">xin</span><span class="p">,</span><span class="n">xout1</span><span class="p">,</span><span class="n">xout2</span><span class="o">=</span><span class="p">[]):</span>
+	<span class="sd">&#39;&#39;&#39;Spatial sampling by simple interpolation&#39;&#39;&#39;</span>
+
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xout2</span><span class="p">):</span>
+		<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+	<span class="k">else</span><span class="p">:</span>
+		<span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+		
+	<span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xout1</span><span class="p">)</span>
+	<span class="n">nx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xin</span><span class="p">)</span>
+	
+	<span class="n">rw</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">cl</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">nz</span> <span class="o">=</span> <span class="p">[]</span>
+	
+	<span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+		<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+			<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+			<span class="k">while</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">xout1</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
+				<span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+			<span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+				<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">xout1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+				<span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">xout1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+				<span class="n">rw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+				<span class="n">cl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+				<span class="n">nz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+				<span class="n">rw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+				<span class="n">cl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+				<span class="n">nz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> 
+		<span class="n">P</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">nz</span><span class="p">,(</span><span class="n">rw</span><span class="p">,</span><span class="n">cl</span><span class="p">)),</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+	<span class="k">else</span><span class="p">:</span>
+		<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+			<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+			<span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+			<span class="k">while</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">xout1</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
+				<span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+			<span class="k">while</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">xout2</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
+				<span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>	
+			<span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nx</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+				<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">xout1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">xout2</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+				<span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">xout1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">xout2</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+				<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">xout1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">xout2</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+				<span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">xout1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">xout2</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+				
+				<span class="n">rw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+				<span class="n">cl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">nx</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
+				<span class="n">nz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+				
+				<span class="n">rw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+				<span class="n">cl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">nx</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
+				<span class="n">nz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+				
+				<span class="n">rw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+				<span class="n">cl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">nx</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+				<span class="n">nz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+				
+				<span class="n">rw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+				<span class="n">cl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">nx</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+				<span class="n">nz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+		<span class="n">P</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">nz</span><span class="p">,(</span><span class="n">rw</span><span class="p">,</span><span class="n">cl</span><span class="p">)),</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">nx</span><span class="o">*</span><span class="n">nx</span><span class="p">))</span>
+		
+	<span class="k">return</span> <span class="n">P</span>
+	
+<span class="k">def</span> <span class="nf">getMatrices</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+
+<span class="c1"># setup matrices</span>
+	<span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="n">gamma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+	<span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">gamma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+	<span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">gamma</span>
+	<span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma</span>
+	<span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">nx</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma</span>
+	<span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">gamma</span>
+	
+	<span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+		<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
+		<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+		<span class="n">a</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+	
+		<span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
+		<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">b</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+	
+		<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">gamma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
+		<span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">c</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+		<span class="n">L</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">l</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+
+	<span class="k">else</span><span class="p">:</span>
+		<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+		<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">1</span>
+		<span class="n">a</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">1</span>
+		<span class="n">a</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+		<span class="n">a</span><span class="p">[:,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+		<span class="n">a</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">nx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+		
+		<span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+		<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">b</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">b</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">b</span><span class="p">[:,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">b</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">nx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+	
+		<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">gamma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+		<span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">c</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">c</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">c</span><span class="p">[:,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">c</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">nx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+		
+		<span class="n">L</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">l</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">)),</span><span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">nx</span><span class="p">))</span> <span class="o">+</span> <span class="n">sp</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">l</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">)))</span>
+		
+	<span class="n">A</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+	<span class="n">B</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+	<span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+	
+	<span class="k">return</span> <span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">L</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># grid</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="mi">201</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="mi">101</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span><span class="p">)</span>
+<span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">tt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># velocity</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="c1"># scattering potential</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">yy</span><span class="o">**</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="c1"># incident field, plane wave at 10 Hz.</span>
+<span class="n">omega</span>  <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">5</span>
+<span class="n">ui</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">omega</span><span class="o">*</span><span class="p">(</span><span class="n">tt</span> <span class="o">-</span> <span class="p">(</span><span class="n">xx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="p">))</span>
+
+<span class="c1"># solve</span>
+<span class="n">us</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">ui</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># sample</span>
+<span class="n">xr</span> <span class="o">=</span> <span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">yr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+
+<span class="n">P</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xr</span><span class="p">,</span><span class="n">yr</span><span class="p">)</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">P</span><span class="nd">@us</span>
+
+<span class="c1"># plot</span>
+<span class="n">ui</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
+<span class="n">us</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">241</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ui</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">242</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ui</span><span class="p">[:,:,</span><span class="mi">51</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">243</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ui</span><span class="p">[:,:,</span><span class="mi">101</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">244</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ui</span><span class="p">[:,:,</span><span class="mi">151</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">245</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">246</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">51</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">247</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">101</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">248</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">151</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/wavefield_imaging_9_0.png" src="_images/wavefield_imaging_9_0.png" />
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>The result from the previous exercise
+<span class="math notranslate nohighlight">\(\widehat f(\omega,\xi,\eta) \propto \omega^2\widehat{u}(\omega (\xi - \eta))\)</span> applies equally to the case <span class="math notranslate nohighlight">\(n = 2\)</span> because the Green’s function are the same up to a constant factor (in the far field approximation). We set <span class="math notranslate nohighlight">\(\xi = (1,0)\)</span> and <span class="math notranslate nohighlight">\(\eta = (-1,0)\)</span>, which thus gives us information about <span class="math notranslate nohighlight">\(\widehat{u}((0,0))\)</span>. If we choose <span class="math notranslate nohighlight">\(\widehat{u}((0,0)) = 0\)</span> we get no response. In the code below we simply take a derivative of the scattering potential from the previous example to achieve this. We can apply the same trick to make the potential non-scattering invisible from a few directions, but we can’t do the same for all directions.</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># grid</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="mi">201</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="mi">101</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span><span class="p">)</span>
+<span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">tt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># velocity</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="c1"># non-scattering potential</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">xx</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">yy</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># incident field, plane wave at 10 Hz.</span>
+<span class="n">omega</span>  <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">5</span>
+<span class="n">ui</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">omega</span><span class="o">*</span><span class="p">(</span><span class="n">tt</span> <span class="o">-</span> <span class="p">(</span><span class="n">xx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="p">))</span>
+
+<span class="c1"># solve</span>
+<span class="n">us</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">ui</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># sample</span>
+<span class="n">xr</span> <span class="o">=</span> <span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">yr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+
+<span class="n">P</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xr</span><span class="p">,</span><span class="n">yr</span><span class="p">)</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">P</span><span class="nd">@us</span>
+
+<span class="c1"># plot</span>
+<span class="n">ui</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
+<span class="n">us</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">241</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ui</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">242</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ui</span><span class="p">[:,:,</span><span class="mi">51</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">243</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ui</span><span class="p">[:,:,</span><span class="mi">101</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">244</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ui</span><span class="p">[:,:,</span><span class="mi">151</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">245</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">246</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">51</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">247</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">101</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">248</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">151</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/wavefield_imaging_11_0.png" src="_images/wavefield_imaging_11_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="parameter-estimation">
+<h3><span class="section-number">3.4.4. </span>Parameter estimation<a class="headerlink" href="#parameter-estimation" title="Permalink to this headline">¶</a></h3>
+<p>For <span class="math notranslate nohighlight">\(n=1\)</span>, <span class="math notranslate nohighlight">\(c=1\)</span>, <span class="math notranslate nohighlight">\(L=1\)</span>, <span class="math notranslate nohighlight">\(q(t,x) = w''(t - t_0)\delta(x - x_0)\)</span>, with <span class="math notranslate nohighlight">\(t_0 = 0.2\)</span>, <span class="math notranslate nohighlight">\(x_0 = -0.5\)</span> and where <span class="math notranslate nohighlight">\(w\)</span> is given by
+<span class="math notranslate nohighlight">\($
+w(t) = \exp(-(t/\sigma)^2/2).
+$\)</span></p>
+<ul class="simple">
+<li><p>Express the solution <span class="math notranslate nohighlight">\(v(t,x)\)</span> by using the Green function</p></li>
+</ul>
+<p>The measurements are given by <span class="math notranslate nohighlight">\(f(t) = K(c) \equiv v(t,0.5)\)</span>. Consider retrieving the soundspeed <span class="math notranslate nohighlight">\(c\)</span> by minimizing</p>
+<div class="math notranslate nohighlight">
+\[
+J(c) = \|K(c) - f\|^2.
+\]</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>We get</p>
+<div class="math notranslate nohighlight">
+\[v(t,x) = \frac{1}{2c}\int\int q(t',x') H(t-t' - |x - x'|/c)\mathrm{d}t'\mathrm{d}x' = \frac{1}{2c}\int  w''(t' - t_0) H(t-t' - |x - x_0|/c)\mathrm{d}t'.\]</div>
+<p>Integrating by parts we get</p>
+<div class="math notranslate nohighlight">
+\[v(t,x) = \frac{1}{2c} w'(t - t_0 - |x-x_0|/c).\]</div>
+<p>This gives</p>
+<div class="math notranslate nohighlight">
+\[K(c) = \frac{-1}{2c} w'(t - 0.2 + 1/c).\]</div>
+</div>
+<ul class="simple">
+<li><p>Plot the objective as a function of <span class="math notranslate nohighlight">\(c\)</span> for various values of <span class="math notranslate nohighlight">\(\sigma\)</span>.</p></li>
+</ul>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>See the code example below (click ‘+’ to show)</p>
+</div>
+<ul class="simple">
+<li><p>Do you think Newton’s method will be successful in retrieving the correct <span class="math notranslate nohighlight">\(c\)</span>?</p></li>
+</ul>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>In the plot we see the behaviour of <span class="math notranslate nohighlight">\(J(c)\)</span>; in particular a few stationary points and local minimum away from the global minimizer. This makes it difficult to find the optimal <span class="math notranslate nohighlight">\(c\)</span>.</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># grid and parameters</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="o">.</span><span class="mf">5e-1</span>
+
+<span class="c1"># functions</span>
+<span class="n">w</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">dw</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span> <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">sigma</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">K</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">c</span> <span class="p">:</span> <span class="o">-</span><span class="n">dw</span><span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mf">0.2</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">c</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
+<span class="n">J</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">c</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">K</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># sample</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">Js</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)):</span>
+    <span class="n">Js</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">J</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+
+<span class="c1"># plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">Js</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;J[c]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;J[c]&#39;)
+</pre></div>
+</div>
+<img alt="_images/wavefield_imaging_13_1.png" src="_images/wavefield_imaging_13_1.png" />
+</div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -258,8 +1324,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="tomography.html" title="previous page"><span class="section-number">7.2. </span>Computed Tomography</a>
-    <a class='right-next' id="next-link" href="magnetic_resonance_imaging.html" title="next page"><span class="section-number">7.4. </span>Magnetic Resonance Imaging</a>
+    <a class='left-prev' id="prev-link" href="tomography.html" title="previous page"><span class="section-number">2. </span>Computed Tomography</a>
+    <a class='right-next' id="next-link" href="magnetic_resonance_imaging.html" title="next page"><span class="section-number">4. </span>Magnetic Resonance Imaging</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -268,7 +1334,6 @@
         
           By Tristan van Leeuwen and Christoph Brune<br/>
         
-            &copy; Copyright 2020.<br/>
       </p>
     </div>
   </footer>

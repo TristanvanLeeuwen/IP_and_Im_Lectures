@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>3. Linear inverse problems in function spaces &#8212; 10 Luctures on Inverse Problems and Imaging</title>
+    <title>3. Linear inverse problems in function spaces &#8212; 10 Lectures on Inverse Problems and Imaging</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -62,7 +62,7 @@
   <img src="_static/logo.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">10 Luctures on Inverse Problems and Imaging</h1>
+  <h1 class="site-logo" id="site-title">10 Lectures on Inverse Problems and Imaging</h1>
   
 </a>
 </div>
@@ -73,13 +73,11 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Welcome to Inverse Problems and Imaging
-  </a>
- </li>
-</ul>
+  <p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is.html">
@@ -111,19 +109,80 @@
    6. Numerical optimisation for inverse problems
   </a>
  </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Applications
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="applications.html">
-   7. Applications
+  <a class="reference internal" href="image_processing.html">
+   1. Image processing
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="preliminaries.html">
-   8. Preliminaries
+  <a class="reference internal" href="tomography.html">
+   2. Computed Tomography
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="examples.html">
-   9. Examples
+  <a class="reference internal" href="wavefield_imaging.html">
+   3. Wavefield Imaging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="magnetic_resonance_imaging.html">
+   4. Magnetic Resonance Imaging
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_algebra.html">
+   1. Linear algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functional_analysis.html">
+   2. Functional analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fourier_sampling.html">
+   3. Fourier transform, distributions and sampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   4. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="variational_analysis.html">
+   5. Variational analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convex_analysis.html">
+   6. Convex analysis
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   1. Bibliography
   </a>
  </li>
 </ul>
@@ -131,10 +190,6 @@
 </nav>
 
  <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
 
 </div>
 
@@ -179,6 +234,18 @@
 </div>
         <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        
+        <a class="edit-button" href="https://github.com/TristanvanLeeuwen/IP_and_Im_Lectures/edit/master/ip_function_spaces.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -195,7 +262,80 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#well-posedness">
+   3.1. Well-posedness
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compact-operators">
+   3.2. Compact operators
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regularisation">
+   3.3. Regularisation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#truncation-and-tikhonov-regularisation">
+     3.3.1. Truncation and Tikhonov regularisation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generalised-tikhonov-regularisation">
+     3.3.2. Generalised Tikhonov regularisation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   3.4. Examples
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sequence-operator">
+     3.4.1. Sequence operator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#differentiation">
+     3.4.2. Differentiation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   3.5. Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     3.5.1. Differentiation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discretisation">
+     3.5.2. Discretisation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convolution-through-the-heat-equation">
+     3.5.3. Convolution through the heat equation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convolution-on-a-finite-interval">
+     3.5.4. Convolution on a finite interval
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -206,6 +346,441 @@
                 
   <div class="section" id="linear-inverse-problems-in-function-spaces">
 <h1><span class="section-number">3. </span>Linear inverse problems in function spaces<a class="headerlink" href="#linear-inverse-problems-in-function-spaces" title="Permalink to this headline">¶</a></h1>
+<p>Many of the notions discussed in the finite-dimensional setting can be extended to the infinite-dimensional setting. We will focus in this chapter on inverse problems where <span class="math notranslate nohighlight">\(K\)</span> is a <em>bounded linear operator</em>.</p>
+<div class="section" id="well-posedness">
+<h2><span class="section-number">3.1. </span>Well-posedness<a class="headerlink" href="#well-posedness" title="Permalink to this headline">¶</a></h2>
+<p>We may again wonder wether the equation <span class="math notranslate nohighlight">\(Ku = f\)</span> is well-posed.
+When <span class="math notranslate nohighlight">\(f \not\in \mathcal{R}(K)\)</span>, a solution doesn’t exist and it makes sense to define the <em>minimum residual</em> solution <span class="math notranslate nohighlight">\(\widetilde{u}\)</span> which satisfies</p>
+<div class="math notranslate nohighlight">
+\[
+\|K\widetilde{u} - f\|_{\mathcal{V}} \leq \|Kv - f\|_{\mathcal{V}},\quad\forall v \in \mathcal{U}.
+\]</div>
+<p>This is analogous to the least-squares solution we introduced previously. If the null-space of <span class="math notranslate nohighlight">\(K\)</span> is non-empty, we can construct infinitely many such solutions. We call the one with the smallest norm the <em>minimum-norm</em> solution. Note however that we have not yet proven that such a solution exists in general, nor do we have a constructive way of finding it (in general). We will return to this issue in the next chapter when analysing variational problems. For now, we’ll assume that <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> are Hilbert spaces and continue our exploration of the infinite-dimensional setting.</p>
+<p>We will show that</p>
+<ul class="simple">
+<li><p>A minimum-residual solution only exists if <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)^\perp \oplus \mathcal{R}(K)\)</span></p></li>
+<li><p>It obeys the \emph{normal equations} <span class="math notranslate nohighlight">\(K^*Ku = K^*f\)</span></p></li>
+<li><p>The pseudo-inverse <span class="math notranslate nohighlight">\(K^{\dagger}: \mathcal{R}(K)^\perp \oplus \mathcal{R}(K) \rightarrow \mathcal{U}\)</span> is unique and obeys certain useful relations:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(KK^\dagger K = K\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(K^\dagger K K^\dagger = K^\dagger\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(K^\dagger K = I - P_{\mathcal{N}(K)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(K^\dagger\)</span> is continuous if <span class="math notranslate nohighlight">\(\mathcal{R}(K)\)</span> is closed.</p></li>
+</ul>
+</li>
+<li><p>The minimum-norm solution is unique and is given in terms of the pseudo-inverse <span class="math notranslate nohighlight">\(\widetilde{u} = K^{\dagger}f\)</span></p></li>
+</ul>
+</div>
+<div class="section" id="compact-operators">
+<h2><span class="section-number">3.2. </span>Compact operators<a class="headerlink" href="#compact-operators" title="Permalink to this headline">¶</a></h2>
+<p>To analyse this in detail, we use the singular value decomposition (SVD) of compact operators:</p>
+<div class="math notranslate nohighlight">
+\[
+Kw = \sum_{j=1}^{\infty} \sigma_j \langle w, u_j\rangle_{\mathcal{U}}v_j,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\{u_i\}\)</span> and <span class="math notranslate nohighlight">\(\{v_i\}\)</span> are orthonormal bases of <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp\)</span> and <span class="math notranslate nohighlight">\(\overline{\mathcal{R}(K)}\)</span> and
+<span class="math notranslate nohighlight">\(\{\sigma_i\}\)</span> is a null-sequence. We call <span class="math notranslate nohighlight">\(\{(u_i, v_i, \sigma_i)\}\)</span> the singular system of <span class="math notranslate nohighlight">\(K\)</span>.
+The pseudo-inverse of <span class="math notranslate nohighlight">\(K\)</span> is now expressed as</p>
+<div class="math notranslate nohighlight">
+\[
+K^{\dagger}f = \sum_{j=1}^{\infty} \sigma_j^{-1} \langle f, v_j\rangle_{\mathcal{V}}u_j.
+\]</div>
+<p>We have that <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)\)</span> if the Picard condition holds:</p>
+<div class="admonition-picard-condition admonition">
+<p class="admonition-title">Picard condition</p>
+<div class="math notranslate nohighlight" id="equation-picard">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-picard" title="Permalink to this equation">¶</a></span>\[\sum_{j=1}^{\infty} \frac{|\langle f, v_j\rangle_{\mathcal{V}}|^2}{\sigma_j^2} &lt; \infty.\]</div>
+</div>
+</div>
+<div class="section" id="regularisation">
+<h2><span class="section-number">3.3. </span>Regularisation<a class="headerlink" href="#regularisation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="truncation-and-tikhonov-regularisation">
+<h3><span class="section-number">3.3.1. </span>Truncation and Tikhonov regularisation<a class="headerlink" href="#truncation-and-tikhonov-regularisation" title="Permalink to this headline">¶</a></h3>
+<p>In the previous section we saw that the pseudo-inverse of a compact operator is not bounded (continuous). To counter this, we introduce the regularized pseudo-inverse:</p>
+<div class="math notranslate nohighlight">
+\[
+K_{\alpha}^{\dagger}f = \sum_{k=0}^{\infty} g_{\alpha}(\sigma_k) \langle f, u_k\rangle v_k,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(g_{\alpha}\)</span> determines the type of regularization used. For Tikhonov regularisation we let</p>
+<div class="math notranslate nohighlight">
+\[
+g_{\alpha}(s) = \frac{s}{s^2 + \alpha}= \frac{1}{s + \alpha/s}.
+\]</div>
+<p>For a truncated SVD we let</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+g_{\alpha}(s) = \begin{cases} s^{-1} &amp; \text{if}\, s &gt; \alpha \\ 0 &amp; \text{otherwise} \end{cases}.
+\end{split}\]</div>
+<p>Given noisy data <span class="math notranslate nohighlight">\(f^{\delta} = Ku + e\)</span> with <span class="math notranslate nohighlight">\(\|e\| \leq \delta\)</span>, we can now study the effect of regularisation by studying the error. Introducing <span class="math notranslate nohighlight">\(u^{\delta,\alpha} = K_{\alpha}^\dagger f^{\delta}\)</span>, the total reconstruction error is now given by</p>
+<div class="math notranslate nohighlight">
+\[
+\|u^{\delta,\alpha} - u\| = \|K_{\alpha}^\dagger f^{\delta} - u\| \leq \|(I - K_{\alpha}^\dagger K)\|\|u\| + \delta \|K_{\alpha}^\dagger\|,
+\]</div>
+<p>in which we recognise the \emph{bias} and \emph{variance} contributions. We can re-write this in terms of the relative error as</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\|u^{\delta,\alpha} - u\|}{\|u\|} \leq \|(I - K_{\alpha}^\dagger K)\| + \delta \|K\|\|K_{\alpha}^\dagger\|.
+\]</div>
+<p>Note, however, that these upperbounds may be useless in practice and more detailed analysis incorporating the type of noise and the class of images <span class="math notranslate nohighlight">\(u\)</span> that we are interested in is needed.</p>
+<p>Two main question arise:</p>
+<ul class="simple">
+<li><p>For <span class="math notranslate nohighlight">\(\delta = 0\)</span>, does the bias converge to zero as <span class="math notranslate nohighlight">\(\alpha \downarrow 0\)</span>?</p></li>
+<li><p>How should one choose <span class="math notranslate nohighlight">\(\alpha\)</span> for a given <span class="math notranslate nohighlight">\(\delta\)</span> to minimize the total error?</p></li>
+</ul>
+</div>
+<div class="section" id="generalised-tikhonov-regularisation">
+<h3><span class="section-number">3.3.2. </span>Generalised Tikhonov regularisation<a class="headerlink" href="#generalised-tikhonov-regularisation" title="Permalink to this headline">¶</a></h3>
+<p>We have seen in the finite-dimensional setting that Tikhonov regularization may be defined through a variational problem:</p>
+<div class="math notranslate nohighlight">
+\[
+\min_{u} \|Ku - f\|^2 + \alpha \|u\|^2.
+\]</div>
+<p>It turns out we can do the same in the infinite-dimensional setting as long as we use the correct (Hilbert-space) norm. Generalised Tikhonov regularisation is defined in a simular manner through the variation problem</p>
+<div class="math notranslate nohighlight">
+\[
+\min_{u} \|Ku - f\|^2 + \alpha \|Lu\|^2,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(L\)</span> is a compact operator. In many applications, <span class="math notranslate nohighlight">\(L\)</span> is a differential operator. This can be used to impose smoothness on the solution.</p>
+</div>
+</div>
+<div class="section" id="examples">
+<h2><span class="section-number">3.4. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sequence-operator">
+<h3><span class="section-number">3.4.1. </span>Sequence operator<a class="headerlink" href="#sequence-operator" title="Permalink to this headline">¶</a></h3>
+<p>Consider the operator <span class="math notranslate nohighlight">\(K:\ell^2 \rightarrow \ell^2\)</span>, given by</p>
+<div class="math notranslate nohighlight">
+\[
+	u = (u_1,u_2,...) \mapsto (u_1,\frac{1}{2}u_2,\frac{1}{3}u_3,...),
+\]</div>
+<p>i.e. we have an infinite matrix operator of the form</p>
+<div class="math notranslate nohighlight">
+\[
+\left(Ku\right)_i = \sum_{j=1}^\infty a_{ij} u_j := i^{-1} u_i, \quad i = 1,2,...
+\]</div>
+<p>The operator is obviously linear. To show that is bounded we’ll compute its norm:</p>
+<div class="math notranslate nohighlight">
+\[
+\|K\| = \sup_{u \neq 0} \frac{\|K(u)\|_{\ell^2}}{\|u\|_{\ell^2}}.
+\]</div>
+<p>We find …</p>
+<p>To show that the operator is compact, we explicitly construct its singular system.</p>
+<p>Now consider obtaining a solution for <span class="math notranslate nohighlight">\(f_i = j^{-1}\)</span>. We would naively set <span class="math notranslate nohighlight">\(u_j = j \cdot f_j\)</span>, but the situation is a little bit more subtle.</p>
+<p>Next, consider obtaining a solution for <span class="math notranslate nohighlight">\(f_i = j^{-2}\)</span>.</p>
+</div>
+<div class="section" id="differentiation">
+<span id="id1"></span><h3><span class="section-number">3.4.2. </span>Differentiation<a class="headerlink" href="#differentiation" title="Permalink to this headline">¶</a></h3>
+<p>Consider</p>
+<div class="math notranslate nohighlight">
+\[
+Ku(x) = \int_0^x u(y)\mathrm{d}y.
+\]</div>
+<p>Given <span class="math notranslate nohighlight">\(f(x) = Ku(x)\)</span> we would naively let <span class="math notranslate nohighlight">\(u(x) = f'(x)\)</span>. Let’s analyse this in more detail.</p>
+<p>The operator can be expressed as</p>
+<div class="math notranslate nohighlight">
+\[
+Ku(x) = \int_0^1 k(x,y)u(y)\mathrm{d}y,
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(k(x,y) = H(x-y)\)</span>, where <span class="math notranslate nohighlight">\(H\)</span> denotes the Heaviside stepfunction. The adjoint is found to be</p>
+<div class="math notranslate nohighlight">
+\[
+K^*f(y) = \int_0^1 k(x,y) f(x)\mathrm{d}x = \int_y^1 f(x)\mathrm{d}x.
+\]</div>
+<p>It is readily verified that the operator is bounded. Indeed, use Cauchy-Schwartz we find that for any <span class="math notranslate nohighlight">\(u\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[
+\|Ku\|^2 = \int_0^1 \left(\int_0^1 k(x,y) u(y) \mathrm{d}y\right)^2\mathrm{d}x \leq \int_0^1 \|k(x,\cdot)\|^2\cdot \|u\|^2\mathrm{d}x.
+\]</div>
+<p>Computing for fixed <span class="math notranslate nohighlight">\(x\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\|k(x,\cdot)\|^2 = \int_0^1 k(x,y)^2 \mathrm{d}y = \int_0^x \mathrm{d}y = x,
+\]</div>
+<p>we get</p>
+<div class="math notranslate nohighlight">
+\[
+\|Ku\|^2 \leq \|u\|^2 \int_0^1 x\, \mathrm{d}x = \frac{1}{2}\|u\|^2.
+\]</div>
+<p>Because the kernel is square-integrable, the operator is compact as well.</p>
+<p>To derive the singular system, we first need to compute the eigenpairs <span class="math notranslate nohighlight">\((\lambda_k, v_k)\)</span> of <span class="math notranslate nohighlight">\(K^*K\)</span>. The singular system is then given by <span class="math notranslate nohighlight">\((\sqrt{\lambda_k}, (\sqrt{\lambda_k})^{-1}Kv_k, v_k)\)</span>.</p>
+<p>We find</p>
+<div class="math notranslate nohighlight">
+\[
+K^*Kv(y) = \int_y^1 \int_0^x v(z) \, \mathrm{d}z\mathrm{d}x = \lambda v(y).
+\]</div>
+<p>At <span class="math notranslate nohighlight">\(y = 1\)</span> this yields <span class="math notranslate nohighlight">\(v(1) = 0\)</span>. Differentiating, we find</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda v'(y) = -\int_0^x v(z)\mathrm{d}z,
+\]</div>
+<p>which yields <span class="math notranslate nohighlight">\(v'(0) = 0\)</span>. Differentiating once again, we find</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda v''(x) = -v(x).
+\]</div>
+<p>The general solution to this differential equation is</p>
+<div class="math notranslate nohighlight">
+\[
+v(x) = a\sin(x/\sqrt{\lambda}) + b\cos(x/\sqrt{\lambda}).
+\]</div>
+<p>Using the boundary condition at <span class="math notranslate nohighlight">\(x = 0\)</span> we find that <span class="math notranslate nohighlight">\(a = 0\)</span>. Using the boundary condition at <span class="math notranslate nohighlight">\(x = 1\)</span> we get</p>
+<div class="math notranslate nohighlight">
+\[
+b\cos(1/\sqrt{\lambda}) = 0,
+\]</div>
+<p>which yields <span class="math notranslate nohighlight">\(\lambda_k = 1/((k + 1/2)^2\pi^2)\)</span>, <span class="math notranslate nohighlight">\(k = 0, 1, \ldots\)</span>. We choose <span class="math notranslate nohighlight">\(b\)</span> to normalize <span class="math notranslate nohighlight">\(\|v_k\| = 1\)</span>. We thus find the singular system:</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma_k = 1/((k+1/2)\pi), \quad u_k(x) = \sqrt{2}\sin(\sigma_k^{-1} x), \quad v_k(x) = \sqrt{2}\cos(\sigma_k^{-1} x).
+\]</div>
+<p>The operator can thus be expressed as</p>
+<div class="math notranslate nohighlight">
+\[
+Ku(x) = \sum_{k=0}^\infty \frac{\langle u, v_k\rangle}{(k+1/2)\pi} u_k(x),
+\]</div>
+<p>and the pseudo-inverse by</p>
+<div class="math notranslate nohighlight">
+\[
+K^{\dagger}f(x) = \sum_{k=0}^\infty \frac{\langle f, u_k\rangle}{(k+1/2)\pi} v_k(x).
+\]</div>
+<p>We can now study the ill-posedness of the problem by looking at the Picard condition</p>
+<div class="math notranslate nohighlight">
+\[
+\|K^\dagger f\|^2 = \pi^2\sum_{k=0}^\infty f_k^2 (k+1/2)^2,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_k = \langle f, u_k\rangle\)</span> are the (generalized) Fourier coefficients of <span class="math notranslate nohighlight">\(f\)</span>.
+For this infinite sum to converge, we need strong requirements on <span class="math notranslate nohighlight">\(f_k\)</span>; for example <span class="math notranslate nohighlight">\(f_k = 1/k\)</span> does not suffice to make the sum converge. This is quite surprising since such an <span class="math notranslate nohighlight">\(f\)</span> is square-integrable. It turns out we need <span class="math notranslate nohighlight">\(f_k = \mathcal{O}(1/k^2)\)</span> to satisfy the Picard condition. Effectively this means that <span class="math notranslate nohighlight">\(f'\)</span> needs to be square integrable. This makes sense since we saw earlier that <span class="math notranslate nohighlight">\(u(x) = f'(x)\)</span> is the solution to <span class="math notranslate nohighlight">\(Ku = f\)</span>.</p>
+<p>The SVD gives us a different view point on the example show before as well. Take measurements <span class="math notranslate nohighlight">\(f^{\delta} = Ku + \delta\sin(\delta^{-1}x)\)</span>, where <span class="math notranslate nohighlight">\(\delta = \sigma_k\)</span> for some <span class="math notranslate nohighlight">\(k\)</span>. The error <span class="math notranslate nohighlight">\(K^\dagger f^{\delta} - u\)</span> is then given by</p>
+<div class="math notranslate nohighlight">
+\[
+K^\dagger K u - u + \delta K^{\dagger}\sin(\delta^{-1}\cdot).
+\]</div>
+<p>Because <span class="math notranslate nohighlight">\(\delta^{-1} = \sigma_k\)</span> and <span class="math notranslate nohighlight">\(\sin(\sigma_k^{-1}x)\)</span> is a singular vector of <span class="math notranslate nohighlight">\(K\)</span>, this simplifies to</p>
+<div class="math notranslate nohighlight">
+\[
+\sin(\sigma_k^{-1}x).
+\]</div>
+<p>Thus, the reconstruction error does not go to zero as <span class="math notranslate nohighlight">\(\delta\downarrow 0\)</span>, even though the error in the data does.</p>
+<p>The eigenvalues of <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger K\)</span> are given by <span class="math notranslate nohighlight">\((1 + \alpha \sigma_k^{-2})^{-1}\)</span>, with <span class="math notranslate nohighlight">\(\sigma_k = (\pi(k + 1/2))^{-1}\)</span>. The bias is thus given by</p>
+<div class="math notranslate nohighlight">
+\[
+\|I - K_{\alpha}^\dagger K\| = \max_{k} \left|1 - (1 + \alpha \sigma_{k}^{-2})^{-1}\right|.
+\]</div>
+<p>Likewise, the variance is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\|K\|\|K_{\alpha}^\dagger\| = \max_{k}\frac{\sigma_1}{\sigma_k + \alpha \sigma_{k}^{-1}}.
+\]</div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2><span class="section-number">3.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3><span class="section-number">3.5.1. </span>Differentiation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Consider the forward operator</p>
+<div class="math notranslate nohighlight">
+\[
+Ku(x) = \int_0^x u(y)\mathrm{d}y.
+\]</div>
+<p>We’ve seen in example <a class="reference internal" href="#differentiation"><span class="std std-ref">Differentiation</span></a> that the inverse problem is ill-posed. Consider a regularized least-squares problem</p>
+<div class="math notranslate nohighlight">
+\[\min_{u} \|Ku - f\|^2 + \alpha \|u'\|^2,\]</div>
+<p>and analyse how this type of regularisation adressed the ill-posedness.</p>
+</div>
+<div class="section" id="discretisation">
+<h3><span class="section-number">3.5.2. </span>Discretisation<a class="headerlink" href="#discretisation" title="Permalink to this headline">¶</a></h3>
+<p>In this exercise, we explore what happens when discretizing the operator <span class="math notranslate nohighlight">\(K\)</span>. We’ll see that discretization implicitly regularizes the problem and that refining the discretization brings out the inherent ill-posedness. Discretize <span class="math notranslate nohighlight">\(x_k = k\cdot h\)</span> with <span class="math notranslate nohighlight">\(k = 1, \ldots, n\)</span> and <span class="math notranslate nohighlight">\(h = 1/(n+1)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+Ku(x_i)=\int_0^{x_i} u(y)\mathrm{d}y \approx h\sum_{j=0}^n k_{ij} u(x_j),
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(k_{ij} = k(x_i,x_j) = H(x_i - x_j)\)</span>, giving an <span class="math notranslate nohighlight">\(n\times n\)</span> lower triangular matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+K = h\cdot\left(\begin{matrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp; 1 &amp; 1 &amp; \ldots \\ \vdots &amp; &amp; &amp;\ddots \end{matrix}\right)
+\end{split}\]</div>
+<ol class="simple">
+<li><p>Compute the SVD for various <span class="math notranslate nohighlight">\(n\)</span> and compare the singular values and vectors to the ones of the continuous operator. What do you notice?</p></li>
+<li><p>Take <span class="math notranslate nohighlight">\(f(x) = x^3 + \epsilon\)</span> with <span class="math notranslate nohighlight">\(\epsilon\)</span> is normally distributed with mean zero and variance <span class="math notranslate nohighlight">\(\delta^2\)</span>. Investigate the accuracy of the reconstruction (use <code class="docutils literal notranslate"><span class="pre">np.linalg.solve</span></code> to solve <span class="math notranslate nohighlight">\(Ku = f\)</span>). Note that the exact solution is given by <span class="math notranslate nohighlight">\(u(x) = 3x^2\)</span>. Do you see the regularizing effect of <span class="math notranslate nohighlight">\(n\)</span>?</p></li>
+</ol>
+<p>The code to generate the matrix and its use are given below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getK</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)))</span>
+        
+    <span class="k">return</span> <span class="n">K</span><span class="p">,</span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-3</span>
+
+<span class="n">K</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">getK</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">delta</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">ur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;|u - ur| = &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">ur</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;true solution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ur</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;reconstruction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  4.014789544843427
+</pre></div>
+</div>
+<img alt="_images/ip_function_spaces_6_1.png" src="_images/ip_function_spaces_6_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="convolution-through-the-heat-equation">
+<h3><span class="section-number">3.5.3. </span>Convolution through the heat equation<a class="headerlink" href="#convolution-through-the-heat-equation" title="Permalink to this headline">¶</a></h3>
+<p>In this exercise we’ll explore the relation between the heat equation and convolution with a Gaussian kernel. Specifically, we’ll see that the linear operation <span class="math notranslate nohighlight">\(f = Ku\)</span> defined by the initial-value problem</p>
+<div class="math notranslate nohighlight">
+\[
+v_t = v_{xx}, \quad v(0,x) = u(x), \quad f(x) = v(1,x),
+\]</div>
+<p>is given by</p>
+<div class="math notranslate nohighlight">
+\[
+Ku(x) = \frac{1}{2\sqrt{\pi}}\int_{\mathbb{R}} u(x') \exp(-(x - x')^2/4) \mathrm{d}x'.
+\]</div>
+<ol class="simple">
+<li><p>Verify that the solution to the heat equation is given by</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+v(t,x) = \int_{\mathbb{R}} u(x') g_t(x - x')\mathrm{d}x',
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(g_t(x)\)</span> is the <em>heat-kernel</em>:</p>
+<div class="math notranslate nohighlight">
+\[
+g_t(x) = \frac{1}{2\sqrt{\pi t}}\exp(-(x/2)^2/t).
+\]</div>
+<p>You may use here that <span class="math notranslate nohighlight">\(g_t(x)\)</span> converges (in the sense of distributions) to <span class="math notranslate nohighlight">\(\delta(x)\)</span> as <span class="math notranslate nohighlight">\(t \downarrow 0\)</span>.</p>
+<ol class="simple">
+<li><p>Is the operator bounded? compact? self-adjoint?</p></li>
+</ol>
+<p>We can use the <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution_theorem">convolution theorem</a> to represent the operator as</p>
+<div class="math notranslate nohighlight">
+\[
+Ku = F^{-1}((Fu)\cdot(Fg_1)),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\cdot\)</span> denotes point-wise multiplication and <span class="math notranslate nohighlight">\(F\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Fourier_transform">Fourier transform</a></p>
+<div class="math notranslate nohighlight">
+\[
+Fu(\xi) = \int_{\mathbb{R}} u(x) e^{\imath 2\pi \xi x} {\mathrm{d}}x,
+\]</div>
+<p>with inverse</p>
+<div class="math notranslate nohighlight">
+\[
+F^{-1}\widehat{u}(x) = \int_{\mathbb{R}} \widehat{u}(\xi) e^{-\imath 2\pi\xi x} {\mathrm{d}}\xi.
+\]</div>
+<ol class="simple">
+<li><p>Express the inverse of <span class="math notranslate nohighlight">\(K\)</span> as a convolution with another filter <span class="math notranslate nohighlight">\(h\)</span>. 4. How does ill-posed manifest itself here?</p></li>
+<li><p>Can you come up with a regularized filter <span class="math notranslate nohighlight">\(h_{\alpha}\)</span> ?</p></li>
+<li><p>We can experiment with the inverse problem by using a discrete Fourier transform. Implement the inverse operator and the regularized inverse and show the effect of regularization.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">heaviside</span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">irfft</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ip_function_spaces_8_0.png" src="_images/ip_function_spaces_8_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="convolution-on-a-finite-interval">
+<h3><span class="section-number">3.5.4. </span>Convolution on a finite interval<a class="headerlink" href="#convolution-on-a-finite-interval" title="Permalink to this headline">¶</a></h3>
+<p>We can define convolution with a Gaussian kernel on a finite interval <span class="math notranslate nohighlight">\([0,\pi]\)</span> through the initial boundary-value problem</p>
+<div class="math notranslate nohighlight">
+\[
+v_t = v_{xx}, \quad v(t,0) = v(t,\pi) = 0,\quad v(0,x) = u(x)
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(f(x) = v(1,x)\)</span>. The solution of the initial boundary-value problem is given by</p>
+<div class="math notranslate nohighlight">
+\[
+v(t,x) = \sum_{k=1}^{\infty} a_k\exp(- k^2 t)\sin(k x),
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(a_k\)</span> are the Fourier sine coefficients of <span class="math notranslate nohighlight">\(u\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+a_k = \langle u, \sin(k\cdot) \rangle = \frac{2}{\pi}\int_0^{\pi} u(x) \sin (k x) \mathrm{d}x.
+\]</div>
+<ol class="simple">
+<li><p>Define the forward operator <span class="math notranslate nohighlight">\(f = Ku\)</span> in terms of the solution of the IBVP as <span class="math notranslate nohighlight">\(f(x) = v(1,x)\)</span>. Give the singular system of <span class="math notranslate nohighlight">\(K\)</span>, i.e., find <span class="math notranslate nohighlight">\((\sigma_k, u_k, v_k)\)</span> such that <span class="math notranslate nohighlight">\(Ku(x)\)</span> can be expressed as</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+Ku(x) = \sum_{k=0}^\infty \sigma_k \langle u, v_k \rangle u_k(x).
+\]</div>
+<ol class="simple">
+<li><p>The pseudo-inverse of <span class="math notranslate nohighlight">\(K\)</span> is defined as</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+K^\dagger f(x) = \sum_{k=0}^n \sigma_k^{-1}\langle f, u_k \rangle v_k(x).
+\]</div>
+<p>We can define a <em>regularized</em> pseudo-inverse through the variational problem</p>
+<div class="math notranslate nohighlight">
+\[
+\min_{u} \|Ku - f\|^2 + \alpha R(u).
+\]</div>
+<p>We investigate two types of regularization</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. $R(x) = \|u\|^2,$
+
+2. $R(x) = \|u&#39;\|^2.$
+</pre></div>
+</div>
+<p>Show that these lead to the following regularized pseudo-inverses</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. $K_{\alpha}^\dagger f = \sum_{k=0}^\infty \frac{1}{\sigma_k + \alpha\sigma_k^{-1}}\langle f, u_k \rangle v_k(x).$
+
+2. $K_{\alpha}^\dagger f = \sum_{k=0}^\infty \frac{1}{\sigma_k + \alpha k^2\sigma_k^{-1}}\langle f, u_k \rangle v_k(x)$
+</pre></div>
+</div>
+<p><strong>hint:</strong> you can use the fact that the <span class="math notranslate nohighlight">\(v_k\)</span> form an orthonormal basis for functions on <span class="math notranslate nohighlight">\([0,1]\)</span> and hence express the solution in terms of this basis.</p>
+<ol class="simple">
+<li><p>We can now study the need for regularization, assuming that the Fourier coefficients <span class="math notranslate nohighlight">\(f_k = \langle f, u_k \rangle\)</span> of <span class="math notranslate nohighlight">\(f\)</span> are given. Determine which type of regularization (if any) is needed to satisty the Picard condition in the following cases (you can set <span class="math notranslate nohighlight">\(\alpha = 1\)</span> for this analysis)</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(f_k = \exp(-2 k^2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f_k = k^{-1}\)</span></p></li>
+</ol>
+</li>
+<li><p>Compute the bias and variance for <span class="math notranslate nohighlight">\(u(x) = \sin(k x)\)</span> and  measurements <span class="math notranslate nohighlight">\(f^{\delta}(x) = Ku(x) + \delta \sin(\ell x)\)</span> for fixed <span class="math notranslate nohighlight">\(k &lt; \ell\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span>. Plot the bias and variance for well-chosen <span class="math notranslate nohighlight">\(k,\ell\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span> and discuss the difference between the two types of regularization.</p></li>
+</ol>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -246,7 +821,6 @@
         
           By Tristan van Leeuwen and Christoph Brune<br/>
         
-            &copy; Copyright 2020.<br/>
       </p>
     </div>
   </footer>

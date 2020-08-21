@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>8. Preliminaries &#8212; 10 Luctures on Inverse Problems and Imaging</title>
+    <title>3. Fourier transform, distributions and sampling &#8212; 10 Lectures on Inverse Problems and Imaging</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -39,8 +39,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="8.1. Linear algebra" href="linear_algebra.html" />
-    <link rel="prev" title="7.4. Magnetic Resonance Imaging" href="magnetic_resonance_imaging.html" />
+    <link rel="next" title="4. Statistics" href="statistics.html" />
+    <link rel="prev" title="2. Functional analysis" href="functional_analysis.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -62,7 +62,7 @@
   <img src="_static/logo.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">10 Luctures on Inverse Problems and Imaging</h1>
+  <h1 class="site-logo" id="site-title">10 Lectures on Inverse Problems and Imaging</h1>
   
 </a>
 </div>
@@ -73,14 +73,12 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Welcome to Inverse Problems and Imaging
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
+  <p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is.html">
    1. What is an inverse problem
@@ -111,46 +109,80 @@
    6. Numerical optimisation for inverse problems
   </a>
  </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Applications
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="applications.html">
-   7. Applications
+  <a class="reference internal" href="image_processing.html">
+   1. Image processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tomography.html">
+   2. Computed Tomography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wavefield_imaging.html">
+   3. Wavefield Imaging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="magnetic_resonance_imaging.html">
+   4. Magnetic Resonance Imaging
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_algebra.html">
+   1. Linear algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functional_analysis.html">
+   2. Functional analysis
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   8. Preliminaries
+   3. Fourier transform, distributions and sampling
   </a>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="linear_algebra.html">
-     8.1. Linear algebra
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="functional_analysis.html">
-     8.2. Functional analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="statistics.html">
-     8.3. Statistics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="variational_analysis.html">
-     8.4. Variational analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="convex_analysis.html">
-     8.5. Convex analysis
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="examples.html">
-   9. Examples
+  <a class="reference internal" href="statistics.html">
+   4. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="variational_analysis.html">
+   5. Variational analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convex_analysis.html">
+   6. Convex analysis
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   1. Bibliography
   </a>
  </li>
 </ul>
@@ -158,10 +190,6 @@
 </nav>
 
  <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
 
 </div>
 
@@ -195,7 +223,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/preliminaries.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/fourier_sampling.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -205,6 +233,18 @@
     
 </div>
         <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        
+        <a class="edit-button" href="https://github.com/TristanvanLeeuwen/IP_and_Im_Lectures/edit/master/fourier_sampling.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
 
 
         <!-- Full screen (wrap in <a> to have style consistency -->
@@ -231,12 +271,49 @@
         
               <div>
                 
-  <div class="section" id="preliminaries">
-<h1><span class="section-number">8. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">¶</a></h1>
-<p>There are many ways to write content in Jupyter Book. This short section
-covers a few tips for how to do so.</p>
-<div class="toctree-wrapper compound">
-</div>
+  <div class="section" id="fourier-transform-distributions-and-sampling">
+<h1><span class="section-number">3. </span>Fourier transform, distributions and sampling<a class="headerlink" href="#fourier-transform-distributions-and-sampling" title="Permalink to this headline">¶</a></h1>
+<p>We use the folling conventions for the Fourier transforms in space and time. The temporal Fourier transform:
+\begin{equation}
+\widehat{v}(\omega) = F_tv = \frac{1}{\sqrt{2\pi}}\int v(t)\exp(\imath\omega t)\mathrm{d}t,
+\end{equation}
+\begin{equation}
+v(t) = F_t^{-1}\widehat{v} = \frac{1}{\sqrt{2\pi}}\int \widehat{v}(\omega)\exp(-\imath\omega t)\mathrm{d}\omega
+\end{equation}
+The spatial Fourier transform
+\begin{equation}
+\widehat{v}(\xi) = F_xv = \frac{1}{(2\pi)^{n/2}}\int v(x)\exp(\imath\xi\cdot x)\mathrm{d}x,
+\end{equation}
+\begin{equation}
+v(x) = F_x^{-1}\widehat{v}= \frac{1}{(2\pi)^{n/2}}\int \widehat{v}(\xi)\exp(-\imath\xi\cdot x)\mathrm{d}\xi,
+\end{equation}
+Parseval’s theorem ensures that the Fourier transform of a square integrable is also square integrable:
+\begin{equation}
+\int |v(t)|^2\mathrm{d}t = \int |\widehat{v}(\omega)|^2\mathrm{d}\omega.
+\end{equation}
+The Fourier transform is defined for distributions as well, in particular
+\begin{equation}
+\delta(t) = \frac{1}{\sqrt{2\pi}}\int \exp(-\imath\omega t)\mathrm{d}\omega.
+\end{equation}</p>
+<p>Some other usefull relations:</p>
+<p>differentation
+: \begin{equation*}
+F_t v’(\omega) = (\imath\omega)F_tv(\omega),
+\end{equation*}</p>
+<p>translation
+: \begin{equation*}
+F_t v(\cdot + \tau)(\omega) = e^{\imath\omega\tau}F_tv(\omega),
+\end{equation*}</p>
+<p>convolution
+: \begin{equation*}
+F_t (u\star v)(\omega) = \left(F_tu\right)\left(F_tv\right)(\omega).
+\end{equation*}</p>
+<p>correlation
+: \begin{equation*}
+F_t (u * v)(\omega) = \overline{\left(F_tu\right)}\left(F_tv\right)(\omega),
+\end{equation*}
+where  <span class="math notranslate nohighlight">\(\overline{\cdot}\)</span> denotes complex conjugation.</p>
+<p>Finally, recall that we may uniquely reconstruct a <em>bandlimited</em> function <span class="math notranslate nohighlight">\(v(t)\)</span> from samples <span class="math notranslate nohighlight">\(v(n\Delta t)\)</span>, with <span class="math notranslate nohighlight">\(\Delta t = (2B)^{-1}\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is the bandlimit of <span class="math notranslate nohighlight">\(v\)</span>, i.e., <span class="math notranslate nohighlight">\(\widehat{f}(\omega) = 0\)</span> if <span class="math notranslate nohighlight">\(|\omega| &gt; B\)</span>. Conversely, we need only a discete set of samples of <span class="math notranslate nohighlight">\(\widehat{v}\)</span> if <span class="math notranslate nohighlight">\(v\)</span> is compactly supported. Remember that a function that is compactly supported is not bandlimited and vice versa.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -267,8 +344,8 @@ covers a few tips for how to do so.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="magnetic_resonance_imaging.html" title="previous page"><span class="section-number">7.4. </span>Magnetic Resonance Imaging</a>
-    <a class='right-next' id="next-link" href="linear_algebra.html" title="next page"><span class="section-number">8.1. </span>Linear algebra</a>
+    <a class='left-prev' id="prev-link" href="functional_analysis.html" title="previous page"><span class="section-number">2. </span>Functional analysis</a>
+    <a class='right-next' id="next-link" href="statistics.html" title="next page"><span class="section-number">4. </span>Statistics</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -277,7 +354,6 @@ covers a few tips for how to do so.</p>
         
           By Tristan van Leeuwen and Christoph Brune<br/>
         
-            &copy; Copyright 2020.<br/>
       </p>
     </div>
   </footer>

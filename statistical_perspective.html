@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>4. A statistical perspective on inverse problems &#8212; 10 Luctures on Inverse Problems and Imaging</title>
+    <title>4. A statistical perspective on inverse problems &#8212; 10 Lectures on Inverse Problems and Imaging</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -62,7 +62,7 @@
   <img src="_static/logo.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">10 Luctures on Inverse Problems and Imaging</h1>
+  <h1 class="site-logo" id="site-title">10 Lectures on Inverse Problems and Imaging</h1>
   
 </a>
 </div>
@@ -73,13 +73,11 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Welcome to Inverse Problems and Imaging
-  </a>
- </li>
-</ul>
+  <p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is.html">
@@ -111,19 +109,80 @@
    6. Numerical optimisation for inverse problems
   </a>
  </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Applications
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="applications.html">
-   7. Applications
+  <a class="reference internal" href="image_processing.html">
+   1. Image processing
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="preliminaries.html">
-   8. Preliminaries
+  <a class="reference internal" href="tomography.html">
+   2. Computed Tomography
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="examples.html">
-   9. Examples
+  <a class="reference internal" href="wavefield_imaging.html">
+   3. Wavefield Imaging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="magnetic_resonance_imaging.html">
+   4. Magnetic Resonance Imaging
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_algebra.html">
+   1. Linear algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functional_analysis.html">
+   2. Functional analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fourier_sampling.html">
+   3. Fourier transform, distributions and sampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   4. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="variational_analysis.html">
+   5. Variational analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convex_analysis.html">
+   6. Convex analysis
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   1. Bibliography
   </a>
  </li>
 </ul>
@@ -131,10 +190,6 @@
 </nav>
 
  <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
 
 </div>
 
@@ -179,6 +234,18 @@
 </div>
         <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        
+        <a class="edit-button" href="https://github.com/TristanvanLeeuwen/IP_and_Im_Lectures/edit/master/statistical_perspective.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -195,7 +262,75 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formulating-prior-assumptions">
+   4.1. Formulating prior assumptions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#map-estimation">
+     4.1.1. MAP estimation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     4.1.2. Examples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaussian">
+     4.1.3. Gaussian
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#laplace-uniform">
+       4.1.3.1. Laplace + uniform
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#improper-prior">
+       4.1.3.2. Improper prior
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#poisson-noise">
+       4.1.3.3. Poisson noise
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gaussian-random-fields">
+       4.1.3.4. Gaussian random fields
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   4.2. Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normal-distribution">
+     4.2.1. Normal distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     4.2.2. Poisson noise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     4.2.3. MAP estimation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -206,6 +341,435 @@
                 
   <div class="section" id="a-statistical-perspective-on-inverse-problems">
 <h1><span class="section-number">4. </span>A statistical perspective on inverse problems<a class="headerlink" href="#a-statistical-perspective-on-inverse-problems" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="formulating-prior-assumptions">
+<h2><span class="section-number">4.1. </span>Formulating prior assumptions<a class="headerlink" href="#formulating-prior-assumptions" title="Permalink to this headline">¶</a></h2>
+<p>We take the viewpoint that what we are measuring, <span class="math notranslate nohighlight">\(f^{\delta}\)</span>, is a stochastic variable with mean <span class="math notranslate nohighlight">\(f\)</span>, which in turn is related to <span class="math notranslate nohighlight">\(u\)</span> via the forward operator</p>
+<div class="math notranslate nohighlight">
+\[
+f = Ku.
+\]</div>
+<p>Our prior assumptions in this case consist probability distributions for <span class="math notranslate nohighlight">\(f^{\delta}\)</span> and <span class="math notranslate nohighlight">\(u\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+f^\delta \sim \pi_{\text{data}},
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+u \sim \pi_{\text{prior}}.
+\]</div>
+<p>Using Bayes’ rule, we can now formulate the posterior probability density function as</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{\text{post}}(u | f^\delta) \propto \pi_{\text{data}}(f^\delta) \pi_{\text{prior}}(u),
+\]</div>
+<p>where we have ignored the normalizing constants.</p>
+<p>In some sense, <span class="math notranslate nohighlight">\(\pi_{\text{post}}(u | f^\delta)\)</span> is the answer to our inverse problem. It gives us information on the likelihood of any particular <span class="math notranslate nohighlight">\(u\)</span> <em>under the assumptions</em> we made on <span class="math notranslate nohighlight">\(f^\delta\)</span> and <span class="math notranslate nohighlight">\(u\)</span>. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those.</p>
+<p>In all but the simple linear-forward-operator-Gaussian-assumption case, we cannot easily characterize the posterior PDF. We may, however, attempt estimate certain properties by drawing samples from the posterior distribution. Such samples can be generated for any distribution using the Metropolis-Hastings algorithm. This is not very attractive for high-dimensional problems, however. Further discussion of this algorithm is outside the scope of this lecture.</p>
+<div class="section" id="map-estimation">
+<h3><span class="section-number">4.1.1. </span>MAP estimation<a class="headerlink" href="#map-estimation" title="Permalink to this headline">¶</a></h3>
+<p>For high-dimensional problems it is common to instead find the most likely parameters</p>
+<div class="math notranslate nohighlight">
+\[
+\max_{u} \pi_{\text{post}}(u|f).
+\]</div>
+<p>The <span class="math notranslate nohighlight">\(u\)</span> that attains this maximum is called the \emph{maximum a posteriori} (MAP) estimate. Finding the MAP estimate can be naturally cast as a minimization problem</p>
+<div class="math notranslate nohighlight">
+\[
+\min_u -\log \pi_{\text{post}}(u|f).
+\]</div>
+<p>Analyzing and solving such variational problems will be the subject of subsequent chapters.</p>
+</div>
+<div class="section" id="examples">
+<h3><span class="section-number">4.1.2. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>Let’s consider a few examples:</p>
+</div>
+<div class="section" id="gaussian">
+<h3><span class="section-number">4.1.3. </span>Gaussian<a class="headerlink" href="#gaussian" title="Permalink to this headline">¶</a></h3>
+<p>With additive Gaussian noise with zero mean and variance <span class="math notranslate nohighlight">\(\sigma\)</span>, we express the measurements as</p>
+<div class="math notranslate nohighlight">
+\[
+f^\delta = Ku + \epsilon,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is normally with zero mean and variance <span class="math notranslate nohighlight">\(\sigma\)</span>. Assuming that the <span class="math notranslate nohighlight">\(u_i\)</span> are normally distributed with zero mean and unit variance we get</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\frac{1}{2\sigma^2}\|Ku - f^{\delta}\|_2^2 - \frac{1}{2}\|u\|_2^2\right),
+\]</div>
+<p>which we can re-write as</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\frac{1}{2}\left({u}^*(\sigma^{-2}{K}^*K + I)u + \ldots\right)\right),
+\]</div>
+<p>so <span class="math notranslate nohighlight">\(\pi_{\text{post}}\)</span> describes a normal distribution with mean</p>
+<div class="math notranslate nohighlight">
+\[\]</div>
+<p>and variance</p>
+<div class="math notranslate nohighlight">
+\[
+\Sigma_{\text{post}} = (\sigma^{-2}{K}^*K + I)^{-1}.
+\]</div>
+<p>It is not hard to show that this coincides with the solution of the Tikhonov least-squares solution with <span class="math notranslate nohighlight">\(\alpha = \sigma^2\)</span>. Indeed, the MAP estimate is obtained by solving</p>
+<div class="math notranslate nohighlight">
+\[
+\min_{u} \|{K}u - f\|_2^2 + \|u\|_2^2.
+\]</div>
+<div class="section" id="laplace-uniform">
+<h4><span class="section-number">4.1.3.1. </span>Laplace + uniform<a class="headerlink" href="#laplace-uniform" title="Permalink to this headline">¶</a></h4>
+<p>If we assume Laplace noise with mean <span class="math notranslate nohighlight">\(\mu\)</span> and unit variance, and a uniform prior <span class="math notranslate nohighlight">\(u_i\in[a_i,b_i]\)</span> we end up with</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{\text{post}}(u | f) = \exp\left(-\|{K}u - f^{\delta} - \mu\|_1\right)\prod_i I_{[0,1]}\left(\frac{u_i-a_i}{b_i-a_i}\right)
+\]</div>
+<p>The corresponding MAP estimatiob problem is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\min_{u\in B} \|{K}u - f - \mu\|_1,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(B = \{u \in \mathbb{R}^n \,|\, u_i \in [a_i,b_i]\,\, \text{for}\,\, i = 1,2,\ldots,n\}\)</span>.</p>
+</div>
+<div class="section" id="improper-prior">
+<h4><span class="section-number">4.1.3.2. </span>Improper prior<a class="headerlink" href="#improper-prior" title="Permalink to this headline">¶</a></h4>
+<p>In some cases it may not be natural to define prior information in terms of a probability density. For example, the prior information that <span class="math notranslate nohighlight">\(u_i \geq 0\)</span> (all positive values are equally likely) does not have a corresponding probability density function associated with with. We may still add this prior in the Bayesian framework as</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{\text{prior}}(u) = \prod_iI_{[0,\infty)}(u_i),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(I_{[0,\infty)}\)</span> is the indicator function which is <span class="math notranslate nohighlight">\(1\)</span> with <span class="math notranslate nohighlight">\(u_i \in [0,\infty)\)</span> and <span class="math notranslate nohighlight">\(0\)</span> otherwise.</p>
+<p>The corresponding variational problem is</p>
+<div class="math notranslate nohighlight">
+\[
+\min_{u\geq 0} \mathcal{J}(u,f^\delta),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{J}(u,f^\delta) = -\log\pi_{\text{post}}(u | f^\delta)\)</span>.</p>
+</div>
+<div class="section" id="poisson-noise">
+<h4><span class="section-number">4.1.3.3. </span>Poisson noise<a class="headerlink" href="#poisson-noise" title="Permalink to this headline">¶</a></h4>
+<p>We have seen that Poisson noise also plays an important role in many applications. In this case, we cannot model the noise as additive. Instead, we can view the observations <span class="math notranslate nohighlight">\(f_i^{\delta}\)</span> as a stochastic variable having a Poisson distribution with parameter <span class="math notranslate nohighlight">\(\lambda_i = \left({K}u\right)_i\)</span>. This leads to</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{\text{data}}(u|f^{\delta}) = \prod_i \frac{ \left({K}u\right)_i^{f_i^\delta} }{f_i^\delta!}
+\exp\left({-\left({K}u\right)_i}\right).
+\]</div>
+<p>The corresponding variational problem is</p>
+<div class="math notranslate nohighlight">
+\[
+\min_{u} \sum_{i=1}^m \left(\left(\mathcal{K}u\right)_i - f_i^{\delta}\ln\left(\mathcal{K}u\right)_i\right).
+\]</div>
+</div>
+<div class="section" id="gaussian-random-fields">
+<h4><span class="section-number">4.1.3.4. </span>Gaussian random fields<a class="headerlink" href="#gaussian-random-fields" title="Permalink to this headline">¶</a></h4>
+<p>To include spatial correlations we can model <span class="math notranslate nohighlight">\(u\)</span> as being normally distributed with mean <span class="math notranslate nohighlight">\(\mu\)</span> and \emph{covariance} <span class="math notranslate nohighlight">\(\Sigma_{\text{prior}}\)</span>. Popular choices are</p>
+<div class="math notranslate nohighlight">
+\[
+\Sigma_{\text{prior},ij} = \exp\left(-\frac{|i-j|^p}{pL^{p}}\right),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(L\)</span> denotes the correlation length and <span class="math notranslate nohighlight">\(p\)</span> is a parameter.</p>
+<p>The corresponding variational problem is</p>
+<div class="math notranslate nohighlight">
+\[
+\min_u \mathcal{J}(u,f^\delta) + \|u\|_{\Sigma^{-1}_{\text{prior}}}^2.
+\]</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2><span class="section-number">4.2. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="normal-distribution">
+<h3><span class="section-number">4.2.1. </span>Normal distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this headline">¶</a></h3>
+<p>Consider a linear inverse problem</p>
+<div class="math notranslate nohighlight">
+\[
+Ku = f^{\delta},
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(f^{\delta} = K\overline u + \epsilon\)</span>, where <span class="math notranslate nohighlight">\(\epsilon\)</span> is drawn from a normal distributed with zero mean and covariance <span class="math notranslate nohighlight">\(\Sigma_{\text{noise}}\)</span> and <span class="math notranslate nohighlight">\(\overline u\)</span> is drawn from a normal distributed with mean <span class="math notranslate nohighlight">\(\mu_{\text{prior}}\)</span> and covariance <span class="math notranslate nohighlight">\(\Sigma_{\text{prior}}\)</span>.</p>
+<p>Show that the posterior distribution is Gaussian with mean</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_{\text{post}} = \mu_{\text{prior}} + \left(K^T\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1}\right)^{-1}K^T\Sigma_{\text{noise}}^{-1}(f - K\mu_{\text{prior}}),
+\]</div>
+<p>and covariance</p>
+<div class="math notranslate nohighlight">
+\[
+\Sigma_{\text{post}} = \Sigma_{\text{prior}} - \Sigma_{\text{prior}}K^T\left(K\Sigma_{\text{prior}}K^T + \Sigma_{\text{noise}}\right)^{-1}K\Sigma_{\text{prior}}.
+\]</div>
+<p>Hint: The <a class="reference external" href="https://en.wikipedia.org/wiki/Woodbury_matrix_identity#Binomial_inverse_theorem">Binomial inverse theorem</a> may come in handy.</p>
+<div class="tip toggle admonition">
+<p class="admonition-title">Answer</p>
+<p>The likelihood is a Gaussian with mean <span class="math notranslate nohighlight">\(Ku\)</span> and covariance <span class="math notranslate nohighlight">\(\Sigma_{\text{noise}}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{\text{likelihood}}(f^{\delta} | u) \propto \exp(-\textstyle{\frac{1}{2}}(Ku - 
+f^{\delta})^T\Sigma_{\text{noise}}^{-1}(Ku - f^\delta)).
+\]</div>
+<p>The prior is a Gaussian with mean <span class="math notranslate nohighlight">\(\mu_{\text{prior}}\)</span> and covariance <span class="math notranslate nohighlight">\(\Sigma_{\text{prior}}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{\text{prior}}(u) \propto \exp(-\textstyle{\frac{1}{2}}(u - \mu_{\text{prior}})^T\Sigma_{\text{prior}}^{-1}(u - \mu_{\text{prior}})).
+\]</div>
+<p>Forming the product gives</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{\text{post}}(u | f^{\delta}) \propto \exp(-\textstyle{\frac{1}{2}}(Ku - f^{\delta})^T\Sigma_{\text{noise}}^{-1}(Ku - f^\delta) -\textstyle{\frac{1}{2}}(u - \mu_{\text{prior}})^T\Sigma_{\text{prior}}^{-1}(u - \mu_{\text{prior}})).
+\]</div>
+<p>The goal is to write this as</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{\text{post}}(u | f^{\delta}) \propto \exp(-\textstyle{\frac{1}{2}}(u - \mu_{\text{post}})^T\Sigma_{\text{post}}^{-1}(u - \mu_{\text{post}})).
+\]</div>
+<p>Expanding terms in the exponential we get</p>
+<div class="math notranslate nohighlight">
+\[
+u^T(K^T\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1})u - 2u^T(K^T\Sigma_{\text{noise}}^{-1}f^\delta  + \Sigma_{\text{prior}}^{-1}\mu_{\text{prior}}) + \text{constants}.
+\]</div>
+<p>The goal is to rewrite this as</p>
+<div class="math notranslate nohighlight">
+\[
+u^T\Sigma_{\text{post}}^{-1}u - 2u^T\Sigma_{\text{post}}^{-1}\mu_{\text{post}} + \text{constants}.
+\]</div>
+<p>Hence:</p>
+<div class="math notranslate nohighlight">
+\[
+\Sigma_{\text{post}} = (K^T\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1})^{-1},
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_{\text{post}} = \Sigma_{\text{post}}(K^T\Sigma_{\text{noise}}^{-1}f^\delta  + \Sigma_{\text{prior}}^{-1}\mu_{\text{prior}}).
+\]</div>
+<p>Using the Binomial inverse theorem we find the desired expression for <span class="math notranslate nohighlight">\(\Sigma_{\text{post}}\)</span>. More algebraic manipulations yield the desired expression for <span class="math notranslate nohighlight">\(\mu_{\text{post}}\)</span></p>
+</div>
+</div>
+<div class="section" id="id1">
+<h3><span class="section-number">4.2.2. </span>Poisson noise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Consider a linear inverse problem <span class="math notranslate nohighlight">\(Ku = f^{\delta}\)</span>, where we assume that <span class="math notranslate nohighlight">\(f^{\delta}\)</span> follows a Poisson distribution with mean <span class="math notranslate nohighlight">\(\overline f = K\overline{u}\)</span>.</p>
+<ul class="simple">
+<li><p>Show that the MAP estimate may be obtained by solving the following minimization problem</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\min_u \sum_i \left(({K}u)_i - f_i^\delta\ln ({K}u)_i\right).
+\]</div>
+<ul class="simple">
+<li><p>Assuming that both <span class="math notranslate nohighlight">\(\|f^{\delta} - \overline f\|_2\)</span> and <span class="math notranslate nohighlight">\(\|u-\overline u\|_2\)</span> are small, show that the log-likelihood function may be approximated as</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\sum_i \left(({K}u)_i - f_i^\delta\ln ({K}u)_i\right) \approx \|Ku - f^{\delta}\|_{\Sigma^{-1}}^2,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Sigma\)</span> is a diagonal matrix with elements <span class="math notranslate nohighlight">\(1/\overline f_i\)</span>.</p>
+<ul class="simple">
+<li><p>In practice, we would replace <span class="math notranslate nohighlight">\(\overline f_i\)</span> by <span class="math notranslate nohighlight">\(f_i^{\delta}\)</span> for the covariance and thus approximate the Poisson map estimate as a weighted least-squares MAP estimate. Explain why this quadratic approximation makes sense heuristically.</p></li>
+</ul>
+<div class="tip toggle admonition">
+<p class="admonition-title">Answer</p>
+<p>The likelihood is a Poisson distrubution with parameter <span class="math notranslate nohighlight">\(Ku\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{\text{likelihood}}(f^{\delta} | u) \propto \prod_{i} \frac{(Ku)_i^{f^{\delta}_i} e^{-(Ku)_i}}{f^{\delta}_i!}.
+\]</div>
+<p>Note that we have implicltly assumed some indepence so that we can simply multiple univariate distrubutions with parameter <span class="math notranslate nohighlight">\((Ku)_i\)</span> to get the multivariate distribution. Taking the negative <span class="math notranslate nohighlight">\(\log\)</span> and ignoring the constant term (that do not depend on <span class="math notranslate nohighlight">\(u\)</span>) we get the desired expression. The second and third questions are meant to show that in certain regimes, the Poisson distrubution is well-approximated by a Gaussian with mean and variance given by the Poisson parameter. Hence, for the purpose of MAP estimation we can replace the Poisson likelihood by a Gaussian, and hence minimization of a weighted least-squares problem. A derivation is given below.</p>
+<p>Assuming <span class="math notranslate nohighlight">\(u\)</span> is close to the ground truth, we consider a Taylor expansion of the <span class="math notranslate nohighlight">\(\ln\)</span> term around <span class="math notranslate nohighlight">\(f^{\delta}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\ln f_i \approx \ln f_i^\delta + \frac{(f_i - f^\delta)}{f^\delta} - \frac{(f_i - f_i^\delta)}{2(f_i^\delta)^2}.
+\]</div>
+<p>Plugging this in in gives the desired expression.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h3><span class="section-number">4.2.3. </span>MAP estimation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Consider the inverse problem</p>
+<div class="math notranslate nohighlight">
+\[
+Ku = f^{\delta},
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+Ku(x) = \int_0^1 u(x')e^{-d(x-x')^2} \mathrm{d}x',
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+f^{\delta} = K\overline{u} + \epsilon.
+\]</div>
+<p>Generate <span class="math notranslate nohighlight">\(\overline u \in \mathbb{R}^n\)</span> as Gaussian random fields with mean zero and covariance</p>
+<div class="math notranslate nohighlight">
+\[
+\Sigma_{ij} = \exp\left(-\frac{|x_i-x_j|}{L}\right),
+\]</div>
+<p>and Gaussian noise, <span class="math notranslate nohighlight">\(\epsilon\)</span>, with zero mean and variance <span class="math notranslate nohighlight">\(\sigma\)</span>. An example is shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getK</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="mf">1e3</span><span class="p">;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">xx</span><span class="o">-</span><span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">K</span><span class="p">,</span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">1e-1</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># define forward operator</span>
+<span class="n">K</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">getK</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># define covariance matrix</span>
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+
+<span class="c1"># generate sample and data</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">Sigma</span><span class="p">)</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">K</span><span class="nd">@u</span> <span class="o">+</span> <span class="n">noise</span>
+
+<span class="c1"># plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;ground truth&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/statistical_perspective_7_0.png" src="_images/statistical_perspective_7_0.png" />
+</div>
+</div>
+<ol class="simple">
+<li><p>For varying correlation length <span class="math notranslate nohighlight">\(L\)</span> and noise level <span class="math notranslate nohighlight">\(\sigma\)</span>, reconstruct the images using the regularized pseudo inverse of <span class="math notranslate nohighlight">\(K\)</span>.</p></li>
+<li><p>Compute the MAP estimate from <span class="math notranslate nohighlight">\(\min_{u} \sigma^{-2}\|Ku - f^{\delta}\|_2^2 + \|u\|_{\Sigma^{-1}}^2\)</span>. Compare the reconstruction to the one obtained in 1.</p></li>
+<li><p>What happens if you use two different covariance matrices for generating and reconstructing <span class="math notranslate nohighlight">\(u\)</span>?</p></li>
+</ol>
+<div class="tip toggle admonition">
+<p class="admonition-title">Answer</p>
+<p>To study the difference, we’ll consider solving the inverse problem using generalized Tikhonov
+<span class="math notranslate nohighlight">\($\min_u \|Ku - f\|^2 + \alpha \|R^{-1/2}u\|_2^2,\)</span>$
+and compute the average (over random noise instances) error for various <span class="math notranslate nohighlight">\(\alpha\)</span>. The hypothesis is that using <span class="math notranslate nohighlight">\(R = \Sigma\)</span> and <span class="math notranslate nohighlight">\(\alpha = \sigma^2\)</span> gives the best results.</p>
+<p>We let <span class="math notranslate nohighlight">\(n = 100\)</span>, <span class="math notranslate nohighlight">\(L = 1\)</span>, <span class="math notranslate nohighlight">\(\sigma = 10^{-1}\)</span> and compute the error for <span class="math notranslate nohighlight">\(100\)</span> random instances of the noise.
+In figure <a class="reference internal" href="#expected-error"><span class="std std-numref">Fig. 4.1</span></a> we show the expected reconstruction error for various values of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(L\)</span>. We can conclude that</p>
+<ul class="simple">
+<li><p>Using the actual underlying covariance does indeed lead to better results.</p></li>
+<li><p>The optimal <span class="math notranslate nohighlight">\(\alpha\)</span> when using the true covariance matrix is indeed given by <span class="math notranslate nohighlight">\(\sigma^2\)</span></p></li>
+<li><p>For large <span class="math notranslate nohighlight">\(\alpha\)</span> it does not really matter which covariance matrix is used to reglarize the problem</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(\alpha = \sigma^2\)</span> the error is slightly sensitive to <span class="math notranslate nohighlight">\(L\)</span> with the smallest error being achieved at <span class="math notranslate nohighlight">\(L \approx 1\)</span>.</p></li>
+</ul>
+<div class="figure align-default" id="expected-error" style="width: 600px">
+<div class="cell_output docutils container">
+<img alt="_images/statistical_perspective_10_1.png" src="_images/statistical_perspective_10_1.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Expected error as a function of <span class="math notranslate nohighlight">\(\alpha\)</span>.</span><a class="headerlink" href="#expected-error" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># forward operator</span>
+<span class="k">def</span> <span class="nf">getK</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="mf">1e3</span><span class="p">;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">xx</span><span class="o">-</span><span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">K</span><span class="p">,</span><span class="n">x</span>
+
+<span class="c1"># helper function </span>
+<span class="k">def</span> <span class="nf">recon</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">m</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Draw random noise with variance sigma_true</span>
+<span class="sd">    and reconstruct using generalized Tikhonov with regularization min_u \|Ku - f\|^2 + alpha \|R^{-1/2}u\|_2^2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+    <span class="n">K</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">getK</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="n">urec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">noise</span> <span class="o">=</span> <span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">K</span><span class="nd">@u</span> <span class="o">+</span> <span class="n">noise</span>
+        <span class="n">urec</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">T</span><span class="nd">@K</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">R</span><span class="p">),</span> <span class="n">K</span><span class="o">.</span><span class="n">T</span><span class="nd">@f</span><span class="p">)</span>
+    
+    <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">urec</span> <span class="o">-</span> <span class="n">u</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>    
+    <span class="k">return</span> <span class="n">error</span><span class="p">,</span><span class="n">urec</span>
+
+<span class="c1"># seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># generate true image</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">1e-1</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">K</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">getK</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">Sigma</span><span class="p">)</span>
+
+<span class="c1"># sampling settings</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">alphas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1e-3</span><span class="p">,</span><span class="mf">5e-2</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># Reconstruction using R = I</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">error1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)):</span>
+    <span class="n">error1</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">urec</span> <span class="o">=</span> <span class="n">recon</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">alphas</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">R</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+    
+<span class="c1"># Reconstruction using R = Sigma</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">Sigma</span>
+<span class="n">error2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)):</span>
+    <span class="n">error2</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">urec</span> <span class="o">=</span> <span class="n">recon</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">alphas</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">R</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># Reconstruction as a function of L</span>
+<span class="n">Ls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">error3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Ls</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Ls</span><span class="p">)):</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">Ls</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="n">error3</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">urec</span> <span class="o">=</span> <span class="n">recon</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span><span class="n">error1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$R = I$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span><span class="n">error2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$R = \Sigma_L, L=1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\alpha$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;expected error&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">Ls</span><span class="p">,</span><span class="n">error3</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$R = \Sigma_L, \alpha=\sigma^2$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$L$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;expected_error&quot;</span><span class="p">,</span><span class="n">fig</span><span class="p">,</span><span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/statistical_perspective_10_0.png" src="_images/statistical_perspective_10_0.png" />
+</div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -246,7 +810,6 @@
         
           By Tristan van Leeuwen and Christoph Brune<br/>
         
-            &copy; Copyright 2020.<br/>
       </p>
     </div>
   </footer>

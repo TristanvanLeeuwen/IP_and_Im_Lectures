@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>7.1. Image processing &#8212; 10 Luctures on Inverse Problems and Imaging</title>
+    <title>1. Image processing &#8212; 10 Lectures on Inverse Problems and Imaging</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -39,8 +39,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="7.2. Computed Tomography" href="tomography.html" />
-    <link rel="prev" title="7. Applications" href="applications.html" />
+    <link rel="next" title="2. Computed Tomography" href="tomography.html" />
+    <link rel="prev" title="6. Numerical optimisation for inverse problems" href="numerical_optimisation.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -62,7 +62,7 @@
   <img src="_static/logo.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">10 Luctures on Inverse Problems and Imaging</h1>
+  <h1 class="site-logo" id="site-title">10 Lectures on Inverse Problems and Imaging</h1>
   
 </a>
 </div>
@@ -73,14 +73,12 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Welcome to Inverse Problems and Imaging
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
+  <p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is.html">
    1. What is an inverse problem
@@ -111,41 +109,80 @@
    6. Numerical optimisation for inverse problems
   </a>
  </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Applications
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active">
-  <a class="reference internal" href="applications.html">
-   7. Applications
-  </a>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     7.1. Image processing
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="tomography.html">
-     7.2. Computed Tomography
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="wavefield_imaging.html">
-     7.3. Wavefield Imaging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="magnetic_resonance_imaging.html">
-     7.4. Magnetic Resonance Imaging
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="preliminaries.html">
-   8. Preliminaries
+  <a class="current reference internal" href="#">
+   1. Image processing
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="examples.html">
-   9. Examples
+  <a class="reference internal" href="tomography.html">
+   2. Computed Tomography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wavefield_imaging.html">
+   3. Wavefield Imaging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="magnetic_resonance_imaging.html">
+   4. Magnetic Resonance Imaging
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_algebra.html">
+   1. Linear algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functional_analysis.html">
+   2. Functional analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fourier_sampling.html">
+   3. Fourier transform, distributions and sampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="statistics.html">
+   4. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="variational_analysis.html">
+   5. Variational analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convex_analysis.html">
+   6. Convex analysis
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   1. Bibliography
   </a>
  </li>
 </ul>
@@ -153,10 +190,6 @@
 </nav>
 
  <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
 
 </div>
 
@@ -201,6 +234,18 @@
 </div>
         <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        
+        <a class="edit-button" href="https://github.com/TristanvanLeeuwen/IP_and_Im_Lectures/edit/master/image_processing.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -217,7 +262,73 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1.1. Image processing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mathematical-concepts-of-images">
+     1.1.1. Mathematical concepts of images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#noise-models-and-error-measures">
+     1.1.2. Noise models and error measures
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-smoothing-filters">
+     1.1.3. Local smoothing filters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#special-local-filter-and-additive-noise">
+     1.1.4. Special local filter and additive noise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#frequency-space-filters">
+     1.1.5. Frequency space filters.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diffusion-filters-and-pde-methods">
+     1.1.6. Diffusion filters and PDE methods
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#denoising-via-variational-methods">
+     1.1.7. Denoising via variational methods
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deconvolution-methods">
+     1.1.8. Deconvolution methods
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   1.2. Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolation-of-images-discontinuities">
+     1.2.1. Interpolation of images, discontinuities
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#images-noise-and-filters-in-python">
+     1.2.2. Images, noise and filters in python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -227,7 +338,487 @@
               <div>
                 
   <div class="section" id="image-processing">
-<h1><span class="section-number">7.1. </span>Image processing<a class="headerlink" href="#image-processing" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1><span class="section-number">1. </span>Image processing<a class="headerlink" href="#image-processing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">1.1. </span>Image processing<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mathematical-concepts-of-images">
+<h3><span class="section-number">1.1.1. </span>Mathematical concepts of images<a class="headerlink" href="#mathematical-concepts-of-images" title="Permalink to this headline">¶</a></h3>
+<p>We start with an adequate definition of an image, respectively of important structural parts of an image. In view of mathematical generalisation we will not make a specific difference between classical images (2d) and volumetric images (3d). Even movies, e.g. <span class="math notranslate nohighlight">\((2+1)d\)</span> or <span class="math notranslate nohighlight">\((3+1)d\)</span> image sequences, will be called images. We will denote the image dimension with <span class="math notranslate nohighlight">\(d\in \{2,3,4\}\)</span>. For the mathematical modelling of images we distinguish the following two cases:</p>
+<ul class="simple">
+<li><p>The idealised (continuous) image as a function <span class="math notranslate nohighlight">\(u(x)\)</span>, <span class="math notranslate nohighlight">\(u:\Omega \rightarrow \mathbb{R}\)</span>, where <span class="math notranslate nohighlight">\(\Omega \subset \mathbb{R}^d\)</span> denotes the domain of the image (usually a rectangle or cube).</p></li>
+<li><p>The digital (discrete) image as a matrix (tensor) <span class="math notranslate nohighlight">\(u_{i_1,\cdots i_d}\)</span>, <span class="math notranslate nohighlight">\(u \in \mathbb{R}^{N_1 \times N_2 \times \cdots \times N_d}\)</span>.</p></li>
+</ul>
+<p>Between the idealised and digital version of images there exists an obvious connection, which is also defined via the visualisation of images. For this, one divides the domain <span class="math notranslate nohighlight">\(\Omega\)</span> into <span class="math notranslate nohighlight">\(N_1 \times N_2 \times \cdots \times N_d\)</span> small rectangles (pixels) or cubes (voxels), where the grayvalues get defined (coloured) via the corresponding entry of <span class="math notranslate nohighlight">\(U\)</span>.
+Hence, every discrete image immediately corresponds to a continuous image, which in each pixel (for simplicity we do not differentiate between pixel and voxel from now on) is constant. Conversely, one can also generate a discrete image from any continuous image by computing the mean value of <span class="math notranslate nohighlight">\(u\)</span> over each pixel.</p>
+<p>At first sight, this definition of an idealised (continuous) image seems to be an arbitrary mathematical idealisation. However, in practice it turns out that the definition is fundamental for many different aspects of image processing, e.g. the following:</p>
+<p><strong>Resolution.</strong> Digital (discrete) images can be available in many different resolutions, i.e. with different amount of pixels. To understand the correspondence between different resolutions, it is very useful to interpret all possible digital images as discrete versions (via mean value computation in pixels) of one underlying continuous image. Via this consistency in the transition between continuous and digital images, also transitions between digital images of different resolutions is clearly defined.</p>
+<p><strong>Features.</strong> Many properties of images which can intuitively be perceived clearly, are difficult to define in digital images. An important example of this observation are edges, which we understand as transitions between very different grayvalues. While the definition of edges in the continuous image as the set of discontinuities of the function <span class="math notranslate nohighlight">\(u\)</span> is obvious and unique, the definition in the discrete case is difficult and not unique, because often the value changes from one pixel to the next. Therefore, an edge in the digital image can be better obtained as an averaging of the edge in the continuous image over pixels in the respective resolution.</p>
+<p><strong>Modelling.</strong> The mathematical modelling of image processing tasks can be performed in the continuous setup in a unified manner. Here one has all fundamental concepts around integration and differentiation available. We will see that those are in nearly all techniques of enormous importance. Once a variational model has been constructed for a continuous image, via discretisation it can be consistently transferred to all discrete images, independent of the resolution. In particular, also the condition of such a problem is interesting, which, for high resolution with reasonable discretisation, converges to the condition of the continuous problem. Hence, one should try to analyse the condition of the continuous problem, which can be realised especially via an adequate choice of regularisation functionals and leads to interesting mathematical questions, which however in most practical applications can be answered sufficiently.</p>
+<p><strong>Algorithms.</strong> Also the design of algorithms gets more consistent if one assumes an underlying continuous image. For example, for an iterative algorithm, while increasing resolution, one wants to avoid a significant increase in number of necessary iterations to achieve a certain resolution. This is guaranteed if one obtains an algorithm as a discretisation of an algorithm for the continuous image. The latter has to be constructed as an algorithm for functions, i.e. in function spaces, in analogy to methods for partial differential equations.</p>
+</div>
+<div class="section" id="noise-models-and-error-measures">
+<h3><span class="section-number">1.1.2. </span>Noise models and error measures<a class="headerlink" href="#noise-models-and-error-measures" title="Permalink to this headline">¶</a></h3>
+<p>We understand noise as the undesired disturbances of intensities in an image. In nearly all imaging devices, like microscopes, different tomographs or even simple digital cameras, one obtains noise effects in measured data. In the following we will introduce the characterisation of different noise models in images.</p>
+<p>Among different inverse problems in imaging, dependent on the underlying physics, one can observe different types of noise in measured imaging data. Considering the noise as a statistical random process specific noise types can be characterised by specific distributions. To model the noise a-priori, typical choices are Gauss-, Laplace- or Poisson-distributions, but also combinations of those. Obvious errors in the imaging process are intensity errors. One can see those errors as realisations of independent random variables, acting on each pixel separately.</p>
+<p>The simplest model of intensity errors is additive noise. For a discrete image <span class="math notranslate nohighlight">\(U\)</span> and noise <span class="math notranslate nohighlight">\(\delta\)</span> the measured data <span class="math notranslate nohighlight">\(F\)</span> is simply given point-wise by</p>
+<div class="math notranslate nohighlight">
+\[
+    F = U + \delta \ .
+\]</div>
+<p>If every random variable follows a Gauss-distribution, it is called additive Gaussian noise. Other common additive noise models are given by assuming a Laplace-, uniform- or also Poisson-distribution (with constant parameter) instead. In analogy, a model for multiplicative noise is given by</p>
+<div class="math notranslate nohighlight">
+\[
+	F = U \cdot \delta \ .
+\]</div>
+<p>A typical case for multiplicative noise is given by Gamma distributed random variables. Particularly, in view of several biomedical imaging methods there are known noise models, like Poisson noise or salt-and-pepper noise, which are defined by a dependency on <span class="math notranslate nohighlight">\(U\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+	F = \delta(U) \ ,
+\]</div>
+<p>i.e. those are neither additive nor multiplicative. Errors in photon counting, for instance in several areas of tomography, microscopy, but also in CCD sensors of digital cameras or astronomy systems, are typically modelled as Poisson noise. Some examples of various noise types applied to a test images are shown below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libaries</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="kn">from</span> <span class="nn">skimage.util</span> <span class="kn">import</span> <span class="n">random_noise</span>
+
+<span class="c1"># load test image </span>
+<span class="n">camera</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera</span><span class="p">()</span>
+
+<span class="c1"># plot</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gray</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">camera</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Original image&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">random_noise</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gaussian noise&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">random_noise</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;poisson&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Poisson noise&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">random_noise</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;s&amp;p&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Salt and pepper noise&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;noisy_images&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/image_processing_3_0.png" src="_images/image_processing_3_0.png" />
+</div>
+</div>
+<p>Before we focus on different filtering methods, we should discuss different methods for validating the quality of a method. A simple validation would for sure be a number, which becomes zero in case of perfect denoising, respectively increases with worse quality (or vice versa). To test a denoising method with artificial data one can simply compute the distance between the denoised and the clean image, with regard to an adequate norm. If we use the notation <span class="math notranslate nohighlight">\(f\)</span> for the clean image, <span class="math notranslate nohighlight">\(f^{\delta}\)</span> for the noisy data, and <span class="math notranslate nohighlight">\(u\)</span> for the denoising via a particular method, then an error measure is simply given by</p>
+<div class="math notranslate nohighlight">
+\[
+	e_{abs} = \Vert u - f^{\delta} \Vert.
+\]</div>
+<p>To avoid scaling issues (and error propagation) it is often more reasonable to consider a relative error with respect to the noise, i.e.</p>
+<div class="math notranslate nohighlight">
+\[
+e_{rel} = \frac{\Vert u - f^{\delta} \Vert}{\Vert f - f^{\delta}\Vert}
+\]</div>
+<p>or the scaled error</p>
+<div class="math notranslate nohighlight">
+\[
+e_{skal} = \frac{\Vert u - f^{\delta} \Vert}{\Vert f^{\delta} \Vert} .
+\]</div>
+<p>A variant of the scaled error is the commonly used Signal-to-Noise ratio (SNR). The naming is based on the idea that <span class="math notranslate nohighlight">\(\Vert u - f^{\delta} \Vert_2\)</span> measures something like the noise of the method (note that <span class="math notranslate nohighlight">\(\Vert f - f^{\delta}\Vert_2\)</span> is the actual noise) and that <span class="math notranslate nohighlight">\(\Vert f^{\delta} \Vert_2\)</span> measures the amount/essence of signal. Here <span class="math notranslate nohighlight">\(\Vert \cdot \Vert_2\)</span> is in the idealised (continuous) case the <span class="math notranslate nohighlight">\(L^2\)</span>-norm;</p>
+<div class="math notranslate nohighlight">
+\[
+	\Vert u \Vert_2 = \sqrt{\int_\Omega u(x)^2~dx}
+\]</div>
+<p>and in the discrete case the scaled <span class="math notranslate nohighlight">\(\ell^2\)</span>-norm</p>
+<div class="math notranslate nohighlight">
+\[
+	\Vert U \Vert_2 = \sqrt{\frac{1}{N_1 N_2} \sum_{i,j} U_{i,j}^2} \ .
+\]</div>
+<p>Then as SNR one obtains</p>
+<div class="math notranslate nohighlight">
+\[
+	SNR(u,\hat f) = - \log \left( \frac{\Vert u - \hat f \Vert_2}{\Vert \hat f \Vert_2} \right).
+\]</div>
+<p>Note the reversal of monotony. The SNR is large for good quality and low for bad quality of a reconstruction. An additional widely used variant of the SNR is the Peak-Signal-to-Noise ratio (PSNR)</p>
+<div class="math notranslate nohighlight">
+\[
+PSNR = - \log \left( \frac{\Vert u - \hat f \Vert_2}{\Vert \hat f \Vert_\infty }\right).
+\]</div>
+<p>Here one compares the noise with the peak in an image, i.e. <span class="math notranslate nohighlight">\(\Vert \hat f \Vert_\infty = \sup |f^{\delta}|\)</span>. The described error measures are reasonable for additive noise models (e.g. Gauss, Laplace), because one can show a correspondence to <span class="math notranslate nohighlight">\(L^1\)</span> and <span class="math notranslate nohighlight">\(L^2\)</span> norms in a statistical sense. For other noise types, one should take into account other error measures, for instance we will see in later chapters, that the Kullback-Leibler distance represents an adequate error measure for Poisson noise. In some cases it will be necessary to consider error measures different from standard norms, e.g. if one is primarily interested in edges of a reconstruction. In such cases more geometric error measures (in more general metrics) are favourable for the distances of edge sets.</p>
+</div>
+<div class="section" id="local-smoothing-filters">
+<h3><span class="section-number">1.1.3. </span>Local smoothing filters<a class="headerlink" href="#local-smoothing-filters" title="Permalink to this headline">¶</a></h3>
+<p>In this section we focus on filtering methods for image denoising. Denoising is one of the most important tasks in digital image processing because it finds various applications beyond fluorescence microscopy and forms a well understood basis for many other image processing challenges in inverse problems. Denoising is the (inverse) problem of removing the noise from images while keeping significant information in the data. In applications, denoising methods are often applied as pre- or postprocessing methods to better analyse images and to be able to extract specific features, e.g. edges or corners, more effectively. In the following we particularly focus on the relationship between denoising filters, partial differential equations (PDEs) and related variational methods. We will start with simple linear diffusion filters an end with an outlook on a famous nonlinear variational method for denoising.</p>
+<p>The term filter has its origin in signal analysis, as a procedure which yields only a part of the signal (resp. the image). The hope in denoising is for sure to filter the clean from the noisy signal. Local smoothing filters are based on the idea, that in a local neighbourhood similar gray- or colourvalues occur. Therefore one can try to replace the image by a local averaging. In this process also random distortions (the noise) will be averaged out. If one assumes, as introduced above, noise based on independent and identically distributed (iid) random variables, then also the variance of the signal should be reduced in this way. A local linear smoothing filter has the general forms</p>
+<div class="math notranslate nohighlight">
+\[
+	u = G_\epsilon*f, \label{lokalerGlaettungsfilter}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(G_\epsilon*f\)</span> is the convolution of the noisy image with a kernel <span class="math notranslate nohighlight">\(G_\epsilon = \frac{1}{\epsilon^d} G(\frac{\cdot}\epsilon)\)</span> of specific form.
+To obtain a reasonable convex combination <span class="math notranslate nohighlight">\(G\)</span> should be nonnegative and should have a mean value of <span class="math notranslate nohighlight">\(1\)</span>. To obtain locality, <span class="math notranslate nohighlight">\(G\)</span> should attain its maximum around the origin and should decrease towards zero for larger arguments. A simple and commonly used example of such a function is again the Gauss distribution, but also other convolution kernels with local compact support are of interest. The parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> measures the scale on which averaging takes place. The convolution can be defined in the idealised (continuous) case as</p>
+<div class="math notranslate nohighlight">
+\[
+	G_\epsilon*f = \frac{1}{\epsilon^d} \int_\Omega G\left(\frac{x-y}\epsilon\right) f(y)~dy
+\]</div>
+<p>or in the discrete case as</p>
+<div class="math notranslate nohighlight">
+\[
+	(G_\epsilon*F)_{ij} = \frac{1}{\epsilon^d} \sum_{k,\ell} G\left(\frac{x_{ij}-x_{k\ell}}\epsilon\right) F_{k\ell} \, .
+\]</div>
+<p>In the discrete case it is important to choose <span class="math notranslate nohighlight">\(\epsilon\)</span> adequately dependent on the underlying grid size. If <span class="math notranslate nohighlight">\(\epsilon\)</span> is too small no effective smoothing can be expected.</p>
+<p>In practice local smoothing methods actually reduce the noise, however there is also a potential problem of such filters, namely oversmoothing. In particular this affects edges, since at an edge the assumption having locally similar gray values is mostly violated. For example, if we think of a black-white edge, local grayvalues will be averaged to gray at the edge. In this way the edge (discontinuity) is getting averaged to a continuous transition of grayvalues, which as a result looks like an optically blurred edge.</p>
+</div>
+<div class="section" id="special-local-filter-and-additive-noise">
+<h3><span class="section-number">1.1.4. </span>Special local filter and additive noise<a class="headerlink" href="#special-local-filter-and-additive-noise" title="Permalink to this headline">¶</a></h3>
+<p>For further understanding we consider the discrete case and the special local filter of the form</p>
+<div class="math notranslate nohighlight">
+\[
+	U_{ij} = (1-4 \alpha) F_{ij} + \alpha( F_{i-1j} + F_{i+1j} + F_{ij-1} + F_{ij+1}),
+\]</div>
+<p>i.e. the filter only acts on neighbouring pixels. Hereby <span class="math notranslate nohighlight">\(\alpha \in (0,\frac{1}5)\)</span> is the parameter which controls the weighting. The scaling parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> can be identified with the size of the grid. We assume that the observation/measurement originates from point-wise Gaussian noise, i.e.</p>
+<div class="math notranslate nohighlight">
+\[
+	F_{ij} = \hat F_{ij} + \delta^\sigma_{ij} \, .
+\]</div>
+<p>With the filter we obtain a systematic error, i.e.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+	\mathbb{E}(\hat{U}_{ij}) &amp;=&amp; (1-4 \alpha) \mathbb{E}(F_{ij}) + \alpha( \mathbb{E}(F_{i-1j}) + \mathbb{E}(F_{i+1j}) + \mathbb{E}(F_{ij-1}) + \mathbb{E}(F_{ij+1})) \\ &amp;=&amp; (1-4 \alpha) \hat F_{ij} + \alpha( \hat F_{i-1j} + \hat F_{i+1j} + \hat F_{ij-1} + \hat F_{ij+1}),
+\end{split}\]</div>
+<p>and hence in general <span class="math notranslate nohighlight">\(\mathbb{E}(\hat{U}_{ij}) \neq \hat F_{ij}\)</span>. So the filter has a particular disadvantage, which one should only accept, if at least the mean error gets smaller, so we should analyze the following term.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbb{E}((\hat{U}_{ij} - \hat F_{ij})^2) &amp;=&amp;  \mathbb{E}((\hat{U}_{ij} - \mathbb{E}(\hat{U}_{ij}) + \mathbb{E}(\hat{U}_{ij})- \hat F_{ij})^2) \\
+&amp;=&amp; \mathbb{E}((\hat{U}_{ij} - \mathbb{E}(\hat{U}_{ij}))^2) + (\mathbb{E}(\hat{U}_{ij})- \hat F_{ij})^2
+\end{split}\]</div>
+<p>We start with the first term and obtain due to independence of the <span class="math notranslate nohighlight">\(F_{ij}\)</span> and <span class="math notranslate nohighlight">\(\mathbb{E}(F_{ij}) = \hat F_{ij}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\hat{U}_{ij} - \mathbb{E}(\hat{U}_{ij}) &amp;=&amp; (1-4 \alpha) (F_{ij}-\hat F_{ij}) + \alpha( F_{i-1j} - \hat F_{i-1j} + F_{i+1j} - \hat F_{i+1j} + \\ &amp;&amp; F_{ij-1} - \hat F_{ij-1} + F_{ij+1}- \hat F_{ij+1}) \\ &amp;=&amp;
+(1-4 \alpha) \delta_{ij}^\sigma + \alpha( \delta_{i-1j}^\sigma + \delta_{i+1j}^\sigma + \delta_{ij-1}^\sigma + \delta_{ij+1}^\sigma),
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\delta_{ij}^\sigma\)</span> are independent normal distributed random variables with mean value <span class="math notranslate nohighlight">\(0\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>. Then we obtain</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbb{E}((\hat{U}_{ij} - \mathbb{E}(\hat{U}_{ij}))^2) &amp;=&amp; (1-4\alpha)^2 \mathbb{E}((\delta_{ij}^\sigma)^2) + \alpha^2 (~\mathbb{E}((\delta_{i+1j}^\sigma)^2) + \mathbb{E}((\delta_{i-1j}^\sigma)^2)+\\&amp;&amp; \mathbb{E}((\delta_{ij+1}^\sigma)^2)+\mathbb{E}((\delta_{ij-1}^\sigma)^2)~) \\
+&amp;=&amp; (1-4\alpha)^2 \sigma^2 + 4 \alpha \sigma^2 = (1-8\alpha +20 \alpha^2) \sigma^2.
+\end{split}\]</div>
+<p>The noise gets reduced by the filter, because this part of the error is smaller than <span class="math notranslate nohighlight">\(\sigma\)</span> for <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>. Now we consider also the second term in the estimate above, which describes the systematic error. It holds that</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb{E}(\hat{U}_{ij})- \hat F_{ij} = \alpha ( \hat{F}_{i-1j} + \hat{F}_{i+1j} + \hat{F}_{ij-1} + \hat{F}_{ij+1}-4\hat{F}_{ij}) . 
+\]</div>
+<p>For simplicity we assume that <span class="math notranslate nohighlight">\(\hat{F}_{ij}\)</span> is the pixel value at index <span class="math notranslate nohighlight">\((ih,jh)\)</span>, where <span class="math notranslate nohighlight">\(h\)</span> denotes the (small) pixel size. So we have the idea that <span class="math notranslate nohighlight">\(\hat{F}_{ij} = \hat{f}(x_{ij})\)</span> for an adequate grayvalue function <span class="math notranslate nohighlight">\(\hat{f}\)</span>. If <span class="math notranslate nohighlight">\(\hat{f}\)</span> is twice continuously differentiable, then with the mean value theorem we have the existence of <span class="math notranslate nohighlight">\(\xi_1 \in ((i-1)h,(i+1)h) \times \{jh\}\)</span> and <span class="math notranslate nohighlight">\(\xi_2 \in \{ih\} \times ((j-1)h,(j+1)h)\)</span>, such that</p>
+<div class="math notranslate nohighlight">
+\[ 
+\hat{F}_{i-1j} + \hat{F}_{i+1j} - 2 \hat{F}_{ij} = \frac{\partial^2\hat{f}}{\partial x_1^2}(\xi_1) h^2 
+\]</div>
+<p>and
+<span class="math notranslate nohighlight">\($ 
+\hat{F}_{ij-1} + \hat{F}_{ij+1}- 2 \hat{F}_{ij} = \frac{\partial^2\hat{f}}{\partial x_2^2}(\xi_2) h^2 .
+$\)</span></p>
+<p>Thus we can estimate the second part o the error by</p>
+<div class="math notranslate nohighlight">
+\[
+(\mathbb{E}(\hat{U}_{ij})- \hat F_{ij})^2 \leq 4 \max\left\{ \|\frac{\partial^2\hat{f}}{\partial x_1^2}\|_\infty,\|\frac{\partial^2\hat{f}}{\partial x_2^2}\|_\infty \right\} \alpha^2 h^4  .
+\]</div>
+<p>As a result we finally obtain the estimate</p>
+<div class="math notranslate nohighlight">
+\[
+ \mathbb{E}((\hat{U}_{ij} - \hat F_{ij})^2) \leq (1-8\alpha+20 \alpha^2) \sigma^2 + 4 \max\left\{ \|\frac{\partial^2\hat{f}}{\partial x_1^2}\|_\infty,\|\frac{\partial^2\hat{f}}{\partial x_2^2}\|_\infty \right\} \alpha^2 h^4.
+\]</div>
+<p>In particular for <span class="math notranslate nohighlight">\(h\)</span> sufficiently small, the mean square error is smaller than <span class="math notranslate nohighlight">\(\sigma^2\)</span> and therefore it seems reasonable to use the filter. However, one also observes, that the second derivative of <span class="math notranslate nohighlight">\(f\)</span> is essential, such that one should expect problems at less smooth image parts like edges. Those problems actually appear in practice and lead to significant blur. This is why many other (nonlinear, nonlocal) filters have been developed which can better deal with features like edges. An example of the linear filter outlined above applied to a noisy image is shown below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libaries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="kn">from</span> <span class="nn">skimage.util</span> <span class="kn">import</span> <span class="n">random_noise</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">convolve2d</span> <span class="k">as</span> <span class="n">conv2</span>
+
+<span class="c1"># load test image </span>
+<span class="n">camera</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera</span><span class="p">()</span>
+
+<span class="c1"># add noise</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">camera_noisy</span> <span class="o">=</span> <span class="n">random_noise</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># filter </span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="o">.</span><span class="mi">2</span>
+<span class="nb">filter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="n">alpha</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">alpha</span><span class="p">,</span><span class="n">alpha</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">camera_filtered</span> <span class="o">=</span> <span class="n">conv2</span><span class="p">(</span><span class="n">camera_noisy</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="s1">&#39;same&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gray</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">camera_noisy</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Noisy image&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">camera_filtered</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Filtered image&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;linear_filter&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/image_processing_5_0.png" src="_images/image_processing_5_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="frequency-space-filters">
+<h3><span class="section-number">1.1.5. </span>Frequency space filters.<a class="headerlink" href="#frequency-space-filters" title="Permalink to this headline">¶</a></h3>
+<p>A useful analysis of images can be achieved by applying the Fourier transform <span class="math notranslate nohighlight">\(F\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+	F(u)(\xi) := (2\pi)^{-\frac{n}{2}} \int_{\mathbb{R}^n} u(x) \exp(-ix \cdot \xi) \, \mathrm{d}x
+\]</div>
+<p>which transfers a function into the frequency space. Here, the value of the Fourier transform at <span class="math notranslate nohighlight">\(\omega\)</span> provides the proportion of an oscillation with frequency <span class="math notranslate nohighlight">\(\omega\)</span>. The Fourier transform has also an explicit inverse <span class="math notranslate nohighlight">\(F^{-1}\)</span> of the form</p>
+<div class="math notranslate nohighlight">
+\[
+	F^{-1}(f)(x) := (2\pi)^{-\frac{n}{2}} \int_{\mathbb{R}^n} f(\xi) \exp(ix \cdot \xi) \, \mathrm{d}\xi ~.
+\]</div>
+<p>Very similar to smoothing filters, or actually just another way of looking at things, are frequency space filters which are given in the following form</p>
+<div class="math notranslate nohighlight">
+\[
+	u = F^{-1} ( \psi_\epsilon F(f))
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\psi_\epsilon\)</span> denotes a function which dampens or completely eliminates particular frequencies (again dependent on a scale parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>). The connection with the filter definition \eqref{lokalerGlaettungsfilter} is given by the convolution theorem because with <span class="math notranslate nohighlight">\(G_\epsilon := (2 \pi)^{-d/2} {\cal F}^{-1} (\psi_\epsilon)\)</span> it follows that</p>
+<div class="math notranslate nohighlight">
+\[
+	G_\epsilon*f = (2 \pi)^{-d/2} F^{-1} (F(G_\epsilon) F(f)) = F^{-1} ( \psi_\epsilon F(f)) \, .
+\]</div>
+<p>The original motivation of constructing frequency space filters is slightly different from those of local smoothing. In frequency space the central idea is that noise often corresponds to high frequencies and therefore one should at least dampen those frequencies. Such filters are called <em>lowpass filters</em> since only the small frequencies remain unchanged (in analogy to a hardware filter for signals where only low frequency components can pass). The simplest choice of a function <span class="math notranslate nohighlight">\(\psi_\epsilon(\omega) = \psi(\epsilon\omega)\)</span> one receives with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+	\psi(\omega)  = \left\{ \begin{array}{ll} 1 &amp; \text{for } |\omega| \leq 1 \\ 0 &amp;\text{otherwise} \end{array} \right.
+\end{split}\]</div>
+<p>In this way <span class="math notranslate nohighlight">\(\psi_\epsilon\)</span> cuts off all frequency components above <span class="math notranslate nohighlight">\(1/\epsilon\)</span> (note the inverse relation since <span class="math notranslate nohighlight">\(\epsilon\)</span> corresponds to the wavelength), and those below <span class="math notranslate nohighlight">\(1/\epsilon\)</span> remain unchanged. By computing the inverse Fourier transform one can see that in the form \eqref{lokalerGlaettungsfilter} a sinc function (<span class="math notranslate nohighlight">\(G(x) \sim \sin |x| / |x|\)</span>) is obtained as convolution kernel. Due to the local oscillation of the sine this yields a slightly unusual local averaging, since the weighting does not decay monotonously with the distance. Hence, without the frequency space interpretation one would likely not have constructed a filter of this form. However, both viewpoints also strongly depend on each other, since the lack of high frequency components automatically implies that the local variation of the grayvalue cannot be extremely strong and vice versa. Thus, the original viewpoint and the frequency space interpretation are based on very similar assumptions. The connection again gets even more obvious for a Gauss distribution as convolution kernel. The Fourier transform of this function again results in a Gauss distribution (besides a constant). Hence, in frequency space one dampens again with this quickly decreasing function.</p>
+</div>
+<div class="section" id="diffusion-filters-and-pde-methods">
+<h3><span class="section-number">1.1.6. </span>Diffusion filters and PDE methods<a class="headerlink" href="#diffusion-filters-and-pde-methods" title="Permalink to this headline">¶</a></h3>
+<p>Interestingly, one can interpret local smoothing filters also in the context of PDE methods in form of so-called linear diffusion filters. For this, one can see <span class="math notranslate nohighlight">\(\alpha\)</span> as a fixed given quantity and simply repeat the filter several times to reduce the variance step-by-step. This yields an iterative procedure, where the filter is always applied to the solution of the previous filter step. With <span class="math notranslate nohighlight">\(U^0:=F\)</span> we then obtain</p>
+<div class="math notranslate nohighlight">
+\[
+	U_{ij}^{k+1} = (1-4 \alpha) U^k_{ij} + \alpha( U^k_{i-1j} + U^k_{i+1j} + U^k_{ij-1} + U^k_{ij+1}).
+\]</div>
+<p>Under the assumption that <span class="math notranslate nohighlight">\(h\)</span> is sufficiently small and that <span class="math notranslate nohighlight">\(\alpha \leq \frac{1}5\)</span>, one can consider the continuous limit. It holds that
+<span class="math notranslate nohighlight">\($
+	\frac{U_{ij}^{k+1}- U^k_{ij}}{h^2 \alpha} = \frac{1}{h^2} (U^k_{i-1j} + U^k_{i+1j} + U^k_{ij-1} + U^k_{ij+1} - 4U_{ij}^k) = \Delta u (x_{ij}) + {\cal O}(h^2),
+$\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\Delta = \nabla \cdot \nabla\)</span> denotes the Laplace operator. With <span class="math notranslate nohighlight">\(\tau = \alpha h^2 &lt;&lt; 1\)</span> we can also interpret this equation as a forward Euler discretisation of the heat equation (diffusion equation)</p>
+<div class="math notranslate nohighlight">
+\[
+	\tau = \alpha h^2 &lt;&lt; 1
+\]</div>
+<p>with initial value <span class="math notranslate nohighlight">\(u(0) = f\)</span>. So we obtain a method based on a partial differential equation (PDE). Also for this kind of methods the question of an optimally chosen parameter remains, namely the optimal stopping index in case of the discrete iteration, respectively the optimal termination time of the diffusion equation. The iterative application of the local smoothing filter from the previous subsections we could interpret as a heat diffusion equation. This parabolic differential equation is a simple representative of a linear diffusion filter. As we could see in figure \ref{fig:laplace} edges get blurred by a linear filter. Particularly in biomedical imaging edges could deliver essential information for the image analysis. Therefore it makes sense to use nonlinear filters for denoising instead, which try to avoid the blurring of edges in normal direction. A prominent example for a nonlinear diffusion filter is the Perona-Malik model</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{\partial u}{\partial t} = \nabla \cdot \left( g(|\nabla u|^2) \nabla u\right), \qquad u(t=0) = f, \qquad g(s) = \frac{1}{1+\lambda \: s} \label{peronamalik}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> denotes a weighting parameter. The main motivation of the Perona-Malik model is to achieve a smoothing via diffusion in regions with small grayvalue variations, but to avoid smoothing of edges (<span class="math notranslate nohighlight">\(g(|\nabla u|^2) \rightarrow 0\)</span> for <span class="math notranslate nohighlight">\(|\nabla u| \rightarrow \infty\)</span>). Hence, the model reduces the diffusivity in regions where edges are present with high likelihood.</p>
+<p>As we have seen, linear and nonlinear filters lead, in reasonable asymptotics, to the solution of parabolic differential equations of the form</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{\partial u}{\partial t} = F(\nabla u, D^2 u), \qquad u(0) = f, \label{pdeparabolic}
+\]</div>
+<p>where the denoised image then corresponds to the solution of this equation at a specific point in time <span class="math notranslate nohighlight">\(T &gt; 0\)</span>. Because in such cases smoothing is achieved via diffusion, they are called diffusion filters. Also the term scale space method is quite common here because the method eliminates for increasing <span class="math notranslate nohighlight">\(T\)</span> the smaller scales and the remaining scales get more coarse.</p>
+</div>
+<div class="section" id="denoising-via-variational-methods">
+<h3><span class="section-number">1.1.7. </span>Denoising via variational methods<a class="headerlink" href="#denoising-via-variational-methods" title="Permalink to this headline">¶</a></h3>
+<p>In the previous subsection we have related the local smoothing filter to a PDE method. Now we would like to transition to an interpretation in the sense of variational methods. In comparison to the previous subsection we now assume that the parameter <span class="math notranslate nohighlight">\(\alpha\)</span> might be variable. For sure one should then choose it optimally. The optimal choice of the parameter has to balance out the two competing effects of the filter. On the one hand, the filter has the positive effect of smoothing out the variance of the noise via averaging, and the variance decreases with <span class="math notranslate nohighlight">\(\alpha\)</span> (and attains its minimum at <span class="math notranslate nohighlight">\(\alpha = \frac{1}5\)</span>, as one can derive from the first part of the mean squared error). On the other hand, the systematic error (see second part of mean square error) increases with <span class="math notranslate nohighlight">\(\alpha\)</span>. Hence, one can expect an optimal <span class="math notranslate nohighlight">\(\alpha\)</span> dependent on the data somewhere in the interval <span class="math notranslate nohighlight">\((0,\frac{1}5)\)</span>. This can also be recognised by another characterisation of the denoising as the minimum of the functional (under adequate treatment of grid points at the boundary)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+	J(U) &amp;=&amp;  \frac{1}2 \sum_{i,j} (U_{ij} - F_{ij})^2 + \frac{\alpha}2 \sum_{i,j} [ (F_{i+1j}-F_{ij})^2 + (F_{ij+1}-F_{ij})^2] +\nonumber \\ &amp;&amp; \alpha \sum_{i,j} [ (F_{i+1j}-F_{ij})(U_{i+1j}-U_{ij}) + (F_{ij+1}-F_{ij})(U_{ij+1}-U_{ij})].
+\end{split}\]</div>
+<p>The regularization functional, i.e.</p>
+<div class="math notranslate nohighlight">
+\[
+	R(U) = J(U) - \frac{1}2 \sum_{i,j} (U_{ij} - F_{ij})^2
+\]</div>
+<p>can be interpreted as a Taylor expansion of first order of the functional</p>
+<div class="math notranslate nohighlight">
+\[
+	\tilde R(U) =  \frac{\alpha}2 \sum_{i,j} [ (U_{i+1j}-U_{ij})^2 + (U_{ij+1}-U_{ij})^2]
+\]</div>
+<p>around <span class="math notranslate nohighlight">\(F\)</span>. Since for a small <span class="math notranslate nohighlight">\(\alpha\)</span> value the minimum <span class="math notranslate nohighlight">\(U\)</span> will be close to <span class="math notranslate nohighlight">\(F\)</span>, the difference between <span class="math notranslate nohighlight">\(R(U)\)</span> and <span class="math notranslate nohighlight">\(\tilde R(U)\)</span> should be small. It is reasonable to assume that <span class="math notranslate nohighlight">\(U\)</span> lies close to the minimum of <span class="math notranslate nohighlight">\(J - R + \tilde R\)</span>, a functional which we will become acquainted with in later chapters regarding the modelling of maximum a-posteriori (MAP) estimators. Following the continuous limit, i.e. grid size <span class="math notranslate nohighlight">\(h \rightarrow 0\)</span>, this functional can be written dependent of functions <span class="math notranslate nohighlight">\(f\)</span> (given) and <span class="math notranslate nohighlight">\(u\)</span> (unknown)</p>
+<div class="math notranslate nohighlight" id="equation-l2l2denoising">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-l2l2denoising" title="Permalink to this equation">¶</a></span>\[	\frac{1}{2} \int_\Omega (u-f)^2~dx \:+\: \frac{\alpha}{2}\int_\Omega |\nabla u|^2~dx ~\rightarrow~ \min_u \ .\]</div>
+<p>Till now, in all previous methods, we have always focussed on additive Gaussian noise. Although the described filter methods can often be realised in a simple and efficient way, variational methods have important advantages in comparison. With variational methods one has the flexibility to model data fidelity terms and regularisation terms. According to a-prior knowledge about the noise as well as about the type (e.g. features) of images to be expected, those terms can easily be adapted, extended and combined.</p>
+<p>Now we consider for <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> a general variational problem for denoising</p>
+<div class="math notranslate nohighlight" id="equation-denoisingfunktionalallgemein">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-denoisingfunktionalallgemein" title="Permalink to this equation">¶</a></span>\[	D(u,f) \:+\: \alpha \: R(u) ~\rightarrow~ \min_u \ .\]</div>
+<p>The data fidelity term should be chosen in a way that <span class="math notranslate nohighlight">\(D\)</span> becomes minimal if the data gets denoised exactly. Often specific noise models are reasonable for specific applications which gets reflected by different data fidelities. In a later chapter on modelling we will see that via statistical modelling for instance the following data fidelities can be derived:</p>
+<ul class="simple">
+<li><p>Additive Gaussian noise leads to <span class="math notranslate nohighlight">\(D(u,f) = \frac{1}{2}\left\| u-f \right\|^2_2\)</span></p></li>
+<li><p>Additive Laplacian noise leads to <span class="math notranslate nohighlight">\(D(u,f) = \left\| u-f \right\|_1\)</span></p></li>
+<li><p>Poisson noise leads to <span class="math notranslate nohighlight">\(D(u,f) = \int_\Omega \left( f \log \frac{f}u \: - \: f \: + \: u \right) \: \mathrm{d}x.\)</span></p></li>
+</ul>
+<p>The regularisation functional in <a class="reference internal" href="#equation-denoisingfunktionalallgemein">(1.3)</a> should be constructed in such a way that <span class="math notranslate nohighlight">\(R\)</span> has a small value, if the image matches the a-priori information about the “type of image” very well. In the quadratic regularisation in <a class="reference internal" href="#equation-l2l2denoising">(1.2)</a> we also have a homogeneous smoothing similar to the linear smoothing filter, i.e. noise but also edges in in the image get penalised. Often this regularisation with the <span class="math notranslate nohighlight">\(L^2\)</span>-norm of the gradient is called <span class="math notranslate nohighlight">\(H^1\)</span> regularisation, because it assumes implicitly that <span class="math notranslate nohighlight">\(u\)</span> should be an element of the Sobolev function space <span class="math notranslate nohighlight">\(H^1 = W^{1,2}\)</span>. One of the most famous variational method for denoising is the Rudin-Osher-Fatemi (ROF) model</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{1}{2} \int_\Omega (u-f)^2 \:+\: \alpha \: \text{TV}(u) ~\rightarrow~ \min_u \ ,
+\]</div>
+<p>with the total variation as regularisation term</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+	\text{TV}(u) \equiv \sup_{\substack{g \in {C_0^\infty(\Omega,\mathbb{R}^d)}\\||g||_\infty \leq 1}} \: \int_\Omega u \nabla \cdot g \ .
+\end{split}\]</div>
+<p>If one restricts to the function space <span class="math notranslate nohighlight">\(W^{1,1}\)</span>, one can identify <span class="math notranslate nohighlight">\(\text{TV}(u)\)</span> with <span class="math notranslate nohighlight">\(\|\nabla u\|_1\)</span>. With this variational problem it is possible to denoise images with homogeneous regions and sharp edges (cartoon images) particularly well. We will see in a later chapter on analysis that this variational problem has an interesting underlying function space, the space of functions of bounded variation (BV). An example of the effect of the ROF filter is shown below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libaries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="kn">from</span> <span class="nn">skimage.util</span> <span class="kn">import</span> <span class="n">random_noise</span>
+<span class="kn">from</span> <span class="nn">skimage.restoration</span> <span class="kn">import</span> <span class="n">denoise_tv_chambolle</span>
+
+<span class="c1"># load test image </span>
+<span class="n">camera</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera</span><span class="p">()</span>
+
+<span class="c1"># add noise</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">camera_noisy</span> <span class="o">=</span> <span class="n">random_noise</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># filter </span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="o">.</span><span class="mi">2</span>
+<span class="n">camera_filtered</span> <span class="o">=</span> <span class="n">denoise_tv_chambolle</span><span class="p">(</span><span class="n">camera_noisy</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gray</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">camera_noisy</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Noisy image&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">camera_filtered</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Filtered image&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/image_processing_7_0.png" src="_images/image_processing_7_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="deconvolution-methods">
+<h3><span class="section-number">1.1.8. </span>Deconvolution methods<a class="headerlink" href="#deconvolution-methods" title="Permalink to this headline">¶</a></h3>
+<p>An interesting problem that occurs in many imaging, image- and signal processing applications, in particular in microscopy, is the deblurring or \textit{deconvolution} of signals from a (known, linear) degradation. Deconvolution of a signal can be modelled as solving the inverse problem of the convolution, which reads as</p>
+<div class="math notranslate nohighlight" id="equation-convip">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-convip" title="Permalink to this equation">¶</a></span>\[f(x) = (Ku)(x) := \int_{\mathbb{R}^n} k(x-x')u(x) \, \mathrm{d}x'~.\]</div>
+<p>Here <span class="math notranslate nohighlight">\(f\)</span> denotes the blurry image, <span class="math notranslate nohighlight">\(u\)</span> is the (unknown) true image and <span class="math notranslate nohighlight">\(k\)</span> is the function called convolution kernel that models the degradation. Due to the Fourier convolution theorem we can rewrite <a class="reference internal" href="#equation-convip">(1.4)</a> to</p>
+<div class="math notranslate nohighlight" id="equation-convipfourier">
+<span class="eqno">(1.5)<a class="headerlink" href="#equation-convipfourier" title="Permalink to this equation">¶</a></span>\[	f =  (2\pi)^{\frac{n}{2}} F^{-1} ( F(u) F(k) ) \, .\]</div>
+<p>It is important to note that the inverse Fourier transform is indeed the unique, inverse operator of the Fourier transform in the Hilbert space <span class="math notranslate nohighlight">\(L^2\)</span> due to the theorem of Plancherel. If we rearrange <a class="reference internal" href="#equation-convipfourier">(1.5)</a> to solve it for <span class="math notranslate nohighlight">\(u\)</span> we obtain</p>
+<div class="math notranslate nohighlight" id="equation-convsol">
+<span class="eqno">(1.6)<a class="headerlink" href="#equation-convsol" title="Permalink to this equation">¶</a></span>\[	u = (2\pi)^{-\frac{n}{2}} F^{-1} \left( \frac{F(f)}{F(k)} \right) \, ,\]</div>
+<p>and hence, we allegedly can recover <span class="math notranslate nohighlight">\(u\)</span> by simple division in the Fourier domain. However, we are quickly going to discover that this inverse problem is ill-posed and the division will lead to heavy amplifications of small errors. Let <span class="math notranslate nohighlight">\(u\)</span> denote the image that satisfies <a class="reference internal" href="#equation-convip">(1.4)</a>. Further we assume that instead of the blurry image <span class="math notranslate nohighlight">\(f\)</span> we observe <span class="math notranslate nohighlight">\(f^\delta = f + n^{\delta}\)</span> instead, and that <span class="math notranslate nohighlight">\(u\)</span> is the solution of <a class="reference internal" href="#equation-convsol">(1.6)</a> with noise input measurement <span class="math notranslate nohighlight">\(f^\delta\)</span>. Hence, we observe</p>
+<div class="math notranslate nohighlight" id="equation-converror">
+<span class="eqno">(1.7)<a class="headerlink" href="#equation-converror" title="Permalink to this equation">¶</a></span>\[	(2\pi)^{\frac{n}{2}} \, \left| u-u^{\delta} \right| = \left| F^{-1} \left( \frac{F(f-f^\delta)}{F(k)} \right) \right| = \left| F^{-1} \left( \frac{F(n^\delta)}{F(k)} \right) \right| \, .\]</div>
+<p>As the convolution kernel <span class="math notranslate nohighlight">\(k\)</span> usually has compact support, <span class="math notranslate nohighlight">\(F(k)\)</span> will tend to zero for high frequencies. Hence, the denominator of <a class="reference internal" href="#equation-converror">(1.7)</a> becomes fairly small, whereas the numerator will be non-zero as the noise is of high frequency. Thus, in the limit the solution will not depend continuously on the data and the convolution problem therefore be ill-posed.</p>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2><span class="section-number">1.2. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="interpolation-of-images-discontinuities">
+<h3><span class="section-number">1.2.1. </span>Interpolation of images, discontinuities<a class="headerlink" href="#interpolation-of-images-discontinuities" title="Permalink to this headline">¶</a></h3>
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[
+u : \Omega \rightarrow [0,1] \subset \mathbb{R}
+\]</div>
+<p>be an (idealized) continuous image defined in the domain <span class="math notranslate nohighlight">\(\Omega := [0,1]^2 \subset \mathbb{R}^2\)</span>. We assume the partial derivatives of <span class="math notranslate nohighlight">\(u\)</span> to be bounded, i.e.</p>
+<div class="math notranslate nohighlight">
+\[
+| \partial_x u | ~\leq~ c_1
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+| \partial_y u | ~\leq~ c_2 \ .
+\]</div>
+<p>The domain is divided equidistantly into <span class="math notranslate nohighlight">\(N_1 \times N_2\)</span> pixels. Now we make a transition to the digital version <span class="math notranslate nohighlight">\(U \in \mathbb{R}^{N_1 \times N_2}\)</span> of the image (in the sense of piecewise constant interpolation).</p>
+<ol class="simple">
+<li><p>Derive bounds for the maximal difference of neighboring pixels in <span class="math notranslate nohighlight">\(U\)</span>.</p></li>
+</ol>
+<p>Now let us consider a step function as an (idealized) continuous 1d signal</p>
+<div class="math notranslate nohighlight">
+\[ u : \Omega \rightarrow [0,1] \subset \mathbb{R}\]</div>
+<p>in the domain <span class="math notranslate nohighlight">\(\Omega := [0,1] \subset \mathbb{R}\)</span> with a step from value <span class="math notranslate nohighlight">\(0\)</span> to value <span class="math notranslate nohighlight">\(1\)</span>. We make the transition to the digital version of the signal with <span class="math notranslate nohighlight">\(N\)</span> pixels. Consider the step being located within a pixel, i.e. with relative position <span class="math notranslate nohighlight">\(\alpha \in (0,\frac1N)\)</span>.</p>
+<ol class="simple">
+<li><p>Specify the values of the digital image in the pixels without the step.</p></li>
+<li><p>Specify the value of the pixel with the step dependent on the position within this pixel.</p></li>
+</ol>
+</div>
+<div class="section" id="images-noise-and-filters-in-python">
+<h3><span class="section-number">1.2.2. </span>Images, noise and filters in python<a class="headerlink" href="#images-noise-and-filters-in-python" title="Permalink to this headline">¶</a></h3>
+<p>The SciKit-image package offers many standard image processing algorithms as well as functionality to add noise and benchmark images:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="kn">from</span> <span class="nn">skimage.util</span> <span class="kn">import</span> <span class="n">random_noise</span>
+
+<span class="c1"># load test image </span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">coins</span><span class="p">()</span>
+
+<span class="c1"># add noise</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">image_noisy</span> <span class="o">=</span> <span class="n">random_noise</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gray</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ground-truth image&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_noisy</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;noisy image&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/image_processing_12_0.png" src="_images/image_processing_12_0.png" />
+</div>
+</div>
+<ol class="simple">
+<li><p>Take the coins image and add different types and strengths of noise (Gaussian, Laplace, data dependent Poisson) and plot the results. https://scikit-image.org/docs/dev/api/skimage.util.html?highlight=poisson%20noise#skimage.util.random_noise</p></li>
+<li><p>Implement the local linear filter learned in the lecture as an iterative scheme to remove the noise. How can you achieve different degrees of smoothness? What do you observe at edges?</p></li>
+<li><p>Apply also different filters available in skimage (Gaussian, Wiener, etc.). Verify the relationship between the amount of noise you add to the image and the strength of the filter you have to apply. Plot a graph with different PSNR values for different smoothness parameters to validate the “best” result. https://scikit-image.org/docs/dev/api/skimage.filters.html?highlight=filter#module-skimage.filters</p></li>
+<li><p>Apply the nonlinear total variation (TV) denoising filter (Chambolle version) to your previous test scenario. Verify the preservation of edges of the coins. Vary the regularization paramter. What is the systematic error of TV denoising?
+https://scikit-image.org/docs/dev/auto_examples/filters/plot_denoise.html?highlight=noise</p></li>
+</ol>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -258,8 +849,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="applications.html" title="previous page"><span class="section-number">7. </span>Applications</a>
-    <a class='right-next' id="next-link" href="tomography.html" title="next page"><span class="section-number">7.2. </span>Computed Tomography</a>
+    <a class='left-prev' id="prev-link" href="numerical_optimisation.html" title="previous page"><span class="section-number">6. </span>Numerical optimisation for inverse problems</a>
+    <a class='right-next' id="next-link" href="tomography.html" title="next page"><span class="section-number">2. </span>Computed Tomography</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -268,7 +859,6 @@
         
           By Tristan van Leeuwen and Christoph Brune<br/>
         
-            &copy; Copyright 2020.<br/>
       </p>
     </div>
   </footer>
