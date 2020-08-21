@@ -1,5 +1,9 @@
 # Welcome to Inverse Problems and Imaging
 
+```{warning}
+These lecture notes are currently still under construction.
+```
+
 In these lectures we introduce basic concepts related to inverse problems and visit various viewpoints on inverse problems. The main recurring themes are
 
 * Modelling
