@@ -6,3 +6,15 @@ logo: logo.png
 latex:
   latex_documents:
     targetname: book.tex
+
+html:
+  extra_footer: |
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+sphinx:
+  config:
+    html_show_copyright: false
+
+repository:
+  url: https://github.com/TristanvanLeeuwen/IP_and_Im_Lectures
+html:
+  use_edit_page_button: true
