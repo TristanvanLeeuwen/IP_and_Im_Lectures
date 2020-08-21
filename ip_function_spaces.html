@@ -291,45 +291,28 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#examples">
-   3.4. Examples
+  <a class="reference internal nav-link" href="#exercises">
+   3.4. Exercises
   </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sequence-operator">
-     3.4.1. Sequence operator
-    </a>
-   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#differentiation">
-     3.4.2. Differentiation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercises">
-   3.5. Exercises
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     3.5.1. Differentiation
+     3.4.1. Differentiation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#discretisation">
-     3.5.2. Discretisation
+     3.4.2. Discretisation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#convolution-through-the-heat-equation">
-     3.5.3. Convolution through the heat equation
+     3.4.3. Convolution through the heat equation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#convolution-on-a-finite-interval">
-     3.5.4. Convolution on a finite interval
+     3.4.4. Convolution on a finite interval
     </a>
    </li>
   </ul>
@@ -346,20 +329,39 @@
                 
   <div class="section" id="linear-inverse-problems-in-function-spaces">
 <h1><span class="section-number">3. </span>Linear inverse problems in function spaces<a class="headerlink" href="#linear-inverse-problems-in-function-spaces" title="Permalink to this headline">¶</a></h1>
-<p>Many of the notions discussed in the finite-dimensional setting can be extended to the infinite-dimensional setting. We will focus in this chapter on inverse problems where <span class="math notranslate nohighlight">\(K\)</span> is a <em>bounded linear operator</em>.</p>
+<p>Many of the notions discussed in the finite-dimensional setting can be extended to the infinite-dimensional setting. We will focus in this chapter on inverse problems where <span class="math notranslate nohighlight">\(K\)</span> is a <a class="reference external" href="https://en.wikipedia.org/wiki/Bounded_operator"><em>bounded linear operator</em></a>. The contents of this lecture were heavily inspired by the excellent <a class="reference external" href="https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf">lecture notes from Matthias J. Ehrhardt and Lukas F. Lang</a></p>
+<p>Let <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow F\)</span> denote the forward operator, with <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> <a class="reference external" href="https://en.wikipedia.org/wiki/Banach_space">Banach spaces</a>. The operator is bounded iff there exists a constant <span class="math notranslate nohighlight">\(C \geq 0\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[\|Ku\|_{\mathcal{F}} \leq C \|u\|_{\mathcal{U}} \quad \forall u \in \mathcal{U}.\]</div>
+<p>The smallest such constant is called the operator norm <span class="math notranslate nohighlight">\(\|K\|\)</span>.</p>
 <div class="section" id="well-posedness">
 <h2><span class="section-number">3.1. </span>Well-posedness<a class="headerlink" href="#well-posedness" title="Permalink to this headline">¶</a></h2>
-<p>We may again wonder wether the equation <span class="math notranslate nohighlight">\(Ku = f\)</span> is well-posed.
-When <span class="math notranslate nohighlight">\(f \not\in \mathcal{R}(K)\)</span>, a solution doesn’t exist and it makes sense to define the <em>minimum residual</em> solution <span class="math notranslate nohighlight">\(\widetilde{u}\)</span> which satisfies</p>
+<p>We may again wonder wether the equation <span class="math notranslate nohighlight">\(Ku = f\)</span> is well-posed. To study this we introduce the following notation:</p>
+<ul class="simple">
+<li><p>The range of <span class="math notranslate nohighlight">\(K\)</span> is defined as <span class="math notranslate nohighlight">\(\mathcal{R}(K) = \{Ku\,|\,u\in\mathcal{U}\}.\)</span></p></li>
+<li><p>The null-space (or Kernel) of <span class="math notranslate nohighlight">\(K\)</span> is defined as <span class="math notranslate nohighlight">\(\mathcal{N}(K) = \{u\in\mathcal{U}\, | \, Ku = 0 \}.\)</span></p></li>
+</ul>
+<p>When <span class="math notranslate nohighlight">\(f \not\in \mathcal{R}(K)\)</span>, a solution doesn’t exist. We can still define the <em>minimum residual</em> solution <span class="math notranslate nohighlight">\(\widetilde{u}\)</span>, satisfying</p>
 <div class="math notranslate nohighlight">
 \[
-\|K\widetilde{u} - f\|_{\mathcal{V}} \leq \|Kv - f\|_{\mathcal{V}},\quad\forall v \in \mathcal{U}.
+\|K\widetilde{u} - f\|_{\mathcal{F}} \leq \|Kv - f\|_{\mathcal{F}}\quad\forall v \in \mathcal{U}.
 \]</div>
-<p>This is analogous to the least-squares solution we introduced previously. If the null-space of <span class="math notranslate nohighlight">\(K\)</span> is non-empty, we can construct infinitely many such solutions. We call the one with the smallest norm the <em>minimum-norm</em> solution. Note however that we have not yet proven that such a solution exists in general, nor do we have a constructive way of finding it (in general). We will return to this issue in the next chapter when analysing variational problems. For now, we’ll assume that <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> are Hilbert spaces and continue our exploration of the infinite-dimensional setting.</p>
-<p>We will show that</p>
+<p>This is analogous to the least-squares solution we introduced previously. If the null-space of <span class="math notranslate nohighlight">\(K\)</span> is non-empty, we can construct infinitely many such solutions. We call the one with the smallest norm the <em>minimum-norm</em> solution. Note however that we have not yet proven that such a solution exists in general, nor do we have a constructive way of finding it (in general). We will return to this issue in the next chapter when analysing variational problems.</p>
+<hr class="docutils" />
+<p>For now, we’ll assume that <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> are <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_space">Hilbert spaces</a> and continue our exploration of the infinite-dimensional setting. First, we introduce the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose_of_a_linear_map">adjoint</a> of <span class="math notranslate nohighlight">\(K\)</span>, denoted by <span class="math notranslate nohighlight">\(K^*\)</span> in the usual way as satisfying</p>
+<div class="math notranslate nohighlight">
+\[\langle Ku, f \rangle_{\mathcal{F}} = \langle K^*\!f, u \rangle_{\mathcal{U}}\quad \forall u\in\mathcal{U}, f\in\mathcal{F}.\]</div>
+<p>We now have the following results</p>
+<div class="important admonition">
+<p class="admonition-title">Theorem: <em>existence of a minimum residual solution</em></p>
 <ul class="simple">
 <li><p>A minimum-residual solution only exists if <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)^\perp \oplus \mathcal{R}(K)\)</span></p></li>
-<li><p>It obeys the \emph{normal equations} <span class="math notranslate nohighlight">\(K^*Ku = K^*f\)</span></p></li>
+<li><p>It obeys the normal equations <span class="math notranslate nohighlight">\(K^*\!Ku = K^*\!f\)</span></p></li>
+</ul>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Theorem: <em>existence and uniquness of the pseudo-inverse</em></p>
+<ul class="simple">
 <li><p>The pseudo-inverse <span class="math notranslate nohighlight">\(K^{\dagger}: \mathcal{R}(K)^\perp \oplus \mathcal{R}(K) \rightarrow \mathcal{U}\)</span> is unique and obeys certain useful relations:</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(KK^\dagger K = K\)</span></p></li>
@@ -368,28 +370,196 @@ When <span class="math notranslate nohighlight">\(f \not\in \mathcal{R}(K)\)</sp
 <li><p><span class="math notranslate nohighlight">\(K^\dagger\)</span> is continuous if <span class="math notranslate nohighlight">\(\mathcal{R}(K)\)</span> is closed.</p></li>
 </ul>
 </li>
+</ul>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Theorem: <em>existence and uniqueness of the minimum-norm solution</em></p>
+<ul class="simple">
 <li><p>The minimum-norm solution is unique and is given in terms of the pseudo-inverse <span class="math notranslate nohighlight">\(\widetilde{u} = K^{\dagger}f\)</span></p></li>
 </ul>
 </div>
+<div class="admonition-example-pseudo-inverse-of-a-bounded-operator admonition">
+<p class="admonition-title">Example: pseudo-inverse of a bounded operator</p>
+<p>Some example</p>
+</div>
+</div>
 <div class="section" id="compact-operators">
 <h2><span class="section-number">3.2. </span>Compact operators<a class="headerlink" href="#compact-operators" title="Permalink to this headline">¶</a></h2>
-<p>To analyse this in detail, we use the singular value decomposition (SVD) of compact operators:</p>
+<p>An important subspace of the Bounded operators is that of the <a class="reference external" href="https://en.wikipedia.org/wiki/Compact_operator">compact operators</a>. They can be thought of as a natural generalisation of matrices to the infinite-dimensional setting. Hence, we can generalise the notions from the <a class="reference internal" href="discrete_ip_regularization.html"><span class="doc std std-doc">finite-dimensional setting</span></a> to the infinite-dimensional setting.</p>
+<p>There are a number of equivalent definitions of compact operators. We will use the following.</p>
+<div class="important admonition">
+<p class="admonition-title">Definitition: <em>Compact operator</em></p>
+<p>An operator <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> with <span class="math notranslate nohighlight">\(\mathcal{U},\mathcal{F}\)</span> Hilbert spaces, is called compact it can be expressed as</p>
 <div class="math notranslate nohighlight">
 \[
-Kw = \sum_{j=1}^{\infty} \sigma_j \langle w, u_j\rangle_{\mathcal{U}}v_j,
+K = \sum_{j=1}^{\infty} \sigma_j \langle \cdot, u_j\rangle_{\mathcal{U}}v_j,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\{u_i\}\)</span> and <span class="math notranslate nohighlight">\(\{v_i\}\)</span> are orthonormal bases of <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp\)</span> and <span class="math notranslate nohighlight">\(\overline{\mathcal{R}(K)}\)</span> and
-<span class="math notranslate nohighlight">\(\{\sigma_i\}\)</span> is a null-sequence. We call <span class="math notranslate nohighlight">\(\{(u_i, v_i, \sigma_i)\}\)</span> the singular system of <span class="math notranslate nohighlight">\(K\)</span>.
-The pseudo-inverse of <span class="math notranslate nohighlight">\(K\)</span> is now expressed as</p>
+<span class="math notranslate nohighlight">\(\{\sigma_i\}\)</span> is a null-sequence. We call <span class="math notranslate nohighlight">\(\{(u_i, v_i, \sigma_i)\}\)</span> the singular system of <span class="math notranslate nohighlight">\(K\)</span>.</p>
+</div>
+<p>An important subclass of the compact operators are the <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert%E2%80%93Schmidt_integral_operator">Hilbert-Schmidt integral operators</a>, which can be written as</p>
+<div class="math notranslate nohighlight">
+\[Ku(x) = \int_{\Omega} k(x,y) u(y) \mathrm{d}y,\]</div>
+<p>where <span class="math notranslate nohighlight">\(k: \Omega \times \Omega \rightarrow \mathbb{R}\)</span> is a Hilbert-Schmidt kernel obeying <span class="math notranslate nohighlight">\(\|k\|_{L^2(\Omega\times\Omega)} &lt; \infty\)</span> (i.e., it is square-integrable).</p>
+<hr class="docutils" />
+<p>The pseudo-inverse of such an operator is defined analogously to the finite-dimensional setting:</p>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Pseudo-inverse of a compact operator</em></p>
+<p>The pseudo-inverse of a compact operator <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> is expressed as</p>
 <div class="math notranslate nohighlight">
 \[
-K^{\dagger}f = \sum_{j=1}^{\infty} \sigma_j^{-1} \langle f, v_j\rangle_{\mathcal{V}}u_j.
+K^{\dagger} = \sum_{j=1}^{\infty} \sigma_j^{-1} \langle \cdot, v_j\rangle_{\mathcal{F}}u_j.
 \]</div>
-<p>We have that <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)\)</span> if the Picard condition holds:</p>
-<div class="admonition-picard-condition admonition">
-<p class="admonition-title">Picard condition</p>
+</div>
+<p>With this we can precisely state the Picard condition.</p>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Picard condition</em></p>
+<p>Given a compact operator <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> and <span class="math notranslate nohighlight">\(f \in \mathcal{F}\)</span>, we have that <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)\)</span> iff</p>
 <div class="math notranslate nohighlight" id="equation-picard">
 <span class="eqno">(3.1)<a class="headerlink" href="#equation-picard" title="Permalink to this equation">¶</a></span>\[\sum_{j=1}^{\infty} \frac{|\langle f, v_j\rangle_{\mathcal{V}}|^2}{\sigma_j^2} &lt; \infty.\]</div>
+</div>
+<p>We conclude with the important remark that a solution to the inverse problem <span class="math notranslate nohighlight">\(Ku=f\)</span> only exists if <span class="math notranslate nohighlight">\(f\)</span> satisfies the Picard condition.</p>
+<div class="admonition-example-a-sequence-operator admonition">
+<p class="admonition-title">Example: a sequence operator</p>
+<p>Consider the operator <span class="math notranslate nohighlight">\(K:\ell^2 \rightarrow \ell^2\)</span>, given by</p>
+<div class="math notranslate nohighlight">
+\[
+	u = (u_1,u_2,...) \mapsto (u_1,\frac{1}{2}u_2,\frac{1}{3}u_3,...),
+\]</div>
+<p>i.e. we have an infinite matrix operator of the form</p>
+<div class="math notranslate nohighlight">
+\[
+\left(Ku\right)_i = \sum_{j=1}^\infty a_{ij} u_j := i^{-1} u_i, \quad i = 1,2,...
+\]</div>
+<p>The operator is obviously linear. To show that is bounded we’ll compute its norm:</p>
+<div class="math notranslate nohighlight">
+\[
+\|K\| = \sup_{u \neq 0} \frac{\|K(u)\|_{\ell^2}}{\|u\|_{\ell^2}} = 1.
+\]</div>
+<div class="dropdown admonition note">
+<p class="admonition-title">Note</p>
+<p>Indeed, we find…</p>
+</div>
+<p>To show that the operator is compact, we explicitly construct its singular system, giving:
+<span class="math notranslate nohighlight">\(u_i = v_i = e_i\)</span> with <span class="math notranslate nohighlight">\(e_i\)</span> the <span class="math notranslate nohighlight">\(i^{\text{th}}\)</span> canonical basis vector and <span class="math notranslate nohighlight">\(\sigma_i = i^{-1}\)</span>.</p>
+<div class="dropdown admonition note">
+<p class="admonition-title">Note</p>
+<p>Indeed, it is easily verified that…</p>
+</div>
+<p>Now consider obtaining a solution for <span class="math notranslate nohighlight">\(f_i = i^{-1}\)</span>. We would naively set <span class="math notranslate nohighlight">\(u_j = j \cdot f_j\)</span>, but we can easily verify that a solution does not exist for this particular sequence <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<div class="dropdown admonition note">
+<p class="admonition-title">Note</p>
+<p>Indeed, it is easily verified that…</p>
+</div>
+<p>Next, consider obtaining a solution for <span class="math notranslate nohighlight">\(f_i = i^{-2}\)</span>. In this case, the solution is given by <span class="math notranslate nohighlight">\(u = (1, 1/2, 1/3, \ldots)\)</span>.</p>
+<div class="dropdown admonition note">
+<p class="admonition-title">Note</p>
+<p>Indeed, it is easily verified that…</p>
+</div>
+</div>
+<div class="admonition-example-differentiation admonition">
+<p class="admonition-title">Example: differentiation</p>
+<p>Consider</p>
+<div class="math notranslate nohighlight">
+\[
+Ku(x) = \int_0^x u(y)\mathrm{d}y.
+\]</div>
+<p>Given <span class="math notranslate nohighlight">\(f(x) = Ku(x)\)</span> we would naively let <span class="math notranslate nohighlight">\(u(x) = f'(x)\)</span>. Let’s analyse this in more detail.</p>
+<p>The operator can be expressed as</p>
+<div class="math notranslate nohighlight">
+\[
+Ku(x) = \int_0^1 k(x,y)u(y)\mathrm{d}y,
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(k(x,y) = H(x-y)\)</span>, where <span class="math notranslate nohighlight">\(H\)</span> denotes the Heaviside stepfunction. The operator is obviously compact with <span class="math notranslate nohighlight">\(\|K\| = ..\)</span>.</p>
+<div class="dropdown admonition note">
+<p class="admonition-title">Note</p>
+<p>Computing</p>
+<div class="math notranslate nohighlight">
+\[\int_0^1 \int_0 ^1 |k(x,y)|^2 \mathrm{d}x\mathrm{d}y = ...\]</div>
+<p>we conclude that <span class="math notranslate nohighlight">\(k\)</span> is a Hilbert-Schmidt kernel and hence that <span class="math notranslate nohighlight">\(K\)</span> is compact. Moreover, we have that <span class="math notranslate nohighlight">\(\|K\| = \|k\|_{L^2} = ...\)</span>.</p>
+</div>
+<p>The adjoint is found to be</p>
+<div class="math notranslate nohighlight">
+\[
+K^*f(y) = \int_0^1 k(x,y) f(x)\mathrm{d}x = \int_y^1 f(x)\mathrm{d}x.
+\]</div>
+<div class="dropdown admonition note">
+<p class="admonition-title">Note</p>
+<p>Using the definition …</p>
+</div>
+<p>The singular system is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma_k = 1/((k+1/2)\pi), \quad u_k(x) = \sqrt{2}\sin(\sigma_k^{-1} x), \quad v_k(x) = \sqrt{2}\cos(\sigma_k^{-1} x).
+\]</div>
+<div class="dropdown admonition note">
+<p class="admonition-title">Note</p>
+<p>To derive the singular system, we first need to compute the eigenpairs <span class="math notranslate nohighlight">\((\lambda_k, v_k)\)</span> of <span class="math notranslate nohighlight">\(K^*K\)</span>. The singular system is then given by <span class="math notranslate nohighlight">\((\sqrt{\lambda_k}, (\sqrt{\lambda_k})^{-1}Kv_k, v_k)\)</span>.</p>
+<p>We find</p>
+<div class="math notranslate nohighlight">
+\[
+K^*Kv(y) = \int_y^1 \int_0^x v(z) \, \mathrm{d}z\mathrm{d}x = \lambda v(y).
+\]</div>
+<p>At <span class="math notranslate nohighlight">\(y = 1\)</span> this yields <span class="math notranslate nohighlight">\(v(1) = 0\)</span>. Differentiating, we find</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda v'(y) = -\int_0^x v(z)\mathrm{d}z,
+\]</div>
+<p>which yields <span class="math notranslate nohighlight">\(v'(0) = 0\)</span>. Differentiating once again, we find</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda v''(x) = -v(x).
+\]</div>
+<p>The general solution to this differential equation is</p>
+<div class="math notranslate nohighlight">
+\[
+v(x) = a\sin(x/\sqrt{\lambda}) + b\cos(x/\sqrt{\lambda}).
+\]</div>
+<p>Using the boundary condition at <span class="math notranslate nohighlight">\(x = 0\)</span> we find that <span class="math notranslate nohighlight">\(a = 0\)</span>. Using the boundary condition at <span class="math notranslate nohighlight">\(x = 1\)</span> we get</p>
+<div class="math notranslate nohighlight">
+\[
+b\cos(1/\sqrt{\lambda}) = 0,
+\]</div>
+<p>which yields <span class="math notranslate nohighlight">\(\lambda_k = 1/((k + 1/2)^2\pi^2)\)</span>, <span class="math notranslate nohighlight">\(k = 0, 1, \ldots\)</span>. We choose <span class="math notranslate nohighlight">\(b\)</span> to normalize <span class="math notranslate nohighlight">\(\|v_k\| = 1\)</span>.</p>
+</div>
+<p>The operator can thus be expressed as</p>
+<div class="math notranslate nohighlight">
+\[
+Ku(x) = \sum_{k=0}^\infty \frac{\langle u, v_k\rangle}{(k+1/2)\pi} u_k(x),
+\]</div>
+<p>and the pseudo-inverse by</p>
+<div class="math notranslate nohighlight">
+\[
+K^{\dagger}f(x) = \sum_{k=0}^\infty \frac{\langle f, u_k\rangle}{(k+1/2)\pi} v_k(x).
+\]</div>
+<p>We can now study the ill-posedness of the problem by looking at the Picard condition</p>
+<div class="math notranslate nohighlight">
+\[
+\|K^\dagger f\|^2 = \pi^2\sum_{k=0}^\infty f_k^2 (k+1/2)^2,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_k = \langle f, u_k\rangle\)</span> are the (generalized) Fourier coefficients of <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p>For this infinite sum to converge, we need strong requirements on <span class="math notranslate nohighlight">\(f_k\)</span>; for example <span class="math notranslate nohighlight">\(f_k = 1/k\)</span> does not suffice to make the sum converge. This is quite surprising since such an <span class="math notranslate nohighlight">\(f\)</span> is square-integrable. It turns out we need <span class="math notranslate nohighlight">\(f_k = \mathcal{O}(1/k^2)\)</span> to satisfy the Picard condition. Effectively this means that <span class="math notranslate nohighlight">\(f'\)</span> needs to be square integrable. This makes sense since we saw earlier that <span class="math notranslate nohighlight">\(u(x) = f'(x)\)</span> is the solution to <span class="math notranslate nohighlight">\(Ku = f\)</span>.</p>
+<p>The SVD gives us a different view point on the example show before as well. Take measurements <span class="math notranslate nohighlight">\(f^{\delta} = Ku + \delta\sin(\delta^{-1}x)\)</span>, where <span class="math notranslate nohighlight">\(\delta = \sigma_k\)</span> for some <span class="math notranslate nohighlight">\(k\)</span>. The error <span class="math notranslate nohighlight">\(K^\dagger f^{\delta} - u\)</span> is then given by</p>
+<div class="math notranslate nohighlight">
+\[
+K^\dagger K u - u + \delta K^{\dagger}\sin(\delta^{-1}\cdot).
+\]</div>
+<p>Because <span class="math notranslate nohighlight">\(\delta^{-1} = \sigma_k\)</span> and <span class="math notranslate nohighlight">\(\sin(\sigma_k^{-1}x)\)</span> is a singular vector of <span class="math notranslate nohighlight">\(K\)</span>, this simplifies to</p>
+<div class="math notranslate nohighlight">
+\[
+\sin(\sigma_k^{-1}x).
+\]</div>
+<p>Thus, the reconstruction error does not go to zero as <span class="math notranslate nohighlight">\(\delta\downarrow 0\)</span>, even though the error in the data does.</p>
+<p>The eigenvalues of <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger K\)</span> are given by <span class="math notranslate nohighlight">\((1 + \alpha \sigma_k^{-2})^{-1}\)</span>, with <span class="math notranslate nohighlight">\(\sigma_k = (\pi(k + 1/2))^{-1}\)</span>. The bias is thus given by</p>
+<div class="math notranslate nohighlight">
+\[
+\|I - K_{\alpha}^\dagger K\| = \max_{k} \left|1 - (1 + \alpha \sigma_{k}^{-2})^{-1}\right|.
+\]</div>
+<p>Likewise, the variance is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\|K\|\|K_{\alpha}^\dagger\| = \max_{k}\frac{\sigma_1}{\sigma_k + \alpha \sigma_{k}^{-1}}.
+\]</div>
 </div>
 </div>
 <div class="section" id="regularisation">
@@ -443,151 +613,22 @@ g_{\alpha}(s) = \begin{cases} s^{-1} &amp; \text{if}\, s &gt; \alpha \\ 0 &amp; 
 <p>where <span class="math notranslate nohighlight">\(L\)</span> is a compact operator. In many applications, <span class="math notranslate nohighlight">\(L\)</span> is a differential operator. This can be used to impose smoothness on the solution.</p>
 </div>
 </div>
-<div class="section" id="examples">
-<h2><span class="section-number">3.4. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="sequence-operator">
-<h3><span class="section-number">3.4.1. </span>Sequence operator<a class="headerlink" href="#sequence-operator" title="Permalink to this headline">¶</a></h3>
-<p>Consider the operator <span class="math notranslate nohighlight">\(K:\ell^2 \rightarrow \ell^2\)</span>, given by</p>
-<div class="math notranslate nohighlight">
-\[
-	u = (u_1,u_2,...) \mapsto (u_1,\frac{1}{2}u_2,\frac{1}{3}u_3,...),
-\]</div>
-<p>i.e. we have an infinite matrix operator of the form</p>
-<div class="math notranslate nohighlight">
-\[
-\left(Ku\right)_i = \sum_{j=1}^\infty a_{ij} u_j := i^{-1} u_i, \quad i = 1,2,...
-\]</div>
-<p>The operator is obviously linear. To show that is bounded we’ll compute its norm:</p>
-<div class="math notranslate nohighlight">
-\[
-\|K\| = \sup_{u \neq 0} \frac{\|K(u)\|_{\ell^2}}{\|u\|_{\ell^2}}.
-\]</div>
-<p>We find …</p>
-<p>To show that the operator is compact, we explicitly construct its singular system.</p>
-<p>Now consider obtaining a solution for <span class="math notranslate nohighlight">\(f_i = j^{-1}\)</span>. We would naively set <span class="math notranslate nohighlight">\(u_j = j \cdot f_j\)</span>, but the situation is a little bit more subtle.</p>
-<p>Next, consider obtaining a solution for <span class="math notranslate nohighlight">\(f_i = j^{-2}\)</span>.</p>
-</div>
-<div class="section" id="differentiation">
-<span id="id1"></span><h3><span class="section-number">3.4.2. </span>Differentiation<a class="headerlink" href="#differentiation" title="Permalink to this headline">¶</a></h3>
-<p>Consider</p>
-<div class="math notranslate nohighlight">
-\[
-Ku(x) = \int_0^x u(y)\mathrm{d}y.
-\]</div>
-<p>Given <span class="math notranslate nohighlight">\(f(x) = Ku(x)\)</span> we would naively let <span class="math notranslate nohighlight">\(u(x) = f'(x)\)</span>. Let’s analyse this in more detail.</p>
-<p>The operator can be expressed as</p>
-<div class="math notranslate nohighlight">
-\[
-Ku(x) = \int_0^1 k(x,y)u(y)\mathrm{d}y,
-\]</div>
-<p>with <span class="math notranslate nohighlight">\(k(x,y) = H(x-y)\)</span>, where <span class="math notranslate nohighlight">\(H\)</span> denotes the Heaviside stepfunction. The adjoint is found to be</p>
-<div class="math notranslate nohighlight">
-\[
-K^*f(y) = \int_0^1 k(x,y) f(x)\mathrm{d}x = \int_y^1 f(x)\mathrm{d}x.
-\]</div>
-<p>It is readily verified that the operator is bounded. Indeed, use Cauchy-Schwartz we find that for any <span class="math notranslate nohighlight">\(u\)</span> we have</p>
-<div class="math notranslate nohighlight">
-\[
-\|Ku\|^2 = \int_0^1 \left(\int_0^1 k(x,y) u(y) \mathrm{d}y\right)^2\mathrm{d}x \leq \int_0^1 \|k(x,\cdot)\|^2\cdot \|u\|^2\mathrm{d}x.
-\]</div>
-<p>Computing for fixed <span class="math notranslate nohighlight">\(x\)</span></p>
-<div class="math notranslate nohighlight">
-\[
-\|k(x,\cdot)\|^2 = \int_0^1 k(x,y)^2 \mathrm{d}y = \int_0^x \mathrm{d}y = x,
-\]</div>
-<p>we get</p>
-<div class="math notranslate nohighlight">
-\[
-\|Ku\|^2 \leq \|u\|^2 \int_0^1 x\, \mathrm{d}x = \frac{1}{2}\|u\|^2.
-\]</div>
-<p>Because the kernel is square-integrable, the operator is compact as well.</p>
-<p>To derive the singular system, we first need to compute the eigenpairs <span class="math notranslate nohighlight">\((\lambda_k, v_k)\)</span> of <span class="math notranslate nohighlight">\(K^*K\)</span>. The singular system is then given by <span class="math notranslate nohighlight">\((\sqrt{\lambda_k}, (\sqrt{\lambda_k})^{-1}Kv_k, v_k)\)</span>.</p>
-<p>We find</p>
-<div class="math notranslate nohighlight">
-\[
-K^*Kv(y) = \int_y^1 \int_0^x v(z) \, \mathrm{d}z\mathrm{d}x = \lambda v(y).
-\]</div>
-<p>At <span class="math notranslate nohighlight">\(y = 1\)</span> this yields <span class="math notranslate nohighlight">\(v(1) = 0\)</span>. Differentiating, we find</p>
-<div class="math notranslate nohighlight">
-\[
-\lambda v'(y) = -\int_0^x v(z)\mathrm{d}z,
-\]</div>
-<p>which yields <span class="math notranslate nohighlight">\(v'(0) = 0\)</span>. Differentiating once again, we find</p>
-<div class="math notranslate nohighlight">
-\[
-\lambda v''(x) = -v(x).
-\]</div>
-<p>The general solution to this differential equation is</p>
-<div class="math notranslate nohighlight">
-\[
-v(x) = a\sin(x/\sqrt{\lambda}) + b\cos(x/\sqrt{\lambda}).
-\]</div>
-<p>Using the boundary condition at <span class="math notranslate nohighlight">\(x = 0\)</span> we find that <span class="math notranslate nohighlight">\(a = 0\)</span>. Using the boundary condition at <span class="math notranslate nohighlight">\(x = 1\)</span> we get</p>
-<div class="math notranslate nohighlight">
-\[
-b\cos(1/\sqrt{\lambda}) = 0,
-\]</div>
-<p>which yields <span class="math notranslate nohighlight">\(\lambda_k = 1/((k + 1/2)^2\pi^2)\)</span>, <span class="math notranslate nohighlight">\(k = 0, 1, \ldots\)</span>. We choose <span class="math notranslate nohighlight">\(b\)</span> to normalize <span class="math notranslate nohighlight">\(\|v_k\| = 1\)</span>. We thus find the singular system:</p>
-<div class="math notranslate nohighlight">
-\[
-\sigma_k = 1/((k+1/2)\pi), \quad u_k(x) = \sqrt{2}\sin(\sigma_k^{-1} x), \quad v_k(x) = \sqrt{2}\cos(\sigma_k^{-1} x).
-\]</div>
-<p>The operator can thus be expressed as</p>
-<div class="math notranslate nohighlight">
-\[
-Ku(x) = \sum_{k=0}^\infty \frac{\langle u, v_k\rangle}{(k+1/2)\pi} u_k(x),
-\]</div>
-<p>and the pseudo-inverse by</p>
-<div class="math notranslate nohighlight">
-\[
-K^{\dagger}f(x) = \sum_{k=0}^\infty \frac{\langle f, u_k\rangle}{(k+1/2)\pi} v_k(x).
-\]</div>
-<p>We can now study the ill-posedness of the problem by looking at the Picard condition</p>
-<div class="math notranslate nohighlight">
-\[
-\|K^\dagger f\|^2 = \pi^2\sum_{k=0}^\infty f_k^2 (k+1/2)^2,
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(f_k = \langle f, u_k\rangle\)</span> are the (generalized) Fourier coefficients of <span class="math notranslate nohighlight">\(f\)</span>.
-For this infinite sum to converge, we need strong requirements on <span class="math notranslate nohighlight">\(f_k\)</span>; for example <span class="math notranslate nohighlight">\(f_k = 1/k\)</span> does not suffice to make the sum converge. This is quite surprising since such an <span class="math notranslate nohighlight">\(f\)</span> is square-integrable. It turns out we need <span class="math notranslate nohighlight">\(f_k = \mathcal{O}(1/k^2)\)</span> to satisfy the Picard condition. Effectively this means that <span class="math notranslate nohighlight">\(f'\)</span> needs to be square integrable. This makes sense since we saw earlier that <span class="math notranslate nohighlight">\(u(x) = f'(x)\)</span> is the solution to <span class="math notranslate nohighlight">\(Ku = f\)</span>.</p>
-<p>The SVD gives us a different view point on the example show before as well. Take measurements <span class="math notranslate nohighlight">\(f^{\delta} = Ku + \delta\sin(\delta^{-1}x)\)</span>, where <span class="math notranslate nohighlight">\(\delta = \sigma_k\)</span> for some <span class="math notranslate nohighlight">\(k\)</span>. The error <span class="math notranslate nohighlight">\(K^\dagger f^{\delta} - u\)</span> is then given by</p>
-<div class="math notranslate nohighlight">
-\[
-K^\dagger K u - u + \delta K^{\dagger}\sin(\delta^{-1}\cdot).
-\]</div>
-<p>Because <span class="math notranslate nohighlight">\(\delta^{-1} = \sigma_k\)</span> and <span class="math notranslate nohighlight">\(\sin(\sigma_k^{-1}x)\)</span> is a singular vector of <span class="math notranslate nohighlight">\(K\)</span>, this simplifies to</p>
-<div class="math notranslate nohighlight">
-\[
-\sin(\sigma_k^{-1}x).
-\]</div>
-<p>Thus, the reconstruction error does not go to zero as <span class="math notranslate nohighlight">\(\delta\downarrow 0\)</span>, even though the error in the data does.</p>
-<p>The eigenvalues of <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger K\)</span> are given by <span class="math notranslate nohighlight">\((1 + \alpha \sigma_k^{-2})^{-1}\)</span>, with <span class="math notranslate nohighlight">\(\sigma_k = (\pi(k + 1/2))^{-1}\)</span>. The bias is thus given by</p>
-<div class="math notranslate nohighlight">
-\[
-\|I - K_{\alpha}^\dagger K\| = \max_{k} \left|1 - (1 + \alpha \sigma_{k}^{-2})^{-1}\right|.
-\]</div>
-<p>Likewise, the variance is given by</p>
-<div class="math notranslate nohighlight">
-\[
-\|K\|\|K_{\alpha}^\dagger\| = \max_{k}\frac{\sigma_1}{\sigma_k + \alpha \sigma_{k}^{-1}}.
-\]</div>
-</div>
-</div>
 <div class="section" id="exercises">
-<h2><span class="section-number">3.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id2">
-<h3><span class="section-number">3.5.1. </span>Differentiation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h2><span class="section-number">3.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="differentiation">
+<h3><span class="section-number">3.4.1. </span>Differentiation<a class="headerlink" href="#differentiation" title="Permalink to this headline">¶</a></h3>
 <p>Consider the forward operator</p>
 <div class="math notranslate nohighlight">
 \[
 Ku(x) = \int_0^x u(y)\mathrm{d}y.
 \]</div>
-<p>We’ve seen in example <a class="reference internal" href="#differentiation"><span class="std std-ref">Differentiation</span></a> that the inverse problem is ill-posed. Consider a regularized least-squares problem</p>
+<p>We’ve seen in example <span class="xref std std-ref">differentiation</span> that the inverse problem is ill-posed. Consider a regularized least-squares problem</p>
 <div class="math notranslate nohighlight">
 \[\min_{u} \|Ku - f\|^2 + \alpha \|u'\|^2,\]</div>
 <p>and analyse how this type of regularisation adressed the ill-posedness.</p>
 </div>
 <div class="section" id="discretisation">
-<h3><span class="section-number">3.5.2. </span>Discretisation<a class="headerlink" href="#discretisation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.2. </span>Discretisation<a class="headerlink" href="#discretisation" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise, we explore what happens when discretizing the operator <span class="math notranslate nohighlight">\(K\)</span>. We’ll see that discretization implicitly regularizes the problem and that refining the discretization brings out the inherent ill-posedness. Discretize <span class="math notranslate nohighlight">\(x_k = k\cdot h\)</span> with <span class="math notranslate nohighlight">\(k = 1, \ldots, n\)</span> and <span class="math notranslate nohighlight">\(h = 1/(n+1)\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -643,7 +684,7 @@ K = h\cdot\left(\begin{matrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  4.250712534546322
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  3.598255291978481
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_6_1.png" src="_images/ip_function_spaces_6_1.png" />
@@ -651,7 +692,7 @@ K = h\cdot\left(\begin{matrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp;
 </div>
 </div>
 <div class="section" id="convolution-through-the-heat-equation">
-<h3><span class="section-number">3.5.3. </span>Convolution through the heat equation<a class="headerlink" href="#convolution-through-the-heat-equation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.3. </span>Convolution through the heat equation<a class="headerlink" href="#convolution-through-the-heat-equation" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise we’ll explore the relation between the heat equation and convolution with a Gaussian kernel. Specifically, we’ll see that the linear operation <span class="math notranslate nohighlight">\(f = Ku\)</span> defined by the initial-value problem</p>
 <div class="math notranslate nohighlight">
 \[
@@ -722,7 +763,7 @@ F^{-1}\widehat{u}(x) = \int_{\mathbb{R}} \widehat{u}(\xi) e^{-\imath 2\pi\xi x} 
 </div>
 </div>
 <div class="section" id="convolution-on-a-finite-interval">
-<h3><span class="section-number">3.5.4. </span>Convolution on a finite interval<a class="headerlink" href="#convolution-on-a-finite-interval" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.4. </span>Convolution on a finite interval<a class="headerlink" href="#convolution-on-a-finite-interval" title="Permalink to this headline">¶</a></h3>
 <p>We can define convolution with a Gaussian kernel on a finite interval <span class="math notranslate nohighlight">\([0,\pi]\)</span> through the initial boundary-value problem</p>
 <div class="math notranslate nohighlight">
 \[

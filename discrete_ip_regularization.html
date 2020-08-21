@@ -294,13 +294,18 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tikhonov-regularisation">
+     2.4.3. Tikhonov regularisation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#gravity-surveying">
-     2.4.3. Gravity surveying
+     2.4.4. Gravity surveying
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#convolution">
-     2.4.4. Convolution
+     2.4.5. Convolution
     </a>
    </li>
   </ul>
@@ -330,7 +335,7 @@ Ku = f,
 <p>with <span class="math notranslate nohighlight">\(K \in \mathbb{R}^{m\times n}\)</span> a given matrix and <span class="math notranslate nohighlight">\(f\in \mathbb{R}^{m}\)</span> the data. The goal is to find a solution <span class="math notranslate nohighlight">\(u \in \mathbb{R}^n\)</span> that (approximately) satisfies the equations.</p>
 <div class="section" id="well-posedness">
 <h2><span class="section-number">2.1. </span>Well-posedness<a class="headerlink" href="#well-posedness" title="Permalink to this headline">¶</a></h2>
-<p>The first questions we adress in detail are those of <em>existence</em>, <em>uniqueness</em> and <em>stability</em> of the solution.</p>
+<p>The first questions we adress in detail are those of <em>existence</em>, <em>uniqueness</em> and <em>stability</em> of the solution. We discern the following cases:</p>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(m = n\)</span> and <span class="math notranslate nohighlight">\(K\)</span> has full rank, it is invertible and the solution is given by</p></li>
 </ul>
@@ -343,43 +348,45 @@ Ku = f,
 <li><p>If <span class="math notranslate nohighlight">\(m &lt; n\)</span> and <span class="math notranslate nohighlight">\(K\)</span> has rank <span class="math notranslate nohighlight">\(m\)</span>, we can always find a solution but it may not be unique because <span class="math notranslate nohighlight">\(K\)</span> has a on-trivial <em>null-space</em>.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(K\)</span> does not have maximal rank, the system of equations may be both inconsistent and <span class="math notranslate nohighlight">\(K\)</span> can have a null-space.</p></li>
 </ul>
-<p>Stability in this context means that errors in the data do not get amplified too much. For now, we’ll only consider stability in case the solution exists and is unique, in which case we have</p>
+<p>Stability in this context means that errors in the data do not get amplified too much. For now, we’ll only consider stability in case the solution exists and is unique. Consider the systems <span class="math notranslate nohighlight">\(K\widetilde{u} = f\)</span> and <span class="math notranslate nohighlight">\(K\widetilde{u}^{\delta} = f^{\delta}\)</span> for which we have</p>
 <div class="math notranslate nohighlight">
 \[
-\|\widetilde u - \widetilde u^{\delta}\| = \|K^{-1}(f - f^{\delta})\| \leq \|K^{-1}\| \|f - f^{\delta}\|.
+\|\widetilde u - \widetilde u^{\delta}\| = \|K^{-1}(f - f^{\delta})\| \leq \|K^{-1}\| \|f - f^{\delta}\|,
 \]</div>
+<p>where <span class="math notranslate nohighlight">\(\|u\|\)</span> denotes any <a class="reference external" href="https://en.wikipedia.org/wiki/Real_coordinate_space#Norms_on_Rn">vector norm on <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span></a> and <span class="math notranslate nohighlight">\(\|K\|\)</span> denotes its corresponding (induced) <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_norm#Matrix_norms_induced_by_vector_norms">matrix norm</a>.</p>
 <p>Since <span class="math notranslate nohighlight">\(\|f\| = \|K\widetilde u\| \leq \|K\| \|\widetilde u\|\)</span>, we can express the <em>relative error</em> as</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{\|\widetilde u - \widetilde u^{\delta}\|}{\|\widetilde u\|} \leq  \|K\|\|K^{-1}\| \frac{\|f - f^{\delta}\|}{\|f\|}.
 \]</div>
-<p>The quantity <span class="math notranslate nohighlight">\(\kappa(K) = \|K\|\|K^{-1}\|\)</span> is called the <em>condition number</em> of <span class="math notranslate nohighlight">\(K\)</span>. When <span class="math notranslate nohighlight">\(K\)</span> is invertible, we have <span class="math notranslate nohighlight">\(\kappa_2(K) = \|K\|_2\|K^{-1}\|_2 = \sigma_1/\sigma_n\)</span>.</p>
+<p>The quantity <span class="math notranslate nohighlight">\(\kappa(K) = \|K\|\|K^{-1}\|\)</span> is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Condition_number#Matrices"><em>condition number</em></a> of <span class="math notranslate nohighlight">\(K\)</span>. When <span class="math notranslate nohighlight">\(K\)</span> is invertible, we have <span class="math notranslate nohighlight">\(\kappa_2(K) = \|K\|_2\|K^{-1}\|_2 = \sigma_1/\sigma_n\)</span>.</p>
 </div>
 <div class="section" id="pseudo-inverse">
 <h2><span class="section-number">2.2. </span>Pseudo inverse<a class="headerlink" href="#pseudo-inverse" title="Permalink to this headline">¶</a></h2>
-<p>Next, we discuss how we may define solutions to inconsistent or underdetermined.</p>
+<p>Next, we discuss how we may define solutions to inconsistent or underdetermined systems of equations. For this, we’ll use the <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a> of the matrix <span class="math notranslate nohighlight">\(K\)</span>.</p>
 <hr class="docutils" />
 <p>If <span class="math notranslate nohighlight">\(m &gt; n\)</span>, the system is inconsistent when <span class="math notranslate nohighlight">\(f\)</span> is not in the range of <span class="math notranslate nohighlight">\(K\)</span>. If <span class="math notranslate nohighlight">\(K\)</span> has full rank we can express it as</p>
 <div class="math notranslate nohighlight">
 \[
-K = U_n \Sigma_n V_n^*,
+K = U \Sigma V^*,
 \]</div>
-<p>with <span class="math notranslate nohighlight">\(U_n, V_n\)</span> denoting the left and right singular vectors and <span class="math notranslate nohighlight">\(\Sigma_n\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_{n} &gt; 0\)</span>. We can then attempt to solve a modified system of equations</p>
+<p>with <span class="math notranslate nohighlight">\(U = (u_1, u_2, \ldots, u_n), V = (v_1, v_2, \ldots, v_n)\)</span> containing the left and right singular vectors and <span class="math notranslate nohighlight">\(\Sigma\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_{n} &gt; 0\)</span>. We can then attempt to solve a modified system of equations</p>
 <div class="math notranslate nohighlight">
 \[
-K u =  U_nU_n^* f,
+K u =  UU^* f,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(U_nU_n^* f\)</span> projects <span class="math notranslate nohighlight">\(f\)</span> onto the range of <span class="math notranslate nohighlight">\(K\)</span>. We find</p>
+<p>where <span class="math notranslate nohighlight">\(UU^* f\)</span> projects <span class="math notranslate nohighlight">\(f\)</span> onto the range of <span class="math notranslate nohighlight">\(K\)</span>. We find</p>
 <div class="math notranslate nohighlight">
 \[
-\widetilde u = V_n\Sigma_n^{-1}U_n^*f = K^\dagger f.
+\widetilde u = V\Sigma^{-1}U^*f \equiv K^\dagger f,
 \]</div>
+<p>where <span class="math notranslate nohighlight">\(K^\dagger\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse">Moore-Penrose pseudo inverse</a> of <span class="math notranslate nohighlight">\(K\)</span>.</p>
 <p>This coincides with the <em>least-squares</em> solution</p>
 <div class="math notranslate nohighlight">
 \[
 \min_u \|Ku - f\|_2^2 .
 \]</div>
-<p>Indeed, by setting the gradient to zero, we find</p>
+<p>Indeed, by setting the gradient to zero, we find the normal equations</p>
 <div class="math notranslate nohighlight">
 \[
 K^* K u  = K^* f,
@@ -437,7 +444,7 @@ u_1 \\ u_2 \\
 <p>do have a unique solution, <span class="math notranslate nohighlight">\(u = (2/5,2/5)^T\)</span>.</p>
 </div>
 <hr class="docutils" />
-<p>If, on the other hand <span class="math notranslate nohighlight">\(m &lt; n\)</span> and <span class="math notranslate nohighlight">\(K\)</span> has full rank, a solution exists but is not unique. In this case, we can look for the smallest solution (i.e., one that does not have any contributions in the null-space of <span class="math notranslate nohighlight">\(K\)</span>).  This means we look for a solution that is spanned by the first <span class="math notranslate nohighlight">\(m\)</span> columns of <span class="math notranslate nohighlight">\(V\)</span></p>
+<p>If, on the other hand <span class="math notranslate nohighlight">\(m &lt; n\)</span> and <span class="math notranslate nohighlight">\(K\)</span> has full rank, a solution exists but is not unique. In this case, we can look for the <em>smallest</em> solution (i.e., one that does not have any contributions in the null-space of <span class="math notranslate nohighlight">\(K\)</span>).  This means we look for a solution that is spanned by the first <span class="math notranslate nohighlight">\(m\)</span> columns of <span class="math notranslate nohighlight">\(V\)</span>, denoted as <span class="math notranslate nohighlight">\(V_m = (v_1, v_2, \ldots v_m)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 K V_m z = f,
@@ -445,9 +452,9 @@ K V_m z = f,
 <p>with <span class="math notranslate nohighlight">\(\widetilde u = V_m z\)</span>. We find that this solution is given by</p>
 <div class="math notranslate nohighlight">
 \[
-\widetilde{u} = V_m\Sigma_m^{-1}U_m^*f =  K^{\dagger}f.
+\widetilde{u} = V_m\Sigma_m^{-1}U_m^*f \equiv  K^{\dagger}f,
 \]</div>
-<p>Showing that this indeed yields the solution with the smallest norm is the subject of one of the assignments. The corresponding variational form is</p>
+<p>where <span class="math notranslate nohighlight">\(U_m = (u_1, u_2, \ldots u_m)\)</span>, <span class="math notranslate nohighlight">\(V_m = (v_1, v_2, \ldots v_m)\)</span> and <span class="math notranslate nohighlight">\(\Sigma_m\)</span> contains the non-zero singular values <span class="math notranslate nohighlight">\(\sigma_1 \geq \sigma_2, \ldots, \sigma_m &gt; 0\)</span>. Showing that this indeed yields the solution with the smallest norm is the subject of one of the assignments. The corresponding variational problem is</p>
 <div class="math notranslate nohighlight">
 \[
 \min_{u} \|u\|_2^2 \quad \text{such that} \quad Ku = f.
@@ -477,22 +484,26 @@ u_1 \\ u_2
 <p>The corresponding normal equations are given by <span class="math notranslate nohighlight">\(2v = 1\)</span>, and gives the solution <span class="math notranslate nohighlight">\(u = v (1,1)^T\)</span>. In effect this means that we have added an equation to the system: <span class="math notranslate nohighlight">\(u_1 - u_2 = 0\)</span>.</p>
 </div>
 <hr class="docutils" />
-<p>If the matrix does not have full rank we may still employ the <em>pseudo-inverse</em>, which in general is defined as</p>
+<p>If the matrix does not have full rank we may still employ the pseudo-inverse, which for a matrix of rank <span class="math notranslate nohighlight">\(k \leq \min\{m,n\}\)</span> is defined as follows.</p>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Moore-Penrose pseudo inverse</em></p>
+<p>The pseudo-inverse of a matrix <span class="math notranslate nohighlight">\(K \in \mathbb{R}^{m,n}\)</span> with rank <span class="math notranslate nohighlight">\(k \leq \min\{m,n\}\)</span> is defined in terms of the singular value decomposition as</p>
 <div class="math notranslate nohighlight">
 \[
 K^{\dagger} = V_k\Sigma_k^{-1}U_k^{*},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(k\)</span> denotes the rank of the matrix.</p>
+<p>where <span class="math notranslate nohighlight">\(V_k = (v_1, v_2, \ldots, v_k)\)</span>, <span class="math notranslate nohighlight">\(U_k = (u_1, u_2, \ldots, u_k)\)</span> and <span class="math notranslate nohighlight">\(\Sigma_k\)</span> contains the <span class="math notranslate nohighlight">\(k\)</span> largest singular values.</p>
+</div>
 <hr class="docutils" />
 <p>Note that the pseudo inverse allows us to define a unique solution, it is not necessarily stable as <span class="math notranslate nohighlight">\(\|K\|_2\|K^{\dagger}\|_2 = \sigma_1/\sigma_k\)</span> may still be large. To study this issue in more detail, express the solution as</p>
 <div class="math notranslate nohighlight">
 \[
-\widetilde{u} = V_k\Sigma_k^{-1}U_k^{*}f = \sum_{i=1}^k \frac{u_i^*f}{\sigma_i}v_i.
+\widetilde{u} = V_k\Sigma_k^{-1}U_k^{*}f = \sum_{i=1}^k \frac{\langle u_i, f\rangle}{\sigma_i}v_i.
 \]</div>
-<p>We note the component in <span class="math notranslate nohighlight">\(f\)</span> corresponding to <span class="math notranslate nohighlight">\(v_i\)</span> is amplified by <span class="math notranslate nohighlight">\(\sigma_i^{-1}\)</span>. Thus if <span class="math notranslate nohighlight">\(f\)</span> has (noise) components that correlate with <span class="math notranslate nohighlight">\(v_i\)</span>’s corresponding to very small singular values, these noise components get amplified. Generally, we do not expect problems if <span class="math notranslate nohighlight">\(|u_i^*f|\)</span> decays faster with <span class="math notranslate nohighlight">\(i\)</span> than the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span>. This is called the <em>discrete Picard condition</em> <a class="bibtex reference internal" href="what_is.html#hansen1990discrete" id="id1">[1]</a>.</p>
-<div class="admonition-discrete-picard-condition admonition">
-<p class="admonition-title">Discrete Picard Condition</p>
-<p>The vector <span class="math notranslate nohighlight">\(f\)</span> satisfies the discrete Picard condition for the problem <span class="math notranslate nohighlight">\(Ku=f\)</span> if the coefficients <span class="math notranslate nohighlight">\(|u_i^*f|\)</span> decay faster than the singular values.</p>
+<p>We note the component in <span class="math notranslate nohighlight">\(f\)</span> corresponding to <span class="math notranslate nohighlight">\(v_i\)</span> is amplified by <span class="math notranslate nohighlight">\(\sigma_i^{-1}\)</span>. Thus if <span class="math notranslate nohighlight">\(f\)</span> has (noise) components that correlate with <span class="math notranslate nohighlight">\(v_i\)</span>’s corresponding to very small singular values, these noise components get amplified. Generally, we do not expect problems if <span class="math notranslate nohighlight">\(|\langle u_i, f\rangle|\)</span> decays faster with <span class="math notranslate nohighlight">\(i\)</span> than the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span>. This is called the <em>discrete Picard condition</em> <a class="bibtex reference internal" href="what_is.html#hansen1990discrete" id="id1">[1]</a>.</p>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Discrete Picard Condition</em></p>
+<p>The vector <span class="math notranslate nohighlight">\(f \in \mathbb{R}^m\)</span> satisfies the discrete Picard condition for the problem <span class="math notranslate nohighlight">\(Ku=f\)</span> if the coefficients <span class="math notranslate nohighlight">\(|\langle u_i, f\rangle|\)</span> decay faster than the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span> of <span class="math notranslate nohighlight">\(K\)</span>, where <span class="math notranslate nohighlight">\(u_i\)</span> denotes the left singular vectors of <span class="math notranslate nohighlight">\(K\)</span>.</p>
 </div>
 <p>An example is shown below.</p>
 <div class="cell tag_hide-input docutils container">
@@ -569,40 +580,55 @@ r_{\alpha}(\sigma) =
 \right.
 \end{split}\]</div>
 <p>This gives rise to the Truncated Singular Value Decomposition (TSVD).</p>
-<div class="admonition-truncated-singular-value-decomposition-tsvd admonition">
-<p class="admonition-title">Truncated Singular Value Decomposition (TSVD)</p>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Truncated Singular Value Decomposition (TSVD)</em></p>
 <p>The TSVD-regularized solution to the equation <span class="math notranslate nohighlight">\(Ku = f\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
-\widetilde u_{\alpha} = \sum_{i=1}^{k_{\alpha}} \frac{u_i^*f}{\sigma_i}v_i,
+\widetilde u_{\alpha} = \sum_{i=1}^{k_{\alpha}} \frac{\langle u_i, f\rangle}{\sigma_i}v_i,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\{(u_i,v_i,\sigma_i)\}_{i=1}^n\)</span> is the singular system of <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(k_{\alpha}\)</span> is chosen so that <span class="math notranslate nohighlight">\(\sigma_i \geq \alpha\)</span> for <span class="math notranslate nohighlight">\(i \leq k_{\alpha}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\{(u_i,v_i,\sigma_i)\}_{i=1}^n\)</span> denotes the singular system of <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(k_{\alpha}\)</span> is chosen so that <span class="math notranslate nohighlight">\(\sigma_i \geq \alpha\)</span> for <span class="math notranslate nohighlight">\(i \leq k_{\alpha}\)</span>.</p>
 </div>
-<p>Another option is to add small positive constant to shift the singular values away from zero. This gives rise to Tikhonov regularisation.</p>
-<div class="admonition-thikhonov-regularisation admonition">
-<p class="admonition-title">Thikhonov regularisation</p>
+<hr class="docutils" />
+<p>Another option to avoid dividing by small singular values is to add small positive constant to shift the singular values away from zero. This gives rise to Tikhonov regularisation.</p>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Tikhonov regularisation</em></p>
 <p>The Tikhonov-regularised solution to the equation <span class="math notranslate nohighlight">\(Ku = f\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
-\widetilde u_{\alpha} = \sum_{i=1}^{n} \sigma_i \frac{u_i^*f}{\sigma_i^2 + \alpha}v_i,
+\widetilde u_{\alpha} = \sum_{i=1}^{n} \sigma_i \frac{\langle u_i, f\rangle}{\sigma_i^2 + \alpha}v_i,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\{(u_i,v_i,\sigma_i)\}_{i=1}^n\)</span> is the singular system of <span class="math notranslate nohighlight">\(K\)</span>. This corresponds to setting <span class="math notranslate nohighlight">\(r_{\alpha}(s) = s/(s^2 + \alpha)\)</span> in <a class="reference internal" href="#equation-regk">(2.1)</a>.</p>
+<p>Unlike the TSVD, Tikhonov regularization has a corresponding variational problem:</p>
+<div class="math notranslate nohighlight">
+\[
+\min_u \|Ku - f\|_2^2 + \alpha \|u\|_2^2,
+\]</div>
+<p>whose well-posedness can be easily established by writing down the corresponding normal equations</p>
+<div class="math notranslate nohighlight">
+\[
+\widetilde{u}_{\alpha} = \left(K^* K + \alpha I\right)^{-1}K^* f = V_k\left(\Sigma_k^2 + \alpha I\right)^{-1}\Sigma_k {U_k}^*f.
+\]</div>
+<p>Indeed, it is easily verified that <span class="math notranslate nohighlight">\(K^* K + \alpha I\)</span> has full rank whenever <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>.</p>
 </div>
-<p>The latter type of regularization is known as <em>Tikhonov regularization</em> and corresponds to the following variational formulation</p>
-<div class="math notranslate nohighlight">
-\[
-\min_u \|Ku - f\|_2^2 + \alpha \|u\|_2^2.
-\]</div>
-<p>Indeed, the solution is given by</p>
-<div class="math notranslate nohighlight">
-\[
-\widetilde{u}_{\alpha} = \left(K^* K + \alpha I\right)^{-1}K^* f = V_k\left(\Sigma_k^2 + \alpha I\right)^{-1}\Sigma_k {U_k}^*f,
-\]</div>
-<p>Note that <span class="math notranslate nohighlight">\(K^* K + \alpha I\)</span> has full rank whenever <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>. Hence, the solution to this regularized problem exists and is unique.</p>
 <hr class="docutils" />
-<p>Stability of regularized solutions defined by <a class="reference internal" href="#equation-regk">(2.1)</a> follows by considering the largest singular value of the matrix <span class="math notranslate nohighlight">\(V_{k}r_{\alpha}(\Sigma_{k})U_{k}^{*}\)</span>, which can be made arbitrarily small by increasing <span class="math notranslate nohighlight">\(\alpha\)</span>. On the other hand, increasing <span class="math notranslate nohighlight">\(\alpha\)</span> will also introduce a bias in the solution. This trade-off is called the <em>bias-variance trade-off</em>.</p>
-<div class="admonition-bias-variance-trade-off admonition">
-<p class="admonition-title">Bias-variance trade-off</p>
+<p>Of course, one may think of other types of regularization by defining an appropriate function <span class="math notranslate nohighlight">\(r_{\alpha}\)</span>. Intiutively, we would like</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r_{\alpha}(s) = s^{-1}\)</span> as <span class="math notranslate nohighlight">\(\alpha \rightarrow 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r_{\alpha}(0) &lt; \infty\)</span> for any <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r_{\alpha}(s) \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(\alpha \rightarrrow \infty\)</span></p></li>
+</ul>
+<p>One example is <em>Lavrentiev</em> regularization, with:</p>
+<div class="math notranslate nohighlight">
+\[r_{\alpha}(s) = (s + \alpha)^{-1}.\]</div>
+<p>Conditions on regularization schemes and methods for choosing <span class="math notranslate nohighlight">\(\alpha\)</span> will be discussed in more detail in the chapter on <a class="reference internal" href="ip_function_spaces.html"><span class="doc std std-doc">Inverse Problems in Function Spaces</span></a>.</p>
+<hr class="docutils" />
+<p>In general, we can think of regularization for linear problems as defining a modified pseudo-inverse of <span class="math notranslate nohighlight">\(K\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[K_{\alpha}^{\dagger} = V_{k}r_{\alpha}(\Sigma_{k})U_{k}^{*}.\]</div>
+<p>Stability of regularized solutions defined by <a class="reference internal" href="#equation-regk">(2.1)</a> then follows by considering the largest singular value of <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span>, which can be made arbitrarily small by increasing <span class="math notranslate nohighlight">\(\alpha\)</span>. On the other hand, increasing <span class="math notranslate nohighlight">\(\alpha\)</span> will also introduce a bias in the solution. This trade-off is called the <em>bias-variance trade-off</em>:</p>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Bias-variance trade-off</em></p>
 <p>Here, we compare the regularized solution from noisy data <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha, \delta} = K_{\alpha}^\dagger f^{\delta}\)</span> and the ideal solution <span class="math notranslate nohighlight">\(\widetilde{u} = K^{\dagger}f\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -630,11 +656,21 @@ r_{\alpha}(\sigma) =
 <li><p>For <span class="math notranslate nohighlight">\(m &gt; n\)</span> and rank(<span class="math notranslate nohighlight">\(K\)</span>) = <span class="math notranslate nohighlight">\(r &lt; n\)</span>, show that the pseudo-inverse gives the solution that minimizes both <span class="math notranslate nohighlight">\(\|Ku - f\|_2\)</span> and <span class="math notranslate nohighlight">\(\|u\|_2\)</span>.</p></li>
 </ol>
 </div>
+<div class="section" id="tikhonov-regularisation">
+<h3><span class="section-number">2.4.3. </span>Tikhonov regularisation<a class="headerlink" href="#tikhonov-regularisation" title="Permalink to this headline">¶</a></h3>
+<p>Show that the solution to the variational problem</p>
+<div class="math notranslate nohighlight">
+\[\min_{u} \|Ku - f\|_2^2 + \alpha \|u\|_2^2\]</div>
+<p>is given in terms of the SVD of <span class="math notranslate nohighlight">\(K \in \mathbb{R}^{m\times n}\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\widetilde{u} = \sum_{i=1}^{\min\{m,n\}} \frac{\sigma_i \langle u_i,f\rangle}{\sigma_i^2 + \alpha} v_i.\]</div>
+</div>
 <div class="section" id="gravity-surveying">
-<h3><span class="section-number">2.4.3. </span>Gravity surveying<a class="headerlink" href="#gravity-surveying" title="Permalink to this headline">¶</a></h3>
-<p>We can estimate the density distribution in the subsurface by measuing the local gravitational pull. The density profile <span class="math notranslate nohighlight">\(u(x)\)</span> is related to such measurements by a linear operator
-<span class="math notranslate nohighlight">\($Ku(x) = \int_0^1 \frac{u(y)}{(1 + (x-y)^2)^{3/2}} \mathrm{d}y.\)</span>$
-Upon discretization with stepsize <span class="math notranslate nohighlight">\(h = 1/n\)</span>, the inverse problem can be cast as a system of <span class="math notranslate nohighlight">\(n\)</span> equations in <span class="math notranslate nohighlight">\(n\)</span> unknowns <span class="math notranslate nohighlight">\(Ku = f\)</span>.</p>
+<h3><span class="section-number">2.4.4. </span>Gravity surveying<a class="headerlink" href="#gravity-surveying" title="Permalink to this headline">¶</a></h3>
+<p>We can estimate the density distribution in the subsurface by measuing the local gravitational pull. The density profile <span class="math notranslate nohighlight">\(u(x)\)</span> is related to such measurements by a linear operator</p>
+<div class="math notranslate nohighlight">
+\[Ku(x) = \int_0^1 \frac{u(y)}{(1 + (x-y)^2)^{3/2}} \mathrm{d}y.\]</div>
+<p>Upon discretization with stepsize <span class="math notranslate nohighlight">\(h = 1/n\)</span>, the inverse problem can be cast as a system of <span class="math notranslate nohighlight">\(n\)</span> equations in <span class="math notranslate nohighlight">\(n\)</span> unknowns <span class="math notranslate nohighlight">\(Ku = f\)</span>.</p>
 <ol class="simple">
 <li><p>Use the code provided below to generate the matrix and compute its SVD (use <code class="docutils literal notranslate"><span class="pre">np.linalg.svd</span></code>)</p></li>
 <li><p>Plot the coefficients <span class="math notranslate nohighlight">\(\langle u_i, f\rangle\)</span> and the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span> to check the discrete Picard condition. What do you notice ?</p></li>
@@ -690,17 +726,19 @@ Upon discretization with stepsize <span class="math notranslate nohighlight">\(h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/discrete_ip_regularization_8_0.png" src="_images/discrete_ip_regularization_8_0.png" />
+<img alt="_images/discrete_ip_regularization_9_0.png" src="_images/discrete_ip_regularization_9_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="convolution">
-<h3><span class="section-number">2.4.4. </span>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">¶</a></h3>
-<p>We are going to solve a deconvolution problem <span class="math notranslate nohighlight">\(Ku = f\)</span>, where <span class="math notranslate nohighlight">\(K\)</span> is a <em>Toeplitz matrix</em> with elements
-<span class="math notranslate nohighlight">\($k_{ij} = \frac{\exp({-a\cdot (i-j)^2})}{(n-1)\sqrt{\pi/a}},\)</span>$
-and we are given noisy measurements
-<span class="math notranslate nohighlight">\($f^{\delta} = Ku + e,\)</span>$
-where the entries of <span class="math notranslate nohighlight">\(e\)</span> are normally distrubuted with mean zero and variance <span class="math notranslate nohighlight">\(\delta^2\)</span>.</p>
+<h3><span class="section-number">2.4.5. </span>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">¶</a></h3>
+<p>We are going to solve a deconvolution problem <span class="math notranslate nohighlight">\(Ku = f\)</span>, where <span class="math notranslate nohighlight">\(K\)</span> is a <em>Toeplitz matrix</em> with elements</p>
+<div class="math notranslate nohighlight">
+\[k_{ij} = \frac{\exp({-a\cdot (i-j)^2})}{(n-1)\sqrt{\pi/a}},\]</div>
+<p>and we are given noisy measurements</p>
+<div class="math notranslate nohighlight">
+\[f^{\delta} = Ku + e,\]</div>
+<p>where the entries of <span class="math notranslate nohighlight">\(e\)</span> are normally distrubuted with mean zero and variance <span class="math notranslate nohighlight">\(\delta^2\)</span>.</p>
 <p>The goal of this assignment is to solve this inverse problem using a (truncated) SVD for two scenario’s</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(u(x) = H(x - 0.3) - H(x - 0.7)\)</span></p></li>
@@ -747,7 +785,7 @@ where the entries of <span class="math notranslate nohighlight">\(e\)</span> are
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/discrete_ip_regularization_11_0.png" src="_images/discrete_ip_regularization_11_0.png" />
+<img alt="_images/discrete_ip_regularization_12_0.png" src="_images/discrete_ip_regularization_12_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -775,7 +813,7 @@ where the entries of <span class="math notranslate nohighlight">\(e\)</span> are
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/discrete_ip_regularization_12_0.png" src="_images/discrete_ip_regularization_12_0.png" />
+<img alt="_images/discrete_ip_regularization_13_0.png" src="_images/discrete_ip_regularization_13_0.png" />
 </div>
 </div>
 </div>

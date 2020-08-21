@@ -376,14 +376,7 @@
         
               <div>
                 
-  <div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="what-is-an-inverse-problem">
+  <div class="section" id="what-is-an-inverse-problem">
 <h1><span class="section-number">1. </span>What is an inverse problem<a class="headerlink" href="#what-is-an-inverse-problem" title="Permalink to this headline">¶</a></h1>
 <p>Mathematical models and data play a big role in modern science and engineering. The field of inverse problems bridges these two and studies if and how one can infer model parameters from relevant observations. A prominent example is the famous black hole image, shown in figure <a class="reference internal" href="#blackhole"><span class="std std-numref">Fig. 1.1</span></a>, that was constructed by merging data from various telescopes <a class="bibtex reference internal" href="#akiyama" id="id1">[1]</a>.</p>
 <div class="figure align-default" id="blackhole">
@@ -397,17 +390,17 @@
 <h3><span class="section-number">1.1.1. </span>Image processing<a class="headerlink" href="#image-processing" title="Permalink to this headline">¶</a></h3>
 <p>Images are of great importance in many applications, ranging from microscopy, medicine, to astronomy. In all these applications, the recorded images are distorted or corrupted version of the ideal image. The inverse problem consists of reconstructing the idealized image from the measured one.</p>
 <p>We can think of a (digital) image as an two dimensional array of pixels where each element could, for example, represent the gray value of the corresponging pixel. A color image could be represented by a tensor representing the RGB intensities for each pixel. Alternatively, we can think of an idealized image as a (vector-valued) function on a bounded domain (say, the unit square).</p>
-<p>A mathematical model for the observed image should model the process by which the image was obtained. This often involves convolving the image with a filter and adding noise. For example, for a digital image with pixel values <span class="math notranslate nohighlight">\(u_{ij}\)</span>, the measured image is given by</p>
+<p>A mathematical model for the observed image should model the process by which the image was obtained. This often involves <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution">convolving</a> the image with a filter and adding noise. For example, for a digital image with pixel values <span class="math notranslate nohighlight">\(u_{i}\)</span>, the measured image is given by</p>
 <div class="math notranslate nohighlight">
 \[
-f_{ij} = \sum_{i,j} k_{i-i,j-j}u_{ij},
+f_{i} = \sum_{j\in\mathbb{Z}^2} k_{i,j}u_{j},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(k_{ij}\)</span> is the filter. Representing the image as a function <span class="math notranslate nohighlight">\(u : \Omega \rightarrow \mathbb{R}\)</span>, we may have</p>
+<p><span class="math notranslate nohighlight">\(i = (i_1,i_2)\)</span> and <span class="math notranslate nohighlight">\(j = (j_1,j_2)\)</span> are <a class="reference external" href="https://en.wikipedia.org/wiki/Multi-index_notation">multi-indices</a> and <span class="math notranslate nohighlight">\(k: \mathbb{Z}^2 \times \mathbb{Z}^2 \rightarrow \mathbb{R}\)</span> is the filter. Representing the image as a function <span class="math notranslate nohighlight">\(u : \Omega \rightarrow \mathbb{R}\)</span>, we may have</p>
 <div class="math notranslate nohighlight">
 \[
 f(x) = \int_{\Omega} k(x-y)u(y)\mathrm{d}y,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\Omega \subset \mathbb{R}^2\)</span> is the image domain and <span class="math notranslate nohighlight">\(k: \Omega \times \Omega\)</span> is the convolution kernel or <em>point spread function</em>.</p>
+<p>where <span class="math notranslate nohighlight">\(\Omega \subset \mathbb{R}^2\)</span> is the image domain and <span class="math notranslate nohighlight">\(k: \Omega \times \Omega \rightarrow \mathbb{R}\)</span> is the convolution kernel or <a class="reference external" href="https://en.wikipedia.org/wiki/Point_spread_function"><em>point spread function</em></a>.</p>
 <p>The resulting inverse problem is to undo the convolution. In some cases, <span class="math notranslate nohighlight">\(k\)</span> may not be known perfectly, in which case it is called <em>blind deconvolution</em>. Other image-related inverse problems include <em>denoising</em>, where a noisy version of the image is measured, and <em>inpainting</em>, where a significant part of the pixels are missing. Some examples are shown below.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -445,7 +438,7 @@ f(x) = \int_{\Omega} k(x-y)u(y)\mathrm{d}y,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/what_is_3_0.png" src="_images/what_is_3_0.png" />
+<img alt="_images/what_is_2_0.png" src="_images/what_is_2_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -487,7 +480,7 @@ f(x) = \int_{\Omega} k(x-y)u(y)\mathrm{d}y,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/what_is_4_0.png" src="_images/what_is_4_0.png" />
+<img alt="_images/what_is_3_0.png" src="_images/what_is_3_0.png" />
 </div>
 </div>
 </div>
@@ -498,11 +491,8 @@ f(x) = \int_{\Omega} k(x-y)u(y)\mathrm{d}y,
 <a class="reference internal image-reference" href="_images/ModernCT.png"><img alt="_images/ModernCT.png" src="_images/ModernCT.png" style="height: 150px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 1.2 </span><span class="caption-text">Modern CT scanner (left). Slice of high resolution CT scan of a patient’s lung (right). Source for both: Wikimedia Commons</span><a class="headerlink" href="#modernct" title="Permalink to this image">¶</a></p>
 </div>
-<p>In this case <span class="math notranslate nohighlight">\(u\)</span>, represents the density of the object, which may in turn be thought of as an image. Different from the previous section is the relation to the measurements. A usefull model for x-ray measurements turns out to be the <em>Radon transform</em>, which transforms the image <span class="math notranslate nohighlight">\(u\)</span> to a <em>sinogram</em> <span class="math notranslate nohighlight">\(f\)</span> by taking line-integrals along straight lines:
-\begin{equation}
-f(s,\theta) = \int u(s + n(\theta)) \mathrm{d}t.
-\end{equation}
-An example of an image and its corresponding sinogram are shown in figure <a class="reference internal" href="#walnut"><span class="std std-numref">Fig. 1.3</span></a>. It is clear that the sinogram itself is not directly suited for interpration and we have to solve the inverse problem to get a usefull image.</p>
+<p>In this case <span class="math notranslate nohighlight">\(u: \mathbb{R}^2 \rightarrow \mathbb{R}\)</span>, represents the density of the object, which may in turn be thought of as an image. Different from the previous section is the relation to the measurements. A usefull model for x-ray measurements turns out to be the <a class="reference external" href="https://en.wikipedia.org/wiki/Radon_transform"><em>Radon transform</em></a>, which transforms the image <span class="math notranslate nohighlight">\(u\)</span> to a <em>sinogram</em> <span class="math notranslate nohighlight">\(f: \mathbb{R}\times [0,2\pi) \rightarrow \mathbb{R}\)</span> by taking line-integrals along straight lines at various angles and shifts.</p>
+<p>An example of an image and its corresponding sinogram are shown in figure <a class="reference internal" href="#walnut"><span class="std std-numref">Fig. 1.3</span></a>. It is clear that the sinogram itself is not directly suited for interpration and we have to solve the inverse problem to get a usefull image.</p>
 <div class="figure align-default" id="walnut">
 <a class="reference internal image-reference" href="_images/walnut.png"><img alt="_images/walnut.png" src="_images/walnut.png" style="height: 150px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 1.3 </span><span class="caption-text">Two-dimensional slice through a walnut and the corresponding sinogram.</span><a class="headerlink" href="#walnut" title="Permalink to this image">¶</a></p>
@@ -511,7 +501,7 @@ An example of an image and its corresponding sinogram are shown in figure <a cla
 <div class="section" id="magnetic-resonance-imaging">
 <h3><span class="section-number">1.1.3. </span>Magnetic resonance imaging<a class="headerlink" href="#magnetic-resonance-imaging" title="Permalink to this headline">¶</a></h3>
 <p>Magnetic resonance imaging (MRI) is another imaging modality for clinical diagnoses. As oppossed to CT, MRI does not rely on ionizing radiation and is hence considered much safer. A disadvantage of MRI is that the time needed for a scan is much longer than for CT.</p>
-<p>Here, <span class="math notranslate nohighlight">\(u\)</span>, is related to the proton density of the tissue and can be interpreted as an image. The physics behind the measurement process are quite complicated, but for most practical settings a usefull model is based on the \emph{Fourier transform} of <span class="math notranslate nohighlight">\(u\)</span>:</p>
+<p>Here, <span class="math notranslate nohighlight">\(u\)</span>, is related to the proton density of the tissue and can be interpreted as an image. The physics behind the measurement process are quite complicated, but for most practical settings a usefull model is based on the <a class="reference external" href="https://en.wikipedia.org/wiki/Fourier_transform"><em>Fourier transform</em></a> of <span class="math notranslate nohighlight">\(u\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \widehat{u}(\xi) = \int u(x)e^{\imath \xi\cdot x}\mathrm{d}x.
@@ -521,7 +511,7 @@ An example of an image and its corresponding sinogram are shown in figure <a cla
 \[
 f_i = \int u(x)e^{\imath \xi_i\cdot x}\mathrm{d}x.
 \]</div>
-<p>Note that when a fully sampled spectrum is available, we can easily retrieve <span class="math notranslate nohighlight">\(u\)</span> via the <em>inverse Fourier transform</em></p>
+<p>Note that when a fully sampled spectrum is available, we can easily retrieve <span class="math notranslate nohighlight">\(u\)</span> via the <em>inverse Fourier transform</em>:</p>
 <div class="math notranslate nohighlight">
 \[
 u(x)= \int \widehat{u}(\xi) e^{-\imath \xi\cdot x}\mathrm{d}\xi.
@@ -542,14 +532,18 @@ u(x)= \int \widehat{u}(\xi) e^{-\imath \xi\cdot x}\mathrm{d}\xi.
 <p>The simplest example is when the underlying physics can be described by a simple scalar wave equation:</p>
 <div class="math notranslate nohighlight">
 \[
-w_{tt}(t,x) - u(x) \nabla w(t,x) = q(t,x), \quad x \in\Omega, \quad t\in [0,T]
+p_{tt}(t,x) - c(x) \nabla p(t,x) = q(t,x), \quad x \in\Omega, \quad t\in [0,T]
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(w(t,x)\)</span> denotes the <em>wavefield</em>, <span class="math notranslate nohighlight">\(u(x)\)</span> is related the soundspeed and density of the medium and <span class="math notranslate nohighlight">\(q\)</span> is a source term. The measurements are given by</p>
+<p>where <span class="math notranslate nohighlight">\(p(t,x)\)</span> denotes the <em>wavefield</em>, <span class="math notranslate nohighlight">\(c(x)\)</span> is related the soundspeed and density of the medium and <span class="math notranslate nohighlight">\(q\)</span> is a source term. The measurements are given by</p>
 <div class="math notranslate nohighlight">
 \[
-f_i(t) = w(t,x_i), \quad i \in \{1, 2, \ldots, m\}.
+f_i(t) = p(t,x_i), \quad i \in \{1, 2, \ldots, m\}.
 \]</div>
-<p>The inverse problem consists of retrieving <span class="math notranslate nohighlight">\(u\)</span> from the measurements <span class="math notranslate nohighlight">\(\{f_i\}_{i=0}^m\)</span>, given <span class="math notranslate nohighlight">\(q\)</span> In contrast to the previous examples, the relation between <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(f\)</span> is no longer linear, nor does <span class="math notranslate nohighlight">\(u\)</span> directly constitute an image (altough it can be visualized as in <a class="reference internal" href="#seismic-image"><span class="std std-numref">Fig. 1.5</span></a>).</p>
+<p>The inverse problem consists of retrieving either <span class="math notranslate nohighlight">\(c\)</span> or <span class="math notranslate nohighlight">\(q\)</span> from the measurements <span class="math notranslate nohighlight">\(\{f_i\}_{i=0}^m\)</span>. In particular we distinguish two inverse problems</p>
+<ul class="simple">
+<li><p><em>Inverse source problem</em>: The measurements <span class="math notranslate nohighlight">\(f\)</span> are linear in terms of <span class="math notranslate nohighlight">\(q\)</span>, leading to a linear inverse problem to retrieve <span class="math notranslate nohighlight">\(q\)</span>. In earth-quake localization, the source is for example parametrized as <span class="math notranslate nohighlight">\(q(t,x) = w(t)u(x)\)</span> in which case the goal is to retrieve <span class="math notranslate nohighlight">\((u,w)\)</span>.</p></li>
+<li><p><em>Inverse medium problem</em>: Here the goal is to retrieve <span class="math notranslate nohighlight">\(c\)</span>, sometimes parametrized as <span class="math notranslate nohighlight">\(c(x) = c_0(1 + u(x))\)</span>. Here, the measurements generally depend non-linearly on <span class="math notranslate nohighlight">\(u\)</span>. However, when <span class="math notranslate nohighlight">\(|u| \ll 1\)</span> the relation between <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(u\)</span> may be linearized.</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="anatomy-of-an-inverse-problems">
@@ -558,8 +552,8 @@ f_i(t) = w(t,x_i), \quad i \in \{1, 2, \ldots, m\}.
 <div class="math notranslate nohighlight" id="equation-ip">
 <span class="eqno">(1.1)<a class="headerlink" href="#equation-ip" title="Permalink to this equation">¶</a></span>\[K(u) = f,\]</div>
 <p>where <span class="math notranslate nohighlight">\(K\)</span> is called the <em>forward opertor</em>; <span class="math notranslate nohighlight">\(u\)</span> is the <em>image</em> or <em>parameter</em> and <span class="math notranslate nohighlight">\(f \in \mathcal{F}\)</span> are the measurements. The forward operator, <span class="math notranslate nohighlight">\(K : \mathcal{U} \rightarrow \mathcal{F}\)</span>, is a model of the underlying (physical) process and simulates the measurements for given <span class="math notranslate nohighlight">\(u\)</span>. It could represent for example an integral operator, a matrix, or a set of algebraic equations.
-The image/parameters, <span class="math notranslate nohighlight">\(u\)</span>, are a mathematical description of the quantity of interest. It could for example be a function or a vector. The measurements, <span class="math notranslate nohighlight">\(f\)</span>, are a mathematical representation of the measured data. For the purposes of analysis, we may think of this a function, but in practice measurements are always a discrete quantity.</p>
-<p>For the purposes of this course, we will assume that <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> are Banach spaces so we can measure distances between different sets of images/parameters and different sets of measurements.</p>
+The image/parameters, <span class="math notranslate nohighlight">\(u\)</span>, constitute a mathematical description of the quantity of interest. It could for example be a function or a vector. The measurements, <span class="math notranslate nohighlight">\(f\)</span>, are a mathematical representation of the measured data. For the purposes of analysis, we may think of this a function, but in practice measurements are always a discrete quantity.</p>
+<p>For the purposes of this course, we will assume that <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> are <a class="reference external" href="https://en.wikipedia.org/wiki/Banach_space">Banach spaces</a> so we can measure distances between pairs of images and measurements. In many cases, <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> will additionaly have an inner-product in which case they are <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_space">Hilbert spaces</a>.</p>
 <p>An important notion in inverse problems is <em>ill-posedness</em>. We call a problem <em>ill-posed</em> if it is not <em>well-posed</em>:</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Well-posedness according to Hadamard</em></p>
@@ -571,7 +565,7 @@ The image/parameters, <span class="math notranslate nohighlight">\(u\)</span>, a
 </ul>
 <p>If the problem is not well-posed, we call it <em>ill-posed</em>.</p>
 </div>
-<p>It may seem strange that equation <a class="reference internal" href="#equation-ip">(1.1)</a> may not have a solution. After all, are the measurements not the result of the forward opertor applied to some ground-truth <span class="math notranslate nohighlight">\(u^*\)</span>? We need to keep in mind here that <span class="math notranslate nohighlight">\(K\)</span> is only a <em>model</em> for the underlying process. In reality, the measurements may include <em>modelling errors</em> and <em>measurement errors</em>. An often used model to reflect this is the <em>additive noise model</em></p>
+<p>It may seem strange that equation <a class="reference internal" href="#equation-ip">(1.1)</a> may not have a solution. After all, are the measurements not the result of the forward opertor applied to some ground-truth <span class="math notranslate nohighlight">\(u^*\)</span>? We need to keep in mind here that <span class="math notranslate nohighlight">\(K\)</span> is only a <em>model</em> for the underlying process. In reality, the measurements may include <em>modelling errors</em> and <em>measurement errors</em>. An often-used model to reflect this is the <em>additive noise model</em></p>
 <div class="math notranslate nohighlight">
 \[
 f^{\delta} = Ku^* + e,
@@ -602,7 +596,7 @@ C = \sup_{\xi} |\left(K^{-1}\right)'(\xi)| = \sup_{\xi} |\left(K'(\xi)\right)^{-
 </div>
 <div class="section" id="matrix-inversion">
 <h3><span class="section-number">1.3.2. </span>Matrix inversion<a class="headerlink" href="#matrix-inversion" title="Permalink to this headline">¶</a></h3>
-<p>Matrix inversion is a prime example of a linear inverse problem. These can be written in the form of <a class="reference internal" href="#equation-ip">(1.1)</a> with <span class="math notranslate nohighlight">\(u \in \mathbb{R}^n\)</span> and <span class="math notranslate nohighlight">\(f \in \mathbb{R}^n\)</span> being <span class="math notranslate nohighlight">\(n\)</span>-dimensional vectors with real entries and <span class="math notranslate nohighlight">\(K \in \mathbb{R}^{n \times n}\)</span> being a matrix with real entries. We further assume <span class="math notranslate nohighlight">\(K\)</span> to be a symmetric, positive definite matrix. In that case we know from the spectral theory of symmetric matrices that there exist eigenvalues <span class="math notranslate nohighlight">\(\lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_n &gt; 0\)</span> and corresponding eigenvectors <span class="math notranslate nohighlight">\(k_j \in \mathbb{R}^n\)</span> for <span class="math notranslate nohighlight">\(j \in \{ 1,\cdots,n \}\)</span> such that <span class="math notranslate nohighlight">\(K\)</span> can be written as</p>
+<p>Matrix inversion is a prime example of a linear inverse problem. These can be written in the form of <a class="reference internal" href="#equation-ip">(1.1)</a> with <span class="math notranslate nohighlight">\(u \in \mathbb{C}^n\)</span> and <span class="math notranslate nohighlight">\(f \in \mathbb{C}^n\)</span> being <span class="math notranslate nohighlight">\(n\)</span>-dimensional vectors and <span class="math notranslate nohighlight">\(K \in \mathbb{C}^{n \times n}\)</span> being a matrix. For now, we further assume <span class="math notranslate nohighlight">\(K\)</span> to be a <a class="reference external" href="https://en.wikipedia.org/wiki/Hermitian_matrix">Hermitian</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Definite_symmetric_matrix">positive definite matrix</a>. In that case we know from the <a class="reference external" href="https://en.wikipedia.org/wiki/Spectral_theorem">spectral theorem</a> that there exist real positive eigenvalues <span class="math notranslate nohighlight">\(\lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_n &gt; 0\)</span> and corresponding orthonormal eigenvectors <span class="math notranslate nohighlight">\(k_j \in \mathbb{C}^n\)</span> for <span class="math notranslate nohighlight">\(j \in \{ 1,\cdots,n \}\)</span> such that <span class="math notranslate nohighlight">\(K\)</span> can be written as</p>
 <div class="math notranslate nohighlight">
 \[
 K = \sum_{j=1}^n \lambda_k k_j k_j^{\top}.
@@ -612,17 +606,17 @@ K = \sum_{j=1}^n \lambda_k k_j k_j^{\top}.
 \[
 \frac{\|u - u^\delta\|}{\|u\|} \leq \kappa(K) \frac{\|f - f^\delta\|}{\|f\|},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\kappa(K) = \|K^{-1}\|\|K\|\)</span> is called the <em>condition number</em> of <span class="math notranslate nohighlight">\(K\)</span>. Hence, we observe that in the worst case an error in the measured data is amplified by the condition number. A matrix with large <span class="math notranslate nohighlight">\(\kappa\)</span> is therefore called <em>ill-conditioned</em>.</p>
+<p>where <span class="math notranslate nohighlight">\(\kappa(K) = \|K^{-1}\|\|K\|\)</span> is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Condition_number"><em>condition number</em></a> of <span class="math notranslate nohighlight">\(K\)</span>. Hence, we observe that in the worst case an error in the measured data is amplified by the condition number. A matrix with large <span class="math notranslate nohighlight">\(\kappa\)</span> is therefore called <em>ill-conditioned</em>.</p>
 </div>
 <div class="section" id="differentiation">
 <h3><span class="section-number">1.3.3. </span>Differentiation<a class="headerlink" href="#differentiation" title="Permalink to this headline">¶</a></h3>
-<p>Here, we are given a function <span class="math notranslate nohighlight">\(f \in C^{1}([0,1])\)</span> with <span class="math notranslate nohighlight">\(f(0) = 0\)</span> and want to find <span class="math notranslate nohighlight">\(u\)</span> such that <span class="math notranslate nohighlight">\(K(u) = f\)</span> with</p>
+<p>Here, we are given a <a class="reference external" href="https://en.wikipedia.org/wiki/Smoothness">continuously differentiable function</a> <span class="math notranslate nohighlight">\(f \in C^{1}([0,1])\)</span> with <span class="math notranslate nohighlight">\(f(0) = 0\)</span> and want to find <span class="math notranslate nohighlight">\(u\)</span> such that <span class="math notranslate nohighlight">\(Ku = f\)</span> with</p>
 <div class="math notranslate nohighlight">
 \[
-K(u)(x) = \int_0^x u(x') \mathrm{d}x'.
+Ku(x) = \int_0^x u(y) \mathrm{d}y.
 \]</div>
-<p>We immediately find <span class="math notranslate nohighlight">\(u(x) = f'(x)\)</span>.</p>
-<p>For sensitivity, assume that we are given a noisy version of the signal <span class="math notranslate nohighlight">\(f^{\delta} = f + n^{\delta}\)</span>, with <span class="math notranslate nohighlight">\(n^{\delta} \in L^{\infty}([0,1])\)</span>. An example of such noise is</p>
+<p>We immediately find that the solution is given by <span class="math notranslate nohighlight">\(u(x) = f'(x)\)</span>. Hence, the solution is well-defined and unique.
+For sensitivity, assume that we are given a noisy version of the signal <span class="math notranslate nohighlight">\(f^{\delta} = f + n^{\delta}\)</span>, with <span class="math notranslate nohighlight">\(n^{\delta} \in L^{\infty}([0,1])\)</span>, with <span class="math notranslate nohighlight">\(L^{\infty}([0,1])\)</span> denoting the <a class="reference external" href="https://en.wikipedia.org/wiki/L-infinity">space of bounded measureble functions</a>. An example of such noise is</p>
 <div class="math notranslate nohighlight">
 \[
 n^{\delta}(x) = \delta \sin(x/\delta).
@@ -649,7 +643,7 @@ K = \left(\begin{matrix} 1 &amp; 1\\ 2 &amp; 2 \end{matrix}\right).
 <p>allows us to compute the inverse. Indeed, given <span class="math notranslate nohighlight">\(f = K\overline{u}\)</span> with <span class="math notranslate nohighlight">\(\overline{u} = (1,2)\)</span> we have <span class="math notranslate nohighlight">\(f = (3,6)\)</span>. Applying the inverse of <span class="math notranslate nohighlight">\(\widetilde{K}\)</span> we get <span class="math notranslate nohighlight">\(\widetilde{u} \approx (1,2)\)</span>. The corresponding equations are visualized in <a class="reference internal" href="#id2"><span class="std std-numref">Fig. 1.6</span></a>.</p>
 <div class="figure align-default" id="id2" style="width: 300px">
 <div class="cell_output docutils container">
-<img alt="_images/what_is_12_1.png" src="_images/what_is_12_1.png" />
+<img alt="_images/what_is_11_1.png" src="_images/what_is_11_1.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 1.6 </span><span class="caption-text">Original and regularized equations. We see that the regularized equations have a unique solution, but has thereby implicity selected one particular solution of the original system.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
@@ -657,16 +651,16 @@ K = \left(\begin{matrix} 1 &amp; 1\\ 2 &amp; 2 \end{matrix}\right).
 </div>
 <div class="section" id="variational-methods">
 <h3><span class="section-number">1.4.2. </span>Variational methods<a class="headerlink" href="#variational-methods" title="Permalink to this headline">¶</a></h3>
-<p>Variational methods are a popular and quite generally applicable technique for solving inverse problems. The idea is to replace the original equation <span class="math notranslate nohighlight">\(K(u) = f\)</span> by a minimization problem. To do this, one constructs an optimisation problem with a functional consisting of two terms. The first part is the data fidelity and is supposed to ensure that <span class="math notranslate nohighlight">\(Ku \approx f\)</span>.
+<p>Variational methods are a popular and quite generally applicable technique for solving inverse problems. The idea is to replace the original equation <span class="math notranslate nohighlight">\(K(u) = f\)</span> by a minimization problem. To do this, one constructs an optimisation problem with a functional consisting of two terms. The first part is the data fidelity and is supposed to ensure that <span class="math notranslate nohighlight">\(K(u) \approx f\)</span>.
 The second part is the regularisation functional which incorporates the a-priori information on <span class="math notranslate nohighlight">\(u\)</span>. Thereby, we obtain a problem of the form</p>
 <div class="math notranslate nohighlight">
 \[
 \min_{u \in \mathcal{U}} D(u,f) + \alpha R(u)
 \]</div>
-<p>where further a-priori information on the class of images <span class="math notranslate nohighlight">\(u\)</span>, over which we minimise, can be contained, e.g. non-negativity for density images. The data fidelity term <span class="math notranslate nohighlight">\(D\)</span> should be constructed in such a way, that <span class="math notranslate nohighlight">\(D\)</span> attains its minimum (often normalised at zero) if the data are reconstructed exactly. The regularisation functional should be constructed in such a way, that <span class="math notranslate nohighlight">\(R\)</span> attains a small value if the image matches the a-priori information very well, and a very large value, if the image does not fit to the available a-priori information. As a result, such images will hardly become a minimum of the functional. The parameter <span class="math notranslate nohighlight">\(\alpha\)</span> weights the two parts of the functional. For very small <span class="math notranslate nohighlight">\(\alpha\)</span> primarily data gets reconstructed, whereas with increasing <span class="math notranslate nohighlight">\(\alpha\)</span> the regularisation gains in importance in this ratio, which is particularly essential if measurement errors or noise can be expected.</p>
+<p>where further a-priori information on the class of images <span class="math notranslate nohighlight">\(u\)</span>, over which we minimise, can be contained, e.g. non-negativity for density images. The data fidelity term <span class="math notranslate nohighlight">\(D\)</span> should be constructed in such a way, that <span class="math notranslate nohighlight">\(D\)</span> attains its minimum (often normalised at zero) if the data are reconstructed exactly. The regularisation functional should be constructed in such a way, that <span class="math notranslate nohighlight">\(R\)</span> attains a small value if the image matches the a-priori information very well, and a very large value, if the image does not fit to the available a-priori information. As a result, such images will hardly become a minimum of the functional. The parameter <span class="math notranslate nohighlight">\(\alpha\)</span> weights the two parts of the functional. For very small <span class="math notranslate nohighlight">\(\alpha\)</span> the emphasis lies on fitting the data, whereas with increasing <span class="math notranslate nohighlight">\(\alpha\)</span> the regularisation gains in importance in this ratio, which is particularly essential if measurement errors or noise can be expected.</p>
 <div class="admonition-example-solving-a-quadratic-equation admonition">
 <p class="admonition-title">Example: <em>Solving a quadratic equation.</em></p>
-<p>We want to illustrate this principle by a simple example. We search for a <em>small</em> solution of the following quadratic equation</p>
+<p>We illustrate this principle by a simple example. We search for a <em>small</em> solution of the following quadratic equation</p>
 <div class="math notranslate nohighlight">
 \[
 	u^2 - f_1 u + f_2 = 0,
@@ -677,7 +671,7 @@ With the solution formula for quadratic equations we obtain two solutions</p>
 \[
 	u_1 = 0.1 \qquad \text{and} \qquad u_2 = 1.
 \]</div>
-<p>With our a-priori information of a <em>small</em> solution we obviously choose the solution <span class="math notranslate nohighlight">\(u_1\)</span>. However, this is only possible in this specific case, because we can indeed compute all solutions. For more complicated problems this is not possible anymore. Moreover, we have to face measurement errors, such that we should better compute an approximate solution in a robust manner than many exact solutions. A variational approach can be realised for this example by minimizing the functional</p>
+<p>With our a-priori information of a <em>small</em> solution we obviously choose the solution <span class="math notranslate nohighlight">\(u_1\)</span>. However, this is only possible in this specific case, because we can indeed compute <em>all</em> solutions. For more complicated problems this is not possible anymore. Moreover, we have to face measurement errors, such that we should better compute an approximate solution in a robust manner than many exact solutions. A variational approach can be realised for this example by minimizing the functional</p>
 <div class="math notranslate nohighlight">
 \[
 	J(u) = (u^2 - f_1 u + f_2)^2 + \alpha u^2.
@@ -685,7 +679,7 @@ With the solution formula for quadratic equations we obtain two solutions</p>
 <p>For <span class="math notranslate nohighlight">\(\alpha\)</span> large, this functional has a global minimum around <span class="math notranslate nohighlight">\(u = 0\)</span>, while for <span class="math notranslate nohighlight">\(\alpha\)</span> small, it still has multiple minima. However, for suitable <span class="math notranslate nohighlight">\(\alpha\)</span>, we have a global minimum at <span class="math notranslate nohighlight">\(u \approx 0.1\)</span> and minimzing the regularized problem yields (an approximation of) the smaller solution, as illustrated in <a class="reference internal" href="#quadratic"><span class="std std-numref">Fig. 1.7</span></a>.</p>
 <div class="figure align-default" id="quadratic" style="width: 300px">
 <div class="cell_output docutils container">
-<img alt="_images/what_is_14_1.png" src="_images/what_is_14_1.png" />
+<img alt="_images/what_is_13_1.png" src="_images/what_is_13_1.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 1.7 </span><span class="caption-text">Original quadratic equation and functional to be minimized. We see that mimizing the functional picks out one of the two solutions.</span><a class="headerlink" href="#quadratic" title="Permalink to this image">¶</a></p>
 </div>
@@ -773,7 +767,8 @@ The eigenvectors are: [0.70710678 0.70710678] [-0.70710678  0.70710678]
 <h3><span class="section-number">1.5.4. </span>Differentiation II<a class="headerlink" href="#differentiation-ii" title="Permalink to this headline">¶</a></h3>
 <p>The analysis in the previous exercise depends crucially on the type of noise we allow. If we assume that <span class="math notranslate nohighlight">\(n^{\delta} = f - f^{\delta}\)</span> is bounded by <span class="math notranslate nohighlight">\(\delta\)</span> in a different norm, we can get a well-posed problem. Let</p>
 <div class="math notranslate nohighlight">
-\[\|g\|_{C^{1}([0,1])} = \sup_{x\in[0,1]} |g(x)| + \sup_{x\in[0,1]} |g'(x)|.\]</div>
+\[\|g\|_{C^{1}([0,1])} = \|g\|_{L^{\infty}[0,1]} + \|g'\|_{L^{\infty}[0,1]},\]</div>
+<p>denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Sobolev_space#One-dimensional_case"><span class="math notranslate nohighlight">\(W^{1,\infty}\)</span>-Sobolev norm</a></p>
 <ol class="simple">
 <li><p>Assuming that <span class="math notranslate nohighlight">\(\|n^{\delta}\|_{C^1([0,1])} = \delta\)</span>, show that <span class="math notranslate nohighlight">\(\|u - u^{\delta}\|_{L^{\infty}([0,1])} \rightarrow 0\)</span> when <span class="math notranslate nohighlight">\(\delta \rightarrow 0\)</span>.</p></li>
 <li><p>Can you come up with a type of noise that obeys the assumed bound?</p></li>
