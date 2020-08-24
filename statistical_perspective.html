@@ -660,9 +660,10 @@ f^{\delta} = K\overline{u} + \epsilon.
 </ol>
 <div class="tip toggle admonition">
 <p class="admonition-title">Answer</p>
-<p>To study the difference, we’ll consider solving the inverse problem using generalized Tikhonov
-<span class="math notranslate nohighlight">\($\min_u \|Ku - f\|^2 + \alpha \|R^{-1/2}u\|_2^2,\)</span>$
-and compute the average (over random noise instances) error for various <span class="math notranslate nohighlight">\(\alpha\)</span>. The hypothesis is that using <span class="math notranslate nohighlight">\(R = \Sigma\)</span> and <span class="math notranslate nohighlight">\(\alpha = \sigma^2\)</span> gives the best results.</p>
+<p>To study the difference, we’ll consider solving the inverse problem using generalized Tikhonov</p>
+<div class="math notranslate nohighlight">
+\[\min_u \| Ku - f \|^2 + \alpha \| R^{-1/2}u \|_2^2,\]</div>
+<p>and compute the average (over random noise instances) error for various <span class="math notranslate nohighlight">\(\alpha\)</span>. The hypothesis is that using <span class="math notranslate nohighlight">\(R = \Sigma\)</span> and <span class="math notranslate nohighlight">\(\alpha = \sigma^2\)</span> gives the best results.</p>
 <p>We let <span class="math notranslate nohighlight">\(n = 100\)</span>, <span class="math notranslate nohighlight">\(L = 1\)</span>, <span class="math notranslate nohighlight">\(\sigma = 10^{-1}\)</span> and compute the error for <span class="math notranslate nohighlight">\(100\)</span> random instances of the noise.
 In figure <a class="reference internal" href="#expected-error"><span class="std std-numref">Fig. 4.1</span></a> we show the expected reconstruction error for various values of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(L\)</span>. We can conclude that</p>
 <ul class="simple">

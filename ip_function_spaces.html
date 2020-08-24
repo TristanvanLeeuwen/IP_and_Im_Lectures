@@ -333,50 +333,137 @@
 <p>Let <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow F\)</span> denote the forward operator, with <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> <a class="reference external" href="https://en.wikipedia.org/wiki/Banach_space">Banach spaces</a>. The operator is bounded iff there exists a constant <span class="math notranslate nohighlight">\(C \geq 0\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[\|Ku\|_{\mathcal{F}} \leq C \|u\|_{\mathcal{U}} \quad \forall u \in \mathcal{U}.\]</div>
-<p>The smallest such constant is called the operator norm <span class="math notranslate nohighlight">\(\|K\|\)</span>.</p>
+<p>The smallest such constant is called the operator norm <span class="math notranslate nohighlight">\(\|K\|\)</span>. Note that boundedness also implies continuity, i.e. for any <span class="math notranslate nohighlight">\(u,v \in \mathcal{U}\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[\|Ku - Kv\|_{\mathcal{F}} \leq C \|u - v\|_{\mathcal{U}}.\]</div>
 <div class="section" id="well-posedness">
 <h2><span class="section-number">3.1. </span>Well-posedness<a class="headerlink" href="#well-posedness" title="Permalink to this headline">¶</a></h2>
-<p>We may again wonder wether the equation <span class="math notranslate nohighlight">\(Ku = f\)</span> is well-posed. To study this we introduce the following notation:</p>
+<p>We may again wonder wether the equation <span class="math notranslate nohighlight">\(Ku = f\)</span> is well-posed. To formally analyse this we introduce the following notation:</p>
 <ul class="simple">
-<li><p>The range of <span class="math notranslate nohighlight">\(K\)</span> is defined as <span class="math notranslate nohighlight">\(\mathcal{R}(K) = \{Ku\,|\,u\in\mathcal{U}\}.\)</span></p></li>
-<li><p>The null-space (or Kernel) of <span class="math notranslate nohighlight">\(K\)</span> is defined as <span class="math notranslate nohighlight">\(\mathcal{N}(K) = \{u\in\mathcal{U}\, | \, Ku = 0 \}.\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{D}(K) = \mathcal{U}\)</span> denotes the <em>domain</em> of <span class="math notranslate nohighlight">\(K\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{R}(K) = \{Ku\,|\,u\in\mathcal{U}\}\)</span> denotes the <em>range</em> of <span class="math notranslate nohighlight">\(K\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{N}(K) = \{u\in\mathcal{U}\, | \, Ku = 0 \}\)</span> denotes the <em>null-space</em> or <em>kernel</em> of <span class="math notranslate nohighlight">\(K\)</span>.</p></li>
 </ul>
-<p>When <span class="math notranslate nohighlight">\(f \not\in \mathcal{R}(K)\)</span>, a solution doesn’t exist. We can still define the <em>minimum residual</em> solution <span class="math notranslate nohighlight">\(\widetilde{u}\)</span>, satisfying</p>
+<p>When <span class="math notranslate nohighlight">\(f \not\in \mathcal{R}(K)\)</span>, a solution obviously doesn’t exist. We can still look for a solution for which <span class="math notranslate nohighlight">\(Ku \approx f\)</span> by solving</p>
+<div class="math notranslate nohighlight" id="equation-minres">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-minres" title="Permalink to this equation">¶</a></span>\[\min_{u\in \mathcal{U}}\|Ku - f\|_{\mathcal{F}}.\]</div>
+<p>A solution to <a class="reference internal" href="#equation-minres">(3.1)</a> is a vector <span class="math notranslate nohighlight">\(\widetilde{u} \in \mathcal{U}\)</span> for which</p>
 <div class="math notranslate nohighlight">
-\[
-\|K\widetilde{u} - f\|_{\mathcal{F}} \leq \|Kv - f\|_{\mathcal{F}}\quad\forall v \in \mathcal{U}.
-\]</div>
-<p>This is analogous to the least-squares solution we introduced previously. If the null-space of <span class="math notranslate nohighlight">\(K\)</span> is non-empty, we can construct infinitely many such solutions. We call the one with the smallest norm the <em>minimum-norm</em> solution. Note however that we have not yet proven that such a solution exists in general, nor do we have a constructive way of finding it (in general). We will return to this issue in the next chapter when analysing variational problems.</p>
+\[\|K\widetilde{u} - f\| \leq \|Ku - f\|, \quad \forall u \in \widetilde{U}.\]</div>
+<p>If such a vector exists we call it the <em>minimum-residual</em> solution. If the null-space of <span class="math notranslate nohighlight">\(K\)</span> is non-empty, we can construct infinitely many such solutions. We call the one with the smallest norm the <em>minimum-norm</em> solution. Note however that we have not yet proven that such a solution exists in general, nor do we have a constructive way of finding it.</p>
+<p>To study well-posedness of <a class="reference internal" href="#equation-minres">(3.1)</a> we will let <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> be <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_space">Hilbert spaces</a>. We will return to analysing variational problems more generally in a <a class="reference internal" href="variational_formulations.html"><span class="doc std std-doc">later chapter</span></a>.</p>
 <hr class="docutils" />
-<p>For now, we’ll assume that <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> are <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_space">Hilbert spaces</a> and continue our exploration of the infinite-dimensional setting. First, we introduce the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose_of_a_linear_map">adjoint</a> of <span class="math notranslate nohighlight">\(K\)</span>, denoted by <span class="math notranslate nohighlight">\(K^*\)</span> in the usual way as satisfying</p>
+<p>First, we introduce the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose_of_a_linear_map">adjoint</a> of <span class="math notranslate nohighlight">\(K\)</span>, denoted by <span class="math notranslate nohighlight">\(K^*\)</span> in the usual way as satisfying</p>
 <div class="math notranslate nohighlight">
 \[\langle Ku, f \rangle_{\mathcal{F}} = \langle K^*\!f, u \rangle_{\mathcal{U}}\quad \forall u\in\mathcal{U}, f\in\mathcal{F}.\]</div>
+<p>We further denote the <em>orthogonal complement</em> of a subspace <span class="math notranslate nohighlight">\(\mathcal{X} \subset \mathcal{U}\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{X}^\perp = \{u\in\mathcal{U} \, | \, \langle u, v \rangle_{\mathcal{U}}=0 \, \forall \, v \in \mathcal{X}\}.\]</div>
+<p>If <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> is a <a class="reference external" href="https://en.wikipedia.org/wiki/Closed_set">closed subspace</a> we have <span class="math notranslate nohighlight">\((\mathcal{X}^\perp)^\perp = \mathcal{X}\)</span> and we have an orthogonal decomposition of <span class="math notranslate nohighlight">\(\mathcal{U}\)</span>: <span class="math notranslate nohighlight">\(\mathcal{U} = \mathcal{X} + \mathcal{X}^\perp\)</span>, meaning that we can express <em>any</em> <span class="math notranslate nohighlight">\(u\in \mathcal{U}\)</span> as <span class="math notranslate nohighlight">\(u = x + x^\perp\)</span> with <span class="math notranslate nohighlight">\(x\in\mathcal{X}\)</span> and <span class="math notranslate nohighlight">\(x^\perp\in\mathcal{X}^\perp\)</span>.
+The <a class="reference external" href="https://en.wikipedia.org/wiki/Projection_(linear_algebra)">orthogonal projection</a> onto <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> is denoted by <span class="math notranslate nohighlight">\(P_{\mathcal{X}}\)</span>. We briefly recall a few usefull relations</p>
+<div class="important admonition">
+<p class="admonition-title">Lemma : <em>orthogonal projection</em></p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{X} \subset \mathcal{U}\)</span> be a closed subspace. The orthogonal projection onto <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> satisfies the following conditions</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(P_{\mathcal{X}}\)</span> is self-adjoint,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\|P_{\mathcal{X}}\| = 1,\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(I - P_{\mathcal{X}} = P_{\mathcal{X}^\perp},\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\|u - P_{\mathcal{X}}u\|_{\mathcal{U}} \leq \|u - v\|_{\mathcal{U}} \, \forall \, v\in\mathcal{U}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(v = P_{\mathcal{X}}y\)</span> iff <span class="math notranslate nohighlight">\(x\in\mathcal{X}\)</span> and <span class="math notranslate nohighlight">\(u-x\in\mathcal{X}^\perp\)</span>.</p></li>
+</ol>
+</div>
+<p>When <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> is not closed we have <span class="math notranslate nohighlight">\((\mathcal{X}^\perp)^\perp = \overline{\mathcal{X}}\)</span> (the <a class="reference external" href="https://en.wikipedia.org/wiki/Closure_(topology)">closure</a> of <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>). Note that the orthogonal complement of a subspace is always closed.</p>
+<p>We now have the following usefull relations</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathcal{R}(K)^\perp = \mathcal{N}(K^*),\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{N}(K^*)^\perp = \overline{\mathcal{R}(K)},\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{R}(K^*)^\perp = \mathcal{N}(K),\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp = \overline{\mathcal{R}(K^*)},\)</span></p></li>
+</ul>
+<p>from which we conclude that we can decompose <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> as</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathcal{U} = \mathcal{N}(K) \oplus \overline{\mathcal{R}(K^*)},\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{F} = \mathcal{N}(K^*) \oplus \overline{\mathcal{R}(K)}.\)</span></p></li>
+</ul>
+<hr class="docutils" />
 <p>We now have the following results</p>
 <div class="important admonition">
-<p class="admonition-title">Theorem: <em>existence of a minimum residual solution</em></p>
+<p class="admonition-title">Theorem: <em>existence and uniqueness of the minimum-residual, minimum-norm solution</em></p>
+<p>Given a bounded linear operator <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(f \in \mathcal{F}\)</span>, a solution <span class="math notranslate nohighlight">\(\widetilde{u}\)</span> to <a class="reference internal" href="#equation-minres">(3.1)</a></p>
 <ul class="simple">
-<li><p>A minimum-residual solution only exists if <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)^\perp \oplus \mathcal{R}(K)\)</span></p></li>
-<li><p>It obeys the normal equations <span class="math notranslate nohighlight">\(K^*\!Ku = K^*\!f\)</span></p></li>
+<li><p>only exists if <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K) \oplus \mathcal{R}(K)^\perp\)</span></p></li>
+<li><p>obeys the <em>normal equations</em> <span class="math notranslate nohighlight">\(K^*\! K\widetilde{u} = K^*\! f.\)</span></p></li>
 </ul>
+<p>The unique solution <span class="math notranslate nohighlight">\(\widetilde{u} \in \mathcal{N}(K)^{\perp}\)</span> to the normal equations is called the <em>minimum-norm</em> solution.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>First, we show that a minimum-residual solution necessarily obeys the normal equations:</p>
+<ul class="simple">
+<li><p>Given a solution <span class="math notranslate nohighlight">\(\widetilde{u}\)</span> to eq<code class="docutils literal notranslate"><span class="pre">minres</span></code> and an arbritary <span class="math notranslate nohighlight">\(v\in\mathcal{U}\)</span>, define <span class="math notranslate nohighlight">\(\phi(\alpha) = \|K(\widetilde{u} + \alpha v) - f\|_{\mathcal{F}}\)</span>. A necessary condition for <span class="math notranslate nohighlight">\(\widetilde{u}\)</span> to be a least-squares solution is <span class="math notranslate nohighlight">\(\phi'(0) = 0\)</span>, which gives <span class="math notranslate nohighlight">\(\langle K^*(K\widetilde{u}-f),v \rangle_{\mathcal{U}}\)</span>. As this should hold for arbritary <span class="math notranslate nohighlight">\(v\)</span>, we find the normal equations. Note that this also implies that <span class="math notranslate nohighlight">\(K\widetilde{u} - f \in \mathcal{R}(K)^\perp\)</span>.</p></li>
+</ul>
+<p>Next, we show that the normal equations only allow a solution when <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)^\perp \oplus \mathcal{R}(K)\)</span>.</p>
+<ul class="simple">
+<li><p>Given a solution <span class="math notranslate nohighlight">\(\widetilde{u}\)</span>, we find that <span class="math notranslate nohighlight">\(f = K\widetilde{u} + g\)</span> with <span class="math notranslate nohighlight">\(g\in\mathcal{R}(K)^\perp\)</span>. Hence, <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K) \oplus \mathcal{R}(K)^\perp\)</span>. Conversely, given <span class="math notranslate nohighlight">\(f in \mathcal{R}(K) \oplus \mathcal{R}(K)^\perp\)</span> , there exist <span class="math notranslate nohighlight">\(u \in \mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(g \in \mathcal{R}(K)^\perp = \left(\overline{\mathcal{R}(K)}\right)^\perp\)</span> such that <span class="math notranslate nohighlight">\(f = Ku + g\)</span>. Thus, <span class="math notranslate nohighlight">\(P_{\overline{\mathcal{R}(K)}}f = Ku\)</span>. Such a <span class="math notranslate nohighlight">\(u \in \mathcal{U}\)</span> must necessarily be a solution to <a class="reference internal" href="#equation-minres">(3.1)</a> because we have <span class="math notranslate nohighlight">\(\|Ku - f\|_{\mathcal{F}} = \|P_{\overline{\mathcal{R}(K)}}f - f\|_{\mathcal{F}} \leq \inf_{g\in \overline{\mathcal{R}(K)}}\|g  - f\|_{\mathcal{F}} \leq \inf_{v\in\mathcal{U}}\|Kv - f\|_{\mathcal{F}}.\)</span> Here, we used the fact that the orthogonal projection on a subspace gives the element closest to the projected element and <span class="math notranslate nohighlight">\(\mathcal{R}(K) \subseteq \overline{\mathcal{R}(K)}\)</span> allows to conclude the last inequality.</p></li>
+</ul>
+<p>Finally, we show that the minimum-norm solution is unique. Denote the minimun-norm solution by <span class="math notranslate nohighlight">\(\widetilde{u}\)</span>. Now suppose we have another solution, <span class="math notranslate nohighlight">\(\widetilde{v}\)</span>, to <a class="reference internal" href="#equation-minres">(3.1)</a>. Since they both solve the normal equations we have <span class="math notranslate nohighlight">\(\widetilde{v} = \widetilde{u} + z\)</span> with <span class="math notranslate nohighlight">\(z \in \mathcal{N}(K)\)</span>. It follows that <span class="math notranslate nohighlight">\(\|\widetilde{v}\|_{\mathcal{U}}^2 = \|\widetilde{u}\|_{\mathcal{U}}^2 + 2\langle \widetilde{u}, z \rangle_{\mathcal{U}} + \|z\|_{\mathcal{U}}^2\)</span>. Since <span class="math notranslate nohighlight">\(\widetilde{u} \in \mathcal{N}(K)^\perp\)</span> we have  <span class="math notranslate nohighlight">\(\langle \widetilde{u}, z \rangle_{\mathcal{U}} = 0\)</span> and hence <span class="math notranslate nohighlight">\(\|\widetilde{v}\|_{\mathcal{U}} \geq \|\widetilde{u}\|_{\mathcal{U}}\)</span> with equality only obtained when <span class="math notranslate nohighlight">\(z = 0\)</span>.</p>
 </div>
+</div>
+<hr class="docutils" />
+<p>The Moore-Penrose pseudo-inverse of <span class="math notranslate nohighlight">\(K\)</span> gives us a way to construct the minimum-norm solution defined above. We can think of this pseudo-inverse as the inverse of a restricted forward operator.</p>
+<div class="admonition-definition-moore-penrose-inverse admonition">
+<p class="admonition-title">Definition: <em>Moore-Penrose inverse</em></p>
+<p>Given an bounded linear operator <span class="math notranslate nohighlight">\(K:\mathcal{U}\rightarrow \mathcal{F}\)</span> we denote its restriction to <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp\)</span> as <span class="math notranslate nohighlight">\(\widetilde{K}:\mathcal{N}(K)^\perp\rightarrow\mathcal{R}(K)\)</span>. The M-P inverse <span class="math notranslate nohighlight">\(K^\dagger: \mathcal{R}(K)\oplus\mathcal{R}(K)^\perp \rightarrow \mathcal{N}(K)^\perp\)</span> is defined as the unique linear extension of <span class="math notranslate nohighlight">\(\widetilde{K}^{-1}\)</span> with <span class="math notranslate nohighlight">\(\mathcal{N}(K^\dagger) = \mathcal{R}(K)^\perp\)</span>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title"><em>The range of <span class="math notranslate nohighlight">\(K\)</span></em></p>
+<p>Let <span class="math notranslate nohighlight">\(u\in\mathcal{R}(K^\dagger)\)</span>, then there exists a <span class="math notranslate nohighlight">\(f\in\mathcal{D}(K^\dagger)\)</span> such that <span class="math notranslate nohighlight">\(u = K^\dagger f\)</span>. By definition we can decompose <span class="math notranslate nohighlight">\(f = f_1 + f_2\)</span> with <span class="math notranslate nohighlight">\(f_1\in\mathcal{R}(K)\)</span>, <span class="math notranslate nohighlight">\(f_2 \in \mathcal{R}(K)^\perp\)</span>. Thus <span class="math notranslate nohighlight">\(K^\dagger f = K^\dagger f_1 = \widetilde{K}^{-1}f_1\)</span>. Hence, <span class="math notranslate nohighlight">\(u \in \mathcal{R}(\widetilde{K}^{-1}) = \mathcal{N}(K)^\perp\)</span>. This establishes that <span class="math notranslate nohighlight">\(\mathcal{R}(K^\dagger)\subseteq \mathcal{N}(K)^\perp\)</span>. Conversely, let <span class="math notranslate nohighlight">\(u\in\mathcal{N}(K)^\perp\)</span>. Then <span class="math notranslate nohighlight">\(u = \widetilde{K}^{-1}\widetilde{K} = K^\dagger K u\)</span>, whence <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp \subseteq \mathcal{R}(K^\dagger)\)</span>. We conclude that <span class="math notranslate nohighlight">\(\mathcal{R}(K^\dagger) = \mathcal{N}(K)^\perp\)</span>.</p>
+</div>
+</div>
+<p>The pseudo-inverse satisfies a few usefull relations:</p>
 <div class="important admonition">
-<p class="admonition-title">Theorem: <em>existence and uniquness of the pseudo-inverse</em></p>
+<p class="admonition-title">Theorem: <em>Moore-Penrose equations</em></p>
 <ul class="simple">
-<li><p>The pseudo-inverse <span class="math notranslate nohighlight">\(K^{\dagger}: \mathcal{R}(K)^\perp \oplus \mathcal{R}(K) \rightarrow \mathcal{U}\)</span> is unique and obeys certain useful relations:</p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(KK^\dagger K = K\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(K^\dagger K K^\dagger = K^\dagger\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(K^\dagger K = I - P_{\mathcal{N}(K)}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(K^\dagger\)</span> is continuous if <span class="math notranslate nohighlight">\(\mathcal{R}(K)\)</span> is closed.</p></li>
-</ul>
+<li><p>The M-P pseudo-inverse <span class="math notranslate nohighlight">\(K^{\dagger}: \mathcal{R}(K)^\perp \oplus \mathcal{R}(K) \rightarrow \mathcal{N}(K)^\perp\)</span> is unique and obeys the following useful relations:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(KK^\dagger = \left.P_{\overline{\mathcal{R}(K)}}\right|_{\mathcal{D}(K^\dagger)}.\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(K^\dagger K = I - P_{\mathcal{N}(K)},\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(K^\dagger K K^\dagger = K^\dagger,\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(KK^\dagger K = K,\)</span></p></li>
+</ol>
 </li>
 </ul>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<ol class="simple">
+<li><p>Decompose <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K^\dagger)\)</span> as <span class="math notranslate nohighlight">\(f = f_1 + f_2\)</span> with <span class="math notranslate nohighlight">\(f_1\in\mathcal{R}(K)\)</span>, <span class="math notranslate nohighlight">\(f_2\in\mathcal{R}(K)^\perp\)</span> and use that <span class="math notranslate nohighlight">\(K = \widetilde{K}\)</span> on <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp\)</span>. Then <span class="math notranslate nohighlight">\(KK^\dagger f = K\widetilde{K}^{-1}f_1 = f_1\)</span>. Hence, <span class="math notranslate nohighlight">\(KK^\dagger\)</span> acts an orthogonal projection of <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K^\dagger)\)</span> on <span class="math notranslate nohighlight">\(\overline{\mathcal{R}(K)}\)</span>.</p></li>
+<li><p>Decompose <span class="math notranslate nohighlight">\(u \in \mathcal{U}\)</span> in two parts <span class="math notranslate nohighlight">\(u = u_1 + u_2\)</span> with <span class="math notranslate nohighlight">\(u_1 \in \mathcal{N}(K)\)</span>, <span class="math notranslate nohighlight">\(u_2\in\mathcal{N}(K)^\perp\)</span>
+we have <span class="math notranslate nohighlight">\(K^\dagger K u = K^\dagger K u_1 = u_1\)</span>, so <span class="math notranslate nohighlight">\(KK^\dagger\)</span> acts like an orthogonal projection on <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp\)</span> so <span class="math notranslate nohighlight">\(KK^\dagger = I - P_{\mathcal{N}(K}\)</span> (note that the orthogonal complement of a subspace is always closed).</p></li>
+<li><p>Since <span class="math notranslate nohighlight">\(KK^\dagger\)</span>  projects onto <span class="math notranslate nohighlight">\(\overline{R}(K)\)</span>, it filters out any components in <span class="math notranslate nohighlight">\(f\)</span> in the null-space of <span class="math notranslate nohighlight">\(K^\dagger\)</span> which would disappear anyway.</p></li>
+<li><p>Since <span class="math notranslate nohighlight">\(K^\dagger K\)</span> projects on <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp\)</span> if filters out any components in the null-space of <span class="math notranslate nohighlight">\(K\)</span>, which would disappear anyway.</p></li>
+</ol>
 </div>
+</div>
+<p>With these, we can show that the minimum-norm solution to <a class="reference internal" href="#equation-minres">(3.1)</a> is obtained by applying the pseudo-inverse to the data.</p>
 <div class="important admonition">
-<p class="admonition-title">Theorem: <em>existence and uniqueness of the minimum-norm solution</em></p>
-<ul class="simple">
-<li><p>The minimum-norm solution is unique and is given in terms of the pseudo-inverse <span class="math notranslate nohighlight">\(\widetilde{u} = K^{\dagger}f\)</span></p></li>
-</ul>
+<p class="admonition-title">Theorem: <em>minimum-norm solution</em></p>
+<p>Let <span class="math notranslate nohighlight">\(K\)</span> be a bounded linear operator with pseudo-inverse <span class="math notranslate nohighlight">\(K^{\dagger}\)</span> and <span class="math notranslate nohighlight">\(f \in \mathcal{D}(K^\dagger)\)</span>, then the unique minimum-norm solution to <a class="reference internal" href="#equation-minres">(3.1)</a> is given by</p>
+<div class="math notranslate nohighlight">
+\[\widetilde{u} = K^\dagger f.\]</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>We know that for <span class="math notranslate nohighlight">\(f \in \mathcal{D}(K^\dagger)\)</span> the minimum-norm solution <span class="math notranslate nohighlight">\(\widetilde{u} \in \mathcal{N}(K)^\dagger\)</span> exists and unique. Using the fact that <span class="math notranslate nohighlight">\(K\widetilde{u} = P_{\overline{\mathcal{R}(K)}}f\)</span> and the M-R equations, we have <span class="math notranslate nohighlight">\(\widetilde{u} = (I - P_{\mathcal{N}}(K))\widetilde{u} = K^\dagger K\widetilde{u} = K^\dagger P_{\overline{\mathcal{R}(K)}}f = K^\dagger K K^\dagger f = K^\dagger f\)</span>.</p>
+</div>
+</div>
+<p>When defining the the solution through the M-P pseudo-inverse, we have existence uniqueness of the minimum-norm to <a class="reference internal" href="#equation-minres">(3.1)</a>. However, we cannot expect stability in general. For this, we would need <span class="math notranslate nohighlight">\(K^{\dagger}\)</span> to be continuous. To see this, consider noisy data <span class="math notranslate nohighlight">\(f^{\delta} = f + e\)</span> with <span class="math notranslate nohighlight">\(\|e\|\leq \delta\)</span>. For stability of the solution we need to bound the difference between the corresponding solutions <span class="math notranslate nohighlight">\(\widetilde{u}\)</span>, <span class="math notranslate nohighlight">\(\widetilde{u}^\delta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\|\widetilde{u} - \widetilde{u}^\delta\|_{\mathcal{U}} = \|K^{\dagger}e\|_{\mathcal{F}},\]</div>
+<p>which we can only do when <span class="math notranslate nohighlight">\(K^\dagger\)</span> is continous.</p>
+<div class="important admonition">
+<p class="admonition-title">Theorem: <em>continuity of the M-P pseudo-inverse</em></p>
+<p>The pseudo-inverse <span class="math notranslate nohighlight">\(K^\dagger\)</span> of <span class="math notranslate nohighlight">\(K\)</span> is continuous iff <span class="math notranslate nohighlight">\(\mathcal{R}(K)\)</span> is closed.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>…</p>
+</div>
 </div>
 <div class="admonition-example-pseudo-inverse-of-a-bounded-operator admonition">
 <p class="admonition-title">Example: pseudo-inverse of a bounded operator</p>
@@ -385,40 +472,47 @@
 </div>
 <div class="section" id="compact-operators">
 <h2><span class="section-number">3.2. </span>Compact operators<a class="headerlink" href="#compact-operators" title="Permalink to this headline">¶</a></h2>
-<p>An important subspace of the Bounded operators is that of the <a class="reference external" href="https://en.wikipedia.org/wiki/Compact_operator">compact operators</a>. They can be thought of as a natural generalisation of matrices to the infinite-dimensional setting. Hence, we can generalise the notions from the <a class="reference internal" href="discrete_ip_regularization.html"><span class="doc std std-doc">finite-dimensional setting</span></a> to the infinite-dimensional setting.</p>
+<p>An important class the Bounded operators are the <a class="reference external" href="https://en.wikipedia.org/wiki/Compact_operator">compact operators</a>. They can be thought of as a natural generalisation of matrices to the infinite-dimensional setting. Hence, we can generalise the notions from the <a class="reference internal" href="discrete_ip_regularization.html"><span class="doc std std-doc">finite-dimensional setting</span></a> to the infinite-dimensional setting.</p>
+<hr class="docutils" />
 <p>There are a number of equivalent definitions of compact operators. We will use the following.</p>
 <div class="important admonition">
 <p class="admonition-title">Definitition: <em>Compact operator</em></p>
-<p>An operator <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> with <span class="math notranslate nohighlight">\(\mathcal{U},\mathcal{F}\)</span> Hilbert spaces, is called compact it can be expressed as</p>
+<p>An operator <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> with <span class="math notranslate nohighlight">\(\mathcal{U},\mathcal{F}\)</span> Hilbert spaces, is called <em>compact</em> it can be expressed as</p>
 <div class="math notranslate nohighlight">
 \[
 K = \sum_{j=1}^{\infty} \sigma_j \langle \cdot, u_j\rangle_{\mathcal{U}}v_j,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\{u_i\}\)</span> and <span class="math notranslate nohighlight">\(\{v_i\}\)</span> are orthonormal bases of <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp\)</span> and <span class="math notranslate nohighlight">\(\overline{\mathcal{R}(K)}\)</span> and
-<span class="math notranslate nohighlight">\(\{\sigma_i\}\)</span> is a null-sequence. We call <span class="math notranslate nohighlight">\(\{(u_i, v_i, \sigma_i)\}\)</span> the singular system of <span class="math notranslate nohighlight">\(K\)</span>.</p>
+<span class="math notranslate nohighlight">\(\{\sigma_i\}\)</span> is a null-sequence (i.e., <span class="math notranslate nohighlight">\(\lim_{i\rightarrow \infty} \sigma_i = 0\)</span>). We call <span class="math notranslate nohighlight">\(\{(u_i, v_i, \sigma_i)\}\)</span> the singular system of <span class="math notranslate nohighlight">\(K\)</span>. The singular system obeys</p>
+<div class="math notranslate nohighlight">
+\[Ku_j = \sigma_k v_j, \quad K^*v_j = \sigma_j u_j.\]</div>
 </div>
 <p>An important subclass of the compact operators are the <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert%E2%80%93Schmidt_integral_operator">Hilbert-Schmidt integral operators</a>, which can be written as</p>
 <div class="math notranslate nohighlight">
 \[Ku(x) = \int_{\Omega} k(x,y) u(y) \mathrm{d}y,\]</div>
 <p>where <span class="math notranslate nohighlight">\(k: \Omega \times \Omega \rightarrow \mathbb{R}\)</span> is a Hilbert-Schmidt kernel obeying <span class="math notranslate nohighlight">\(\|k\|_{L^2(\Omega\times\Omega)} &lt; \infty\)</span> (i.e., it is square-integrable).</p>
 <hr class="docutils" />
-<p>The pseudo-inverse of such an operator is defined analogously to the finite-dimensional setting:</p>
+<p>The pseudo-inverse of a compact operator is defined analogously to the finite-dimensional setting:</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Pseudo-inverse of a compact operator</em></p>
 <p>The pseudo-inverse of a compact operator <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> is expressed as</p>
 <div class="math notranslate nohighlight">
 \[
-K^{\dagger} = \sum_{j=1}^{\infty} \sigma_j^{-1} \langle \cdot, v_j\rangle_{\mathcal{F}}u_j.
+K^{\dagger} = \sum_{j=1}^{\infty} \sigma_j^{-1} \langle \cdot, v_j\rangle_{\mathcal{F}}u_j,
 \]</div>
+<p>where <span class="math notranslate nohighlight">\(\{(u_i, v_i, \sigma_i)\}\)</span> is the singular system of <span class="math notranslate nohighlight">\(K\)</span></p>
 </div>
 <p>With this we can precisely state the Picard condition.</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Picard condition</em></p>
 <p>Given a compact operator <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> and <span class="math notranslate nohighlight">\(f \in \mathcal{F}\)</span>, we have that <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)\)</span> iff</p>
 <div class="math notranslate nohighlight" id="equation-picard">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-picard" title="Permalink to this equation">¶</a></span>\[\sum_{j=1}^{\infty} \frac{|\langle f, v_j\rangle_{\mathcal{V}}|^2}{\sigma_j^2} &lt; \infty.\]</div>
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-picard" title="Permalink to this equation">¶</a></span>\[\sum_{j=1}^{\infty} \frac{|\langle f, v_j\rangle_{\mathcal{V}}|^2}{\sigma_j^2} &lt; \infty.\]</div>
 </div>
-<p>We conclude with the important remark that a solution to the inverse problem <span class="math notranslate nohighlight">\(Ku=f\)</span> only exists if <span class="math notranslate nohighlight">\(f\)</span> satisfies the Picard condition.</p>
+<div class="important admonition">
+<p class="admonition-title">Remark : <em>Ill-posedness of inverse problems with compact operators</em></p>
+<p>For inverse problems with compact operators we can thus use the <em>Picard condition</em> to check if <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)\)</span> and thus if <a class="reference internal" href="#equation-minres">(3.1)</a> has a solution. Although this establishes existence and uniqueness through the pseudo-inverse, it does not guarantee stability as <span class="math notranslate nohighlight">\(\sigma_i \rightarrow 0\)</span>. If <span class="math notranslate nohighlight">\(\sigma_j\)</span> decays expontially, we call the problem severely ill-posed, otherwise we call it mildly ill-posed.</p>
+</div>
 <div class="admonition-example-a-sequence-operator admonition">
 <p class="admonition-title">Example: a sequence operator</p>
 <p>Consider the operator <span class="math notranslate nohighlight">\(K:\ell^2 \rightarrow \ell^2\)</span>, given by</p>
@@ -684,7 +778,7 @@ K = h\cdot\left(\begin{matrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  3.598255291978481
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  3.356705795240284
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_6_1.png" src="_images/ip_function_spaces_6_1.png" />
