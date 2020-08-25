@@ -44,6 +44,8 @@ $$\|K\widetilde{u} - f\| \leq \|Ku - f\|, \quad \forall u \in \widetilde{U}.$$
 
 If such a vector exists we call it the *minimum-residual* solution. If the null-space of $K$ is non-empty, we can construct infinitely many such solutions. We call the one with the smallest norm the *minimum-norm* solution. Note however that we have not yet proven that such a solution exists in general, nor do we have a constructive way of finding it.
 
+## Bounded operators on Hilbert spaces
+
 To study well-posedness of {eq}`minres` we will let $\mathcal{U}$ and $\mathcal{F}$ be [Hilbert spaces](https://en.wikipedia.org/wiki/Hilbert_space). We will return to analysing variational problems more generally in a [later chapter](./variational_formulations).
 
 ---
@@ -59,7 +61,7 @@ $$\mathcal{X}^\perp = \{u\in\mathcal{U} \, | \, \langle u, v \rangle_{\mathcal{U
 If $\mathcal{X}$ is a [closed subspace](https://en.wikipedia.org/wiki/Closed_set) we have $(\mathcal{X}^\perp)^\perp = \mathcal{X}$ and we have an orthogonal decomposition of $\mathcal{U}$: $\mathcal{U} = \mathcal{X} + \mathcal{X}^\perp$, meaning that we can express *any* $u\in \mathcal{U}$ as $u = x + x^\perp$ with $x\in\mathcal{X}$ and $x^\perp\in\mathcal{X}^\perp$.
 The [orthogonal projection](https://en.wikipedia.org/wiki/Projection_(linear_algebra)) onto $\mathcal{X}$ is denoted by $P_{\mathcal{X}}$. We briefly recall a few usefull relations
 
-```{admonition} Lemma : *orthogonal projection*
+```{admonition} Lemma : *Orthogonal projection*
 :class: important
 
 Let $\mathcal{X} \subset \mathcal{U}$ be a closed subspace. The orthogonal projection onto $\mathcal{X}$ satisfies the following conditions
@@ -90,7 +92,7 @@ from which we conclude that we can decompose $\mathcal{U}$ and $\mathcal{F}$ as
 
 We now have the following results
 
-````{admonition} Theorem: *existence and uniqueness of the minimum-residual, minimum-norm solution*
+````{admonition} Theorem: *Existence and uniqueness of the minimum-residual, minimum-norm solution*
 :class: important
 
 Given a bounded linear operator $K$ and $f \in \mathcal{F}$, a solution $\widetilde{u}$ to {eq}`minres`
@@ -133,7 +135,7 @@ Let $u\in\mathcal{R}(K^\dagger)$, then there exists a $f\in\mathcal{D}(K^\dagger
 
 ````
 
-The pseudo-inverse satisfies a few usefull relations:
+The pseudo-inverse satisfies a few useful relations:
 
 ````{admonition} Theorem: *Moore-Penrose equations*
 :class: important
@@ -161,7 +163,7 @@ we have $K^\dagger K u = K^\dagger K u_1 = u_1$, so $KK^\dagger$ acts like an or
 
 With these, we can show that the minimum-norm solution to {eq}`minres` is obtained by applying the pseudo-inverse to the data.
 
-````{admonition} Theorem: *minimum-norm solution*
+````{admonition} Theorem: *Minimum-norm solution*
 :class: important
 
 Let $K$ be a bounded linear operator with pseudo-inverse $K^{\dagger}$ and $f \in \mathcal{D}(K^\dagger)$, then the unique minimum-norm solution to {eq}`minres` is given by
@@ -183,7 +185,7 @@ $$\|\widetilde{u} - \widetilde{u}^\delta\|_{\mathcal{U}} = \|K^{\dagger}e\|_{\ma
 which we can only do when $K^\dagger$ is continous.
 
 
-````{admonition} Theorem: *continuity of the M-P pseudo-inverse*
+````{admonition} Theorem: *Continuity of the M-P pseudo-inverse*
 :class: important
 
 The pseudo-inverse $K^\dagger$ of $K$ is continuous iff $\mathcal{R}(K)$ is closed.
@@ -191,12 +193,38 @@ The pseudo-inverse $K^\dagger$ of $K$ is continuous iff $\mathcal{R}(K)$ is clos
 ```{admonition} Proof
 :class: dropdown
 
-...
+For the proof, we refer to Thm 2.5 of [these lecture notes](https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf).
 ```
 ````
 
-```{admonition} Example: pseudo-inverse of a bounded operator
-Some example
+```{admonition} Example: Pseudo-inverse of a bounded operator
+Consider the following forward operator
+
+$$Ku(x) = \int_{-\infty}^\infty k(x-y)u(y)\mathrm{d}y,$$
+
+with $k, u \in L^{1}(\mathbb{R})$. [Young's inequality](https://en.wikipedia.org/wiki/Young%27s_convolution_inequality) tells us that $\|Ku\|_{L^1(\mathbb{R})} \leq \|k\|_{L^1(\mathbb{R})} \cdot \|u\|_{L^1(\mathbb{R})}$ and hence that $K$ is bounded.
+
+We can alternatively represent $K$ using [convolution theorem](https://en.wikipedia.org/wiki/Convolution_theorem) as
+
+$$Ku(x) = F^{-1} (\widehat{k} \widehat{u}) (x),$$
+
+where $F : L^1(\mathbb{R}) \rightarrow L^{\infty}(\mathbb{R})$ denotes the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform#On_L1) and $\widehat{k} = Fk$, $\widehat{u} = Fu$.
+
+This suggests defining the inverse of $K$ as
+
+$$K^{-1}f = F^{-1} (\widehat{f} / \widehat{k}).$$
+
+We note here that, by the [Riemann–Lebesgue lemma](https://en.wikipedia.org/wiki/Riemann%E2%80%93Lebesgue_lemma), the Fourier transform of $k$ tends to zero at infinity. This means that the inverse of $K$ is only well-defined when $\widehat{f}$ decays faster than $\widehat{k}$. However, we can expect problems when $\widehat{k}$ has roots as well.
+
+As a concrete example, consider $k = \text{sinc}(x)$ with $\widehat{k}(\xi) = H(\xi+1/2)-H(\xi-1/2)$. The forward operator then bandlimits the input. Can you think of a function in the null-space of $K$?
+
+The pseudo-inverse may now be defined as
+
+$$K^{\dagger}f = F^{-1} B \widehat{f},$$
+
+where
+
+$$B\widehat{f}(\xi) = \begin{cases} \widehat{f}(\xi) & |\xi| \leq 1/2 \\ 0 & \text{otherwise}\end{cases}.$$
 ```
 
 
@@ -260,57 +288,65 @@ Given a compact operator $K: \mathcal{U} \rightarrow \mathcal{F}$ and $f \in \ma
 ```{admonition} Remark : *Ill-posedness of inverse problems with compact operators*
 :class: important
 
-For inverse problems with compact operators we can thus use the *Picard condition* to check if $f \in \mathcal{R}(K)$ and thus if {eq}`minres` has a solution. Although this establishes existence and uniqueness through the pseudo-inverse, it does not guarantee stability as $\sigma_i \rightarrow 0$. If $\sigma_j$ decays expontially, we call the problem severely ill-posed, otherwise we call it mildly ill-posed.
+For inverse problems with compact operators we can thus use the *Picard condition* to check if $f \in \mathcal{R}(K)$ and thus if {eq}`minres` has a solution. Although this establishes existence and uniqueness through the pseudo-inverse, it does not guarantee stability as $\sigma_i \rightarrow 0$. If $\sigma_j$ decays exponentially, we call the problem severely ill-posed, otherwise we call it mildly ill-posed.
 ```
 
-````{admonition} Example: a sequence operator
+````{admonition} Example: A sequence operator
+
 Consider the operator $K:\ell^2 \rightarrow \ell^2$, given by
 
 $$
-	u = (u_1,u_2,...) \mapsto (u_1,\frac{1}{2}u_2,\frac{1}{3}u_3,...),
+	u = (u_1,u_2,...) \mapsto (0,u_2,\frac{1}{2}u_3,...),
 $$
 
 i.e. we have an infinite matrix operator of the form
 
 $$
-\left(Ku\right)_i = \sum_{j=1}^\infty a_{ij} u_j := i^{-1} u_i, \quad i = 1,2,...
+K =
+\left(\begin{matrix}
+0 &             &             &        & \\
+  & 1           &             &        & \\
+  &             & \frac{1}{2} &        & \\
+  &             &             & \ddots & \\
+\end{matrix}\right)
 $$
 
 The operator is obviously linear. To show that is bounded we'll compute its norm:
 
 $$
-\|K\| = \sup_{u \neq 0} \frac{\|K(u)\|_{\ell^2}}{\|u\|_{\ell^2}} = 1.
+\|K\| = \sup_{u \neq 0} \frac{\|Ku\|_{\ell^2}}{\|u\|_{\ell^2}} = 1.
 $$
 
 ```{note}
 :class: dropdown
-Indeed, we find...
+We can fix $\|u\|_{\ell_2} = 1$ and verify that the maximum is obtained for $u = (0,1,0,\ldots)$ leading to $\|K\| = 1$.
 ```
 
 To show that the operator is compact, we explicitly construct its singular system, giving:
-$u_i = v_i = e_i$ with $e_i$ the $i^{\text{th}}$ canonical basis vector and $\sigma_i = i^{-1}$.
+$u_i = v_i = e_i$ with $e_i$ the $i^{\text{th}}$ canonical basis vector and $\sigma_1 = 0$, $\sigma_{i} = (i-1)^{-1}$ for $i > 1$.
 
 ```{note}
 :class: dropdown
-Indeed, it is easily verified that...
+Indeed, it is easily verified that $Ke_i = \sigma_i e_i$.
 ```
 
-Now consider obtaining a solution for $f_i = i^{-1}$. We would naively set $u_j = j \cdot f_j$, but we can easily verify that a solution does not exist for this particular sequence $f$.
+The pseudo inverse is then defined as
 
-```{note}
-:class: dropdown
-Indeed, it is easily verified that...
-```
+$$
+K^{\dagger} =
+\left(\begin{matrix}
+0 &             &             &        & \\
+  & 1           &             &        & \\
+  &             & 2           &        & \\
+  &             &             & \ddots & \\
+\end{matrix}\right)
+$$
 
-Next, consider obtaining a solution for $f_i = i^{-2}$. In this case, the solution is given by $u = (1, 1/2, 1/3, \ldots)$.
+This immediately shows that $K^\dagger$ is not bounded. Now consider obtaining a solution for $f = (0,1,\textstyle{\frac{1}{2}}, \textstyle{\frac{1}{3}})$. Applying the pseudo-inverse would yield $Kf = (0,1, 1, \ldots)$ which is not in $\ell_2$. Indeed, we can show that $f \not\in \mathcal{R}(K) \oplus \mathcal{R}(K)^\perp$. The problem here is that the range of $K$ is not closed.
 
-```{note}
-:class: dropdown
-Indeed, it is easily verified that...
-```
 ````
 
-````{admonition} Example: differentiation
+````{admonition} Example: Differentiation
 
 Consider
 
@@ -326,16 +362,16 @@ $$
 Ku(x) = \int_0^1 k(x,y)u(y)\mathrm{d}y,
 $$
 
-with $k(x,y) = H(x-y)$, where $H$ denotes the Heaviside stepfunction. The operator is obviously compact with $\|K\| = ..$.
+with $k(x,y) = H(x-y)$, where $H$ denotes the Heaviside stepfunction. The operator is compact because $k$ is square integrable.
 
 ```{note}
 :class: dropdown
 
-Computing
+Indeed, we have
 
-$$\int_0^1 \int_0 ^1 |k(x,y)|^2 \mathrm{d}x\mathrm{d}y = ...$$
+$$\int_0^1 \int_0^1 |k(x,y)|^2 \mathrm{d}x\mathrm{d}y = \textstyle{\frac{1}{2}}.$$
 
-we conclude that $k$ is a Hilbert-Schmidt kernel and hence that $K$ is compact. Moreover, we have that $\|K\| = \|k\|_{L^2} = ...$.
+We conclude that $k$ is a Hilbert-Schmidt kernel and hence that $K$ is compact.
 
 ```
 
@@ -348,7 +384,10 @@ $$
 ```{note}
 :class: dropdown
 
-Using the definition ...
+Using the definition we find
+
+$$K^*f(y) = \int_0^1 k(x,y)f(x)\mathrm{d}x = \int_y^1 f(x)\mathrm{d}x.$$
+
 ```
 
 The singular system is given by
@@ -403,7 +442,7 @@ $$
 and the pseudo-inverse by
 
 $$
-K^{\dagger}f(x) = \sum_{k=0}^\infty \frac{\langle f, u_k\rangle}{(k+1/2)\pi} v_k(x).
+K^{\dagger}f(x) = \pi\sum_{k=0}^\infty (k+1/2)\langle f, u_k\rangle v_k(x).
 $$
 
 We can now study the ill-posedness of the problem by looking at the Picard condition
@@ -449,7 +488,7 @@ $$
 
 ### Truncation and Tikhonov regularisation
 
-In the previous section we saw that the pseudo-inverse of a compact operator is not bounded (continuous). To counter this, we introduce the regularized pseudo-inverse:
+In the previous section we saw that the pseudo-inverse of a compact operator is not bounded (continuous) in general. To counter this, we introduce the regularized pseudo-inverse:
 
 $$
 K_{\alpha}^{\dagger}f = \sum_{k=0}^{\infty} g_{\alpha}(\sigma_k) \langle f, u_k\rangle v_k,
@@ -467,46 +506,87 @@ $$
 g_{\alpha}(s) = \begin{cases} s^{-1} & \text{if}\, s > \alpha \\ 0 & \text{otherwise} \end{cases}.
 $$
 
-Given noisy data $f^{\delta} = Ku + e$ with $\|e\| \leq \delta$, we can now study the effect of regularisation by studying the error. Introducing $u^{\delta,\alpha} = K_{\alpha}^\dagger f^{\delta}$, the total reconstruction error is now given by
+We can show that the regularized pseudo inverse, $K_{\alpha}^{\dagger}$, is bounded for $\alpha > 0$ and converges pointwise to $K^\dagger$ as $\alpha \rightarrow 0$.
+
+Given noisy data $f^{\delta} = f + e$ with $\|e\| \leq \delta$, we can now study the effect of regularisation by studying the error. The total error is now given by
 
 $$
-\|u^{\delta,\alpha} - u\| = \|K_{\alpha}^\dagger f^{\delta} - u\| \leq \|(I - K_{\alpha}^\dagger K)\|\|u\| + \delta \|K_{\alpha}^\dagger\|,
+\|K_{\alpha}^\dagger f^\delta - K^\dagger f\|_{\mathcal{U}} \leq \|K_{\alpha}^\dagger f - K^\dagger f\|_{\mathcal{U}} + \delta \|K_{\alpha}^\dagger\|,
 $$
 
-in which we recognise the \emph{bias} and \emph{variance} contributions. We can re-write this in terms of the relative error as
+in which we recognise the *bias* and *variance* contributions.
 
-$$
-\frac{\|u^{\delta,\alpha} - u\|}{\|u\|} \leq \|(I - K_{\alpha}^\dagger K)\| + \delta \|K\|\|K_{\alpha}^\dagger\|.
-$$
-
-Note, however, that these upperbounds may be useless in practice and more detailed analysis incorporating the type of noise and the class of images $u$ that we are interested in is needed.
-
-Two main question arise:
-
-* For $\delta = 0$, does the bias converge to zero as $\alpha \downarrow 0$?
-* How should one choose $\alpha$ for a given $\delta$ to minimize the total error?
-
+This upperbound may be useful to study asymptotic properties of the problem. In particular, one is sometimes interested in the *convergence rate*, which aims to bound the bias and variance in terms of $\delta^\nu$ for some $0 < \nu < 1$. These bounds may be too loose to be used in practice, however, and more detailed analysis incorporating the type of noise and the class of images $u$ that we are interested in is needed.
 
 ### Generalised Tikhonov regularisation
 
 We have seen in the finite-dimensional setting that Tikhonov regularization may be defined through a variational problem:
 
 $$
-\min_{u} \|Ku - f\|^2 + \alpha \|u\|^2.
+\min_{u} \|Ku - f\|^2_{\mathcal{F}} + \alpha \|u\|^2_{\mathcal{U}}.
 $$
 
-It turns out we can do the same in the infinite-dimensional setting as long as we use the correct (Hilbert-space) norm. Generalised Tikhonov regularisation is defined in a simular manner through the variation problem
+It turns out we can do the same in the infinite-dimensional setting. Indeed, we can show that the corresponding normal equations are given by
+
+$$(K^*\!K + \alpha I)u = K^*f.$$
+
+Generalised Tikhonov regularisation is defined in a similar manner through the variation problem
 
 $$
-\min_{u} \|Ku - f\|^2 + \alpha \|Lu\|^2,
+\min_{u} \|Ku - f\|^2_{\mathcal{F}} + \alpha \|Lu\|^2_{\mathcal{V}},
 $$
 
-where $L$ is a compact operator. In many applications, $L$ is a differential operator. This can be used to impose smoothness on the solution.
+where $L:\mathcal{U}\rightarrow \mathcal{V}$ is a bounded linear operator. The corresponding normal equations can be shown to be
 
+$$(K^*\!K + \alpha L^*\!L)u = K^*f.$$
 
+We can expect a unique solution when the intersection of the kernels of $K$ and $L$ is empty. In many applications, $L$ is a differential operator. This can be used to impose smoothness on the solution.
+
+### Parameter-choice strategies
+
+Given a regularisation strategy with parameter $\alpha$, we need to pick $\alpha$. As mentioned earlier, we need to pick $\alpha$ to optimally balance between the bias and variance in the error. To highlight the basic flavours of parameter-choice strategies, we give three examples.
+
+```{admonition}: Example: *A-priori rules*
+
+Assuming that we know the noise level $\delta$, we can define a parameter-choice rule $\alpha(\delta)$. We call such a rule *convergent* iff
+
+$$\lim_{\delta\rightarrow 0} \alpha(\delta) = 0, \quad \lim_{\delta\rightarrow 0} \delta \|K_{\alpha}^\dagger\| = 0.$$
+
+With these requirements, we can easily show that the error $\|K_{\alpha}^\dagger f^{\delta} - K^\dagger f\|_{\mathcal{U}} \rightarrow 0$ as $\delta\rightarrow 0$.
+
+Such parameter-choice rules are nice in theory, but hard to design in practice.
+```
+
+```{admonition}: Example: *The discrepancy principle*
+
+Morozov's discrepancy principle chooses $\alpha$ such that
+
+$$\|KK_{\alpha}^\dagger f^{\delta} - f^{\delta}\|_{\mathcal{F}} \leq \eta \delta,$$
+
+with $\eta > 1$ a fixed parameter. This can be interpreted as finding an $\alpha$ for which the solution fits the data in accordance with the noise level. Note, however, that such an $\alpha$ may not exist if (a significant part of) $f^\delta$ lies in the kernel of $K^*$.
+```
+
+```{admonition}: Example: *The L-curve method*
+Here, we choose $\alpha$ via
+
+$$\min_{\alpha > 0} \|K_{\alpha}^\dagger f^\delta\|_{\mathcal{U}} \|KK_{\alpha}^\dagger f^\delta - f^\delta\|_{\mathcal{F}}.$$
+
+The name stems from the fact that the optimal $\alpha$ typically resides at the corner of the curve $(\|K_{\alpha}^\dagger f^\delta\|_{\mathcal{U}}, \|KK_{\alpha}^\dagger f^\delta - f^\delta\|_{\mathcal{F}})$.
+
+This rule has the practical advantage that no knowledge of the noise level is required. Unfortunately, it is not a convergent rule.
+```
 +++
 
 ## Exercises
+
++++
+
+### Convolution
+
+Consider the example in section [3.2](ip_function_spaces.html#bounded-operators-on-hilbert-spaces) with $k(x) = \exp(-x^2)$.
+
+* Is the inverse problem ill-posed?
+* For which functions $f$ is the inverse well-defined?
 
 +++
 
@@ -518,11 +598,12 @@ $$
 Ku(x) = \int_0^x u(y)\mathrm{d}y.
 $$
 
-We've seen in example {ref}`differentiation` that the inverse problem is ill-posed. Consider a regularized least-squares problem
+We've seen in the example that the inverse problem is ill-posed. Consider a regularised least-squares problem
 
 $$\min_{u} \|Ku - f\|^2 + \alpha \|u'\|^2,$$
 
-and analyse how this type of regularisation adressed the ill-posedness.
+with $\|\cdot\|$ denoting the $L^2([0,1])$-norm.
+Analyse how this type of regularisation addresses the ill-posedness.
 
 +++
 
@@ -576,6 +657,27 @@ plt.plot(x,ur,label='reconstruction')
 plt.legend()
 plt.show()
 ```
+
+### Convergent Tikhonov regularisation
+
+Consider the regularised pseudo-inverse
+
+$$K^\dagger_{\alpha} = \sum_{j=0}^\infty g_{\alpha}(\sigma_j) \langle u_j,\cdot\rangle v_j,$$
+
+and let $f^\delta = f + e$ with $\|e\|_{\mathcal{F}} \leq \delta$. You may assume that $f, f^{\delta}$ satisfy the Picard condition. We further let $g_{\alpha}(s) = \frac{s}{s^2 + \alpha}$ and $\alpha(\delta) = \delta /4$.
+
+
+1. Show that the variance term converges to zero as $\delta\rightarrow 0$:
+
+$$\|K_{\alpha}^\dagger e\|_{\mathcal{U}} = \mathcal{O}(\sqrt{\delta}).$$
+
+2. Show that the bias term converges to zero as $\delta\rightarrow 0$:
+
+$$\|K^\dagger_{\alpha} f - K^\dagger f\|_{\mathcal{U}} = \mathcal{O}(...)$$
+
+3. Under additional assumptions on the minimum-norm solution we can provide a faster convergence rate in 2. Assume that there exists a $w$ such that $K^\dagger f = (K^*K)^{\mu} w$. Show that
+
+$$\|K^\dagger_{\alpha} f - K^\dagger f\|_{\mathcal{U}} = \mathcal{O}(...)$$
 
 ### Convolution through the heat equation
 
@@ -707,7 +809,3 @@ Show that these lead to the following regularized pseudo-inverses
     2. $f_k = k^{-1}$
 
 4. Compute the bias and variance for $u(x) = \sin(k x)$ and  measurements $f^{\delta}(x) = Ku(x) + \delta \sin(\ell x)$ for fixed $k < \ell$ and $\delta$. Plot the bias and variance for well-chosen $k,\ell$ and $\delta$ and discuss the difference between the two types of regularization.
-
-```{code-cell} ipython3
-
-```
