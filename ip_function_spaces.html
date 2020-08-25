@@ -223,9 +223,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/ip_function_spaces.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/ip_function_spaces.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -240,7 +240,7 @@
     <div class="dropdown-buttons sourcebuttons">
         
         
-        <a class="edit-button" href="https://github.com/TristanvanLeeuwen/IP_and_Im_Lectures/edit/master/ip_function_spaces.ipynb"><button
+        <a class="edit-button" href="https://github.com/TristanvanLeeuwen/IP_and_Im_Lectures/edit/master/ip_function_spaces.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -269,50 +269,70 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bounded-operators-on-hilbert-spaces">
+   3.2. Bounded operators on Hilbert spaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#compact-operators">
-   3.2. Compact operators
+   3.3. Compact operators
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regularisation">
-   3.3. Regularisation
+   3.4. Regularisation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#truncation-and-tikhonov-regularisation">
-     3.3.1. Truncation and Tikhonov regularisation
+     3.4.1. Truncation and Tikhonov regularisation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#generalised-tikhonov-regularisation">
-     3.3.2. Generalised Tikhonov regularisation
+     3.4.2. Generalised Tikhonov regularisation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parameter-choice-strategies">
+     3.4.3. Parameter-choice strategies
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercises">
-   3.4. Exercises
+   3.5. Exercises
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convolution">
+     3.5.1. Convolution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#differentiation">
-     3.4.1. Differentiation
+     3.5.2. Differentiation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#discretisation">
-     3.4.2. Discretisation
+     3.5.3. Discretisation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convergent-tikhonov-regularisation">
+     3.5.4. Convergent Tikhonov regularisation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#convolution-through-the-heat-equation">
-     3.4.3. Convolution through the heat equation
+     3.5.5. Convolution through the heat equation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#convolution-on-a-finite-interval">
-     3.4.4. Convolution on a finite interval
+     3.5.6. Convolution on a finite interval
     </a>
    </li>
   </ul>
@@ -351,6 +371,9 @@
 <div class="math notranslate nohighlight">
 \[\|K\widetilde{u} - f\| \leq \|Ku - f\|, \quad \forall u \in \widetilde{U}.\]</div>
 <p>If such a vector exists we call it the <em>minimum-residual</em> solution. If the null-space of <span class="math notranslate nohighlight">\(K\)</span> is non-empty, we can construct infinitely many such solutions. We call the one with the smallest norm the <em>minimum-norm</em> solution. Note however that we have not yet proven that such a solution exists in general, nor do we have a constructive way of finding it.</p>
+</div>
+<div class="section" id="bounded-operators-on-hilbert-spaces">
+<h2><span class="section-number">3.2. </span>Bounded operators on Hilbert spaces<a class="headerlink" href="#bounded-operators-on-hilbert-spaces" title="Permalink to this headline">¶</a></h2>
 <p>To study well-posedness of <a class="reference internal" href="#equation-minres">(3.1)</a> we will let <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> be <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_space">Hilbert spaces</a>. We will return to analysing variational problems more generally in a <a class="reference internal" href="variational_formulations.html"><span class="doc std std-doc">later chapter</span></a>.</p>
 <hr class="docutils" />
 <p>First, we introduce the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose_of_a_linear_map">adjoint</a> of <span class="math notranslate nohighlight">\(K\)</span>, denoted by <span class="math notranslate nohighlight">\(K^*\)</span> in the usual way as satisfying</p>
@@ -362,7 +385,7 @@
 <p>If <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> is a <a class="reference external" href="https://en.wikipedia.org/wiki/Closed_set">closed subspace</a> we have <span class="math notranslate nohighlight">\((\mathcal{X}^\perp)^\perp = \mathcal{X}\)</span> and we have an orthogonal decomposition of <span class="math notranslate nohighlight">\(\mathcal{U}\)</span>: <span class="math notranslate nohighlight">\(\mathcal{U} = \mathcal{X} + \mathcal{X}^\perp\)</span>, meaning that we can express <em>any</em> <span class="math notranslate nohighlight">\(u\in \mathcal{U}\)</span> as <span class="math notranslate nohighlight">\(u = x + x^\perp\)</span> with <span class="math notranslate nohighlight">\(x\in\mathcal{X}\)</span> and <span class="math notranslate nohighlight">\(x^\perp\in\mathcal{X}^\perp\)</span>.
 The <a class="reference external" href="https://en.wikipedia.org/wiki/Projection_(linear_algebra)">orthogonal projection</a> onto <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> is denoted by <span class="math notranslate nohighlight">\(P_{\mathcal{X}}\)</span>. We briefly recall a few usefull relations</p>
 <div class="important admonition">
-<p class="admonition-title">Lemma : <em>orthogonal projection</em></p>
+<p class="admonition-title">Lemma : <em>Orthogonal projection</em></p>
 <p>Let <span class="math notranslate nohighlight">\(\mathcal{X} \subset \mathcal{U}\)</span> be a closed subspace. The orthogonal projection onto <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> satisfies the following conditions</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(P_{\mathcal{X}}\)</span> is self-adjoint,</p></li>
@@ -388,7 +411,7 @@ The <a class="reference external" href="https://en.wikipedia.org/wiki/Projection
 <hr class="docutils" />
 <p>We now have the following results</p>
 <div class="important admonition">
-<p class="admonition-title">Theorem: <em>existence and uniqueness of the minimum-residual, minimum-norm solution</em></p>
+<p class="admonition-title">Theorem: <em>Existence and uniqueness of the minimum-residual, minimum-norm solution</em></p>
 <p>Given a bounded linear operator <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(f \in \mathcal{F}\)</span>, a solution <span class="math notranslate nohighlight">\(\widetilde{u}\)</span> to <a class="reference internal" href="#equation-minres">(3.1)</a></p>
 <ul class="simple">
 <li><p>only exists if <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K) \oplus \mathcal{R}(K)^\perp\)</span></p></li>
@@ -418,7 +441,7 @@ The <a class="reference external" href="https://en.wikipedia.org/wiki/Projection
 <p>Let <span class="math notranslate nohighlight">\(u\in\mathcal{R}(K^\dagger)\)</span>, then there exists a <span class="math notranslate nohighlight">\(f\in\mathcal{D}(K^\dagger)\)</span> such that <span class="math notranslate nohighlight">\(u = K^\dagger f\)</span>. By definition we can decompose <span class="math notranslate nohighlight">\(f = f_1 + f_2\)</span> with <span class="math notranslate nohighlight">\(f_1\in\mathcal{R}(K)\)</span>, <span class="math notranslate nohighlight">\(f_2 \in \mathcal{R}(K)^\perp\)</span>. Thus <span class="math notranslate nohighlight">\(K^\dagger f = K^\dagger f_1 = \widetilde{K}^{-1}f_1\)</span>. Hence, <span class="math notranslate nohighlight">\(u \in \mathcal{R}(\widetilde{K}^{-1}) = \mathcal{N}(K)^\perp\)</span>. This establishes that <span class="math notranslate nohighlight">\(\mathcal{R}(K^\dagger)\subseteq \mathcal{N}(K)^\perp\)</span>. Conversely, let <span class="math notranslate nohighlight">\(u\in\mathcal{N}(K)^\perp\)</span>. Then <span class="math notranslate nohighlight">\(u = \widetilde{K}^{-1}\widetilde{K} = K^\dagger K u\)</span>, whence <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp \subseteq \mathcal{R}(K^\dagger)\)</span>. We conclude that <span class="math notranslate nohighlight">\(\mathcal{R}(K^\dagger) = \mathcal{N}(K)^\perp\)</span>.</p>
 </div>
 </div>
-<p>The pseudo-inverse satisfies a few usefull relations:</p>
+<p>The pseudo-inverse satisfies a few useful relations:</p>
 <div class="important admonition">
 <p class="admonition-title">Theorem: <em>Moore-Penrose equations</em></p>
 <ul class="simple">
@@ -444,7 +467,7 @@ we have <span class="math notranslate nohighlight">\(K^\dagger K u = K^\dagger K
 </div>
 <p>With these, we can show that the minimum-norm solution to <a class="reference internal" href="#equation-minres">(3.1)</a> is obtained by applying the pseudo-inverse to the data.</p>
 <div class="important admonition">
-<p class="admonition-title">Theorem: <em>minimum-norm solution</em></p>
+<p class="admonition-title">Theorem: <em>Minimum-norm solution</em></p>
 <p>Let <span class="math notranslate nohighlight">\(K\)</span> be a bounded linear operator with pseudo-inverse <span class="math notranslate nohighlight">\(K^{\dagger}\)</span> and <span class="math notranslate nohighlight">\(f \in \mathcal{D}(K^\dagger)\)</span>, then the unique minimum-norm solution to <a class="reference internal" href="#equation-minres">(3.1)</a> is given by</p>
 <div class="math notranslate nohighlight">
 \[\widetilde{u} = K^\dagger f.\]</div>
@@ -458,20 +481,38 @@ we have <span class="math notranslate nohighlight">\(K^\dagger K u = K^\dagger K
 \[\|\widetilde{u} - \widetilde{u}^\delta\|_{\mathcal{U}} = \|K^{\dagger}e\|_{\mathcal{F}},\]</div>
 <p>which we can only do when <span class="math notranslate nohighlight">\(K^\dagger\)</span> is continous.</p>
 <div class="important admonition">
-<p class="admonition-title">Theorem: <em>continuity of the M-P pseudo-inverse</em></p>
+<p class="admonition-title">Theorem: <em>Continuity of the M-P pseudo-inverse</em></p>
 <p>The pseudo-inverse <span class="math notranslate nohighlight">\(K^\dagger\)</span> of <span class="math notranslate nohighlight">\(K\)</span> is continuous iff <span class="math notranslate nohighlight">\(\mathcal{R}(K)\)</span> is closed.</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Proof</p>
-<p>…</p>
+<p>For the proof, we refer to Thm 2.5 of <a class="reference external" href="https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf">these lecture notes</a>.</p>
 </div>
 </div>
 <div class="admonition-example-pseudo-inverse-of-a-bounded-operator admonition">
-<p class="admonition-title">Example: pseudo-inverse of a bounded operator</p>
-<p>Some example</p>
+<p class="admonition-title">Example: Pseudo-inverse of a bounded operator</p>
+<p>Consider the following forward operator</p>
+<div class="math notranslate nohighlight">
+\[Ku(x) = \int_{-\infty}^\infty k(x-y)u(y)\mathrm{d}y,\]</div>
+<p>with <span class="math notranslate nohighlight">\(k, u \in L^{1}(\mathbb{R})\)</span>. <a class="reference external" href="https://en.wikipedia.org/wiki/Young%27s_convolution_inequality">Young’s inequality</a> tells us that <span class="math notranslate nohighlight">\(\|Ku\|_{L^1(\mathbb{R})} \leq \|k\|_{L^1(\mathbb{R})} \cdot \|u\|_{L^1(\mathbb{R})}\)</span> and hence that <span class="math notranslate nohighlight">\(K\)</span> is bounded.</p>
+<p>We can alternatively represent <span class="math notranslate nohighlight">\(K\)</span> using <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution_theorem">convolution theorem</a> as</p>
+<div class="math notranslate nohighlight">
+\[Ku(x) = F^{-1} (\widehat{k} \widehat{u}) (x),\]</div>
+<p>where <span class="math notranslate nohighlight">\(F : L^1(\mathbb{R}) \rightarrow L^{\infty}(\mathbb{R})\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Fourier_transform#On_L1">Fourier transform</a> and <span class="math notranslate nohighlight">\(\widehat{k} = Fk\)</span>, <span class="math notranslate nohighlight">\(\widehat{u} = Fu\)</span>.</p>
+<p>This suggests defining the inverse of <span class="math notranslate nohighlight">\(K\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[K^{-1}f = F^{-1} (\widehat{f} / \widehat{k}).\]</div>
+<p>We note here that, by the <a class="reference external" href="https://en.wikipedia.org/wiki/Riemann%E2%80%93Lebesgue_lemma">Riemann–Lebesgue lemma</a>, the Fourier transform of <span class="math notranslate nohighlight">\(k\)</span> tends to zero at infinity. This means that the inverse of <span class="math notranslate nohighlight">\(K\)</span> is only well-defined when <span class="math notranslate nohighlight">\(\widehat{f}\)</span> decays faster than <span class="math notranslate nohighlight">\(\widehat{k}\)</span>. However, we can expect problems when <span class="math notranslate nohighlight">\(\widehat{k}\)</span> has roots as well.</p>
+<p>As a concrete example, consider <span class="math notranslate nohighlight">\(k = \text{sinc}(x)\)</span> with <span class="math notranslate nohighlight">\(\widehat{k}(\xi) = H(\xi+1/2)-H(\xi-1/2)\)</span>. The forward operator then bandlimits the input. Can you think of a function in the null-space of <span class="math notranslate nohighlight">\(K\)</span>?</p>
+<p>The pseudo-inverse may now be defined as</p>
+<div class="math notranslate nohighlight">
+\[K^{\dagger}f = F^{-1} B \widehat{f},\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}B\widehat{f}(\xi) = \begin{cases} \widehat{f}(\xi) &amp; |\xi| \leq 1/2 \\ 0 &amp; \text{otherwise}\end{cases}.\end{split}\]</div>
 </div>
 </div>
 <div class="section" id="compact-operators">
-<h2><span class="section-number">3.2. </span>Compact operators<a class="headerlink" href="#compact-operators" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.3. </span>Compact operators<a class="headerlink" href="#compact-operators" title="Permalink to this headline">¶</a></h2>
 <p>An important class the Bounded operators are the <a class="reference external" href="https://en.wikipedia.org/wiki/Compact_operator">compact operators</a>. They can be thought of as a natural generalisation of matrices to the infinite-dimensional setting. Hence, we can generalise the notions from the <a class="reference internal" href="discrete_ip_regularization.html"><span class="doc std std-doc">finite-dimensional setting</span></a> to the infinite-dimensional setting.</p>
 <hr class="docutils" />
 <p>There are a number of equivalent definitions of compact operators. We will use the following.</p>
@@ -511,48 +552,56 @@ K^{\dagger} = \sum_{j=1}^{\infty} \sigma_j^{-1} \langle \cdot, v_j\rangle_{\math
 </div>
 <div class="important admonition">
 <p class="admonition-title">Remark : <em>Ill-posedness of inverse problems with compact operators</em></p>
-<p>For inverse problems with compact operators we can thus use the <em>Picard condition</em> to check if <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)\)</span> and thus if <a class="reference internal" href="#equation-minres">(3.1)</a> has a solution. Although this establishes existence and uniqueness through the pseudo-inverse, it does not guarantee stability as <span class="math notranslate nohighlight">\(\sigma_i \rightarrow 0\)</span>. If <span class="math notranslate nohighlight">\(\sigma_j\)</span> decays expontially, we call the problem severely ill-posed, otherwise we call it mildly ill-posed.</p>
+<p>For inverse problems with compact operators we can thus use the <em>Picard condition</em> to check if <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)\)</span> and thus if <a class="reference internal" href="#equation-minres">(3.1)</a> has a solution. Although this establishes existence and uniqueness through the pseudo-inverse, it does not guarantee stability as <span class="math notranslate nohighlight">\(\sigma_i \rightarrow 0\)</span>. If <span class="math notranslate nohighlight">\(\sigma_j\)</span> decays exponentially, we call the problem severely ill-posed, otherwise we call it mildly ill-posed.</p>
 </div>
 <div class="admonition-example-a-sequence-operator admonition">
-<p class="admonition-title">Example: a sequence operator</p>
+<p class="admonition-title">Example: A sequence operator</p>
 <p>Consider the operator <span class="math notranslate nohighlight">\(K:\ell^2 \rightarrow \ell^2\)</span>, given by</p>
 <div class="math notranslate nohighlight">
 \[
-	u = (u_1,u_2,...) \mapsto (u_1,\frac{1}{2}u_2,\frac{1}{3}u_3,...),
+	u = (u_1,u_2,...) \mapsto (0,u_2,\frac{1}{2}u_3,...),
 \]</div>
 <p>i.e. we have an infinite matrix operator of the form</p>
 <div class="math notranslate nohighlight">
-\[
-\left(Ku\right)_i = \sum_{j=1}^\infty a_{ij} u_j := i^{-1} u_i, \quad i = 1,2,...
-\]</div>
+\[\begin{split}
+K =
+\left(\begin{matrix}
+0 &amp;             &amp;             &amp;        &amp; \\
+  &amp; 1           &amp;             &amp;        &amp; \\
+  &amp;             &amp; \frac{1}{2} &amp;        &amp; \\
+  &amp;             &amp;             &amp; \ddots &amp; \\
+\end{matrix}\right)
+\end{split}\]</div>
 <p>The operator is obviously linear. To show that is bounded we’ll compute its norm:</p>
 <div class="math notranslate nohighlight">
 \[
-\|K\| = \sup_{u \neq 0} \frac{\|K(u)\|_{\ell^2}}{\|u\|_{\ell^2}} = 1.
+\|K\| = \sup_{u \neq 0} \frac{\|Ku\|_{\ell^2}}{\|u\|_{\ell^2}} = 1.
 \]</div>
 <div class="dropdown admonition note">
 <p class="admonition-title">Note</p>
-<p>Indeed, we find…</p>
+<p>We can fix <span class="math notranslate nohighlight">\(\|u\|_{\ell_2} = 1\)</span> and verify that the maximum is obtained for <span class="math notranslate nohighlight">\(u = (0,1,0,\ldots)\)</span> leading to <span class="math notranslate nohighlight">\(\|K\| = 1\)</span>.</p>
 </div>
 <p>To show that the operator is compact, we explicitly construct its singular system, giving:
-<span class="math notranslate nohighlight">\(u_i = v_i = e_i\)</span> with <span class="math notranslate nohighlight">\(e_i\)</span> the <span class="math notranslate nohighlight">\(i^{\text{th}}\)</span> canonical basis vector and <span class="math notranslate nohighlight">\(\sigma_i = i^{-1}\)</span>.</p>
+<span class="math notranslate nohighlight">\(u_i = v_i = e_i\)</span> with <span class="math notranslate nohighlight">\(e_i\)</span> the <span class="math notranslate nohighlight">\(i^{\text{th}}\)</span> canonical basis vector and <span class="math notranslate nohighlight">\(\sigma_1 = 0\)</span>, <span class="math notranslate nohighlight">\(\sigma_{i} = (i-1)^{-1}\)</span> for <span class="math notranslate nohighlight">\(i &gt; 1\)</span>.</p>
 <div class="dropdown admonition note">
 <p class="admonition-title">Note</p>
-<p>Indeed, it is easily verified that…</p>
+<p>Indeed, it is easily verified that <span class="math notranslate nohighlight">\(Ke_i = \sigma_i e_i\)</span>.</p>
 </div>
-<p>Now consider obtaining a solution for <span class="math notranslate nohighlight">\(f_i = i^{-1}\)</span>. We would naively set <span class="math notranslate nohighlight">\(u_j = j \cdot f_j\)</span>, but we can easily verify that a solution does not exist for this particular sequence <span class="math notranslate nohighlight">\(f\)</span>.</p>
-<div class="dropdown admonition note">
-<p class="admonition-title">Note</p>
-<p>Indeed, it is easily verified that…</p>
-</div>
-<p>Next, consider obtaining a solution for <span class="math notranslate nohighlight">\(f_i = i^{-2}\)</span>. In this case, the solution is given by <span class="math notranslate nohighlight">\(u = (1, 1/2, 1/3, \ldots)\)</span>.</p>
-<div class="dropdown admonition note">
-<p class="admonition-title">Note</p>
-<p>Indeed, it is easily verified that…</p>
-</div>
+<p>The pseudo inverse is then defined as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+K^{\dagger} =
+\left(\begin{matrix}
+0 &amp;             &amp;             &amp;        &amp; \\
+  &amp; 1           &amp;             &amp;        &amp; \\
+  &amp;             &amp; 2           &amp;        &amp; \\
+  &amp;             &amp;             &amp; \ddots &amp; \\
+\end{matrix}\right)
+\end{split}\]</div>
+<p>This immediately shows that <span class="math notranslate nohighlight">\(K^\dagger\)</span> is not bounded. Now consider obtaining a solution for <span class="math notranslate nohighlight">\(f = (0,1,\textstyle{\frac{1}{2}}, \textstyle{\frac{1}{3}})\)</span>. Applying the pseudo-inverse would yield <span class="math notranslate nohighlight">\(Kf = (0,1, 1, \ldots)\)</span> which is not in <span class="math notranslate nohighlight">\(\ell_2\)</span>. Indeed, we can show that <span class="math notranslate nohighlight">\(f \not\in \mathcal{R}(K) \oplus \mathcal{R}(K)^\perp\)</span>. The problem here is that the range of <span class="math notranslate nohighlight">\(K\)</span> is not closed.</p>
 </div>
 <div class="admonition-example-differentiation admonition">
-<p class="admonition-title">Example: differentiation</p>
+<p class="admonition-title">Example: Differentiation</p>
 <p>Consider</p>
 <div class="math notranslate nohighlight">
 \[
@@ -564,13 +613,13 @@ Ku(x) = \int_0^x u(y)\mathrm{d}y.
 \[
 Ku(x) = \int_0^1 k(x,y)u(y)\mathrm{d}y,
 \]</div>
-<p>with <span class="math notranslate nohighlight">\(k(x,y) = H(x-y)\)</span>, where <span class="math notranslate nohighlight">\(H\)</span> denotes the Heaviside stepfunction. The operator is obviously compact with <span class="math notranslate nohighlight">\(\|K\| = ..\)</span>.</p>
+<p>with <span class="math notranslate nohighlight">\(k(x,y) = H(x-y)\)</span>, where <span class="math notranslate nohighlight">\(H\)</span> denotes the Heaviside stepfunction. The operator is compact because <span class="math notranslate nohighlight">\(k\)</span> is square integrable.</p>
 <div class="dropdown admonition note">
 <p class="admonition-title">Note</p>
-<p>Computing</p>
+<p>Indeed, we have</p>
 <div class="math notranslate nohighlight">
-\[\int_0^1 \int_0 ^1 |k(x,y)|^2 \mathrm{d}x\mathrm{d}y = ...\]</div>
-<p>we conclude that <span class="math notranslate nohighlight">\(k\)</span> is a Hilbert-Schmidt kernel and hence that <span class="math notranslate nohighlight">\(K\)</span> is compact. Moreover, we have that <span class="math notranslate nohighlight">\(\|K\| = \|k\|_{L^2} = ...\)</span>.</p>
+\[\int_0^1 \int_0^1 |k(x,y)|^2 \mathrm{d}x\mathrm{d}y = \textstyle{\frac{1}{2}}.\]</div>
+<p>We conclude that <span class="math notranslate nohighlight">\(k\)</span> is a Hilbert-Schmidt kernel and hence that <span class="math notranslate nohighlight">\(K\)</span> is compact.</p>
 </div>
 <p>The adjoint is found to be</p>
 <div class="math notranslate nohighlight">
@@ -579,7 +628,9 @@ K^*f(y) = \int_0^1 k(x,y) f(x)\mathrm{d}x = \int_y^1 f(x)\mathrm{d}x.
 \]</div>
 <div class="dropdown admonition note">
 <p class="admonition-title">Note</p>
-<p>Using the definition …</p>
+<p>Using the definition we find</p>
+<div class="math notranslate nohighlight">
+\[K^*f(y) = \int_0^1 k(x,y)f(x)\mathrm{d}x = \int_y^1 f(x)\mathrm{d}x.\]</div>
 </div>
 <p>The singular system is given by</p>
 <div class="math notranslate nohighlight">
@@ -624,7 +675,7 @@ Ku(x) = \sum_{k=0}^\infty \frac{\langle u, v_k\rangle}{(k+1/2)\pi} u_k(x),
 <p>and the pseudo-inverse by</p>
 <div class="math notranslate nohighlight">
 \[
-K^{\dagger}f(x) = \sum_{k=0}^\infty \frac{\langle f, u_k\rangle}{(k+1/2)\pi} v_k(x).
+K^{\dagger}f(x) = \pi\sum_{k=0}^\infty (k+1/2)\langle f, u_k\rangle v_k(x).
 \]</div>
 <p>We can now study the ill-posedness of the problem by looking at the Picard condition</p>
 <div class="math notranslate nohighlight">
@@ -657,10 +708,10 @@ K^\dagger K u - u + \delta K^{\dagger}\sin(\delta^{-1}\cdot).
 </div>
 </div>
 <div class="section" id="regularisation">
-<h2><span class="section-number">3.3. </span>Regularisation<a class="headerlink" href="#regularisation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.4. </span>Regularisation<a class="headerlink" href="#regularisation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="truncation-and-tikhonov-regularisation">
-<h3><span class="section-number">3.3.1. </span>Truncation and Tikhonov regularisation<a class="headerlink" href="#truncation-and-tikhonov-regularisation" title="Permalink to this headline">¶</a></h3>
-<p>In the previous section we saw that the pseudo-inverse of a compact operator is not bounded (continuous). To counter this, we introduce the regularized pseudo-inverse:</p>
+<h3><span class="section-number">3.4.1. </span>Truncation and Tikhonov regularisation<a class="headerlink" href="#truncation-and-tikhonov-regularisation" title="Permalink to this headline">¶</a></h3>
+<p>In the previous section we saw that the pseudo-inverse of a compact operator is not bounded (continuous) in general. To counter this, we introduce the regularized pseudo-inverse:</p>
 <div class="math notranslate nohighlight">
 \[
 K_{\alpha}^{\dagger}f = \sum_{k=0}^{\infty} g_{\alpha}(\sigma_k) \langle f, u_k\rangle v_k,
@@ -675,54 +726,92 @@ g_{\alpha}(s) = \frac{s}{s^2 + \alpha}= \frac{1}{s + \alpha/s}.
 \[\begin{split}
 g_{\alpha}(s) = \begin{cases} s^{-1} &amp; \text{if}\, s &gt; \alpha \\ 0 &amp; \text{otherwise} \end{cases}.
 \end{split}\]</div>
-<p>Given noisy data <span class="math notranslate nohighlight">\(f^{\delta} = Ku + e\)</span> with <span class="math notranslate nohighlight">\(\|e\| \leq \delta\)</span>, we can now study the effect of regularisation by studying the error. Introducing <span class="math notranslate nohighlight">\(u^{\delta,\alpha} = K_{\alpha}^\dagger f^{\delta}\)</span>, the total reconstruction error is now given by</p>
+<p>We can show that the regularized pseudo inverse, <span class="math notranslate nohighlight">\(K_{\alpha}^{\dagger}\)</span>, is bounded for <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> and converges pointwise to <span class="math notranslate nohighlight">\(K^\dagger\)</span> as <span class="math notranslate nohighlight">\(\alpha \rightarrow 0\)</span>.</p>
+<p>Given noisy data <span class="math notranslate nohighlight">\(f^{\delta} = f + e\)</span> with <span class="math notranslate nohighlight">\(\|e\| \leq \delta\)</span>, we can now study the effect of regularisation by studying the error. The total error is now given by</p>
 <div class="math notranslate nohighlight">
 \[
-\|u^{\delta,\alpha} - u\| = \|K_{\alpha}^\dagger f^{\delta} - u\| \leq \|(I - K_{\alpha}^\dagger K)\|\|u\| + \delta \|K_{\alpha}^\dagger\|,
+\|K_{\alpha}^\dagger f^\delta - K^\dagger f\|_{\mathcal{U}} \leq \|K_{\alpha}^\dagger f - K^\dagger f\|_{\mathcal{U}} + \delta \|K_{\alpha}^\dagger\|,
 \]</div>
-<p>in which we recognise the \emph{bias} and \emph{variance} contributions. We can re-write this in terms of the relative error as</p>
-<div class="math notranslate nohighlight">
-\[
-\frac{\|u^{\delta,\alpha} - u\|}{\|u\|} \leq \|(I - K_{\alpha}^\dagger K)\| + \delta \|K\|\|K_{\alpha}^\dagger\|.
-\]</div>
-<p>Note, however, that these upperbounds may be useless in practice and more detailed analysis incorporating the type of noise and the class of images <span class="math notranslate nohighlight">\(u\)</span> that we are interested in is needed.</p>
-<p>Two main question arise:</p>
-<ul class="simple">
-<li><p>For <span class="math notranslate nohighlight">\(\delta = 0\)</span>, does the bias converge to zero as <span class="math notranslate nohighlight">\(\alpha \downarrow 0\)</span>?</p></li>
-<li><p>How should one choose <span class="math notranslate nohighlight">\(\alpha\)</span> for a given <span class="math notranslate nohighlight">\(\delta\)</span> to minimize the total error?</p></li>
-</ul>
+<p>in which we recognise the <em>bias</em> and <em>variance</em> contributions.</p>
+<p>This upperbound may be useful to study asymptotic properties of the problem. In particular, one is sometimes interested in the <em>convergence rate</em>, which aims to bound the bias and variance in terms of <span class="math notranslate nohighlight">\(\delta^\nu\)</span> for some <span class="math notranslate nohighlight">\(0 &lt; \nu &lt; 1\)</span>. These bounds may be too loose to be used in practice, however, and more detailed analysis incorporating the type of noise and the class of images <span class="math notranslate nohighlight">\(u\)</span> that we are interested in is needed.</p>
 </div>
 <div class="section" id="generalised-tikhonov-regularisation">
-<h3><span class="section-number">3.3.2. </span>Generalised Tikhonov regularisation<a class="headerlink" href="#generalised-tikhonov-regularisation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.2. </span>Generalised Tikhonov regularisation<a class="headerlink" href="#generalised-tikhonov-regularisation" title="Permalink to this headline">¶</a></h3>
 <p>We have seen in the finite-dimensional setting that Tikhonov regularization may be defined through a variational problem:</p>
 <div class="math notranslate nohighlight">
 \[
-\min_{u} \|Ku - f\|^2 + \alpha \|u\|^2.
+\min_{u} \|Ku - f\|^2_{\mathcal{F}} + \alpha \|u\|^2_{\mathcal{U}}.
 \]</div>
-<p>It turns out we can do the same in the infinite-dimensional setting as long as we use the correct (Hilbert-space) norm. Generalised Tikhonov regularisation is defined in a simular manner through the variation problem</p>
+<p>It turns out we can do the same in the infinite-dimensional setting. Indeed, we can show that the corresponding normal equations are given by</p>
+<div class="math notranslate nohighlight">
+\[(K^*\!K + \alpha I)u = K^*f.\]</div>
+<p>Generalised Tikhonov regularisation is defined in a similar manner through the variation problem</p>
 <div class="math notranslate nohighlight">
 \[
-\min_{u} \|Ku - f\|^2 + \alpha \|Lu\|^2,
+\min_{u} \|Ku - f\|^2_{\mathcal{F}} + \alpha \|Lu\|^2_{\mathcal{V}},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(L\)</span> is a compact operator. In many applications, <span class="math notranslate nohighlight">\(L\)</span> is a differential operator. This can be used to impose smoothness on the solution.</p>
+<p>where <span class="math notranslate nohighlight">\(L:\mathcal{U}\rightarrow \mathcal{V}\)</span> is a bounded linear operator. The corresponding normal equations can be shown to be</p>
+<div class="math notranslate nohighlight">
+\[(K^*\!K + \alpha L^*\!L)u = K^*f.\]</div>
+<p>We can expect a unique solution when the intersection of the kernels of <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(L\)</span> is empty. In many applications, <span class="math notranslate nohighlight">\(L\)</span> is a differential operator. This can be used to impose smoothness on the solution.</p>
+</div>
+<div class="section" id="parameter-choice-strategies">
+<h3><span class="section-number">3.4.3. </span>Parameter-choice strategies<a class="headerlink" href="#parameter-choice-strategies" title="Permalink to this headline">¶</a></h3>
+<p>Given a regularisation strategy with parameter <span class="math notranslate nohighlight">\(\alpha\)</span>, we need to pick <span class="math notranslate nohighlight">\(\alpha\)</span>. As mentioned earlier, we need to pick <span class="math notranslate nohighlight">\(\alpha\)</span> to optimally balance between the bias and variance in the error. To highlight the basic flavours of parameter-choice strategies, we give three examples.</p>
+<div class="highlight-{admonition}: notranslate"><div class="highlight"><pre><span></span>
+Assuming that we know the noise level $\delta$, we can define a parameter-choice rule $\alpha(\delta)$. We call such a rule *convergent* iff
+
+$$\lim_{\delta\rightarrow 0} \alpha(\delta) = 0, \quad \lim_{\delta\rightarrow 0} \delta \|K_{\alpha}^\dagger\| = 0.$$
+
+With these requirements, we can easily show that the error $\|K_{\alpha}^\dagger f^{\delta} - K^\dagger f\|_{\mathcal{U}} \rightarrow 0$ as $\delta\rightarrow 0$.
+
+Such parameter-choice rules are nice in theory, but hard to design in practice.
+</pre></div>
+</div>
+<div class="highlight-{admonition}: notranslate"><div class="highlight"><pre><span></span>
+Morozov&#39;s discrepancy principle chooses $\alpha$ such that
+
+$$\|KK_{\alpha}^\dagger f^{\delta} - f^{\delta}\|_{\mathcal{F}} \leq \eta \delta,$$
+
+with $\eta &gt; 1$ a fixed parameter. This can be interpreted as finding an $\alpha$ for which the solution fits the data in accordance with the noise level. Note, however, that such an $\alpha$ may not exist if (a significant part of) $f^\delta$ lies in the kernel of $K^*$.
+</pre></div>
+</div>
+<div class="highlight-{admonition}: notranslate"><div class="highlight"><pre><span></span>Here, we choose $\alpha$ via
+
+$$\min_{\alpha &gt; 0} \|K_{\alpha}^\dagger f^\delta\|_{\mathcal{U}} \|KK_{\alpha}^\dagger f^\delta - f^\delta\|_{\mathcal{F}}.$$
+
+The name stems from the fact that the optimal $\alpha$ typically resides at the corner of the curve $(\|K_{\alpha}^\dagger f^\delta\|_{\mathcal{U}}, \|KK_{\alpha}^\dagger f^\delta - f^\delta\|_{\mathcal{F}})$.
+
+This rule has the practical advantage that no knowledge of the noise level is required. Unfortunately, it is not a convergent rule.
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="exercises">
-<h2><span class="section-number">3.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="convolution">
+<h3><span class="section-number">3.5.1. </span>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">¶</a></h3>
+<p>Consider the example in section <a class="reference external" href="ip_function_spaces.html#bounded-operators-on-hilbert-spaces">3.2</a> with <span class="math notranslate nohighlight">\(k(x) = \exp(-x^2)\)</span>.</p>
+<ul class="simple">
+<li><p>Is the inverse problem ill-posed?</p></li>
+<li><p>For which functions <span class="math notranslate nohighlight">\(f\)</span> is the inverse well-defined?</p></li>
+</ul>
+</div>
 <div class="section" id="differentiation">
-<h3><span class="section-number">3.4.1. </span>Differentiation<a class="headerlink" href="#differentiation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.5.2. </span>Differentiation<a class="headerlink" href="#differentiation" title="Permalink to this headline">¶</a></h3>
 <p>Consider the forward operator</p>
 <div class="math notranslate nohighlight">
 \[
 Ku(x) = \int_0^x u(y)\mathrm{d}y.
 \]</div>
-<p>We’ve seen in example <span class="xref std std-ref">differentiation</span> that the inverse problem is ill-posed. Consider a regularized least-squares problem</p>
+<p>We’ve seen in the example that the inverse problem is ill-posed. Consider a regularised least-squares problem</p>
 <div class="math notranslate nohighlight">
 \[\min_{u} \|Ku - f\|^2 + \alpha \|u'\|^2,\]</div>
-<p>and analyse how this type of regularisation adressed the ill-posedness.</p>
+<p>with <span class="math notranslate nohighlight">\(\|\cdot\|\)</span> denoting the <span class="math notranslate nohighlight">\(L^2([0,1])\)</span>-norm.
+Analyse how this type of regularisation addresses the ill-posedness.</p>
 </div>
 <div class="section" id="discretisation">
-<h3><span class="section-number">3.4.2. </span>Discretisation<a class="headerlink" href="#discretisation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.5.3. </span>Discretisation<a class="headerlink" href="#discretisation" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise, we explore what happens when discretizing the operator <span class="math notranslate nohighlight">\(K\)</span>. We’ll see that discretization implicitly regularizes the problem and that refining the discretization brings out the inherent ill-posedness. Discretize <span class="math notranslate nohighlight">\(x_k = k\cdot h\)</span> with <span class="math notranslate nohighlight">\(k = 1, \ldots, n\)</span> and <span class="math notranslate nohighlight">\(h = 1/(n+1)\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -752,7 +841,7 @@ K = h\cdot\left(\begin{matrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp;
     <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)))</span>
-        
+
     <span class="k">return</span> <span class="n">K</span><span class="p">,</span><span class="n">x</span>
 </pre></div>
 </div>
@@ -778,15 +867,37 @@ K = h\cdot\left(\begin{matrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  3.356705795240284
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  4.044221758026903
 </pre></div>
 </div>
-<img alt="_images/ip_function_spaces_6_1.png" src="_images/ip_function_spaces_6_1.png" />
+<img alt="_images/ip_function_spaces_7_1.png" src="_images/ip_function_spaces_7_1.png" />
 </div>
 </div>
+</div>
+<div class="section" id="convergent-tikhonov-regularisation">
+<h3><span class="section-number">3.5.4. </span>Convergent Tikhonov regularisation<a class="headerlink" href="#convergent-tikhonov-regularisation" title="Permalink to this headline">¶</a></h3>
+<p>Consider the regularised pseudo-inverse</p>
+<div class="math notranslate nohighlight">
+\[K^\dagger_{\alpha} = \sum_{j=0}^\infty g_{\alpha}(\sigma_j) \langle u_j,\cdot\rangle v_j,\]</div>
+<p>and let <span class="math notranslate nohighlight">\(f^\delta = f + e\)</span> with <span class="math notranslate nohighlight">\(\|e\|_{\mathcal{F}} \leq \delta\)</span>. You may assume that <span class="math notranslate nohighlight">\(f, f^{\delta}\)</span> satisfy the Picard condition. We further let <span class="math notranslate nohighlight">\(g_{\alpha}(s) = \frac{s}{s^2 + \alpha}\)</span> and <span class="math notranslate nohighlight">\(\alpha(\delta) = \delta /4\)</span>.</p>
+<ol class="simple">
+<li><p>Show that the variance term converges to zero as <span class="math notranslate nohighlight">\(\delta\rightarrow 0\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\|K_{\alpha}^\dagger e\|_{\mathcal{U}} = \mathcal{O}(\sqrt{\delta}).\]</div>
+<ol class="simple">
+<li><p>Show that the bias term converges to zero as <span class="math notranslate nohighlight">\(\delta\rightarrow 0\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\|K^\dagger_{\alpha} f - K^\dagger f\|_{\mathcal{U}} = \mathcal{O}(...)\]</div>
+<ol class="simple">
+<li><p>Under additional assumptions on the minimum-norm solution we can provide a faster convergence rate in 2. Assume that there exists a <span class="math notranslate nohighlight">\(w\)</span> such that <span class="math notranslate nohighlight">\(K^\dagger f = (K^*K)^{\mu} w\)</span>. Show that</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\|K^\dagger_{\alpha} f - K^\dagger f\|_{\mathcal{U}} = \mathcal{O}(...)\]</div>
 </div>
 <div class="section" id="convolution-through-the-heat-equation">
-<h3><span class="section-number">3.4.3. </span>Convolution through the heat equation<a class="headerlink" href="#convolution-through-the-heat-equation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.5.5. </span>Convolution through the heat equation<a class="headerlink" href="#convolution-through-the-heat-equation" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise we’ll explore the relation between the heat equation and convolution with a Gaussian kernel. Specifically, we’ll see that the linear operation <span class="math notranslate nohighlight">\(f = Ku\)</span> defined by the initial-value problem</p>
 <div class="math notranslate nohighlight">
 \[
@@ -852,12 +963,12 @@ F^{-1}\widehat{u}(x) = \int_{\mathbb{R}} \widehat{u}(\xi) e^{-\imath 2\pi\xi x} 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ip_function_spaces_8_0.png" src="_images/ip_function_spaces_8_0.png" />
+<img alt="_images/ip_function_spaces_9_0.png" src="_images/ip_function_spaces_9_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="convolution-on-a-finite-interval">
-<h3><span class="section-number">3.4.4. </span>Convolution on a finite interval<a class="headerlink" href="#convolution-on-a-finite-interval" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.5.6. </span>Convolution on a finite interval<a class="headerlink" href="#convolution-on-a-finite-interval" title="Permalink to this headline">¶</a></h3>
 <p>We can define convolution with a Gaussian kernel on a finite interval <span class="math notranslate nohighlight">\([0,\pi]\)</span> through the initial boundary-value problem</p>
 <div class="math notranslate nohighlight">
 \[
