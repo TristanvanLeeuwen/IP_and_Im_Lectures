@@ -299,10 +299,51 @@ $$
 \min_{u} \sum_{i=1}^m \left(\left({K}u\right)_i - f_i^{\delta}\ln\left({K}u\right)_i\right).
 $$
 
+An example of the corresponding posterior is shown below.
+
+```{code-cell} ipython3
+:tags: ["hide-input"]
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import rc
+rc('text', usetex=True)
+
+# set random seed
+np.random.seed(2)
+
+# operator
+u_true = np.array([1,1])
+K = np.array([[1,1],[1,2]])
+
+# draw sample
+f = K.dot(u_true)
+f_delta = np.random.poisson(K.dot(u_true))
+
+# likelihood and prior
+u1,u2 = np.meshgrid(np.linspace(0,5,100),np.linspace(0,5,100))
+
+f1 = K[0,0]*u1 + K[0,1]*u2
+f2 = K[1,0]*u1 + K[1,1]*u2
+likelihood = ((f1**f_delta[0])*np.exp(-f1)/np.math.factorial(f_delta[0]))*((f2**f_delta[1])*np.exp(-f2)/np.math.factorial(f_delta[1]))
+
+# plot
+fig,ax = plt.subplots(1,1)
+
+ax.contourf(u1,u2,likelihood)
+ax.set_xlabel(r'$u_1$')
+ax.set_ylabel(r'$u_2$')
+ax.set_aspect(1)
+ax.set_title('Likelihood')
+
+plt.figtext(0.2,-0.1,r'Example with $K = \left(\begin{array}{cc} 1 & 1 \\ 1 & 2 \end{array}\right)$, $f^\delta = (1,3)$.',{'fontsize':12})
+plt.show()
+
+```
 
 ### Gaussian random fields
 
-To include spatial correlations we can model $u$ as being normally distributed with mean $\mu$ and *covariance* $\Sigma_{\text{prior}}$. Popular choices are
+To include spatial correlations we can model $u$ as being normally distributed with mean $\mu$ and *covariance* $\Sigma_{\text{prior}}$. A popular choices is
 
 $$
 \Sigma_{\text{prior},ij} = \exp\left(-\frac{|i-j|^p}{pL^{p}}\right),
@@ -315,6 +356,46 @@ The corresponding variational form of the prior is
 $$
 -\log \pi_{\text{prior}}(u) = \|u\|_{\Sigma^{-1}_{\text{prior}}}^2.
 $$
+
+Examples of samples are shown below.
+
+```{code-cell} ipython3
+:tags: ["hide-input"]
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+np.random.seed(2)
+
+# grid
+n = 100
+x = np.linspace(0,1,n)
+x1,x2 = np.meshgrid(x,x)
+
+# mean and Covariance
+mu = np.zeros(n)
+Sigma = lambda L,p : np.exp(-np.abs(x1-x2)**p/(p*L))
+
+# parameters
+L = [.01,.1]
+p = [1,2]
+
+# plot
+fig,ax = plt.subplots(2,2)
+
+for i in range(2):
+  for j in range(2):
+    ax[i,j].plot(x,np.random.multivariate_normal(mu,Sigma(L[j],p[i])))
+    title = '$L$ = '+str(L[j])+', $p$ = '+str(p[i])
+    ax[i,j].set_title(title)
+    ax[i,j].set_ylim([-4,4])
+    ax[i,j].set_xlim([0,1])
+
+ax[0,0].set_xticks([])
+ax[0,1].set_xticks([])
+plt.show()
+
+```
 
 +++
 
