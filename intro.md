@@ -28,4 +28,4 @@ Each chapter contains exercises and example code in Python.
 
 ## Contributing to the notes  
 
-Did you spot a mistake? Do you want clarify something or add an example or exercise? Click the Github logo at the top of the page to suggest edits!
+Did you spot a mistake? Do you want clarify something or add an example or exercise? Click the Github logo at the top of the page to suggest edits! All files are written in [MyST Markdown](https://jupyterbook.org/reference/cheatsheet.html).
