@@ -86,7 +86,7 @@ $$
 which we can re-write as
 
 $$
-\pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\textstyle{\frac{1}{2}}\left((u-\mu_{\text{post}})^T\Sigma_{\text{post}}^{-1}(\mu_{\text{post}})\right)\right),
+\pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\textstyle{\frac{1}{2}}\left((u-\mu_{\text{post}})^T\Sigma_{\text{post}}^{-1}(u-\mu_{\text{post}})\right)\right),
 $$
 
 with
