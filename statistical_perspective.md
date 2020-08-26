@@ -13,65 +13,71 @@ kernelspec:
 
 # A statistical perspective on inverse problems
 
+In this chapter we present a statistical perspective on inverse problems. This viewpoint allows us to incorporate prior assumptions and formulate variational problems. To avoid unnecessary technicalities, we'll stick to the finite-dimensional setting. A formal treatment in the infinite-dimensional setting is given in {cite}`Dashti2017`.
+
 ## Formulating prior assumptions
 
-We take the viewpoint that what we are measuring, $f^{\delta}$, is a stochastic variable with mean $f$, which in turn is related to $u$ via the forward operator
+We take the viewpoint that both $f^{\delta}$ and $u$ are [continuous random variables](https://en.wikipedia.org/wiki/Random_variable). The prior assumptions are then formulated
+
+Our prior assumptions then consist of multi-variate [probability distributions](https://en.wikipedia.org/wiki/Probability_density_function).  
+
+```{admonition} Definition: *Likelihood*
+The [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function) models the probability of measuring $f^\delta$ given $u$. The corresponding probability density function is denoted by
+
+$$\pi_{\text{data}}(f^\delta | u)$$
+```
+
+```{admonition} Definition: *Prior distribution*
+The [prior distribution](https://en.wikipedia.org/wiki/Prior_probability) models the probability of a particular $u$ being the underlying ground truth. It is denoted by
+
+$$\pi_{\text{prior}}(u).$$
+```
+
+We can use [Bayes' theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem) to combine the likelihood and prior to the [posterior distribution](https://en.wikipedia.org/wiki/Posterior_probability):
+
+```{admonition} Definition: *Posterior distribution*
+The posterior distribution gives the probability of any given $u$ given the measurements $f^\delta$:
 
 $$
-f = Ku.
+\pi_{\text{post}}(u | f^\delta) = C\cdot  \pi_{\text{data}}(f^\delta) \pi_{\text{prior}}(u),
 $$
 
-Our prior assumptions in this case consist probability distributions for $f^{\delta}$ and $u$,
+where $C$ is the normalising constant needed to make $\pi_{\text{post}}$ integrate to 1.
+```
 
-$$
-f^\delta \sim \pi_{\text{data}},
-$$
+In a way, $\pi_{\text{post}}(u | f^\delta)$ is the answer to our inverse problem. It gives us information on the likelihood of any particular $u$ *under the assumptions* we made on $f^\delta$ and $u$. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those.
 
-$$
-u \sim \pi_{\text{prior}}.
-$$
+In all but the simple linear-forward-operator-Gaussian-assumption case, we cannot easily characterise the posterior PDF. We may, however, attempt estimate certain properties by drawing samples from the posterior distribution. Such samples can be generated for any distribution using a [Markov chain Monte Carlo (MCMC) algorithm](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo). This is not very attractive for high-dimensional problems, however. Further discussion of such algorithms is outside the scope of this lecture.
 
-Using Bayes' rule, we can now formulate the posterior probability density function as
-
-$$
-\pi_{\text{post}}(u | f^\delta) \propto \pi_{\text{data}}(f^\delta) \pi_{\text{prior}}(u),
-$$
-
-where we have ignored the normalizing constants.
-
-In some sense, $\pi_{\text{post}}(u | f^\delta)$ is the answer to our inverse problem. It gives us information on the likelihood of any particular $u$ *under the assumptions* we made on $f^\delta$ and $u$. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those.
-
-In all but the simple linear-forward-operator-Gaussian-assumption case, we cannot easily characterize the posterior PDF. We may, however, attempt estimate certain properties by drawing samples from the posterior distribution. Such samples can be generated for any distribution using the Metropolis-Hastings algorithm. This is not very attractive for high-dimensional problems, however. Further discussion of this algorithm is outside the scope of this lecture.
-
-### MAP estimation
+## MAP estimation
 
 For high-dimensional problems it is common to instead find the most likely parameters
 
 $$
-\max_{u} \pi_{\text{post}}(u|f).
+\max_{u} \pi_{\text{post}}(u|f^\delta).
 $$
 
-The $u$ that attains this maximum is called the \emph{maximum a posteriori} (MAP) estimate. Finding the MAP estimate can be naturally cast as a minimization problem
+The $u$ that attains this maximum is called the *maximum a posteriori* (MAP) estimate. Finding the MAP estimate can be naturally cast as a minimisation problem
 
 $$
-\min_u -\log \pi_{\text{post}}(u|f).
+\min_u -\log \pi_{\text{post}}(u|f^\delta).
 $$
 
-Analyzing and solving such variational problems will be the subject of subsequent chapters.
+Analysing and solving such variational problems will be the subject of a subsequent chapter.
 
-### Examples
-
+## Examples
 
 Let's consider a few examples:
 
 ### Gaussian
+
 With additive Gaussian noise with zero mean and variance $\sigma$, we express the measurements as
 
 $$
 f^\delta = Ku + \epsilon,
 $$
 
-where $\epsilon$ is normally with zero mean and variance $\sigma$. Assuming that the $u_i$ are normally distributed with zero mean and unit variance we get
+where $\epsilon$ is normally with zero mean and variance $\sigma I$. Assuming that the $u_i$ are normally distributed with zero mean and unit variance we get
 
 $$
 \pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\frac{1}{2\sigma^2}\|Ku - f^{\delta}\|_2^2 - \frac{1}{2}\|u\|_2^2\right),
@@ -80,62 +86,206 @@ $$
 which we can re-write as
 
 $$
-\pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\frac{1}{2}\left({u}^*(\sigma^{-2}{K}^*K + I)u + \ldots\right)\right),
+\pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\textstyle{\frac{1}{2}}\left((u-\mu_{\text{post}})^T\Sigma_{\text{post}}^{-1}(\mu_{\text{post}})\right)\right),
 $$
 
-so $\pi_{\text{post}}$ describes a normal distribution with mean
+with
 
 $$
+\mu_{\text{post}} = \left(\sigma^{-2}{K}^*\!K + I\right)^{-1}\left(\sigma^{-2}K^*\!f^\delta\right),
 $$
 
 and variance
 
 $$
-\Sigma_{\text{post}} = (\sigma^{-2}{K}^*K + I)^{-1}.
+\Sigma_{\text{post}} = \left(\sigma^{-2}{K}^*\!K + I\right)^{-1}.
 $$
 
 It is not hard to show that this coincides with the solution of the Tikhonov least-squares solution with $\alpha = \sigma^2$. Indeed, the MAP estimate is obtained by solving
 
 $$
-\min_{u} \|{K}u - f\|_2^2 + \|u\|_2^2.
+\min_{u} \|{K}u - f\|_2^2 + \sigma^2\|u\|_2^2.
 $$
 
+An example is shown below.
 
-#### Laplace + uniform
+```{code-cell} ipython3
+:tags: ["hide-input"]
 
-If we assume Laplace noise with mean $\mu$ and unit variance, and a uniform prior $u_i\in[a_i,b_i]$ we end up with
+import numpy as np
+import matplotlib.pyplot as plt
+
+# set random seed
+np.random.seed(1)
+
+# parameters
+sigma = 1
+mu = np.array([0,0])
+Sigma = np.array([[1,0],[0,1]])
+Sigma_inv = np.linalg.inv(Sigma)
+
+# draw samples
+u_true = np.random.multivariate_normal(mu,Sigma)
+e = np.random.normal(0,sigma)
+f_delta = u_true[0] + u_true[1] + e
+
+# likelihood and prior
+u1,u2 = np.meshgrid(np.linspace(-2,2,100),np.linspace(-2,2,100))
+
+likelihood = np.exp(-0.5*(u1 + u2 - f_delta)**2/sigma**2)
+prior = np.exp(-0.5*(u1 - mu[0])*(u1 - mu[0])*Sigma_inv[0,0])*np.exp(-(u1 - mu[0])*(u2 - mu[1])*Sigma_inv[0,1])*np.exp(-0.5*(u2 - mu[1])*(u2 - mu[1])*Sigma_inv[1,1])
+
+# plot
+fig,ax = plt.subplots(1,3,sharey=True)
+
+ax[0].contourf(u1,u2,likelihood)
+ax[0].set_xlabel(r'$u_1$')
+ax[0].set_ylabel(r'$u_2$')
+ax[0].set_aspect(1)
+ax[0].set_title('Likelihood')
+
+ax[1].contourf(u1,u2,prior)
+ax[1].set_xlabel(r'$u_1$')
+ax[1].set_aspect(1)
+ax[1].set_title('Prior')
+
+ax[2].contourf(u1,u2,likelihood*prior)
+ax[2].set_xlabel(r'$u_1$')
+ax[2].set_aspect(1)
+ax[2].set_title('Posterior')
+
+plt.figtext(0,0.1,r'Example with $K = (1,1)$ and $\sigma=1$.',{'fontsize':12})
+plt.show()
+```
+
+### Laplace + uniform
+
+If we assume Laplace noise with mean $\mu$ and parameter $\lambda$, and a uniform prior $u_i\in[a_i,b_i]$ we end up with
 
 $$
-\pi_{\text{post}}(u | f) = \exp\left(-\|{K}u - f^{\delta} - \mu\|_1\right)\prod_i I_{[0,1]}\left(\frac{u_i-a_i}{b_i-a_i}\right)
+\pi_{\text{post}}(u | f) = \exp\left(-\lambda^{-1}\|{K}u - f^{\delta} - \mu\|_1\right)\prod_i I_{[0,1]}\left(\frac{u_i-a_i}{b_i-a_i}\right),
 $$
 
-The corresponding MAP estimatiob problem is given by
+where $I[0,1]$ denotes the indicator function for the interval $[0,1]$. The corresponding MAP estimation problem is given by
 
 $$
-\min_{u\in B} \|{K}u - f - \mu\|_1,
+\min_{u\in B} \|{K}u - f^\delta - \mu\|_1,
 $$
 
-where $B = \{u \in \mathbb{R}^n \,|\, u_i \in [a_i,b_i]\,\, \text{for}\,\, i = 1,2,\ldots,n\}$.
+where $B = \{u \in \mathbb{R}^n \,|\, u_i \in [a_i,b_i]\,\, \text{for}\,\, i = 1,2,\ldots,n\}$. An example is shown below.
 
-#### Improper prior
-In some cases it may not be natural to define prior information in terms of a probability density. For example, the prior information that $u_i \geq 0$ (all positive values are equally likely) does not have a corresponding probability density function associated with with. We may still add this prior in the Bayesian framework as
+```{code-cell} ipython3
+:tags: ["hide-input"]
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# set random seed
+np.random.seed(1)
+
+# parameters
+mu = 5
+lmbda = 2
+a = np.array([1,0])
+b = np.array([2,2])
+
+# draw samples
+u_true = np.array([np.random.uniform(a[0],b[0]),np.random.uniform(a[1],b[1])])
+e = np.random.laplace(mu,lmbda)
+f_delta = u_true[0] + u_true[1] + e
+
+# likelihood and prior
+u1,u2 = np.meshgrid(np.linspace(-5,5,100),np.linspace(-5,5,100))
+
+likelihood = np.exp(-np.abs(u1 + u2 - f_delta - mu)/lmbda)
+prior = (np.heaviside(u1-a[0],1)-np.heaviside(u1-b[0],1))*(np.heaviside(u2-a[1],1)-np.heaviside(u2-b[1],1))
+
+# plot
+fig,ax = plt.subplots(1,3,sharey=True)
+
+ax[0].contourf(u1,u2,likelihood)
+ax[0].set_xlabel(r'$u_1$')
+ax[0].set_ylabel(r'$u_2$')
+ax[0].set_aspect(1)
+ax[0].set_title('Likelihood')
+
+ax[1].contourf(u1,u2,prior)
+ax[1].set_xlabel(r'$u_1$')
+ax[1].set_aspect(1)
+ax[1].set_title('Prior')
+
+ax[2].contourf(u1,u2,likelihood*prior)
+ax[2].set_xlabel(r'$u_1$')
+ax[2].set_aspect(1)
+ax[2].set_title('Posterior')
+
+plt.figtext(0,0.1,r'Example with $K = (1,1)$, $mu=1$, $\lambda = 0.1$, $a = (1,0)$, $b=(2,2)$.',{'fontsize':12})
+plt.show()
+
+```
+
+### Least-squares with positivity constraints
+
+We let $f^\delta = Ku + \epsilon$, with $\epsilon$ normally distributed with zero mean and unit variance. In some cases it may not be natural to define prior information in terms of a probability density. For example, the prior information that $u_i \geq 0$ (all positive values are equally likely) does not have a corresponding probability density function associated with with. We may still add this prior in the Bayesian framework as
 
 $$
-\pi_{\text{prior}}(u) = \prod_iI_{[0,\infty)}(u_i),
+\pi_{\text{prior}}(u) = \prod_i I_{[0,\infty)}(u_i).
 $$
-
-where $I_{[0,\infty)}$ is the indicator function which is $1$ with $u_i \in [0,\infty)$ and $0$ otherwise.
 
 The corresponding variational problem is
 
 $$
-\min_{u\geq 0} \mathcal{J}(u,f^\delta),
+\min_{u \in \mathbb{R}_{\geq 0}^n} \|Ku - f^\delta\|_2^2.
 $$
 
-where $\mathcal{J}(u,f^\delta) = -\log\pi_{\text{post}}(u | f^\delta)$.
+An example for a non-linear forward model is shown below.
 
+```{code-cell} ipython3
+:tags: ["hide-input"]
 
-#### Poisson noise
+import numpy as np
+import matplotlib.pyplot as plt
+
+# set random seed
+np.random.seed(1)
+
+# parameters
+sigma = 1
+
+# draw samples
+f_delta = 1 + np.random.normal(0,sigma)
+
+# likelihood and prior
+u = np.linspace(-5,5,100)
+
+likelihood = np.exp(-0.5*(u**2 - f_delta)**2/sigma**2)
+prior = (u>0)
+
+# plot
+fig,ax = plt.subplots(1,3,sharey=True)
+
+ax[0].plot(u,likelihood)
+ax[0].set_xlabel(r'$u$')
+ax[0].set_ylabel(r'$\pi(u)$')
+ax[0].set_aspect(10)
+ax[0].set_title('Likelihood')
+
+ax[1].plot(u,prior)
+ax[0].set_xlabel(r'$u$')
+ax[1].set_aspect(10)
+ax[1].set_title('Prior')
+
+ax[2].plot(u,likelihood*prior)
+ax[0].set_xlabel(r'$u$')
+ax[2].set_aspect(10)
+ax[2].set_title('Posterior')
+
+plt.figtext(0,0.1,r'Example with $K(u) = u^2$, $f = 1$, $\sigma=1$.',{'fontsize':12})
+plt.show()
+
+```
+### Poisson noise
+
 We have seen that Poisson noise also plays an important role in many applications. In this case, we cannot model the noise as additive. Instead, we can view the observations $f_i^{\delta}$ as a stochastic variable having a Poisson distribution with parameter $\lambda_i = \left({K}u\right)_i$. This leads to
 
 $$
@@ -143,15 +293,16 @@ $$
 \exp\left({-\left({K}u\right)_i}\right).
 $$
 
-The corresponding variational problem is 
+The corresponding variational problem is
 
 $$
-\min_{u} \sum_{i=1}^m \left(\left(\mathcal{K}u\right)_i - f_i^{\delta}\ln\left(\mathcal{K}u\right)_i\right).
+\min_{u} \sum_{i=1}^m \left(\left({K}u\right)_i - f_i^{\delta}\ln\left({K}u\right)_i\right).
 $$
 
-#### Gaussian random fields
 
-To include spatial correlations we can model $u$ as being normally distributed with mean $\mu$ and \emph{covariance} $\Sigma_{\text{prior}}$. Popular choices are
+### Gaussian random fields
+
+To include spatial correlations we can model $u$ as being normally distributed with mean $\mu$ and *covariance* $\Sigma_{\text{prior}}$. Popular choices are
 
 $$
 \Sigma_{\text{prior},ij} = \exp\left(-\frac{|i-j|^p}{pL^{p}}\right),
@@ -159,10 +310,10 @@ $$
 
 where $L$ denotes the correlation length and $p$ is a parameter.
 
-The corresponding variational problem is
+The corresponding variational form of the prior is
 
 $$
-\min_u \mathcal{J}(u,f^\delta) + \|u\|_{\Sigma^{-1}_{\text{prior}}}^2.
+-\log \pi_{\text{prior}}(u) = \|u\|_{\Sigma^{-1}_{\text{prior}}}^2.
 $$
 
 +++
@@ -202,7 +353,7 @@ Hint: The [Binomial inverse theorem](https://en.wikipedia.org/wiki/Woodbury_matr
 The likelihood is a Gaussian with mean $Ku$ and covariance $\Sigma_{\text{noise}}$:
 
 $$
-\pi_{\text{likelihood}}(f^{\delta} | u) \propto \exp(-\textstyle{\frac{1}{2}}(Ku - 
+\pi_{\text{likelihood}}(f^{\delta} | u) \propto \exp(-\textstyle{\frac{1}{2}}(Ku -
 f^{\delta})^T\Sigma_{\text{noise}}^{-1}(Ku - f^\delta)).
 $$
 
@@ -212,7 +363,7 @@ $$
 \pi_{\text{prior}}(u) \propto \exp(-\textstyle{\frac{1}{2}}(u - \mu_{\text{prior}})^T\Sigma_{\text{prior}}^{-1}(u - \mu_{\text{prior}})).
 $$
 
-Forming the product gives 
+Forming the product gives
 
 $$
 \pi_{\text{post}}(u | f^{\delta}) \propto \exp(-\textstyle{\frac{1}{2}}(Ku - f^{\delta})^T\Sigma_{\text{noise}}^{-1}(Ku - f^\delta) -\textstyle{\frac{1}{2}}(u - \mu_{\text{prior}})^T\Sigma_{\text{prior}}^{-1}(u - \mu_{\text{prior}})).
@@ -336,7 +487,7 @@ def getK(n):
     x = np.linspace(h/2,1-h/2,n)
     xx,yy = np.meshgrid(x,x)
     K = np.exp(-d*(xx-yy)**2)
-    
+
     return K,x
 ```
 
@@ -365,7 +516,7 @@ plt.legend()
 plt.show()
 ```
 
-1. For varying correlation length $L$ and noise level $\sigma$, reconstruct the images using the regularized pseudo inverse of $K$. 
+1. For varying correlation length $L$ and noise level $\sigma$, reconstruct the images using the regularized pseudo inverse of $K$.
 
 2. Compute the MAP estimate from $\min_{u} \sigma^{-2}\|Ku - f^{\delta}\|_2^2 + \|u\|_{\Sigma^{-1}}^2$. Compare the reconstruction to the one obtained in 1.
 
@@ -373,7 +524,7 @@ plt.show()
 
 +++
 
-````{admonition} Answer 
+````{admonition} Answer
 :class: tip, toggle
 
 To study the difference, we'll consider solving the inverse problem using generalized Tikhonov
@@ -408,10 +559,10 @@ def getK(n):
     x = np.linspace(h/2,1-h/2,n)
     xx,yy = np.meshgrid(x,x)
     K = np.exp(-d*(xx-yy)**2)
-    
+
     return K,x
 
-# helper function 
+# helper function
 def recon(u,sigma,alpha,R,m):
     """
     Draw random noise with variance sigma_true
@@ -419,13 +570,13 @@ def recon(u,sigma,alpha,R,m):
     """
     n = len(u)
     K,x = getK(n)
-    
+
     urec = np.zeros((m,n))
     for k in range(m):
         noise = sigma*np.random.randn(n)
         f = K@u + noise
         urec[k] = np.linalg.solve(K.T@K + alpha*np.linalg.inv(R), K.T@f)
-    
+
     error = np.mean(np.sum((urec - u)**2,axis=1))    
     return error,urec
 
@@ -452,7 +603,7 @@ R = np.eye(n)
 error1 = np.zeros(len(alphas))
 for k in range(len(alphas)):
     error1[k],urec = recon(u,sigma,alphas[k],R,m)
-    
+
 # Reconstruction using R = Sigma
 R = Sigma
 error2 = np.zeros(len(alphas))
@@ -482,4 +633,11 @@ ax[1].legend()
 
 plt.show()
 glue("expected_error",fig,display=False)
+```
+
+## References
+
+```{bibliography} references.bib
+:style: plain
+:filter: docname in docnames
 ```
