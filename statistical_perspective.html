@@ -267,67 +267,70 @@
   <a class="reference internal nav-link" href="#formulating-prior-assumptions">
    4.1. Formulating prior assumptions
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#map-estimation">
+   4.2. MAP estimation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   4.3. Examples
+  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#map-estimation">
-     4.1.1. MAP estimation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#examples">
-     4.1.2. Examples
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#gaussian">
-     4.1.3. Gaussian
+     4.3.1. Gaussian
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#laplace-uniform">
-       4.1.3.1. Laplace + uniform
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#improper-prior">
-       4.1.3.2. Improper prior
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#poisson-noise">
-       4.1.3.3. Poisson noise
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#gaussian-random-fields">
-       4.1.3.4. Gaussian random fields
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#laplace-uniform">
+     4.3.2. Laplace + uniform
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#least-squares-with-positivity-constraints">
+     4.3.3. Least-squares with positivity constraints
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#poisson-noise">
+     4.3.4. Poisson noise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaussian-random-fields">
+     4.3.5. Gaussian random fields
+    </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercises">
-   4.2. Exercises
+   4.4. Exercises
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#normal-distribution">
-     4.2.1. Normal distribution
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     4.2.2. Poisson noise
+     4.4.1. Normal distribution
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
-     4.2.3. MAP estimation
+     4.4.2. Poisson noise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     4.4.3. MAP estimation
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   4.5. References
+  </a>
  </li>
 </ul>
 
@@ -341,56 +344,61 @@
                 
   <div class="section" id="a-statistical-perspective-on-inverse-problems">
 <h1><span class="section-number">4. </span>A statistical perspective on inverse problems<a class="headerlink" href="#a-statistical-perspective-on-inverse-problems" title="Permalink to this headline">¶</a></h1>
+<p>In this chapter we present a statistical perspective on inverse problems. This viewpoint allows us to incorporate prior assumptions and formulate variational problems. To avoid unnecessary technicalities, we’ll stick to the finite-dimensional setting. A formal treatment in the infinite-dimensional setting is given in <a class="bibtex reference internal" href="#dashti2017" id="id1">[2]</a>.</p>
 <div class="section" id="formulating-prior-assumptions">
 <h2><span class="section-number">4.1. </span>Formulating prior assumptions<a class="headerlink" href="#formulating-prior-assumptions" title="Permalink to this headline">¶</a></h2>
-<p>We take the viewpoint that what we are measuring, <span class="math notranslate nohighlight">\(f^{\delta}\)</span>, is a stochastic variable with mean <span class="math notranslate nohighlight">\(f\)</span>, which in turn is related to <span class="math notranslate nohighlight">\(u\)</span> via the forward operator</p>
+<p>We take the viewpoint that both <span class="math notranslate nohighlight">\(f^{\delta}\)</span> and <span class="math notranslate nohighlight">\(u\)</span> are <a class="reference external" href="https://en.wikipedia.org/wiki/Random_variable">continuous random variables</a>. The prior assumptions are then formulated</p>
+<p>Our prior assumptions then consist of multi-variate <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_density_function">probability distributions</a>.</p>
+<div class="admonition-definition-likelihood admonition">
+<p class="admonition-title">Definition: <em>Likelihood</em></p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Likelihood_function">likelihood function</a> models the probability of measuring <span class="math notranslate nohighlight">\(f^\delta\)</span> given <span class="math notranslate nohighlight">\(u\)</span>. The corresponding probability density function is denoted by</p>
+<div class="math notranslate nohighlight">
+\[\pi_{\text{data}}(f^\delta | u)\]</div>
+</div>
+<div class="admonition-definition-prior-distribution admonition">
+<p class="admonition-title">Definition: <em>Prior distribution</em></p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Prior_probability">prior distribution</a> models the probability of a particular <span class="math notranslate nohighlight">\(u\)</span> being the underlying ground truth. It is denoted by</p>
+<div class="math notranslate nohighlight">
+\[\pi_{\text{prior}}(u).\]</div>
+</div>
+<p>We can use <a class="reference external" href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ theorem</a> to combine the likelihood and prior to the <a class="reference external" href="https://en.wikipedia.org/wiki/Posterior_probability">posterior distribution</a>:</p>
+<div class="admonition-definition-posterior-distribution admonition">
+<p class="admonition-title">Definition: <em>Posterior distribution</em></p>
+<p>The posterior distribution gives the probability of any given <span class="math notranslate nohighlight">\(u\)</span> given the measurements <span class="math notranslate nohighlight">\(f^\delta\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-f = Ku.
+\pi_{\text{post}}(u | f^\delta) = C\cdot  \pi_{\text{data}}(f^\delta) \pi_{\text{prior}}(u),
 \]</div>
-<p>Our prior assumptions in this case consist probability distributions for <span class="math notranslate nohighlight">\(f^{\delta}\)</span> and <span class="math notranslate nohighlight">\(u\)</span>,</p>
-<div class="math notranslate nohighlight">
-\[
-f^\delta \sim \pi_{\text{data}},
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-u \sim \pi_{\text{prior}}.
-\]</div>
-<p>Using Bayes’ rule, we can now formulate the posterior probability density function as</p>
-<div class="math notranslate nohighlight">
-\[
-\pi_{\text{post}}(u | f^\delta) \propto \pi_{\text{data}}(f^\delta) \pi_{\text{prior}}(u),
-\]</div>
-<p>where we have ignored the normalizing constants.</p>
-<p>In some sense, <span class="math notranslate nohighlight">\(\pi_{\text{post}}(u | f^\delta)\)</span> is the answer to our inverse problem. It gives us information on the likelihood of any particular <span class="math notranslate nohighlight">\(u\)</span> <em>under the assumptions</em> we made on <span class="math notranslate nohighlight">\(f^\delta\)</span> and <span class="math notranslate nohighlight">\(u\)</span>. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those.</p>
-<p>In all but the simple linear-forward-operator-Gaussian-assumption case, we cannot easily characterize the posterior PDF. We may, however, attempt estimate certain properties by drawing samples from the posterior distribution. Such samples can be generated for any distribution using the Metropolis-Hastings algorithm. This is not very attractive for high-dimensional problems, however. Further discussion of this algorithm is outside the scope of this lecture.</p>
+<p>where <span class="math notranslate nohighlight">\(C\)</span> is the normalising constant needed to make <span class="math notranslate nohighlight">\(\pi_{\text{post}}\)</span> integrate to 1.</p>
+</div>
+<p>In a way, <span class="math notranslate nohighlight">\(\pi_{\text{post}}(u | f^\delta)\)</span> is the answer to our inverse problem. It gives us information on the likelihood of any particular <span class="math notranslate nohighlight">\(u\)</span> <em>under the assumptions</em> we made on <span class="math notranslate nohighlight">\(f^\delta\)</span> and <span class="math notranslate nohighlight">\(u\)</span>. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those.</p>
+<p>In all but the simple linear-forward-operator-Gaussian-assumption case, we cannot easily characterise the posterior PDF. We may, however, attempt estimate certain properties by drawing samples from the posterior distribution. Such samples can be generated for any distribution using a <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov chain Monte Carlo (MCMC) algorithm</a>. This is not very attractive for high-dimensional problems, however. Further discussion of such algorithms is outside the scope of this lecture.</p>
+</div>
 <div class="section" id="map-estimation">
-<h3><span class="section-number">4.1.1. </span>MAP estimation<a class="headerlink" href="#map-estimation" title="Permalink to this headline">¶</a></h3>
+<h2><span class="section-number">4.2. </span>MAP estimation<a class="headerlink" href="#map-estimation" title="Permalink to this headline">¶</a></h2>
 <p>For high-dimensional problems it is common to instead find the most likely parameters</p>
 <div class="math notranslate nohighlight">
 \[
-\max_{u} \pi_{\text{post}}(u|f).
+\max_{u} \pi_{\text{post}}(u|f^\delta).
 \]</div>
-<p>The <span class="math notranslate nohighlight">\(u\)</span> that attains this maximum is called the \emph{maximum a posteriori} (MAP) estimate. Finding the MAP estimate can be naturally cast as a minimization problem</p>
+<p>The <span class="math notranslate nohighlight">\(u\)</span> that attains this maximum is called the <em>maximum a posteriori</em> (MAP) estimate. Finding the MAP estimate can be naturally cast as a minimisation problem</p>
 <div class="math notranslate nohighlight">
 \[
-\min_u -\log \pi_{\text{post}}(u|f).
+\min_u -\log \pi_{\text{post}}(u|f^\delta).
 \]</div>
-<p>Analyzing and solving such variational problems will be the subject of subsequent chapters.</p>
+<p>Analysing and solving such variational problems will be the subject of a subsequent chapter.</p>
 </div>
 <div class="section" id="examples">
-<h3><span class="section-number">4.1.2. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<h2><span class="section-number">4.3. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>Let’s consider a few examples:</p>
-</div>
 <div class="section" id="gaussian">
-<h3><span class="section-number">4.1.3. </span>Gaussian<a class="headerlink" href="#gaussian" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.3.1. </span>Gaussian<a class="headerlink" href="#gaussian" title="Permalink to this headline">¶</a></h3>
 <p>With additive Gaussian noise with zero mean and variance <span class="math notranslate nohighlight">\(\sigma\)</span>, we express the measurements as</p>
 <div class="math notranslate nohighlight">
 \[
 f^\delta = Ku + \epsilon,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is normally with zero mean and variance <span class="math notranslate nohighlight">\(\sigma\)</span>. Assuming that the <span class="math notranslate nohighlight">\(u_i\)</span> are normally distributed with zero mean and unit variance we get</p>
+<p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is normally with zero mean and variance <span class="math notranslate nohighlight">\(\sigma I\)</span>. Assuming that the <span class="math notranslate nohighlight">\(u_i\)</span> are normally distributed with zero mean and unit variance we get</p>
 <div class="math notranslate nohighlight">
 \[
 \pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\frac{1}{2\sigma^2}\|Ku - f^{\delta}\|_2^2 - \frac{1}{2}\|u\|_2^2\right),
@@ -398,52 +406,209 @@ f^\delta = Ku + \epsilon,
 <p>which we can re-write as</p>
 <div class="math notranslate nohighlight">
 \[
-\pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\frac{1}{2}\left({u}^*(\sigma^{-2}{K}^*K + I)u + \ldots\right)\right),
+\pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\textstyle{\frac{1}{2}}\left((u-\mu_{\text{post}})^T\Sigma_{\text{post}}^{-1}(\mu_{\text{post}})\right)\right),
 \]</div>
-<p>so <span class="math notranslate nohighlight">\(\pi_{\text{post}}\)</span> describes a normal distribution with mean</p>
+<p>with</p>
 <div class="math notranslate nohighlight">
-\[\]</div>
+\[
+\mu_{\text{post}} = \left(\sigma^{-2}{K}^*\!K + I\right)^{-1}\left(\sigma^{-2}K^*\!f^\delta\right),
+\]</div>
 <p>and variance</p>
 <div class="math notranslate nohighlight">
 \[
-\Sigma_{\text{post}} = (\sigma^{-2}{K}^*K + I)^{-1}.
+\Sigma_{\text{post}} = \left(\sigma^{-2}{K}^*\!K + I\right)^{-1}.
 \]</div>
 <p>It is not hard to show that this coincides with the solution of the Tikhonov least-squares solution with <span class="math notranslate nohighlight">\(\alpha = \sigma^2\)</span>. Indeed, the MAP estimate is obtained by solving</p>
 <div class="math notranslate nohighlight">
 \[
-\min_{u} \|{K}u - f\|_2^2 + \|u\|_2^2.
+\min_{u} \|{K}u - f\|_2^2 + \sigma^2\|u\|_2^2.
 \]</div>
-<div class="section" id="laplace-uniform">
-<h4><span class="section-number">4.1.3.1. </span>Laplace + uniform<a class="headerlink" href="#laplace-uniform" title="Permalink to this headline">¶</a></h4>
-<p>If we assume Laplace noise with mean <span class="math notranslate nohighlight">\(\mu\)</span> and unit variance, and a uniform prior <span class="math notranslate nohighlight">\(u_i\in[a_i,b_i]\)</span> we end up with</p>
-<div class="math notranslate nohighlight">
-\[
-\pi_{\text{post}}(u | f) = \exp\left(-\|{K}u - f^{\delta} - \mu\|_1\right)\prod_i I_{[0,1]}\left(\frac{u_i-a_i}{b_i-a_i}\right)
-\]</div>
-<p>The corresponding MAP estimatiob problem is given by</p>
-<div class="math notranslate nohighlight">
-\[
-\min_{u\in B} \|{K}u - f - \mu\|_1,
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(B = \{u \in \mathbb{R}^n \,|\, u_i \in [a_i,b_i]\,\, \text{for}\,\, i = 1,2,\ldots,n\}\)</span>.</p>
+<p>An example is shown below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># set random seed</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># parameters</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">Sigma_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span>
+
+<span class="c1"># draw samples</span>
+<span class="n">u_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">Sigma</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="n">u_true</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_true</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">e</span>
+
+<span class="c1"># likelihood and prior</span>
+<span class="n">u1</span><span class="p">,</span><span class="n">u2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="n">likelihood</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">u1</span> <span class="o">+</span> <span class="n">u2</span> <span class="o">-</span> <span class="n">f_delta</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">prior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">u1</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">u1</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">Sigma_inv</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">u1</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">u2</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">Sigma_inv</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">u2</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">u2</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">Sigma_inv</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span><span class="n">u2</span><span class="p">,</span><span class="n">likelihood</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_2$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Likelihood&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span><span class="n">u2</span><span class="p">,</span><span class="n">prior</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Prior&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span><span class="n">u2</span><span class="p">,</span><span class="n">likelihood</span><span class="o">*</span><span class="n">prior</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Posterior&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;Example with $K = (1,1)$ and $\sigma=1$.&#39;</span><span class="p">,{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span><span class="mi">12</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
 </div>
-<div class="section" id="improper-prior">
-<h4><span class="section-number">4.1.3.2. </span>Improper prior<a class="headerlink" href="#improper-prior" title="Permalink to this headline">¶</a></h4>
-<p>In some cases it may not be natural to define prior information in terms of a probability density. For example, the prior information that <span class="math notranslate nohighlight">\(u_i \geq 0\)</span> (all positive values are equally likely) does not have a corresponding probability density function associated with with. We may still add this prior in the Bayesian framework as</p>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/statistical_perspective_1_0.png" src="_images/statistical_perspective_1_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="laplace-uniform">
+<h3><span class="section-number">4.3.2. </span>Laplace + uniform<a class="headerlink" href="#laplace-uniform" title="Permalink to this headline">¶</a></h3>
+<p>If we assume Laplace noise with mean <span class="math notranslate nohighlight">\(\mu\)</span> and parameter <span class="math notranslate nohighlight">\(\lambda\)</span>, and a uniform prior <span class="math notranslate nohighlight">\(u_i\in[a_i,b_i]\)</span> we end up with</p>
 <div class="math notranslate nohighlight">
 \[
-\pi_{\text{prior}}(u) = \prod_iI_{[0,\infty)}(u_i),
+\pi_{\text{post}}(u | f) = \exp\left(-\lambda^{-1}\|{K}u - f^{\delta} - \mu\|_1\right)\prod_i I_{[0,1]}\left(\frac{u_i-a_i}{b_i-a_i}\right),
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(I_{[0,\infty)}\)</span> is the indicator function which is <span class="math notranslate nohighlight">\(1\)</span> with <span class="math notranslate nohighlight">\(u_i \in [0,\infty)\)</span> and <span class="math notranslate nohighlight">\(0\)</span> otherwise.</p>
+<p>where <span class="math notranslate nohighlight">\(I[0,1]\)</span> denotes the indicator function for the interval <span class="math notranslate nohighlight">\([0,1]\)</span>. The corresponding MAP estimation problem is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\min_{u\in B} \|{K}u - f^\delta - \mu\|_1,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(B = \{u \in \mathbb{R}^n \,|\, u_i \in [a_i,b_i]\,\, \text{for}\,\, i = 1,2,\ldots,n\}\)</span>. An example is shown below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># set random seed</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># parameters</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">lmbda</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># draw samples</span>
+<span class="n">u_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">lmbda</span><span class="p">)</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="n">u_true</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_true</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">e</span>
+
+<span class="c1"># likelihood and prior</span>
+<span class="n">u1</span><span class="p">,</span><span class="n">u2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="n">likelihood</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u1</span> <span class="o">+</span> <span class="n">u2</span> <span class="o">-</span> <span class="n">f_delta</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="n">lmbda</span><span class="p">)</span>
+<span class="n">prior</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">heaviside</span><span class="p">(</span><span class="n">u1</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">heaviside</span><span class="p">(</span><span class="n">u1</span><span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">heaviside</span><span class="p">(</span><span class="n">u2</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">heaviside</span><span class="p">(</span><span class="n">u2</span><span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span><span class="n">u2</span><span class="p">,</span><span class="n">likelihood</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_2$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Likelihood&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span><span class="n">u2</span><span class="p">,</span><span class="n">prior</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Prior&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span><span class="n">u2</span><span class="p">,</span><span class="n">likelihood</span><span class="o">*</span><span class="n">prior</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Posterior&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;Example with $K = (1,1)$, $mu=1$, $\lambda = 0.1$, $a = (1,0)$, $b=(2,2)$.&#39;</span><span class="p">,{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span><span class="mi">12</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/statistical_perspective_3_0.png" src="_images/statistical_perspective_3_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="least-squares-with-positivity-constraints">
+<h3><span class="section-number">4.3.3. </span>Least-squares with positivity constraints<a class="headerlink" href="#least-squares-with-positivity-constraints" title="Permalink to this headline">¶</a></h3>
+<p>We let <span class="math notranslate nohighlight">\(f^\delta = Ku + \epsilon\)</span>, with <span class="math notranslate nohighlight">\(\epsilon\)</span> normally distributed with zero mean and unit variance. In some cases it may not be natural to define prior information in terms of a probability density. For example, the prior information that <span class="math notranslate nohighlight">\(u_i \geq 0\)</span> (all positive values are equally likely) does not have a corresponding probability density function associated with with. We may still add this prior in the Bayesian framework as</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{\text{prior}}(u) = \prod_i I_{[0,\infty)}(u_i).
+\]</div>
 <p>The corresponding variational problem is</p>
 <div class="math notranslate nohighlight">
 \[
-\min_{u\geq 0} \mathcal{J}(u,f^\delta),
+\min_{u \in \mathbb{R}_{\geq 0}^n} \|Ku - f^\delta\|_2^2.
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathcal{J}(u,f^\delta) = -\log\pi_{\text{post}}(u | f^\delta)\)</span>.</p>
+<p>An example for a non-linear forward model is shown below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># set random seed</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># parameters</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># draw samples</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span>
+
+<span class="c1"># likelihood and prior</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">likelihood</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">f_delta</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">prior</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">likelihood</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\pi(u)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Likelihood&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">prior</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Prior&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">likelihood</span><span class="o">*</span><span class="n">prior</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Posterior&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;Example with $K(u) = u^2$, $f = 1$, $\sigma=1$.&#39;</span><span class="p">,{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span><span class="mi">12</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/statistical_perspective_5_0.png" src="_images/statistical_perspective_5_0.png" />
+</div>
+</div>
 </div>
 <div class="section" id="poisson-noise">
-<h4><span class="section-number">4.1.3.3. </span>Poisson noise<a class="headerlink" href="#poisson-noise" title="Permalink to this headline">¶</a></h4>
+<h3><span class="section-number">4.3.4. </span>Poisson noise<a class="headerlink" href="#poisson-noise" title="Permalink to this headline">¶</a></h3>
 <p>We have seen that Poisson noise also plays an important role in many applications. In this case, we cannot model the noise as additive. Instead, we can view the observations <span class="math notranslate nohighlight">\(f_i^{\delta}\)</span> as a stochastic variable having a Poisson distribution with parameter <span class="math notranslate nohighlight">\(\lambda_i = \left({K}u\right)_i\)</span>. This leads to</p>
 <div class="math notranslate nohighlight">
 \[
@@ -453,29 +618,28 @@ f^\delta = Ku + \epsilon,
 <p>The corresponding variational problem is</p>
 <div class="math notranslate nohighlight">
 \[
-\min_{u} \sum_{i=1}^m \left(\left(\mathcal{K}u\right)_i - f_i^{\delta}\ln\left(\mathcal{K}u\right)_i\right).
+\min_{u} \sum_{i=1}^m \left(\left({K}u\right)_i - f_i^{\delta}\ln\left({K}u\right)_i\right).
 \]</div>
 </div>
 <div class="section" id="gaussian-random-fields">
-<h4><span class="section-number">4.1.3.4. </span>Gaussian random fields<a class="headerlink" href="#gaussian-random-fields" title="Permalink to this headline">¶</a></h4>
-<p>To include spatial correlations we can model <span class="math notranslate nohighlight">\(u\)</span> as being normally distributed with mean <span class="math notranslate nohighlight">\(\mu\)</span> and \emph{covariance} <span class="math notranslate nohighlight">\(\Sigma_{\text{prior}}\)</span>. Popular choices are</p>
+<h3><span class="section-number">4.3.5. </span>Gaussian random fields<a class="headerlink" href="#gaussian-random-fields" title="Permalink to this headline">¶</a></h3>
+<p>To include spatial correlations we can model <span class="math notranslate nohighlight">\(u\)</span> as being normally distributed with mean <span class="math notranslate nohighlight">\(\mu\)</span> and <em>covariance</em> <span class="math notranslate nohighlight">\(\Sigma_{\text{prior}}\)</span>. Popular choices are</p>
 <div class="math notranslate nohighlight">
 \[
 \Sigma_{\text{prior},ij} = \exp\left(-\frac{|i-j|^p}{pL^{p}}\right),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(L\)</span> denotes the correlation length and <span class="math notranslate nohighlight">\(p\)</span> is a parameter.</p>
-<p>The corresponding variational problem is</p>
+<p>The corresponding variational form of the prior is</p>
 <div class="math notranslate nohighlight">
 \[
-\min_u \mathcal{J}(u,f^\delta) + \|u\|_{\Sigma^{-1}_{\text{prior}}}^2.
+-\log \pi_{\text{prior}}(u) = \|u\|_{\Sigma^{-1}_{\text{prior}}}^2.
 \]</div>
 </div>
 </div>
-</div>
 <div class="section" id="exercises">
-<h2><span class="section-number">4.2. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="normal-distribution">
-<h3><span class="section-number">4.2.1. </span>Normal distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.4.1. </span>Normal distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this headline">¶</a></h3>
 <p>Consider a linear inverse problem</p>
 <div class="math notranslate nohighlight">
 \[
@@ -498,7 +662,7 @@ Ku = f^{\delta},
 <p>The likelihood is a Gaussian with mean <span class="math notranslate nohighlight">\(Ku\)</span> and covariance <span class="math notranslate nohighlight">\(\Sigma_{\text{noise}}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-\pi_{\text{likelihood}}(f^{\delta} | u) \propto \exp(-\textstyle{\frac{1}{2}}(Ku - 
+\pi_{\text{likelihood}}(f^{\delta} | u) \propto \exp(-\textstyle{\frac{1}{2}}(Ku -
 f^{\delta})^T\Sigma_{\text{noise}}^{-1}(Ku - f^\delta)).
 \]</div>
 <p>The prior is a Gaussian with mean <span class="math notranslate nohighlight">\(\mu_{\text{prior}}\)</span> and covariance <span class="math notranslate nohighlight">\(\Sigma_{\text{prior}}\)</span>:</p>
@@ -539,8 +703,8 @@ u^T\Sigma_{\text{post}}^{-1}u - 2u^T\Sigma_{\text{post}}^{-1}\mu_{\text{post}} +
 <p>Using the Binomial inverse theorem we find the desired expression for <span class="math notranslate nohighlight">\(\Sigma_{\text{post}}\)</span>. More algebraic manipulations yield the desired expression for <span class="math notranslate nohighlight">\(\mu_{\text{post}}\)</span></p>
 </div>
 </div>
-<div class="section" id="id1">
-<h3><span class="section-number">4.2.2. </span>Poisson noise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3><span class="section-number">4.4.2. </span>Poisson noise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Consider a linear inverse problem <span class="math notranslate nohighlight">\(Ku = f^{\delta}\)</span>, where we assume that <span class="math notranslate nohighlight">\(f^{\delta}\)</span> follows a Poisson distribution with mean <span class="math notranslate nohighlight">\(\overline f = K\overline{u}\)</span>.</p>
 <ul class="simple">
 <li><p>Show that the MAP estimate may be obtained by solving the following minimization problem</p></li>
@@ -576,8 +740,8 @@ u^T\Sigma_{\text{post}}^{-1}u - 2u^T\Sigma_{\text{post}}^{-1}\mu_{\text{post}} +
 <p>Plugging this in in gives the desired expression.</p>
 </div>
 </div>
-<div class="section" id="id2">
-<h3><span class="section-number">4.2.3. </span>MAP estimation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3><span class="section-number">4.4.3. </span>MAP estimation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Consider the inverse problem</p>
 <div class="math notranslate nohighlight">
 \[
@@ -616,7 +780,7 @@ f^{\delta} = K\overline{u} + \epsilon.
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
     <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">xx</span><span class="o">-</span><span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">K</span><span class="p">,</span><span class="n">x</span>
 </pre></div>
 </div>
@@ -650,7 +814,7 @@ f^{\delta} = K\overline{u} + \epsilon.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/statistical_perspective_7_0.png" src="_images/statistical_perspective_7_0.png" />
+<img alt="_images/statistical_perspective_13_0.png" src="_images/statistical_perspective_13_0.png" />
 </div>
 </div>
 <ol class="simple">
@@ -674,7 +838,7 @@ In figure <a class="reference internal" href="#expected-error"><span class="std 
 </ul>
 <div class="figure align-default" id="expected-error" style="width: 600px">
 <div class="cell_output docutils container">
-<img alt="_images/statistical_perspective_10_1.png" src="_images/statistical_perspective_10_1.png" />
+<img alt="_images/statistical_perspective_16_1.png" src="_images/statistical_perspective_16_1.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Expected error as a function of <span class="math notranslate nohighlight">\(\alpha\)</span>.</span><a class="headerlink" href="#expected-error" title="Permalink to this image">¶</a></p>
 </div>
@@ -688,10 +852,10 @@ In figure <a class="reference internal" href="#expected-error"><span class="std 
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
     <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">xx</span><span class="o">-</span><span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">K</span><span class="p">,</span><span class="n">x</span>
 
-<span class="c1"># helper function </span>
+<span class="c1"># helper function</span>
 <span class="k">def</span> <span class="nf">recon</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">m</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Draw random noise with variance sigma_true</span>
@@ -699,13 +863,13 @@ In figure <a class="reference internal" href="#expected-error"><span class="std 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
     <span class="n">K</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">getK</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    
+
     <span class="n">urec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
         <span class="n">noise</span> <span class="o">=</span> <span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
         <span class="n">f</span> <span class="o">=</span> <span class="n">K</span><span class="nd">@u</span> <span class="o">+</span> <span class="n">noise</span>
         <span class="n">urec</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">T</span><span class="nd">@K</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">R</span><span class="p">),</span> <span class="n">K</span><span class="o">.</span><span class="n">T</span><span class="nd">@f</span><span class="p">)</span>
-    
+
     <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">urec</span> <span class="o">-</span> <span class="n">u</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>    
     <span class="k">return</span> <span class="n">error</span><span class="p">,</span><span class="n">urec</span>
 
@@ -732,7 +896,7 @@ In figure <a class="reference internal" href="#expected-error"><span class="std 
 <span class="n">error1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)):</span>
     <span class="n">error1</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">urec</span> <span class="o">=</span> <span class="n">recon</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">alphas</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">R</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
-    
+
 <span class="c1"># Reconstruction using R = Sigma</span>
 <span class="n">R</span> <span class="o">=</span> <span class="n">Sigma</span>
 <span class="n">error2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">))</span>
@@ -766,10 +930,19 @@ In figure <a class="reference internal" href="#expected-error"><span class="std 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/statistical_perspective_10_0.png" src="_images/statistical_perspective_10_0.png" />
+<img alt="_images/statistical_perspective_16_0.png" src="_images/statistical_perspective_16_0.png" />
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="references">
+<h2><span class="section-number">4.5. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p id="bibtex-bibliography-statistical_perspective-0"><dl class="citation">
+<dt class="bibtex label" id="dashti2017"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dd><p>Masoumeh Dashti and Andrew M. Stuart. <em>The Bayesian Approach to Inverse Problems</em>, pages 311–428. Springer International Publishing, Cham, 2017. URL: <a class="reference external" href="https://arxiv.org/pdf/1302.6989.pdf">https://arxiv.org/pdf/1302.6989.pdf</a>, <a class="reference external" href="https://doi.org/10.1007/978-3-319-12385-1_7">doi:10.1007/978-3-319-12385-1_7</a>.</p>
+</dd>
+</dl>
+</p>
 </div>
 </div>
 

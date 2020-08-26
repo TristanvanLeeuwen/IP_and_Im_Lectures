@@ -546,7 +546,7 @@ We can expect a unique solution when the intersection of the kernels of $K$ and 
 
 Given a regularisation strategy with parameter $\alpha$, we need to pick $\alpha$. As mentioned earlier, we need to pick $\alpha$ to optimally balance between the bias and variance in the error. To highlight the basic flavours of parameter-choice strategies, we give three examples.
 
-```{admonition}: Example: *A-priori rules*
+```{admonition} Example: *A-priori rules*
 
 Assuming that we know the noise level $\delta$, we can define a parameter-choice rule $\alpha(\delta)$. We call such a rule *convergent* iff
 
@@ -557,7 +557,7 @@ With these requirements, we can easily show that the error $\|K_{\alpha}^\dagger
 Such parameter-choice rules are nice in theory, but hard to design in practice.
 ```
 
-```{admonition}: Example: *The discrepancy principle*
+```{admonition} Example: *The discrepancy principle*
 
 Morozov's discrepancy principle chooses $\alpha$ such that
 
@@ -566,7 +566,7 @@ $$\|KK_{\alpha}^\dagger f^{\delta} - f^{\delta}\|_{\mathcal{F}} \leq \eta \delta
 with $\eta > 1$ a fixed parameter. This can be interpreted as finding an $\alpha$ for which the solution fits the data in accordance with the noise level. Note, however, that such an $\alpha$ may not exist if (a significant part of) $f^\delta$ lies in the kernel of $K^*$.
 ```
 
-```{admonition}: Example: *The L-curve method*
+```{admonition} Example: *The L-curve method*
 Here, we choose $\alpha$ via
 
 $$\min_{\alpha > 0} \|K_{\alpha}^\dagger f^\delta\|_{\mathcal{U}} \|KK_{\alpha}^\dagger f^\delta - f^\delta\|_{\mathcal{F}}.$$

@@ -758,32 +758,28 @@ g_{\alpha}(s) = \begin{cases} s^{-1} &amp; \text{if}\, s &gt; \alpha \\ 0 &amp; 
 <div class="section" id="parameter-choice-strategies">
 <h3><span class="section-number">3.4.3. </span>Parameter-choice strategies<a class="headerlink" href="#parameter-choice-strategies" title="Permalink to this headline">¶</a></h3>
 <p>Given a regularisation strategy with parameter <span class="math notranslate nohighlight">\(\alpha\)</span>, we need to pick <span class="math notranslate nohighlight">\(\alpha\)</span>. As mentioned earlier, we need to pick <span class="math notranslate nohighlight">\(\alpha\)</span> to optimally balance between the bias and variance in the error. To highlight the basic flavours of parameter-choice strategies, we give three examples.</p>
-<div class="highlight-{admonition}: notranslate"><div class="highlight"><pre><span></span>
-Assuming that we know the noise level $\delta$, we can define a parameter-choice rule $\alpha(\delta)$. We call such a rule *convergent* iff
-
-$$\lim_{\delta\rightarrow 0} \alpha(\delta) = 0, \quad \lim_{\delta\rightarrow 0} \delta \|K_{\alpha}^\dagger\| = 0.$$
-
-With these requirements, we can easily show that the error $\|K_{\alpha}^\dagger f^{\delta} - K^\dagger f\|_{\mathcal{U}} \rightarrow 0$ as $\delta\rightarrow 0$.
-
-Such parameter-choice rules are nice in theory, but hard to design in practice.
-</pre></div>
+<div class="admonition-example-a-priori-rules admonition">
+<p class="admonition-title">Example: <em>A-priori rules</em></p>
+<p>Assuming that we know the noise level <span class="math notranslate nohighlight">\(\delta\)</span>, we can define a parameter-choice rule <span class="math notranslate nohighlight">\(\alpha(\delta)\)</span>. We call such a rule <em>convergent</em> iff</p>
+<div class="math notranslate nohighlight">
+\[\lim_{\delta\rightarrow 0} \alpha(\delta) = 0, \quad \lim_{\delta\rightarrow 0} \delta \|K_{\alpha}^\dagger\| = 0.\]</div>
+<p>With these requirements, we can easily show that the error <span class="math notranslate nohighlight">\(\|K_{\alpha}^\dagger f^{\delta} - K^\dagger f\|_{\mathcal{U}} \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(\delta\rightarrow 0\)</span>.</p>
+<p>Such parameter-choice rules are nice in theory, but hard to design in practice.</p>
 </div>
-<div class="highlight-{admonition}: notranslate"><div class="highlight"><pre><span></span>
-Morozov&#39;s discrepancy principle chooses $\alpha$ such that
-
-$$\|KK_{\alpha}^\dagger f^{\delta} - f^{\delta}\|_{\mathcal{F}} \leq \eta \delta,$$
-
-with $\eta &gt; 1$ a fixed parameter. This can be interpreted as finding an $\alpha$ for which the solution fits the data in accordance with the noise level. Note, however, that such an $\alpha$ may not exist if (a significant part of) $f^\delta$ lies in the kernel of $K^*$.
-</pre></div>
+<div class="admonition-example-the-discrepancy-principle admonition">
+<p class="admonition-title">Example: <em>The discrepancy principle</em></p>
+<p>Morozov’s discrepancy principle chooses <span class="math notranslate nohighlight">\(\alpha\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[\|KK_{\alpha}^\dagger f^{\delta} - f^{\delta}\|_{\mathcal{F}} \leq \eta \delta,\]</div>
+<p>with <span class="math notranslate nohighlight">\(\eta &gt; 1\)</span> a fixed parameter. This can be interpreted as finding an <span class="math notranslate nohighlight">\(\alpha\)</span> for which the solution fits the data in accordance with the noise level. Note, however, that such an <span class="math notranslate nohighlight">\(\alpha\)</span> may not exist if (a significant part of) <span class="math notranslate nohighlight">\(f^\delta\)</span> lies in the kernel of <span class="math notranslate nohighlight">\(K^*\)</span>.</p>
 </div>
-<div class="highlight-{admonition}: notranslate"><div class="highlight"><pre><span></span>Here, we choose $\alpha$ via
-
-$$\min_{\alpha &gt; 0} \|K_{\alpha}^\dagger f^\delta\|_{\mathcal{U}} \|KK_{\alpha}^\dagger f^\delta - f^\delta\|_{\mathcal{F}}.$$
-
-The name stems from the fact that the optimal $\alpha$ typically resides at the corner of the curve $(\|K_{\alpha}^\dagger f^\delta\|_{\mathcal{U}}, \|KK_{\alpha}^\dagger f^\delta - f^\delta\|_{\mathcal{F}})$.
-
-This rule has the practical advantage that no knowledge of the noise level is required. Unfortunately, it is not a convergent rule.
-</pre></div>
+<div class="admonition-example-the-l-curve-method admonition">
+<p class="admonition-title">Example: <em>The L-curve method</em></p>
+<p>Here, we choose <span class="math notranslate nohighlight">\(\alpha\)</span> via</p>
+<div class="math notranslate nohighlight">
+\[\min_{\alpha &gt; 0} \|K_{\alpha}^\dagger f^\delta\|_{\mathcal{U}} \|KK_{\alpha}^\dagger f^\delta - f^\delta\|_{\mathcal{F}}.\]</div>
+<p>The name stems from the fact that the optimal <span class="math notranslate nohighlight">\(\alpha\)</span> typically resides at the corner of the curve <span class="math notranslate nohighlight">\((\|K_{\alpha}^\dagger f^\delta\|_{\mathcal{U}}, \|KK_{\alpha}^\dagger f^\delta - f^\delta\|_{\mathcal{F}})\)</span>.</p>
+<p>This rule has the practical advantage that no knowledge of the noise level is required. Unfortunately, it is not a convergent rule.</p>
 </div>
 </div>
 </div>
@@ -867,7 +863,7 @@ K = h\cdot\left(\begin{matrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  4.044221758026903
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  3.8180643304587285
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_7_1.png" src="_images/ip_function_spaces_7_1.png" />
