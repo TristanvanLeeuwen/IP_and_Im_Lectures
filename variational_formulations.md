@@ -13,11 +13,206 @@ kernelspec:
 
 # Variational formulations for inverse problems
 
+So far, we have seen that inverse problems may generally be formulated as a variational problem
+
+```{math}
+:label: variational
+\min_{u\in\mathcal{U}} J(u),
+```
+
+where the *functional* $J : \mathcal{U} \rightarrow \mathbb{R}$ consists of a *data-fidelity* and *regularisation* term. In this chapter we will discuss how to analyse the well-posedness of {eq}`variational` and lay out the connection between variational problems and PDEs through the *gradient flow*. The contents of this chapter were heavily inspired by the excellent [lecture notes from Matthias J. Ehrhardt and Lukas F. Lang](https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf)
+
+---
+
+We will broaden the setting a little and let $\mathcal{U}$ be a Banach space with some topology that is not necessarily induced by the underlying norm. We need this generality to be able to formally tackle some of the more fancy regularisation techniques. As before, we will not focus on the proofs too deeply and focus on the concepts. We will need the following concepts, however.
+
+```{admonition} Definition: *dual space*
+:class: important
+
+With every Banach space $\mathcal{U}$ we can associate the dual space consisting of linear, continuous functionals on $\mathcal{U}$. For a given $v \in \mathcal{U}^*$ we denote the application of $v$ on $u$ as the dual product $\langle v,u\rangle$. As such, we can think of this as a way to generalise the concept of an inner product. However, the dual product is not generally symmetric.
+
+The dual product also allows us to define the adjoint of a linear operator $K:\mathcal{U} \rightarrow \mathcal{F}$ as
+
+$$\langle g, Ku\rangle = \langle K^*g, u\rangle \quad \forall u \in \mathcal{U}, g \in \mathcal{F}^*.$$
+```
+
+The main technical difficulties will arise when showing convergence of sequences in the usual way. For this, we need to introduce the notion of *weak convergence*.
+
+```{admonition} Definition: *weak convergence*
+:class: important
+
+A sequence $\{u_k\}_{k\in\mathbb{N}} \subset \mathcal{U}$ is said to converge weakly to $u \in \mathcal{U}$ iff for all $v \in \mathcal{U}^*$ we have
+
+$$\langle v, u_k\rangle \rightarrow \langle v,u\rangle.$$
+
+We denote weak convergence by $u_k\rightharpoonup u$.
+```
+
+---
+
+Some notable examples are highlighted below.
+
+```{admonition} Example: *Sobolev regularisation*
+
+Given a bounded linear operator $K:H^1(\Omega)\rightarrow L^2(\Omega)$ and data $f^\delta$, we let $\nabla$ denote the gradient
+
+$$J(u) = \textstyle{\frac{1}{2}}\|Ku-f^{\delta}\|_{L^2(\Omega)}^2 +  \textstyle{\frac{\alpha}{2}}\|\nabla u\|_{L^2(\Omega)}^2.$$
+
+This functional is well-defined for $u \in H^1(\Omega)$, with $H^1(\Omega)$ denotes the [Sobolev space](https://en.wikipedia.org/wiki/Sobolev_space) of functions $u$ for which both $u$ and $\nabla u$ are square integrable. Thus, thus regularisation generally leads to smooth solutions.
+```
+
+```{admonition} Example: *$\ell_1$-regularization*
+
+Consider a forward operator $K:\ell_1 \rightarrow \ell_2$ and let
+
+$$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\ell_1}.$$
+
+Such regularisation term generally leads to *sparse* solutions.
+```
+
+```{admonition} Example: *Total Variation regularisation*
+
+Consider recovering a function $u: [0,1] \rightarrow \mathbb{R}$ from noisy measurements $f^\delta = Ku + e$. A popular choice in imaging applications is to put an $L^1$-norm on the derivative. For $u\in W^{1,1}([0,1])$ this yields
+
+$$J(u) = \textstyle{\frac{1}{2}}\|Ku-f^{\delta}\|_{L^2([0,1])}^2 + \alpha \|u'\|_{L^1([0,1])}.$$
+
+This can be generalised to include certain non-smooth functions by introducing the space of functions of [bounded variation](https://en.wikipedia.org/wiki/Bounded_variation), denoted by $BV([0,1])$. Functions in $BV([0,1])$ are characterised as having a finite [Total Variation](https://en.wikipedia.org/wiki/Total_variation)
+
+$$TV(u) = \sup_{\phi \in D([0,1],\mathbb{R})} \int_0^1 u(x)\phi'(x)\mathrm{d}x,$$
+
+where $D([0,1],\mathbb{R})$ is the space of smooth test functions with $\|\phi\|_{L^\infty([0,1])}\leq 1$. This space is much larger than $H^{1,1}([0,1])$ as it contains certain discontinuous functions (such as the Heaveside stepfunction) and smaller than $L^1(0,1)$ (which also contains less regular functions). For functions in $H^{1,1}$ we have $TV(u) = \|u'\|_{L^1([0,1])}$.
+```
+
 ## Analysis
 
-## Linear PDEs
+### Well-posedness
 
-## Non-linear PDEs
+To establish existence of minimisers, we first need a few definitions.
+
+```{admonition} Definition: *Minimisers*
+:class: important
+We say that $\widetilde{u} \in \mathcal{U}$ solves {eq}`variational` iff $E(\widetilde{u}) < \infty$ and $E(\widetilde{u}) \leq E(u)$ for all $u \in \mathcal{U}$.
+```
+
+```{admonition} Definition: *Proper functionals*
+:class: important
+
+A functional $E$ is called proper if the effective domain is not empty.
+```
+
+```{admonition} Definition: *Bounded from below*
+:class: important
+
+A functional $J$ is bounded from below if there exists a constant $C > -\infty$ such that $\forall u\in \mathcal{U}$ we have $U(u) \geq C$.
+```
+
+```{admonition} Definition: *Coercive functionals*
+:class: important
+
+A functional $J$ is called coercive if for all $\{u_j\}_{j\in\mathbb{N}}$ with $\|u_j|_{\mathcal{U}}\rightarrow \infty$ we have $J(u_j) \rightarrow\infty$.
+```
+
+```{admonition} Definition: *Lower semi-continuity*
+:class: important
+
+A functional $J$ is called lower semi-continuous (with respect to a given topology) at $u\in\mathcal{U}$ if $J(u) \leq \lim\inf_{j\rightarrow \infty} J(u_j)$ for all sequences $\{u_j\}_{j\in\mathbb{N}}$ with $u_j\rightarrow u$ in the given topology of $\mathcal{U}$.
+```
+
+With these, we can establish existence.
+
+```{admonition} Theorem: *Fundamental theorem of optimisation*
+:class: important
+
+Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be a proper, coercive, bounded from below and lower semi-continuous. Then $J$ has a minimiser.
+````
+
+````{admonition} Examples: *existence of minimisers in $\mathbb{R}$*
+
+Consider the following functions $J:\mathbb{R}\rightarrow \mathbb{R}$ (cf {numref}`functional`):
+
+* $J_1(x) = x^3,$
+* $J_2(x) = e^x,$
+* $J_3(x) = \begin{cases}x^2 & x < 0 \\ 1 + x & x \geq 0\end{cases}$
+* $J_4(x) = \begin{cases}x^2 & x \leq 0 \\ 1 + x & x > 0\end{cases}$
+
+We see that $J_1$ is not bounded from below; $J_2$ is not coercive, $J_3$ is not l.s.c while $J_4$ is.
+
+```{glue:figure} functionals
+:figwidth: 600px
+:name: "functionals"
+
+Examples of various functionals.
+```
+
+````
+
+```{code-cell}
+:tags: ["hide-cell"]
+
+import numpy as np
+import matplotlib.pyplot as plt
+from myst_nb import glue
+
+# grid
+x = np.linspace(0,5,1000)
+
+# plot
+fig,ax = plt.subplots(1,4)
+
+ax[0].plot(-x,-x**3,'b',x,x**3,'b')
+ax[0].set_xlim([-2,2])
+ax[0].set_ylim([-2,2])
+ax[0].set_aspect(1)
+
+ax[1].plot(-x,np.exp(-x),'b',x,np.exp(x),'b')
+ax[1].set_xlim([-2,2])
+ax[1].set_ylim([-0.5,3.5])
+ax[1].set_aspect(1)
+
+ax[2].plot(-x[30:],x[30:]**2,'b',x,1+x,'b')
+ax[2].plot(0,0,'bo',fillstyle='none')
+ax[2].plot(0,1,'bo')
+ax[2].set_xlim([-2,2])
+ax[2].set_ylim([-0.5,3.5])
+ax[2].set_aspect(1)
+
+ax[3].plot(-x,x**2,'b',x[30:],1+x[30:],'b')
+ax[3].plot(0,0,'bo')
+ax[3].plot(0,1,'bo',fillstyle='none')
+ax[3].set_xlim([-2,2])
+ax[3].set_ylim([-0.5,3.5])
+ax[3].set_aspect(1)
+
+glue("functionals", fig, display=False)
+
+```
+
+```{admonition} Theorem: *Uniqueness of minimiser*
+:class: important
+
+Let $E$ have at least one minimiser and be [strictly convex](https://en.wikipedia.org/wiki/Convex_function) then the minimiser is unique.
+```
+
+
+## The Euler-Lagrange equations
+
+### Derivatives
+
+```{admonition} Definition: *Fréchet derivative*
+:class: important
+
+We call a functional $E:\mathcal{U}\rightarrow \mathbb{R}$ Fréchet differentiable (at $u$) if
+there exists a linear operator $D$ such that
+
+$$\lim_{h\rightarrow 0} \frac{|E(u+h) - E(u) - Dh|}{\|h\|_{\mathcal{U}}} = 0.$$
+
+If this operator exists for all $u \in\mathcal{U}$ we call $E$ Fréchet differentiable and denote its Fréchet derivative by $E': \mathcal{U} \rightarrow \mathcal{U}^*$.
+```
+
+### From functionals to PDEs
+* heat equation
+* Total Variation
+* Perona-Malik
 
 +++
 
@@ -59,8 +254,8 @@ $c:=\frac{\alpha}{\left\|u\right\|_{\ell^2}}$ and provide a solution formula dep
 
 For given data $f$ and a convolution kernel $k$ we study the following regularized variational method:
 
-$$ 
-\left\| k \ast u - f \right\|_{L^2(\Omega)}^2 \:+\: \alpha \: \int_\Omega | (\mathcal{F}u)(w) | \: dw \: \rightarrow \: \min_{u} 
+$$
+\left\| k \ast u - f \right\|_{L^2(\Omega)}^2 \:+\: \alpha \: \int_\Omega | (\mathcal{F}u)(w) | \: dw \: \rightarrow \: \min_{u}
 $$
 
 where $(\mathcal{F}u)(w)$ denotes the Fourier transform of $u$ at wave number $w$. Similar to the lecture, find an explicit representation of the solution of the problem using the [convolution theorem](https://en.wikipedia.org/wiki/Convolution_theorem) and the [Plancherel theorem](https://en.wikipedia.org/wiki/Plancherel_theorem). For simplicity you can assume that everything is real valued.
@@ -99,7 +294,7 @@ $$
 because $K$ is bounded.
 ```
 
-* $J(\mathbf{v}) = \frac{1}{2} \left\| \partial_t f + \nabla\cdot(f \mathbf{v}) \right\|_{L^2(\Omega \times [0,T])}^2$ 
+* $J(\mathbf{v}) = \frac{1}{2} \left\| \partial_t f + \nabla\cdot(f \mathbf{v}) \right\|_{L^2(\Omega \times [0,T])}^2$
 	where $f$ here represents an image sequence, i.e. $f: \Omega \times [0,T] \rightarrow \mathbb{R}$, and $\mathbf{v}$ denotes a desired vector field, i.e. $\mathbf{v}: \Omega \times [0,T] \rightarrow \mathbb{R}^2$.
 
 ```{admonition} Answer

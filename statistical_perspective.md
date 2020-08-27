@@ -39,10 +39,65 @@ We can use [Bayes' theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem) to c
 The posterior distribution gives the probability of any given $u$ given the measurements $f^\delta$:
 
 $$
-\pi_{\text{post}}(u | f^\delta) = C\cdot  \pi_{\text{data}}(f^\delta) \pi_{\text{prior}}(u),
+\pi_{\text{post}}(u | f^\delta) = C\cdot  \pi_{\text{data}}(f^\delta | u) \pi_{\text{prior}}(u),
 $$
 
 where $C$ is the normalising constant needed to make $\pi_{\text{post}}$ integrate to 1.
+```
+
+````{admonition} Example: *Estimating the density of a rock sample*
+Say we want to estimate the density of a given rock sample. To do this we measure the weight $w$ and volume $v$ of the rock. These are related to the (bulk) density as $\rho = w/v$ [g/cm^3]. Assuming that both measurements can be done independently with the same accuracy we have $w^\delta = w + \epsilon_{w}$ and $v^\delta = v + \epsilon_{v}$. We assume that $\epsilon_w,\epsilon_v$ are normally distributed with mean zero and variance $\sigma^2$. We then find the following relation between the density, the measurements and the error
+
+$$w^\delta - \rho v^\delta = \epsilon_w - \rho \epsilon_v.$$
+
+Thus, $w^\delta - \rho v^\delta$ is a normally distributed random variable with mean zero and variance $\sigma^2(1 + \rho^2)$. This gives us the following Likelihood
+
+$$\pi_{\text{data}}(u | f^\delta) = \frac{1}{\sigma\sqrt{1+\rho^2}\sqrt{2\pi}}\exp\left(-\frac{(w^\delta - \rho v^\delta)^2}{2\sigma^2(1+\rho^2)}\right).$$
+
+As prior, we can use statistics of rock samples {cite}`johnson1984density`. This gives a [log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution) with parameters $(1.5,0.4)$. The corresponding distributions are shown in figure {numref}`rock_samples`.
+
+```{glue:figure} rock_samples
+:figwidth: 300px
+:name: "rock_samples"
+
+Example of probability densities with $w = 2$, $v=1$, $\sigma = 0.1$.
+```
+````
+
+```{code-cell}
+:tags: ["hide-cell"]
+
+import numpy as np
+import matplotlib.pyplot as plt
+from myst_nb import glue
+
+# parameters
+mu_prior = 1.5
+sigma_prior = 0.4
+sigma = 1e-1
+
+# data
+w = 2
+v = 1
+w_delta = w + np.random.normal(0,sigma)
+v_delta = v + np.random.normal(0,sigma)
+
+#
+rho = np.linspace(0.01,15,1000)
+
+likelihood = np.exp(-(w_delta - rho*v_delta)**2/(2*(1+rho**2)*sigma**2))/(sigma*np.sqrt(1+rho**2)*np.sqrt(2*np.pi))
+prior = np.exp(-(np.log(rho)-mu_prior)**2/(2*sigma_prior**2))/(rho*sigma_prior*np.sqrt(2*np.pi))
+
+# plot
+fig,ax = plt.subplots(1,1)
+
+ax.plot(rho,likelihood,label='likelihood')
+ax.plot(rho,prior,label='prior')
+ax.plot(rho,likelihood*prior/np.sum(likelihood*prior)*np.sum(prior),label='posterior')
+ax.set_xlabel(r'$\rho$ [g/cm^2]')
+ax.set_ylabel(r'$\pi$')
+ax.legend()
+glue("rock_samples", fig, display=False)
 ```
 
 In a way, $\pi_{\text{post}}(u | f^\delta)$ is the answer to our inverse problem. It gives us information on the likelihood of any particular $u$ *under the assumptions* we made on $f^\delta$ and $u$. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those.

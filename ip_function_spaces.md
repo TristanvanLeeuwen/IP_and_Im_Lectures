@@ -13,7 +13,7 @@ kernelspec:
 
 # Linear inverse problems in function spaces
 
-Many of the notions discussed in the finite-dimensional setting can be extended to the infinite-dimensional setting. We will focus in this chapter on inverse problems where $K$ is a [*bounded linear operator*](https://en.wikipedia.org/wiki/Bounded_operator). The contents of this lecture were heavily inspired by the excellent [lecture notes from Matthias J. Ehrhardt and Lukas F. Lang](https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf)
+Many of the notions discussed in the finite-dimensional setting can be extended to the infinite-dimensional setting. We will focus in this chapter on inverse problems where $K$ is a [*bounded linear operator*](https://en.wikipedia.org/wiki/Bounded_operator). The contents of this chapter were heavily inspired by the excellent [lecture notes from Matthias J. Ehrhardt and Lukas F. Lang](https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf).
 
 Let $K: \mathcal{U} \rightarrow F$ denote the forward operator, with $\mathcal{U}$ and $\mathcal{V}$ [Banach spaces](https://en.wikipedia.org/wiki/Banach_space). The operator is bounded iff there exists a constant $C \geq 0$ such that
 
