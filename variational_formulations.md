@@ -20,37 +20,30 @@ So far, we have seen that inverse problems may generally be formulated as a vari
 \min_{u\in\mathcal{U}} J(u),
 ```
 
-where the *functional* $J : \mathcal{U} \rightarrow \mathbb{R}$ consists of a *data-fidelity* and *regularisation* term. In this chapter we will discuss how to analyse the well-posedness of {eq}`variational` and lay out the connection between variational problems and PDEs through the *gradient flow*. The contents of this chapter were heavily inspired by the excellent [lecture notes from Matthias J. Ehrhardt and Lukas F. Lang](https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf)
+where the *functional* $J : \mathcal{U} \rightarrow \mathbb{R}_{\infty}$ consists of a *data-fidelity* and *regularisation* term. Here, $\mathbb{R}_{\infty} = \mathbb{R} \cup \{\infty\}$ denotes the extended real line and $\mathcal{U}$ is a Banach space.
 
----
-
-We will broaden the setting a little and let $\mathcal{U}$ be a Banach space with some topology that is not necessarily induced by the underlying norm. We need this generality to be able to formally tackle some of the more fancy regularisation techniques. As before, we will not focus on the proofs too deeply and focus on the concepts. We will need the following concepts, however.
-
-```{admonition} Definition: *dual space*
-:class: important
-
-With every Banach space $\mathcal{U}$ we can associate the dual space consisting of linear, continuous functionals on $\mathcal{U}$. For a given $v \in \mathcal{U}^*$ we denote the application of $v$ on $u$ as the dual product $\langle v,u\rangle$. As such, we can think of this as a way to generalise the concept of an inner product. However, the dual product is not generally symmetric.
-
-The dual product also allows us to define the adjoint of a linear operator $K:\mathcal{U} \rightarrow \mathcal{F}$ as
-
-$$\langle g, Ku\rangle = \langle K^*g, u\rangle \quad \forall u \in \mathcal{U}, g \in \mathcal{F}^*.$$
-```
-
-The main technical difficulties will arise when showing convergence of sequences in the usual way. For this, we need to introduce the notion of *weak convergence*.
-
-```{admonition} Definition: *weak convergence*
-:class: important
-
-A sequence $\{u_k\}_{k\in\mathbb{N}} \subset \mathcal{U}$ is said to converge weakly to $u \in \mathcal{U}$ iff for all $v \in \mathcal{U}^*$ we have
-
-$$\langle v, u_k\rangle \rightarrow \langle v,u\rangle.$$
-
-We denote weak convergence by $u_k\rightharpoonup u$.
-```
+In this chapter we will discuss how to analyse the well-posedness of {eq}`variational` and lay out the connection between variational problems and PDEs through the *gradient flow*. The contents of this chapter were heavily inspired by the excellent [lecture notes from Matthias J. Ehrhardt and Lukas F. Lang](https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf)
 
 ---
 
 Some notable examples are highlighted below.
+
+```{admonition} Example: *box constraints*
+
+Given a forward operator $K \in \mathbb{R}^{n\times n}$ we can look for a solution in $[0,1]^n$ by solving a constrained minimisation problem
+
+$$\min_{u\in [0,1]^n} \|Ku - f^\delta\|_2^2.$$
+
+However, this does not fall in the class {eq}`variational` since $[0,1]^n$ is not a vectorspace. To circumvent this we can alternatively express it as
+
+$$\min_{u\in \mathbb{R}^n} \|Ku - f^\delta\|_2^2 + \delta_{[0,1]^n}(u),$$
+
+where $\delta_{\mathcal{C}}$ denotes the [characteristic function](https://en.wikipedia.org/wiki/Characteristic_function_(convex_analysis)) of the set $\mathcal{C}$:
+
+$$\delta_{\mathcal{C}}(u) = \begin{cases} 0 & u \in \mathcal{C} \\ \infty & \text{otherwise}\end{cases}.$$
+
+The corresponding functional $J$ now takes values in the extended real line.
+```
 
 ```{admonition} Example: *Sobolev regularisation*
 
@@ -85,37 +78,39 @@ where $D([0,1],\mathbb{R})$ is the space of smooth test functions with $\|\phi\|
 
 ## Analysis
 
-### Well-posedness
+### Existence and uniqueness
 
 To establish existence of minimisers, we first need a few definitions.
 
 ```{admonition} Definition: *Minimisers*
 :class: important
-We say that $\widetilde{u} \in \mathcal{U}$ solves {eq}`variational` iff $E(\widetilde{u}) < \infty$ and $E(\widetilde{u}) \leq E(u)$ for all $u \in \mathcal{U}$.
+We say that $\widetilde{u} \in \mathcal{U}$ solves {eq}`variational` iff $J(\widetilde{u}) < \infty$ and $J(\widetilde{u}) \leq J(u)$ for all $u \in \mathcal{U}$.
 ```
 
 ```{admonition} Definition: *Proper functionals*
 :class: important
 
-A functional $E$ is called proper if the effective domain is not empty.
+A functional $J$ is called proper if its effective domain $\text{dom}(J) = \{u\in\mathcal{U} \, | \, J(u) < \infty\}$ is not empty.
 ```
 
 ```{admonition} Definition: *Bounded from below*
 :class: important
 
-A functional $J$ is bounded from below if there exists a constant $C > -\infty$ such that $\forall u\in \mathcal{U}$ we have $U(u) \geq C$.
+A functional $J$ is bounded from below if there exists a constant $C > -\infty$ such that $\forall u\in \mathcal{U}$ we have $J(u) \geq C$.
 ```
 
 ```{admonition} Definition: *Coercive functionals*
 :class: important
 
-A functional $J$ is called coercive if for all $\{u_j\}_{j\in\mathbb{N}}$ with $\|u_j|_{\mathcal{U}}\rightarrow \infty$ we have $J(u_j) \rightarrow\infty$.
+A functional $J$ is called coercive if for all $\{u_j\}_{j\in\mathbb{N}}$ with $\|u_j\|_{\mathcal{U}}\rightarrow \infty$ we have $J(u_j) \rightarrow\infty$.
 ```
 
 ```{admonition} Definition: *Lower semi-continuity*
 :class: important
 
-A functional $J$ is called lower semi-continuous (with respect to a given topology) at $u\in\mathcal{U}$ if $J(u) \leq \lim\inf_{j\rightarrow \infty} J(u_j)$ for all sequences $\{u_j\}_{j\in\mathbb{N}}$ with $u_j\rightarrow u$ in the given topology of $\mathcal{U}$.
+A functional $J$ is lower semi-continuous at $u$ if for every $a < J(u)$ there exists a neighbourhood $\mathcal{X}$ of $u$ such that $a < J(v)$ for all $v \in \mathcal{X}$.
+
+Note that the term *neighbourhood* implies an underlying topology, which may be different (in particular, weaker) than the one induced by the norm on $\mathcal{U}$.
 ```
 
 With these, we can establish existence.
@@ -128,7 +123,7 @@ Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be a proper, coercive, bounded from
 
 ````{admonition} Examples: *existence of minimisers in $\mathbb{R}$*
 
-Consider the following functions $J:\mathbb{R}\rightarrow \mathbb{R}$ (cf {numref}`functional`):
+Consider the following functions $J:\mathbb{R}\rightarrow \mathbb{R}$ (cf. {numref}`functionals`):
 
 * $J_1(x) = x^3,$
 * $J_2(x) = e^x,$
@@ -141,7 +136,7 @@ We see that $J_1$ is not bounded from below; $J_2$ is not coercive, $J_3$ is not
 :figwidth: 600px
 :name: "functionals"
 
-Examples of various functionals.
+Examples of various functions.
 ```
 
 ````
@@ -187,32 +182,298 @@ glue("functionals", fig, display=False)
 
 ```
 
-```{admonition} Theorem: *Uniqueness of minimiser*
+```{admonition} Theorem: *Uniqueness of minimisers*
 :class: important
 
-Let $E$ have at least one minimiser and be [strictly convex](https://en.wikipedia.org/wiki/Convex_function) then the minimiser is unique.
+Let $J$ have at least one minimiser and be [strictly convex](https://en.wikipedia.org/wiki/Convex_function) then the minimiser is unique.
 ```
 
+### Stability
+
+To analyse stability, we focus in particular on variational problems of the form
+
+```{math}
+:label: variational_R
+\textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\mathcal{F}}^2 + \alpha R(u).
+```
+
+We can think of this as defining a (possibly non-linear) regularisation scheme $\widetilde{u}_{\alpha,\delta} = R_{\alpha} f^\delta$ that generalises the pseudo-inverse approach discussed earlier.
+
+### Examples
+
+```{admonition} Example: *Tikhonov regularisation in $\mathbb{R}^n$*
+
+Let
+
+$$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_2^2 + \textstyle{\frac{\alpha}{2}}\|u\|_2^2.$$
+
+* existence, uniqueness, stability
+
+```
+
+```{admonition} Example: *$\ell_1-regularisation$*
+
+Consider
+
+$$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\ell_1}.$$
+
+* existence, uniqueness, stability
+
+```
+
+```{admonition} Example: *Sobolev regularisation*
+Consider
+
+$$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{L^2(\Omega)}^2 + \textstyle{\frac{\alpha}{2}}\|\nabla u\|_{L^2(\Omega)}^2.$$
+```
+
+```{admonition} Example: *Total variation regularisation*
+
+Let
+
+$$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{L^2(\Omega)}^2 + \alpha TV(u).$$
+
+* existence, uniqueness, stability
+
+```
+
+
+## Derivatives
+
+Having established well-posedness of {eq}`variational`, we now focus our attention to characterising solutions through the first-order optimality conditions.
+
+````{admonition} Definition: *Fréchet derivative*
+:class: important
+
+We call a functional $J:\mathcal{U}\rightarrow \mathbb{R}$ Fréchet differentiable (at $u$) if
+there exists a linear operator $D$ such that
+
+
+```{math}
+:label: frechet
+\lim_{h\rightarrow 0} \frac{|J(u+h) - J(u) - Dh|}{\|h\|_{\mathcal{U}}} = 0.
+```
+
+If this operator exists for all $u \in\mathcal{U}$ we call $J$ Fréchet differentiable and denote its Fréchet derivative by $J': \mathcal{U} \rightarrow \mathcal{U}^*$. Here, $\mathcal{U}^*$ denotes the [dual space](https://en.wikipedia.org/wiki/Dual_space) of $\mathcal{U}$ which consists of bounded linear functionals on $\mathcal{U}$.
+````
+
+With this more general notion of differentiation we can pose the first-order optimality conditions.
+
+````{admonition} Definition: *First-order optimality conditions*
+:class: important
+
+```{math}
+:label: local_minimum
+
+\langle J'(u), v - u\rangle \geq 0.
+```
+
+````
+
+```{admonition} Example: *Tikhonov regularisation on \mathbb{R}^n*
+
+```
+
+We need to be careful here, as some important cases $J$ may fail to be Fréchet differentiable at the solution.
+
+```{admonition} Example: *$\ell_1$-regularisation on \mathbb{R}^n*
+
+```
+
+---
+
+Landweber iteration.
+
+---
+
+It turns out that we can make an important distinction between *smooth* and *convex* (non-smooth) functionals.
+We will explore optimality conditions and algorithms for these two classes in more detail in a later chapter.
 
 ## The Euler-Lagrange equations
 
-### Derivatives
+An alternative viewpoint on optimality is provided by the Euler-lagrange equations, which establishes the link between certain problems of the form {eq}`variational` and PDEs. In particular, we focus in this section on problems of the form
 
-```{admonition} Definition: *Fréchet derivative*
+$$\min_{u\in\mathcal{U}} \textstyle{\frac{1}{2}} \|u - f^\delta\|_{L^2(\Omega)} + \alpha R(\nabla u).$$
+
+Such problems occur for example in image-denoising applications. We will see later that such problems also occur as subproblems when solving more general problems of the form {eq}`variational_R`.
+
+```{admonition} Definition: Euler-Lagrange equations
 :class: important
 
-We call a functional $E:\mathcal{U}\rightarrow \mathbb{R}$ Fréchet differentiable (at $u$) if
-there exists a linear operator $D$ such that
+The first-order optimality condition for $u\in\mathcal{U}$ to be a solution to {eq}`variational` is
 
-$$\lim_{h\rightarrow 0} \frac{|E(u+h) - E(u) - Dh|}{\|h\|_{\mathcal{U}}} = 0.$$
+$$\left.\frac{\mathrm{d}}{\mathrm{d}t} J(u + t\phi)\right|_{t=0} = 0 \quad \forall \phi \in C_c^{\infty},$$
 
-If this operator exists for all $u \in\mathcal{U}$ we call $E$ Fréchet differentiable and denote its Fréchet derivative by $E': \mathcal{U} \rightarrow \mathcal{U}^*$.
+where $..$
 ```
 
-### From functionals to PDEs
-* heat equation
-* Total Variation
-* Perona-Malik
+````{admonition} Example: *The heat equation*
+
+Let
+
+$$R(u) = \|\nabla u\|_{L^2(\Omega)}^2.$$
+
+The corresponding diffusion equation is given by
+
+$$\partial_t u + u - \alpha\nabla^2 u = f^\delta.$$
+
+* definition of underlying spaces, boundary conditions.
+
+```{glue:figure} linear_diffusion
+:figwidth: 600px
+:name: "linear_diffusion"
+
+Example of denoising with linear diffusion.
+```
+
+````
+
+```{code-cell}
+:tags: ["hide-cell"]
+
+import numpy as np
+import matplotlib.pyplot as plt
+from myst_nb import glue
+
+from skimage import data
+from skimage.util import random_noise
+from skimage.transform import resize
+
+# parameters
+sigma = 0.1
+alpha = 1
+dt = 1e-6
+niter = 1001
+n = 200
+coeff = lambda s : 1 + 0*s
+
+# diffusion operator
+def L(u,coeff = lambda s : 1 + 0*s):
+    ue = np.pad(u,1,mode='edge') # padd edges to get array of size n+2 x n+2
+
+    # diffusion coefficient (central differences)
+    grad_norm = ((ue[2:,1:-1] - ue[:-2,1:-1])/(2/n))**2 + ((ue[1:-1,2:] - ue[1:-1,:-2])/(2/n))**2
+    c = np.pad(coeff(grad_norm),1,mode='edge')
+
+    # diffusion term (combination of forward and backward differences)
+    uxx = ((c[1:-1,1:-1] + c[2:,1:-1])*(ue[2:,1:-1]-ue[1:-1,1:-1]) - (c[:-2,1:-1]+c[1:-1,1:-1])*(ue[1:-1,1:-1]-ue[:-2,1:-1]))/(2/n**2)
+    uyy = ((c[1:-1,1:-1] + c[1:-1,2:])*(ue[1:-1,2:]-ue[1:-1,1:-1]) - (c[1:-1,:-2]+c[1:-1,1:-1])*(ue[1:-1,1:-1]-ue[1:-1,:-2,]))/(2/n**2)
+
+    return uxx + uyy
+
+# noisy image
+f = resize(data.camera(),(n,n))
+f_delta = random_noise(f,var=sigma**2)
+
+# solve evolution equation
+u = np.zeros((n,n))
+
+for k in range(niter-1):
+    u = u - dt*(u - alpha*L(u,coeff)) + dt*f_delta
+
+# plot
+fig,ax = plt.subplots(1,2)
+
+ax[0].imshow(f_delta)
+ax[0].set_title('Noisy image')
+ax[0].set_xticks([])
+ax[0].set_yticks([])
+
+ax[1].imshow(u)
+ax[1].set_title('Result')
+ax[1].set_xticks([])
+ax[1].set_yticks([])
+
+glue("linear_diffusion", fig, display=False)
+
+```
+
+````{admonition} Example: *Non-linear diffusion*
+
+Let
+
+$$R(u) = \int_{\Omega} r\left(\|\nabla u(x)\|^2\right) \mathrm{d}x.$$
+
+A popular choice for $r = \log(1 + s/\epsilon^2)$, which leads to the Perona-Malik diffusion equation:
+
+$$\partial_t u + u - \alpha\nabla \cdot \left(\frac{\nabla u}{1 + \epsilon^{-2}\|\nabla u\|_2^2}\right) = f^\delta.$$
+
+We can interpret intuitively why this would preserve edges by looking at the diffusion coefficient. Wherever $\|\nabla u\| \ll \epsilon$ we have linear diffusion, if $\|\nabla u\| \gg \epsilon$, we hardly have any diffusion. This intuition if confirmed by consider the penalty $r(s)$, which for small $s$ behaves like $s^2$ but then flattens out and will thus not increasingly penalise larger gradients.
+
+```{glue:figure} perona_malik
+:figwidth: 600px
+:name: "perona_malik"
+
+Example of denoising with Perona-Malik regularisation.
+```
+````
+
+```{code-cell}
+:tags: ["hide-cell"]
+
+import numpy as np
+import matplotlib.pyplot as plt
+from myst_nb import glue
+
+from skimage import data
+from skimage.util import random_noise
+from skimage.transform import resize
+
+# parameters
+sigma = 0.1
+alpha = 1
+dt = 1e-6
+niter = 1001
+n = 200
+coeff = lambda s : 1/(1+1e6*s)
+
+# diffusion operator
+def L(u,coeff = lambda s : 1):
+    ue = np.pad(u,1,mode='edge') # padd edges to get array of size n+2 x n+2
+
+    # diffusion coefficient (central differences)
+    grad_norm = ((ue[2:,1:-1] - ue[:-2,1:-1])/(2/n))**2 + ((ue[1:-1,2:] - ue[1:-1,:-2])/(2/n))**2
+    c = np.pad(coeff(grad_norm),1,mode='edge')
+
+    # diffusion term (combination of forward and backward differences)
+    uxx = ((c[1:-1,1:-1] + c[2:,1:-1])*(ue[2:,1:-1]-ue[1:-1,1:-1]) - (c[:-2,1:-1]+c[1:-1,1:-1])*(ue[1:-1,1:-1]-ue[:-2,1:-1]))/(2/n**2)
+    uyy = ((c[1:-1,1:-1] + c[1:-1,2:])*(ue[1:-1,2:]-ue[1:-1,1:-1]) - (c[1:-1,:-2]+c[1:-1,1:-1])*(ue[1:-1,1:-1]-ue[1:-1,:-2,]))/(2/n**2)
+
+    return uxx + uyy
+
+# noisy image
+f = resize(data.camera(),(n,n))
+f_delta = random_noise(f,var=sigma**2)
+
+# solve evolution equation
+u = np.zeros((n,n))
+
+for k in range(niter-1):
+    u = u - dt*(u - alpha*L(u,coeff)) + dt*f_delta
+
+# plot
+fig,ax = plt.subplots(1,2)
+
+ax[0].imshow(f_delta)
+ax[0].set_title('Noisy image')
+ax[0].set_xticks([])
+ax[0].set_yticks([])
+
+ax[1].imshow(u)
+ax[1].set_title('Result')
+ax[1].set_xticks([])
+ax[1].set_yticks([])
+glue("perona_malik", fig, display=False)
+
+```
+
+```{admonition} Example: *Total variation*
+
+Let
+
+$$R(u) = ...$$
+
+```
 
 +++
 

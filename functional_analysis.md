@@ -37,3 +37,27 @@ An operator $K$  is compact (completely continuous) if
 $K = \lim_{n \rightarrow \infty} K_n$ with $K_n$ finite dimensional operators.
 
 Hence $\mathcal{C} := \bar{\mathcal{F}}$ is the space of all compact (completely continuous) operators. Compact operators have many nice properties, but also a particularly nasty one; if $\mathcal{R}(K)$ is infinite-dimensional then the pseudo-inverse of $K$ is not continuous.
+
+We will broaden the setting a little and let $\mathcal{U}$ be a Banach space with some topology that is not necessarily induced by the underlying norm. We need this generality to be able to formally tackle some of the more fancy regularisation techniques. As before, we will not focus on the proofs too deeply and focus on the concepts. We will need the following concepts, however.
+
+```{admonition} Definition: *dual space*
+:class: important
+
+With every Banach space $\mathcal{U}$ we can associate the dual space consisting of linear, continuous functionals on $\mathcal{U}$. For a given $v \in \mathcal{U}^*$ we denote the application of $v$ on $u$ as the dual product $\langle v,u\rangle$. As such, we can think of this as a way to generalise the concept of an inner product. However, the dual product is not generally symmetric.
+
+The dual product also allows us to define the adjoint of a linear operator $K:\mathcal{U} \rightarrow \mathcal{F}$ as
+
+$$\langle g, Ku\rangle = \langle K^*g, u\rangle \quad \forall u \in \mathcal{U}, g \in \mathcal{F}^*.$$
+```
+
+The main technical difficulties will arise when showing convergence of sequences in the usual way. For this, we need to introduce the notion of *weak convergence*.
+
+```{admonition} Definition: *weak convergence*
+:class: important
+
+A sequence $\{u_k\}_{k\in\mathbb{N}} \subset \mathcal{U}$ is said to converge weakly to $u \in \mathcal{U}$ iff for all $v \in \mathcal{U}^*$ we have
+
+$$\langle v, u_k\rangle \rightarrow \langle v,u\rangle.$$
+
+We denote weak convergence by $u_k\rightharpoonup u$.
+```
