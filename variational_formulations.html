@@ -267,15 +267,32 @@
   <a class="reference internal nav-link" href="#analysis">
    5.1. Analysis
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#existence-and-uniqueness">
+     5.1.1. Existence and uniqueness
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stability">
+     5.1.2. Stability
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     5.1.3. Examples
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#linear-pdes">
-   5.2. Linear PDEs
+  <a class="reference internal nav-link" href="#derivatives">
+   5.2. Derivatives
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#non-linear-pdes">
-   5.3. Non-linear PDEs
+  <a class="reference internal nav-link" href="#the-euler-lagrange-equations">
+   5.3. The Euler-Lagrange equations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -339,14 +356,393 @@
                 
   <div class="section" id="variational-formulations-for-inverse-problems">
 <h1><span class="section-number">5. </span>Variational formulations for inverse problems<a class="headerlink" href="#variational-formulations-for-inverse-problems" title="Permalink to this headline">¶</a></h1>
+<p>So far, we have seen that inverse problems may generally be formulated as a variational problem</p>
+<div class="math notranslate nohighlight" id="equation-variational">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-variational" title="Permalink to this equation">¶</a></span>\[\min_{u\in\mathcal{U}} J(u),\]</div>
+<p>where the <em>functional</em> <span class="math notranslate nohighlight">\(J : \mathcal{U} \rightarrow \mathbb{R}_{\infty}\)</span> consists of a <em>data-fidelity</em> and <em>regularisation</em> term. Here, <span class="math notranslate nohighlight">\(\mathbb{R}_{\infty} = \mathbb{R} \cup \{\infty\}\)</span> denotes the extended real line and <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> is a Banach space.</p>
+<p>In this chapter we will discuss how to analyse the well-posedness of <a class="reference internal" href="#equation-variational">(5.1)</a> and lay out the connection between variational problems and PDEs through the <em>gradient flow</em>. The contents of this chapter were heavily inspired by the excellent <a class="reference external" href="https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf">lecture notes from Matthias J. Ehrhardt and Lukas F. Lang</a></p>
+<hr class="docutils" />
+<p>Some notable examples are highlighted below.</p>
+<div class="admonition-example-box-constraints admonition">
+<p class="admonition-title">Example: <em>box constraints</em></p>
+<p>Given a forward operator <span class="math notranslate nohighlight">\(K \in \mathbb{R}^{n\times n}\)</span> we can look for a solution in <span class="math notranslate nohighlight">\([0,1]^n\)</span> by solving a constrained minimisation problem</p>
+<div class="math notranslate nohighlight">
+\[\min_{u\in [0,1]^n} \|Ku - f^\delta\|_2^2.\]</div>
+<p>However, this does not fall in the class <a class="reference internal" href="#equation-variational">(5.1)</a> since <span class="math notranslate nohighlight">\([0,1]^n\)</span> is not a vectorspace. To circumvent this we can alternatively express it as</p>
+<div class="math notranslate nohighlight">
+\[\min_{u\in \mathbb{R}^n} \|Ku - f^\delta\|_2^2 + \delta_{[0,1]^n}(u),\]</div>
+<p>where <span class="math notranslate nohighlight">\(\delta_{\mathcal{C}}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Characteristic_function_(convex_analysis)">characteristic function</a> of the set <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\delta_{\mathcal{C}}(u) = \begin{cases} 0 &amp; u \in \mathcal{C} \\ \infty &amp; \text{otherwise}\end{cases}.\end{split}\]</div>
+<p>The corresponding functional <span class="math notranslate nohighlight">\(J\)</span> now takes values in the extended real line.</p>
+</div>
+<div class="admonition-example-sobolev-regularisation admonition">
+<p class="admonition-title">Example: <em>Sobolev regularisation</em></p>
+<p>Given a bounded linear operator <span class="math notranslate nohighlight">\(K:H^1(\Omega)\rightarrow L^2(\Omega)\)</span> and data <span class="math notranslate nohighlight">\(f^\delta\)</span>, we let <span class="math notranslate nohighlight">\(\nabla\)</span> denote the gradient</p>
+<div class="math notranslate nohighlight">
+\[J(u) = \textstyle{\frac{1}{2}}\|Ku-f^{\delta}\|_{L^2(\Omega)}^2 +  \textstyle{\frac{\alpha}{2}}\|\nabla u\|_{L^2(\Omega)}^2.\]</div>
+<p>This functional is well-defined for <span class="math notranslate nohighlight">\(u \in H^1(\Omega)\)</span>, with <span class="math notranslate nohighlight">\(H^1(\Omega)\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Sobolev_space">Sobolev space</a> of functions <span class="math notranslate nohighlight">\(u\)</span> for which both <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(\nabla u\)</span> are square integrable. Thus, thus regularisation generally leads to smooth solutions.</p>
+</div>
+<div class="admonition-example-ell-1-regularization admonition">
+<p class="admonition-title">Example: <em><span class="math notranslate nohighlight">\(\ell_1\)</span>-regularization</em></p>
+<p>Consider a forward operator <span class="math notranslate nohighlight">\(K:\ell_1 \rightarrow \ell_2\)</span> and let</p>
+<div class="math notranslate nohighlight">
+\[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\ell_1}.\]</div>
+<p>Such regularisation term generally leads to <em>sparse</em> solutions.</p>
+</div>
+<div class="admonition-example-total-variation-regularisation admonition">
+<p class="admonition-title">Example: <em>Total Variation regularisation</em></p>
+<p>Consider recovering a function <span class="math notranslate nohighlight">\(u: [0,1] \rightarrow \mathbb{R}\)</span> from noisy measurements <span class="math notranslate nohighlight">\(f^\delta = Ku + e\)</span>. A popular choice in imaging applications is to put an <span class="math notranslate nohighlight">\(L^1\)</span>-norm on the derivative. For <span class="math notranslate nohighlight">\(u\in W^{1,1}([0,1])\)</span> this yields</p>
+<div class="math notranslate nohighlight">
+\[J(u) = \textstyle{\frac{1}{2}}\|Ku-f^{\delta}\|_{L^2([0,1])}^2 + \alpha \|u'\|_{L^1([0,1])}.\]</div>
+<p>This can be generalised to include certain non-smooth functions by introducing the space of functions of <a class="reference external" href="https://en.wikipedia.org/wiki/Bounded_variation">bounded variation</a>, denoted by <span class="math notranslate nohighlight">\(BV([0,1])\)</span>. Functions in <span class="math notranslate nohighlight">\(BV([0,1])\)</span> are characterised as having a finite <a class="reference external" href="https://en.wikipedia.org/wiki/Total_variation">Total Variation</a></p>
+<div class="math notranslate nohighlight">
+\[TV(u) = \sup_{\phi \in D([0,1],\mathbb{R})} \int_0^1 u(x)\phi'(x)\mathrm{d}x,\]</div>
+<p>where <span class="math notranslate nohighlight">\(D([0,1],\mathbb{R})\)</span> is the space of smooth test functions with <span class="math notranslate nohighlight">\(\|\phi\|_{L^\infty([0,1])}\leq 1\)</span>. This space is much larger than <span class="math notranslate nohighlight">\(H^{1,1}([0,1])\)</span> as it contains certain discontinuous functions (such as the Heaveside stepfunction) and smaller than <span class="math notranslate nohighlight">\(L^1(0,1)\)</span> (which also contains less regular functions). For functions in <span class="math notranslate nohighlight">\(H^{1,1}\)</span> we have <span class="math notranslate nohighlight">\(TV(u) = \|u'\|_{L^1([0,1])}\)</span>.</p>
+</div>
 <div class="section" id="analysis">
 <h2><span class="section-number">5.1. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="existence-and-uniqueness">
+<h3><span class="section-number">5.1.1. </span>Existence and uniqueness<a class="headerlink" href="#existence-and-uniqueness" title="Permalink to this headline">¶</a></h3>
+<p>To establish existence of minimisers, we first need a few definitions.</p>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Minimisers</em></p>
+<p>We say that <span class="math notranslate nohighlight">\(\widetilde{u} \in \mathcal{U}\)</span> solves <a class="reference internal" href="#equation-variational">(5.1)</a> iff <span class="math notranslate nohighlight">\(J(\widetilde{u}) &lt; \infty\)</span> and <span class="math notranslate nohighlight">\(J(\widetilde{u}) \leq J(u)\)</span> for all <span class="math notranslate nohighlight">\(u \in \mathcal{U}\)</span>.</p>
 </div>
-<div class="section" id="linear-pdes">
-<h2><span class="section-number">5.2. </span>Linear PDEs<a class="headerlink" href="#linear-pdes" title="Permalink to this headline">¶</a></h2>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Proper functionals</em></p>
+<p>A functional <span class="math notranslate nohighlight">\(J\)</span> is called proper if its effective domain <span class="math notranslate nohighlight">\(\text{dom}(J) = \{u\in\mathcal{U} \, | \, J(u) &lt; \infty\}\)</span> is not empty.</p>
 </div>
-<div class="section" id="non-linear-pdes">
-<h2><span class="section-number">5.3. </span>Non-linear PDEs<a class="headerlink" href="#non-linear-pdes" title="Permalink to this headline">¶</a></h2>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Bounded from below</em></p>
+<p>A functional <span class="math notranslate nohighlight">\(J\)</span> is bounded from below if there exists a constant <span class="math notranslate nohighlight">\(C &gt; -\infty\)</span> such that <span class="math notranslate nohighlight">\(\forall u\in \mathcal{U}\)</span> we have <span class="math notranslate nohighlight">\(J(u) \geq C\)</span>.</p>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Coercive functionals</em></p>
+<p>A functional <span class="math notranslate nohighlight">\(J\)</span> is called coercive if for all <span class="math notranslate nohighlight">\(\{u_j\}_{j\in\mathbb{N}}\)</span> with <span class="math notranslate nohighlight">\(\|u_j\|_{\mathcal{U}}\rightarrow \infty\)</span> we have <span class="math notranslate nohighlight">\(J(u_j) \rightarrow\infty\)</span>.</p>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Lower semi-continuity</em></p>
+<p>A functional <span class="math notranslate nohighlight">\(J\)</span> is lower semi-continuous at <span class="math notranslate nohighlight">\(u\)</span> if for every <span class="math notranslate nohighlight">\(a &lt; J(u)\)</span> there exists a neighbourhood <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> of <span class="math notranslate nohighlight">\(u\)</span> such that <span class="math notranslate nohighlight">\(a &lt; J(v)\)</span> for all <span class="math notranslate nohighlight">\(v \in \mathcal{X}\)</span>.</p>
+<p>Note that the term <em>neighbourhood</em> implies an underlying topology, which may be different (in particular, weaker) than the one induced by the norm on <span class="math notranslate nohighlight">\(\mathcal{U}\)</span>.</p>
+</div>
+<p>With these, we can establish existence.</p>
+<div class="important admonition">
+<p class="admonition-title">Theorem: <em>Fundamental theorem of optimisation</em></p>
+<p>Let <span class="math notranslate nohighlight">\(J : \mathcal{U} \rightarrow \mathbb{R}\)</span> be a proper, coercive, bounded from below and lower semi-continuous. Then <span class="math notranslate nohighlight">\(J\)</span> has a minimiser.</p>
+</div>
+<div class="admonition-examples-existence-of-minimisers-in-mathbb-r admonition">
+<p class="admonition-title">Examples: <em>existence of minimisers in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span></em></p>
+<p>Consider the following functions <span class="math notranslate nohighlight">\(J:\mathbb{R}\rightarrow \mathbb{R}\)</span> (cf. <a class="reference internal" href="#functionals"><span class="std std-numref">Fig. 5.1</span></a>):</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(J_1(x) = x^3,\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(J_2(x) = e^x,\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(J_3(x) = \begin{cases}x^2 &amp; x &lt; 0 \\ 1 + x &amp; x \geq 0\end{cases}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(J_4(x) = \begin{cases}x^2 &amp; x \leq 0 \\ 1 + x &amp; x &gt; 0\end{cases}\)</span></p></li>
+</ul>
+<p>We see that <span class="math notranslate nohighlight">\(J_1\)</span> is not bounded from below; <span class="math notranslate nohighlight">\(J_2\)</span> is not coercive, <span class="math notranslate nohighlight">\(J_3\)</span> is not l.s.c while <span class="math notranslate nohighlight">\(J_4\)</span> is.</p>
+<div class="figure align-default" id="functionals" style="width: 600px">
+<div class="cell_output docutils container">
+<img alt="_images/variational_formulations_1_0.png" src="_images/variational_formulations_1_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Examples of various functions.</span><a class="headerlink" href="#functionals" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+
+<span class="c1"># grid</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">3.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">30</span><span class="p">:],</span><span class="n">x</span><span class="p">[</span><span class="mi">30</span><span class="p">:]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;bo&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">3.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="mi">30</span><span class="p">:],</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">30</span><span class="p">:],</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;bo&#39;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">3.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;functionals&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/variational_formulations_1_1.png" src="_images/variational_formulations_1_1.png" />
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Theorem: <em>Uniqueness of minimisers</em></p>
+<p>Let <span class="math notranslate nohighlight">\(J\)</span> have at least one minimiser and be <a class="reference external" href="https://en.wikipedia.org/wiki/Convex_function">strictly convex</a> then the minimiser is unique.</p>
+</div>
+</div>
+<div class="section" id="stability">
+<h3><span class="section-number">5.1.2. </span>Stability<a class="headerlink" href="#stability" title="Permalink to this headline">¶</a></h3>
+<p>To analyse stability, we focus in particular on variational problems of the form</p>
+<div class="math notranslate nohighlight" id="equation-variational-r">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-variational-r" title="Permalink to this equation">¶</a></span>\[\textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\mathcal{F}}^2 + \alpha R(u).\]</div>
+<p>We can think of this as defining a (possibly non-linear) regularisation scheme <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha,\delta} = R_{\alpha} f^\delta\)</span> that generalises the pseudo-inverse approach discussed earlier.</p>
+</div>
+<div class="section" id="examples">
+<h3><span class="section-number">5.1.3. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-example-tikhonov-regularisation-in-mathbb-r-n admonition">
+<p class="admonition-title">Example: <em>Tikhonov regularisation in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span></em></p>
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_2^2 + \textstyle{\frac{\alpha}{2}}\|u\|_2^2.\]</div>
+<ul class="simple">
+<li><p>existence, uniqueness, stability</p></li>
+</ul>
+</div>
+<div class="admonition-example-ell-1-regularisation admonition">
+<p class="admonition-title">Example: <em><span class="math notranslate nohighlight">\(\ell_1-regularisation\)</span></em></p>
+<p>Consider</p>
+<div class="math notranslate nohighlight">
+\[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\ell_1}.\]</div>
+<ul class="simple">
+<li><p>existence, uniqueness, stability</p></li>
+</ul>
+</div>
+<div class="admonition-example-sobolev-regularisation admonition">
+<p class="admonition-title">Example: <em>Sobolev regularisation</em></p>
+<p>Consider</p>
+<div class="math notranslate nohighlight">
+\[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{L^2(\Omega)}^2 + \textstyle{\frac{\alpha}{2}}\|\nabla u\|_{L^2(\Omega)}^2.\]</div>
+</div>
+<div class="admonition-example-total-variation-regularisation admonition">
+<p class="admonition-title">Example: <em>Total variation regularisation</em></p>
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{L^2(\Omega)}^2 + \alpha TV(u).\]</div>
+<ul class="simple">
+<li><p>existence, uniqueness, stability</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="derivatives">
+<h2><span class="section-number">5.2. </span>Derivatives<a class="headerlink" href="#derivatives" title="Permalink to this headline">¶</a></h2>
+<p>Having established well-posedness of <a class="reference internal" href="#equation-variational">(5.1)</a>, we now focus our attention to characterising solutions through the first-order optimality conditions.</p>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Fréchet derivative</em></p>
+<p>We call a functional <span class="math notranslate nohighlight">\(J:\mathcal{U}\rightarrow \mathbb{R}\)</span> Fréchet differentiable (at <span class="math notranslate nohighlight">\(u\)</span>) if
+there exists a linear operator <span class="math notranslate nohighlight">\(D\)</span> such that</p>
+<div class="math notranslate nohighlight" id="equation-frechet">
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-frechet" title="Permalink to this equation">¶</a></span>\[\lim_{h\rightarrow 0} \frac{|J(u+h) - J(u) - Dh|}{\|h\|_{\mathcal{U}}} = 0.\]</div>
+<p>If this operator exists for all <span class="math notranslate nohighlight">\(u \in\mathcal{U}\)</span> we call <span class="math notranslate nohighlight">\(J\)</span> Fréchet differentiable and denote its Fréchet derivative by <span class="math notranslate nohighlight">\(J': \mathcal{U} \rightarrow \mathcal{U}^*\)</span>. Here, <span class="math notranslate nohighlight">\(\mathcal{U}^*\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Dual_space">dual space</a> of <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> which consists of bounded linear functionals on <span class="math notranslate nohighlight">\(\mathcal{U}\)</span>.</p>
+</div>
+<p>With this more general notion of differentiation we can pose the first-order optimality conditions.</p>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>First-order optimality conditions</em></p>
+<div class="math notranslate nohighlight" id="equation-local-minimum">
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-local-minimum" title="Permalink to this equation">¶</a></span>\[\langle J'(u), v - u\rangle \geq 0.\]</div>
+</div>
+<p>We need to be careful here, as some important cases <span class="math notranslate nohighlight">\(J\)</span> may fail to be Fréchet differentiable at the solution.</p>
+<hr class="docutils" />
+<p>Landweber iteration.</p>
+<hr class="docutils" />
+<p>It turns out that we can make an important distinction between <em>smooth</em> and <em>convex</em> (non-smooth) functionals.
+We will explore optimality conditions and algorithms for these two classes in more detail in a later chapter.</p>
+</div>
+<div class="section" id="the-euler-lagrange-equations">
+<h2><span class="section-number">5.3. </span>The Euler-Lagrange equations<a class="headerlink" href="#the-euler-lagrange-equations" title="Permalink to this headline">¶</a></h2>
+<p>An alternative viewpoint on optimality is provided by the Euler-lagrange equations, which establishes the link between certain problems of the form <a class="reference internal" href="#equation-variational">(5.1)</a> and PDEs. In particular, we focus in this section on problems of the form</p>
+<div class="math notranslate nohighlight">
+\[\min_{u\in\mathcal{U}} \textstyle{\frac{1}{2}} \|u - f^\delta\|_{L^2(\Omega)} + \alpha R(\nabla u).\]</div>
+<p>Such problems occur for example in image-denoising applications. We will see later that such problems also occur as subproblems when solving more general problems of the form <a class="reference internal" href="#equation-variational-r">(5.2)</a>.</p>
+<div class="important admonition">
+<p class="admonition-title">Definition: Euler-Lagrange equations</p>
+<p>The first-order optimality condition for <span class="math notranslate nohighlight">\(u\in\mathcal{U}\)</span> to be a solution to <a class="reference internal" href="#equation-variational">(5.1)</a> is</p>
+<div class="math notranslate nohighlight">
+\[\left.\frac{\mathrm{d}}{\mathrm{d}t} J(u + t\phi)\right|_{t=0} = 0 \quad \forall \phi \in C_c^{\infty},\]</div>
+<p>where <span class="math notranslate nohighlight">\(..\)</span></p>
+</div>
+<div class="admonition-example-the-heat-equation admonition">
+<p class="admonition-title">Example: <em>The heat equation</em></p>
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[R(u) = \|\nabla u\|_{L^2(\Omega)}^2.\]</div>
+<p>The corresponding diffusion equation is given by</p>
+<div class="math notranslate nohighlight">
+\[\partial_t u + u - \alpha\nabla^2 u = f^\delta.\]</div>
+<ul class="simple">
+<li><p>definition of underlying spaces, boundary conditions.</p></li>
+</ul>
+<div class="figure align-default" id="linear-diffusion" style="width: 600px">
+<div class="cell_output docutils container">
+<img alt="_images/variational_formulations_3_0.png" src="_images/variational_formulations_3_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 5.2 </span><span class="caption-text">Example of denoising with linear diffusion.</span><a class="headerlink" href="#linear-diffusion" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="kn">from</span> <span class="nn">skimage.util</span> <span class="kn">import</span> <span class="n">random_noise</span>
+<span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">resize</span>
+
+<span class="c1"># parameters</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="n">niter</span> <span class="o">=</span> <span class="mi">1001</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">coeff</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="n">s</span>
+
+<span class="c1"># diffusion operator</span>
+<span class="k">def</span> <span class="nf">L</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">coeff</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">ue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">)</span> <span class="c1"># padd edges to get array of size n+2 x n+2</span>
+
+    <span class="c1"># diffusion coefficient (central differences)</span>
+    <span class="n">grad_norm</span> <span class="o">=</span> <span class="p">((</span><span class="n">ue</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ue</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">((</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">coeff</span><span class="p">(</span><span class="n">grad_norm</span><span class="p">),</span><span class="mi">1</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">)</span>
+
+    <span class="c1"># diffusion term (combination of forward and backward differences)</span>
+    <span class="n">uxx</span> <span class="o">=</span> <span class="p">((</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">ue</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="n">c</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">ue</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">uyy</span> <span class="o">=</span> <span class="p">((</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">:])</span><span class="o">*</span><span class="p">(</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">:]</span><span class="o">-</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,:</span><span class="o">-</span><span class="mi">2</span><span class="p">,]))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">uxx</span> <span class="o">+</span> <span class="n">uyy</span>
+
+<span class="c1"># noisy image</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">camera</span><span class="p">(),(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="n">random_noise</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">var</span><span class="o">=</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># solve evolution equation</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">niter</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">L</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">coeff</span><span class="p">))</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">f_delta</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">f_delta</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Noisy image&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Result&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;linear_diffusion&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/variational_formulations_3_1.png" src="_images/variational_formulations_3_1.png" />
+</div>
+</div>
+<div class="admonition-example-non-linear-diffusion admonition">
+<p class="admonition-title">Example: <em>Non-linear diffusion</em></p>
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[R(u) = \int_{\Omega} r\left(\|\nabla u(x)\|^2\right) \mathrm{d}x.\]</div>
+<p>A popular choice for <span class="math notranslate nohighlight">\(r = \log(1 + s/\epsilon^2)\)</span>, which leads to the Perona-Malik diffusion equation:</p>
+<div class="math notranslate nohighlight">
+\[\partial_t u + u - \alpha\nabla \cdot \left(\frac{\nabla u}{1 + \epsilon^{-2}\|\nabla u\|_2^2}\right) = f^\delta.\]</div>
+<p>We can interpret intuitively why this would preserve edges by looking at the diffusion coefficient. Wherever <span class="math notranslate nohighlight">\(\|\nabla u\| \ll \epsilon\)</span> we have linear diffusion, if <span class="math notranslate nohighlight">\(\|\nabla u\| \gg \epsilon\)</span>, we hardly have any diffusion. This intuition if confirmed by consider the penalty <span class="math notranslate nohighlight">\(r(s)\)</span>, which for small <span class="math notranslate nohighlight">\(s\)</span> behaves like <span class="math notranslate nohighlight">\(s^2\)</span> but then flattens out and will thus not increasingly penalise larger gradients.</p>
+<div class="figure align-default" id="perona-malik" style="width: 600px">
+<div class="cell_output docutils container">
+<img alt="_images/variational_formulations_5_0.png" src="_images/variational_formulations_5_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 5.3 </span><span class="caption-text">Example of denoising with Perona-Malik regularisation.</span><a class="headerlink" href="#perona-malik" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="kn">from</span> <span class="nn">skimage.util</span> <span class="kn">import</span> <span class="n">random_noise</span>
+<span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">resize</span>
+
+<span class="c1"># parameters</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="n">niter</span> <span class="o">=</span> <span class="mi">1001</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">coeff</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span> <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mf">1e6</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
+
+<span class="c1"># diffusion operator</span>
+<span class="k">def</span> <span class="nf">L</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">coeff</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span> <span class="p">:</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">ue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">)</span> <span class="c1"># padd edges to get array of size n+2 x n+2</span>
+
+    <span class="c1"># diffusion coefficient (central differences)</span>
+    <span class="n">grad_norm</span> <span class="o">=</span> <span class="p">((</span><span class="n">ue</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ue</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">((</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">coeff</span><span class="p">(</span><span class="n">grad_norm</span><span class="p">),</span><span class="mi">1</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">)</span>
+
+    <span class="c1"># diffusion term (combination of forward and backward differences)</span>
+    <span class="n">uxx</span> <span class="o">=</span> <span class="p">((</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">ue</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="n">c</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">ue</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">uyy</span> <span class="o">=</span> <span class="p">((</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">:])</span><span class="o">*</span><span class="p">(</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">:]</span><span class="o">-</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">ue</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,:</span><span class="o">-</span><span class="mi">2</span><span class="p">,]))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">uxx</span> <span class="o">+</span> <span class="n">uyy</span>
+
+<span class="c1"># noisy image</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">camera</span><span class="p">(),(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="n">random_noise</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">var</span><span class="o">=</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># solve evolution equation</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">niter</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">L</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">coeff</span><span class="p">))</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">f_delta</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">f_delta</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Noisy image&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Result&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;perona_malik&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/variational_formulations_5_1.png" src="_images/variational_formulations_5_1.png" />
+</div>
+</div>
+<div class="admonition-example-total-variation admonition">
+<p class="admonition-title">Example: <em>Total variation</em></p>
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[R(u) = ...\]</div>
+</div>
 </div>
 <div class="section" id="exercises">
 <h2><span class="section-number">5.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
@@ -378,8 +774,8 @@ where <span class="math notranslate nohighlight">\(\mathrm{B}_1(0)\)</span> deno
 <h3><span class="section-number">5.4.3. </span>Deconvolution using the <span class="math notranslate nohighlight">\(L_1\)</span> norm<a class="headerlink" href="#deconvolution-using-the-l-1-norm" title="Permalink to this headline">¶</a></h3>
 <p>For given data <span class="math notranslate nohighlight">\(f\)</span> and a convolution kernel <span class="math notranslate nohighlight">\(k\)</span> we study the following regularized variational method:</p>
 <div class="math notranslate nohighlight">
-\[ 
-\left\| k \ast u - f \right\|_{L^2(\Omega)}^2 \:+\: \alpha \: \int_\Omega | (\mathcal{F}u)(w) | \: dw \: \rightarrow \: \min_{u} 
+\[
+\left\| k \ast u - f \right\|_{L^2(\Omega)}^2 \:+\: \alpha \: \int_\Omega | (\mathcal{F}u)(w) | \: dw \: \rightarrow \: \min_{u}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\((\mathcal{F}u)(w)\)</span> denotes the Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> at wave number <span class="math notranslate nohighlight">\(w\)</span>. Similar to the lecture, find an explicit representation of the solution of the problem using the <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution_theorem">convolution theorem</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/Plancherel_theorem">Plancherel theorem</a>. For simplicity you can assume that everything is real valued.</p>
 <p>Hint: The derivative of the absolute value function is multivalued (you need cases).</p>
@@ -460,10 +856,10 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1183d2b50&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1a2edc3050&gt;]
 </pre></div>
 </div>
-<img alt="_images/variational_formulations_7_1.png" src="_images/variational_formulations_7_1.png" />
+<img alt="_images/variational_formulations_13_1.png" src="_images/variational_formulations_13_1.png" />
 </div>
 </div>
 <div class="tip dropdown admonition">
@@ -507,7 +903,7 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/variational_formulations_9_0.png" src="_images/variational_formulations_9_0.png" />
+<img alt="_images/variational_formulations_15_0.png" src="_images/variational_formulations_15_0.png" />
 </div>
 </div>
 </div>
@@ -560,7 +956,7 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/variational_formulations_12_0.png" src="_images/variational_formulations_12_0.png" />
+<img alt="_images/variational_formulations_18_0.png" src="_images/variational_formulations_18_0.png" />
 </div>
 </div>
 </div>

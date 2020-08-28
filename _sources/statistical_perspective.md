@@ -39,10 +39,65 @@ We can use [Bayes' theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem) to c
 The posterior distribution gives the probability of any given $u$ given the measurements $f^\delta$:
 
 $$
-\pi_{\text{post}}(u | f^\delta) = C\cdot  \pi_{\text{data}}(f^\delta) \pi_{\text{prior}}(u),
+\pi_{\text{post}}(u | f^\delta) = C\cdot  \pi_{\text{data}}(f^\delta | u) \pi_{\text{prior}}(u),
 $$
 
 where $C$ is the normalising constant needed to make $\pi_{\text{post}}$ integrate to 1.
+```
+
+````{admonition} Example: *Estimating the density of a rock sample*
+Say we want to estimate the density of a given rock sample. To do this we measure the weight $w$ and volume $v$ of the rock. These are related to the (bulk) density as $\rho = w/v$ [g/cm^3]. Assuming that both measurements can be done independently with the same accuracy we have $w^\delta = w + \epsilon_{w}$ and $v^\delta = v + \epsilon_{v}$. We assume that $\epsilon_w,\epsilon_v$ are normally distributed with mean zero and variance $\sigma^2$. We then find the following relation between the density, the measurements and the error
+
+$$w^\delta - \rho v^\delta = \epsilon_w - \rho \epsilon_v.$$
+
+Thus, $w^\delta - \rho v^\delta$ is a normally distributed random variable with mean zero and variance $\sigma^2(1 + \rho^2)$. This gives us the following Likelihood
+
+$$\pi_{\text{data}}(u | f^\delta) = \frac{1}{\sigma\sqrt{1+\rho^2}\sqrt{2\pi}}\exp\left(-\frac{(w^\delta - \rho v^\delta)^2}{2\sigma^2(1+\rho^2)}\right).$$
+
+As prior, we can use statistics of rock samples {cite}`johnson1984density`. This gives a [log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution) with parameters $(1.5,0.4)$. The corresponding distributions are shown in figure {numref}`rock_samples`.
+
+```{glue:figure} rock_samples
+:figwidth: 300px
+:name: "rock_samples"
+
+Example of probability densities with $w = 2$, $v=1$, $\sigma = 0.1$.
+```
+````
+
+```{code-cell}
+:tags: ["hide-cell"]
+
+import numpy as np
+import matplotlib.pyplot as plt
+from myst_nb import glue
+
+# parameters
+mu_prior = 1.5
+sigma_prior = 0.4
+sigma = 1e-1
+
+# data
+w = 2
+v = 1
+w_delta = w + np.random.normal(0,sigma)
+v_delta = v + np.random.normal(0,sigma)
+
+#
+rho = np.linspace(0.01,15,1000)
+
+likelihood = np.exp(-(w_delta - rho*v_delta)**2/(2*(1+rho**2)*sigma**2))/(sigma*np.sqrt(1+rho**2)*np.sqrt(2*np.pi))
+prior = np.exp(-(np.log(rho)-mu_prior)**2/(2*sigma_prior**2))/(rho*sigma_prior*np.sqrt(2*np.pi))
+
+# plot
+fig,ax = plt.subplots(1,1)
+
+ax.plot(rho,likelihood,label='likelihood')
+ax.plot(rho,prior,label='prior')
+ax.plot(rho,likelihood*prior/np.sum(likelihood*prior)*np.sum(prior),label='posterior')
+ax.set_xlabel(r'$\rho$ [g/cm^2]')
+ax.set_ylabel(r'$\pi$')
+ax.legend()
+glue("rock_samples", fig, display=False)
 ```
 
 In a way, $\pi_{\text{post}}(u | f^\delta)$ is the answer to our inverse problem. It gives us information on the likelihood of any particular $u$ *under the assumptions* we made on $f^\delta$ and $u$. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those.
@@ -299,10 +354,51 @@ $$
 \min_{u} \sum_{i=1}^m \left(\left({K}u\right)_i - f_i^{\delta}\ln\left({K}u\right)_i\right).
 $$
 
+An example of the corresponding posterior is shown below.
+
+```{code-cell} ipython3
+:tags: ["hide-input"]
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import rc
+rc('text', usetex=True)
+
+# set random seed
+np.random.seed(2)
+
+# operator
+u_true = np.array([1,1])
+K = np.array([[1,1],[1,2]])
+
+# draw sample
+f = K.dot(u_true)
+f_delta = np.random.poisson(K.dot(u_true))
+
+# likelihood and prior
+u1,u2 = np.meshgrid(np.linspace(0,5,100),np.linspace(0,5,100))
+
+f1 = K[0,0]*u1 + K[0,1]*u2
+f2 = K[1,0]*u1 + K[1,1]*u2
+likelihood = ((f1**f_delta[0])*np.exp(-f1)/np.math.factorial(f_delta[0]))*((f2**f_delta[1])*np.exp(-f2)/np.math.factorial(f_delta[1]))
+
+# plot
+fig,ax = plt.subplots(1,1)
+
+ax.contourf(u1,u2,likelihood)
+ax.set_xlabel(r'$u_1$')
+ax.set_ylabel(r'$u_2$')
+ax.set_aspect(1)
+ax.set_title('Likelihood')
+
+plt.figtext(0.2,-0.1,r'Example with $K = \left(\begin{array}{cc} 1 & 1 \\ 1 & 2 \end{array}\right)$, $f^\delta = (1,3)$.',{'fontsize':12})
+plt.show()
+
+```
 
 ### Gaussian random fields
 
-To include spatial correlations we can model $u$ as being normally distributed with mean $\mu$ and *covariance* $\Sigma_{\text{prior}}$. Popular choices are
+To include spatial correlations we can model $u$ as being normally distributed with mean $\mu$ and *covariance* $\Sigma_{\text{prior}}$. A popular choices is
 
 $$
 \Sigma_{\text{prior},ij} = \exp\left(-\frac{|i-j|^p}{pL^{p}}\right),
@@ -315,6 +411,46 @@ The corresponding variational form of the prior is
 $$
 -\log \pi_{\text{prior}}(u) = \|u\|_{\Sigma^{-1}_{\text{prior}}}^2.
 $$
+
+Examples of samples are shown below.
+
+```{code-cell} ipython3
+:tags: ["hide-input"]
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+np.random.seed(2)
+
+# grid
+n = 100
+x = np.linspace(0,1,n)
+x1,x2 = np.meshgrid(x,x)
+
+# mean and Covariance
+mu = np.zeros(n)
+Sigma = lambda L,p : np.exp(-np.abs(x1-x2)**p/(p*L))
+
+# parameters
+L = [.01,.1]
+p = [1,2]
+
+# plot
+fig,ax = plt.subplots(2,2)
+
+for i in range(2):
+  for j in range(2):
+    ax[i,j].plot(x,np.random.multivariate_normal(mu,Sigma(L[j],p[i])))
+    title = '$L$ = '+str(L[j])+', $p$ = '+str(p[i])
+    ax[i,j].set_title(title)
+    ax[i,j].set_ylim([-4,4])
+    ax[i,j].set_xlim([0,1])
+
+ax[0,0].set_xticks([])
+ax[0,1].set_xticks([])
+plt.show()
+
+```
 
 +++
 

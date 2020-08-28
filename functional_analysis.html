@@ -310,6 +310,22 @@
 <span class="math notranslate nohighlight">\(K = \lim_{n \rightarrow \infty} K_n\)</span> with <span class="math notranslate nohighlight">\(K_n\)</span> finite dimensional operators.</p></li>
 </ul>
 <p>Hence <span class="math notranslate nohighlight">\(\mathcal{C} := \bar{\mathcal{F}}\)</span> is the space of all compact (completely continuous) operators. Compact operators have many nice properties, but also a particularly nasty one; if <span class="math notranslate nohighlight">\(\mathcal{R}(K)\)</span> is infinite-dimensional then the pseudo-inverse of <span class="math notranslate nohighlight">\(K\)</span> is not continuous.</p>
+<p>We will broaden the setting a little and let <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> be a Banach space with some topology that is not necessarily induced by the underlying norm. We need this generality to be able to formally tackle some of the more fancy regularisation techniques. As before, we will not focus on the proofs too deeply and focus on the concepts. We will need the following concepts, however.</p>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>dual space</em></p>
+<p>With every Banach space <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> we can associate the dual space consisting of linear, continuous functionals on <span class="math notranslate nohighlight">\(\mathcal{U}\)</span>. For a given <span class="math notranslate nohighlight">\(v \in \mathcal{U}^*\)</span> we denote the application of <span class="math notranslate nohighlight">\(v\)</span> on <span class="math notranslate nohighlight">\(u\)</span> as the dual product <span class="math notranslate nohighlight">\(\langle v,u\rangle\)</span>. As such, we can think of this as a way to generalise the concept of an inner product. However, the dual product is not generally symmetric.</p>
+<p>The dual product also allows us to define the adjoint of a linear operator <span class="math notranslate nohighlight">\(K:\mathcal{U} \rightarrow \mathcal{F}\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\langle g, Ku\rangle = \langle K^*g, u\rangle \quad \forall u \in \mathcal{U}, g \in \mathcal{F}^*.\]</div>
+</div>
+<p>The main technical difficulties will arise when showing convergence of sequences in the usual way. For this, we need to introduce the notion of <em>weak convergence</em>.</p>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>weak convergence</em></p>
+<p>A sequence <span class="math notranslate nohighlight">\(\{u_k\}_{k\in\mathbb{N}} \subset \mathcal{U}\)</span> is said to converge weakly to <span class="math notranslate nohighlight">\(u \in \mathcal{U}\)</span> iff for all <span class="math notranslate nohighlight">\(v \in \mathcal{U}^*\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[\langle v, u_k\rangle \rightarrow \langle v,u\rangle.\]</div>
+<p>We denote weak convergence by <span class="math notranslate nohighlight">\(u_k\rightharpoonup u\)</span>.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
