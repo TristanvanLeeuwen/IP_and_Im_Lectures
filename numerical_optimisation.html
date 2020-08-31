@@ -264,68 +264,97 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#first-order-methods">
-   6.1. First order methods
+  <a class="reference internal nav-link" href="#smooth-optimisation">
+   6.1. Smooth optimisation
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimality-conditions">
+     6.1.1. Optimality conditions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gradient-descent">
+     6.1.2. Gradient descent
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linesearch">
+     6.1.3. Linesearch
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#second-order-methods">
+     6.1.4. Second order methods
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#second-order-methods">
-   6.2. Second order methods
+  <a class="reference internal nav-link" href="#convex-optimisation">
+   6.2. Convex optimisation
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#proximal-gradient-methods">
-   6.3. Proximal gradient methods
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#primal-dual-methods">
-   6.4. Primal-dual methods
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subdifferentials">
+     6.2.1. Subdifferentials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proximal-splitting-methods">
+     6.2.2. Proximal splitting methods
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#primal-dual-methods">
+     6.2.3. Primal-dual methods
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercises">
-   6.5. Exercises
+   6.3. Exercises
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#convex-conjugates">
-     6.5.1. Convex conjugates
+     6.3.1. Convex conjugates
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#subdifferentials">
-     6.5.2. Subdifferentials
+    <a class="reference internal nav-link" href="#id1">
+     6.3.2. Subdifferentials
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-dual-method-for-tv-denoising">
-     6.5.3. A dual method for TV denoising
+     6.3.3. A dual method for TV denoising
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#steepest-descent">
-     6.5.4. Steepest descent
+    <a class="reference internal nav-link" href="#steepest-descent-for-strongly-convex-functionals">
+     6.3.4. Steepest descent for strongly convex functionals
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rosenbrock">
-     6.5.5. Rosenbrock
+     6.3.5. Rosenbrock
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#soft-tresholding">
-     6.5.6. Soft tresholding
+     6.3.6. Soft tresholding
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-prima-dual-method-for-tv-denoising">
-     6.5.7. A Prima-dual method for TV denoising
+     6.3.7. A Prima-dual method for TV denoising
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#splitting-methods">
-     6.5.8. Splitting methods
+     6.3.8. Splitting methods
     </a>
    </li>
   </ul>
@@ -342,22 +371,109 @@
                 
   <div class="section" id="numerical-optimisation-for-inverse-problems">
 <h1><span class="section-number">6. </span>Numerical optimisation for inverse problems<a class="headerlink" href="#numerical-optimisation-for-inverse-problems" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="first-order-methods">
-<h2><span class="section-number">6.1. </span>First order methods<a class="headerlink" href="#first-order-methods" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter we treat numerical algorithms for solving optimisation problems over <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. Throughout we will assume that the objective <span class="math notranslate nohighlight">\(J(u) = D(u) + R(u)\)</span> satisfies the conditions for a minimiser to exist. We distinguish between two important classes of problems; <em>smooth</em> problems and <em>convex</em> problems.</p>
+<div class="section" id="smooth-optimisation">
+<h2><span class="section-number">6.1. </span>Smooth optimisation<a class="headerlink" href="#smooth-optimisation" title="Permalink to this headline">¶</a></h2>
+<p>For smooth problems, we have assume to have access to as many derivatives of <span class="math notranslate nohighlight">\(J\)</span> as we need. As before, we denote the first derivative (or gradient) by <span class="math notranslate nohighlight">\(J' : \mathbb{R}^n \rightarrow \mathbb{R}^n\)</span>. We denote the second derivative (or Hessian) by <span class="math notranslate nohighlight">\(J'' : \mathbb{R}^n \rightarrow \mathbb{R}^{n\times n}\)</span>. We will additionally assume that the Hessian is globally bounded, i.e. there exists a constant <span class="math notranslate nohighlight">\(L &lt; \infty\)</span> such that <span class="math notranslate nohighlight">\(J''(u) \succeq L\cdot I\)</span> for all <span class="math notranslate nohighlight">\(u\in\mathbb{R}^n\)</span>. Note that this implies that <span class="math notranslate nohighlight">\(J'\)</span> is Lipschitz continous with constant <span class="math notranslate nohighlight">\(L\)</span>: <span class="math notranslate nohighlight">\(\|J'(u) - J'(v)\|_2 \leq L \|u - v\|_2\)</span>.</p>
+<div class="section" id="optimality-conditions">
+<h3><span class="section-number">6.1.1. </span>Optimality conditions<a class="headerlink" href="#optimality-conditions" title="Permalink to this headline">¶</a></h3>
+<div class="important admonition">
+<p class="admonition-title">Definition: <em>Optimality conditions</em></p>
+<p>Given a smooth functional <span class="math notranslate nohighlight">\(J:\mathbb{R}^n\rightarrow \mathbb{R}\)</span>, a point <span class="math notranslate nohighlight">\(u_* \in \mathbb{R}^n\)</span> is local minimiser iff it satisfies the first and second order optimality conditions</p>
+<div class="math notranslate nohighlight">
+\[J'(u_*) = 0, \quad J''(u_*) \succeq 0.\]</div>
+<p>If <span class="math notranslate nohighlight">\(J''(u_*) \succ 0\)</span> we call <span class="math notranslate nohighlight">\(u_*\)</span> a <em>strict</em> local minimiser.</p>
+</div>
+</div>
+<div class="section" id="gradient-descent">
+<h3><span class="section-number">6.1.2. </span>Gradient descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">¶</a></h3>
+<p>The steepest descent method proceeds to find a minimiser through a fixed-point iteration</p>
+<div class="math notranslate nohighlight">
+\[u_{k+1} = \left(I - \lambda J'\right)(u_k) = u_k - \lambda J'(u_k),\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> is the stepsize. The following theorem states that this iteration will yield a fixed point of <span class="math notranslate nohighlight">\(J\)</span>, regardless of the initial iterate, provided that we pick <span class="math notranslate nohighlight">\(\lambda\)</span> small enough.</p>
+<div class="important admonition">
+<p class="admonition-title">Theorem: <em>Global convergence of steepest descent</em></p>
+<p>Let <span class="math notranslate nohighlight">\(J:\mathbb{R}^n\rightarrow \mathbb{R}\)</span> be a smooth, Lipschitz-continuos functional. The fixed point iteration</p>
+<div class="math notranslate nohighlight" id="equation-steepest-descent">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-steepest-descent" title="Permalink to this equation">¶</a></span>\[u_{k+1} = \left(I - \lambda J'\right)(u_k),\]</div>
+<p>with <span class="math notranslate nohighlight">\(\lambda \in (0,L/2)\)</span> produces iterates <span class="math notranslate nohighlight">\(u_k\)</span> for which</p>
+<div class="math notranslate nohighlight">
+\[\min_{k\in \{0,1,\ldots, n\}} \|J'(u_k)\|_2^2 \leq \frac{J(u_0) - J_*}{C n},\]</div>
+<p>with <span class="math notranslate nohighlight">\(C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)\)</span> and <span class="math notranslate nohighlight">\(J_* = \min_u J(u)\)</span>. This implies that <span class="math notranslate nohighlight">\(J'(u_k) \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(k\rightarrow \infty\)</span> at a <em>sublinear rate</em> of <span class="math notranslate nohighlight">\(\mathcal{O}(1/\sqrt{k})\)</span>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>Start from a Taylor expansion:</p>
+<div class="math notranslate nohighlight">
+\[J(u_{k+1}) = J(u_k) + J'(u_k)(u_{k+1} - u_k) + \textstyle{\frac{1}{2}}(u_{k+1} - u_k)^T J''(\eta_k)(u_{k+1} - u_k).\]</div>
+<p>Now bound the last term using the fact that <span class="math notranslate nohighlight">\(J''(u) \succeq L\cdot I\)</span> and plug in <span class="math notranslate nohighlight">\(u_{k+1} - u_k = -\lambda J'(u_k)\)</span> to get</p>
+<div class="math notranslate nohighlight">
+\[J(u_{k+1}) - J(u_k) \leq \lambda \left( \textstyle{\frac{\lambda L}{2}} - 1\right) \|J'(u_k)\|_2^2.\]</div>
+<p>We conclude that for <span class="math notranslate nohighlight">\(0 &lt; \lambda &lt; \textstyle{\frac{1}{2L}}\)</span> we have that <span class="math notranslate nohighlight">\(J(u_{k+1}) &lt; J(u_k)\)</span> unless <span class="math notranslate nohighlight">\(\|J'(u_k)\|_2 = 0\)</span>, in which case <span class="math notranslate nohighlight">\(u_k\)</span> is a stationary point. Now, sum over <span class="math notranslate nohighlight">\(k\)</span> and re-organise to get</p>
+<div class="math notranslate nohighlight">
+\[\sum_{k=0}^n \|J'(u_k)\|_2^2 \leq \frac{J(u_0) - J(u_n)}{C},\]</div>
+<p>with <span class="math notranslate nohighlight">\(C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)\)</span>. Since <span class="math notranslate nohighlight">\(J_* \leq J(u_n)\)</span> we obtain the desired result.</p>
+</div>
+<p>A stronger statement on convergence can be made by making additional assumptions on <span class="math notranslate nohighlight">\(J\)</span> (such as convexity), but this is left as an exercise.</p>
+</div>
+</div>
+<div class="section" id="linesearch">
+<h3><span class="section-number">6.1.3. </span>Linesearch<a class="headerlink" href="#linesearch" title="Permalink to this headline">¶</a></h3>
+<p>While the previous results are nice in theory, we usually do not have access to the Lipschitz constant <span class="math notranslate nohighlight">\(L\)</span>. This could lead us to pick a very small stepsize, which would yield a very slow convergence in practice. A popular way of choosing a stepsize adaptively is a <em>linesearch</em> strategy, of which we give a few examples below.</p>
+<div class="admonition-example-backtracking admonition">
+<p class="admonition-title">Example: <em>Backtracking</em></p>
+<ul class="simple">
+<li><p>Armijo rule, convergence</p></li>
+</ul>
+</div>
+<div class="admonition-example-wolfe-linesearch admonition">
+<p class="admonition-title">Example: <em>Wolfe linesearch</em></p>
+<ul class="simple">
+<li><p>Wolfe conditions, convergence</p></li>
+</ul>
+</div>
+<div class="admonition-example-borzilai-borwein admonition">
+<p class="admonition-title">Example: <em>Borzilai-Borwein</em></p>
+<ul class="simple">
+<li><p>Borzilai-Borwein</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="second-order-methods">
-<h2><span class="section-number">6.2. </span>Second order methods<a class="headerlink" href="#second-order-methods" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">6.1.4. </span>Second order methods<a class="headerlink" href="#second-order-methods" title="Permalink to this headline">¶</a></h3>
+<p>A well-known method for rootfinding is <em>Newton’s method</em>, which finds a root for which <span class="math notranslate nohighlight">\(J'(u) = 0\)</span> via the fixed point iteration</p>
+<div class="math notranslate nohighlight">
+\[u_{k+1} = u_k - J''(u_k)^{-1}J(u_k).\]</div>
+<p>We can interpret this method as finding the new iterate <span class="math notranslate nohighlight">\(u_{k+1}\)</span> as the (unique) minimiser of the quadratic approximation of <span class="math notranslate nohighlight">\(J\)</span> around <span class="math notranslate nohighlight">\(u_k\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[J(u) \approx J(u_k) + J'(u_k)(u - u_k) + \textstyle{\frac{1}{2}}(u-u_k)^T J''(u_k)(u-u_k).\]</div>
+<div class="admonition-theorem-convergence-of-newton-s-method admonition">
+<p class="admonition-title">Theorem: <em>Convergence of Newton’s method</em></p>
+<p>Let …</p>
+<ul class="simple">
+<li><p>quadratic convergence</p></li>
+</ul>
 </div>
-<div class="section" id="proximal-gradient-methods">
-<h2><span class="section-number">6.3. </span>Proximal gradient methods<a class="headerlink" href="#proximal-gradient-methods" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>In some applications, it may be difficult to compute and invert the Hessian. This leads to so-called <em>quasi-Newton</em> methods which approximate the Hessian. An often-used approximation is the <em>Broyden-Fletcher-Goldfarb-Shannon (BFGS)</em> approximation, which ….</p>
+<p>In fact, even gradient-descent can be interpreted in this manner by approximating <span class="math notranslate nohighlight">\(J''(u_k) \approx L I\)</span>.</p>
+</div>
+</div>
+<div class="section" id="convex-optimisation">
+<h2><span class="section-number">6.2. </span>Convex optimisation<a class="headerlink" href="#convex-optimisation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="subdifferentials">
+<h3><span class="section-number">6.2.1. </span>Subdifferentials<a class="headerlink" href="#subdifferentials" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="proximal-splitting-methods">
+<h3><span class="section-number">6.2.2. </span>Proximal splitting methods<a class="headerlink" href="#proximal-splitting-methods" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="primal-dual-methods">
-<h2><span class="section-number">6.4. </span>Primal-dual methods<a class="headerlink" href="#primal-dual-methods" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">6.2.3. </span>Primal-dual methods<a class="headerlink" href="#primal-dual-methods" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 <div class="section" id="exercises">
-<h2><span class="section-number">6.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.3. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="convex-conjugates">
-<h3><span class="section-number">6.5.1. </span>Convex conjugates<a class="headerlink" href="#convex-conjugates" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.1. </span>Convex conjugates<a class="headerlink" href="#convex-conjugates" title="Permalink to this headline">¶</a></h3>
 <p>Compute the convex conjugates of the following primal functionals <span class="math notranslate nohighlight">\(J : X \rightarrow \mathbb{R} \cup
 \{ \infty \}\)</span>, i.e. the dual functionals <span class="math notranslate nohighlight">\(J^*: X^*\rightarrow \mathbb{R} \cup \{ \infty \}\)</span> of,</p>
 <ul class="simple">
@@ -367,8 +483,8 @@
 </ul>
 <p><strong>Hint</strong>: Remark, that in the dual formulation, due to the supremum, there holds equality in the Hölder inequality.</p>
 </div>
-<div class="section" id="subdifferentials">
-<h3><span class="section-number">6.5.2. </span>Subdifferentials<a class="headerlink" href="#subdifferentials" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3><span class="section-number">6.3.2. </span>Subdifferentials<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Compute the subdifferentials <span class="math notranslate nohighlight">\(\partial f(x)\)</span> of the following functions:</p>
 <ul class="simple">
 <li><p>The Euclidean norm <span class="math notranslate nohighlight">\(f:\mathbb{R}^n \rightarrow \mathbb{R}, x \, \mapsto
@@ -379,7 +495,7 @@
 <p>https://en.wikipedia.org/wiki/Characteristic_function_(convex_analysis)</p>
 </div>
 <div class="section" id="a-dual-method-for-tv-denoising">
-<h3><span class="section-number">6.5.3. </span>A dual method for TV denoising<a class="headerlink" href="#a-dual-method-for-tv-denoising" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.3. </span>A dual method for TV denoising<a class="headerlink" href="#a-dual-method-for-tv-denoising" title="Permalink to this headline">¶</a></h3>
 <p><strong>Proof</strong> that the Rudin-Osher-Fatemi (ROF) minimization for denoising with <span class="math notranslate nohighlight">\(L^2\)</span> data fidelity and TV regularisation:</p>
 <div class="math notranslate nohighlight">
 \[\frac{1}{2}\|u - f\|_{L^2}^2 + \alpha \text{TV}(u)\]</div>
@@ -409,7 +525,7 @@
 <span class="c1"># grid \Omega = [0,1]</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> 
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 
 <span class="c1"># parameters</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="mf">1e-1</span>
@@ -425,21 +541,21 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/numerical_optimisation_5_0.png" src="_images/numerical_optimisation_5_0.png" />
+<img alt="_images/numerical_optimisation_3_0.png" src="_images/numerical_optimisation_3_0.png" />
 </div>
 </div>
 </div>
-<div class="section" id="steepest-descent">
-<h3><span class="section-number">6.5.4. </span>Steepest descent<a class="headerlink" href="#steepest-descent" title="Permalink to this headline">¶</a></h3>
-<p>Consider the following fixed point iteration for minimizing a given function <span class="math notranslate nohighlight">\(f : \mathbb{R}^n \rightarrow \mathbb{R}\)</span></p>
+<div class="section" id="steepest-descent-for-strongly-convex-functionals">
+<h3><span class="section-number">6.3.4. </span>Steepest descent for strongly convex functionals<a class="headerlink" href="#steepest-descent-for-strongly-convex-functionals" title="Permalink to this headline">¶</a></h3>
+<p>Consider the following fixed point iteration for minimizing a given function <span class="math notranslate nohighlight">\(J : \mathbb{R}^n \rightarrow \mathbb{R}\)</span></p>
 <div class="math notranslate nohighlight">
 \[
-u^{(k+1)} = u^{(k)} - \alpha \nabla f(u^{(k)}),
+u^{(k+1)} = u^{(k)} - \alpha J'(u^{(k)}),
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(f\)</span> is twice continuously differentiable and strictly convex:</p>
+<p>where <span class="math notranslate nohighlight">\(J\)</span> is twice continuously differentiable and strictly convex:</p>
 <div class="math notranslate nohighlight">
 \[
-\mu I \preceq \nabla^2 f(u) \preceq L I,
+\mu I \preceq J''(u) \preceq L I,
 \]</div>
 <p>with <span class="math notranslate nohighlight">\(0 &lt; \mu &lt; L &lt; \infty\)</span>.</p>
 <ul class="simple">
@@ -477,7 +593,7 @@ Since the eigenvalues of <span class="math notranslate nohighlight">\(\nabla^2 f
 </div>
 </div>
 <div class="section" id="rosenbrock">
-<h3><span class="section-number">6.5.5. </span>Rosenbrock<a class="headerlink" href="#rosenbrock" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.5. </span>Rosenbrock<a class="headerlink" href="#rosenbrock" title="Permalink to this headline">¶</a></h3>
 <p>We are going to test various optimization methods on the Rosenbrock function</p>
 <div class="math notranslate nohighlight">
 \[
@@ -554,17 +670,17 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
         <span class="n">fs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">rosenbrock</span><span class="p">((</span><span class="n">x1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">x2</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
-        
+
 <span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx1</span><span class="p">,</span><span class="n">xx2</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x101cc1f790&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0xf27374990&gt;]
 </pre></div>
 </div>
-<img alt="_images/numerical_optimisation_9_1.png" src="_images/numerical_optimisation_9_1.png" />
+<img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -576,17 +692,17 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
         <span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">Hs</span> <span class="o">=</span> <span class="n">rosenbrock</span><span class="p">((</span><span class="n">x1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">x2</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
         <span class="n">e1</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="n">e2</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">Hs</span><span class="p">)</span>
-        
+
 <span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx1</span><span class="p">,</span><span class="n">xx2</span><span class="p">,(</span><span class="n">e1</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">e2</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">),</span><span class="n">levels</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x101cefaa90&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1027a227d0&gt;]
 </pre></div>
 </div>
-<img alt="_images/numerical_optimisation_10_1.png" src="_images/numerical_optimisation_10_1.png" />
+<img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -617,7 +733,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/numerical_optimisation_11_0.png" src="_images/numerical_optimisation_11_0.png" />
+<img alt="_images/numerical_optimisation_9_0.png" src="_images/numerical_optimisation_9_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -648,16 +764,16 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn('The line search algorithm did not converge', LineSearchWarning)
 </pre>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11a63ef10&gt;,
- &lt;matplotlib.lines.Line2D at 0x11a6425d0&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x125158d10&gt;,
+ &lt;matplotlib.lines.Line2D at 0x12515d350&gt;]
 </pre></div>
 </div>
-<img alt="_images/numerical_optimisation_12_2.png" src="_images/numerical_optimisation_12_2.png" />
+<img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />
 </div>
 </div>
 </div>
 <div class="section" id="soft-tresholding">
-<h3><span class="section-number">6.5.6. </span>Soft tresholding<a class="headerlink" href="#soft-tresholding" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.6. </span>Soft tresholding<a class="headerlink" href="#soft-tresholding" title="Permalink to this headline">¶</a></h3>
 <p>In efficient splitting methods, e.g. in Split Bregman, see next exercise below, subproblems often can be reduced to proximal steps, like soft shrinkage.</p>
 <ul class="simple">
 <li><p>Hence, show in 1D <span class="math notranslate nohighlight">\((\Omega \subset \mathbb{R})\)</span>, that a solution <span class="math notranslate nohighlight">\(z^* : \Omega \rightarrow \mathbb{R}\)</span> of the functional</p></li>
@@ -681,7 +797,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </ul>
 </div>
 <div class="section" id="a-prima-dual-method-for-tv-denoising">
-<h3><span class="section-number">6.5.7. </span>A Prima-dual method for TV denoising<a class="headerlink" href="#a-prima-dual-method-for-tv-denoising" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.7. </span>A Prima-dual method for TV denoising<a class="headerlink" href="#a-prima-dual-method-for-tv-denoising" title="Permalink to this headline">¶</a></h3>
 <p>In the lecture we have introduced with Split-Bregman, or equivalently Alternating direction method of multipliers (ADMM), a splitting method, with which we can solve the ROF model</p>
 <div class="math notranslate nohighlight">
 \[ \min_u \frac{1}{2} \left\| u-f \right\|_{L^2(\Omega)} + \alpha \left\| \nabla u \right\|_{L^1(\Omega)}\]</div>
@@ -692,7 +808,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </ul>
 </div>
 <div class="section" id="splitting-methods">
-<h3><span class="section-number">6.5.8. </span>Splitting methods<a class="headerlink" href="#splitting-methods" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.8. </span>Splitting methods<a class="headerlink" href="#splitting-methods" title="Permalink to this headline">¶</a></h3>
 <p>The aim is to solve the following variational problem</p>
 <div class="math notranslate nohighlight">
 \[\min_u \frac{1}{2} \|Ku - f^{\delta}\|_2^2 + \alpha \|Lu\|_1,\]</div>
@@ -715,7 +831,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
     <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">h</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">xx</span> <span class="o">-</span> <span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">K</span><span class="p">,</span><span class="n">x</span>
 
 <span class="c1"># define regularization operator</span>
@@ -745,7 +861,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/numerical_optimisation_16_0.png" src="_images/numerical_optimisation_16_0.png" />
+<img alt="_images/numerical_optimisation_14_0.png" src="_images/numerical_optimisation_14_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -800,7 +916,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;u(x)&#39;)
 </pre></div>
 </div>
-<img alt="_images/numerical_optimisation_17_1.png" src="_images/numerical_optimisation_17_1.png" />
+<img alt="_images/numerical_optimisation_15_1.png" src="_images/numerical_optimisation_15_1.png" />
 </div>
 </div>
 </div>

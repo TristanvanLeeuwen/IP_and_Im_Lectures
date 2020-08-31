@@ -560,7 +560,10 @@ there exists a linear operator <span class="math notranslate nohighlight">\(D\)<
 </div>
 <p>We need to be careful here, as some important cases <span class="math notranslate nohighlight">\(J\)</span> may fail to be Fréchet differentiable at the solution.</p>
 <hr class="docutils" />
-<p>Landweber iteration.</p>
+<p>A well-known method for solving <a class="reference internal" href="#equation-variational">(5.1)</a> is the <em>Landweber</em> iteration</p>
+<div class="math notranslate nohighlight">
+\[u_{k+1} = u_k - \lambda J'(u_k),\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> denotes the stepsize. Under certain conditions on <span class="math notranslate nohighlight">\(J'(u)\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> one can show that this converges to a stationary point <span class="math notranslate nohighlight">\(u_{*}\)</span> for which <span class="math notranslate nohighlight">\(J'(u_*) = 0\)</span>. Obviously, this method only applies when <span class="math notranslate nohighlight">\(J'(u)\)</span> is well-defined everywhere along the solution path.</p>
 <hr class="docutils" />
 <p>It turns out that we can make an important distinction between <em>smooth</em> and <em>convex</em> (non-smooth) functionals.
 We will explore optimality conditions and algorithms for these two classes in more detail in a later chapter.</p>
@@ -589,6 +592,10 @@ We will explore optimality conditions and algorithms for these two classes in mo
 <ul class="simple">
 <li><p>definition of underlying spaces, boundary conditions.</p></li>
 </ul>
+<p>A forward Euler discretisation of the PDE leads to</p>
+<div class="math notranslate nohighlight">
+\[u_{k+1} = u_k - \Delta t \left(f^\delta - u + \alpha \nabla^2 u\right),\]</div>
+<p>which is in fact a Landweber iteration applied to the corresponding objective.</p>
 <div class="figure align-default" id="linear-diffusion" style="width: 600px">
 <div class="cell_output docutils container">
 <img alt="_images/variational_formulations_3_0.png" src="_images/variational_formulations_3_0.png" />
@@ -856,7 +863,7 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1a2edc3050&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x103479050&gt;]
 </pre></div>
 </div>
 <img alt="_images/variational_formulations_13_1.png" src="_images/variational_formulations_13_1.png" />
