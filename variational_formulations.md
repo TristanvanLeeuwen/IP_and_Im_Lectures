@@ -282,7 +282,11 @@ We need to be careful here, as some important cases $J$ may fail to be Fréchet 
 
 ---
 
-Landweber iteration.
+A well-known method for solving {eq}`variational` is the *Landweber* iteration
+
+$$u_{k+1} = u_k - \lambda J'(u_k),$$
+
+where $\lambda > 0$ denotes the stepsize. Under certain conditions on $J'(u)$ and $\lambda$ one can show that this converges to a stationary point $u_{*}$ for which $J'(u_*) = 0$. Obviously, this method only applies when $J'(u)$ is well-defined everywhere along the solution path.
 
 ---
 
@@ -318,6 +322,12 @@ The corresponding diffusion equation is given by
 $$\partial_t u + u - \alpha\nabla^2 u = f^\delta.$$
 
 * definition of underlying spaces, boundary conditions.
+
+A forward Euler discretisation of the PDE leads to
+
+$$u_{k+1} = u_k - \Delta t \left(f^\delta - u + \alpha \nabla^2 u\right),$$
+
+which is in fact a Landweber iteration applied to the corresponding objective.
 
 ```{glue:figure} linear_diffusion
 :figwidth: 600px
