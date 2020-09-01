@@ -11,7 +11,7 @@ In these lectures we introduce basic concepts related to inverse problems and vi
 * Solution strategies
 * Applications
 
-Each chapter contains exercises and example code in Python.
+Each chapter contains exercises and example code in Python. To get familiar with Python, I can recommend [these lecture notes](https://scipy-lectures.org/).
 
 ## A tour through the book in 10 Lectures
 
