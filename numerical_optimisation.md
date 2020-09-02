@@ -453,20 +453,52 @@ $$\Lambda(u,v,\nu) = D(u) + R(v) + \nu^T(Au - v),$$
 
 where $\nu \in \mathbb{R}^m$ are called the Lagrange multipliers. The solution to {eq}`splitted` is a saddle point of $\Lambda$ and we can thus be obtained by solving
 
-$$\min_{u,v} \max_{\nu} \Lambda(u,v,\nu).$$
+```{math}
+:label: saddle_point
+\min_{u,v} \max_{\nu} \Lambda(u,v,\nu).$$
+```
 
-Re-organising terms we get the so-called *dual problem*
+The equivalence between {eq}`splitted` and {eq}`saddle_point` is established in the following theorem
+
+```{admonition} Theorem:
+Let ..
+```
+
+---
+
+```{admonition} Definition: *Dual problem*
+Re-organising terms we get the so-called [*dual problem*](https://en.wikipedia.org/wiki/Duality_(optimization))
 
 $$\max_{\nu} \min_{u} D(u) + \nu^TAu + \min_v R(v) - \nu^Tv.$$
 
-Here, we recognize the [*convex conjugates*](https://en.wikipedia.org/wiki/Convex_conjugate) of $D$ and $R$. With this, we re-write the problem as
+```
+
+---
+
+We can now proceed to solve {eq}`saddle_point` in a number of ways. We will discuss two routes.
+
+```{admonition} *Alternating Direction of Multipliers (ADMM)*
+We augment the Lagrangian by adding a quadratic term:
+
+$$\Lambda_{\rho}(u,v,\nu) = D(u) + R(v) + \nu^T(Au - v) + \rho \|Au - v\|_2^2.$$
+
+We then find the solution by updating the variables in an alternating fashion
+
+$$u_{k+1} = \prox_{\alpha D}\left(u_k - (\alpha/\beta)A^T\left(Au_k - v_k + \nu_k\right)\right)$$
+$$v_{k+1} = \prox_{\beta R}\left(Au_k + \nu_k\right)$$
+$$\nu_{k+1} = \nu_k + Au_k - v_k$$
+```
+
+```{admonition} *Dual-based proximal gradient*
+Here, we recognise the [*convex conjugates*](https://en.wikipedia.org/wiki/Convex_conjugate) of $D$ and $R$. With this, we re-write the problem as
 
 $$\min_{\nu} D^*(A^T\nu) + R^*(\nu).$$
 
-Thus, we have moved the linear map to the other side. We can now apply the proximal gradient method provided that
+Thus, we have moved the linear map to the other side. We can now apply the proximal gradient method provided that:
 
 * We have a closed-form expression for the convex conjugates of $D$ and $R$;
 * $R^*$ has a proximal operator that is easily evaluated.
+```
 
 ## References
 
@@ -709,7 +741,28 @@ Compute the subdifferentials $\partial f(x)$ of the following functions:
 
 https://en.wikipedia.org/wiki/Characteristic_function_(convex_analysis)
 
-+++
+### Soft tresholding
+
+In efficient splitting methods, e.g. in Split Bregman, see next exercise below, subproblems often can be reduced to proximal steps, like soft shrinkage.
+
+* Hence, show in 1D $(\Omega \subset \mathbb{R})$, that a solution $z^* : \Omega \rightarrow \mathbb{R}$ of the functional
+
+$$
+	\min_z \frac{1}{2}\left\| z-f \right\|_{L^2(\Omega)}^2 + \alpha \left\| z \right\|_{L^1(\Omega)}
+$$
+
+is explicitly given by the application of the soft shrinkage operator $S_\alpha(f)$
+
+$$ z^* = S_\alpha(f) := \left\{
+\begin{align*}
+&f - \alpha , &\text{if}\: f > \alpha \\
+&0,           &\text{if}\: -\alpha \leq f \leq \alpha\\
+&f + \alpha , &\text{if}\: f < -\alpha
+\end{align*}
+\right\}
+$$
+
+* What would happen with this formula if we would go from convex regularization to nonconvex regularization, i.e. $L^p(\Omega)$ with $0 < p < 1$ instead of $L^1(\Omega)$ in the regularization? (This is a difficult question. Search for hard shrinkage to get an idea.)
 
 ### A dual method for TV denoising
 
@@ -765,31 +818,6 @@ plt.plot(x,u,x,f_delta)
 plt.show()
 ```
 
-### Soft tresholding
-
-In efficient splitting methods, e.g. in Split Bregman, see next exercise below, subproblems often can be reduced to proximal steps, like soft shrinkage.
-
-* Hence, show in 1D $(\Omega \subset \mathbb{R})$, that a solution $z^* : \Omega \rightarrow \mathbb{R}$ of the functional
-
-$$
-	\min_z \frac{1}{2}\left\| z-f \right\|_{L^2(\Omega)}^2 + \alpha \left\| z \right\|_{L^1(\Omega)}
-$$
-
-is explicitly given by the application of the soft shrinkage operator $S_\alpha(f)$
-
-$$ z^* = S_\alpha(f) := \left\{
-\begin{align*}
-&f - \alpha , &\text{if}\: f > \alpha \\
-&0,           &\text{if}\: -\alpha \leq f \leq \alpha\\
-&f + \alpha , &\text{if}\: f < -\alpha
-\end{align*}
-\right\}
-$$
-
-* What would happen with this formula if we would go from convex regularization to nonconvex regularization, i.e. $L^p(\Omega)$ with $0 < p < 1$ instead of $L^1(\Omega)$ in the regularization? (This is a difficult question. Search for hard shrinkage to get an idea.)
-
-+++
-
 ### A Prima-dual method for TV denoising
 
 In the lecture we have introduced with Split-Bregman, or equivalently Alternating direction method of multipliers (ADMM), a splitting method, with which we can solve the ROF model
@@ -802,9 +830,9 @@ efficiently in an alternating primal-dual fashion.
 
 * How do the subproblems of the splitting algorithm change, if we make the transition from denoising to reconstruction with an operator $K:\Omega \rightarrow \Omega$, without introducing additional constraints? Which property would the operator $K$ need, such that the whole method could still be realised efficiently via FFT and DCT inside?
 
-+++
+## Assignments
 
-### Splitting methods
+### Spline regularisation
 
 The aim is to solve the following variational problem
 
@@ -812,7 +840,7 @@ $$\min_u \frac{1}{2} \|Ku - f^{\delta}\|_2^2 + \alpha \|Lu\|_1,$$
 
 where $K$ is a given forward operator (matrix) and $L$ is a discretisation of the second derivative operator.
 
-1. Describe and implement a splitting method; you can be creative here -- multiple answers are possible
+1. Design and implement a method for solving this variational problem; you can be creative here -- multiple answers are possible
 2. Compare your method with the basic subgradient-descent method implemented below
 3. (bonus) Find a suitable value for $\alpha$ using the discrepancy principle
 

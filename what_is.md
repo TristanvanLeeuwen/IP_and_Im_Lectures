@@ -13,7 +13,7 @@ kernelspec:
 
 # What is an inverse problem
 
-Mathematical models and data play a big role in modern science and engineering. The field of inverse problems bridges these two and studies if and how one can infer model parameters from relevant observations. A prominent example is the famous black hole image, shown in figure {numref}`blackhole`, that was constructed by merging data from various telescopes {cite}`akiyama`.
+Mathematical models and data play a big role in modern science and engineering. The field of inverse problems bridges these two and studies if and how one can infer model parameters from relevant observations. A prominent example is the famous black hole image, shown in {numref}`blackhole`, that was constructed by merging data from various telescopes {cite}`akiyama`.
 
 ```{figure} ./images/what_is/blackhole.png
 ---
@@ -29,17 +29,19 @@ A promiment subfield of inverse problems is that of imaging, with applications i
 
 ### Image processing
 
-Images are of great importance in many applications, ranging from microscopy, medicine, to astronomy. In all these applications, the recorded images are distorted or corrupted version of the ideal image. The inverse problem consists of reconstructing the idealized image from the measured one.
+Images are of great importance in many applications, ranging from microscopy, medicine, to astronomy. In all these applications, the recorded images are distorted or corrupted versions of the ideal image. The inverse problem consists of reconstructing the idealised image from the measured one.
 
-We can think of a (digital) image as an two dimensional array of pixels where each element could, for example, represent the gray value of the corresponging pixel. A color image could be represented by a tensor representing the RGB intensities for each pixel. Alternatively, we can think of an idealized image as a (vector-valued) function on a bounded domain (say, the unit square).
+We can think of a (digital) image as a two dimensional array of pixels where each element could, for example, represent the grey value of the corresponding pixel. A colour image could be represented by a tensor containing the RGB intensities for each pixel. Alternatively, we can think of an idealised image as a (vector-valued) function on a bounded domain (say, the unit square).
 
-A mathematical model for the observed image should model the process by which the image was obtained. This often involves [convolving](https://en.wikipedia.org/wiki/Convolution) the image with a filter and adding noise. For example, for a digital image with pixel values $u_{i}$, the measured image is given by
+A mathematical model for the observed image should model the process by which the image was obtained. This often involves [convolving](https://en.wikipedia.org/wiki/Convolution) the image with a filter and adding noise. For example, for a digital image with pixel values $u_{i}$, the measured image can in many cases be modelled as
 
 $$
 f_{i} = \sum_{j\in\mathbb{Z}^2} k_{i,j}u_{j},
 $$
 
-$i = (i_1,i_2)$ and $j = (j_1,j_2)$ are [multi-indices](https://en.wikipedia.org/wiki/Multi-index_notation) and $k: \mathbb{Z}^2 \times \mathbb{Z}^2 \rightarrow \mathbb{R}$ is the filter. Representing the image as a function $u : \Omega \rightarrow \mathbb{R}$, we may have
+$i = (i_1,i_2)$ and $j = (j_1,j_2)$ are [multi-indices](https://en.wikipedia.org/wiki/Multi-index_notation) and $k: \mathbb{Z}^2 \times \mathbb{Z}^2 \rightarrow \mathbb{R}$ is the filter.
+
+Representing the image as a function $u : \Omega \rightarrow \mathbb{R}$, we may have
 
 $$
 f(x) = \int_{\Omega} k(x-y)u(y)\mathrm{d}y,
@@ -47,10 +49,10 @@ $$
 
 where $\Omega \subset \mathbb{R}^2$ is the image domain and $k: \Omega \times \Omega \rightarrow \mathbb{R}$ is the convolution kernel or [*point spread function*](https://en.wikipedia.org/wiki/Point_spread_function).
 
-The resulting inverse problem is to undo the convolution. In some cases, $k$ may not be known perfectly, in which case it is called *blind deconvolution*. Other image-related inverse problems include *denoising*, where a noisy version of the image is measured, and *inpainting*, where a significant part of the pixels are missing. Some examples are shown below. 
+The resulting inverse problem is to undo the convolution. In some cases, $k$ may not be known perfectly, in which case it is called *blind deconvolution*. Other image-related inverse problems include *denoising*, where a noisy version of the image is measured, and *inpainting*, where a significant part of the pixels are missing. Some examples are shown below.
 
 ```{code-cell} ipython3
-:tags: [remove-cell]
+:tags: [hide-input]
 
 # import libaries
 import numpy as np
@@ -61,17 +63,7 @@ from skimage.restoration import inpaint
 
 # load test image and convert to gray-scale
 astro = color.rgb2gray(data.astronaut())
-```
 
-```{code-cell} ipython3
----
-caption: An example of image de-blurring. We see that the restored image is sharper
-  and less noisy than the corrupted image, but not as good as the origonal image.
-  Do you think we would ever be able to fully recover the original image?
-label: fig:deblurring
-tags: [hide-input]
-widefigure: false
----
 ## image deblurring
 
 # define blurring kernel (pointspread function)
@@ -105,13 +97,18 @@ plt.show()
 ```
 
 ```{code-cell} ipython3
----
-caption: An example of image inpainting. Do you think we would ever be able to fully
-  recover the original image?
-label: fig:inpainting
-tags: [hide-input]
-widefigure: false
----
+:tags: [hide-input]
+
+# import libaries
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import convolve2d as conv2
+from skimage import color, data, restoration
+from skimage.restoration import inpaint
+
+# load test image and convert to gray-scale
+astro = color.rgb2gray(data.astronaut())
+
 ## image inpainting
 
 # Create mask with three defect regions: left, middle, right respectively
@@ -159,9 +156,13 @@ name: ModernCT
 Modern CT scanner (left). Slice of high resolution CT scan of a patient's lung (right). Source for both: Wikimedia Commons
 ```
 
-In this case $u: \mathbb{R}^2 \rightarrow \mathbb{R}$, represents the density of the object, which may in turn be thought of as an image. Different from the previous section is the relation to the measurements. A usefull model for x-ray measurements turns out to be the [*Radon transform*](https://en.wikipedia.org/wiki/Radon_transform), which transforms the image $u$ to a *sinogram* $f: \mathbb{R}\times [0,2\pi) \rightarrow \mathbb{R}$ by taking line-integrals along straight lines at various angles and shifts. 
+In this case $u: \mathbb{R}^d \rightarrow \mathbb{R}$, represents the density of (a slice of) the object, which may in turn be thought of as an image. Different from the previous section is the relation to the measurements. A useful model for x-ray measurements turns out to be the [*X-ray transform*](https://en.wikipedia.org/wiki/X-ray_transform), which for $d=2$ is equivalent to the [*Radon transform*](https://en.wikipedia.org/wiki/Radon_transform). This transforms the image $u$ to a *sinogram* $f: \mathbb{R}^{d}\times \mathbb{S}^{d-1} \rightarrow \mathbb{R}$ by taking line-integrals along straight lines at various angles and shifts:
 
-An example of an image and its corresponding sinogram are shown in figure {numref}`walnut`. It is clear that the sinogram itself is not directly suited for interpration and we have to solve the inverse problem to get a usefull image.
+$$f(s,\xi) = \int_{\mathbb{R}} u(s + t \xi)\mathrm{d}t,$$
+
+with $\xi \in \mathbb{S}^{d-1}$ a direction on the unit sphere and $s \in \mathbb{R}^d$ denoting the shift.
+
+An example of an image and its corresponding sinogram are shown in figure {numref}`walnut`. It is clear that the sinogram itself is not directly suited for interpretation and we have to solve the inverse problem to get a useful image.
 
 ```{figure} ./images/what_is/walnut.png
 ---
@@ -175,33 +176,33 @@ Two-dimensional slice through a walnut and the corresponding sinogram.
 
 ### Magnetic resonance imaging
 
-Magnetic resonance imaging (MRI) is another imaging modality for clinical diagnoses. As oppossed to CT, MRI does not rely on ionizing radiation and is hence considered much safer. A disadvantage of MRI is that the time needed for a scan is much longer than for CT.
+Magnetic resonance imaging (MRI) is another imaging modality for clinical diagnosis. As opposed to CT, MRI does not rely on ionising radiation and is hence considered much safer. A disadvantage of MRI is that the time needed for a scan is much longer than for CT.
 
-Here, $u$, is related to the proton density of the tissue and can be interpreted as an image. The physics behind the measurement process are quite complicated, but for most practical settings a usefull model is based on the [*Fourier transform*](https://en.wikipedia.org/wiki/Fourier_transform) of $u$:
+Here, $u : \mathbb{R}^d \rightarrow \mathbb{C}$, is related to the proton density of the tissue and can be interpreted as an image. The physics behind the measurement process are quite complicated, but for most practical settings a useful model is based on the [*Fourier transform*](https://en.wikipedia.org/wiki/Fourier_transform) of $u$:
 
 $$
-\widehat{u}(\xi) = \int u(x)e^{\imath \xi\cdot x}\mathrm{d}x.
+\widehat{u}(\xi) = \frac{1}{(2\pi)^{d/2}}\int_{\mathbb{R}^d} u(x)e^{\imath \xi\cdot x}\mathrm{d}x.
 $$
 
 The measurements $f$ are a finite set of samples of the spectrum $\widehat{u}$:
 
 $$
-f_i = \int u(x)e^{\imath \xi_i\cdot x}\mathrm{d}x.
+f_i = \widehat{u}(\xi_i), \quad i = 1, 2, \ldots, m.
 $$
 
 Note that when a fully sampled spectrum is available, we can easily retrieve $u$ via the *inverse Fourier transform*:
 
 $$
-u(x)= \int \widehat{u}(\xi) e^{-\imath \xi\cdot x}\mathrm{d}\xi.
+u(x)= \frac{1}{(2\pi)^{d/2}}\int_{\mathbb{R}^d} \widehat{u}(\xi) e^{-\imath \xi\cdot x}\mathrm{d}\xi.
 $$
 
-The challenge here lies in retrieving $u$ from a limited set of samples. As the time needed for a scan is proportional to the number of samples acquired, much research is being done on devising methods to recover images from undersampled Fourier measurements.
+The challenge here lies in retrieving $u$ from a limited set of samples. As the time needed for a scan is proportional to the number of samples acquired, much research is being done on devising methods to recover images from under sampled Fourier measurements.
 
 +++
 
 ### Seismic inversion
 
-In seismic inversion, the goal is to infer physical properties of the subsurface from seismic measurements. Here, $u$ represents (for example) the elastic material parameters of the rock and the measurements are time series recorded by seismographs. A typical experimantal setup is depicted in {numref}`seismic_acquisition`. A typical image resulting from such data is shown in {numref}`seismic_image`.
+In seismic inversion, the goal is to infer physical properties of the subsurface from seismic measurements. Here, $u$ represents (for example) the elastic material parameters of the rock or the signature of an earth-quake. The measurements are typically time series of ground motion recorded by seismographs. A typical experimental setup is depicted in {numref}`seismic_acquisition`. A typical image resulting from such data is shown in {numref}`seismic_image`.
 
 ```{figure} ./images/what_is/Diagram_of_a_marine_seismic_survey.png
 ---
@@ -235,9 +236,9 @@ $$
 
 The inverse problem consists of retrieving either $c$ or $q$ from the measurements $\{f_i\}_{i=0}^m$. In particular we distinguish two inverse problems
 
-* *Inverse source problem*: The measurements $f$ are linear in terms of $q$, leading to a linear inverse problem to retrieve $q$. In earth-quake localization, the source is for example parametrized as $q(t,x) = w(t)u(x)$ in which case the goal is to retrieve $(u,w)$.
+* *Inverse source problem*: The measurements $f$ are linear in terms of $q$, leading to a linear inverse problem to retrieve $q$. In earth-quake localisation, the source is for example parametrised as $q(t,x) = w(t)u(x)$ in which case the goal is to retrieve $(u,w)$.
 
-* *Inverse medium problem*: Here the goal is to retrieve $c$, sometimes parametrized as $c(x) = c_0(1 + u(x))$. Here, the measurements generally depend non-linearly on $u$. However, when $|u| \ll 1$ the relation between $f$ and $u$ may be linearized.
+* *Inverse medium problem*: Here the goal is to retrieve $c$, sometimes parametrised as $c(x) = c_0(1 + u(x))$. Here, the measurements generally depend non-linearly on $u$. However, when $|u| \ll 1$ the relation between $f$ and $u$ may be linearised.
 
 +++
 
@@ -245,12 +246,12 @@ The inverse problem consists of retrieving either $c$ or $q$ from the measuremen
 
 +++
 
-We can abstractly formulate an inverse problem as finding a solution, $u \in \mathcal{U}$, of the operator equation
+We can abstractly formulate most (if not all) inverse problems as finding a solution, $u \in \mathcal{U}$, to the operator equation
 ```{math}
 :label: ip
-K(u) = f,
+K(u) = f.
 ```
-where $K$ is called the *forward opertor*; $u$ is the *image* or *parameter* and $f \in \mathcal{F}$ are the measurements. The forward operator, $K : \mathcal{U} \rightarrow \mathcal{F}$, is a model of the underlying (physical) process and simulates the measurements for given $u$. It could represent for example an integral operator, a matrix, or a set of algebraic equations.
+Here, $K$ is called the *forward opertor*; $u$ is the *image* or *parameter* and $f \in \mathcal{F}$ are the measurements. The forward operator, $K : \mathcal{U} \rightarrow \mathcal{F}$, is a model of the underlying (physical) process and simulates the measurements for given $u$. It could represent for example an integral operator, a matrix, or a set of algebraic equations.
 The image/parameters, $u$, constitute a mathematical description of the quantity of interest. It could for example be a function or a vector. The measurements, $f$, are a mathematical representation of the measured data. For the purposes of analysis, we may think of this a function, but in practice measurements are always a discrete quantity.
 
 For the purposes of this course, we will assume that $\mathcal{U}$ and $\mathcal{F}$ are [Banach spaces](https://en.wikipedia.org/wiki/Banach_space) so we can measure distances between pairs of images and measurements. In many cases, $\mathcal{U}$ and $\mathcal{F}$ will additionaly have an inner-product in which case they are [Hilbert spaces](https://en.wikipedia.org/wiki/Hilbert_space).
@@ -269,19 +270,19 @@ The equation $K(u) = f$ is *well-posed* if *all* three criteria are met:
 If the problem is not well-posed, we call it *ill-posed*.
 ```
 
-It may seem strange that equation {eq}`ip` may not have a solution. After all, are the measurements not the result of the forward opertor applied to some ground-truth $u^*$? We need to keep in mind here that $K$ is only a *model* for the underlying process. In reality, the measurements may include *modelling errors* and *measurement errors*. An often-used model to reflect this is the *additive noise model*
+It may seem strange that equation {eq}`ip` may not have a solution. After all, are the measurements not the result of the forward opertor applied to some ground-truth $\overline{u}$? We need to keep in mind here that $K$ is only a *model* for the underlying process. In reality, the measurements may include *modelling errors* and *measurement errors*. We will denote the noisy data by $f^{\delta}$. An often-used model to incorporate such errors is the *additive noise model*
 
 $$
 f^{\delta} = Ku^* + e,
 $$
 
-where $e$ represents the combined measurement and modelling error with $\|e\| \leq \delta$. If we find a $u$ for which $Ku^{\delta} = f^{\delta}$, we can ask ourselves how big the *backward error* $\|u^{\delta} - u^*\|$ is with respect to the *forward error* $\|e\| = \delta$. In practice we call a problem ill-posed if a small error in the data can cause a large error in the reconstruction.
+where $e$ represents the combined measurement and modelling error with $\|e\| \leq \delta$. If we find a $u$ for which $Ku^{\delta} = f^{\delta}$, we can ask ourselves how big the *backward error* $\|u^{\delta} - \overline{u}\|$ is with respect to the *forward error* $\|e\| = \delta$. In practice we call a problem ill-posed if a small error in the data can cause a large error in the reconstruction.
 
 ## Motivating examples
 
 ### Rootfinding
 Given a continuous function $K : \mathbb{R} \rightarrow \mathbb{R}$, and $f \in \mathbb{R}$ find $u$ such that $K(u) = f$. The [inverse function theorem](https://en.wikipedia.org/wiki/Inverse_function_theorem) tells us that
-the inverse of $K$ exists (at least locally) if $K$ is continuously differentiable at $u$ with $K'(u)\not= 0$. The solution is in this case give by $u = K^{-1}(f)$. For sensitivity we consider $K(u) - K(v) = f - g$, leading to
+the inverse of $K$ exists (at least locally around $u$) if $K$ is continuously differentiable at $u$ with $K'(u)\not= 0$. The solution is in this case give by $u = K^{-1}(f)$. For sensitivity we consider $K(u) - K(v) = f - g$, leading to
 
 $$
 u - v = K^{-1}(f) - K^{-1}(g) = \left(K^{-1}\right)'(\xi)(f-g).
@@ -302,13 +303,13 @@ $$
 We conclude that the problem of finding a root of $K(u) - f$ is ill-posed when the derivative of $K$ is small near the root.
 
 ### Matrix inversion
-Matrix inversion is a prime example of a linear inverse problem. These can be written in the form of {eq}`ip` with $u \in \mathbb{C}^n$ and $f \in \mathbb{C}^n$ being $n$-dimensional vectors and $K \in \mathbb{C}^{n \times n}$ being a matrix. For now, we further assume $K$ to be a [Hermitian](https://en.wikipedia.org/wiki/Hermitian_matrix), [positive definite matrix](https://en.wikipedia.org/wiki/Definite_symmetric_matrix). In that case we know from the [spectral theorem](https://en.wikipedia.org/wiki/Spectral_theorem) that there exist real positive eigenvalues $\lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_n > 0$ and corresponding orthonormal eigenvectors $k_j \in \mathbb{C}^n$ for $j \in \{ 1,\cdots,n \}$ such that $K$ can be written as
+Matrix inversion is a prime example of a linear inverse problem. These can be written in the form of {eq}`ip` with $u \in \mathbb{C}^n$ and $f \in \mathbb{C}^n$ being $n$-dimensional vectors and $K \in \mathbb{C}^{n \times n}$ being a matrix. For now, we further assume $K$ to be a [Hermitian](https://en.wikipedia.org/wiki/Hermitian_matrix), [positive definite matrix](https://en.wikipedia.org/wiki/Definite_symmetric_matrix). In that case we know from the [spectral theorem](https://en.wikipedia.org/wiki/Spectral_theorem) that there exist real positive eigenvalues $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n > 0$ and corresponding orthonormal eigenvectors $k_j \in \mathbb{C}^n$ for $j \in \{ 1,\cdots,n \}$ such that $K$ can be written as
 
 $$
 K = \sum_{j=1}^n \lambda_k k_j k_j^{\top}.
 $$
 
-Under these conditions, we have a matrix $K$, which has full rank, i.e. it is invertible, and *existence* as well as *uniqueness* of a solution of {eq}`ip` is guaranteed. Regarding *stability*, however, it is well known from numerical linear algebra that a small perturbation of $f$ may lead to large pertubation of the corresponding solution if the matrix is *ill-conditioned*. In particular, we have
+Under these conditions $K$ is invertible so *existence* and *uniqueness* of a solution of {eq}`ip` are guaranteed. Regarding *stability*, however, it is well known from numerical linear algebra that a small perturbation of $f$ may lead to large perturbation of the corresponding solution if the matrix is *ill-conditioned*. In particular, we have
 
 $$
 \frac{\|u - u^\delta\|}{\|u\|} \leq \kappa(K) \frac{\|f - f^\delta\|}{\|f\|},
@@ -318,14 +319,13 @@ where $\kappa(K) = \|K^{-1}\|\|K\|$ is called the [*condition number*](https://e
 
 ### Differentiation
 
-Here, we are given a [continuously differentiable function](https://en.wikipedia.org/wiki/Smoothness) $f \in C^{1}([0,1])$ with $f(0) = 0$ and want to find $u$ such that $Ku = f$ with
+Here, we are given a [continuously differentiable function](https://en.wikipedia.org/wiki/Smoothness) $f \in C^{1}([0,1])$ with $f(0) = 0$ and define the forward operator as
 
 $$
 Ku(x) = \int_0^x u(y) \mathrm{d}y.
 $$
 
-We immediately find that the solution is given by $u(x) = f'(x)$. Hence, the solution is well-defined and unique.
-For sensitivity, assume that we are given a noisy version of the signal $f^{\delta} = f + n^{\delta}$, with $n^{\delta} \in L^{\infty}([0,1])$, with $L^{\infty}([0,1])$ denoting the [space of bounded measureble functions](https://en.wikipedia.org/wiki/L-infinity). An example of such noise is
+We immediately find that the solution is given by $u(x) = f'(x)$. Hence, the solution is well-defined and unique. For sensitivity, assume that we are given a noisy version of the signal $f^{\delta} = f + n^{\delta}$, with $n^{\delta} \in L^{\infty}([0,1])$, with $L^{\infty}([0,1])$ denoting the [space of bounded measurable functions](https://en.wikipedia.org/wiki/L-infinity). An example of such noise is
 
 $$
 n^{\delta}(x) = \delta \sin(x/\delta).
@@ -341,7 +341,6 @@ It is not hard to show in this case that the forward error $\|f^{\delta} - f\|_{
 In some special cases we can derive an explicit expression for (an approximation) of the solution of $K(u) = f$. For example, if $K$ represents a quadratic equation in one variable or a system of linear equations. In other cases, we may have an explicit expression for the inverse of a slightly modified forward operator, $\widetilde{K}$. This modified operator arises when the original inverse problem is ill-posed and is replaced by a modified inverse problem $\widetilde{K}(u) = f$ which is well-posed. The hope, in the latter case, is that $\widetilde{K}$ approximates $K$ well for the class of solututions we are looking for.
 
 ````{admonition} Example: *Inverting a rank-deficient matrix.*
-
 $$
 K = \left(\begin{matrix} 1 & 1\\ 2 & 2 \end{matrix}\right).
 $$
@@ -360,18 +359,12 @@ allows us to compute the inverse. Indeed, given $f = K\overline{u}$ with $\overl
 
 Original and regularized equations. We see that the regularized equations have a unique solution, but has thereby implicity selected one particular solution of the original system.
 ```
+
 ````
 
-
 ```{code-cell} ipython3
----
-caption: Original and regularized equations. We see that the regularized equations
-  have a unique solution, but has thereby implicity selected one particular solution
-  of the original system.
-label: fig:ex1regeqs
-tags: [remove-cell]
-widefigure: false
----
+:tags: [hide-cell]
+
 import numpy as np
 import matplotlib.pyplot as plt
 from myst_nb import glue
@@ -439,13 +432,8 @@ Original quadratic equation and functional to be minimized. We see that mimizing
 ````
 
 ```{code-cell} ipython3
----
-caption: Original quadratic equation and functional to be minimized. We see that mimizing
-  the functional picks out one of the two solutions.
-label: fig:ex2regeqs
-tags: [remove-cell]
-widefigure: false
----
+:tags: [hide-cell]
+
 import numpy as np
 import matplotlib.pyplot as plt
 from myst_nb import glue
@@ -472,9 +460,13 @@ plt.show()
 glue("quadratic", fig, display=False)
 ```
 
-## Excercises
+## References
 
-+++
+```{bibliography} references.bib
+:style: plain
+```
+
+## Excercises
 
 ### Matrix inversion I
 We want to solve a system of linear equations $Ku = f$ with :
@@ -504,24 +496,47 @@ print("The eigenvalues are:", l)
 print("The eigenvectors are:",V[:,0], V[:,1])
 ```
 
+```{admonition} Answer
+:class: hint, dropdown
+
+1. This matrix is invertible, so we only need to check the condition number which we find to be $3$. This is not so large as to cause problems numerically.
+
+2. This matrix is near singular (the columns are nearly linearly dependent). However, it still invertible. The condition number is $\kappa(K) \approx 4\cdot 10^3$. While this would not lead to problems when computing solutions numerically, it may amplify realistic measurement errors. We would call this problem ill-posed.
+
+3. This equation does not have a solution.
+
+4. This equation does have a unique solution $\overline{u} = (1,0)$. It is not immediately clear how to analyse stability in general. We could, for example, look at the first two equations (the last one is the same as the first one) and compute the condition number of the corresponding matrix. This yields $\approx 6.85$, so the system is not ill-posed. Another way to look at it, perhaps, is that adding a small perturbation may make the system inconsistent. As such, we could call the inverse problem ill-posed.
+We will learn how to deal with this situation in general in the next chapter.
+
+5. Here, the solutions are of the form $\overline{u} = (1/4,1/4,1/4) + t (-1,0,1)$ for any $t$. Hence, the system is definitely ill-posed.
+
+6. Again, an inconsistent system with no solution.
+
+```
+
 ### Matrix inversion II
 
 Given a symmetric, positive definite matrix $K \in \mathbb{R}^{n\times n}$ we want to solve $Ku = f$. Such a matrix can be decomposed as
 
-$$K = \sum_{i=1}^n \lambda_i k_ik_i^T,$$
+$$K = \sum_{i=1}^n \lambda_i k_ik_i^{\top},$$
 
-where $\lambda_1\geq \lambda_2 \geq \ldots \geq \lambda_n > 0$ are the eigenvalues and $k_i$ denote the eigenvectors. Such a matrix has an inverse given by 
+where $\lambda_1\geq \lambda_2 \geq \ldots \geq \lambda_n > 0$ are the eigenvalues and $k_i$ denote the eigenvectors. Such a matrix has an inverse given by
 
-$$K^{-1} = \sum_{i=1}^n \lambda_i^{-1} k_ik_i^T.$$
+$$K^{-1} = \sum_{i=1}^n \lambda_i^{-1} k_ik_i^{\top}.$$
 
 To study the well-posedness of the equation we want to bound the *backward error* $\|u - u^\delta\|_2$ in terms of the *forward error* $\|f - f^{\delta}\|_2$ where $Ku = f$ and $Ku^{\delta} = f^\delta$.
 
 1. Show that $\|u - u^\delta\|_2 \leq \lambda_n^{-1} \|f - f^{\delta}\|_2.$
 2. Show that the *relative error* is bounded by
 $\frac{\|u - u^\delta\|_2}{\|u\|_2} \leq \lambda_1\lambda_n^{-1} \frac{\|f - f^{\delta}\|_2}{\|f\|_2}.$
-3. Compute the condition numbers for the matrices 1, 2 and 6 in the previous excercise; what do you notice?
 
-+++
+```{admonition} Answer
+:class: hint, dropdown
+
+1. We have $\|u - u^\delta\|_2 = \|K^{-1}(f - f^\delta)\|_2 \leq \|K^{-1}\| \|f - f^\delta\|_2$ with $\|K^{-1}\|$ denoting the operator norm of $K^{-1}$, defined as $\sup_{\|v\|_2=1} \|K^{-1}v\|$. The supremum is attained at $v = k_n$ which leads to $\|K^{-1}\|_2 = \lambda_n^{-1}$.
+
+2. Similarly, we find $\|f\|_2 = \|Ku\|_2 \leq \lambda_1 \|u\|_2$.
+```
 
 ### Differentiation I
 
@@ -538,7 +553,15 @@ $$\|g\|_{L^{\infty}([0,1])} = \sup_{x\in[0,1]} |g(x)|.$$
 
 This shows that the problem is *ill-conditioned*; a small forward error does not guarantee a small backward error, implying that the inverse map is not continuous.
 
-+++
+```{admonition} Answer
+:class: hint, dropdown
+
+1. Since $|\sin(\cdot)| \leq 1$ we immediately get the desired result.
+
+2. By linearity we have $u - u^\delta = k \sin(k x)$ and we immediately find the desired result.
+```
+
+## Assignments
 
 ### Differentiation II
 
@@ -550,12 +573,6 @@ denotes the [$W^{1,\infty}$-Sobolev norm](https://en.wikipedia.org/wiki/Sobolev_
 
 1. Assuming that $\|n^{\delta}\|_{C^1([0,1])} = \delta$, show that $\|u - u^{\delta}\|_{L^{\infty}([0,1])} \rightarrow 0$ when $\delta \rightarrow 0$.
 
-2. Can you come up with a type of noise that obeys the assumed bound?
+2. Can you come up with a type of noise that obeys the assumed bound? Is it reasonable to make such assumptions on the noise?
 
 +++
-
-## References
-
-```{bibliography} references.bib
-:style: plain
-```
