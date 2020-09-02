@@ -335,36 +335,43 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   1.5. References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#excercises">
-   1.5. Excercises
+   1.6. Excercises
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#matrix-inversion-i">
-     1.5.1. Matrix inversion I
+     1.6.1. Matrix inversion I
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#matrix-inversion-ii">
-     1.5.2. Matrix inversion II
+     1.6.2. Matrix inversion II
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#differentiation-i">
-     1.5.3. Differentiation I
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#differentiation-ii">
-     1.5.4. Differentiation II
+     1.6.3. Differentiation I
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   1.6. References
+  <a class="reference internal nav-link" href="#assignments">
+   1.7. Assignments
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#differentiation-ii">
+     1.7.1. Differentiation II
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -378,7 +385,7 @@
                 
   <div class="section" id="what-is-an-inverse-problem">
 <h1><span class="section-number">1. </span>What is an inverse problem<a class="headerlink" href="#what-is-an-inverse-problem" title="Permalink to this headline">¶</a></h1>
-<p>Mathematical models and data play a big role in modern science and engineering. The field of inverse problems bridges these two and studies if and how one can infer model parameters from relevant observations. A prominent example is the famous black hole image, shown in figure <a class="reference internal" href="#blackhole"><span class="std std-numref">Fig. 1.1</span></a>, that was constructed by merging data from various telescopes <a class="bibtex reference internal" href="#akiyama" id="id1">[1]</a>.</p>
+<p>Mathematical models and data play a big role in modern science and engineering. The field of inverse problems bridges these two and studies if and how one can infer model parameters from relevant observations. A prominent example is the famous black hole image, shown in <a class="reference internal" href="#blackhole"><span class="std std-numref">Fig. 1.1</span></a>, that was constructed by merging data from various telescopes <a class="bibtex reference internal" href="#akiyama" id="id1">[1]</a>.</p>
 <div class="figure align-default" id="blackhole">
 <a class="reference internal image-reference" href="_images/blackhole.png"><img alt="_images/blackhole.png" src="_images/blackhole.png" style="height: 150px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 1.1 </span><span class="caption-text">Depiction of a black hole as reconstructed from data recorded by the Event Horizon Telescope.</span><a class="headerlink" href="#blackhole" title="Permalink to this image">¶</a></p>
@@ -388,14 +395,15 @@
 <h2><span class="section-number">1.1. </span>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="image-processing">
 <h3><span class="section-number">1.1.1. </span>Image processing<a class="headerlink" href="#image-processing" title="Permalink to this headline">¶</a></h3>
-<p>Images are of great importance in many applications, ranging from microscopy, medicine, to astronomy. In all these applications, the recorded images are distorted or corrupted version of the ideal image. The inverse problem consists of reconstructing the idealized image from the measured one.</p>
-<p>We can think of a (digital) image as an two dimensional array of pixels where each element could, for example, represent the gray value of the corresponging pixel. A color image could be represented by a tensor representing the RGB intensities for each pixel. Alternatively, we can think of an idealized image as a (vector-valued) function on a bounded domain (say, the unit square).</p>
-<p>A mathematical model for the observed image should model the process by which the image was obtained. This often involves <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution">convolving</a> the image with a filter and adding noise. For example, for a digital image with pixel values <span class="math notranslate nohighlight">\(u_{i}\)</span>, the measured image is given by</p>
+<p>Images are of great importance in many applications, ranging from microscopy, medicine, to astronomy. In all these applications, the recorded images are distorted or corrupted versions of the ideal image. The inverse problem consists of reconstructing the idealised image from the measured one.</p>
+<p>We can think of a (digital) image as a two dimensional array of pixels where each element could, for example, represent the grey value of the corresponding pixel. A colour image could be represented by a tensor containing the RGB intensities for each pixel. Alternatively, we can think of an idealised image as a (vector-valued) function on a bounded domain (say, the unit square).</p>
+<p>A mathematical model for the observed image should model the process by which the image was obtained. This often involves <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution">convolving</a> the image with a filter and adding noise. For example, for a digital image with pixel values <span class="math notranslate nohighlight">\(u_{i}\)</span>, the measured image can in many cases be modelled as</p>
 <div class="math notranslate nohighlight">
 \[
 f_{i} = \sum_{j\in\mathbb{Z}^2} k_{i,j}u_{j},
 \]</div>
-<p><span class="math notranslate nohighlight">\(i = (i_1,i_2)\)</span> and <span class="math notranslate nohighlight">\(j = (j_1,j_2)\)</span> are <a class="reference external" href="https://en.wikipedia.org/wiki/Multi-index_notation">multi-indices</a> and <span class="math notranslate nohighlight">\(k: \mathbb{Z}^2 \times \mathbb{Z}^2 \rightarrow \mathbb{R}\)</span> is the filter. Representing the image as a function <span class="math notranslate nohighlight">\(u : \Omega \rightarrow \mathbb{R}\)</span>, we may have</p>
+<p><span class="math notranslate nohighlight">\(i = (i_1,i_2)\)</span> and <span class="math notranslate nohighlight">\(j = (j_1,j_2)\)</span> are <a class="reference external" href="https://en.wikipedia.org/wiki/Multi-index_notation">multi-indices</a> and <span class="math notranslate nohighlight">\(k: \mathbb{Z}^2 \times \mathbb{Z}^2 \rightarrow \mathbb{R}\)</span> is the filter.</p>
+<p>Representing the image as a function <span class="math notranslate nohighlight">\(u : \Omega \rightarrow \mathbb{R}\)</span>, we may have</p>
 <div class="math notranslate nohighlight">
 \[
 f(x) = \int_{\Omega} k(x-y)u(y)\mathrm{d}y,
@@ -404,7 +412,17 @@ f(x) = \int_{\Omega} k(x-y)u(y)\mathrm{d}y,
 <p>The resulting inverse problem is to undo the convolution. In some cases, <span class="math notranslate nohighlight">\(k\)</span> may not be known perfectly, in which case it is called <em>blind deconvolution</em>. Other image-related inverse problems include <em>denoising</em>, where a noisy version of the image is measured, and <em>inpainting</em>, where a significant part of the pixels are missing. Some examples are shown below.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## image deblurring</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libaries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">convolve2d</span> <span class="k">as</span> <span class="n">conv2</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">color</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">restoration</span>
+<span class="kn">from</span> <span class="nn">skimage.restoration</span> <span class="kn">import</span> <span class="n">inpaint</span>
+
+<span class="c1"># load test image and convert to gray-scale</span>
+<span class="n">astro</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">rgb2gray</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">astronaut</span><span class="p">())</span>
+
+<span class="c1">## image deblurring</span>
 
 <span class="c1"># define blurring kernel (pointspread function)</span>
 <span class="n">psf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="o">/</span> <span class="mi">25</span>
@@ -438,12 +456,22 @@ f(x) = \int_{\Omega} k(x-y)u(y)\mathrm{d}y,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/what_is_2_0.png" src="_images/what_is_2_0.png" />
+<img alt="_images/what_is_1_0.png" src="_images/what_is_1_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## image inpainting</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libaries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">convolve2d</span> <span class="k">as</span> <span class="n">conv2</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">color</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">restoration</span>
+<span class="kn">from</span> <span class="nn">skimage.restoration</span> <span class="kn">import</span> <span class="n">inpaint</span>
+
+<span class="c1"># load test image and convert to gray-scale</span>
+<span class="n">astro</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">rgb2gray</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">astronaut</span><span class="p">())</span>
+
+<span class="c1">## image inpainting</span>
 
 <span class="c1"># Create mask with three defect regions: left, middle, right respectively</span>
 <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span><span class="mi">200</span><span class="p">))</span>
@@ -480,7 +508,7 @@ f(x) = \int_{\Omega} k(x-y)u(y)\mathrm{d}y,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/what_is_3_0.png" src="_images/what_is_3_0.png" />
+<img alt="_images/what_is_2_0.png" src="_images/what_is_2_0.png" />
 </div>
 </div>
 </div>
@@ -491,8 +519,11 @@ f(x) = \int_{\Omega} k(x-y)u(y)\mathrm{d}y,
 <a class="reference internal image-reference" href="_images/ModernCT.png"><img alt="_images/ModernCT.png" src="_images/ModernCT.png" style="height: 150px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 1.2 </span><span class="caption-text">Modern CT scanner (left). Slice of high resolution CT scan of a patient’s lung (right). Source for both: Wikimedia Commons</span><a class="headerlink" href="#modernct" title="Permalink to this image">¶</a></p>
 </div>
-<p>In this case <span class="math notranslate nohighlight">\(u: \mathbb{R}^2 \rightarrow \mathbb{R}\)</span>, represents the density of the object, which may in turn be thought of as an image. Different from the previous section is the relation to the measurements. A usefull model for x-ray measurements turns out to be the <a class="reference external" href="https://en.wikipedia.org/wiki/Radon_transform"><em>Radon transform</em></a>, which transforms the image <span class="math notranslate nohighlight">\(u\)</span> to a <em>sinogram</em> <span class="math notranslate nohighlight">\(f: \mathbb{R}\times [0,2\pi) \rightarrow \mathbb{R}\)</span> by taking line-integrals along straight lines at various angles and shifts.</p>
-<p>An example of an image and its corresponding sinogram are shown in figure <a class="reference internal" href="#walnut"><span class="std std-numref">Fig. 1.3</span></a>. It is clear that the sinogram itself is not directly suited for interpration and we have to solve the inverse problem to get a usefull image.</p>
+<p>In this case <span class="math notranslate nohighlight">\(u: \mathbb{R}^d \rightarrow \mathbb{R}\)</span>, represents the density of (a slice of) the object, which may in turn be thought of as an image. Different from the previous section is the relation to the measurements. A useful model for x-ray measurements turns out to be the <a class="reference external" href="https://en.wikipedia.org/wiki/X-ray_transform"><em>X-ray transform</em></a>, which for <span class="math notranslate nohighlight">\(d=2\)</span> is equivalent to the <a class="reference external" href="https://en.wikipedia.org/wiki/Radon_transform"><em>Radon transform</em></a>. This transforms the image <span class="math notranslate nohighlight">\(u\)</span> to a <em>sinogram</em> <span class="math notranslate nohighlight">\(f: \mathbb{R}^{d}\times \mathbb{S}^{d-1} \rightarrow \mathbb{R}\)</span> by taking line-integrals along straight lines at various angles and shifts:</p>
+<div class="math notranslate nohighlight">
+\[f(s,\xi) = \int_{\mathbb{R}} u(s + t \xi)\mathrm{d}t,\]</div>
+<p>with <span class="math notranslate nohighlight">\(\xi \in \mathbb{S}^{d-1}\)</span> a direction on the unit sphere and <span class="math notranslate nohighlight">\(s \in \mathbb{R}^d\)</span> denoting the shift.</p>
+<p>An example of an image and its corresponding sinogram are shown in figure <a class="reference internal" href="#walnut"><span class="std std-numref">Fig. 1.3</span></a>. It is clear that the sinogram itself is not directly suited for interpretation and we have to solve the inverse problem to get a useful image.</p>
 <div class="figure align-default" id="walnut">
 <a class="reference internal image-reference" href="_images/walnut.png"><img alt="_images/walnut.png" src="_images/walnut.png" style="height: 150px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 1.3 </span><span class="caption-text">Two-dimensional slice through a walnut and the corresponding sinogram.</span><a class="headerlink" href="#walnut" title="Permalink to this image">¶</a></p>
@@ -500,27 +531,27 @@ f(x) = \int_{\Omega} k(x-y)u(y)\mathrm{d}y,
 </div>
 <div class="section" id="magnetic-resonance-imaging">
 <h3><span class="section-number">1.1.3. </span>Magnetic resonance imaging<a class="headerlink" href="#magnetic-resonance-imaging" title="Permalink to this headline">¶</a></h3>
-<p>Magnetic resonance imaging (MRI) is another imaging modality for clinical diagnoses. As oppossed to CT, MRI does not rely on ionizing radiation and is hence considered much safer. A disadvantage of MRI is that the time needed for a scan is much longer than for CT.</p>
-<p>Here, <span class="math notranslate nohighlight">\(u\)</span>, is related to the proton density of the tissue and can be interpreted as an image. The physics behind the measurement process are quite complicated, but for most practical settings a usefull model is based on the <a class="reference external" href="https://en.wikipedia.org/wiki/Fourier_transform"><em>Fourier transform</em></a> of <span class="math notranslate nohighlight">\(u\)</span>:</p>
+<p>Magnetic resonance imaging (MRI) is another imaging modality for clinical diagnosis. As opposed to CT, MRI does not rely on ionising radiation and is hence considered much safer. A disadvantage of MRI is that the time needed for a scan is much longer than for CT.</p>
+<p>Here, <span class="math notranslate nohighlight">\(u : \mathbb{R}^d \rightarrow \mathbb{C}\)</span>, is related to the proton density of the tissue and can be interpreted as an image. The physics behind the measurement process are quite complicated, but for most practical settings a useful model is based on the <a class="reference external" href="https://en.wikipedia.org/wiki/Fourier_transform"><em>Fourier transform</em></a> of <span class="math notranslate nohighlight">\(u\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-\widehat{u}(\xi) = \int u(x)e^{\imath \xi\cdot x}\mathrm{d}x.
+\widehat{u}(\xi) = \frac{1}{(2\pi)^{d/2}}\int_{\mathbb{R}^d} u(x)e^{\imath \xi\cdot x}\mathrm{d}x.
 \]</div>
 <p>The measurements <span class="math notranslate nohighlight">\(f\)</span> are a finite set of samples of the spectrum <span class="math notranslate nohighlight">\(\widehat{u}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-f_i = \int u(x)e^{\imath \xi_i\cdot x}\mathrm{d}x.
+f_i = \widehat{u}(\xi_i), \quad i = 1, 2, \ldots, m.
 \]</div>
 <p>Note that when a fully sampled spectrum is available, we can easily retrieve <span class="math notranslate nohighlight">\(u\)</span> via the <em>inverse Fourier transform</em>:</p>
 <div class="math notranslate nohighlight">
 \[
-u(x)= \int \widehat{u}(\xi) e^{-\imath \xi\cdot x}\mathrm{d}\xi.
+u(x)= \frac{1}{(2\pi)^{d/2}}\int_{\mathbb{R}^d} \widehat{u}(\xi) e^{-\imath \xi\cdot x}\mathrm{d}\xi.
 \]</div>
-<p>The challenge here lies in retrieving <span class="math notranslate nohighlight">\(u\)</span> from a limited set of samples. As the time needed for a scan is proportional to the number of samples acquired, much research is being done on devising methods to recover images from undersampled Fourier measurements.</p>
+<p>The challenge here lies in retrieving <span class="math notranslate nohighlight">\(u\)</span> from a limited set of samples. As the time needed for a scan is proportional to the number of samples acquired, much research is being done on devising methods to recover images from under sampled Fourier measurements.</p>
 </div>
 <div class="section" id="seismic-inversion">
 <h3><span class="section-number">1.1.4. </span>Seismic inversion<a class="headerlink" href="#seismic-inversion" title="Permalink to this headline">¶</a></h3>
-<p>In seismic inversion, the goal is to infer physical properties of the subsurface from seismic measurements. Here, <span class="math notranslate nohighlight">\(u\)</span> represents (for example) the elastic material parameters of the rock and the measurements are time series recorded by seismographs. A typical experimantal setup is depicted in <a class="reference internal" href="#seismic-acquisition"><span class="std std-numref">Fig. 1.4</span></a>. A typical image resulting from such data is shown in <a class="reference internal" href="#seismic-image"><span class="std std-numref">Fig. 1.5</span></a>.</p>
+<p>In seismic inversion, the goal is to infer physical properties of the subsurface from seismic measurements. Here, <span class="math notranslate nohighlight">\(u\)</span> represents (for example) the elastic material parameters of the rock or the signature of an earth-quake. The measurements are typically time series of ground motion recorded by seismographs. A typical experimental setup is depicted in <a class="reference internal" href="#seismic-acquisition"><span class="std std-numref">Fig. 1.4</span></a>. A typical image resulting from such data is shown in <a class="reference internal" href="#seismic-image"><span class="std std-numref">Fig. 1.5</span></a>.</p>
 <div class="figure align-default" id="seismic-acquisition">
 <a class="reference internal image-reference" href="_images/Diagram_of_a_marine_seismic_survey.png"><img alt="_images/Diagram_of_a_marine_seismic_survey.png" src="_images/Diagram_of_a_marine_seismic_survey.png" style="height: 150px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 1.4 </span><span class="caption-text">A typical seismic acquisition setup.</span><a class="headerlink" href="#seismic-acquisition" title="Permalink to this image">¶</a></p>
@@ -541,17 +572,17 @@ f_i(t) = p(t,x_i), \quad i \in \{1, 2, \ldots, m\}.
 \]</div>
 <p>The inverse problem consists of retrieving either <span class="math notranslate nohighlight">\(c\)</span> or <span class="math notranslate nohighlight">\(q\)</span> from the measurements <span class="math notranslate nohighlight">\(\{f_i\}_{i=0}^m\)</span>. In particular we distinguish two inverse problems</p>
 <ul class="simple">
-<li><p><em>Inverse source problem</em>: The measurements <span class="math notranslate nohighlight">\(f\)</span> are linear in terms of <span class="math notranslate nohighlight">\(q\)</span>, leading to a linear inverse problem to retrieve <span class="math notranslate nohighlight">\(q\)</span>. In earth-quake localization, the source is for example parametrized as <span class="math notranslate nohighlight">\(q(t,x) = w(t)u(x)\)</span> in which case the goal is to retrieve <span class="math notranslate nohighlight">\((u,w)\)</span>.</p></li>
-<li><p><em>Inverse medium problem</em>: Here the goal is to retrieve <span class="math notranslate nohighlight">\(c\)</span>, sometimes parametrized as <span class="math notranslate nohighlight">\(c(x) = c_0(1 + u(x))\)</span>. Here, the measurements generally depend non-linearly on <span class="math notranslate nohighlight">\(u\)</span>. However, when <span class="math notranslate nohighlight">\(|u| \ll 1\)</span> the relation between <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(u\)</span> may be linearized.</p></li>
+<li><p><em>Inverse source problem</em>: The measurements <span class="math notranslate nohighlight">\(f\)</span> are linear in terms of <span class="math notranslate nohighlight">\(q\)</span>, leading to a linear inverse problem to retrieve <span class="math notranslate nohighlight">\(q\)</span>. In earth-quake localisation, the source is for example parametrised as <span class="math notranslate nohighlight">\(q(t,x) = w(t)u(x)\)</span> in which case the goal is to retrieve <span class="math notranslate nohighlight">\((u,w)\)</span>.</p></li>
+<li><p><em>Inverse medium problem</em>: Here the goal is to retrieve <span class="math notranslate nohighlight">\(c\)</span>, sometimes parametrised as <span class="math notranslate nohighlight">\(c(x) = c_0(1 + u(x))\)</span>. Here, the measurements generally depend non-linearly on <span class="math notranslate nohighlight">\(u\)</span>. However, when <span class="math notranslate nohighlight">\(|u| \ll 1\)</span> the relation between <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(u\)</span> may be linearised.</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="anatomy-of-an-inverse-problems">
 <h2><span class="section-number">1.2. </span>Anatomy of an inverse problems<a class="headerlink" href="#anatomy-of-an-inverse-problems" title="Permalink to this headline">¶</a></h2>
-<p>We can abstractly formulate an inverse problem as finding a solution, <span class="math notranslate nohighlight">\(u \in \mathcal{U}\)</span>, of the operator equation</p>
+<p>We can abstractly formulate most (if not all) inverse problems as finding a solution, <span class="math notranslate nohighlight">\(u \in \mathcal{U}\)</span>, to the operator equation</p>
 <div class="math notranslate nohighlight" id="equation-ip">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-ip" title="Permalink to this equation">¶</a></span>\[K(u) = f,\]</div>
-<p>where <span class="math notranslate nohighlight">\(K\)</span> is called the <em>forward opertor</em>; <span class="math notranslate nohighlight">\(u\)</span> is the <em>image</em> or <em>parameter</em> and <span class="math notranslate nohighlight">\(f \in \mathcal{F}\)</span> are the measurements. The forward operator, <span class="math notranslate nohighlight">\(K : \mathcal{U} \rightarrow \mathcal{F}\)</span>, is a model of the underlying (physical) process and simulates the measurements for given <span class="math notranslate nohighlight">\(u\)</span>. It could represent for example an integral operator, a matrix, or a set of algebraic equations.
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-ip" title="Permalink to this equation">¶</a></span>\[K(u) = f.\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(K\)</span> is called the <em>forward opertor</em>; <span class="math notranslate nohighlight">\(u\)</span> is the <em>image</em> or <em>parameter</em> and <span class="math notranslate nohighlight">\(f \in \mathcal{F}\)</span> are the measurements. The forward operator, <span class="math notranslate nohighlight">\(K : \mathcal{U} \rightarrow \mathcal{F}\)</span>, is a model of the underlying (physical) process and simulates the measurements for given <span class="math notranslate nohighlight">\(u\)</span>. It could represent for example an integral operator, a matrix, or a set of algebraic equations.
 The image/parameters, <span class="math notranslate nohighlight">\(u\)</span>, constitute a mathematical description of the quantity of interest. It could for example be a function or a vector. The measurements, <span class="math notranslate nohighlight">\(f\)</span>, are a mathematical representation of the measured data. For the purposes of analysis, we may think of this a function, but in practice measurements are always a discrete quantity.</p>
 <p>For the purposes of this course, we will assume that <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> are <a class="reference external" href="https://en.wikipedia.org/wiki/Banach_space">Banach spaces</a> so we can measure distances between pairs of images and measurements. In many cases, <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> will additionaly have an inner-product in which case they are <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_space">Hilbert spaces</a>.</p>
 <p>An important notion in inverse problems is <em>ill-posedness</em>. We call a problem <em>ill-posed</em> if it is not <em>well-posed</em>:</p>
@@ -565,19 +596,19 @@ The image/parameters, <span class="math notranslate nohighlight">\(u\)</span>, c
 </ul>
 <p>If the problem is not well-posed, we call it <em>ill-posed</em>.</p>
 </div>
-<p>It may seem strange that equation <a class="reference internal" href="#equation-ip">(1.1)</a> may not have a solution. After all, are the measurements not the result of the forward opertor applied to some ground-truth <span class="math notranslate nohighlight">\(u^*\)</span>? We need to keep in mind here that <span class="math notranslate nohighlight">\(K\)</span> is only a <em>model</em> for the underlying process. In reality, the measurements may include <em>modelling errors</em> and <em>measurement errors</em>. An often-used model to reflect this is the <em>additive noise model</em></p>
+<p>It may seem strange that equation <a class="reference internal" href="#equation-ip">(1.1)</a> may not have a solution. After all, are the measurements not the result of the forward opertor applied to some ground-truth <span class="math notranslate nohighlight">\(\overline{u}\)</span>? We need to keep in mind here that <span class="math notranslate nohighlight">\(K\)</span> is only a <em>model</em> for the underlying process. In reality, the measurements may include <em>modelling errors</em> and <em>measurement errors</em>. We will denote the noisy data by <span class="math notranslate nohighlight">\(f^{\delta}\)</span>. An often-used model to incorporate such errors is the <em>additive noise model</em></p>
 <div class="math notranslate nohighlight">
 \[
 f^{\delta} = Ku^* + e,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(e\)</span> represents the combined measurement and modelling error with <span class="math notranslate nohighlight">\(\|e\| \leq \delta\)</span>. If we find a <span class="math notranslate nohighlight">\(u\)</span> for which <span class="math notranslate nohighlight">\(Ku^{\delta} = f^{\delta}\)</span>, we can ask ourselves how big the <em>backward error</em> <span class="math notranslate nohighlight">\(\|u^{\delta} - u^*\|\)</span> is with respect to the <em>forward error</em> <span class="math notranslate nohighlight">\(\|e\| = \delta\)</span>. In practice we call a problem ill-posed if a small error in the data can cause a large error in the reconstruction.</p>
+<p>where <span class="math notranslate nohighlight">\(e\)</span> represents the combined measurement and modelling error with <span class="math notranslate nohighlight">\(\|e\| \leq \delta\)</span>. If we find a <span class="math notranslate nohighlight">\(u\)</span> for which <span class="math notranslate nohighlight">\(Ku^{\delta} = f^{\delta}\)</span>, we can ask ourselves how big the <em>backward error</em> <span class="math notranslate nohighlight">\(\|u^{\delta} - \overline{u}\|\)</span> is with respect to the <em>forward error</em> <span class="math notranslate nohighlight">\(\|e\| = \delta\)</span>. In practice we call a problem ill-posed if a small error in the data can cause a large error in the reconstruction.</p>
 </div>
 <div class="section" id="motivating-examples">
 <h2><span class="section-number">1.3. </span>Motivating examples<a class="headerlink" href="#motivating-examples" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="rootfinding">
 <h3><span class="section-number">1.3.1. </span>Rootfinding<a class="headerlink" href="#rootfinding" title="Permalink to this headline">¶</a></h3>
 <p>Given a continuous function <span class="math notranslate nohighlight">\(K : \mathbb{R} \rightarrow \mathbb{R}\)</span>, and <span class="math notranslate nohighlight">\(f \in \mathbb{R}\)</span> find <span class="math notranslate nohighlight">\(u\)</span> such that <span class="math notranslate nohighlight">\(K(u) = f\)</span>. The <a class="reference external" href="https://en.wikipedia.org/wiki/Inverse_function_theorem">inverse function theorem</a> tells us that
-the inverse of <span class="math notranslate nohighlight">\(K\)</span> exists (at least locally) if <span class="math notranslate nohighlight">\(K\)</span> is continuously differentiable at <span class="math notranslate nohighlight">\(u\)</span> with <span class="math notranslate nohighlight">\(K'(u)\not= 0\)</span>. The solution is in this case give by <span class="math notranslate nohighlight">\(u = K^{-1}(f)\)</span>. For sensitivity we consider <span class="math notranslate nohighlight">\(K(u) - K(v) = f - g\)</span>, leading to</p>
+the inverse of <span class="math notranslate nohighlight">\(K\)</span> exists (at least locally around <span class="math notranslate nohighlight">\(u\)</span>) if <span class="math notranslate nohighlight">\(K\)</span> is continuously differentiable at <span class="math notranslate nohighlight">\(u\)</span> with <span class="math notranslate nohighlight">\(K'(u)\not= 0\)</span>. The solution is in this case give by <span class="math notranslate nohighlight">\(u = K^{-1}(f)\)</span>. For sensitivity we consider <span class="math notranslate nohighlight">\(K(u) - K(v) = f - g\)</span>, leading to</p>
 <div class="math notranslate nohighlight">
 \[
 u - v = K^{-1}(f) - K^{-1}(g) = \left(K^{-1}\right)'(\xi)(f-g).
@@ -596,12 +627,12 @@ C = \sup_{\xi} |\left(K^{-1}\right)'(\xi)| = \sup_{\xi} |\left(K'(\xi)\right)^{-
 </div>
 <div class="section" id="matrix-inversion">
 <h3><span class="section-number">1.3.2. </span>Matrix inversion<a class="headerlink" href="#matrix-inversion" title="Permalink to this headline">¶</a></h3>
-<p>Matrix inversion is a prime example of a linear inverse problem. These can be written in the form of <a class="reference internal" href="#equation-ip">(1.1)</a> with <span class="math notranslate nohighlight">\(u \in \mathbb{C}^n\)</span> and <span class="math notranslate nohighlight">\(f \in \mathbb{C}^n\)</span> being <span class="math notranslate nohighlight">\(n\)</span>-dimensional vectors and <span class="math notranslate nohighlight">\(K \in \mathbb{C}^{n \times n}\)</span> being a matrix. For now, we further assume <span class="math notranslate nohighlight">\(K\)</span> to be a <a class="reference external" href="https://en.wikipedia.org/wiki/Hermitian_matrix">Hermitian</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Definite_symmetric_matrix">positive definite matrix</a>. In that case we know from the <a class="reference external" href="https://en.wikipedia.org/wiki/Spectral_theorem">spectral theorem</a> that there exist real positive eigenvalues <span class="math notranslate nohighlight">\(\lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_n &gt; 0\)</span> and corresponding orthonormal eigenvectors <span class="math notranslate nohighlight">\(k_j \in \mathbb{C}^n\)</span> for <span class="math notranslate nohighlight">\(j \in \{ 1,\cdots,n \}\)</span> such that <span class="math notranslate nohighlight">\(K\)</span> can be written as</p>
+<p>Matrix inversion is a prime example of a linear inverse problem. These can be written in the form of <a class="reference internal" href="#equation-ip">(1.1)</a> with <span class="math notranslate nohighlight">\(u \in \mathbb{C}^n\)</span> and <span class="math notranslate nohighlight">\(f \in \mathbb{C}^n\)</span> being <span class="math notranslate nohighlight">\(n\)</span>-dimensional vectors and <span class="math notranslate nohighlight">\(K \in \mathbb{C}^{n \times n}\)</span> being a matrix. For now, we further assume <span class="math notranslate nohighlight">\(K\)</span> to be a <a class="reference external" href="https://en.wikipedia.org/wiki/Hermitian_matrix">Hermitian</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Definite_symmetric_matrix">positive definite matrix</a>. In that case we know from the <a class="reference external" href="https://en.wikipedia.org/wiki/Spectral_theorem">spectral theorem</a> that there exist real positive eigenvalues <span class="math notranslate nohighlight">\(\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n &gt; 0\)</span> and corresponding orthonormal eigenvectors <span class="math notranslate nohighlight">\(k_j \in \mathbb{C}^n\)</span> for <span class="math notranslate nohighlight">\(j \in \{ 1,\cdots,n \}\)</span> such that <span class="math notranslate nohighlight">\(K\)</span> can be written as</p>
 <div class="math notranslate nohighlight">
 \[
 K = \sum_{j=1}^n \lambda_k k_j k_j^{\top}.
 \]</div>
-<p>Under these conditions, we have a matrix <span class="math notranslate nohighlight">\(K\)</span>, which has full rank, i.e. it is invertible, and <em>existence</em> as well as <em>uniqueness</em> of a solution of <a class="reference internal" href="#equation-ip">(1.1)</a> is guaranteed. Regarding <em>stability</em>, however, it is well known from numerical linear algebra that a small perturbation of <span class="math notranslate nohighlight">\(f\)</span> may lead to large pertubation of the corresponding solution if the matrix is <em>ill-conditioned</em>. In particular, we have</p>
+<p>Under these conditions <span class="math notranslate nohighlight">\(K\)</span> is invertible so <em>existence</em> and <em>uniqueness</em> of a solution of <a class="reference internal" href="#equation-ip">(1.1)</a> are guaranteed. Regarding <em>stability</em>, however, it is well known from numerical linear algebra that a small perturbation of <span class="math notranslate nohighlight">\(f\)</span> may lead to large perturbation of the corresponding solution if the matrix is <em>ill-conditioned</em>. In particular, we have</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{\|u - u^\delta\|}{\|u\|} \leq \kappa(K) \frac{\|f - f^\delta\|}{\|f\|},
@@ -610,13 +641,12 @@ K = \sum_{j=1}^n \lambda_k k_j k_j^{\top}.
 </div>
 <div class="section" id="differentiation">
 <h3><span class="section-number">1.3.3. </span>Differentiation<a class="headerlink" href="#differentiation" title="Permalink to this headline">¶</a></h3>
-<p>Here, we are given a <a class="reference external" href="https://en.wikipedia.org/wiki/Smoothness">continuously differentiable function</a> <span class="math notranslate nohighlight">\(f \in C^{1}([0,1])\)</span> with <span class="math notranslate nohighlight">\(f(0) = 0\)</span> and want to find <span class="math notranslate nohighlight">\(u\)</span> such that <span class="math notranslate nohighlight">\(Ku = f\)</span> with</p>
+<p>Here, we are given a <a class="reference external" href="https://en.wikipedia.org/wiki/Smoothness">continuously differentiable function</a> <span class="math notranslate nohighlight">\(f \in C^{1}([0,1])\)</span> with <span class="math notranslate nohighlight">\(f(0) = 0\)</span> and define the forward operator as</p>
 <div class="math notranslate nohighlight">
 \[
 Ku(x) = \int_0^x u(y) \mathrm{d}y.
 \]</div>
-<p>We immediately find that the solution is given by <span class="math notranslate nohighlight">\(u(x) = f'(x)\)</span>. Hence, the solution is well-defined and unique.
-For sensitivity, assume that we are given a noisy version of the signal <span class="math notranslate nohighlight">\(f^{\delta} = f + n^{\delta}\)</span>, with <span class="math notranslate nohighlight">\(n^{\delta} \in L^{\infty}([0,1])\)</span>, with <span class="math notranslate nohighlight">\(L^{\infty}([0,1])\)</span> denoting the <a class="reference external" href="https://en.wikipedia.org/wiki/L-infinity">space of bounded measureble functions</a>. An example of such noise is</p>
+<p>We immediately find that the solution is given by <span class="math notranslate nohighlight">\(u(x) = f'(x)\)</span>. Hence, the solution is well-defined and unique. For sensitivity, assume that we are given a noisy version of the signal <span class="math notranslate nohighlight">\(f^{\delta} = f + n^{\delta}\)</span>, with <span class="math notranslate nohighlight">\(n^{\delta} \in L^{\infty}([0,1])\)</span>, with <span class="math notranslate nohighlight">\(L^{\infty}([0,1])\)</span> denoting the <a class="reference external" href="https://en.wikipedia.org/wiki/L-infinity">space of bounded measurable functions</a>. An example of such noise is</p>
 <div class="math notranslate nohighlight">
 \[
 n^{\delta}(x) = \delta \sin(x/\delta).
@@ -643,9 +673,41 @@ K = \left(\begin{matrix} 1 &amp; 1\\ 2 &amp; 2 \end{matrix}\right).
 <p>allows us to compute the inverse. Indeed, given <span class="math notranslate nohighlight">\(f = K\overline{u}\)</span> with <span class="math notranslate nohighlight">\(\overline{u} = (1,2)\)</span> we have <span class="math notranslate nohighlight">\(f = (3,6)\)</span>. Applying the inverse of <span class="math notranslate nohighlight">\(\widetilde{K}\)</span> we get <span class="math notranslate nohighlight">\(\widetilde{u} \approx (1,2)\)</span>. The corresponding equations are visualized in <a class="reference internal" href="#id2"><span class="std std-numref">Fig. 1.6</span></a>.</p>
 <div class="figure align-default" id="id2" style="width: 300px">
 <div class="cell_output docutils container">
-<img alt="_images/what_is_11_1.png" src="_images/what_is_11_1.png" />
+<img alt="_images/what_is_10_1.png" src="_images/what_is_10_1.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 1.6 </span><span class="caption-text">Original and regularized equations. We see that the regularized equations have a unique solution, but has thereby implicity selected one particular solution of the original system.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+
+<span class="n">u1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">1e-1</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span><span class="mi">3</span><span class="o">-</span><span class="n">u1</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$Ku=f$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span><span class="mi">3</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="n">u1</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\widetilde</span><span class="si">{K}</span><span class="s1">u=f$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u1</span><span class="p">,(</span><span class="mi">6</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">u1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="n">alpha</span><span class="p">),</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_2$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;matrix_inversion&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/what_is_10_0.png" src="_images/what_is_10_0.png" />
 </div>
 </div>
 </div>
@@ -679,17 +741,74 @@ With the solution formula for quadratic equations we obtain two solutions</p>
 <p>For <span class="math notranslate nohighlight">\(\alpha\)</span> large, this functional has a global minimum around <span class="math notranslate nohighlight">\(u = 0\)</span>, while for <span class="math notranslate nohighlight">\(\alpha\)</span> small, it still has multiple minima. However, for suitable <span class="math notranslate nohighlight">\(\alpha\)</span>, we have a global minimum at <span class="math notranslate nohighlight">\(u \approx 0.1\)</span> and minimzing the regularized problem yields (an approximation of) the smaller solution, as illustrated in <a class="reference internal" href="#quadratic"><span class="std std-numref">Fig. 1.7</span></a>.</p>
 <div class="figure align-default" id="quadratic" style="width: 300px">
 <div class="cell_output docutils container">
-<img alt="_images/what_is_13_1.png" src="_images/what_is_13_1.png" />
+<img alt="_images/what_is_12_1.png" src="_images/what_is_12_1.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 1.7 </span><span class="caption-text">Original quadratic equation and functional to be minimized. We see that mimizing the functional picks out one of the two solutions.</span><a class="headerlink" href="#quadratic" title="Permalink to this image">¶</a></p>
 </div>
 </div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">1.1</span><span class="o">*</span><span class="n">u</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alpha</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">1.1</span><span class="o">*</span><span class="n">u</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">alpha</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span><span class="o">.</span><span class="mi">25</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;quadratic&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/what_is_12_0.png" src="_images/what_is_12_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="references">
+<h2><span class="section-number">1.5. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p id="bibtex-bibliography-what_is-0"><dl class="citation">
+<dt class="bibtex label" id="akiyama"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Kazunori Akiyama, Antxon Alberdi, Walter Alef, Keiichi Asada, Rebecca Azulay, Anne-Kathrin Baczko, David Ball, Mislav Baloković, John Barrett, Dan Bintley, and others. First m87 event horizon telescope results. iv. imaging the central supermassive black hole. <em>The Astrophysical Journal Letters</em>, 875(1):L4, 2019.</p>
+</dd>
+<dt class="bibtex label" id="beck2017"><span class="brackets">1</span></dt>
+<dd><p>Amir Beck. <em>First-Order Methods in Optimization</em>. Society for Industrial and Applied Mathematics, 2017.</p>
+</dd>
+<dt class="bibtex label" id="dashti2017"><span class="brackets">1</span></dt>
+<dd><p>Masoumeh Dashti and Andrew M. Stuart. <em>The Bayesian Approach to Inverse Problems</em>, pages 311–428. Springer International Publishing, Cham, 2017. URL: <a class="reference external" href="https://arxiv.org/pdf/1302.6989.pdf">https://arxiv.org/pdf/1302.6989.pdf</a>, <a class="reference external" href="https://doi.org/10.1007/978-3-319-12385-1_7">doi:10.1007/978-3-319-12385-1_7</a>.</p>
+</dd>
+<dt class="bibtex label" id="hansen1990discrete"><span class="brackets">1</span></dt>
+<dd><p>Per Christian Hansen. The discrete picard condition for discrete ill-posed problems. <em>BIT Numerical Mathematics</em>, 30(4):658–672, 1990.</p>
+</dd>
+<dt class="bibtex label" id="johnson1984density"><span class="brackets">2</span></dt>
+<dd><p>Gordon R Johnson. Density of rocks and minerals. <em>CRC handbook of physical properties of rocks</em>, pages 1–38, 1984.</p>
+</dd>
+<dt class="bibtex label" id="nocedal2006numerical"><span class="brackets">2</span></dt>
+<dd><p>Jorge Nocedal and Stephen Wright. <em>Numerical optimization</em>. Springer Science &amp; Business Media, 2006.</p>
+</dd>
+</dl>
+</p>
 </div>
 <div class="section" id="excercises">
-<h2><span class="section-number">1.5. </span>Excercises<a class="headerlink" href="#excercises" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.6. </span>Excercises<a class="headerlink" href="#excercises" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="matrix-inversion-i">
-<h3><span class="section-number">1.5.1. </span>Matrix inversion I<a class="headerlink" href="#matrix-inversion-i" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.6.1. </span>Matrix inversion I<a class="headerlink" href="#matrix-inversion-i" title="Permalink to this headline">¶</a></h3>
 <p>We want to solve a system of linear equations <span class="math notranslate nohighlight">\(Ku = f\)</span> with :</p>
 <ol>
 <li><div class="math notranslate nohighlight">
@@ -732,25 +851,43 @@ The eigenvectors are: [0.70710678 0.70710678] [-0.70710678  0.70710678]
 </div>
 </div>
 </div>
+<div class="hint dropdown admonition">
+<p class="admonition-title">Answer</p>
+<ol class="simple">
+<li><p>This matrix is invertible, so we only need to check the condition number which we find to be <span class="math notranslate nohighlight">\(3\)</span>. This is not so large as to cause problems numerically.</p></li>
+<li><p>This matrix is near singular (the columns are nearly linearly dependent). However, it still invertible. The condition number is <span class="math notranslate nohighlight">\(\kappa(K) \approx 4\cdot 10^3\)</span>. While this would not lead to problems when computing solutions numerically, it may amplify realistic measurement errors. We would call this problem ill-posed.</p></li>
+<li><p>This equation does not have a solution.</p></li>
+<li><p>This equation does have a unique solution <span class="math notranslate nohighlight">\(\overline{u} = (1,0)\)</span>. It is not immediately clear how to analyse stability in general. We could, for example, look at the first two equations (the last one is the same as the first one) and compute the condition number of the corresponding matrix. This yields <span class="math notranslate nohighlight">\(\approx 6.85\)</span>, so the system is not ill-posed. Another way to look at it, perhaps, is that adding a small perturbation may make the system inconsistent. As such, we could call the inverse problem ill-posed.
+We will learn how to deal with this situation in general in the next chapter.</p></li>
+<li><p>Here, the solutions are of the form <span class="math notranslate nohighlight">\(\overline{u} = (1/4,1/4,1/4) + t (-1,0,1)\)</span> for any <span class="math notranslate nohighlight">\(t\)</span>. Hence, the system is definitely ill-posed.</p></li>
+<li><p>Again, an inconsistent system with no solution.</p></li>
+</ol>
+</div>
 </div>
 <div class="section" id="matrix-inversion-ii">
-<h3><span class="section-number">1.5.2. </span>Matrix inversion II<a class="headerlink" href="#matrix-inversion-ii" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.6.2. </span>Matrix inversion II<a class="headerlink" href="#matrix-inversion-ii" title="Permalink to this headline">¶</a></h3>
 <p>Given a symmetric, positive definite matrix <span class="math notranslate nohighlight">\(K \in \mathbb{R}^{n\times n}\)</span> we want to solve <span class="math notranslate nohighlight">\(Ku = f\)</span>. Such a matrix can be decomposed as</p>
 <div class="math notranslate nohighlight">
-\[K = \sum_{i=1}^n \lambda_i k_ik_i^T,\]</div>
+\[K = \sum_{i=1}^n \lambda_i k_ik_i^{\top},\]</div>
 <p>where <span class="math notranslate nohighlight">\(\lambda_1\geq \lambda_2 \geq \ldots \geq \lambda_n &gt; 0\)</span> are the eigenvalues and <span class="math notranslate nohighlight">\(k_i\)</span> denote the eigenvectors. Such a matrix has an inverse given by</p>
 <div class="math notranslate nohighlight">
-\[K^{-1} = \sum_{i=1}^n \lambda_i^{-1} k_ik_i^T.\]</div>
+\[K^{-1} = \sum_{i=1}^n \lambda_i^{-1} k_ik_i^{\top}.\]</div>
 <p>To study the well-posedness of the equation we want to bound the <em>backward error</em> <span class="math notranslate nohighlight">\(\|u - u^\delta\|_2\)</span> in terms of the <em>forward error</em> <span class="math notranslate nohighlight">\(\|f - f^{\delta}\|_2\)</span> where <span class="math notranslate nohighlight">\(Ku = f\)</span> and <span class="math notranslate nohighlight">\(Ku^{\delta} = f^\delta\)</span>.</p>
 <ol class="simple">
 <li><p>Show that <span class="math notranslate nohighlight">\(\|u - u^\delta\|_2 \leq \lambda_n^{-1} \|f - f^{\delta}\|_2.\)</span></p></li>
 <li><p>Show that the <em>relative error</em> is bounded by
 <span class="math notranslate nohighlight">\(\frac{\|u - u^\delta\|_2}{\|u\|_2} \leq \lambda_1\lambda_n^{-1} \frac{\|f - f^{\delta}\|_2}{\|f\|_2}.\)</span></p></li>
-<li><p>Compute the condition numbers for the matrices 1, 2 and 6 in the previous excercise; what do you notice?</p></li>
+</ol>
+<div class="hint dropdown admonition">
+<p class="admonition-title">Answer</p>
+<ol class="simple">
+<li><p>We have <span class="math notranslate nohighlight">\(\|u - u^\delta\|_2 = \|K^{-1}(f - f^\delta)\|_2 \leq \|K^{-1}\| \|f - f^\delta\|_2\)</span> with <span class="math notranslate nohighlight">\(\|K^{-1}\|\)</span> denoting the operator norm of <span class="math notranslate nohighlight">\(K^{-1}\)</span>, defined as <span class="math notranslate nohighlight">\(\sup_{\|v\|_2=1} \|K^{-1}v\|\)</span>. The supremum is attained at <span class="math notranslate nohighlight">\(v = k_n\)</span> which leads to <span class="math notranslate nohighlight">\(\|K^{-1}\|_2 = \lambda_n^{-1}\)</span>.</p></li>
+<li><p>Similarly, we find <span class="math notranslate nohighlight">\(\|f\|_2 = \|Ku\|_2 \leq \lambda_1 \|u\|_2\)</span>.</p></li>
 </ol>
 </div>
+</div>
 <div class="section" id="differentiation-i">
-<h3><span class="section-number">1.5.3. </span>Differentiation I<a class="headerlink" href="#differentiation-i" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.6.3. </span>Differentiation I<a class="headerlink" href="#differentiation-i" title="Permalink to this headline">¶</a></h3>
 <p>We are given a continuously differentiable function <span class="math notranslate nohighlight">\(f \in C^1([0,1])\)</span> with <span class="math notranslate nohighlight">\(f(0) =0\)</span> and want to solve the following inverse problem</p>
 <div class="math notranslate nohighlight">
 \[ Ku(x) \equiv \int_0^{x} u(y)\mathrm{d}y = f(x), \quad \text{for} \quad x \in [0,1].\]</div>
@@ -762,42 +899,28 @@ The eigenvectors are: [0.70710678 0.70710678] [-0.70710678  0.70710678]
 <li><p>Show that the <em>backward error</em> <span class="math notranslate nohighlight">\(u - u^{\delta}\)</span> can be arbirarily large, even if <span class="math notranslate nohighlight">\(\delta\downarrow 0\)</span>: <span class="math notranslate nohighlight">\(\|u - u^{\delta}\|_{L^{\infty}([0,1])} = k\)</span>.</p></li>
 </ol>
 <p>This shows that the problem is <em>ill-conditioned</em>; a small forward error does not guarantee a small backward error, implying that the inverse map is not continuous.</p>
+<div class="hint dropdown admonition">
+<p class="admonition-title">Answer</p>
+<ol class="simple">
+<li><p>Since <span class="math notranslate nohighlight">\(|\sin(\cdot)| \leq 1\)</span> we immediately get the desired result.</p></li>
+<li><p>By linearity we have <span class="math notranslate nohighlight">\(u - u^\delta = k \sin(k x)\)</span> and we immediately find the desired result.</p></li>
+</ol>
 </div>
+</div>
+</div>
+<div class="section" id="assignments">
+<h2><span class="section-number">1.7. </span>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="differentiation-ii">
-<h3><span class="section-number">1.5.4. </span>Differentiation II<a class="headerlink" href="#differentiation-ii" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.7.1. </span>Differentiation II<a class="headerlink" href="#differentiation-ii" title="Permalink to this headline">¶</a></h3>
 <p>The analysis in the previous exercise depends crucially on the type of noise we allow. If we assume that <span class="math notranslate nohighlight">\(n^{\delta} = f - f^{\delta}\)</span> is bounded by <span class="math notranslate nohighlight">\(\delta\)</span> in a different norm, we can get a well-posed problem. Let</p>
 <div class="math notranslate nohighlight">
 \[\|g\|_{C^{1}([0,1])} = \|g\|_{L^{\infty}[0,1]} + \|g'\|_{L^{\infty}[0,1]},\]</div>
 <p>denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Sobolev_space#One-dimensional_case"><span class="math notranslate nohighlight">\(W^{1,\infty}\)</span>-Sobolev norm</a></p>
 <ol class="simple">
 <li><p>Assuming that <span class="math notranslate nohighlight">\(\|n^{\delta}\|_{C^1([0,1])} = \delta\)</span>, show that <span class="math notranslate nohighlight">\(\|u - u^{\delta}\|_{L^{\infty}([0,1])} \rightarrow 0\)</span> when <span class="math notranslate nohighlight">\(\delta \rightarrow 0\)</span>.</p></li>
-<li><p>Can you come up with a type of noise that obeys the assumed bound?</p></li>
+<li><p>Can you come up with a type of noise that obeys the assumed bound? Is it reasonable to make such assumptions on the noise?</p></li>
 </ol>
 </div>
-</div>
-<div class="section" id="references">
-<h2><span class="section-number">1.6. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<p id="bibtex-bibliography-what_is-0"><dl class="citation">
-<dt class="bibtex label" id="akiyama"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Kazunori Akiyama, Antxon Alberdi, Walter Alef, Keiichi Asada, Rebecca Azulay, Anne-Kathrin Baczko, David Ball, Mislav Baloković, John Barrett, Dan Bintley, and others. First m87 event horizon telescope results. iv. imaging the central supermassive black hole. <em>The Astrophysical Journal Letters</em>, 875(1):L4, 2019.</p>
-</dd>
-<dt class="bibtex label" id="beck2017"><span class="brackets">2</span></dt>
-<dd><p>Amir Beck. <em>First-Order Methods in Optimization</em>. Society for Industrial and Applied Mathematics, 2017.</p>
-</dd>
-<dt class="bibtex label" id="dashti2017"><span class="brackets">3</span></dt>
-<dd><p>Masoumeh Dashti and Andrew M. Stuart. <em>The Bayesian Approach to Inverse Problems</em>, pages 311–428. Springer International Publishing, Cham, 2017. URL: <a class="reference external" href="https://arxiv.org/pdf/1302.6989.pdf">https://arxiv.org/pdf/1302.6989.pdf</a>, <a class="reference external" href="https://doi.org/10.1007/978-3-319-12385-1_7">doi:10.1007/978-3-319-12385-1_7</a>.</p>
-</dd>
-<dt class="bibtex label" id="hansen1990discrete"><span class="brackets">4</span></dt>
-<dd><p>Per Christian Hansen. The discrete picard condition for discrete ill-posed problems. <em>BIT Numerical Mathematics</em>, 30(4):658–672, 1990.</p>
-</dd>
-<dt class="bibtex label" id="johnson1984density"><span class="brackets">5</span></dt>
-<dd><p>Gordon R Johnson. Density of rocks and minerals. <em>CRC handbook of physical properties of rocks</em>, pages 1–38, 1984.</p>
-</dd>
-<dt class="bibtex label" id="nocedal2006numerical"><span class="brackets">6</span></dt>
-<dd><p>Jorge Nocedal and Stephen Wright. <em>Numerical optimization</em>. Springer Science &amp; Business Media, 2006.</p>
-</dd>
-</dl>
-</p>
 </div>
 </div>
 

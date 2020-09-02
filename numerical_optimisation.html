@@ -382,7 +382,7 @@
 <div class="section" id="smooth-optimisation">
 <h2><span class="section-number">6.1. </span>Smooth optimisation<a class="headerlink" href="#smooth-optimisation" title="Permalink to this headline">¶</a></h2>
 <p>For smooth problems, we have assume to have access to as many derivatives of <span class="math notranslate nohighlight">\(J\)</span> as we need. As before, we denote the first derivative (or gradient) by <span class="math notranslate nohighlight">\(J' : \mathbb{R}^n \rightarrow \mathbb{R}^n\)</span>. We denote the second derivative (or Hessian) by <span class="math notranslate nohighlight">\(J'' : \mathbb{R}^n \rightarrow \mathbb{R}^{n\times n}\)</span>. We will additionally assume that the Hessian is globally bounded, i.e. there exists a constant <span class="math notranslate nohighlight">\(L &lt; \infty\)</span> such that <span class="math notranslate nohighlight">\(J''(u) \preceq L\cdot I\)</span> for all <span class="math notranslate nohighlight">\(u\in\mathbb{R}^n\)</span>. Note that this implies that <span class="math notranslate nohighlight">\(J'\)</span> is Lipschitz continous with constant <span class="math notranslate nohighlight">\(L\)</span>: <span class="math notranslate nohighlight">\(\|J'(u) - J'(v)\|_2 \leq L \|u - v\|_2\)</span>.</p>
-<p>For a comprehensive treatment of this topic (and many more), we recommend the seminal book <em>Numerical Optimization</em> by Stephen Wright and Jorge Nocedal <a class="bibtex reference internal" href="what_is.html#nocedal2006numerical" id="id1">[6]</a>.</p>
+<p>For a comprehensive treatment of this topic (and many more), we recommend the seminal book <em>Numerical Optimization</em> by Stephen Wright and Jorge Nocedal <a class="bibtex reference internal" href="what_is.html#nocedal2006numerical" id="id1">[2]</a>.</p>
 <hr class="docutils" />
 <p>Before discussing optimisation methods, we first introduce the optimality conditions.</p>
 <div class="important admonition">
@@ -462,7 +462,7 @@
 <p>A possible disadvantage of the backtracking linesearch introduced earlier is that it may end up choosing very small stepsizes. To obtain a stepsize that yields a new iterate at which the slope of <span class="math notranslate nohighlight">\(J\)</span> is not too large, we introduce the following condition</p>
 <div class="math notranslate nohighlight">
 \[|J'(u_k + \lambda d_k)^Td_k| \leq c_2 |J'(u_k)^Td_k|,\]</div>
-<p>where <span class="math notranslate nohighlight">\(c_2\)</span> is a small constant satisfying <span class="math notranslate nohighlight">\(0 &lt; c_1 &lt; c_2 &lt; 1\)</span>. Together with the sufficient descent condition, these are referred to as the <em>strong Wolfe conditions</em>. Existence of a stepsize satisfying these conditions is again guaranteed by the regularity of <span class="math notranslate nohighlight">\(J\)</span> (cf. <a class="bibtex reference internal" href="what_is.html#nocedal2006numerical" id="id2">[6]</a>, lemma 3.1). Finding such a <span class="math notranslate nohighlight">\(\lambda\)</span> is a little more involved than the backtracking procedure outlined above (cf. <a class="bibtex reference internal" href="what_is.html#nocedal2006numerical" id="id3">[6]</a>, algorithm 3.5). Luckily, the <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of this algorithm (cf. <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.line_search.html"><code class="docutils literal notranslate"><span class="pre">scipy.optimize.line_search</span></code></a>)</p>
+<p>where <span class="math notranslate nohighlight">\(c_2\)</span> is a small constant satisfying <span class="math notranslate nohighlight">\(0 &lt; c_1 &lt; c_2 &lt; 1\)</span>. Together with the sufficient descent condition, these are referred to as the <em>strong Wolfe conditions</em>. Existence of a stepsize satisfying these conditions is again guaranteed by the regularity of <span class="math notranslate nohighlight">\(J\)</span> (cf. <a class="bibtex reference internal" href="what_is.html#nocedal2006numerical" id="id2">[2]</a>, lemma 3.1). Finding such a <span class="math notranslate nohighlight">\(\lambda\)</span> is a little more involved than the backtracking procedure outlined above (cf. <a class="bibtex reference internal" href="what_is.html#nocedal2006numerical" id="id3">[2]</a>, algorithm 3.5). Luckily, the <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of this algorithm (cf. <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.line_search.html"><code class="docutils literal notranslate"><span class="pre">scipy.optimize.line_search</span></code></a>)</p>
 </div>
 </div>
 <div class="section" id="second-order-methods">
@@ -496,7 +496,7 @@ and gradients <span class="math notranslate nohighlight">\(y_k = J'(u_{k+1}) - J
 \[B_{k+1} = \left(I - \rho_k s_k y_k^T\right)H_k\left(I - \rho_k y_k s_k^T\right) + \rho_k s_ks_k^T,\]</div>
 <p>with <span class="math notranslate nohighlight">\(\rho_k = (s_k^Ty_k)^{-1}\)</span> and <span class="math notranslate nohighlight">\(B_0\)</span> choses appropriately (e.g., B_0 = L^{-1} \cdot I). It can be shown that this approximation is sufficiently accurate to yield <em>superlinear</em> convergence when using a Wolfe linesearch.</p>
 <hr class="docutils" />
-<p>The are many practical aspects to implementing such methods. For example, what do we do when the approximated Hessian becomes (near) singular? Discussing these issues is beyond the scope of these lecture notes and we refer to <a class="bibtex reference internal" href="what_is.html#nocedal2006numerical" id="id4">[6]</a> chapter 6 for more details. The <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.html">various optimisation methods</a>.</p>
+<p>The are many practical aspects to implementing such methods. For example, what do we do when the approximated Hessian becomes (near) singular? Discussing these issues is beyond the scope of these lecture notes and we refer to <a class="bibtex reference internal" href="what_is.html#nocedal2006numerical" id="id4">[2]</a> chapter 6 for more details. The <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.html">various optimisation methods</a>.</p>
 </div>
 </div>
 <div class="section" id="convex-optimisation">
@@ -586,7 +586,7 @@ and gradients <span class="math notranslate nohighlight">\(y_k = J'(u_{k+1}) - J
 <li><p><em>summation:</em> <span class="math notranslate nohighlight">\(J_1'(u) + J_2'(u)\)</span> for <span class="math notranslate nohighlight">\(u\)</span> in the interior of <span class="math notranslate nohighlight">\(\text{dom}(J)\)</span>.</p></li>
 <li><p><em>affine transformation:</em> <span class="math notranslate nohighlight">\(\left(J(Au + b)\right)' = A^T J'(Au + b)\)</span> for <span class="math notranslate nohighlight">\(u, Au + b\)</span> in the interior of <span class="math notranslate nohighlight">\(\text{dom}(J)\)</span>.</p></li>
 </ul>
-<p>An overview of more useful relations can be found in e.g., <a class="bibtex reference internal" href="what_is.html#beck2017" id="id5">[2]</a> section 3.8.</p>
+<p>An overview of more useful relations can be found in e.g., <a class="bibtex reference internal" href="what_is.html#beck2017" id="id5">[1]</a> section 3.8.</p>
 </div>
 <hr class="docutils" />
 <p>With this we can now formulate optimality conditions for convex optimisation.</p>
@@ -712,7 +712,7 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 \[\|u_{k+1} - u_*\|_2^2 \leq \left(1 - \mu/L_D\right) \|u_{k} - u_*\|_2^2.\]</div>
 <div class="dropdown admonition">
 <p class="admonition-title">Proof</p>
-<p>We refer to <a class="bibtex reference internal" href="what_is.html#beck2017" id="id7">[2]</a> Thms. 10.15, 10.21, and 10.29 or more details.</p>
+<p>We refer to <a class="bibtex reference internal" href="what_is.html#beck2017" id="id7">[1]</a> Thms. 10.15, 10.21, and 10.29 or more details.</p>
 </div>
 </div>
 <hr class="docutils" />
@@ -775,10 +775,10 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 <div class="section" id="references">
 <h2><span class="section-number">6.3. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p id="bibtex-bibliography-numerical_optimisation-0"><dl class="citation">
-<dt class="bibtex label" id="beck2017"><span class="brackets">2</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id7">2</a>)</span></dt>
+<dt class="bibtex label" id="beck2017"><span class="brackets">1</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id7">2</a>)</span></dt>
 <dd><p>Amir Beck. <em>First-Order Methods in Optimization</em>. Society for Industrial and Applied Mathematics, 2017.</p>
 </dd>
-<dt class="bibtex label" id="nocedal2006numerical"><span class="brackets">6</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>,<a href="#id4">4</a>)</span></dt>
+<dt class="bibtex label" id="nocedal2006numerical"><span class="brackets">2</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>,<a href="#id4">4</a>)</span></dt>
 <dd><p>Jorge Nocedal and Stephen Wright. <em>Numerical optimization</em>. Springer Science &amp; Business Media, 2006.</p>
 </dd>
 </dl>
@@ -918,7 +918,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11cef28d0&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x101c936b90&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -940,7 +940,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x101f5dd350&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x101ceff3d0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1005,8 +1005,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn('The line search algorithm did not converge', LineSearchWarning)
 </pre>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1020113750&gt;,
- &lt;matplotlib.lines.Line2D at 0x102076a610&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x101daaf750&gt;,
+ &lt;matplotlib.lines.Line2D at 0x101e107750&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />
