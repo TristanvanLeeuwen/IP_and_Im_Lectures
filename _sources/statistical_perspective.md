@@ -452,6 +452,12 @@ plt.show()
 
 ```
 
+## Uncertainty quantification
+
+Aside from estimate the *mode* of the posterior through MAP estimation, it is often desirable to estimate uncertainties. In effect, this would allow us to put error bars on the estimated parameters and quantify dependencies between parameters.
+
+In the Gaussian cases, this can be easily obtained by computing the *posterior Covariance*.
+
 +++
 
 ## Exercises
