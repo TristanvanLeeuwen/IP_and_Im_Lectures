@@ -387,7 +387,14 @@ Show that for a given matrix $K \in \mathbb{R}^{m\times n}$:
 1. $KK^\dagger$ is an orthogonal projection on to the range of $K$
 2. $I - K^\dagger K$ is an orthogonal projection to to the null-space of $K$
 
-+++
+```{admonition} Answer
+:class: hint, dropdown
+
+1. Express the pseudo-inverse in terms of the SVD as $K^\dagger = V_k\Sigma_k^{-1}U_k^*$ and find $KK^\dagger = U_kU_k^*$. Because $U_k = (u_1, u_2, \ldots, u_k)$ is an orthonormal basis for the range of $K$ we find that $KK^\dagger$ is an orthogonal project on to the range of $K$.
+
+2. Following a similar argument we find that $K^\dagger K = V_kV_k^*$ where $V_k = (v_1, v_2, \ldots, v_k)$ spans the orthogonal complement of the null-space of $K$ (recall that the null-space of $K$ is spanned by $(v_{k+1},
+  \ldots, v_{\min_{m,n}})$).
+```
 
 ### Least-squares and minimum-norm solutions:
 Given a system of equations $Ku = f$ with $K\in\mathbb{R}^{m\times n}$:
@@ -396,9 +403,17 @@ Given a system of equations $Ku = f$ with $K\in\mathbb{R}^{m\times n}$:
 
 2. For $m < n$ and rank($K$) = $m$, show that the pseudo-inverse gives the solution $u = K^\dagger f$ with the smallest norm $\|u\|_2$
 
-3. For $m > n$ and rank($K$) = $r < n$, show that the pseudo-inverse gives the solution that minimizes both $\|Ku - f\|_2$ and $\|u\|_2$.
+3. For $m > n$ and rank($K$) = $r < n$, show that the pseudo-inverse gives the solution that minimises both $\|Ku - f\|_2$ and $\|u\|_2$.
 
-+++
+```{admonition} Answer
+:class: hint, dropdown
+
+1. We can construct the solution with the smallest residual by formulating the corresponding normal equations $K^*Ku = K^*f$. Since rank($K$) = $n$, these have a unique solution. Expressing $K$ and $K^\dagger$ in terms of the SVD of $K$ we find that $K^\dagger = (K^*K)^{-1}K^*$ and hence that pseudo-inverse yields the solution to the normal equations.
+
+2. Here, the system solutions of the form $v = u + z$ with $u = K^\dagger f$ and $Kz = 0$. We find that $\|v\|_2^2 = \|u\|_2^2 + 2 z^* K^{\dagger} f + \|z\|_2^2$. Expressing in terms of the SVD we see that the middle term is given by $z^*V_k\Sigma_k^{-1}U_k^*f$. Since $z$ lies in the null-space of $K$ we $V_k^*z = 0$ so $\|v\|_2^2= \|u\|_2^2 + \|z\|_2^2 \geq \|u\|_2^2$. We conclude that $\|u\|_2^2$ is indeed the solution with the smallest norm.
+
+3. We can combine the results of the former to to show that in this case $u = K^\dagger f$ is *a* solution to the normal equations and that it is the one with the smallest norm.
+```
 
 ### Tikhonov regularisation
 
@@ -408,22 +423,29 @@ $$\min_{u} \|Ku - f\|_2^2 + \alpha \|u\|_2^2$$
 
 is given in terms of the SVD of $K \in \mathbb{R}^{m\times n}$ as
 
-$$\widetilde{u} = \sum_{i=1}^{\min\{m,n\}} \frac{\sigma_i \langle u_i,f\rangle}{\sigma_i^2 + \alpha} v_i.$$
+$$\widetilde{u} = \sum_{i=1}^{k} \frac{\sigma_i \langle u_i,f\rangle}{\sigma_i^2 + \alpha} v_i,$$
 
-+++
+where $k = \text{rank}(K)$.
+
+```{admonition} Answer
+:class: hint, dropdown
+
+First, write down the corresponding normal equations $K^*Ku + \alpha u = K^*f$, so $u = (K^*K + \alpha I)^{-1}K^*f$. Use the *full* SVD of $K = U\Sigma V^*$ with $U\in\mathbb{R}^{m\times m}$, $V\in\mathbb{R}^{n\times n}$ and $\Sigma \in \mathbb{R}^{m\times n}$ whose first $k$ diagonal entries contain the singular values. We find $u = (V^*\Sigma^*\Sigma V + \alpha I)^{-1}V\Sigma^*U^*$. Use that $V^*V = VV^* = I$ and $\Sigma_n^2 = \Sigma^*\Sigma$ an $n \times n$ matrix with $k$ non-zero diagonal elements. Then the normal equations become $u = V(\Sigma_n^2 + \alpha I)^{-1}\Sigma^*U^*f$. We realise that $\Sigma^*U^*f$ will only contain contributions from the $k$ non-zero singular values: $\Sigma^*U^*f = (\sigma_1 u_1^*f,\sigma_2 u_2^*f, \ldots, \sigma_k u_k^*f, 0, 0, \ldots, 0 )$. Thus, we get the desired result.
+```
 
 ### Gravity surveying
 
-We can estimate the density distribution in the subsurface by measuing the local gravitational pull. The density profile $u(x)$ is related to such measurements by a linear operator
+We can estimate the density distribution in the subsurface by measuring the local gravitational pull. The density profile $u(x)$ is related to such measurements by a linear operator
 
 $$Ku(x) = \int_0^1 \frac{u(y)}{(1 + (x-y)^2)^{3/2}} \mathrm{d}y.$$
 
-Upon discretization with stepsize $h = 1/n$, the inverse problem can be cast as a system of $n$ equations in $n$ unknowns $Ku = f$.
+Upon discretisation with stepsize $h = 1/n$, the inverse problem can be cast as a system of $n$ equations in $n$ unknowns $Ku = f$.
 
-1. Use the code provided below to generate the matrix and compute its SVD (use `np.linalg.svd`)
-3. Plot the coefficients $\langle u_i, f\rangle$ and the singular values $\sigma_i$ to check the discrete Picard condition. What do you notice ?
+You can use the code provided below to generate the matrix and noisy data for $u(x) = ..$
 
-2. Solve the inverse problem for noisy data using the (regularized) pseudo-inverse; compute the optimal $\alpha$ by computing the bias and variance components of the error.
+1. Plot the coefficients $\langle u_i, f\rangle$ and the singular values $\sigma_i$ to check the discrete Picard condition. What do you notice ?
+
+2. Solve the inverse problem for noisy data using the (regularised) pseudo-inverse; compute the optimal $\alpha$ by computing the bias and variance components of the error.
 
 ```{code-cell} ipython3
 def getK(n):
@@ -468,6 +490,14 @@ axs[1].legend()
 
 plt.show()
 ```
+
+```{admonition} Answer
+:class: hint, dropdown
+
+1.
+```
+
+## Assingments
 
 ### Convolution
 
