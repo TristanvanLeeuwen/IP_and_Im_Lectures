@@ -11,12 +11,6 @@ kernelspec:
   name: python3
 ---
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-from myst_nb import glue
-```
-
 (image_processing)=
 # Image processing
 
@@ -77,8 +71,9 @@ i.e. those are neither additive nor multiplicative. Errors in photon counting, f
 import matplotlib.pyplot as plt
 from skimage import data
 from skimage.util import random_noise
+from myst_nb import glue
 
-# load test image 
+# load test image
 camera = data.camera()
 
 # plot
@@ -219,17 +214,17 @@ $$
 
 The noise gets reduced by the filter, because this part of the error is smaller than $\sigma$ for $\alpha > 0$. Now we consider also the second term in the estimate above, which describes the systematic error. It holds that
 
-$$ \mathbb{E}(\hat{U}_{ij})- \hat F_{ij} = \alpha ( \hat{F}_{i-1j} + \hat{F}_{i+1j} + \hat{F}_{ij-1} + \hat{F}_{ij+1}-4\hat{F}_{ij}) . 
+$$ \mathbb{E}(\hat{U}_{ij})- \hat F_{ij} = \alpha ( \hat{F}_{i-1j} + \hat{F}_{i+1j} + \hat{F}_{ij-1} + \hat{F}_{ij+1}-4\hat{F}_{ij}) .
 $$
 
 For simplicity we assume that $\hat{F}_{ij}$ is the pixel value at index $(ih,jh)$, where $h$ denotes the (small) pixel size. So we have the idea that $\hat{F}_{ij} = \hat{f}(x_{ij})$ for an adequate grayvalue function $\hat{f}$. If $\hat{f}$ is twice continuously differentiable, then with the mean value theorem we have the existence of $\xi_1 \in ((i-1)h,(i+1)h) \times \{jh\}$ and $\xi_2 \in \{ih\} \times ((j-1)h,(j+1)h)$, such that
 
-$$ 
-\hat{F}_{i-1j} + \hat{F}_{i+1j} - 2 \hat{F}_{ij} = \frac{\partial^2\hat{f}}{\partial x_1^2}(\xi_1) h^2 
+$$
+\hat{F}_{i-1j} + \hat{F}_{i+1j} - 2 \hat{F}_{ij} = \frac{\partial^2\hat{f}}{\partial x_1^2}(\xi_1) h^2
 $$
 
 and
-$$ 
+$$
 \hat{F}_{ij-1} + \hat{F}_{ij+1}- 2 \hat{F}_{ij} = \frac{\partial^2\hat{f}}{\partial x_2^2}(\xi_2) h^2 .
 $$
 
@@ -257,14 +252,14 @@ from skimage import data
 from skimage.util import random_noise
 from scipy.signal import convolve2d as conv2
 
-# load test image 
+# load test image
 camera = data.camera()
 
 # add noise
 sigma = .1
 camera_noisy = random_noise(camera, mode='gaussian', var=sigma**2)
 
-# filter 
+# filter
 alpha = .2
 filter = np.array([[0, alpha, 0],[alpha, 1-4*alpha,alpha],[0,alpha,0]])
 camera_filtered = conv2(camera_noisy, filter, 'same')
@@ -419,14 +414,14 @@ from skimage import data
 from skimage.util import random_noise
 from skimage.restoration import denoise_tv_chambolle
 
-# load test image 
+# load test image
 camera = data.camera()
 
 # add noise
 sigma = .1
 camera_noisy = random_noise(camera, mode='gaussian', var=sigma**2)
 
-# filter 
+# filter
 alpha = .2
 camera_filtered = denoise_tv_chambolle(camera_noisy, weight=alpha)
 
@@ -510,11 +505,11 @@ The domain is divided equidistantly into $N_1 \times N_2$ pixels. Now we make a 
 1. Derive bounds for the maximal difference of neighboring pixels in $U$.
 
 Now let us consider a step function as an (idealized) continuous 1d signal
-			
+
 $$ u : \Omega \rightarrow [0,1] \subset \mathbb{R}$$
 
 in the domain $\Omega := [0,1] \subset \mathbb{R}$ with a step from value $0$ to value $1$. We make the transition to the digital version of the signal with $N$ pixels. Consider the step being located within a pixel, i.e. with relative position $\alpha \in (0,\frac1N)$.
-            
+
 1. Specify the values of the digital image in the pixels without the step.
 
 2. Specify the value of the pixel with the step dependent on the position within this pixel.
@@ -531,7 +526,7 @@ import matplotlib.pyplot as plt
 from skimage import data
 from skimage.util import random_noise
 
-# load test image 
+# load test image
 image = data.coins()
 
 # add noise

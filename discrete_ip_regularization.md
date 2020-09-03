@@ -50,7 +50,7 @@ $$
 \frac{\|\widetilde u - \widetilde u^{\delta}\|}{\|\widetilde u\|} \leq  \|K\|\|K^{-1}\| \frac{\|f - f^{\delta}\|}{\|f\|}.
 $$
 
-The quantity $\kappa(K) = \|K\|\|K^{-1}\|$ is called the [*condition number*](https://en.wikipedia.org/wiki/Condition_number#Matrices) of $K$. When $K$ is invertible, we have $\kappa_2(K) = \|K\|_2\|K^{-1}\|_2 = \sigma_1/\sigma_n$.
+The quantity $\kappa(K) = \|K\|\|K^{-1}\|$ is called the [*condition number*](https://en.wikipedia.org/wiki/Condition_number#Matrices) of $K$. When $K$ is diagonalisable with eigenvalues $\lambda_1 \geq \lambda_2 \geg \ldots \geq \lambda_n$, we have $\kappa_2(K) = \|K\|_2\|K^{-1}\|_2 = \lambda_1/\lambda_n$.
 
 ## Pseudo inverse
 
@@ -61,19 +61,19 @@ Next, we discuss how we may define solutions to inconsistent or underdetermined 
 If $m > n$, the system is inconsistent when $f$ is not in the range of $K$. If $K$ has full rank we can express it as
 
 $$
-K = U \Sigma V^*,
+K = U_n \Sigma_n V_n^*,
 $$
 
-with $U = (u_1, u_2, \ldots, u_n), V = (v_1, v_2, \ldots, v_n)$ containing the left and right singular vectors and $\Sigma$ is a diagonal matrix containing the singular values $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_{n} > 0$. We can then attempt to solve a modified system of equations
+with $U_n = (u_1, u_2, \ldots, u_n), V_n = (v_1, v_2, \ldots, v_n)$ containing the first $n$ left and right singular vectors and $\Sigma_n$ is a diagonal matrix containing the singular values $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_{n} > 0$. We can then attempt to solve a modified system of equations
 
 $$
-K u =  UU^* f,
+K u =  U_nU_n^* f,
 $$
 
-where $UU^* f$ projects $f$ onto the range of $K$. We find
+where $U_nU_n^* f$ projects $f$ onto the range of $K$. We find
 
 $$
-\widetilde u = V\Sigma^{-1}U^*f \equiv K^\dagger f,
+\widetilde u = V_n\Sigma_n^{-1}U_n^*f \equiv K^\dagger f,
 $$
 
 where $K^\dagger$ denotes the [Moore-Penrose pseudo inverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse) of $K$.
@@ -112,7 +112,7 @@ $$
 u_1 \\ u_2 \\
 \end{matrix}
 \right)
-= 
+=
 \left(
 \begin{matrix}
 4 \\ 4 \\
@@ -134,7 +134,7 @@ $$
 u_1 \\ u_2 \\
 \end{matrix}
 \right)
-= 
+=
 \left(
 \begin{matrix}
 4 \\ 4 \\
@@ -146,7 +146,7 @@ do have a unique solution, $u = (2/5,2/5)^T$.
 ```
 ---
 
-If, on the other hand $m < n$ and $K$ has full rank, a solution exists but is not unique. In this case, we can look for the *smallest* solution (i.e., one that does not have any contributions in the null-space of $K$).  This means we look for a solution that is spanned by the first $m$ columns of $V$, denoted as $V_m = (v_1, v_2, \ldots v_m)$:
+If, on the other hand $m < n$ and $K$ has full rank, a solution exists but is not unique. In this case, we can look for the *smallest* solution (i.e., one that does not have any contributions in the null-space of $K$).  This means we look for a solution that is spanned by the first $m$ right singular vectors, denoted by $V_m = (v_1, v_2, \ldots v_m)$:
 
 $$
 K V_m z = f,
@@ -158,7 +158,7 @@ $$
 \widetilde{u} = V_m\Sigma_m^{-1}U_m^*f \equiv  K^{\dagger}f,
 $$
 
-where $U_m = (u_1, u_2, \ldots u_m)$, $V_m = (v_1, v_2, \ldots v_m)$ and $\Sigma_m$ contains the non-zero singular values $\sigma_1 \geq \sigma_2, \ldots, \sigma_m > 0$. Showing that this indeed yields the solution with the smallest norm is the subject of one of the assignments. The corresponding variational problem is
+where $U_m = (u_1, u_2, \ldots u_m)$, and $\Sigma_m$ contains the non-zero singular values $\sigma_1 \geq \sigma_2, \ldots, \sigma_m > 0$. Showing that this indeed yields the solution with the smallest norm is the subject of one of the assignments. The corresponding variational problem is
 
 $$
 \min_{u} \|u\|_2^2 \quad \text{such that} \quad Ku = f.
@@ -179,7 +179,7 @@ $$
 u_1 \\ u_2
 \end{matrix}
 \right)
-= 
+=
 \left(
 \begin{matrix}
 1 \\
@@ -207,7 +207,7 @@ where $V_k = (v_1, v_2, \ldots, v_k)$, $U_k = (u_1, u_2, \ldots, u_k)$ and $\Sig
 ---
 
 Note that the pseudo inverse allows us to define a unique solution, it is not necessarily stable as $\|K\|_2\|K^{\dagger}\|_2 = \sigma_1/\sigma_k$ may still be large. To study this issue in more detail, express the solution as
- 
+
 $$
 \widetilde{u} = V_k\Sigma_k^{-1}U_k^{*}f = \sum_{i=1}^k \frac{\langle u_i, f\rangle}{\sigma_i}v_i.
 $$
@@ -234,7 +234,7 @@ def getK(n):
     x = np.linspace(h/2,1-h/2,n)
     xx,yy = np.meshgrid(x,x)
     K = h/(1 + (xx - yy)**2)**(3/2)
-    
+
     return K,x
 
 # parameters
@@ -276,14 +276,14 @@ plt.show()
 
 ## Regularisation
 
-To stabilize the problem we can modify the pseudo inverse in several ways to avoid dividing by small singular values. One option is to simply ignore small singular values and choose a cut-off value and define the solution as
+To stabilise the problem we can modify the pseudo inverse in several ways to avoid dividing by small singular values. One option is to simply ignore small singular values and choose a cut-off value and define the solution as
 
 ```{math}
 :label: regK
 \widetilde u_{\alpha} = V_{k}r_{\alpha}(\Sigma_{k}){U_{k}}^*f,
 ```
 
-where $r$ computes the regularized inverse:
+where $r$ computes the regularised inverse:
 
 $$
 r_{\alpha}(\sigma) =
@@ -307,7 +307,7 @@ $$
 \widetilde u_{\alpha} = \sum_{i=1}^{k_{\alpha}} \frac{\langle u_i, f\rangle}{\sigma_i}v_i,
 $$
 
-where $\{(u_i,v_i,\sigma_i)\}_{i=1}^n$ denotes the singular system of $K$ and $k_{\alpha}$ is chosen so that $\sigma_i \geq \alpha$ for $i \leq k_{\alpha}$. 
+where $\{(u_i,v_i,\sigma_i)\}_{i=1}^k$ denotes the singular system of $K$ and $k_{\alpha} \leq k$ is chosen so that $\sigma_i \geq \alpha$ for $i \leq k_{\alpha}$.
 ```
 
 ---
@@ -320,12 +320,12 @@ Another option to avoid dividing by small singular values is to add small positi
 The Tikhonov-regularised solution to the equation $Ku = f$ is given by
 
 $$
-\widetilde u_{\alpha} = \sum_{i=1}^{n} \sigma_i \frac{\langle u_i, f\rangle}{\sigma_i^2 + \alpha}v_i,
+\widetilde u_{\alpha} = \sum_{i=1}^{k} \sigma_i \frac{\langle u_i, f\rangle}{\sigma_i^2 + \alpha}v_i,
 $$
 
-where $\{(u_i,v_i,\sigma_i)\}_{i=1}^n$ is the singular system of $K$. This corresponds to setting $r_{\alpha}(s) = s/(s^2 + \alpha)$ in {eq}`regK`.
+where $\{(u_i,v_i,\sigma_i)\}_{i=1}^k$ is the singular system of $K$. This corresponds to setting $r_{\alpha}(s) = s/(s^2 + \alpha)$ in {eq}`regK`.
 
-Unlike the TSVD, Tikhonov regularization has a corresponding variational problem:
+Unlike the TSVD, Tikhonov regularisation has a corresponding variational problem:
 
 $$
 \min_u \|Ku - f\|_2^2 + \alpha \|u\|_2^2,
@@ -342,36 +342,36 @@ Indeed, it is easily verified that $K^* K + \alpha I$ has full rank whenever $\a
 
 ---
 
-Of course, one may think of other types of regularization by defining an appropriate function $r_{\alpha}$. Intiutively, we would like
+Of course, one may think of other types of regularisation by defining an appropriate function $r_{\alpha}$. Intuitively, we would like
 
 * $r_{\alpha}(s) = s^{-1}$ as $\alpha \rightarrow 0$
 * $r_{\alpha}(0) < \infty$ for any $\alpha > 0$
 * $r_{\alpha}(s) \rightarrow 0$ as $\alpha \rightarrow \infty$
 
-One example is *Lavrentiev* regularization, with:
+One example is *Lavrentiev* regularisation, with:
 
 $$r_{\alpha}(s) = (s + \alpha)^{-1}.$$
 
-Conditions on regularization schemes and methods for choosing $\alpha$ will be discussed in more detail in the chapter on [Inverse Problems in Function Spaces](./ip_function_spaces).
+Conditions on regularisation schemes and methods for choosing $\alpha$ will be discussed in more detail in the chapter on [Inverse Problems in Function Spaces](./ip_function_spaces).
 
 ---
 
-In general, we can think of regularization for linear problems as defining a modified pseudo-inverse of $K$:
+In general, we can think of regularisation for linear problems as defining a modified pseudo-inverse of $K$:
 
 $$K_{\alpha}^{\dagger} = V_{k}r_{\alpha}(\Sigma_{k})U_{k}^{*}.$$
 
-Stability of regularized solutions defined by {eq}`regK` then follows by considering the largest singular value of $K_{\alpha}^\dagger$, which can be made arbitrarily small by increasing $\alpha$. On the other hand, increasing $\alpha$ will also introduce a bias in the solution. This trade-off is called the *bias-variance trade-off*:
+Stability of regularised solutions defined by {eq}`regK` then follows by considering the largest singular value of $K_{\alpha}^\dagger$, which can be made arbitrarily small by increasing $\alpha$. On the other hand, increasing $\alpha$ will also introduce a bias in the solution. This trade-off is called the *bias-variance trade-off*:
 
 ```{admonition} Definition: *Bias-variance trade-off*
 :class: important
 
-Here, we compare the regularized solution from noisy data $\widetilde{u}_{\alpha, \delta} = K_{\alpha}^\dagger f^{\delta}$ and the ideal solution $\widetilde{u} = K^{\dagger}f$:
+Here, we compare the regularised solution from noisy data $\widetilde{u}_{\alpha, \delta} = K_{\alpha}^\dagger f^{\delta}$ and the ideal solution $\widetilde{u} = K^{\dagger}f$:
 
 $$
 \|\widetilde u - \widetilde u_{\alpha, \delta}\| \leq \underbrace{\|(K^\dagger - K_{\alpha}^\dagger)f\|}_{\text{bias}} + \underbrace{\|K_{\alpha}^\dagger(f - f^{\delta})\|}_{\text{variance}}.
 $$
 
-If $\alpha \downarrow 0$, the bias goes to zero, but possibly leads to a large variance. Large $\alpha$ on the other hand reduces the variance but leads to a large bias. Ideally, the regularization parameter is chosen in such a way that the small singular values are stabilized and the large ones are hardly effected.
+If $\alpha \downarrow 0$, the bias goes to zero, but possibly leads to a large variance. Large $\alpha$ on the other hand reduces the variance but leads to a large bias. Ideally, the regularisation parameter is chosen in such a way that the small singular values are stabilised and the large ones are hardly effected.
 ```
 
 +++
@@ -406,7 +406,7 @@ Show that the solution to the variational problem
 
 $$\min_{u} \|Ku - f\|_2^2 + \alpha \|u\|_2^2$$
 
-is given in terms of the SVD of $K \in \mathbb{R}^{m\times n}$ as 
+is given in terms of the SVD of $K \in \mathbb{R}^{m\times n}$ as
 
 $$\widetilde{u} = \sum_{i=1}^{\min\{m,n\}} \frac{\sigma_i \langle u_i,f\rangle}{\sigma_i^2 + \alpha} v_i.$$
 
@@ -431,7 +431,7 @@ def getK(n):
     x = np.linspace(h/2,1-h/2,n)
     xx,yy = np.meshgrid(x,x)
     K = h/(1 + (xx - yy)**2)**(3/2)
-    
+
     return K,x
 ```
 
@@ -473,9 +473,9 @@ plt.show()
 
 We are going to solve a deconvolution problem $Ku = f$, where $K$ is a *Toeplitz matrix* with elements
 
-$$k_{ij} = \frac{\exp({-a\cdot (i-j)^2})}{(n-1)\sqrt{\pi/a}},$$ 
+$$k_{ij} = \frac{\exp({-a\cdot (i-j)^2})}{(n-1)\sqrt{\pi/a}},$$
 
-and we are given noisy measurements 
+and we are given noisy measurements
 
 $$f^{\delta} = Ku + e,$$
 
@@ -483,7 +483,7 @@ where the entries of $e$ are normally distrubuted with mean zero and variance $\
 
 The goal of this assignment is to solve this inverse problem using a (truncated) SVD for two scenario's
 
-1. $u(x) = H(x - 0.3) - H(x - 0.7)$ 
+1. $u(x) = H(x - 0.3) - H(x - 0.7)$
 2. $u(x) = x(1-x)$
 
 For each of the two scenarios answer the following questions:
