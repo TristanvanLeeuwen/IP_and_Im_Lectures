@@ -39,7 +39,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Discrete Inverse Problems and Regularisation" href="discrete_ip_regularization.html" />
+    <link rel="next" title="2. Remarkably— jupytext: text_representation: extension: .md format_name: myst format_version: ‘0.9’ jupytext_version: 1.5.2 kernelspec: display_name: Python 3 language: python name: python3" href="discrete_ip_regularization.html" />
     <link rel="prev" title="Welcome to Inverse Problems and Imaging" href="intro.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,27 +86,42 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="discrete_ip_regularization.html">
-   2. Discrete Inverse Problems and Regularisation
+   2. Remarkably—
+jupytext:
+text_representation:
+extension: .md
+format_name: myst
+format_version: ‘0.9’
+jupytext_version: 1.5.2
+kernelspec:
+display_name: Python 3
+language: python
+name: python3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_ip_regularization.html#discrete-inverse-problems-and-regularisation">
+   3. Discrete Inverse Problems and Regularisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ip_function_spaces.html">
-   3. Linear inverse problems in function spaces
+   4. Linear inverse problems in function spaces
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="statistical_perspective.html">
-   4. A statistical perspective on inverse problems
+   5. A statistical perspective on inverse problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="variational_formulations.html">
-   5. Variational formulations for inverse problems
+   6. Variational formulations for inverse problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="numerical_optimisation.html">
-   6. Numerical optimisation for inverse problems
+   7. Numerical optimisation for inverse problems
   </a>
  </li>
 </ul>
@@ -630,7 +645,7 @@ C = \sup_{\xi} |\left(K^{-1}\right)'(\xi)| = \sup_{\xi} |\left(K'(\xi)\right)^{-
 <p>Matrix inversion is a prime example of a linear inverse problem. These can be written in the form of <a class="reference internal" href="#equation-ip">(1.1)</a> with <span class="math notranslate nohighlight">\(u \in \mathbb{C}^n\)</span> and <span class="math notranslate nohighlight">\(f \in \mathbb{C}^n\)</span> being <span class="math notranslate nohighlight">\(n\)</span>-dimensional vectors and <span class="math notranslate nohighlight">\(K \in \mathbb{C}^{n \times n}\)</span> being a matrix. For now, we further assume <span class="math notranslate nohighlight">\(K\)</span> to be a <a class="reference external" href="https://en.wikipedia.org/wiki/Hermitian_matrix">Hermitian</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Definite_symmetric_matrix">positive definite matrix</a>. In that case we know from the <a class="reference external" href="https://en.wikipedia.org/wiki/Spectral_theorem">spectral theorem</a> that there exist real positive eigenvalues <span class="math notranslate nohighlight">\(\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n &gt; 0\)</span> and corresponding orthonormal eigenvectors <span class="math notranslate nohighlight">\(k_j \in \mathbb{C}^n\)</span> for <span class="math notranslate nohighlight">\(j \in \{ 1,\cdots,n \}\)</span> such that <span class="math notranslate nohighlight">\(K\)</span> can be written as</p>
 <div class="math notranslate nohighlight">
 \[
-K = \sum_{j=1}^n \lambda_k k_j k_j^{\top}.
+K = \sum_{j=1}^n \lambda_k k_j k_j^{*}.
 \]</div>
 <p>Under these conditions <span class="math notranslate nohighlight">\(K\)</span> is invertible so <em>existence</em> and <em>uniqueness</em> of a solution of <a class="reference internal" href="#equation-ip">(1.1)</a> are guaranteed. Regarding <em>stability</em>, however, it is well known from numerical linear algebra that a small perturbation of <span class="math notranslate nohighlight">\(f\)</span> may lead to large perturbation of the corresponding solution if the matrix is <em>ill-conditioned</em>. In particular, we have</p>
 <div class="math notranslate nohighlight">
@@ -868,10 +883,10 @@ We will learn how to deal with this situation in general in the next chapter.</p
 <h3><span class="section-number">1.6.2. </span>Matrix inversion II<a class="headerlink" href="#matrix-inversion-ii" title="Permalink to this headline">¶</a></h3>
 <p>Given a symmetric, positive definite matrix <span class="math notranslate nohighlight">\(K \in \mathbb{R}^{n\times n}\)</span> we want to solve <span class="math notranslate nohighlight">\(Ku = f\)</span>. Such a matrix can be decomposed as</p>
 <div class="math notranslate nohighlight">
-\[K = \sum_{i=1}^n \lambda_i k_ik_i^{\top},\]</div>
+\[K = \sum_{i=1}^n \lambda_i k_ik_i^{*},\]</div>
 <p>where <span class="math notranslate nohighlight">\(\lambda_1\geq \lambda_2 \geq \ldots \geq \lambda_n &gt; 0\)</span> are the eigenvalues and <span class="math notranslate nohighlight">\(k_i\)</span> denote the eigenvectors. Such a matrix has an inverse given by</p>
 <div class="math notranslate nohighlight">
-\[K^{-1} = \sum_{i=1}^n \lambda_i^{-1} k_ik_i^{\top}.\]</div>
+\[K^{-1} = \sum_{i=1}^n \lambda_i^{-1} k_ik_i^{*}.\]</div>
 <p>To study the well-posedness of the equation we want to bound the <em>backward error</em> <span class="math notranslate nohighlight">\(\|u - u^\delta\|_2\)</span> in terms of the <em>forward error</em> <span class="math notranslate nohighlight">\(\|f - f^{\delta}\|_2\)</span> where <span class="math notranslate nohighlight">\(Ku = f\)</span> and <span class="math notranslate nohighlight">\(Ku^{\delta} = f^\delta\)</span>.</p>
 <ol class="simple">
 <li><p>Show that <span class="math notranslate nohighlight">\(\|u - u^\delta\|_2 \leq \lambda_n^{-1} \|f - f^{\delta}\|_2.\)</span></p></li>
@@ -897,13 +912,14 @@ We will learn how to deal with this situation in general in the next chapter.</p
 <ol class="simple">
 <li><p>Show that the <em>forward error</em> <span class="math notranslate nohighlight">\(f - f^{\delta}\)</span> is bounded in the <span class="math notranslate nohighlight">\(L^{\infty}\)</span> norm, in particular <span class="math notranslate nohighlight">\(\|f - f^{\delta}\|_{L^{\infty}([0,1])} = \delta\)</span>.</p></li>
 <li><p>Show that the <em>backward error</em> <span class="math notranslate nohighlight">\(u - u^{\delta}\)</span> can be arbirarily large, even if <span class="math notranslate nohighlight">\(\delta\downarrow 0\)</span>: <span class="math notranslate nohighlight">\(\|u - u^{\delta}\|_{L^{\infty}([0,1])} = k\)</span>.</p></li>
+<li><p>Is the inverse problem ill-posed?</p></li>
 </ol>
-<p>This shows that the problem is <em>ill-conditioned</em>; a small forward error does not guarantee a small backward error, implying that the inverse map is not continuous.</p>
 <div class="hint dropdown admonition">
 <p class="admonition-title">Answer</p>
 <ol class="simple">
 <li><p>Since <span class="math notranslate nohighlight">\(|\sin(\cdot)| \leq 1\)</span> we immediately get the desired result.</p></li>
 <li><p>By linearity we have <span class="math notranslate nohighlight">\(u - u^\delta = k \sin(k x)\)</span> and we immediately find the desired result.</p></li>
+<li><p>This shows that the problem is <em>ill-conditioned</em>; a small forward error does not guarantee a small backward error, implying that the inverse map is not continuous.</p></li>
 </ol>
 </div>
 </div>
@@ -953,7 +969,17 @@ We will learn how to deal with this situation in general in the next chapter.</p
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="intro.html" title="previous page">Welcome to Inverse Problems and Imaging</a>
-    <a class='right-next' id="next-link" href="discrete_ip_regularization.html" title="next page"><span class="section-number">2. </span>Discrete Inverse Problems and Regularisation</a>
+    <a class='right-next' id="next-link" href="discrete_ip_regularization.html" title="next page"><span class="section-number">2. </span>Remarkably—
+jupytext:
+text_representation:
+extension: .md
+format_name: myst
+format_version: ‘0.9’
+jupytext_version: 1.5.2
+kernelspec:
+display_name: Python 3
+language: python
+name: python3</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

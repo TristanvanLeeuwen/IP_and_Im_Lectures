@@ -40,7 +40,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2. Computed Tomography" href="tomography.html" />
-    <link rel="prev" title="6. Numerical optimisation for inverse problems" href="numerical_optimisation.html" />
+    <link rel="prev" title="7. Numerical optimisation for inverse problems" href="numerical_optimisation.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -86,27 +86,42 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="discrete_ip_regularization.html">
-   2. Discrete Inverse Problems and Regularisation
+   2. Remarkably—
+jupytext:
+text_representation:
+extension: .md
+format_name: myst
+format_version: ‘0.9’
+jupytext_version: 1.5.2
+kernelspec:
+display_name: Python 3
+language: python
+name: python3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_ip_regularization.html#discrete-inverse-problems-and-regularisation">
+   3. Discrete Inverse Problems and Regularisation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ip_function_spaces.html">
-   3. Linear inverse problems in function spaces
+   4. Linear inverse problems in function spaces
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="statistical_perspective.html">
-   4. A statistical perspective on inverse problems
+   5. A statistical perspective on inverse problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="variational_formulations.html">
-   5. Variational formulations for inverse problems
+   6. Variational formulations for inverse problems
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="numerical_optimisation.html">
-   6. Numerical optimisation for inverse problems
+   7. Numerical optimisation for inverse problems
   </a>
  </li>
 </ul>
@@ -382,8 +397,9 @@ Hence, every discrete image immediately corresponds to a continuous image, which
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
 <span class="kn">from</span> <span class="nn">skimage.util</span> <span class="kn">import</span> <span class="n">random_noise</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
 
-<span class="c1"># load test image </span>
+<span class="c1"># load test image</span>
 <span class="n">camera</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera</span><span class="p">()</span>
 
 <span class="c1"># plot</span>
@@ -414,7 +430,7 @@ Hence, every discrete image immediately corresponds to a continuous image, which
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/image_processing_3_0.png" src="_images/image_processing_3_0.png" />
+<img alt="_images/image_processing_2_0.png" src="_images/image_processing_2_0.png" />
 </div>
 </div>
 <p>Before we focus on different filtering methods, we should discuss different methods for validating the quality of a method. A simple validation would for sure be a number, which becomes zero in case of perfect denoising, respectively increases with worse quality (or vice versa). To test a denoising method with artificial data one can simply compute the distance between the denoised and the clean image, with regard to an adequate norm. If we use the notation <span class="math notranslate nohighlight">\(f\)</span> for the clean image, <span class="math notranslate nohighlight">\(f^{\delta}\)</span> for the noisy data, and <span class="math notranslate nohighlight">\(u\)</span> for the denoising via a particular method, then an error measure is simply given by</p>
@@ -513,15 +529,15 @@ To obtain a reasonable convex combination <span class="math notranslate nohighli
 \end{split}\]</div>
 <p>The noise gets reduced by the filter, because this part of the error is smaller than <span class="math notranslate nohighlight">\(\sigma\)</span> for <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>. Now we consider also the second term in the estimate above, which describes the systematic error. It holds that</p>
 <div class="math notranslate nohighlight">
-\[ \mathbb{E}(\hat{U}_{ij})- \hat F_{ij} = \alpha ( \hat{F}_{i-1j} + \hat{F}_{i+1j} + \hat{F}_{ij-1} + \hat{F}_{ij+1}-4\hat{F}_{ij}) . 
+\[ \mathbb{E}(\hat{U}_{ij})- \hat F_{ij} = \alpha ( \hat{F}_{i-1j} + \hat{F}_{i+1j} + \hat{F}_{ij-1} + \hat{F}_{ij+1}-4\hat{F}_{ij}) .
 \]</div>
 <p>For simplicity we assume that <span class="math notranslate nohighlight">\(\hat{F}_{ij}\)</span> is the pixel value at index <span class="math notranslate nohighlight">\((ih,jh)\)</span>, where <span class="math notranslate nohighlight">\(h\)</span> denotes the (small) pixel size. So we have the idea that <span class="math notranslate nohighlight">\(\hat{F}_{ij} = \hat{f}(x_{ij})\)</span> for an adequate grayvalue function <span class="math notranslate nohighlight">\(\hat{f}\)</span>. If <span class="math notranslate nohighlight">\(\hat{f}\)</span> is twice continuously differentiable, then with the mean value theorem we have the existence of <span class="math notranslate nohighlight">\(\xi_1 \in ((i-1)h,(i+1)h) \times \{jh\}\)</span> and <span class="math notranslate nohighlight">\(\xi_2 \in \{ih\} \times ((j-1)h,(j+1)h)\)</span>, such that</p>
 <div class="math notranslate nohighlight">
-\[ 
-\hat{F}_{i-1j} + \hat{F}_{i+1j} - 2 \hat{F}_{ij} = \frac{\partial^2\hat{f}}{\partial x_1^2}(\xi_1) h^2 
+\[
+\hat{F}_{i-1j} + \hat{F}_{i+1j} - 2 \hat{F}_{ij} = \frac{\partial^2\hat{f}}{\partial x_1^2}(\xi_1) h^2
 \]</div>
 <p>and
-<span class="math notranslate nohighlight">\($ 
+<span class="math notranslate nohighlight">\($
 \hat{F}_{ij-1} + \hat{F}_{ij+1}- 2 \hat{F}_{ij} = \frac{\partial^2\hat{f}}{\partial x_2^2}(\xi_2) h^2 .
 $\)</span></p>
 <p>Thus we can estimate the second part o the error by</p>
@@ -544,14 +560,14 @@ $\)</span></p>
 <span class="kn">from</span> <span class="nn">skimage.util</span> <span class="kn">import</span> <span class="n">random_noise</span>
 <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">convolve2d</span> <span class="k">as</span> <span class="n">conv2</span>
 
-<span class="c1"># load test image </span>
+<span class="c1"># load test image</span>
 <span class="n">camera</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera</span><span class="p">()</span>
 
 <span class="c1"># add noise</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
 <span class="n">camera_noisy</span> <span class="o">=</span> <span class="n">random_noise</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="c1"># filter </span>
+<span class="c1"># filter</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="o">.</span><span class="mi">2</span>
 <span class="nb">filter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="n">alpha</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">alpha</span><span class="p">,</span><span class="n">alpha</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
 <span class="n">camera_filtered</span> <span class="o">=</span> <span class="n">conv2</span><span class="p">(</span><span class="n">camera_noisy</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="s1">&#39;same&#39;</span><span class="p">)</span>
@@ -576,7 +592,7 @@ $\)</span></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/image_processing_5_0.png" src="_images/image_processing_5_0.png" />
+<img alt="_images/image_processing_4_0.png" src="_images/image_processing_4_0.png" />
 </div>
 </div>
 </div>
@@ -688,14 +704,14 @@ $\)</span></p>
 <span class="kn">from</span> <span class="nn">skimage.util</span> <span class="kn">import</span> <span class="n">random_noise</span>
 <span class="kn">from</span> <span class="nn">skimage.restoration</span> <span class="kn">import</span> <span class="n">denoise_tv_chambolle</span>
 
-<span class="c1"># load test image </span>
+<span class="c1"># load test image</span>
 <span class="n">camera</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera</span><span class="p">()</span>
 
 <span class="c1"># add noise</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
 <span class="n">camera_noisy</span> <span class="o">=</span> <span class="n">random_noise</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="c1"># filter </span>
+<span class="c1"># filter</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="o">.</span><span class="mi">2</span>
 <span class="n">camera_filtered</span> <span class="o">=</span> <span class="n">denoise_tv_chambolle</span><span class="p">(</span><span class="n">camera_noisy</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
 
@@ -718,7 +734,7 @@ $\)</span></p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/image_processing_7_0.png" src="_images/image_processing_7_0.png" />
+<img alt="_images/image_processing_6_0.png" src="_images/image_processing_6_0.png" />
 </div>
 </div>
 </div>
@@ -781,7 +797,7 @@ u : \Omega \rightarrow [0,1] \subset \mathbb{R}
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
 <span class="kn">from</span> <span class="nn">skimage.util</span> <span class="kn">import</span> <span class="n">random_noise</span>
 
-<span class="c1"># load test image </span>
+<span class="c1"># load test image</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">coins</span><span class="p">()</span>
 
 <span class="c1"># add noise</span>
@@ -807,7 +823,7 @@ u : \Omega \rightarrow [0,1] \subset \mathbb{R}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/image_processing_12_0.png" src="_images/image_processing_12_0.png" />
+<img alt="_images/image_processing_11_0.png" src="_images/image_processing_11_0.png" />
 </div>
 </div>
 <ol class="simple">
@@ -849,7 +865,7 @@ https://scikit-image.org/docs/dev/auto_examples/filters/plot_denoise.html?highli
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="numerical_optimisation.html" title="previous page"><span class="section-number">6. </span>Numerical optimisation for inverse problems</a>
+    <a class='left-prev' id="prev-link" href="numerical_optimisation.html" title="previous page"><span class="section-number">7. </span>Numerical optimisation for inverse problems</a>
     <a class='right-next' id="next-link" href="tomography.html" title="next page"><span class="section-number">2. </span>Computed Tomography</a>
 
     </div>

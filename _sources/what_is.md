@@ -306,7 +306,7 @@ We conclude that the problem of finding a root of $K(u) - f$ is ill-posed when t
 Matrix inversion is a prime example of a linear inverse problem. These can be written in the form of {eq}`ip` with $u \in \mathbb{C}^n$ and $f \in \mathbb{C}^n$ being $n$-dimensional vectors and $K \in \mathbb{C}^{n \times n}$ being a matrix. For now, we further assume $K$ to be a [Hermitian](https://en.wikipedia.org/wiki/Hermitian_matrix), [positive definite matrix](https://en.wikipedia.org/wiki/Definite_symmetric_matrix). In that case we know from the [spectral theorem](https://en.wikipedia.org/wiki/Spectral_theorem) that there exist real positive eigenvalues $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n > 0$ and corresponding orthonormal eigenvectors $k_j \in \mathbb{C}^n$ for $j \in \{ 1,\cdots,n \}$ such that $K$ can be written as
 
 $$
-K = \sum_{j=1}^n \lambda_k k_j k_j^{\top}.
+K = \sum_{j=1}^n \lambda_k k_j k_j^{*}.
 $$
 
 Under these conditions $K$ is invertible so *existence* and *uniqueness* of a solution of {eq}`ip` are guaranteed. Regarding *stability*, however, it is well known from numerical linear algebra that a small perturbation of $f$ may lead to large perturbation of the corresponding solution if the matrix is *ill-conditioned*. In particular, we have
@@ -518,11 +518,11 @@ We will learn how to deal with this situation in general in the next chapter.
 
 Given a symmetric, positive definite matrix $K \in \mathbb{R}^{n\times n}$ we want to solve $Ku = f$. Such a matrix can be decomposed as
 
-$$K = \sum_{i=1}^n \lambda_i k_ik_i^{\top},$$
+$$K = \sum_{i=1}^n \lambda_i k_ik_i^{*},$$
 
 where $\lambda_1\geq \lambda_2 \geq \ldots \geq \lambda_n > 0$ are the eigenvalues and $k_i$ denote the eigenvectors. Such a matrix has an inverse given by
 
-$$K^{-1} = \sum_{i=1}^n \lambda_i^{-1} k_ik_i^{\top}.$$
+$$K^{-1} = \sum_{i=1}^n \lambda_i^{-1} k_ik_i^{*}.$$
 
 To study the well-posedness of the equation we want to bound the *backward error* $\|u - u^\delta\|_2$ in terms of the *forward error* $\|f - f^{\delta}\|_2$ where $Ku = f$ and $Ku^{\delta} = f^\delta$.
 
@@ -550,8 +550,7 @@ $$\|g\|_{L^{\infty}([0,1])} = \sup_{x\in[0,1]} |g(x)|.$$
 
 1. Show that the *forward error* $f - f^{\delta}$ is bounded in the $L^{\infty}$ norm, in particular $\|f - f^{\delta}\|_{L^{\infty}([0,1])} = \delta$.
 2. Show that the *backward error* $u - u^{\delta}$ can be arbirarily large, even if $\delta\downarrow 0$: $\|u - u^{\delta}\|_{L^{\infty}([0,1])} = k$.
-
-This shows that the problem is *ill-conditioned*; a small forward error does not guarantee a small backward error, implying that the inverse map is not continuous.
+3. Is the inverse problem ill-posed?
 
 ```{admonition} Answer
 :class: hint, dropdown
@@ -559,6 +558,8 @@ This shows that the problem is *ill-conditioned*; a small forward error does not
 1. Since $|\sin(\cdot)| \leq 1$ we immediately get the desired result.
 
 2. By linearity we have $u - u^\delta = k \sin(k x)$ and we immediately find the desired result.
+
+3. This shows that the problem is *ill-conditioned*; a small forward error does not guarantee a small backward error, implying that the inverse map is not continuous.
 ```
 
 ## Assignments

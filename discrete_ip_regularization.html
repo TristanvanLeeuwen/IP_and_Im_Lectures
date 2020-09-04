@@ -303,16 +303,23 @@
      2.4.4. Gravity surveying
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignments">
+   2.5. Assignments
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#convolution">
-     2.4.5. Convolution
+     2.5.1. Convolution
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
-   2.5. References
+   2.6. References
   </a>
  </li>
 </ul>
@@ -359,7 +366,7 @@ Ku = f,
 \[
 \frac{\|\widetilde u - \widetilde u^{\delta}\|}{\|\widetilde u\|} \leq  \|K\|\|K^{-1}\| \frac{\|f - f^{\delta}\|}{\|f\|}.
 \]</div>
-<p>The quantity <span class="math notranslate nohighlight">\(\kappa(K) = \|K\|\|K^{-1}\|\)</span> is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Condition_number#Matrices"><em>condition number</em></a> of <span class="math notranslate nohighlight">\(K\)</span>. When <span class="math notranslate nohighlight">\(K\)</span> is invertible, we have <span class="math notranslate nohighlight">\(\kappa_2(K) = \|K\|_2\|K^{-1}\|_2 = \sigma_1/\sigma_n\)</span>.</p>
+<p>The quantity <span class="math notranslate nohighlight">\(\kappa(K) = \|K\|\|K^{-1}\|\)</span> is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Condition_number#Matrices"><em>condition number</em></a> of <span class="math notranslate nohighlight">\(K\)</span>.</p>
 </div>
 <div class="section" id="pseudo-inverse">
 <h2><span class="section-number">2.2. </span>Pseudo inverse<a class="headerlink" href="#pseudo-inverse" title="Permalink to this headline">¶</a></h2>
@@ -368,17 +375,17 @@ Ku = f,
 <p>If <span class="math notranslate nohighlight">\(m &gt; n\)</span>, the system is inconsistent when <span class="math notranslate nohighlight">\(f\)</span> is not in the range of <span class="math notranslate nohighlight">\(K\)</span>. If <span class="math notranslate nohighlight">\(K\)</span> has full rank we can express it as</p>
 <div class="math notranslate nohighlight">
 \[
-K = U \Sigma V^*,
+K = U_n \Sigma_n V_n^*,
 \]</div>
-<p>with <span class="math notranslate nohighlight">\(U = (u_1, u_2, \ldots, u_n), V = (v_1, v_2, \ldots, v_n)\)</span> containing the left and right singular vectors and <span class="math notranslate nohighlight">\(\Sigma\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_{n} &gt; 0\)</span>. We can then attempt to solve a modified system of equations</p>
+<p>with <span class="math notranslate nohighlight">\(U_n = (u_1, u_2, \ldots, u_n), V_n = (v_1, v_2, \ldots, v_n)\)</span> containing the first <span class="math notranslate nohighlight">\(n\)</span> left and right singular vectors and <span class="math notranslate nohighlight">\(\Sigma_n\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_{n} &gt; 0\)</span>. We can then attempt to solve a modified system of equations</p>
 <div class="math notranslate nohighlight">
 \[
-K u =  UU^* f,
+K u =  U_nU_n^* f,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(UU^* f\)</span> projects <span class="math notranslate nohighlight">\(f\)</span> onto the range of <span class="math notranslate nohighlight">\(K\)</span>. We find</p>
+<p>where <span class="math notranslate nohighlight">\(U_nU_n^* f\)</span> projects <span class="math notranslate nohighlight">\(f\)</span> onto the range of <span class="math notranslate nohighlight">\(K\)</span>. We find</p>
 <div class="math notranslate nohighlight">
 \[
-\widetilde u = V\Sigma^{-1}U^*f \equiv K^\dagger f,
+\widetilde u = V_n\Sigma_n^{-1}U_n^*f \equiv K^\dagger f,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(K^\dagger\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse">Moore-Penrose pseudo inverse</a> of <span class="math notranslate nohighlight">\(K\)</span>.</p>
 <p>This coincides with the <em>least-squares</em> solution</p>
@@ -413,7 +420,7 @@ K^* K u  = K^* f,
 u_1 \\ u_2 \\
 \end{matrix}
 \right)
-= 
+=
 \left(
 \begin{matrix}
 4 \\ 4 \\
@@ -434,7 +441,7 @@ u_1 \\ u_2 \\
 u_1 \\ u_2 \\
 \end{matrix}
 \right)
-= 
+=
 \left(
 \begin{matrix}
 4 \\ 4 \\
@@ -444,7 +451,7 @@ u_1 \\ u_2 \\
 <p>do have a unique solution, <span class="math notranslate nohighlight">\(u = (2/5,2/5)^T\)</span>.</p>
 </div>
 <hr class="docutils" />
-<p>If, on the other hand <span class="math notranslate nohighlight">\(m &lt; n\)</span> and <span class="math notranslate nohighlight">\(K\)</span> has full rank, a solution exists but is not unique. In this case, we can look for the <em>smallest</em> solution (i.e., one that does not have any contributions in the null-space of <span class="math notranslate nohighlight">\(K\)</span>).  This means we look for a solution that is spanned by the first <span class="math notranslate nohighlight">\(m\)</span> columns of <span class="math notranslate nohighlight">\(V\)</span>, denoted as <span class="math notranslate nohighlight">\(V_m = (v_1, v_2, \ldots v_m)\)</span>:</p>
+<p>If, on the other hand <span class="math notranslate nohighlight">\(m &lt; n\)</span> and <span class="math notranslate nohighlight">\(K\)</span> has full rank, a solution exists but is not unique. In this case, we can look for the <em>smallest</em> solution (i.e., one that does not have any contributions in the null-space of <span class="math notranslate nohighlight">\(K\)</span>).  This means we look for a solution that is spanned by the first <span class="math notranslate nohighlight">\(m\)</span> right singular vectors, denoted by <span class="math notranslate nohighlight">\(V_m = (v_1, v_2, \ldots v_m)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 K V_m z = f,
@@ -454,7 +461,7 @@ K V_m z = f,
 \[
 \widetilde{u} = V_m\Sigma_m^{-1}U_m^*f \equiv  K^{\dagger}f,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(U_m = (u_1, u_2, \ldots u_m)\)</span>, <span class="math notranslate nohighlight">\(V_m = (v_1, v_2, \ldots v_m)\)</span> and <span class="math notranslate nohighlight">\(\Sigma_m\)</span> contains the non-zero singular values <span class="math notranslate nohighlight">\(\sigma_1 \geq \sigma_2, \ldots, \sigma_m &gt; 0\)</span>. Showing that this indeed yields the solution with the smallest norm is the subject of one of the assignments. The corresponding variational problem is</p>
+<p>where <span class="math notranslate nohighlight">\(U_m = (u_1, u_2, \ldots u_m)\)</span>, and <span class="math notranslate nohighlight">\(\Sigma_m\)</span> contains the non-zero singular values <span class="math notranslate nohighlight">\(\sigma_1 \geq \sigma_2, \ldots, \sigma_m &gt; 0\)</span>. Showing that this indeed yields the solution with the smallest norm is the subject of one of the assignments. The corresponding variational problem is</p>
 <div class="math notranslate nohighlight">
 \[
 \min_{u} \|u\|_2^2 \quad \text{such that} \quad Ku = f.
@@ -474,7 +481,7 @@ K V_m z = f,
 u_1 \\ u_2
 \end{matrix}
 \right)
-= 
+=
 \left(
 \begin{matrix}
 1 \\
@@ -498,77 +505,94 @@ K^{\dagger} = V_k\Sigma_k^{-1}U_k^{*},
 <p>Note that the pseudo inverse allows us to define a unique solution, it is not necessarily stable as <span class="math notranslate nohighlight">\(\|K\|_2\|K^{\dagger}\|_2 = \sigma_1/\sigma_k\)</span> may still be large. To study this issue in more detail, express the solution as</p>
 <div class="math notranslate nohighlight">
 \[
-\widetilde{u} = V_k\Sigma_k^{-1}U_k^{*}f = \sum_{i=1}^k \frac{\langle u_i, f\rangle}{\sigma_i}v_i.
+\widetilde{u} = V_k\Sigma_k^{-1}U_k^{*}f = \sum_{i=1}^k \frac{u_i^*f}{\sigma_i}v_i.
 \]</div>
-<p>We note the component in <span class="math notranslate nohighlight">\(f\)</span> corresponding to <span class="math notranslate nohighlight">\(v_i\)</span> is amplified by <span class="math notranslate nohighlight">\(\sigma_i^{-1}\)</span>. Thus if <span class="math notranslate nohighlight">\(f\)</span> has (noise) components that correlate with <span class="math notranslate nohighlight">\(v_i\)</span>’s corresponding to very small singular values, these noise components get amplified. Generally, we do not expect problems if <span class="math notranslate nohighlight">\(|\langle u_i, f\rangle|\)</span> decays faster with <span class="math notranslate nohighlight">\(i\)</span> than the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span>. This is called the <em>discrete Picard condition</em> <a class="bibtex reference internal" href="what_is.html#hansen1990discrete" id="id1">[1]</a>.</p>
+<p>We note the component in <span class="math notranslate nohighlight">\(f\)</span> corresponding to <span class="math notranslate nohighlight">\(v_i\)</span> is amplified by <span class="math notranslate nohighlight">\(\sigma_i^{-1}\)</span>. Thus if <span class="math notranslate nohighlight">\(f\)</span> has (noise) components that correlate with <span class="math notranslate nohighlight">\(v_i\)</span>’s corresponding to very small singular values, these noise components get amplified. Generally, we do not expect problems if <span class="math notranslate nohighlight">\(|u_i^* f|\)</span> decays faster with <span class="math notranslate nohighlight">\(i\)</span> than the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span>. This is called the <em>discrete Picard condition</em> <a class="bibtex reference internal" href="#hansen1990discrete" id="id1">[4]</a>.</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Discrete Picard Condition</em></p>
-<p>The vector <span class="math notranslate nohighlight">\(f \in \mathbb{R}^m\)</span> satisfies the discrete Picard condition for the problem <span class="math notranslate nohighlight">\(Ku=f\)</span> if the coefficients <span class="math notranslate nohighlight">\(|\langle u_i, f\rangle|\)</span> decay faster than the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span> of <span class="math notranslate nohighlight">\(K\)</span>, where <span class="math notranslate nohighlight">\(u_i\)</span> denotes the left singular vectors of <span class="math notranslate nohighlight">\(K\)</span>.</p>
+<p>The vector <span class="math notranslate nohighlight">\(f \in \mathbb{R}^m\)</span> satisfies the discrete Picard condition for the problem <span class="math notranslate nohighlight">\(Ku=f\)</span> if the coefficients <span class="math notranslate nohighlight">\(|u_i^* f|\)</span> decay faster than the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span> of <span class="math notranslate nohighlight">\(K\)</span>, where <span class="math notranslate nohighlight">\(u_i\)</span> denotes the left singular vectors of <span class="math notranslate nohighlight">\(K\)</span>.</p>
 </div>
-<p>An example is shown below.</p>
-<div class="cell tag_hide-input docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
 
 <span class="c1"># define forward operator</span>
 <span class="k">def</span> <span class="nf">getK</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">K</span> <span class="o">=</span> <span class="n">h</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">xx</span> <span class="o">-</span> <span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+
     <span class="k">return</span> <span class="n">K</span><span class="p">,</span><span class="n">x</span>
 
 <span class="c1"># parameters</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-2</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">1e-2</span>
 <span class="n">K</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">getK</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
 <span class="c1"># define ground truth and compute data</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">K</span><span class="nd">@u</span>
 
 <span class="c1"># add noise</span>
 <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="n">f_delta</span> <span class="o">=</span> <span class="n">f</span> <span class="o">+</span> <span class="n">delta</span><span class="o">*</span><span class="n">noise</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="n">f</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">noise</span>
 
 <span class="c1"># SVD</span>
-<span class="n">U</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">Vh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Vh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># apply pseudo inverse</span>
-<span class="n">uhat</span> <span class="o">=</span> <span class="n">Vh</span><span class="o">.</span><span class="n">T</span><span class="nd">@np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="nd">@U</span><span class="o">.</span><span class="n">T</span><span class="nd">@f</span>
+<span class="n">uhat</span> <span class="o">=</span> <span class="n">Vh</span><span class="o">.</span><span class="n">T</span><span class="nd">@np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">s</span><span class="p">)</span><span class="nd">@U</span><span class="o">.</span><span class="n">T</span><span class="nd">@f_delta</span>
 
 <span class="c1"># plot</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\sigma_i$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="nd">@f</span><span class="p">),</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$|\langle u_i, f\rangle|$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="nd">@f_delta</span><span class="p">),</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$|\langle u_i, f^{\delta}\rangle|$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$i$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\sigma_i$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="nd">@f</span><span class="p">),</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$|u_i^* f|$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="nd">@f_delta</span><span class="p">),</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$|u_i^* f^{\delta}|$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="nd">@f</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">sigma</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$i$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">1e-6</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;ground truth&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">uhat</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;pseudo inverse solution&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="s2">&quot;Left: Singular values and coefficients for clean and noisy data.</span><span class="se">\n</span><span class="s2">It shows that the coefficients corresponding to the noisy data</span><span class="se">\n</span><span class="s2">do not satisfy the discrete Picard condition.</span><span class="se">\n</span><span class="s2">Right: ground truth and pseudo-inverse solution.&quot;</span><span class="p">,{</span><span class="s2">&quot;fontsize&quot;</span><span class="p">:</span><span class="mi">12</span><span class="p">})</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;picard&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/discrete_ip_regularization_1_1.png" src="_images/discrete_ip_regularization_1_1.png" />
+</div>
+</div>
+<div class="admonition-example-an-ill-posed-problem admonition">
+<p class="admonition-title">Example <em>An ill-posed problem</em></p>
+<p>As forward operator we take a diagonal matrix with entries</p>
+<div class="math notranslate nohighlight">
+\[(K)_{ii} = \exp(-5 \cdot i/(n-1))\quad \text{for}\quad i = 0, 2, \ldots, n-1.\]</div>
+<p>We generate noisy data <span class="math notranslate nohighlight">\(f^\delta = K \overline{u} + e\)</span> with <span class="math notranslate nohighlight">\(\overline{u}_i = \exp(-10 \cdot i/(n-1))\)</span> and <span class="math notranslate nohighlight">\(e_i\)</span> normally distributed with mean zero and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>. We then find that</p>
+<div class="math notranslate nohighlight">
+\[|u_i^*f| = |f_i| = \exp(-15 \cdot i/(n-1)),\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[|u_i^*f^\delta| = |\exp(-15 \cdot i/(n-1)) + e_i| \leq |u_i^*f| + |e_i|.\]</div>
+<p>Since <span class="math notranslate nohighlight">\(e_i\)</span> is normally distributed, its absolute value follows a <a class="reference external" href="https://en.wikipedia.org/wiki/Folded_normal_distribution">folded normal distribution</a>. This allows us to compute the expected upper bound</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}(|e_i|) = \sqrt{\frac{2}{\pi}}\sigma.\]</div>
+<p>We conclude that <span class="math notranslate nohighlight">\(|u_i^*f^\delta|\)</span> does not decay exponentially as the singular values do and hence do not satisfy the discrete Picard condition.</p>
+<div class="figure align-default" id="picard" style="width: 600px">
+<div class="cell_output docutils container">
 <img alt="_images/discrete_ip_regularization_1_0.png" src="_images/discrete_ip_regularization_1_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 2.1 </span><span class="caption-text">An example of the singular values and the coefficients <span class="math notranslate nohighlight">\(|u_i^*f|\)</span> and <span class="math notranslate nohighlight">\(|u_i^*f^\delta|\)</span> for <span class="math notranslate nohighlight">\(n = 100\)</span> and <span class="math notranslate nohighlight">\(\sigma = 10^{-2}\)</span>. We see that <span class="math notranslate nohighlight">\(f\)</span> does satisfy the discrete Picard condition while <span class="math notranslate nohighlight">\(f^\delta\)</span> does not.</span><a class="headerlink" href="#picard" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
 <div class="section" id="regularisation">
 <h2><span class="section-number">2.3. </span>Regularisation<a class="headerlink" href="#regularisation" title="Permalink to this headline">¶</a></h2>
-<p>To stabilize the problem we can modify the pseudo inverse in several ways to avoid dividing by small singular values. One option is to simply ignore small singular values and choose a cut-off value and define the solution as</p>
+<p>To stabilise the problem we can modify the pseudo inverse in several ways to avoid dividing by small singular values. One option is to simply ignore small singular values and choose a cut-off value and define the solution as</p>
 <div class="math notranslate nohighlight" id="equation-regk">
 <span class="eqno">(2.1)<a class="headerlink" href="#equation-regk" title="Permalink to this equation">¶</a></span>\[\widetilde u_{\alpha} = V_{k}r_{\alpha}(\Sigma_{k}){U_{k}}^*f,\]</div>
-<p>where <span class="math notranslate nohighlight">\(r\)</span> computes the regularized inverse:</p>
+<p>where <span class="math notranslate nohighlight">\(r_{\alpha}\)</span> is applied component-wise to the diagonal of the matrix <span class="math notranslate nohighlight">\(\Sigma_k\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 r_{\alpha}(\sigma) =
@@ -585,9 +609,9 @@ r_{\alpha}(\sigma) =
 <p>The TSVD-regularized solution to the equation <span class="math notranslate nohighlight">\(Ku = f\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
-\widetilde u_{\alpha} = \sum_{i=1}^{k_{\alpha}} \frac{\langle u_i, f\rangle}{\sigma_i}v_i,
+\widetilde u_{\alpha} = \sum_{i=1}^{k_{\alpha}} \frac{u_i^*f}{\sigma_i}v_i,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\{(u_i,v_i,\sigma_i)\}_{i=1}^n\)</span> denotes the singular system of <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(k_{\alpha}\)</span> is chosen so that <span class="math notranslate nohighlight">\(\sigma_i \geq \alpha\)</span> for <span class="math notranslate nohighlight">\(i \leq k_{\alpha}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\{(u_i,v_i,\sigma_i)\}_{i=1}^k\)</span> denotes the singular system of <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(k_{\alpha} \leq k\)</span> is chosen so that <span class="math notranslate nohighlight">\(\sigma_i \geq \alpha\)</span> for <span class="math notranslate nohighlight">\(i \leq k_{\alpha}\)</span>.</p>
 </div>
 <hr class="docutils" />
 <p>Another option to avoid dividing by small singular values is to add small positive constant to shift the singular values away from zero. This gives rise to Tikhonov regularisation.</p>
@@ -596,10 +620,10 @@ r_{\alpha}(\sigma) =
 <p>The Tikhonov-regularised solution to the equation <span class="math notranslate nohighlight">\(Ku = f\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
-\widetilde u_{\alpha} = \sum_{i=1}^{n} \sigma_i \frac{\langle u_i, f\rangle}{\sigma_i^2 + \alpha}v_i,
+\widetilde u_{\alpha} = \sum_{i=1}^{k} \frac{\sigma_i (u_i^*f)}{\sigma_i^2 + \alpha}v_i,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\{(u_i,v_i,\sigma_i)\}_{i=1}^n\)</span> is the singular system of <span class="math notranslate nohighlight">\(K\)</span>. This corresponds to setting <span class="math notranslate nohighlight">\(r_{\alpha}(s) = s/(s^2 + \alpha)\)</span> in <a class="reference internal" href="#equation-regk">(2.1)</a>.</p>
-<p>Unlike the TSVD, Tikhonov regularization has a corresponding variational problem:</p>
+<p>where <span class="math notranslate nohighlight">\(\{(u_i,v_i,\sigma_i)\}_{i=1}^k\)</span> is the singular system of <span class="math notranslate nohighlight">\(K\)</span>. This corresponds to setting <span class="math notranslate nohighlight">\(r_{\alpha}(s) = s/(s^2 + \alpha)\)</span> in <a class="reference internal" href="#equation-regk">(2.1)</a>.</p>
+<p>Unlike the TSVD, Tikhonov regularisation has a corresponding variational problem:</p>
 <div class="math notranslate nohighlight">
 \[
 \min_u \|Ku - f\|_2^2 + \alpha \|u\|_2^2,
@@ -612,29 +636,114 @@ r_{\alpha}(\sigma) =
 <p>Indeed, it is easily verified that <span class="math notranslate nohighlight">\(K^* K + \alpha I\)</span> has full rank whenever <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>.</p>
 </div>
 <hr class="docutils" />
-<p>Of course, one may think of other types of regularization by defining an appropriate function <span class="math notranslate nohighlight">\(r_{\alpha}\)</span>. Intiutively, we would like</p>
+<p>Of course, one may think of other types of regularisation by defining an appropriate function <span class="math notranslate nohighlight">\(r_{\alpha}\)</span>. Intuitively, we would like</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(r_{\alpha}(s) = s^{-1}\)</span> as <span class="math notranslate nohighlight">\(\alpha \rightarrow 0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(r_{\alpha}(0) &lt; \infty\)</span> for any <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(r_{\alpha}(s) \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(\alpha \rightarrow \infty\)</span></p></li>
 </ul>
-<p>One example is <em>Lavrentiev</em> regularization, with:</p>
+<p>One example is <em>Lavrentiev</em> regularisation, with:</p>
 <div class="math notranslate nohighlight">
 \[r_{\alpha}(s) = (s + \alpha)^{-1}.\]</div>
-<p>Conditions on regularization schemes and methods for choosing <span class="math notranslate nohighlight">\(\alpha\)</span> will be discussed in more detail in the chapter on <a class="reference internal" href="ip_function_spaces.html"><span class="doc std std-doc">Inverse Problems in Function Spaces</span></a>.</p>
+<p>Conditions on regularisation schemes and methods for choosing <span class="math notranslate nohighlight">\(\alpha\)</span> will be discussed in more detail in the chapter on <a class="reference internal" href="ip_function_spaces.html"><span class="doc std std-doc">Inverse Problems in Function Spaces</span></a>.</p>
 <hr class="docutils" />
-<p>In general, we can think of regularization for linear problems as defining a modified pseudo-inverse of <span class="math notranslate nohighlight">\(K\)</span>:</p>
+<p>In general, we can think of regularisation for linear problems as defining a modified pseudo-inverse of <span class="math notranslate nohighlight">\(K\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[K_{\alpha}^{\dagger} = V_{k}r_{\alpha}(\Sigma_{k})U_{k}^{*}.\]</div>
-<p>Stability of regularized solutions defined by <a class="reference internal" href="#equation-regk">(2.1)</a> then follows by considering the largest singular value of <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span>, which can be made arbitrarily small by increasing <span class="math notranslate nohighlight">\(\alpha\)</span>. On the other hand, increasing <span class="math notranslate nohighlight">\(\alpha\)</span> will also introduce a bias in the solution. This trade-off is called the <em>bias-variance trade-off</em>:</p>
+<p>Stability of regularised solutions defined by <a class="reference internal" href="#equation-regk">(2.1)</a> then follows by considering the largest singular value of <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span>, which can be made arbitrarily small by increasing <span class="math notranslate nohighlight">\(\alpha\)</span>. On the other hand, increasing <span class="math notranslate nohighlight">\(\alpha\)</span> will also introduce a bias in the solution. This trade-off is called the <em>bias-variance trade-off</em>:</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Bias-variance trade-off</em></p>
-<p>Here, we compare the regularized solution from noisy data <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha, \delta} = K_{\alpha}^\dagger f^{\delta}\)</span> and the ideal solution <span class="math notranslate nohighlight">\(\widetilde{u} = K^{\dagger}f\)</span>:</p>
+<p>Here, we compare the regularised solution from noisy data <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha, \delta} = K_{\alpha}^\dagger f^{\delta}\)</span> and the ideal solution <span class="math notranslate nohighlight">\(\widetilde{u} = K^{\dagger}f\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \|\widetilde u - \widetilde u_{\alpha, \delta}\| \leq \underbrace{\|(K^\dagger - K_{\alpha}^\dagger)f\|}_{\text{bias}} + \underbrace{\|K_{\alpha}^\dagger(f - f^{\delta})\|}_{\text{variance}}.
 \]</div>
-<p>If <span class="math notranslate nohighlight">\(\alpha \downarrow 0\)</span>, the bias goes to zero, but possibly leads to a large variance. Large <span class="math notranslate nohighlight">\(\alpha\)</span> on the other hand reduces the variance but leads to a large bias. Ideally, the regularization parameter is chosen in such a way that the small singular values are stabilized and the large ones are hardly effected.</p>
+<p>If <span class="math notranslate nohighlight">\(\alpha \downarrow 0\)</span>, the bias goes to zero, but possibly leads to a large variance. Large <span class="math notranslate nohighlight">\(\alpha\)</span> on the other hand reduces the variance but leads to a large bias. Ideally, the regularisation parameter is chosen in such a way that the small singular values are stabilised and the large ones are hardly effected.</p>
+<p>We can make a similar decomposition of the error between the ground truth <span class="math notranslate nohighlight">\(\overline{u}\)</span> and the regularised solution</p>
+<div class="math notranslate nohighlight">
+\[\|\overline{u} - \widetilde{u}_{\alpha,\delta}\| \leq \|\overline{u} - K_{\alpha}^\dagger f\| + \|K_{\alpha}^\dagger(f - f^\delta)\|.\]</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+
+<span class="c1"># define forward operator</span>
+<span class="k">def</span> <span class="nf">getK</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">K</span><span class="p">,</span><span class="n">x</span>
+
+<span class="c1"># parameters</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">1e-2</span>
+<span class="n">K</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">getK</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># define ground truth and compute data</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">K</span><span class="nd">@u</span>
+
+<span class="c1"># add noise</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="n">f</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">noise</span>
+
+<span class="c1"># SVD</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Vh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># error, bias and variance for TSVD</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+  <span class="n">uk</span> <span class="o">=</span> <span class="n">Vh</span><span class="p">[:</span><span class="n">k</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="nd">@np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">s</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span><span class="nd">@U</span><span class="p">[:,:</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="nd">@f</span>
+  <span class="n">uk_delta</span> <span class="o">=</span> <span class="n">Vh</span><span class="p">[:</span><span class="n">k</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="nd">@np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">s</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span><span class="nd">@U</span><span class="p">[:,:</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="nd">@f_delta</span>
+
+  <span class="n">error</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">uk_delta</span><span class="p">)</span>
+  <span class="n">bias</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">uk</span><span class="p">)</span>
+  <span class="n">variance</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">uk</span> <span class="o">-</span> <span class="n">uk_delta</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">bias</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;bias&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">variance</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;variance&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">k</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;bias_variance&quot;</span><span class="p">,</span><span class="n">fig</span><span class="p">,</span><span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/discrete_ip_regularization_3_1.png" src="_images/discrete_ip_regularization_3_1.png" />
+</div>
+</div>
+<div class="admonition-example-an-ill-posed-problem-cont-d admonition">
+<p class="admonition-title">Example <em>An ill-posed problem, cont’d</em></p>
+<p>Using the same forward operator and ground truth as the previous example and use TSVD-regularisation to regularise the problem. Using the truncation rank, <span class="math notranslate nohighlight">\(k\)</span>, as the regularisation parameter we find that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(K_{k}^\dagger f^\delta \right)_i = \begin{cases} \overline{u}_i + \exp(5\cdot i /(n-1))e_i &amp; i\leq k \\ 0 &amp; i &gt; k\end{cases}.\end{split}\]</div>
+<p>Thus, the error becomes</p>
+<div class="math notranslate nohighlight">
+\[\|\overline{u} - K_k^\dagger f^{\delta}\|_2^2 = \sum_{i=0}^k e^{10i /(n-1)}e_i^2 + \sum_{i=k+1}^{n-1} e^{-20i /(n-1)},
+\]</div>
+<p>in which we recognise the bias and variance terms. In expectation, the upper bound for the error is then given by <span class="math notranslate nohighlight">\((k+1)e^{5k/(n-1)}\sigma + (n-k-1)e^{-10(k+1)/(n-1)}\)</span>. While not very tight, it does suggest that there is an optimal <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<div class="figure align-default" id="bias-variance" style="width: 600px">
+<div class="cell_output docutils container">
+<img alt="_images/discrete_ip_regularization_3_0.png" src="_images/discrete_ip_regularization_3_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 2.2 </span><span class="caption-text">An example of the error <span class="math notranslate nohighlight">\(\|\overline{u} - K_{\alpha}^\dagger f^\delta\|_2\)</span> and corresponding bias and variance for <span class="math notranslate nohighlight">\(n = 100\)</span> and <span class="math notranslate nohighlight">\(\sigma = 10^{-2}\)</span>. As predicted, the basis decreases with <span class="math notranslate nohighlight">\(k\)</span> while the variance increases. The optimal <span class="math notranslate nohighlight">\(k\)</span> for this noise level lies at <span class="math notranslate nohighlight">\(k \approx 30\)</span>. Look at <a class="reference internal" href="#picard"><span class="std std-numref">Fig. 2.1</span></a>, do you see why this is the optimal <span class="math notranslate nohighlight">\(k\)</span>?</span><a class="headerlink" href="#bias-variance" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 </div>
 <div class="section" id="exercises">
@@ -646,6 +755,14 @@ r_{\alpha}(\sigma) =
 <li><p><span class="math notranslate nohighlight">\(KK^\dagger\)</span> is an orthogonal projection on to the range of <span class="math notranslate nohighlight">\(K\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(I - K^\dagger K\)</span> is an orthogonal projection to to the null-space of <span class="math notranslate nohighlight">\(K\)</span></p></li>
 </ol>
+<div class="hint dropdown admonition">
+<p class="admonition-title">Answer</p>
+<ol class="simple">
+<li><p>Express the pseudo-inverse in terms of the SVD as <span class="math notranslate nohighlight">\(K^\dagger = V_k\Sigma_k^{-1}U_k^*\)</span> and find <span class="math notranslate nohighlight">\(KK^\dagger = U_kU_k^*\)</span>. Because <span class="math notranslate nohighlight">\(U_k = (u_1, u_2, \ldots, u_k)\)</span> is an orthonormal basis for the range of <span class="math notranslate nohighlight">\(K\)</span> we find that <span class="math notranslate nohighlight">\(KK^\dagger\)</span> is an orthogonal project on to the range of <span class="math notranslate nohighlight">\(K\)</span>.</p></li>
+<li><p>Following a similar argument we find that <span class="math notranslate nohighlight">\(K^\dagger K = V_kV_k^*\)</span> where <span class="math notranslate nohighlight">\(V_k = (v_1, v_2, \ldots, v_k)\)</span> spans the orthogonal complement of the null-space of <span class="math notranslate nohighlight">\(K\)</span> (recall that the null-space of <span class="math notranslate nohighlight">\(K\)</span> is spanned by <span class="math notranslate nohighlight">\((v_{k+1},
+\ldots, v_{\min_{m,n}})\)</span>).</p></li>
+</ol>
+</div>
 </div>
 <div class="section" id="least-squares-and-minimum-norm-solutions">
 <h3><span class="section-number">2.4.2. </span>Least-squares and minimum-norm solutions:<a class="headerlink" href="#least-squares-and-minimum-norm-solutions" title="Permalink to this headline">¶</a></h3>
@@ -653,8 +770,16 @@ r_{\alpha}(\sigma) =
 <ol class="simple">
 <li><p>For <span class="math notranslate nohighlight">\(m &gt; n\)</span> and rank(<span class="math notranslate nohighlight">\(K\)</span>) = <span class="math notranslate nohighlight">\(n\)</span>, show that the pseudo-inverse gives the solution <span class="math notranslate nohighlight">\(u = K^\dagger f\)</span> with the smallest residual <span class="math notranslate nohighlight">\(\|Ku - f\|_2\)</span></p></li>
 <li><p>For <span class="math notranslate nohighlight">\(m &lt; n\)</span> and rank(<span class="math notranslate nohighlight">\(K\)</span>) = <span class="math notranslate nohighlight">\(m\)</span>, show that the pseudo-inverse gives the solution <span class="math notranslate nohighlight">\(u = K^\dagger f\)</span> with the smallest norm <span class="math notranslate nohighlight">\(\|u\|_2\)</span></p></li>
-<li><p>For <span class="math notranslate nohighlight">\(m &gt; n\)</span> and rank(<span class="math notranslate nohighlight">\(K\)</span>) = <span class="math notranslate nohighlight">\(r &lt; n\)</span>, show that the pseudo-inverse gives the solution that minimizes both <span class="math notranslate nohighlight">\(\|Ku - f\|_2\)</span> and <span class="math notranslate nohighlight">\(\|u\|_2\)</span>.</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(m &gt; n\)</span> and rank(<span class="math notranslate nohighlight">\(K\)</span>) = <span class="math notranslate nohighlight">\(r &lt; n\)</span>, show that the pseudo-inverse gives the solution that minimises both <span class="math notranslate nohighlight">\(\|Ku - f\|_2\)</span> and <span class="math notranslate nohighlight">\(\|u\|_2\)</span>.</p></li>
 </ol>
+<div class="hint dropdown admonition">
+<p class="admonition-title">Answer</p>
+<ol class="simple">
+<li><p>We can construct the solution with the smallest residual by formulating the corresponding normal equations <span class="math notranslate nohighlight">\(K^*Ku = K^*f\)</span>. Since rank(<span class="math notranslate nohighlight">\(K\)</span>) = <span class="math notranslate nohighlight">\(n\)</span>, these have a unique solution. Expressing <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(K^\dagger\)</span> in terms of the SVD of <span class="math notranslate nohighlight">\(K\)</span> we find that <span class="math notranslate nohighlight">\(K^\dagger = (K^*K)^{-1}K^*\)</span> and hence that pseudo-inverse yields the solution to the normal equations.</p></li>
+<li><p>Here, the system solutions of the form <span class="math notranslate nohighlight">\(v = u + z\)</span> with <span class="math notranslate nohighlight">\(u = K^\dagger f\)</span> and <span class="math notranslate nohighlight">\(Kz = 0\)</span>. We find that <span class="math notranslate nohighlight">\(\|v\|_2^2 = \|u\|_2^2 + 2 z^* K^{\dagger} f + \|z\|_2^2\)</span>. Expressing in terms of the SVD we see that the middle term is given by <span class="math notranslate nohighlight">\(z^*V_k\Sigma_k^{-1}U_k^*f\)</span>. Since <span class="math notranslate nohighlight">\(z\)</span> lies in the null-space of <span class="math notranslate nohighlight">\(K\)</span> we <span class="math notranslate nohighlight">\(V_k^*z = 0\)</span> so <span class="math notranslate nohighlight">\(\|v\|_2^2= \|u\|_2^2 + \|z\|_2^2 \geq \|u\|_2^2\)</span>. We conclude that <span class="math notranslate nohighlight">\(\|u\|_2^2\)</span> is indeed the solution with the smallest norm.</p></li>
+<li><p>We can combine the results of the former to to show that in this case <span class="math notranslate nohighlight">\(u = K^\dagger f\)</span> is <em>a</em> solution to the normal equations and that it is the one with the smallest norm.</p></li>
+</ol>
+</div>
 </div>
 <div class="section" id="tikhonov-regularisation">
 <h3><span class="section-number">2.4.3. </span>Tikhonov regularisation<a class="headerlink" href="#tikhonov-regularisation" title="Permalink to this headline">¶</a></h3>
@@ -663,18 +788,24 @@ r_{\alpha}(\sigma) =
 \[\min_{u} \|Ku - f\|_2^2 + \alpha \|u\|_2^2\]</div>
 <p>is given in terms of the SVD of <span class="math notranslate nohighlight">\(K \in \mathbb{R}^{m\times n}\)</span> as</p>
 <div class="math notranslate nohighlight">
-\[\widetilde{u} = \sum_{i=1}^{\min\{m,n\}} \frac{\sigma_i \langle u_i,f\rangle}{\sigma_i^2 + \alpha} v_i.\]</div>
+\[\widetilde{u} = \sum_{i=1}^{k} \frac{\sigma_i (u_i^*f)}{\sigma_i^2 + \alpha} v_i,\]</div>
+<p>where <span class="math notranslate nohighlight">\(k = \text{rank}(K)\)</span>.</p>
+<div class="hint dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>First, write down the corresponding normal equations <span class="math notranslate nohighlight">\(K^*Ku + \alpha u = K^*f\)</span>, so <span class="math notranslate nohighlight">\(u = (K^*K + \alpha I)^{-1}K^*f\)</span>. Use the <em>full</em> SVD of <span class="math notranslate nohighlight">\(K = U\Sigma V^*\)</span> with <span class="math notranslate nohighlight">\(U\in\mathbb{R}^{m\times m}\)</span>, <span class="math notranslate nohighlight">\(V\in\mathbb{R}^{n\times n}\)</span> and <span class="math notranslate nohighlight">\(\Sigma \in \mathbb{R}^{m\times n}\)</span> whose first <span class="math notranslate nohighlight">\(k\)</span> diagonal entries contain the singular values. We find <span class="math notranslate nohighlight">\(u = (V^*\Sigma^*\Sigma V + \alpha I)^{-1}V\Sigma^*U^*\)</span>. Use that <span class="math notranslate nohighlight">\(V^*V = VV^* = I\)</span> and <span class="math notranslate nohighlight">\(\Sigma_n^2 = \Sigma^*\Sigma\)</span> an <span class="math notranslate nohighlight">\(n \times n\)</span> matrix with <span class="math notranslate nohighlight">\(k\)</span> non-zero diagonal elements. Then the normal equations become <span class="math notranslate nohighlight">\(u = V(\Sigma_n^2 + \alpha I)^{-1}\Sigma^*U^*f\)</span>. We realise that <span class="math notranslate nohighlight">\(\Sigma^*U^*f\)</span> will only contain contributions from the <span class="math notranslate nohighlight">\(k\)</span> non-zero singular values: <span class="math notranslate nohighlight">\(\Sigma^*U^*f = (\sigma_1 u_1^*f,\sigma_2 u_2^*f, \ldots, \sigma_k u_k^*f, 0, 0, \ldots, 0 )\)</span>. Thus, we get the desired result.</p>
+</div>
 </div>
 <div class="section" id="gravity-surveying">
 <h3><span class="section-number">2.4.4. </span>Gravity surveying<a class="headerlink" href="#gravity-surveying" title="Permalink to this headline">¶</a></h3>
-<p>We can estimate the density distribution in the subsurface by measuing the local gravitational pull. The density profile <span class="math notranslate nohighlight">\(u(x)\)</span> is related to such measurements by a linear operator</p>
+<p>We can estimate the density distribution in the subsurface by measuring the local gravitational pull. The density profile <span class="math notranslate nohighlight">\(u(x)\)</span> is related to such measurements by a linear operator</p>
 <div class="math notranslate nohighlight">
 \[Ku(x) = \int_0^1 \frac{u(y)}{(1 + (x-y)^2)^{3/2}} \mathrm{d}y.\]</div>
-<p>Upon discretization with stepsize <span class="math notranslate nohighlight">\(h = 1/n\)</span>, the inverse problem can be cast as a system of <span class="math notranslate nohighlight">\(n\)</span> equations in <span class="math notranslate nohighlight">\(n\)</span> unknowns <span class="math notranslate nohighlight">\(Ku = f\)</span>.</p>
+<p>Upon discretisation with stepsize <span class="math notranslate nohighlight">\(h = 1/n\)</span>, the inverse problem can be cast as a system of <span class="math notranslate nohighlight">\(n\)</span> equations in <span class="math notranslate nohighlight">\(n\)</span> unknowns <span class="math notranslate nohighlight">\(Ku = f\)</span>.</p>
+<p>You can use the code provided below to generate the matrix and noisy data for <span class="math notranslate nohighlight">\(u(x) = ..\)</span></p>
 <ol class="simple">
-<li><p>Use the code provided below to generate the matrix and compute its SVD (use <code class="docutils literal notranslate"><span class="pre">np.linalg.svd</span></code>)</p></li>
-<li><p>Plot the coefficients <span class="math notranslate nohighlight">\(\langle u_i, f\rangle\)</span> and the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span> to check the discrete Picard condition. What do you notice ?</p></li>
-<li><p>Solve the inverse problem for noisy data using the (regularized) pseudo-inverse; compute the optimal <span class="math notranslate nohighlight">\(\alpha\)</span> by computing the bias and variance components of the error.</p></li>
+<li><p>Plot the coefficients <span class="math notranslate nohighlight">\(u_i^*f\)</span> and the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span> to check the discrete Picard condition. What do you notice ?</p></li>
+<li><p>Solve the inverse problem for noisy data using the (regularised) pseudo-inverse; compute the optimal <span class="math notranslate nohighlight">\(\alpha\)</span> by computing the bias and variance components of the error. Is this a practically feasible way to compute the optimal <span class="math notranslate nohighlight">\(\alpha\)</span>?</p></li>
+<li><p>Compare the solutions for <span class="math notranslate nohighlight">\(\alpha &lt; \alpha_{\text{opt}}\)</span>, <span class="math notranslate nohighlight">\(\alpha_{\text{opt}}\)</span> and <span class="math notranslate nohighlight">\(\alpha &gt; \alpha_{\text{opt}}\)</span> to the ground truth. What do you notice?</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -683,7 +814,7 @@ r_{\alpha}(\sigma) =
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
     <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">h</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">xx</span> <span class="o">-</span> <span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">K</span><span class="p">,</span><span class="n">x</span>
 </pre></div>
 </div>
@@ -726,12 +857,104 @@ r_{\alpha}(\sigma) =
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/discrete_ip_regularization_8_0.png" src="_images/discrete_ip_regularization_8_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># define forward operator</span>
+<span class="k">def</span> <span class="nf">getK</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+  <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+  <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">K</span> <span class="o">=</span> <span class="n">h</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">xx</span> <span class="o">-</span> <span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">K</span><span class="p">,</span><span class="n">x</span>
+
+<span class="c1"># parameters</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">1e-2</span>
+<span class="n">K</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">getK</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># define ground truth and compute data</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">K</span><span class="nd">@u</span>
+
+<span class="c1"># add noise</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="n">f</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">noise</span>
+
+<span class="c1"># SVD</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Vh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># regularised pseudo inverse using Tikhonov</span>
+<span class="n">R_alpha</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">alpha</span> <span class="p">:</span> <span class="n">Vh</span><span class="o">.</span><span class="n">T</span><span class="nd">@np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="o">/</span><span class="p">(</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">))</span><span class="nd">@U</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># error, bias and variance for Tikhonov</span>
+<span class="n">na</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span><span class="mf">2e-5</span><span class="p">,</span><span class="n">na</span><span class="p">)</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">na</span><span class="p">)</span>
+<span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">na</span><span class="p">)</span>
+<span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">na</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">na</span><span class="p">):</span>
+    <span class="n">error</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">R_alpha</span><span class="p">(</span><span class="n">alpha</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="nd">@f_delta</span><span class="p">)</span>
+    <span class="n">bias</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">R_alpha</span><span class="p">(</span><span class="n">alpha</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="nd">@f</span><span class="p">)</span>
+    <span class="n">variance</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">R_alpha</span><span class="p">(</span><span class="n">alpha</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="o">@</span><span class="p">(</span><span class="n">f</span><span class="o">-</span><span class="n">f_delta</span><span class="p">))</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\sigma_i$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="nd">@f</span><span class="p">),</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$|u_i^* f|$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="nd">@f_delta</span><span class="p">),</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$|u_i^* f^{\delta}|$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$i$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;magnitude&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">1e-16</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">error</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;total error&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">bias</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;bias&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">variance</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;variance&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\alpha$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;ground truth&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">R_alpha</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">)</span><span class="nd">@f_delta</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha = 10^{-6}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">R_alpha</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">)</span><span class="nd">@f_delta</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha = 10^{-5}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">R_alpha</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">)</span><span class="nd">@f_delta</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha = 10^{-4}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
 <img alt="_images/discrete_ip_regularization_9_0.png" src="_images/discrete_ip_regularization_9_0.png" />
 </div>
 </div>
+<div class="hint dropdown admonition">
+<p class="admonition-title">Answer</p>
+<ol class="simple">
+<li><p>In the first figure we see that the Fourier coefficients of the noisy data definitey do not obey the discrete Picard condition. The Fourier coefficients of <span class="math notranslate nohighlight">\(f\)</span> may even be problematic as they are on the same level as the singular values for <span class="math notranslate nohighlight">\(k &gt; 20\)</span>. This has to do with the numerical rank of <span class="math notranslate nohighlight">\(K\)</span>, which is roughly 20.</p></li>
+<li><p>In the second figure we see the bias and variance parts of the error, the optimal <span class="math notranslate nohighlight">\(\alpha\)</span> (where they are equal) is approximately <span class="math notranslate nohighlight">\(10^{-5}\)</span>. Note that the total error is pretty flat here, so we could argue for a slightly large <span class="math notranslate nohighlight">\(\alpha\)</span> as well. We cannot compute the optimal <span class="math notranslate nohighlight">\(\alpha\)</span> in this way in practice since we do not have access to the ground truth needed to compute the bias term.</p></li>
+<li><p>Comparing the solutions we note that for smaller <span class="math notranslate nohighlight">\(\alpha\)</span> we get more oscillations in the solutions while for larger <span class="math notranslate nohighlight">\(\alpha\)</span> we get smoother solutions. Remarkably we get a really god reconstruction for the chosen <span class="math notranslate nohighlight">\(\alpha\)</span>. This does not always have to be the case as you can explore in the assignment below.</p></li>
+</ol>
 </div>
+</div>
+</div>
+<div class="section" id="assignments">
+<h2><span class="section-number">2.5. </span>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="convolution">
-<h3><span class="section-number">2.4.5. </span>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.5.1. </span>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">¶</a></h3>
 <p>We are going to solve a deconvolution problem <span class="math notranslate nohighlight">\(Ku = f\)</span>, where <span class="math notranslate nohighlight">\(K\)</span> is a <em>Toeplitz matrix</em> with elements</p>
 <div class="math notranslate nohighlight">
 \[k_{ij} = \frac{\exp({-a\cdot (i-j)^2})}{(n-1)\sqrt{\pi/a}},\]</div>
@@ -819,9 +1042,9 @@ r_{\alpha}(\sigma) =
 </div>
 </div>
 <div class="section" id="references">
-<h2><span class="section-number">2.5. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.6. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p id="bibtex-bibliography-discrete_ip_regularization-0"><dl class="citation">
-<dt class="bibtex label" id="hansen1990discrete"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="bibtex label" id="hansen1990discrete"><span class="brackets"><a class="fn-backref" href="#id1">4</a></span></dt>
 <dd><p>Per Christian Hansen. The discrete picard condition for discrete ill-posed problems. <em>BIT Numerical Mathematics</em>, 30(4):658–672, 1990.</p>
 </dd>
 </dl>
