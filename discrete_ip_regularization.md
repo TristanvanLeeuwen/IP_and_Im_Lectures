@@ -50,7 +50,7 @@ $$
 \frac{\|\widetilde u - \widetilde u^{\delta}\|}{\|\widetilde u\|} \leq  \|K\|\|K^{-1}\| \frac{\|f - f^{\delta}\|}{\|f\|}.
 $$
 
-The quantity $\kappa(K) = \|K\|\|K^{-1}\|$ is called the [*condition number*](https://en.wikipedia.org/wiki/Condition_number#Matrices) of $K$. When $K$ is diagonalisable with eigenvalues $\lambda_1 \geq \lambda_2 \geg \ldots \geq \lambda_n$, we have $\kappa_2(K) = \|K\|_2\|K^{-1}\|_2 = \lambda_1/\lambda_n$.
+The quantity $\kappa(K) = \|K\|\|K^{-1}\|$ is called the [*condition number*](https://en.wikipedia.org/wiki/Condition_number#Matrices) of $K$.
 
 ## Pseudo inverse
 
@@ -209,71 +209,93 @@ where $V_k = (v_1, v_2, \ldots, v_k)$, $U_k = (u_1, u_2, \ldots, u_k)$ and $\Sig
 Note that the pseudo inverse allows us to define a unique solution, it is not necessarily stable as $\|K\|_2\|K^{\dagger}\|_2 = \sigma_1/\sigma_k$ may still be large. To study this issue in more detail, express the solution as
 
 $$
-\widetilde{u} = V_k\Sigma_k^{-1}U_k^{*}f = \sum_{i=1}^k \frac{\langle u_i, f\rangle}{\sigma_i}v_i.
+\widetilde{u} = V_k\Sigma_k^{-1}U_k^{*}f = \sum_{i=1}^k \frac{u_i^*f}{\sigma_i}v_i.
 $$
 
-We note the component in $f$ corresponding to $v_i$ is amplified by $\sigma_i^{-1}$. Thus if $f$ has (noise) components that correlate with $v_i$'s corresponding to very small singular values, these noise components get amplified. Generally, we do not expect problems if $|\langle u_i, f\rangle|$ decays faster with $i$ than the singular values $\sigma_i$. This is called the *discrete Picard condition* {cite}`hansen1990discrete`.
+We note the component in $f$ corresponding to $v_i$ is amplified by $\sigma_i^{-1}$. Thus if $f$ has (noise) components that correlate with $v_i$'s corresponding to very small singular values, these noise components get amplified. Generally, we do not expect problems if $|u_i^* f|$ decays faster with $i$ than the singular values $\sigma_i$. This is called the *discrete Picard condition* {cite}`hansen1990discrete`.
 
 ```{admonition} Definition: *Discrete Picard Condition*
 :class: important
 
-The vector $f \in \mathbb{R}^m$ satisfies the discrete Picard condition for the problem $Ku=f$ if the coefficients $|\langle u_i, f\rangle|$ decay faster than the singular values $\sigma_i$ of $K$, where $u_i$ denotes the left singular vectors of $K$.
+The vector $f \in \mathbb{R}^m$ satisfies the discrete Picard condition for the problem $Ku=f$ if the coefficients $|u_i^* f|$ decay faster than the singular values $\sigma_i$ of $K$, where $u_i$ denotes the left singular vectors of $K$.
 ```
 
-An example is shown below.
-
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-cell]
 
 import numpy as np
 import matplotlib.pyplot as plt
+from myst_nb import glue
 
 # define forward operator
 def getK(n):
-    h = 1/n;
-    x = np.linspace(h/2,1-h/2,n)
-    xx,yy = np.meshgrid(x,x)
-    K = h/(1 + (xx - yy)**2)**(3/2)
+    x = np.linspace(0,1,n)
+    K = np.diag(np.exp(-5*x))
 
     return K,x
 
 # parameters
 n = 100
-delta = 1e-2
+sigma = 1e-2
 K,x = getK(n)
 
 # define ground truth and compute data
-u = np.sin(np.pi*x) + 0.5*np.sin(2*np.pi*x)
+u = np.exp(-10*x)
 f = K@u
 
 # add noise
 noise = np.random.randn(n)
-f_delta = f + delta*noise
+f_delta = f + sigma*noise
 
 # SVD
-U, sigma, Vh = np.linalg.svd(K, full_matrices=True)
+U, s, Vh = np.linalg.svd(K, full_matrices=True)
 
 # apply pseudo inverse
-uhat = Vh.T@np.diag(1/sigma)@U.T@f
+uhat = Vh.T@np.diag(1/s)@U.T@f_delta
 
 # plot
-fig, ax = plt.subplots(1,2)
+fig, ax = plt.subplots(1,1)
 
-ax[0].semilogy(sigma,'*',label=r'$\sigma_i$')
-ax[0].semilogy(np.abs(U.T@f),'o',label=r'$|\langle u_i, f\rangle|$')
-ax[0].semilogy(np.abs(U.T@f_delta),'o',label=r'$|\langle u_i, f^{\delta}\rangle|$')
-ax[0].set_xlabel(r'$i$')
-ax[0].legend()
+ax.semilogy(s,'*',label=r'$\sigma_i$')
+ax.semilogy(np.abs(U.T@f),'o',label=r'$|u_i^* f|$')
+ax.semilogy(np.abs(U.T@f_delta),'o',label=r'$|u_i^* f^{\delta}|$')
+ax.semilogy(np.abs(U.T@f) + np.sqrt(2/np.pi)*sigma,'k--')
+ax.set_xlabel(r'$i$')
+ax.set_ylim([1e-6,2])
+ax.set_xlim([0,n])
+ax.legend()
 
-ax[1].plot(x,u,label='ground truth')
-ax[1].plot(x,uhat,label='pseudo inverse solution')
-ax[1].set_xlabel(r'$x$')
-ax[1].legend()
-
-plt.figtext(0,-0.2,"Left: Singular values and coefficients for clean and noisy data.\nIt shows that the coefficients corresponding to the noisy data\ndo not satisfy the discrete Picard condition.\nRight: ground truth and pseudo-inverse solution.",{"fontsize":12})
-plt.show()
+glue("picard", fig, display=False)
 ```
 
+````{admonition} Example *An ill-posed problem*
+
+As forward operator we take a diagonal matrix with entries
+
+$$(K)_{ii} = \exp(-5 \cdot i/(n-1))\quad \text{for}\quad i = 0, 2, \ldots, n-1.$$
+
+We generate noisy data $f^\delta = K \overline{u} + e$ with $\overline{u}_i = \exp(-10 \cdot i/(n-1))$ and $e_i$ normally distributed with mean zero and variance $\sigma^2$. We then find that
+
+$$|u_i^*f| = |f_i| = \exp(-15 \cdot i/(n-1)),$$
+
+and
+
+$$|u_i^*f^\delta| = |\exp(-15 \cdot i/(n-1)) + e_i| \leq |u_i^*f| + |e_i|.$$
+
+Since $e_i$ is normally distributed, its absolute value follows a [folded normal distribution](https://en.wikipedia.org/wiki/Folded_normal_distribution). This allows us to compute the expected upper bound
+
+$$\mathbb{E}(|e_i|) = \sqrt{\frac{2}{\pi}}\sigma.$$
+
+We conclude that $|u_i^*f^\delta|$ does not decay exponentially as the singular values do and hence do not satisfy the discrete Picard condition.
+
+```{glue:figure} picard
+:figwidth: 600px
+:name: "picard"
+
+An example of the singular values and the coefficients $|u_i^*f|$ and $|u_i^*f^\delta|$ for $n = 100$ and $\sigma = 10^{-2}$. We see that $f$ does satisfy the discrete Picard condition while $f^\delta$ does not.
+```
+
+````
 ## Regularisation
 
 To stabilise the problem we can modify the pseudo inverse in several ways to avoid dividing by small singular values. One option is to simply ignore small singular values and choose a cut-off value and define the solution as
@@ -283,7 +305,7 @@ To stabilise the problem we can modify the pseudo inverse in several ways to avo
 \widetilde u_{\alpha} = V_{k}r_{\alpha}(\Sigma_{k}){U_{k}}^*f,
 ```
 
-where $r$ computes the regularised inverse:
+where $r_{\alpha}$ is applied component-wise to the diagonal of the matrix $\Sigma_k$ as
 
 $$
 r_{\alpha}(\sigma) =
@@ -304,7 +326,7 @@ The TSVD-regularized solution to the equation $Ku = f$ is given by
 
 
 $$
-\widetilde u_{\alpha} = \sum_{i=1}^{k_{\alpha}} \frac{\langle u_i, f\rangle}{\sigma_i}v_i,
+\widetilde u_{\alpha} = \sum_{i=1}^{k_{\alpha}} \frac{u_i^*f}{\sigma_i}v_i,
 $$
 
 where $\{(u_i,v_i,\sigma_i)\}_{i=1}^k$ denotes the singular system of $K$ and $k_{\alpha} \leq k$ is chosen so that $\sigma_i \geq \alpha$ for $i \leq k_{\alpha}$.
@@ -320,7 +342,7 @@ Another option to avoid dividing by small singular values is to add small positi
 The Tikhonov-regularised solution to the equation $Ku = f$ is given by
 
 $$
-\widetilde u_{\alpha} = \sum_{i=1}^{k} \sigma_i \frac{\langle u_i, f\rangle}{\sigma_i^2 + \alpha}v_i,
+\widetilde u_{\alpha} = \sum_{i=1}^{k} \frac{\sigma_i (u_i^*f)}{\sigma_i^2 + \alpha}v_i,
 $$
 
 where $\{(u_i,v_i,\sigma_i)\}_{i=1}^k$ is the singular system of $K$. This corresponds to setting $r_{\alpha}(s) = s/(s^2 + \alpha)$ in {eq}`regK`.
@@ -372,8 +394,94 @@ $$
 $$
 
 If $\alpha \downarrow 0$, the bias goes to zero, but possibly leads to a large variance. Large $\alpha$ on the other hand reduces the variance but leads to a large bias. Ideally, the regularisation parameter is chosen in such a way that the small singular values are stabilised and the large ones are hardly effected.
+
+We can make a similar decomposition of the error between the ground truth $\overline{u}$ and the regularised solution
+
+$$\|\overline{u} - \widetilde{u}_{\alpha,\delta}\| \leq \|\overline{u} - K_{\alpha}^\dagger f\| + \|K_{\alpha}^\dagger(f - f^\delta)\|.$$
 ```
 
+```{code-cell} ipython3
+:tags: [hide-cell]
+
+import numpy as np
+import matplotlib.pyplot as plt
+from myst_nb import glue
+
+# define forward operator
+def getK(n):
+    x = np.linspace(0,1,n)
+    K = np.diag(np.exp(-5*x))
+
+    return K,x
+
+# parameters
+n = 100
+sigma = 1e-2
+K,x = getK(n)
+
+# define ground truth and compute data
+u = np.exp(-10*x)
+f = K@u
+
+# add noise
+noise = np.random.randn(n)
+f_delta = f + sigma*noise
+
+# SVD
+U, s, Vh = np.linalg.svd(K, full_matrices=True)
+
+# error, bias and variance for TSVD
+error = np.zeros(n)
+bias = np.zeros(n)
+variance = np.zeros(n)
+
+for k in range(1,n):
+  uk = Vh[:k,:].T@np.diag(1/s[:k])@U[:,:k].T@f
+  uk_delta = Vh[:k,:].T@np.diag(1/s[:k])@U[:,:k].T@f_delta
+
+  error[k] = np.linalg.norm(u - uk_delta)
+  bias[k] = np.linalg.norm(u - uk)
+  variance[k] = np.linalg.norm(uk - uk_delta)
+
+# plot
+k = np.linspace(0,n-1,n)
+
+fig, ax = plt.subplots(1,1)
+
+ax.plot(k,bias,label='bias')
+ax.plot(k,variance,label='variance')
+ax.plot(k,np.exp(5*k/(n-1))*sigma*np.sqrt(k+1) + np.exp(-10*(k+1)/(n-1))*np.sqrt(n-k-1),'k--')
+
+ax.set_xlabel(r'$k$')
+ax.set_ylabel(r'error')
+ax.set_xlim([1,n])
+ax.set_ylim([0,5])
+ax.legend()
+
+glue("bias_variance",fig,display=False)
+```
+
+````{admonition} Example *An ill-posed problem, cont'd*
+
+Using the same forward operator and ground truth as the previous example and use TSVD-regularisation to regularise the problem. Using the truncation rank, $k$, as the regularisation parameter we find that
+
+$$\left(K_{k}^\dagger f^\delta \right)_i = \begin{cases} \overline{u}_i + \exp(5\cdot i /(n-1))e_i & i\leq k \\ 0 & i > k\end{cases}.$$
+
+Thus, the error becomes
+
+$$\|\overline{u} - K_k^\dagger f^{\delta}\|_2^2 = \sum_{i=0}^k e^{10i /(n-1)}e_i^2 + \sum_{i=k+1}^{n-1} e^{-20i /(n-1)},
+$$
+
+in which we recognise the bias and variance terms. In expectation, the upper bound for the error is then given by $(k+1)e^{5k/(n-1)}\sigma + (n-k-1)e^{-10(k+1)/(n-1)}$. While not very tight, it does suggest that there is an optimal $k$.
+
+```{glue:figure} bias_variance
+:figwidth: 600px
+:name: "bias_variance"
+
+An example of the error $\|\overline{u} - K_{\alpha}^\dagger f^\delta\|_2$ and corresponding bias and variance for $n = 100$ and $\sigma = 10^{-2}$. As predicted, the basis decreases with $k$ while the variance increases. The optimal $k$ for this noise level lies at $k \approx 30$. Look at {numref}`picard`, do you see why this is the optimal $k$?
+```
+
+````
 +++
 
 ## Exercises
@@ -423,7 +531,7 @@ $$\min_{u} \|Ku - f\|_2^2 + \alpha \|u\|_2^2$$
 
 is given in terms of the SVD of $K \in \mathbb{R}^{m\times n}$ as
 
-$$\widetilde{u} = \sum_{i=1}^{k} \frac{\sigma_i \langle u_i,f\rangle}{\sigma_i^2 + \alpha} v_i,$$
+$$\widetilde{u} = \sum_{i=1}^{k} \frac{\sigma_i (u_i^*f)}{\sigma_i^2 + \alpha} v_i,$$
 
 where $k = \text{rank}(K)$.
 
@@ -443,9 +551,11 @@ Upon discretisation with stepsize $h = 1/n$, the inverse problem can be cast as 
 
 You can use the code provided below to generate the matrix and noisy data for $u(x) = ..$
 
-1. Plot the coefficients $\langle u_i, f\rangle$ and the singular values $\sigma_i$ to check the discrete Picard condition. What do you notice ?
+1. Plot the coefficients $u_i^*f$ and the singular values $\sigma_i$ to check the discrete Picard condition. What do you notice ?
 
-2. Solve the inverse problem for noisy data using the (regularised) pseudo-inverse; compute the optimal $\alpha$ by computing the bias and variance components of the error.
+2. Solve the inverse problem for noisy data using the (regularised) pseudo-inverse; compute the optimal $\alpha$ by computing the bias and variance components of the error. Is this a practically feasible way to compute the optimal $\alpha$?
+
+3. Compare the solutions for $\alpha < \alpha_{\text{opt}}$, $\alpha_{\text{opt}}$ and $\alpha > \alpha_{\text{opt}}$ to the ground truth. What do you notice?
 
 ```{code-cell} ipython3
 def getK(n):
@@ -491,13 +601,94 @@ axs[1].legend()
 plt.show()
 ```
 
+```{code-cell}
+:tags: [hide-cell]
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# define forward operator
+def getK(n):
+  h = 1/n;
+  x = np.linspace(h/2,1-h/2,n)
+  xx,yy = np.meshgrid(x,x)
+  K = h/(1 + (xx - yy)**2)**(3/2)
+
+  return K,x
+
+# parameters
+n = 100
+sigma = 1e-2
+K,x = getK(n)
+
+# define ground truth and compute data
+u = np.sin(np.pi*x) + 0.5*np.sin(2*np.pi*x)
+f = K@u
+
+# add noise
+noise = np.random.randn(n)
+f_delta = f + sigma*noise
+
+# SVD
+U, s, Vh = np.linalg.svd(K, full_matrices=True)
+
+# regularised pseudo inverse using Tikhonov
+R_alpha = lambda alpha : Vh.T@np.diag(s/(s**2 + alpha))@U.T
+
+# error, bias and variance for Tikhonov
+na = 20
+alpha = np.linspace(1e-6,2e-5,na)
+error = np.zeros(na)
+bias = np.zeros(na)
+variance = np.zeros(na)
+
+for k in range(na):
+    error[k] = np.linalg.norm(u - R_alpha(alpha[k])@f_delta)
+    bias[k] = np.linalg.norm(u - R_alpha(alpha[k])@f)
+    variance[k] = np.linalg.norm(R_alpha(alpha[k])@(f-f_delta))
+
+# plot
+fig,ax = plt.subplots(1,3)
+
+ax[0].semilogy(s,'*',label=r'$\sigma_i$')
+ax[0].semilogy(np.abs(U.T@f),'o',label=r'$|u_i^* f|$')
+ax[0].semilogy(np.abs(U.T@f_delta),'o',label=r'$|u_i^* f^{\delta}|$')
+ax[0].set_xlabel(r'$i$')
+ax[0].set_xlabel(r'magnitude')
+ax[0].set_ylim([1e-16,2])
+ax[0].set_xlim([0,n])
+ax[0].legend()
+
+ax[1].plot(alpha,error,label='total error')
+ax[1].plot(alpha,bias,label='bias')
+ax[1].plot(alpha,variance,label='variance')
+ax[1].set_xlabel(r'$\alpha$')
+ax[1].set_ylabel(r'error')
+ax[1].legend()
+
+ax[2].plot(x,u,label='ground truth')
+ax[2].plot(x,R_alpha(1e-6)@f_delta,label=r'$\alpha = 10^{-6}$')
+ax[2].plot(x,R_alpha(1e-5)@f_delta,label=r'$\alpha = 10^{-5}$')
+ax[2].plot(x,R_alpha(1e-4)@f_delta,label=r'$\alpha = 10^{-4}$')
+ax[2].set_ylim([-2,2])
+ax[2].set_xlabel(r'$x$')
+ax[2].set_ylabel(r'$u(x)$')
+ax[2].legend()
+
+fig.tight_layout()
+```
+
 ```{admonition} Answer
 :class: hint, dropdown
 
-1.
+1. In the first figure we see that the Fourier coefficients of the noisy data definitey do not obey the discrete Picard condition. The Fourier coefficients of $f$ may even be problematic as they are on the same level as the singular values for $k > 20$. This has to do with the numerical rank of $K$, which is roughly 20.
+
+2. In the second figure we see the bias and variance parts of the error, the optimal $\alpha$ (where they are equal) is approximately $10^{-5}$. Note that the total error is pretty flat here, so we could argue for a slightly large $\alpha$ as well. We cannot compute the optimal $\alpha$ in this way in practice since we do not have access to the ground truth needed to compute the bias term.
+
+3. Comparing the solutions we note that for smaller $\alpha$ we get more oscillations in the solutions while for larger $\alpha$ we get smoother solutions. Remarkably we get a really god reconstruction for the chosen $\alpha$. This does not always have to be the case as you can explore in the assignment below.
 ```
 
-## Assingments
+## Assignments
 
 ### Convolution
 
