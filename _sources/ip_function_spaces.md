@@ -239,13 +239,13 @@ There are a number of equivalent definitions of compact operators. We will use t
 An operator $K: \mathcal{U} \rightarrow \mathcal{F}$ with $\mathcal{U},\mathcal{F}$ Hilbert spaces, is called *compact* it can be expressed as
 
 $$
-K = \sum_{j=1}^{\infty} \sigma_j \langle \cdot, u_j\rangle_{\mathcal{U}}v_j,
+K = \sum_{j=1}^{\infty} \sigma_j \langle \cdot, v_j\rangle_{\mathcal{U}}u_j,
 $$
 
-where $\{u_i\}$ and $\{v_i\}$ are orthonormal bases of $\mathcal{N}(K)^\perp$ and $\overline{\mathcal{R}(K)}$ and
+where $\{v_i\}$ and $\{u_i\}$ are orthonormal bases of $\mathcal{N}(K)^\perp$ and $\overline{\mathcal{R}(K)}$ respectively and
 $\{\sigma_i\}$ is a null-sequence (i.e., $\lim_{i\rightarrow \infty} \sigma_i = 0$). We call $\{(u_i, v_i, \sigma_i)\}_{j=0}^\infty$ the singular system of $K$. The singular system obeys
 
-$$Ku_j = \sigma_k v_j, \quad K^*v_j = \sigma_j u_j.$$
+$$Kv_j = \sigma_k u_j, \quad K^*u_j = \sigma_j v_j.$$
 ```
 
 An important subclass of the compact operators are the [Hilbert-Schmidt integral operators](https://en.wikipedia.org/wiki/Hilbert%E2%80%93Schmidt_integral_operator), which can be written as
@@ -264,10 +264,10 @@ The pseudo-inverse of a compact operator is defined analogously to the finite-di
 The pseudo-inverse of a compact operator $K: \mathcal{U} \rightarrow \mathcal{F}$ is expressed as
 
 $$
-K^{\dagger} = \sum_{j=1}^{\infty} \sigma_j^{-1} \langle \cdot, v_j\rangle_{\mathcal{F}}u_j,
+K^{\dagger} = \sum_{j=1}^{\infty} \sigma_j^{-1} \langle \cdot, u_j\rangle_{\mathcal{F}}v_j,
 $$
 
-where $\{(u_i, v_i, \sigma_i)\}$ is the singular system of $K$
+where $\{(u_i, v_i, \sigma_i)\}_{i=0}^\infty$ is the singular system of $K$
 ```
 
 With this we can precisely state the Picard condition.
@@ -278,7 +278,7 @@ Given a compact operator $K: \mathcal{U} \rightarrow \mathcal{F}$ and $f \in \ma
 ```{math}
 :label: picard
 
-\sum_{j=1}^{\infty} \frac{|\langle f, v_j\rangle_{\mathcal{V}}|^2}{\sigma_j^2} < \infty.
+\sum_{j=1}^{\infty} \frac{|\langle f, u_j\rangle_{\mathcal{V}}|^2}{\sigma_j^2} < \infty.
 ```
 ````
 
@@ -625,7 +625,29 @@ $$\min_{u} \|Ku - f\|^2 + \alpha \|u'\|^2,$$
 with $\|\cdot\|$ denoting the $L^2([0,1])$-norm.
 Analyse how this type of regularisation addresses the ill-posedness.
 
-+++
+```{admonition} Answer
+:class: hint, dropdown
+
+A first observation is that this regularisation ensures that $u'$ is square integrable. This excludes solutions like $u = \sin (x/\delta)$ for $f(x) = \delta\sin(x/\delta)$ as $\delta\downarrow 0$. To see *how* they are excluded and what the solution will look like we need to dive in.
+
+The right singular vectors are given by $v_k(x) = \sqrt{2}\cos\left(\sigma_k^{-1}\right)$ with $\sigma_k = (\pi(k+1/2))^{-1}$. Since these constitute an orthonormal basis for the orthogonal complement of the kernel of $K$ we can express $u$ as
+
+$$u(x) = \sum_{k=0}^\infty a_k v_k(x) + w, $$
+
+with $Kw = 0$. We'll ignore $w$ for the time being and assume without proof that $\{v_k\}_{k=0}^\infty$ is in fact a orthonormal basis for $L^2([0,1])$.
+
+We can now express the least-squares problem in terms of the coefficients $a_k$ First note that
+
+$$u'(x) = -\sum_{k=0}^\infty \sigma_k^{-1}a_k u_k(x),$$
+
+with $u_k(x)$ denoting the left singular vectors $u_k(x) = \sqrt{2}\sin\left(\sigma_k^{-1}\right)$. Then
+
+$$\|u'\|^2 = \sum_{k=0}^\infty \frac{a_k^2}{\sigma_k^2},$$
+
+and using the fact that $Kv_k = \sigma_k u_k$:
+
+$$\|Ku - f\|^2 = ...$$
+```
 
 ### Discretisation
 
