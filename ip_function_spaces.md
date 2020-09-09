@@ -625,7 +625,14 @@ $$\min_{u} \|Ku - f\|^2 + \alpha \|u'\|^2,$$
 with $\|\cdot\|$ denoting the $L^2([0,1])$-norm.
 Analyse how this type of regularisation addresses the ill-posedness.
 
-+++
+```{admonition} Answer
+:class: hint, dropdown
+
+A first observation is that this regularisation ensures that $u'$ is square integrable. This excludes solutions like $u = \sin (x/\delta)$ for $f(x) = \delta\sin(x/\delta)$ as $\delta\downarrow\zero$. To see *how* they are excluded and what the solution will look like we need to dive in.
+
+The right singular vectors are given by $v_k(x) = \cos\left((2k+1)\pi x/2\right)$. Since these constitute an orthogonal basis for the orthogonal complement of the kernel of $K$
+
+```
 
 ### Discretisation
 
