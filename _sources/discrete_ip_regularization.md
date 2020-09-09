@@ -598,6 +598,8 @@ axs[1].set_xlabel('x')
 axs[1].set_ylabel('f(x)')
 axs[1].legend()
 
+fig.set_figwidth(10)
+fig.tight_layout()
 plt.show()
 ```
 
@@ -626,6 +628,7 @@ u = np.sin(np.pi*x) + 0.5*np.sin(2*np.pi*x)
 f = K@u
 
 # add noise
+np.random.seed(2)
 noise = np.random.randn(n)
 f_delta = f + sigma*noise
 
@@ -657,35 +660,41 @@ ax[0].set_xlabel(r'$i$')
 ax[0].set_xlabel(r'magnitude')
 ax[0].set_ylim([1e-16,2])
 ax[0].set_xlim([0,n])
+ax[0].set_aspect('auto')
 ax[0].legend()
 
 ax[1].plot(alpha,error,label='total error')
 ax[1].plot(alpha,bias,label='bias')
 ax[1].plot(alpha,variance,label='variance')
-ax[1].set_xlabel(r'$\alpha$')
+ax[1].set_xlabel(r'$\alpha \cdot 10^{5}$')
 ax[1].set_ylabel(r'error')
+ax[1].set_xticks([5e-6,1e-5,1.5e-5,2e-5])
+ax[1].set_xticklabels(['.5','1.0','1.5','2.0'])
+ax[1].set_aspect('auto')
 ax[1].legend()
 
 ax[2].plot(x,u,label='ground truth')
 ax[2].plot(x,R_alpha(1e-6)@f_delta,label=r'$\alpha = 10^{-6}$')
-ax[2].plot(x,R_alpha(1e-5)@f_delta,label=r'$\alpha = 10^{-5}$')
+ax[2].plot(x,R_alpha(1.5e-5)@f_delta,label=r'$\alpha = 1.5\cdot 10^{-5}$')
 ax[2].plot(x,R_alpha(1e-4)@f_delta,label=r'$\alpha = 10^{-4}$')
 ax[2].set_ylim([-2,2])
 ax[2].set_xlabel(r'$x$')
 ax[2].set_ylabel(r'$u(x)$')
+ax[2].set_aspect('auto')
 ax[2].legend()
 
+fig.set_figwidth(10)
 fig.tight_layout()
 ```
 
 ```{admonition} Answer
 :class: hint, dropdown
 
-1. In the first figure we see that the Fourier coefficients of the noisy data definitey do not obey the discrete Picard condition. The Fourier coefficients of $f$ may even be problematic as they are on the same level as the singular values for $k > 20$. This has to do with the numerical rank of $K$, which is roughly 20.
+1. In the first figure we see that the Fourier coefficients of the noisy data definitely do not obey the discrete Picard condition. The Fourier coefficients of $f$ may even be problematic as they are on the same level as the singular values for $k > 20$. This has to do with the numerical rank of $K$, which is roughly 20.
 
-2. In the second figure we see the bias and variance parts of the error, the optimal $\alpha$ (where they are equal) is approximately $10^{-5}$. Note that the total error is pretty flat here, so we could argue for a slightly large $\alpha$ as well. We cannot compute the optimal $\alpha$ in this way in practice since we do not have access to the ground truth needed to compute the bias term.
+2. In the second figure we see the bias and variance parts of the error, the optimal $\alpha$ (where they are equal) is approximately $1.5\cdot 10^{-5}$. We cannot compute the optimal $\alpha$ in this way in practice since we do not have access to the ground truth nor the noise-free data needed to compute the terms. You may also want to vary the random seed to explore the influence of the particular random instance of the noise. This further indicates how difficult it would be to choose an optimal value for $\alpha$ based only on knowledge of the *statistics* of the noise.
 
-3. Comparing the solutions we note that for smaller $\alpha$ we get more oscillations in the solutions while for larger $\alpha$ we get smoother solutions. Remarkably we get a really god reconstruction for the chosen $\alpha$. This does not always have to be the case as you can explore in the assignment below.
+3. Comparing the solutions we note that for smaller $\alpha$ we get more oscillations in the solutions while for larger $\alpha$ we get smoother solutions. Remarkably we get a really good reconstruction for $\alpha = 1.5\cdot 10^{-5}$. This does not always have to be the case as you can explore in the assignment below.
 ```
 
 ## Assignments
