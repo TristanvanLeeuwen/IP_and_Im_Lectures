@@ -618,11 +618,12 @@ $$
 Ku(x) = \int_0^x u(y)\mathrm{d}y.
 $$
 
-We've seen in the example that the inverse problem is ill-posed. Consider a regularised least-squares problem
+We've seen in the example that the inverse problem is ill-posed. Consider the regularised least-squares problem
 
-$$\min_{u} \|Ku - f\|^2 + \alpha \|u'\|^2,$$
+$$\min_{u} \|Ku - f^\delta\|^2 + \alpha \|u'\|^2,$$
 
-with $\|\cdot\|$ denoting the $L^2([0,1])$-norm. Analyse how this type of regularisation addresses the ill-posedness. In particular, 
+with $\|\cdot\|$ denoting the $L^2([0,1])$-norm. Analyse how this type of regularisation addresses the ill-posedness. In particular, consider the influence of noise $f^\delta = f + \delta \sin(x/\delta)$, where $\delta = \sigma_k$ for some $k$ with $\sigma_k$ being the singular values of $K$.
+
 ```{admonition} Answer
 :class: hint, dropdown
 
@@ -658,7 +659,7 @@ We can now study what happens to the variance term $\|K_{\alpha}^\dagger e\|$ wi
 
 $$\|K_{\alpha}^\dagger e\|_2 = \left(\frac{\sigma_k^2}{\sigma_k^2 + \alpha \sigma_k^{-2}}\right)^2.$$
 
-We see, as before, that for $\alpha = 0$ the variance is constant. For $\alpha > 0$, however, we have ...
+We see, as before, that for $\alpha = 0$ the variance is constant as $k\rightarrow \infty$ (i.e, noise level going to zero). For $\alpha > 0$, however, we have ...
 ```
 
 ### Discretisation
