@@ -622,9 +622,7 @@ We've seen in the example that the inverse problem is ill-posed. Consider a regu
 
 $$\min_{u} \|Ku - f\|^2 + \alpha \|u'\|^2,$$
 
-with $\|\cdot\|$ denoting the $L^2([0,1])$-norm.
-Analyse how this type of regularisation addresses the ill-posedness.
-
+with $\|\cdot\|$ denoting the $L^2([0,1])$-norm. Analyse how this type of regularisation addresses the ill-posedness. In particular, 
 ```{admonition} Answer
 :class: hint, dropdown
 
@@ -646,7 +644,21 @@ $$\|u'\|^2 = \sum_{k=0}^\infty \frac{a_k^2}{\sigma_k^2},$$
 
 and using the fact that $Kv_k = \sigma_k u_k$:
 
-$$\|Ku - f\|^2 = ...$$
+$$\|Ku - f\|^2 = \sum_{k=0}^\infty (\sigma_k a_k - f_k)^2,$$
+
+with $f_k = \langle u_k, f\rangle$. The normal equations are now given by
+
+$$\left(\sigma_k^2 + \alpha \sigma_k^{-2}\right)a_k = \sigma_k f_k,$$
+
+yielding
+
+$$u(x) = \sum_{k=0}^\infty \frac{\sigma_k \langle u_k, f \rangle}{\sigma_k^2 + \alpha \sigma_k^{-2}} v_k(x).$$
+
+We can now study what happens to the variance term $\|K_{\alpha}^\dagger e\|$ with $e = K\overline{u} + \delta \sin(x/\delta)$ for $\delta = \sigma_k$:
+
+$$\|K_{\alpha}^\dagger e\|_2 = \left(\frac{\sigma_k^2}{\sigma_k^2 + \alpha \sigma_k^{-2}}\right)^2.$$
+
+We see, as before, that for $\alpha = 0$ the variance is constant. For $\alpha > 0$, however, we have ...
 ```
 
 ### Discretisation
