@@ -683,7 +683,7 @@ and let $f^\delta = f + e$ with $\|e\|_{\mathcal{F}} \leq \delta$. You may assum
 
 * Show that the variance term converges to zero as $\delta\rightarrow 0$:
 
-$$\|K_{\alpha}^\dagger e\|_{\mathcal{U}} = \mathcal{O}(\sqrt{\delta}).$$
+$$\|K_{\alpha}^\dagger e\|_{\mathcal{U}} = \sqrt{\delta}.$$
 
 * Show that the bias term converges to zero as $\delta\rightarrow 0$:
 
@@ -700,7 +700,7 @@ $$\|K^\dagger_{\alpha} f - K^\dagger f\|_{\mathcal{U}} = \mathcal{O}(...)$$
 
 $$\|K^\dagger_{\alpha} e\| \leq \|K^\dagger_{\alpha}\| \delta,$$
 
-with $\|K^\dagger_{\alpha(\delta)}\| = \sup_k |\sigma_k/(\sigma_k^2 + \delta/4)|$. This
+with $\|K^\dagger_{\alpha(\delta)}\| = \sup_k |\sigma_k/(\sigma_k^2 + \delta/4)|$. To bound this, we look at the function $g_{\alpha}(s) = s/(s^2 + \alpha)$ and find that it attains an extremum at $s = \sqrt{\alpha}$. Hence we have $|g_{\alpha}(s)| \leq 1/\sqrt{4\alpha}$. Setting $\alpha = \delta/4$ we get the desired result.
 
 * We find
 
