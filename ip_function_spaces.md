@@ -622,18 +622,27 @@ We've seen in the example that the inverse problem is ill-posed. Consider the re
 
 $$\min_{u} \|Ku - f^\delta\|^2 + \alpha \|u'\|^2,$$
 
-with $\|\cdot\|$ denoting the $L^2([0,1])$-norm. Analyse how this type of regularisation addresses the ill-posedness. In particular, consider the influence of noise $f^\delta = f + \delta \sin(x/\delta)$, where $\delta = \sigma_k$ for some $k$ with $\sigma_k$ being the singular values of $K$.
+with $\|\cdot\|$ denoting the $L^2([0,1])$-norm. In this exercise we are going to analyse how this type of regularisation addresses the ill-posedness by looking at the variance term.
+
+* Show that the corresponding regularised pseudo-inverse is given by
+
+$$K_{\alpha}^\dagger = \sum_{k=0}^\infty \frac{\sigma_k \langle u_k, \cdot \rangle}{\sigma_k^2 + \alpha \sigma_k^{-2}} v_k(x),$$
+
+where $\{(u_k,v_k,\sigma_k)\}_{k=0}^\infty$ denotes the singular system of $K$.
+
+* Take $f^\delta(x) = f(x) + \sigma_k \sin(\sigma_k^{-1}x)$ with $\sigma_k$ a singular value of $K$ and show that for $\alpha > 0$ the variance $\|K_{\alpha}^\dagger (f^\delta - f)\| \rightarrow 0$ as $k \rightarrow 0$
+
 
 ```{admonition} Answer
 :class: hint, dropdown
 
-A first observation is that this regularisation ensures that $u'$ is square integrable. This excludes solutions like $u = \sin (x/\delta)$ for $f(x) = \delta\sin(x/\delta)$ as $\delta\downarrow 0$. To see *how* they are excluded and what the solution will look like we need to dive in.
+We will use the SVD of $K$ to express the solution and derive a least-squares problem for the coefficients of $u$ using the orthonormality of the singular vectors.
 
 The right singular vectors are given by $v_k(x) = \sqrt{2}\cos\left(\sigma_k^{-1}\right)$ with $\sigma_k = (\pi(k+1/2))^{-1}$. Since these constitute an orthonormal basis for the orthogonal complement of the kernel of $K$ we can express $u$ as
 
 $$u(x) = \sum_{k=0}^\infty a_k v_k(x) + w, $$
 
-with $Kw = 0$. We'll ignore $w$ for the time being and assume without proof that $\{v_k\}_{k=0}^\infty$ is in fact a orthonormal basis for $L^2([0,1])$.
+with $Kw = 0$. We'll ignore $w$ for the time being and assume without proof that $\{v_k\}_{k=0}^\infty$ is an orthonormal basis for $L^2([0,1])$.
 
 We can now express the least-squares problem in terms of the coefficients $a_k$ First note that
 
@@ -655,84 +664,55 @@ yielding
 
 $$u(x) = \sum_{k=0}^\infty \frac{\sigma_k \langle u_k, f \rangle}{\sigma_k^2 + \alpha \sigma_k^{-2}} v_k(x).$$
 
-We can now study what happens to the variance term $\|K_{\alpha}^\dagger e\|$ with $e = K\overline{u} + \delta \sin(x/\delta)$ for $\delta = \sigma_k$:
+We can now study what happens to the variance term $\|K_{\alpha}^\dagger e\|$ with $e_k(x) = \sigma_k \sin(x/\sigma_k)$. First note that (by orthogonality)
 
-$$\|K_{\alpha}^\dagger e\|_2 = \left(\frac{\sigma_k^2}{\sigma_k^2 + \alpha \sigma_k^{-2}}\right)^2.$$
+$$K_{\alpha}^\dagger e_k(x) = \frac{\sigma_k^2}{\sigma_k^2 + \alpha \sigma_k^{-2}} \cos(\sigma_k^{-1} x).$$
 
-We see, as before, that for $\alpha = 0$ the variance is constant as $k\rightarrow \infty$ (i.e, noise level going to zero). For $\alpha > 0$, however, we have ...
-```
+We see, as before, that for $\alpha = 0$ the variance is constant as $k\rightarrow \infty$ (i.e, noise level going to zero). For $\alpha > 0$, however, we see that the variance tends to zero.
 
-### Discretisation
-
-In this exercise, we explore what happens when discretising the operator $K$. We'll see that discretisation implicitly regularises the problem and that refining the discretisation brings out the inherent ill-posedness. Discretise $x_k = k\cdot h$ with $k = 1, \ldots, n$ and $h = 1/(n+1)$.
-
-$$
-Ku(x_i)=\int_0^{x_i} u(y)\mathrm{d}y \approx h\sum_{j=0}^n k_{ij} u(x_j),
-$$
-
-with $k_{ij} = k(x_i,x_j) = H(x_i - x_j)$, giving an $n\times n$ lower triangular matrix
-
-$$
-K = h\cdot\left(\begin{matrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 & \ldots \\ \vdots & & &\ddots \end{matrix}\right)
-$$
-
-1. Compute the SVD for various $n$ and compare the singular values and vectors to the ones of the continuous operator. What do you notice?
-
-2. Take $f(x) = x^3 + \epsilon$ with $\epsilon$ is normally distributed with mean zero and variance $\delta^2$. Investigate the accuracy of the reconstruction (use `np.linalg.solve` to solve $Ku = f$). Note that the exact solution is given by $u(x) = 3x^2$. Do you see the regularizing effect of $n$?
-
-The code to generate the matrix and its use are given below.
-
-```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-```
-
-```{code-cell} ipython3
-def getK(n):
-    h = 1/(n+1)
-    x = np.linspace(h,1-h,n)
-    K = h*np.tril(np.ones((n,n)))
-
-    return K,x
-```
-
-```{code-cell} ipython3
-n = 200
-delta = 1e-3
-
-K,x = getK(n)
-u = 3*x**2
-f = x**3 + delta*np.random.randn(n)
-ur = np.linalg.solve(K,f)
-
-print('|u - ur| = ', np.linalg.norm(u - ur))
-
-plt.plot(x,u,label='true solution')
-plt.plot(x,ur,label='reconstruction')
-plt.legend()
-plt.show()
 ```
 
 ### Convergent Tikhonov regularisation
 
 Consider the regularised pseudo-inverse
 
-$$K^\dagger_{\alpha} = \sum_{j=0}^\infty g_{\alpha}(\sigma_j) \langle u_j,\cdot\rangle v_j,$$
+$$K^\dagger_{\alpha} = \sum_{k=0}^\infty g_{\alpha}(\sigma_k) \langle u_k,\cdot\rangle v_k,$$
 
 and let $f^\delta = f + e$ with $\|e\|_{\mathcal{F}} \leq \delta$. You may assume that $f, f^{\delta}$ satisfy the Picard condition. We further let $g_{\alpha}(s) = \frac{s}{s^2 + \alpha}$ and $\alpha(\delta) = \delta /4$.
 
 
-1. Show that the variance term converges to zero as $\delta\rightarrow 0$:
+* Show that the variance term converges to zero as $\delta\rightarrow 0$:
 
 $$\|K_{\alpha}^\dagger e\|_{\mathcal{U}} = \mathcal{O}(\sqrt{\delta}).$$
 
-2. Show that the bias term converges to zero as $\delta\rightarrow 0$:
+* Show that the bias term converges to zero as $\delta\rightarrow 0$:
 
 $$\|K^\dagger_{\alpha} f - K^\dagger f\|_{\mathcal{U}} = \mathcal{O}(...)$$
 
-3. Under additional assumptions on the minimum-norm solution we can provide a faster convergence rate in 2. Assume that there exists a $w$ such that $K^\dagger f = (K^*K)^{\mu} w$. Show that
+* Under additional assumptions on the minimum-norm solution we can provide a faster convergence rate in 2. Assume that there exists a $w$ such that $K^\dagger f = (K^*K)^{\mu} w$. Show that
 
 $$\|K^\dagger_{\alpha} f - K^\dagger f\|_{\mathcal{U}} = \mathcal{O}(...)$$
+
+```{admonition} Answer
+:class: dropdown, hint
+
+* We find
+
+$$\|K^\dagger_{\alpha} e\| \leq \|K^\dagger_{\alpha}\| \delta,$$
+
+with $\|K^\dagger_{\alpha(\delta)}\| = \sup_k |\sigma_k/(\sigma_k^2 + \delta/4)|$. This
+
+* We find
+
+$$\|K^\dagger_{\alpha} f - K^\dagger f\| \leq \|K^\dagger_{\alpha} - K^\dagger\| \|f\|,$$
+
+with
+
+$$leq \|K^\dagger_{\alpha} - K^\dagger\| = \sup_{k} |\sigma_k^{-1}|$$
+
+
+
+```
 
 ### Convolution through the heat equation
 
@@ -806,6 +786,57 @@ plt.show()
 ```
 
 ## Assignments
+
+### Discretisation
+
+In this exercise, we explore what happens when discretising the operator $K$. We'll see that discretisation implicitly regularises the problem and that refining the discretisation brings out the inherent ill-posedness. Discretise $x_k = k\cdot h$ with $k = 1, \ldots, n$ and $h = 1/(n+1)$.
+
+$$
+Ku(x_i)=\int_0^{x_i} u(y)\mathrm{d}y \approx h\sum_{j=0}^n k_{ij} u(x_j),
+$$
+
+with $k_{ij} = k(x_i,x_j) = H(x_i - x_j)$, giving an $n\times n$ lower triangular matrix
+
+$$
+K = h\cdot\left(\begin{matrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 & \ldots \\ \vdots & & &\ddots \end{matrix}\right)
+$$
+
+1. Compute the SVD for various $n$ and compare the singular values and vectors to the ones of the continuous operator. What do you notice?
+
+2. Take $f(x) = x^3 + \epsilon$ with $\epsilon$ is normally distributed with mean zero and variance $\delta^2$. Investigate the accuracy of the reconstruction (use `np.linalg.solve` to solve $Ku = f$). Note that the exact solution is given by $u(x) = 3x^2$. Do you see the regularizing effect of $n$?
+
+The code to generate the matrix and its use are given below.
+
+```{code-cell} ipython3
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+```{code-cell} ipython3
+def getK(n):
+    h = 1/(n+1)
+    x = np.linspace(h,1-h,n)
+    K = h*np.tril(np.ones((n,n)))
+
+    return K,x
+```
+
+```{code-cell} ipython3
+n = 200
+delta = 1e-3
+
+K,x = getK(n)
+u = 3*x**2
+f = x**3 + delta*np.random.randn(n)
+ur = np.linalg.solve(K,f)
+
+print('|u - ur| = ', np.linalg.norm(u - ur))
+
+plt.plot(x,u,label='true solution')
+plt.plot(x,ur,label='reconstruction')
+plt.legend()
+plt.show()
+```
 
 ### Convolution on a finite interval
 
