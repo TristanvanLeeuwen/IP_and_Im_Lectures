@@ -704,11 +704,9 @@ with $\|K^\dagger_{\alpha(\delta)}\| = \sup_k |\sigma_k/(\sigma_k^2 + \delta/4)|
 
 * We find
 
-$$\|K^\dagger_{\alpha} f - K^\dagger f\| \leq \|K^\dagger_{\alpha} - K^\dagger\| \|f\|,$$
+$$\|K^\dagger_{\alpha} f - K^\dagger f\| = \sum_{k=0}^\infty |\sigma_k^{-1} - g_{\alpha}(\sigma_k)|^2 |\langle f, u_k \rangle|^2 \leq \sup_{k} |1 - \sigma_k g_{\alpha}(\sigma_k)|^2 \frac{|\langle f, u_k \rangle|^2}{\sigma_k^2}.$$
 
-with
 
-$$leq \|K^\dagger_{\alpha} - K^\dagger\| = \sup_{k} |\sigma_k^{-1}|$$
 
 
 
