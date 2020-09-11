@@ -577,7 +577,7 @@ Morozov's discrepancy principle chooses $\alpha$ such that
 
 $$\|KK_{\alpha}^\dagger f^{\delta} - f^{\delta}\|_{\mathcal{F}} \leq \eta \delta,$$
 
-with $\eta > 1$ a fixed parameter. This can be interpreted as finding an $\alpha$ for which the solution fits the data in accordance with the noise level. Note, however, that such an $\alpha$ may not exist if (a significant part of) $f^\delta$ lies in the kernel of $K^*$.
+with $\eta > 1$ a fixed parameter. This can be interpreted as finding an $\alpha$ for which the solution fits the data in accordance with the noise level. Note, however, that such an $\alpha$ may not exist if (a significant part of) $f^\delta$ lies in the kernel of $K^*$. This is an example of an *a-posterior* parameter selection rule, as it depends on both $\delta$ and $f^\delta$.
 ```
 
 ```{admonition} Example: *The L-curve method*
@@ -587,7 +587,7 @@ $$\min_{\alpha > 0} \|K_{\alpha}^\dagger f^\delta\|_{\mathcal{U}} \|KK_{\alpha}^
 
 The name stems from the fact that the optimal $\alpha$ typically resides at the corner of the curve $(\|K_{\alpha}^\dagger f^\delta\|_{\mathcal{U}}, \|KK_{\alpha}^\dagger f^\delta - f^\delta\|_{\mathcal{F}})$.
 
-This rule has the practical advantage that no knowledge of the noise level is required. Unfortunately, it is not a convergent rule.
+This rule has the practical advantage that no knowledge of the noise level is required. Such a rule is called a *heuristic* method. Unfortunately, it is not a convergent rule.
 ```
 +++
 
@@ -672,61 +672,76 @@ We see, as before, that for $\alpha = 0$ the variance is constant as $k\rightarr
 
 ```
 
-### Convergent Tikhonov regularisation
+### Convergent regularisation
 
 Consider the regularised pseudo-inverse
 
 $$K^\dagger_{\alpha} = \sum_{k=0}^\infty g_{\alpha}(\sigma_k) \langle u_k,\cdot\rangle v_k,$$
 
-and let $f^\delta = f + e$ with $\|e\|_{\mathcal{F}} \leq \delta$. You may assume that $f, f^{\delta}$ satisfy the Picard condition. We further let $g_{\alpha}(s) = \frac{s}{s^2 + \alpha}$ and $\alpha(\delta) = \delta /4$.
+and let $f^\delta = f + e$ with $\|e\|_{\mathcal{F}} \leq \delta$. We are going to study the convergence of this method, i.e., how fast $\|K_{\alpha}^\dagger f^\delta - K^\dagger f\| \rightarrow 0$. You may assume that $f$ satisfies the Picard condition. We further let
 
+$$g_{\alpha}(s) = \begin{cases} s^{-1} & s > \alpha \\ 0 & s \leq \alpha \end{cases}.$$
 
-* Show that the variance term converges to zero as $\delta\rightarrow 0$:
+and $\alpha(\delta) = \sqrt{\delta}$.
 
-$$\|K_{\alpha}^\dagger e\|_{\mathcal{U}} = \sqrt{\delta}.$$
+* Show that the total error $\|K_{\alpha}^\dagger f^\delta - K^\dagger f\|$ converges to zero as $\delta \rightarrow 0$.
 
-* Show that the bias term converges to zero as $\delta\rightarrow 0$:
+* Show that the variance term converges to zero as $\delta\rightarrow 0$ with rate $1/2$:
 
-$$\|K^\dagger_{\alpha} f - K^\dagger f\|_{\mathcal{U}} = \mathcal{O}(...)$$
+$$\|K_{\alpha}^\dagger e\|_{\mathcal{U}} = \mathcal{O}(\sqrt{\delta}).$$
 
-* Under additional assumptions on the minimum-norm solution we can provide a faster convergence rate in 2. Assume that there exists a $w$ such that $K^\dagger f = (K^*K)^{\mu} w$. Show that
+Under additional assumptions on the minimum-norm solution we can provide a faster convergence rate in. Assume that for a given $\mu > 0$ there exists a $w$ such that $K^\dagger f = (K^*K)^{\mu} w$.
 
-$$\|K^\dagger_{\alpha} f - K^\dagger f\|_{\mathcal{U}} = \mathcal{O}(...)$$
+* Show that this condition implies that (i.e., more regularity of $f$)
+
+$$\sum_{k=0}^{\infty} \frac{|\langle f,u_k\rangle|^2}{\sigma_k^{2(1 + 2\mu)}} < \infty.$$
+
+* Show that
+
+$$\|K^\dagger_{\alpha} f - K^\dagger f\| = \mathcal{O}(\delta^{\mu}).$$
 
 ```{admonition} Answer
 :class: dropdown, hint
+
+* We split the error in its bias and variance terms and consider each separately. The bias term is given by $\|(K^\dagger - K_{\alpha}^\dagger)f\|$, which we express as
+
+$$\|(K^\dagger - K_{\alpha}^\dagger)f\|^2 = \sum_{k=0}^\infty (\sigma_k^{-1} - g_{\alpha}(\sigma_k))^2 |\langle f, u_k\rangle|^2.$$
+
+We can split off a factor $\sigma_k^{-1}$ and bound as
+
+$$\|(K^\dagger - K_{\alpha}^\dagger)f\|^2 \leq \sup_k (1 - \sigma_k g_{\alpha}(\sigma_k))^2 \sum_{k=0}^\infty  \frac{|\langle f, u_k\rangle|^2}{\sigma_k^2}.$$
+
+Since $f$ obeys the Picard condition, the second term is finite. The first term can be bounded because $0 < sg_{\alpha}(s) \leq 1$. Moreover, we see that at $\alpha = 0$ we have $(1 - \sigma_k g_{\alpha}(\sigma_k))^2 = 0$. We conclude that the bias converges to zero as $\delta \rightarrow 0$. We do not get a rate, however.
+
+The variance term can be shown to converge to zero as well, as done below.
 
 * We find
 
 $$\|K^\dagger_{\alpha} e\| \leq \|K^\dagger_{\alpha}\| \delta,$$
 
-with $\|K^\dagger_{\alpha(\delta)}\| = \sup_k |\sigma_k/(\sigma_k^2 + \delta/4)|$. To bound this, we look at the function $g_{\alpha}(s) = s/(s^2 + \alpha)$ and find that it attains an extremum at $s = \sqrt{\alpha}$. Hence we have $|g_{\alpha}(s)| \leq 1/\sqrt{4\alpha}$. Setting $\alpha = \delta/4$ we get the desired result.
+with $\|K^\dagger_{\alpha(\delta)}\| = \sup_k |g_{\alpha(\delta)}(\sigma_k)|$. To bound this, we observe that $|g_{\alpha}(s)| \leq \alpha^{-1}$. Setting $\alpha = \sqrt{\delta}$ we get the desired result.
 
-* We find
+* Start from
 
-$$\|K^\dagger_{\alpha} f - K^\dagger f\| = \sum_{k=0}^\infty |\sigma_k^{-1} - g_{\alpha}(\sigma_k)|^2 |\langle f, u_k \rangle|^2 \leq \sup_{k} |1 - \sigma_k g_{\alpha}(\sigma_k)|^2 \frac{|\langle f, u_k \rangle|^2}{\sigma_k^2}.$$
+$$\sum_{k=0}^{\infty} \frac{|\langle f,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}}$$
 
+and substitute $f = K(K^*K)^{\mu} w = \sum_{k=0}^\infty \sigma_k^{2\mu+1}\langle w,u_k\rangle u_k$ to get
 
+$$\sum_{k=0}^{\infty} \sigma_k^{2 + 4\mu}\frac{|\langle f,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}} = \|w\| < \infty.$$
 
+* Starting again from the bias term, we can factor out an additional $\sigma^{4\mu}$ term. We then use that $s^{2\mu}(1 - sg_{\alpha}(s)) \leq \alpha^{2\mu} $ to find the desired result.
 
 
 ```
-
 ### Convolution through the heat equation
 
-In this exercise we'll explore the relation between the heat equation and convolution with a Gaussian kernel. Specifically, we'll see that the linear operation $f = Ku$ defined by the initial-value problem
+In this exercise we'll explore the relation between the heat equation and convolution with a Gaussian kernel. Define the forward problem $f = Ku$ via the initial-value problem
 
 $$
-v_t = v_{xx}, \quad v(0,x) = u(x), \quad f(x) = v(1,x),
+v_t = v_{xx}, \quad v(0,x) = u(x), \quad f(x) = v(T,x).
 $$
 
-is given by
-
-$$
-Ku(x) = \frac{1}{2\sqrt{\pi}}\int_{\mathbb{R}} u(x') \exp(-(x - x')^2/4) \mathrm{d}x'.
-$$
-
-1. Verify that the solution to the heat equation is given by
+* Verify that the solution to the heat equation is given by
 
 $$
 v(t,x) = \int_{\mathbb{R}} u(x') g_t(x - x')\mathrm{d}x',
@@ -740,47 +755,129 @@ $$
 
 You may use here that $g_t(x)$ converges (in the sense of distributions) to $\delta(x)$ as $t \downarrow 0$.
 
-2. Is the operator bounded? compact? self-adjoint?
-
-We can use the [convolution theorem](https://en.wikipedia.org/wiki/Convolution_theorem) to represent the operator as
+* Show that we can thus express the forward operator as
 
 $$
-Ku = F^{-1}((Fu)\cdot(Fg_1)),
+Ku(x) = \frac{1}{2\sqrt{\pi T}}\int_{\mathbb{R}} u(x') \exp(-(x - x')^2/(4T)) \mathrm{d}x'.
 $$
 
-where $\cdot$ denotes point-wise multiplication and $F$ denotes the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform)
+* Show that the operator may be expressed as
 
 $$
-Fu(\xi) = \int_{\mathbb{R}} u(x) e^{\imath 2\pi \xi x} {\mathrm{d}}x,
+Ku = F^{-1}((Fu)\cdot(Fg_T)),
 $$
 
-with inverse
+where $\cdot$ denotes point-wise multiplication and $F$ denotes the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform).
 
-$$
-F^{-1}\widehat{u}(x) = \int_{\mathbb{R}} \widehat{u}(\xi) e^{-\imath 2\pi\xi x} {\mathrm{d}}\xi.
-$$
+* Express the inverse of $K$ as multiplication with a filter $\widehat{h}$ (in the Fourier domain). How does ill-posed manifest itself here?
 
-3. Express the inverse of $K$ as a convolution with another filter $h$. 4. How does ill-posed manifest itself here?
+* Define a regularised filter (in the Fourier domain) by *bandlimitation*:
 
-4. Can you come up with a regularized filter $h_{\alpha}$ ?
+$$\widehat{h}_{\alpha}(\xi) = \begin{cases} \widehat{h}(\xi) & |\xi|\leq \alpha^{-1} \\ 0 & |\xi| > \alpha^{-1}\end{cases}.$$
 
-5. We can experiment with the inverse problem by using a discrete Fourier transform. Implement the inverse operator and the regularized inverse and show the effect of regularization.
+and test its effect numerically on noisy data for $T = 2$ using the code below. In particular, design an a-priori parameter selection rule $\alpha(\delta)$ that ensures that the total error converges *and* stays below 1 (in relative sense). Does this rule do better than the naive choice $\alpha(\delta) = \delta$?
 
 
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
 
+# grid and parameters
+T = 10
+delta = 1e-1
+alpha = 20
 n = 100
 x = np.linspace(-10,10,n)
+xi = np.fft.rfftfreq(n, d=1.0)
 
+# define ground truth
 u = np.heaviside(2-np.abs(x),1)
-g = np.exp(-x**2/4)
 
-f = np.fft.irfft(np.fft.rfft(u)*np.fft.rfft(g))
+# define operator
+gh = np.exp(-T*(2*np.pi*xi)**2)
+K = lambda u : np.fft.irfft(np.fft.rfft(u)*gh)
 
-plt.plot(x,u)
+# define regularised inverse
+w = lambda alpha : np.piecewise(xi, [np.abs(xi) <= 1/alpha, np.abs(xi) > 1/alpha], [1, 0])
+R = lambda alpha,f : np.fft.irfft(w(alpha)*np.fft.rfft(f)/gh)
+
+# generate noisy data
+f_delta = K(u) + delta*np.random.randn(n)
+
+# reconstruction
+u_alpha_delta = R(alpha,f_delta)
+
+# plot
+plt.plot(x,u,label='ground truth')
+plt.plot(x,f_delta,label='noisy data')
+plt.plot(x,u_alpha_delta,label='reconstruction')
+plt.xlabel(r'$x$')
+plt.legend()
 plt.show()
+```
+
+```{admonition} Answer
+:class: hint, dropdown
+
+...
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+import numpy as np
+import matplotlib.pyplot as plt
+
+# grid and parameters
+T = 2
+delta = 1e-1
+alpha = 20
+n = 100
+x = np.linspace(-10,10,n)
+xi = np.fft.rfftfreq(n, d=1.0)
+
+# define ground truth
+u = np.heaviside(2-np.abs(x),1)
+
+# define operator
+gh = np.exp(-T*(2*np.pi*xi)**2)
+K = lambda u : np.fft.irfft(np.fft.rfft(u)*gh)
+
+# define regularised inverse
+w = lambda alpha : np.piecewise(xi, [alpha*np.abs(xi) <= 1, alpha*np.abs(xi) > 1], [1, 0])
+R = lambda alpha,f : np.fft.irfft(w(alpha)*np.fft.rfft(f)/gh)
+
+def reconstruct(u, delta, alpha, nsamples = 10):
+
+    error = 0
+    for k in range(nsamples):
+        # generate noisy data
+        f_delta = K(u) + delta*np.random.randn(n)
+
+        # reconstructions
+        u_alpha_delta = R(alpha,f_delta)
+
+        # compute error
+        error += np.linalg.norm(u - u_alpha_delta)/np.linalg.norm(u)/nsamples
+
+    #
+    return error
+
+alpha1 = lambda delta : delta
+alpha2 = lambda delta : 20*delta**(1/8)
+ns = 10
+delta = np.logspace(-16,0,ns)
+error1 = np.zeros(ns)
+error2 = np.zeros(ns)
+
+for k in range(ns):
+    error1[k] = reconstruct(K(u), delta[k], alpha1(delta[k]),nsamples=100)
+    error2[k] = reconstruct(K(u), delta[k], alpha2(delta[k]),nsamples=100)
+
+plt.loglog(delta,error1,label=r'$\alpha(\delta) = \delta$')
+plt.loglog(delta,error2,label=r'$\alpha(\delta) = 20\delta^{1/8}$')
+plt.xlabel(r'$\delta$')
+plt.ylabel(r'relative error')
+plt.legend()
 ```
 
 ## Assignments
