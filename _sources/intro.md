@@ -2,6 +2,16 @@
 
 ```{warning}
 These lecture notes are currently still under construction.
+
+<script type="text/javascript">
+// script from BoogieJack.com
+var m = "Page Last Updated " + document.lastModified;
+var p = m.length-8;
+document.writeln("<div style='font-size: 12px;'>");
+document.write(m.substring(p, 0));
+document.writeln("</div>");
+</script>
+
 ```
 
 In these lectures we introduce basic concepts related to inverse problems and visit various viewpoints on inverse problems. The main recurring themes are
@@ -31,7 +41,7 @@ To get familiar with Python, we highly recommend [these lecture notes](https://s
 ## Using the notes
 
 Do you want to use these notes to teach a class on inverse problems or for self-study?
-Please go ahead! These lecture notes are freely available and may be distributed and modified under a [CC BY-NC 4.0](http://creativecommons.org/licenses/by-nc/4.0/) license. 
+Please go ahead! These lecture notes are freely available and may be distributed and modified under a [CC BY-NC 4.0](http://creativecommons.org/licenses/by-nc/4.0/) license.
 
 ## Contributing to the notes  
 
