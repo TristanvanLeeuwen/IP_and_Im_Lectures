@@ -140,7 +140,22 @@ where $\epsilon_i \sim N(0,\sigma^2)$ and $u(x_i) \sim N()$.
 import numpy as np
 import matplotlib.pyplt as plt
 
+np.random.seed(1)
 
+# parameters
+n = 100
+sigma = 0.1
+
+# grid
+h = 1/n
+x = np.linspace(h,1-h,n)
+
+# ground-truth and data
+u = x**2
+f_delta = u + sigma*np.random.randn(n)
+
+# plot
+plt.plot(x,u,x,f_delta)
 ```
 
 In many practical applications, however, it may not be feasible to to compute all the elements of this matrix as it typically involves solving normal equations. Some useful properties of the covariance matrix may nevertheless be estimated with additional computations. When the poster is not Gaussian, it may in some cases be usefully approximated by a Gaussian. A popular approach is to approximate the posterior locally around a given MAP estimate. Another approach is to employ samplings methods locally around the MAP estimate to at least generate some uncertainty information. such methods are the topic of much current research, but we will not go in to further details in this course.
