@@ -17,17 +17,17 @@ In this chapter we present a statistical perspective on inverse problems. This v
 
 ## Formulating prior assumptions
 
-We take the viewpoint that both $f^{\delta}$ and $u$ are [continuous random variables](https://en.wikipedia.org/wiki/Random_variable). The prior assumptions are then formulated
-
-Our prior assumptions then consist of multi-variate [probability distributions](https://en.wikipedia.org/wiki/Probability_density_function).  
+We take the viewpoint that both $f^{\delta}$ and $u$ are [continuous random variables](https://en.wikipedia.org/wiki/Random_variable). The prior assumptions are then formulated in terms of multi-variate [probability distributions](https://en.wikipedia.org/wiki/Probability_density_function).  
 
 ```{admonition} Definition: *Likelihood*
+:class: important
 The [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function) models the probability of measuring $f^\delta$ given $u$. The corresponding probability density function is denoted by
 
 $$\pi_{\text{data}}(f^\delta | u)$$
 ```
 
 ```{admonition} Definition: *Prior distribution*
+:class: important
 The [prior distribution](https://en.wikipedia.org/wiki/Prior_probability) models the probability of a particular $u$ being the underlying ground truth. It is denoted by
 
 $$\pi_{\text{prior}}(u).$$
@@ -36,6 +36,7 @@ $$\pi_{\text{prior}}(u).$$
 We can use [Bayes' theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem) to combine the likelihood and prior to the [posterior distribution](https://en.wikipedia.org/wiki/Posterior_probability):
 
 ```{admonition} Definition: *Posterior distribution*
+:class: important
 The posterior distribution gives the probability of any given $u$ given the measurements $f^\delta$:
 
 $$
@@ -57,7 +58,7 @@ $$\pi_{\text{data}}(u | f^\delta) = \frac{1}{\sigma\sqrt{1+\rho^2}\sqrt{2\pi}}\e
 As prior, we can use statistics of rock samples {cite}`johnson1984density`. This gives a [log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution) with parameters $(1.5,0.4)$. The corresponding distributions are shown in figure {numref}`rock_samples`.
 
 ```{glue:figure} rock_samples
-:figwidth: 300px
+:figwidth: 500px
 :name: "rock_samples"
 
 Example of probability densities with $w = 2$, $v=1$, $\sigma = 0.1$.
@@ -100,25 +101,50 @@ ax.legend()
 glue("rock_samples", fig, display=False)
 ```
 
-In a way, $\pi_{\text{post}}(u | f^\delta)$ is the answer to our inverse problem. It gives us information on the likelihood of any particular $u$ *under the assumptions* we made on $f^\delta$ and $u$. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those.
-
-In all but the simple linear-forward-operator-Gaussian-assumption case, we cannot easily characterise the posterior PDF. We may, however, attempt estimate certain properties by drawing samples from the posterior distribution. Such samples can be generated for any distribution using a [Markov chain Monte Carlo (MCMC) algorithm](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo). This is not very attractive for high-dimensional problems, however. Further discussion of such algorithms is outside the scope of this lecture.
+In a way, $\pi_{\text{post}}(u | f^\delta)$ is the answer to our inverse problem. It gives us information on the likelihood of any particular $u$ *under the assumptions* we made on $f^\delta$ and $u$. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those. In many cases, however, we cannot easily characterise the posterior PDF. We may, however, attempt estimate certain properties by drawing samples from the posterior distribution. Such samples can be generated for any distribution using a [Markov chain Monte Carlo (MCMC) algorithm](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo). This is not very attractive for high-dimensional problems, however. Further discussion of such algorithms is outside the scope of this lecture.
 
 ## MAP estimation
 
-For high-dimensional problems it is common to instead find the most likely parameters
+For high-dimensional problems it is common to instead find the most likely parameter value
 
 $$
 \max_{u} \pi_{\text{post}}(u|f^\delta).
 $$
 
-The $u$ that attains this maximum is called the *maximum a posteriori* (MAP) estimate. Finding the MAP estimate can be naturally cast as a minimisation problem
+The $u$ that attains this maximum is called the *maximum a posteriori* (MAP) estimate. For some distributions, like the Gaussian, the MAP estimate coincides the mean. For skewed or multi-modal distributions, the MAP may not be very representative.
+
+Finding the MAP estimate can be naturally cast as a minimisation problem
 
 $$
 \min_u -\log \pi_{\text{post}}(u|f^\delta).
 $$
 
-Analysing and solving such variational problems will be the subject of a subsequent chapter.
+Analysing and solving such variational problems will be the subject of subsequent chapters.
+
+## Uncertainty quantification
+
+Aside from estimate the *mode* of the posterior through MAP estimation, it is often desirable to estimate uncertainties. In effect, this would allow us to put error bars on the estimated parameters and quantify dependencies between parameters.
+
+When the posterior is Gaussian the *posterior Covariance* has a closed-form expression. Great care should be take when using this to estimate uncertainties as they can be misleading. The following example illustrates this.
+
+```{admonition} Example: *Uncertainty quantification*
+
+Consider denoising a direct measurement of a smooth signal
+
+$$f^\delta_i = u(x_i) + \epsilon_i,$$
+
+where $\epsilon_i \sim N(0,\sigma^2)$ and $u(x_i) \sim N()$.
+```
+
+```{code-cell}
+import numpy as np
+import matplotlib.pyplt as plt
+
+
+```
+
+In many practical applications, however, it may not be feasible to to compute all the elements of this matrix as it typically involves solving normal equations. Some useful properties of the covariance matrix may nevertheless be estimated with additional computations. When the poster is not Gaussian, it may in some cases be usefully approximated by a Gaussian. A popular approach is to approximate the posterior locally around a given MAP estimate. Another approach is to employ samplings methods locally around the MAP estimate to at least generate some uncertainty information. such methods are the topic of much current research, but we will not go in to further details in this course.
+
 
 ## Examples
 
@@ -451,14 +477,6 @@ ax[0,1].set_xticks([])
 plt.show()
 
 ```
-
-## Uncertainty quantification
-
-Aside from estimate the *mode* of the posterior through MAP estimation, it is often desirable to estimate uncertainties. In effect, this would allow us to put error bars on the estimated parameters and quantify dependencies between parameters.
-
-In the Gaussian cases, this can be easily obtained by computing the *posterior Covariance*.
-
-+++
 
 ## Exercises
 
