@@ -156,21 +156,28 @@ np.random.seed(1)
 
 # parameters
 n = 100
-sigma = 0.1
+sigma = 0.5
+L = .01
+alpha = sigma**2
 
 # grid
-h = 1/n
-x = np.linspace(h,1-h,n)
+x = np.linspace(0,1,n)
+x1,x2 = np.meshgrid(x,x)
 
 # ground-truth and data
-e = np.ones(n+1)
-L = dia_matrix(np.array([-e e]),np.array([0, 1]))
-Sigma = L.T@L
+Sigma = np.exp(-np.abs(x1-x2)**2/(2*L))
 u = np.random.multivariate_normal(np.zeros(n),Sigma)
 f_delta = u + sigma*np.random.randn(n)
 
+# MAP-estimate
+umap = np.linalg.solve(alpha*np.eye(n) + Sigma,Sigma@f_delta)
+
+# variance
+Smap = np.linalg.inv(alpha*np.eye(n) + Sigma)@Sigma
+
 # plot
-plt.plot(x,u,x,f_delta)
+plt.plot(x,u)
+plt.errorbar(x,umap,yerr=np.diag(Smap))
 ```
 
 In many practical applications, however, it may not be feasible to to compute all the elements of this matrix as it typically involves solving normal equations. Some useful properties of the covariance matrix may nevertheless be estimated with additional computations. When the poster is not Gaussian, it may in some cases be usefully approximated by a Gaussian. A popular approach is to approximate the posterior locally around a given MAP estimate. Another approach is to employ samplings methods locally around the MAP estimate to at least generate some uncertainty information. such methods are the topic of much current research, but we will not go in to further details in this course.
