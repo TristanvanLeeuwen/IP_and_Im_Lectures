@@ -678,7 +678,7 @@ Consider the regularised pseudo-inverse
 
 $$K^\dagger_{\alpha} = \sum_{k=0}^\infty g_{\alpha}(\sigma_k) \langle u_k,\cdot\rangle v_k,$$
 
-and let $f^\delta = f + e$ with $\|e\|_{\mathcal{F}} \leq \delta$. We are going to study the convergence of this method, i.e., how fast $\|K_{\alpha}^\dagger f^\delta - K^\dagger f\| \rightarrow 0$. You may assume that $f$ satisfies the Picard condition. We further let
+and let $f^\delta = f + e$ with $\|e\|_{\mathcal{F}} \leq \delta$. We are going to study the convergence of this method, i.e., how fast $\|K_{\alpha}^\dagger f^\delta - K^\dagger f\| \rightarrow 0$. You may assume that $f \in \mathcal{R}(K)$ and that $f^\delta$ obeys the Picard condition. We further let
 
 $$g_{\alpha}(s) = \begin{cases} s^{-1} & s > \alpha \\ 0 & s \leq \alpha \end{cases}.$$
 
@@ -727,7 +727,7 @@ $$\sum_{k=0}^{\infty} \frac{|\langle f,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}}$$
 
 and substitute $f = K(K^*K)^{\mu} w = \sum_{k=0}^\infty \sigma_k^{2\mu+1}\langle w,u_k\rangle u_k$ to get
 
-$$\sum_{k=0}^{\infty} \sigma_k^{2 + 4\mu}\frac{|\langle f,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}} = \|w\| < \infty.$$
+$$\sum_{k=0}^{\infty} \sigma_k^{2 + 4\mu}\frac{|\langle w,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}} = \|w\| < \infty.$$
 
 * Starting again from the bias term, we can factor out an additional $\sigma^{4\mu}$ term. We then use that $s^{2\mu}(1 - sg_{\alpha}(s)) \leq \alpha^{2\mu} $ to find the desired result.
 
@@ -753,7 +753,7 @@ $$
 g_t(x) = \frac{1}{2\sqrt{\pi t}}\exp(-(x/2)^2/t).
 $$
 
-You may use here that $g_t(x)$ converges (in the sense of distributions) to $\delta(x)$ as $t \downarrow 0$.
+You may assume that $u$ is sufficiently regular and use that $g_t(x)$ converges (in the sense of distributions) to $\delta(x)$ as $t \downarrow 0$.
 
 * Show that we can thus express the forward operator as
 
@@ -769,13 +769,13 @@ $$
 
 where $\cdot$ denotes point-wise multiplication and $F$ denotes the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform).
 
-* Express the inverse of $K$ as multiplication with a filter $\widehat{h}$ (in the Fourier domain). How does ill-posed manifest itself here?
+* Express the inverse of $K$ as multiplication with a filter $\widehat{h}$ (in the Fourier domain). How does ill-posed manifest itself here and how does it depend on $T$ ?
 
-* Define a regularised filter (in the Fourier domain) by *bandlimitation*:
+We define a regularised filter (in the Fourier domain) by *bandlimitation*:
 
-$$\widehat{h}_{\alpha}(\xi) = \begin{cases} \widehat{h}(\xi) & |\xi|\leq \alpha^{-1} \\ 0 & |\xi| > \alpha^{-1}\end{cases}.$$
+$$\widehat{h}_{\alpha}(\xi) = \begin{cases} \widehat{h}(\xi) & \text{for} & |\xi|\leq \alpha^{-1} \\ 0 & \text{for} &|\xi| > \alpha^{-1}\end{cases}.$$
 
-and test its effect numerically on noisy data for $T = 2$ using the code below. In particular, design an a-priori parameter selection rule $\alpha(\delta)$ that ensures that the total error converges *and* stays below 1 (in relative sense). Does this rule do better than the naive choice $\alpha(\delta) = \delta$?
+* Test its effect numerically on noisy data for $T = 2$ using the code below. In particular, design an a-priori parameter selection rule $\alpha(\delta)$ that ensures that the total error converges *and* stays below 1 (in relative sense). Does this rule do better than the naive choice $\alpha(\delta) = \delta$?
 
 
 ```{code-cell} ipython3
@@ -819,7 +819,16 @@ plt.show()
 ```{admonition} Answer
 :class: hint, dropdown
 
-...
+* We can easily verify that it indeed satisfies the differential equation by computing $v_t$ and $v_{xx}$. To show that it satisfies the initial condition, we take the limit $t\rightarrow 0$ and use that $\lim_{t\rightarrow 0} \int g_t(x)u(x) \mathrm{d}x = u(0)$.
+
+* Setting $t = T$ in the previous expression gives the desired result.
+
+* This follows from the [convolution theorem](https://en.wikipedia.org/wiki/Convolution_theorem).
+
+* The inverse of $K$ is naively given by multiplication with $(Fg_T)^{-1}$ in the Fourier domain. We have $\widehat{g}_T(\xi) \propto e^{-T \xi^2}$ so we can only usefully define the inverse on functions whose Fourier spectrum decays fast enough such that the inverse Fourier transform of $\widehat{f}/\widehat{g}_T$ can be defined. Thus a solution does not exist for a large class of $f$ and noise is amplified exponentially. This only gets worse for larger $T$.
+
+* See the code below. We compute the total error using the function `reconstruct` which computes noisy data and reconstructs using the regularised inverse. To get a more stable result we average over a number of random instances of the noise. Using $\alpha(\delta) = \delta$ gives a (numerically) convergent result, however for large $\delta$ it gives a very large error. Picking $\alpha(\delta)$ to converge a bit slower allows one to keep the relative total error below 1. Note that we only show convergence of the error for one particular $u$, so we cannot conclude that this will work in general as in a previous exercise. If you like Fourier analysis and sampling theory, this may be a nice exercise.
+
 ```
 
 ```{code-cell} ipython3
@@ -873,6 +882,7 @@ for k in range(ns):
     error1[k] = reconstruct(K(u), delta[k], alpha1(delta[k]),nsamples=100)
     error2[k] = reconstruct(K(u), delta[k], alpha2(delta[k]),nsamples=100)
 
+plt.loglog(delta,0*delta + 1,'k--')
 plt.loglog(delta,error1,label=r'$\alpha(\delta) = \delta$')
 plt.loglog(delta,error2,label=r'$\alpha(\delta) = 20\delta^{1/8}$')
 plt.xlabel(r'$\delta$')
