@@ -4,11 +4,13 @@
 These lecture notes are currently still under construction.
 
 <script type="text/javascript">
-// script from BoogieJack.com
-var m = "Last Updated on " + document.lastModified;
-var p = m.length-8;
+function lastModified() {
+    var modiDate = new Date(document.lastModified);
+    var showAs = modiDate.getDate() + "-" + (modiDate.getMonth() + 1) + "-" + modiDate.getFullYear();
+    return showAs
+}
 document.writeln("<div style='font-size: 14px;'>");
-document.write(m.substring(p, 0));
+document.write("Last updated on " + lastModified());
 document.writeln("</div>");
 </script>
 
