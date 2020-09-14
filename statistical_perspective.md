@@ -133,13 +133,25 @@ Consider denoising a direct measurement of a smooth signal
 
 $$f^\delta_i = u(x_i) + \epsilon_i,$$
 
-where $\epsilon_i \sim N(0,\sigma^2)$ and $u(x_i) \sim N()$.
+where $\epsilon_i \sim N(0,\sigma^2)$ and $u(x_i) \sim N(0,\Sigma)$, With
+
+$$\Sigma_{ij} = \exp\left(-\frac{|i-j|^p}{pL^{p}}\right).$$
+
+The corresponding posterior mean and covariance are given by
+
+$$\mu_{\text{post}} = \left(I + \sigma^{2}L^*\!L\right)^{-1}f^\delta),$$
+
+$$\Sigma_{\text{post}} = \left(I + \sigma^{2}L^*\!L\right)^{-1}.$$
+
+
 ```
 
 ```{code-cell}
 import numpy as np
-import matplotlib.pyplt as plt
+import matplotlib.pyplot as plt
+from scipy.sparse import dia_matrix
 
+# set random seed
 np.random.seed(1)
 
 # parameters
@@ -151,7 +163,10 @@ h = 1/n
 x = np.linspace(h,1-h,n)
 
 # ground-truth and data
-u = x**2
+e = np.ones(n+1)
+L = dia_matrix(np.array([-e e]),np.array([0, 1]))
+Sigma = L.T@L
+u = np.random.multivariate_normal(np.zeros(n),Sigma)
 f_delta = u + sigma*np.random.randn(n)
 
 # plot
@@ -182,7 +197,7 @@ $$
 which we can re-write as
 
 $$
-\pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\textstyle{\frac{1}{2}}\left((u-\mu_{\text{post}})^T\Sigma_{\text{post}}^{-1}(u-\mu_{\text{post}})\right)\right),
+\pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\textstyle{\frac{1}{2}}\left((u-\mu_{\text{post}})^*\Sigma_{\text{post}}^{-1}(u-\mu_{\text{post}})\right)\right),
 $$
 
 with
@@ -511,13 +526,13 @@ with $f^{\delta} = K\overline u + \epsilon$, where $\epsilon$ is drawn from a no
 Show that the posterior distribution is Gaussian with mean
 
 $$
-\mu_{\text{post}} = \mu_{\text{prior}} + \left(K^T\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1}\right)^{-1}K^T\Sigma_{\text{noise}}^{-1}(f - K\mu_{\text{prior}}),
+\mu_{\text{post}} = \mu_{\text{prior}} + \left(K^*\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1}\right)^{-1}K^*\Sigma_{\text{noise}}^{-1}(f - K\mu_{\text{prior}}),
 $$
 
 and covariance
 
 $$
-\Sigma_{\text{post}} = \Sigma_{\text{prior}} - \Sigma_{\text{prior}}K^T\left(K\Sigma_{\text{prior}}K^T + \Sigma_{\text{noise}}\right)^{-1}K\Sigma_{\text{prior}}.
+\Sigma_{\text{post}} = \Sigma_{\text{prior}} - \Sigma_{\text{prior}}K^*\left(K\Sigma_{\text{prior}}K^* + \Sigma_{\text{noise}}\right)^{-1}K\Sigma_{\text{prior}}.
 $$
 
 Hint: The [Binomial inverse theorem](https://en.wikipedia.org/wiki/Woodbury_matrix_identity#Binomial_inverse_theorem) may come in handy.
@@ -529,49 +544,49 @@ The likelihood is a Gaussian with mean $Ku$ and covariance $\Sigma_{\text{noise}
 
 $$
 \pi_{\text{likelihood}}(f^{\delta} | u) \propto \exp(-\textstyle{\frac{1}{2}}(Ku -
-f^{\delta})^T\Sigma_{\text{noise}}^{-1}(Ku - f^\delta)).
+f^{\delta})^*\Sigma_{\text{noise}}^{-1}(Ku - f^\delta)).
 $$
 
 The prior is a Gaussian with mean $\mu_{\text{prior}}$ and covariance $\Sigma_{\text{prior}}$:
 
 $$
-\pi_{\text{prior}}(u) \propto \exp(-\textstyle{\frac{1}{2}}(u - \mu_{\text{prior}})^T\Sigma_{\text{prior}}^{-1}(u - \mu_{\text{prior}})).
+\pi_{\text{prior}}(u) \propto \exp(-\textstyle{\frac{1}{2}}(u - \mu_{\text{prior}})^*\Sigma_{\text{prior}}^{-1}(u - \mu_{\text{prior}})).
 $$
 
 Forming the product gives
 
 $$
-\pi_{\text{post}}(u | f^{\delta}) \propto \exp(-\textstyle{\frac{1}{2}}(Ku - f^{\delta})^T\Sigma_{\text{noise}}^{-1}(Ku - f^\delta) -\textstyle{\frac{1}{2}}(u - \mu_{\text{prior}})^T\Sigma_{\text{prior}}^{-1}(u - \mu_{\text{prior}})).
+\pi_{\text{post}}(u | f^{\delta}) \propto \exp(-\textstyle{\frac{1}{2}}(Ku - f^{\delta})^*\Sigma_{\text{noise}}^{-1}(Ku - f^\delta) -\textstyle{\frac{1}{2}}(u - \mu_{\text{prior}})^*\Sigma_{\text{prior}}^{-1}(u - \mu_{\text{prior}})).
 $$
 
 The goal is to write this as
 
 $$
-\pi_{\text{post}}(u | f^{\delta}) \propto \exp(-\textstyle{\frac{1}{2}}(u - \mu_{\text{post}})^T\Sigma_{\text{post}}^{-1}(u - \mu_{\text{post}})).
+\pi_{\text{post}}(u | f^{\delta}) \propto \exp(-\textstyle{\frac{1}{2}}(u - \mu_{\text{post}})^*\Sigma_{\text{post}}^{-1}(u - \mu_{\text{post}})).
 $$
 
 Expanding terms in the exponential we get
 
 $$
-u^T(K^T\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1})u - 2u^T(K^T\Sigma_{\text{noise}}^{-1}f^\delta  + \Sigma_{\text{prior}}^{-1}\mu_{\text{prior}}) + \text{constants}.
+u^*(K^*\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1})u - 2u^*(K^*\Sigma_{\text{noise}}^{-1}f^\delta  + \Sigma_{\text{prior}}^{-1}\mu_{\text{prior}}) + \text{constants}.
 $$
 
 The goal is to rewrite this as
 
 $$
-u^T\Sigma_{\text{post}}^{-1}u - 2u^T\Sigma_{\text{post}}^{-1}\mu_{\text{post}} + \text{constants}.
+u^*\Sigma_{\text{post}}^{-1}u - 2u^*\Sigma_{\text{post}}^{-1}\mu_{\text{post}} + \text{constants}.
 $$
 
 Hence:
 
 $$
-\Sigma_{\text{post}} = (K^T\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1})^{-1},
+\Sigma_{\text{post}} = (K^*\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1})^{-1},
 $$
 
 and
 
 $$
-\mu_{\text{post}} = \Sigma_{\text{post}}(K^T\Sigma_{\text{noise}}^{-1}f^\delta  + \Sigma_{\text{prior}}^{-1}\mu_{\text{prior}}).
+\mu_{\text{post}} = \Sigma_{\text{post}}(K^*\Sigma_{\text{noise}}^{-1}f^\delta  + \Sigma_{\text{prior}}^{-1}\mu_{\text{prior}}).
 $$
 
 Using the Binomial inverse theorem we find the desired expression for $\Sigma_{\text{post}}$. More algebraic manipulations yield the desired expression for $\mu_{\text{post}}$
