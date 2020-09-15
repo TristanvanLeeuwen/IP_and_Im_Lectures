@@ -123,64 +123,97 @@ Analysing and solving such variational problems will be the subject of subsequen
 
 ## Uncertainty quantification
 
-Aside from estimate the *mode* of the posterior through MAP estimation, it is often desirable to estimate uncertainties. In effect, this would allow us to put error bars on the estimated parameters and quantify dependencies between parameters.
+Aside from estimate the *mode* of the posterior through MAP estimation, it is often desirable to estimate uncertainties. In effect, this would allow us to put error bars on the estimated parameters and quantify dependencies between parameters. It should be noted that the posterior mean and variance are subject to the prior assumptions made on the noise and the ground truth. To usefully interpret the posterior covariance, these assumptions should be carefully checked. The following example illustrates this.
 
-When the posterior is Gaussian the *posterior Covariance* has a closed-form expression. Great care should be take when using this to estimate uncertainties as they can be misleading. The following example illustrates this.
-
-```{admonition} Example: *Uncertainty quantification*
+````{admonition} Example: *Gaussian uncertainty quantification*
 
 Consider denoising a direct measurement of a smooth signal
 
-$$f^\delta_i = u(x_i) + \epsilon_i,$$
+$$f^\delta_i = u(x_i) + \epsilon_i,\quad i \in \{0,1,\ldots, n-1\},$$
 
 where $\epsilon_i \sim N(0,\sigma^2)$ and $u(x_i) \sim N(0,\Sigma)$, With
 
-$$\Sigma_{ij} = \exp\left(-\frac{|i-j|^p}{pL^{p}}\right).$$
+$$\Sigma_{ij} = \exp\left(-\frac{|i-j|^2}{2L^{2}}\right).$$
 
-The corresponding posterior mean and covariance are given by
+We estimate $u$ by solving the following regularised least-squares problem:
 
-$$\mu_{\text{post}} = \left(I + \sigma^{2}L^*\!L\right)^{-1}f^\delta),$$
+$$\min_u \|u - f^\delta\|_2^2 + \alpha \|u\|_{\Sigma^{-1}}^2.$$
 
-$$\Sigma_{\text{post}} = \left(I + \sigma^{2}L^*\!L\right)^{-1}.$$
+Here, $\alpha$ is an estimate of the reciprocal variance of the noise, so ideally we have $\alpha \approx \sigma^{-2}$. The corresponding posterior mean and covariance are given by
 
+$$\mu_{\text{post}} = \left(\alpha I + \Sigma\right)^{-1}\Sigma f^\delta,$$
 
+$$\Sigma_{\text{post}} = \alpha \left(\alpha I + \Sigma\right)^{-1}\Sigma.$$
+
+When using $\mu_{\text{post}}$ as an estimate for $u$ we could interpret the diagonal elements of $\Sigma_{\text{post}}$ as variances (and hence their square-root as a standard deviation). However, we should note that this mainly gives information on the *sensitivity* of the estimate to noise, and not necessarily on the *error* between the estimate and the ground truth. Even then, we may grossly underestimate the uncertainty when $\alpha < \sigma^{-2}$. One way to asses wether the assumptions are valid is to study the residuals $r_i = \widehat{u}_i - f_i^\delta$. If the assumptions are valid, we expect these to be normally distributed mean zero and variance $\alpha$. Likewise, we can verify whether $\widehat{u}$ is normally distributed with mean zero and covariance $\Sigma$.
+
+```{glue:figure} gaussian_example
+:figwidth: 500px
+:name: "gaussian_example"
+
+An example with $n = 100$, $\sigma^2 = 1$, $L = 10^{-1}$ for various values of $\alpha$. The top row shows the ground truth, the estimated mean and variance. The bottom row shows the histogram of the residuals and a Normal distribution with variance $\alpha$. We can make the posterior variance arbitrarily small by taking a small value for $\alpha$. However, this is misleading at the actual reconstruction will be heavily dependent on the noise. We can judge the appropriateness of the assumptions by looking at the residuals, which should be normally distributed with variance $\alpha$. We see that only for $\alpha = 1$ the residuals have the appropriate distribution.
 ```
+````
 
 ```{code-cell}
+:tags: ["hide-cell"]
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.sparse import dia_matrix
 
 # set random seed
-np.random.seed(1)
+np.random.seed(3)
 
 # parameters
 n = 100
-sigma = 0.5
-L = .01
-alpha = sigma**2
+sigma = 1
+L = .1
+alpha = [.1, 1, 10]
 
 # grid
 x = np.linspace(0,1,n)
 x1,x2 = np.meshgrid(x,x)
 
 # ground-truth and data
-Sigma = np.exp(-np.abs(x1-x2)**2/(2*L))
+Sigma = np.exp(-np.abs(x1-x2)**2/(2*L**2))
 u = np.random.multivariate_normal(np.zeros(n),Sigma)
 f_delta = u + sigma*np.random.randn(n)
 
-# MAP-estimate
-umap = np.linalg.solve(alpha*np.eye(n) + Sigma,Sigma@f_delta)
+u_map = [0,0,0]
+Sigma_map = [0,0,0]
 
-# variance
-Smap = np.linalg.inv(alpha*np.eye(n) + Sigma)@Sigma
+for k in range(3):
+    # MAP-estimate
+    u_map[k] = np.linalg.solve(alpha[k]*np.eye(n) + Sigma,Sigma@f_delta)
+
+    # covariance
+    Sigma_map[k] = alpha[k]*np.linalg.inv(Sigma + alpha[k]*np.eye(n))@Sigma
 
 # plot
-plt.plot(x,u)
-plt.errorbar(x,umap,yerr=np.diag(Smap))
+r = np.linspace(-5,5,50)
+fig, ax = plt.subplots(2,3)
+
+for k in range(3):
+    ax[0,k].plot(x,u,'k--',label='ground truth')
+    ax[0,k].errorbar(x,u_map[k],yerr=np.sqrt(np.diag(Sigma_map[k])))
+    ax[0,k].set_xlabel('x')
+    ax[0,0].set_ylabel('u(x)')
+    ax[0,k].set_title(r'$\alpha = $'+str(alpha[k]))
+
+    ax[1,k].hist(u_map[k]-f_delta,bins=r,density=True)
+    ax[1,k].plot(r,(1/np.sqrt(2*np.pi*alpha[k]))*np.exp(-(0.5/alpha[k])*r**2),'k--')
+    ax[1,k].set_xlabel('r')
+    ax[1,0].set_ylabel(r'$\pi$')
+
+fig.set_figwidth(10)
+fig.tight_layout()
+plt.show()
+
+glue("gaussian_example", fig, display=False)
 ```
 
-In many practical applications, however, it may not be feasible to to compute all the elements of this matrix as it typically involves solving normal equations. Some useful properties of the covariance matrix may nevertheless be estimated with additional computations. When the poster is not Gaussian, it may in some cases be usefully approximated by a Gaussian. A popular approach is to approximate the posterior locally around a given MAP estimate. Another approach is to employ samplings methods locally around the MAP estimate to at least generate some uncertainty information. such methods are the topic of much current research, but we will not go in to further details in this course.
+In many practical applications, however, it may not be feasible to compute all the elements of the posterior covariance matrix as it typically involves solving normal equations. Some useful properties of the covariance matrix may nevertheless be estimated with additional computations. When the posterior is not Gaussian, it may in some cases be usefully approximated by a Gaussian. A popular approach is to approximate the posterior locally around a given MAP estimate. Another approach is to employ samplings methods locally around the MAP estimate to at least generate some uncertainty information. Such methods are the topic of much current research, but we will not go in to further details in this course.
 
 
 ## Examples
