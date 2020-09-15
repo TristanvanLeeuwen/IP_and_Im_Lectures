@@ -17,17 +17,17 @@ In this chapter we present a statistical perspective on inverse problems. This v
 
 ## Formulating prior assumptions
 
-We take the viewpoint that both $f^{\delta}$ and $u$ are [continuous random variables](https://en.wikipedia.org/wiki/Random_variable). The prior assumptions are then formulated
-
-Our prior assumptions then consist of multi-variate [probability distributions](https://en.wikipedia.org/wiki/Probability_density_function).  
+We take the viewpoint that both $f^{\delta}$ and $u$ are [continuous random variables](https://en.wikipedia.org/wiki/Random_variable). The prior assumptions are then formulated in terms of multi-variate [probability distributions](https://en.wikipedia.org/wiki/Probability_density_function).  
 
 ```{admonition} Definition: *Likelihood*
+:class: important
 The [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function) models the probability of measuring $f^\delta$ given $u$. The corresponding probability density function is denoted by
 
 $$\pi_{\text{data}}(f^\delta | u)$$
 ```
 
 ```{admonition} Definition: *Prior distribution*
+:class: important
 The [prior distribution](https://en.wikipedia.org/wiki/Prior_probability) models the probability of a particular $u$ being the underlying ground truth. It is denoted by
 
 $$\pi_{\text{prior}}(u).$$
@@ -36,6 +36,7 @@ $$\pi_{\text{prior}}(u).$$
 We can use [Bayes' theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem) to combine the likelihood and prior to the [posterior distribution](https://en.wikipedia.org/wiki/Posterior_probability):
 
 ```{admonition} Definition: *Posterior distribution*
+:class: important
 The posterior distribution gives the probability of any given $u$ given the measurements $f^\delta$:
 
 $$
@@ -57,7 +58,7 @@ $$\pi_{\text{data}}(u | f^\delta) = \frac{1}{\sigma\sqrt{1+\rho^2}\sqrt{2\pi}}\e
 As prior, we can use statistics of rock samples {cite}`johnson1984density`. This gives a [log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution) with parameters $(1.5,0.4)$. The corresponding distributions are shown in figure {numref}`rock_samples`.
 
 ```{glue:figure} rock_samples
-:figwidth: 300px
+:figwidth: 500px
 :name: "rock_samples"
 
 Example of probability densities with $w = 2$, $v=1$, $\sigma = 0.1$.
@@ -100,25 +101,120 @@ ax.legend()
 glue("rock_samples", fig, display=False)
 ```
 
-In a way, $\pi_{\text{post}}(u | f^\delta)$ is the answer to our inverse problem. It gives us information on the likelihood of any particular $u$ *under the assumptions* we made on $f^\delta$ and $u$. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those.
-
-In all but the simple linear-forward-operator-Gaussian-assumption case, we cannot easily characterise the posterior PDF. We may, however, attempt estimate certain properties by drawing samples from the posterior distribution. Such samples can be generated for any distribution using a [Markov chain Monte Carlo (MCMC) algorithm](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo). This is not very attractive for high-dimensional problems, however. Further discussion of such algorithms is outside the scope of this lecture.
+In a way, $\pi_{\text{post}}(u | f^\delta)$ is the answer to our inverse problem. It gives us information on the likelihood of any particular $u$ *under the assumptions* we made on $f^\delta$ and $u$. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those. In many cases, however, we cannot easily characterise the posterior PDF. We may, however, attempt estimate certain properties by drawing samples from the posterior distribution. Such samples can be generated for any distribution using a [Markov chain Monte Carlo (MCMC) algorithm](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo). This is not very attractive for high-dimensional problems, however. Further discussion of such algorithms is outside the scope of this lecture.
 
 ## MAP estimation
 
-For high-dimensional problems it is common to instead find the most likely parameters
+For high-dimensional problems it is common to instead find the most likely parameter value
 
 $$
 \max_{u} \pi_{\text{post}}(u|f^\delta).
 $$
 
-The $u$ that attains this maximum is called the *maximum a posteriori* (MAP) estimate. Finding the MAP estimate can be naturally cast as a minimisation problem
+The $u$ that attains this maximum is called the *maximum a posteriori* (MAP) estimate. For some distributions, like the Gaussian, the MAP estimate coincides the mean. For skewed or multi-modal distributions, the MAP may not be very representative.
+
+Finding the MAP estimate can be naturally cast as a minimisation problem
 
 $$
 \min_u -\log \pi_{\text{post}}(u|f^\delta).
 $$
 
-Analysing and solving such variational problems will be the subject of a subsequent chapter.
+Analysing and solving such variational problems will be the subject of subsequent chapters.
+
+## Uncertainty quantification
+
+Aside from estimate the *mode* of the posterior through MAP estimation, it is often desirable to estimate uncertainties. In effect, this would allow us to put error bars on the estimated parameters and quantify dependencies between parameters. It should be noted that the posterior mean and variance are subject to the prior assumptions made on the noise and the ground truth. To usefully interpret the posterior covariance, these assumptions should be carefully checked. The following example illustrates this.
+
+````{admonition} Example: *Gaussian uncertainty quantification*
+
+Consider denoising a direct measurement of a smooth signal
+
+$$f^\delta_i = u(x_i) + \epsilon_i,\quad i \in \{0,1,\ldots, n-1\},$$
+
+where $\epsilon_i \sim N(0,\sigma^2)$ and $u(x_i) \sim N(0,\Sigma)$, With
+
+$$\Sigma_{ij} = \exp\left(-\frac{|i-j|^2}{2L^{2}}\right).$$
+
+We estimate $u$ by solving the following regularised least-squares problem:
+
+$$\min_u \|u - f^\delta\|_2^2 + \alpha \|u\|_{\Sigma^{-1}}^2.$$
+
+Here, $\alpha$ is an estimate of the reciprocal variance of the noise, so ideally we have $\alpha \approx \sigma^{-2}$. The corresponding posterior mean and covariance are given by
+
+$$\mu_{\text{post}} = \left(\alpha I + \Sigma\right)^{-1}\Sigma f^\delta,$$
+
+$$\Sigma_{\text{post}} = \alpha \left(\alpha I + \Sigma\right)^{-1}\Sigma.$$
+
+When using $\mu_{\text{post}}$ as an estimate for $u$ we could interpret the diagonal elements of $\Sigma_{\text{post}}$ as variances (and hence their square-root as a standard deviation). However, we should note that this mainly gives information on the *sensitivity* of the estimate to noise, and not necessarily on the *error* between the estimate and the ground truth. Even then, we may grossly underestimate the uncertainty when $\alpha < \sigma^{-2}$. One way to asses wether the assumptions are valid is to study the residuals $r_i = \widehat{u}_i - f_i^\delta$. If the assumptions are valid, we expect these to be normally distributed mean zero and variance $\alpha$. Likewise, we can verify whether $\widehat{u}$ is normally distributed with mean zero and covariance $\Sigma$.
+
+```{glue:figure} gaussian_example
+:figwidth: 500px
+:name: "gaussian_example"
+
+An example with $n = 100$, $\sigma^2 = 1$, $L = 10^{-1}$ for various values of $\alpha$. The top row shows the ground truth, the estimated mean and variance. The bottom row shows the histogram of the residuals and a Normal distribution with variance $\alpha$. We can make the posterior variance arbitrarily small by taking a small value for $\alpha$. However, this is misleading at the actual reconstruction will be heavily dependent on the noise. We can judge the appropriateness of the assumptions by looking at the residuals, which should be normally distributed with variance $\alpha$. We see that only for $\alpha = 1$ the residuals have the appropriate distribution.
+```
+````
+
+```{code-cell}
+:tags: ["hide-cell"]
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.sparse import dia_matrix
+
+# set random seed
+np.random.seed(3)
+
+# parameters
+n = 100
+sigma = 1
+L = .1
+alpha = [.1, 1, 10]
+
+# grid
+x = np.linspace(0,1,n)
+x1,x2 = np.meshgrid(x,x)
+
+# ground-truth and data
+Sigma = np.exp(-np.abs(x1-x2)**2/(2*L**2))
+u = np.random.multivariate_normal(np.zeros(n),Sigma)
+f_delta = u + sigma*np.random.randn(n)
+
+u_map = [0,0,0]
+Sigma_map = [0,0,0]
+
+for k in range(3):
+    # MAP-estimate
+    u_map[k] = np.linalg.solve(alpha[k]*np.eye(n) + Sigma,Sigma@f_delta)
+
+    # covariance
+    Sigma_map[k] = alpha[k]*np.linalg.inv(Sigma + alpha[k]*np.eye(n))@Sigma
+
+# plot
+r = np.linspace(-5,5,50)
+fig, ax = plt.subplots(2,3)
+
+for k in range(3):
+    ax[0,k].plot(x,u,'k--',label='ground truth')
+    ax[0,k].errorbar(x,u_map[k],yerr=np.sqrt(np.diag(Sigma_map[k])))
+    ax[0,k].set_xlabel('x')
+    ax[0,0].set_ylabel('u(x)')
+    ax[0,k].set_title(r'$\alpha = $'+str(alpha[k]))
+
+    ax[1,k].hist(u_map[k]-f_delta,bins=r,density=True)
+    ax[1,k].plot(r,(1/np.sqrt(2*np.pi*alpha[k]))*np.exp(-(0.5/alpha[k])*r**2),'k--')
+    ax[1,k].set_xlabel('r')
+    ax[1,0].set_ylabel(r'$\pi$')
+
+fig.set_figwidth(10)
+fig.tight_layout()
+plt.show()
+
+glue("gaussian_example", fig, display=False)
+```
+
+In many practical applications, however, it may not be feasible to compute all the elements of the posterior covariance matrix as it typically involves solving normal equations. Some useful properties of the covariance matrix may nevertheless be estimated with additional computations. When the posterior is not Gaussian, it may in some cases be usefully approximated by a Gaussian. A popular approach is to approximate the posterior locally around a given MAP estimate. Another approach is to employ samplings methods locally around the MAP estimate to at least generate some uncertainty information. Such methods are the topic of much current research, but we will not go in to further details in this course.
+
 
 ## Examples
 
@@ -141,7 +237,7 @@ $$
 which we can re-write as
 
 $$
-\pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\textstyle{\frac{1}{2}}\left((u-\mu_{\text{post}})^T\Sigma_{\text{post}}^{-1}(u-\mu_{\text{post}})\right)\right),
+\pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\textstyle{\frac{1}{2}}\left((u-\mu_{\text{post}})^*\Sigma_{\text{post}}^{-1}(u-\mu_{\text{post}})\right)\right),
 $$
 
 with
@@ -452,14 +548,6 @@ plt.show()
 
 ```
 
-## Uncertainty quantification
-
-Aside from estimate the *mode* of the posterior through MAP estimation, it is often desirable to estimate uncertainties. In effect, this would allow us to put error bars on the estimated parameters and quantify dependencies between parameters.
-
-In the Gaussian cases, this can be easily obtained by computing the *posterior Covariance*.
-
-+++
-
 ## Exercises
 
 +++
@@ -478,13 +566,13 @@ with $f^{\delta} = K\overline u + \epsilon$, where $\epsilon$ is drawn from a no
 Show that the posterior distribution is Gaussian with mean
 
 $$
-\mu_{\text{post}} = \mu_{\text{prior}} + \left(K^T\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1}\right)^{-1}K^T\Sigma_{\text{noise}}^{-1}(f - K\mu_{\text{prior}}),
+\mu_{\text{post}} = \mu_{\text{prior}} + \left(K^*\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1}\right)^{-1}K^*\Sigma_{\text{noise}}^{-1}(f - K\mu_{\text{prior}}),
 $$
 
 and covariance
 
 $$
-\Sigma_{\text{post}} = \Sigma_{\text{prior}} - \Sigma_{\text{prior}}K^T\left(K\Sigma_{\text{prior}}K^T + \Sigma_{\text{noise}}\right)^{-1}K\Sigma_{\text{prior}}.
+\Sigma_{\text{post}} = \Sigma_{\text{prior}} - \Sigma_{\text{prior}}K^*\left(K\Sigma_{\text{prior}}K^* + \Sigma_{\text{noise}}\right)^{-1}K\Sigma_{\text{prior}}.
 $$
 
 Hint: The [Binomial inverse theorem](https://en.wikipedia.org/wiki/Woodbury_matrix_identity#Binomial_inverse_theorem) may come in handy.
@@ -496,49 +584,49 @@ The likelihood is a Gaussian with mean $Ku$ and covariance $\Sigma_{\text{noise}
 
 $$
 \pi_{\text{likelihood}}(f^{\delta} | u) \propto \exp(-\textstyle{\frac{1}{2}}(Ku -
-f^{\delta})^T\Sigma_{\text{noise}}^{-1}(Ku - f^\delta)).
+f^{\delta})^*\Sigma_{\text{noise}}^{-1}(Ku - f^\delta)).
 $$
 
 The prior is a Gaussian with mean $\mu_{\text{prior}}$ and covariance $\Sigma_{\text{prior}}$:
 
 $$
-\pi_{\text{prior}}(u) \propto \exp(-\textstyle{\frac{1}{2}}(u - \mu_{\text{prior}})^T\Sigma_{\text{prior}}^{-1}(u - \mu_{\text{prior}})).
+\pi_{\text{prior}}(u) \propto \exp(-\textstyle{\frac{1}{2}}(u - \mu_{\text{prior}})^*\Sigma_{\text{prior}}^{-1}(u - \mu_{\text{prior}})).
 $$
 
 Forming the product gives
 
 $$
-\pi_{\text{post}}(u | f^{\delta}) \propto \exp(-\textstyle{\frac{1}{2}}(Ku - f^{\delta})^T\Sigma_{\text{noise}}^{-1}(Ku - f^\delta) -\textstyle{\frac{1}{2}}(u - \mu_{\text{prior}})^T\Sigma_{\text{prior}}^{-1}(u - \mu_{\text{prior}})).
+\pi_{\text{post}}(u | f^{\delta}) \propto \exp(-\textstyle{\frac{1}{2}}(Ku - f^{\delta})^*\Sigma_{\text{noise}}^{-1}(Ku - f^\delta) -\textstyle{\frac{1}{2}}(u - \mu_{\text{prior}})^*\Sigma_{\text{prior}}^{-1}(u - \mu_{\text{prior}})).
 $$
 
 The goal is to write this as
 
 $$
-\pi_{\text{post}}(u | f^{\delta}) \propto \exp(-\textstyle{\frac{1}{2}}(u - \mu_{\text{post}})^T\Sigma_{\text{post}}^{-1}(u - \mu_{\text{post}})).
+\pi_{\text{post}}(u | f^{\delta}) \propto \exp(-\textstyle{\frac{1}{2}}(u - \mu_{\text{post}})^*\Sigma_{\text{post}}^{-1}(u - \mu_{\text{post}})).
 $$
 
 Expanding terms in the exponential we get
 
 $$
-u^T(K^T\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1})u - 2u^T(K^T\Sigma_{\text{noise}}^{-1}f^\delta  + \Sigma_{\text{prior}}^{-1}\mu_{\text{prior}}) + \text{constants}.
+u^*(K^*\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1})u - 2u^*(K^*\Sigma_{\text{noise}}^{-1}f^\delta  + \Sigma_{\text{prior}}^{-1}\mu_{\text{prior}}) + \text{constants}.
 $$
 
 The goal is to rewrite this as
 
 $$
-u^T\Sigma_{\text{post}}^{-1}u - 2u^T\Sigma_{\text{post}}^{-1}\mu_{\text{post}} + \text{constants}.
+u^*\Sigma_{\text{post}}^{-1}u - 2u^*\Sigma_{\text{post}}^{-1}\mu_{\text{post}} + \text{constants}.
 $$
 
 Hence:
 
 $$
-\Sigma_{\text{post}} = (K^T\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1})^{-1},
+\Sigma_{\text{post}} = (K^*\Sigma_{\text{noise}}^{-1}K + \Sigma_{\text{prior}}^{-1})^{-1},
 $$
 
 and
 
 $$
-\mu_{\text{post}} = \Sigma_{\text{post}}(K^T\Sigma_{\text{noise}}^{-1}f^\delta  + \Sigma_{\text{prior}}^{-1}\mu_{\text{prior}}).
+\mu_{\text{post}} = \Sigma_{\text{post}}(K^*\Sigma_{\text{noise}}^{-1}f^\delta  + \Sigma_{\text{prior}}^{-1}\mu_{\text{prior}}).
 $$
 
 Using the Binomial inverse theorem we find the desired expression for $\Sigma_{\text{post}}$. More algebraic manipulations yield the desired expression for $\mu_{\text{post}}$

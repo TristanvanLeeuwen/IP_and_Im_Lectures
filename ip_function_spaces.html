@@ -867,7 +867,7 @@ Ku(x) = \int_0^x u(y)\mathrm{d}y.
 <p>Consider the regularised pseudo-inverse</p>
 <div class="math notranslate nohighlight">
 \[K^\dagger_{\alpha} = \sum_{k=0}^\infty g_{\alpha}(\sigma_k) \langle u_k,\cdot\rangle v_k,\]</div>
-<p>and let <span class="math notranslate nohighlight">\(f^\delta = f + e\)</span> with <span class="math notranslate nohighlight">\(\|e\|_{\mathcal{F}} \leq \delta\)</span>. We are going to study the convergence of this method, i.e., how fast <span class="math notranslate nohighlight">\(\|K_{\alpha}^\dagger f^\delta - K^\dagger f\| \rightarrow 0\)</span>. You may assume that <span class="math notranslate nohighlight">\(f\)</span> satisfies the Picard condition. We further let</p>
+<p>and let <span class="math notranslate nohighlight">\(f^\delta = f + e\)</span> with <span class="math notranslate nohighlight">\(\|e\|_{\mathcal{F}} \leq \delta\)</span>. We are going to study the convergence of this method, i.e., how fast <span class="math notranslate nohighlight">\(\|K_{\alpha}^\dagger f^\delta - K^\dagger f\| \rightarrow 0\)</span>. You may assume that <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)\)</span> and that <span class="math notranslate nohighlight">\(f^\delta\)</span> obeys the Picard condition. We further let</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}g_{\alpha}(s) = \begin{cases} s^{-1} &amp; s &gt; \alpha \\ 0 &amp; s \leq \alpha \end{cases}.\end{split}\]</div>
 <p>and <span class="math notranslate nohighlight">\(\alpha(\delta) = \sqrt{\delta}\)</span>.</p>
@@ -913,7 +913,7 @@ Ku(x) = \int_0^x u(y)\mathrm{d}y.
 \[\sum_{k=0}^{\infty} \frac{|\langle f,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}}\]</div>
 <p>and substitute <span class="math notranslate nohighlight">\(f = K(K^*K)^{\mu} w = \sum_{k=0}^\infty \sigma_k^{2\mu+1}\langle w,u_k\rangle u_k\)</span> to get</p>
 <div class="math notranslate nohighlight">
-\[\sum_{k=0}^{\infty} \sigma_k^{2 + 4\mu}\frac{|\langle f,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}} = \|w\| &lt; \infty.\]</div>
+\[\sum_{k=0}^{\infty} \sigma_k^{2 + 4\mu}\frac{|\langle w,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}} = \|w\| &lt; \infty.\]</div>
 <ul class="simple">
 <li><p>Starting again from the bias term, we can factor out an additional <span class="math notranslate nohighlight">\(\sigma^{4\mu}\)</span> term. We then use that $s^{2\mu}(1 - sg_{\alpha}(s)) \leq \alpha^{2\mu} $ to find the desired result.</p></li>
 </ul>
@@ -938,7 +938,7 @@ v(t,x) = \int_{\mathbb{R}} u(x') g_t(x - x')\mathrm{d}x',
 \[
 g_t(x) = \frac{1}{2\sqrt{\pi t}}\exp(-(x/2)^2/t).
 \]</div>
-<p>You may use here that <span class="math notranslate nohighlight">\(g_t(x)\)</span> converges (in the sense of distributions) to <span class="math notranslate nohighlight">\(\delta(x)\)</span> as <span class="math notranslate nohighlight">\(t \downarrow 0\)</span>.</p>
+<p>You may assume that <span class="math notranslate nohighlight">\(u\)</span> is sufficiently regular and use that <span class="math notranslate nohighlight">\(g_t(x)\)</span> converges (in the sense of distributions) to <span class="math notranslate nohighlight">\(\delta(x)\)</span> as <span class="math notranslate nohighlight">\(t \downarrow 0\)</span>.</p>
 <ul class="simple">
 <li><p>Show that we can thus express the forward operator as</p></li>
 </ul>
@@ -955,12 +955,14 @@ Ku = F^{-1}((Fu)\cdot(Fg_T)),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\cdot\)</span> denotes point-wise multiplication and <span class="math notranslate nohighlight">\(F\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Fourier_transform">Fourier transform</a>.</p>
 <ul class="simple">
-<li><p>Express the inverse of <span class="math notranslate nohighlight">\(K\)</span> as multiplication with a filter <span class="math notranslate nohighlight">\(\widehat{h}\)</span> (in the Fourier domain). How does ill-posed manifest itself here?</p></li>
-<li><p>Define a regularised filter (in the Fourier domain) by <em>bandlimitation</em>:</p></li>
+<li><p>Express the inverse of <span class="math notranslate nohighlight">\(K\)</span> as multiplication with a filter <span class="math notranslate nohighlight">\(\widehat{h}\)</span> (in the Fourier domain). How does ill-posed manifest itself here and how does it depend on <span class="math notranslate nohighlight">\(T\)</span> ?</p></li>
 </ul>
+<p>We define a regularised filter (in the Fourier domain) by <em>bandlimitation</em>:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\widehat{h}_{\alpha}(\xi) = \begin{cases} \widehat{h}(\xi) &amp; |\xi|\leq \alpha^{-1} \\ 0 &amp; |\xi| &gt; \alpha^{-1}\end{cases}.\end{split}\]</div>
-<p>and test its effect numerically on noisy data for <span class="math notranslate nohighlight">\(T = 2\)</span> using the code below. In particular, design an a-priori parameter selection rule <span class="math notranslate nohighlight">\(\alpha(\delta)\)</span> that ensures that the total error converges <em>and</em> stays below 1 (in relative sense). Does this rule do better than the naive choice <span class="math notranslate nohighlight">\(\alpha(\delta) = \delta\)</span>?</p>
+\[\begin{split}\widehat{h}_{\alpha}(\xi) = \begin{cases} \widehat{h}(\xi) &amp; \text{for} &amp; |\xi|\leq \alpha^{-1} \\ 0 &amp; \text{for} &amp;|\xi| &gt; \alpha^{-1}\end{cases}.\end{split}\]</div>
+<ul class="simple">
+<li><p>Test its effect numerically on noisy data for <span class="math notranslate nohighlight">\(T = 2\)</span> using the code below. In particular, design an a-priori parameter selection rule <span class="math notranslate nohighlight">\(\alpha(\delta)\)</span> that ensures that the total error converges <em>and</em> stays below 1 (in relative sense). Does this rule do better than the naive choice <span class="math notranslate nohighlight">\(\alpha(\delta) = \delta\)</span>?</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1007,7 +1009,13 @@ Ku = F^{-1}((Fu)\cdot(Fg_T)),
 </div>
 <div class="hint dropdown admonition">
 <p class="admonition-title">Answer</p>
-<p>…</p>
+<ul class="simple">
+<li><p>We can easily verify that it indeed satisfies the differential equation by computing <span class="math notranslate nohighlight">\(v_t\)</span> and <span class="math notranslate nohighlight">\(v_{xx}\)</span>. To show that it satisfies the initial condition, we take the limit <span class="math notranslate nohighlight">\(t\rightarrow 0\)</span> and use that <span class="math notranslate nohighlight">\(\lim_{t\rightarrow 0} \int g_t(x)u(x) \mathrm{d}x = u(0)\)</span>.</p></li>
+<li><p>Setting <span class="math notranslate nohighlight">\(t = T\)</span> in the previous expression gives the desired result.</p></li>
+<li><p>This follows from the <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution_theorem">convolution theorem</a>.</p></li>
+<li><p>The inverse of <span class="math notranslate nohighlight">\(K\)</span> is naively given by multiplication with <span class="math notranslate nohighlight">\((Fg_T)^{-1}\)</span> in the Fourier domain. We have <span class="math notranslate nohighlight">\(\widehat{g}_T(\xi) \propto e^{-T \xi^2}\)</span> so we can only usefully define the inverse on functions whose Fourier spectrum decays fast enough such that the inverse Fourier transform of <span class="math notranslate nohighlight">\(\widehat{f}/\widehat{g}_T\)</span> can be defined. Thus a solution does not exist for a large class of <span class="math notranslate nohighlight">\(f\)</span> and noise is amplified exponentially. This only gets worse for larger <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+<li><p>See the code below. We compute the total error using the function <code class="docutils literal notranslate"><span class="pre">reconstruct</span></code> which computes noisy data and reconstructs using the regularised inverse. To get a more stable result we average over a number of random instances of the noise. Using <span class="math notranslate nohighlight">\(\alpha(\delta) = \delta\)</span> gives a (numerically) convergent result, however for large <span class="math notranslate nohighlight">\(\delta\)</span> it gives a very large error. Picking <span class="math notranslate nohighlight">\(\alpha(\delta)\)</span> to converge a bit slower allows one to keep the relative total error below 1. Note that we only show convergence of the error for one particular <span class="math notranslate nohighlight">\(u\)</span>, so we cannot conclude that this will work in general as in a previous exercise. If you like Fourier analysis and sampling theory, this may be a nice exercise.</p></li>
+</ul>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
@@ -1060,6 +1068,7 @@ Ku = F^{-1}((Fu)\cdot(Fg_T)),
     <span class="n">error1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">reconstruct</span><span class="p">(</span><span class="n">K</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">delta</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">alpha1</span><span class="p">(</span><span class="n">delta</span><span class="p">[</span><span class="n">k</span><span class="p">]),</span><span class="n">nsamples</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">error2</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">reconstruct</span><span class="p">(</span><span class="n">K</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">delta</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">alpha2</span><span class="p">(</span><span class="n">delta</span><span class="p">[</span><span class="n">k</span><span class="p">]),</span><span class="n">nsamples</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">delta</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span><span class="n">error1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha(\delta) = \delta$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span><span class="n">error2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha(\delta) = 20\delta^{1/8}$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\delta$&#39;</span><span class="p">)</span>
@@ -1069,7 +1078,7 @@ Ku = F^{-1}((Fu)\cdot(Fg_T)),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11b2da690&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11faafed0&gt;
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_5_1.png" src="_images/ip_function_spaces_5_1.png" />
@@ -1136,7 +1145,7 @@ K = h\cdot\left(\begin{matrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  4.36115854488469
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  3.890947219227265
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_9_1.png" src="_images/ip_function_spaces_9_1.png" />
