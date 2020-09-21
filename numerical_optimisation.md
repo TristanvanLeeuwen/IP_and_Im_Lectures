@@ -17,7 +17,7 @@ In this chapter we treat numerical algorithms for solving optimisation problems 
 
 ## Smooth optimisation
 
-For smooth problems, we have assume to have access to as many derivatives of $J$ as we need. As before, we denote the first derivative (or gradient) by $J' : \mathbb{R}^n \rightarrow \mathbb{R}^n$. We denote the second derivative (or Hessian) by $J'' : \mathbb{R}^n \rightarrow \mathbb{R}^{n\times n}$. We will additionally assume that the Hessian is globally bounded, i.e. there exists a constant $L < \infty$ such that $J''(u) \preceq L\cdot I$ for all $u\in\mathbb{R}^n$. Note that this implies that $J'$ is Lipschitz continous with constant $L$: $\|J'(u) - J'(v)\|_2 \leq L \|u - v\|_2$.
+For smooth problems, we assume to have access to as many derivatives of $J$ as we need. As before, we denote the first derivative (or gradient) by $J' : \mathbb{R}^n \rightarrow \mathbb{R}^n$. We denote the second derivative (or Hessian) by $J'' : \mathbb{R}^n \rightarrow \mathbb{R}^{n\times n}$. We will additionally assume that the Hessian is globally bounded, i.e. there exists a constant $L < \infty$ such that $J''(u) \preceq L\cdot I$ for all $u\in\mathbb{R}^n$. Note that this implies that $J'$ is Lipschitz continous with constant $L$: $\|J'(u) - J'(v)\|_2 \leq L \|u - v\|_2$.
 
 For a comprehensive treatment of this topic (and many more), we recommend the seminal book *Numerical Optimization* by Stephen Wright and Jorge Nocedal {cite}`nocedal2006numerical`.
 
@@ -59,6 +59,8 @@ $$\min_{k\in \{0,1,\ldots, n\}} \|J'(u_k)\|_2^2 \leq \frac{J(u_0) - J_*}{C (n+1)
 
 with $C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)$ and $J_* = \min_u J(u)$. This implies that $J'(u_k) \rightarrow 0$ as $k\rightarrow \infty$ at a *sublinear rate* of $\mathcal{O}(1/\sqrt{k})$.
 
+````
+
 ```{admonition} Proof
 :class: dropdown
 
@@ -76,7 +78,6 @@ $$\sum_{k=0}^n \|J'(u_k)\|_2^2 \leq \frac{J(u_0) - J(u_n)}{C},$$
 
 with $C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)$. Since $J_* \leq J(u_n)$ we obtain the desired result.
 ```
-````
 
 A stronger statement on convergence can be made by making additional assumptions on $J$ (such as convexity), but this is left as an exercise.
 
@@ -95,7 +96,10 @@ Two important linesearch methods are discussed below.
 
 In order to ensure sufficient progress of the iterations, we can choose a steplength that guarantees sufficient descent:
 
-$$J(u_k + \lambda d_k) \leq J(u_k) + c_1 \lambda J'(u_k)^Td_k,$$
+```{math}
+:label: wolfe1
+J(u_k + \lambda d_k) \leq J(u_k) + c_1 \lambda J'(u_k)^Td_k,
+```
 
 with $c_1 \in (0,1)$ a small constant (typically $c_1 = 10^{-4}$). Existence of a $\lambda$ satisfying these conditions is guaranteed by the regularity of $J$. We can find a suitable $\lambda$ by *backtracking*:
 
@@ -121,15 +125,18 @@ Output:
 ```
 ````
 
-```{admonition} Definition: *Wolfe linesearch*
+````{admonition} Definition: *Wolfe linesearch*
 :class: important
 
 A possible disadvantage of the backtracking linesearch introduced earlier is that it may end up choosing very small stepsizes. To obtain a stepsize that yields a new iterate at which the slope of $J$ is not too large, we introduce the following condition
 
-$$|J'(u_k + \lambda d_k)^Td_k| \leq c_2 |J'(u_k)^Td_k|,$$
-
-where $c_2$ is a small constant satisfying $0 < c_1 < c_2 < 1$. Together with the sufficient descent condition, these are referred to as the *strong Wolfe conditions*. Existence of a stepsize satisfying these conditions is again guaranteed by the regularity of $J$ (cf. {cite}`nocedal2006numerical`, lemma 3.1). Finding such a $\lambda$ is a little more involved than the backtracking procedure outlined above (cf. {cite}`nocedal2006numerical`, algorithm 3.5). Luckily, the `SciPy` library provides an implementation of this algorithm (cf. [`scipy.optimize.line_search`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.line_search.html))
+```{math}
+:label: wolfe2
+|J'(u_k + \lambda d_k)^Td_k| \leq c_2 |J'(u_k)^Td_k|,
 ```
+
+where $c_2$ is a small constant satisfying $0 < c_1 < c_2 < 1$. The conditions {eq}`wolfe1` and {eq}`wolfe2`, are referred to as the *strong Wolfe conditions*. Existence of a stepsize satisfying these conditions is again guaranteed by the regularity of $J$ (cf. {cite}`nocedal2006numerical`, lemma 3.1). Finding such a $\lambda$ is a little more involved than the backtracking procedure outlined above (cf. {cite}`nocedal2006numerical`, algorithm 3.5). Luckily, the `SciPy` library provides an implementation of this algorithm (cf. [`scipy.optimize.line_search`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.line_search.html))
+````
 
 ### Second order methods
 
