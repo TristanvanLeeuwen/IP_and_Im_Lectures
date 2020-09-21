@@ -51,7 +51,7 @@ Given a bounded linear operator $K:H^1(\Omega)\rightarrow L^2(\Omega)$ and data 
 
 $$J(u) = \textstyle{\frac{1}{2}}\|Ku-f^{\delta}\|_{L^2(\Omega)}^2 +  \textstyle{\frac{\alpha}{2}}\|\nabla u\|_{L^2(\Omega)}^2.$$
 
-This functional is well-defined for $u \in H^1(\Omega)$, with $H^1(\Omega)$ denotes the [Sobolev space](https://en.wikipedia.org/wiki/Sobolev_space) of functions $u$ for which both $u$ and $\nabla u$ are square integrable. Thus, thus regularisation generally leads to smooth solutions.
+This functional is well-defined for $u \in H^1(\Omega)$, with $H^1(\Omega)$ denoting the [Sobolev space](https://en.wikipedia.org/wiki/Sobolev_space) of functions $u$ for which both $u$ and $\nabla u$ are square integrable. Thus, thus regularisation generally leads to smooth solutions.
 ```
 
 ```{admonition} Example: *$\ell_1$-regularization*
@@ -60,7 +60,7 @@ Consider a forward operator $K:\ell_1 \rightarrow \ell_2$ and let
 
 $$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\ell_1}.$$
 
-Such regularisation term generally leads to *sparse* solutions.
+Such regularisation is often used to promote *sparse* solutions.
 ```
 
 ```{admonition} Example: *Total Variation regularisation*
@@ -118,7 +118,7 @@ With these, we can establish existence.
 ```{admonition} Theorem: *Fundamental theorem of optimisation*
 :class: important
 
-Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be a proper, coercive, bounded from below and lower semi-continuous. Then $J$ has a minimiser.
+Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be proper, coercive, bounded from below and lower semi-continuous. Then $J$ has a minimiser.
 ````
 
 ````{admonition} Examples: *existence of minimisers in $\mathbb{R}$*
@@ -188,18 +188,33 @@ glue("functionals", fig, display=False)
 Let $J$ have at least one minimiser and be [strictly convex](https://en.wikipedia.org/wiki/Convex_function) then the minimiser is unique.
 ```
 
-### Stability
+### Well-posedness of regularised least-squares problems
 
-To analyse stability, we focus in particular on variational problems of the form
+In this section we focus in particular on variational problems of the form
 
 ```{math}
 :label: variational_R
-\textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\mathcal{F}}^2 + \alpha R(u).
+\textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\mathcal{F}}^2 + \alpha R(u),
 ```
 
-We can think of this as defining a (possibly non-linear) regularisation scheme $\widetilde{u}_{\alpha,\delta} = R_{\alpha} f^\delta$ that generalises the pseudo-inverse approach discussed earlier.
+with $K: \mathcal{U} \rightarrow \mathcal{F}$ a bounded linear operator and $R : \mathcal{U} \rightarrow \mathbb{R}_{\infty}$ is proper and l.s.c. (with respect to an appropriate topology).
+
+We can think of this as defining a (possibly non-linear) regularisation scheme $\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)$ that generalises the pseudo-inverse approach discussed earlier. Note that the notation $K_{\alpha}^\dagger$ is used very loosely to indicate a mapping from $\mathcal{F}$ to $\mathcal{U}$ that is supposed to approximate the inverse of $K$ in some fashion. In general, this will be a non-linear mapping.
+
+```{admonition} Theorem: *Existence and uniqueness of regularised least-squares solutions*
+
+Let $K$ be injective or $J$ be strictly convex, then the variational problem {eq}`variational_R` has a unique minimiser.
+
+```
+
+```{admonition} Theorem: *Stability of regularised least-squares solutions*
+
+...
+
+```
 
 ### Examples
+
 
 ```{admonition} Example: *Tikhonov regularisation in $\mathbb{R}^n$*
 
@@ -207,7 +222,17 @@ Let
 
 $$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_2^2 + \textstyle{\frac{\alpha}{2}}\|u\|_2^2.$$
 
-* existence, uniqueness, stability
+Here, $J$ is obviously bounded from below and proper. To show that $J$ is coercive, we note that $J(u) \geq \textstyle{\frac{\alpha}{2}}\|u\|_2^2$ and hence that $J(u) \rightarrow \infty$ as $\|u\|_2 \rightarrow \infty$. To show that $J$ is l.s.c., we will show that $J$ is continuous since this implies l.s.c. First note that
+
+$$J(u + d) = J(u) + \textstyle{\frac{1}{2}}\|Kd\|_2^2 - \langle Kd,Ku - f^\delta \rangle + \textstyle{\frac{\alpha}{2}}\|d\|_2^2 + \alpha \langle d,u\rangle,$$
+
+from which we can bound
+
+$$|J(v) - J(u)| \leq \textstyle{\frac{1}{2}}\|Kd\|_2^2 + \|Kd\|_2 \|Ku - f^\delta\|_2 + \alpha \|d\|_2 \|u\|_2 + \textstyle{\frac{\alpha}{2}}\|d\|_2^2 \leq A \|d\|_2^2 + B \|d\|_2.$$
+
+Now, for every $\epsilon$ we can pick a $\delta$ such that $\|u-v\|_2 < \delta$ implies that $|J(v) - J(u)| < \epsilon$.
+
+Finally, we can show that $J$ is *strongly convex* with constant $\alpha$ by showing that $J(u) - \textstyle{\frac{\alpha}{2}}\|u\|_2^2$ is convex. The fact that $\|Ku - f^\delta\|_2^2$ is convex follows easily from the triangle inequality and the fact that the function $\cdot^2$ is convex.
 
 ```
 
@@ -215,9 +240,11 @@ $$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_2^2 + \textstyle{\frac{\alpha}
 
 Consider
 
-$$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\ell_1}.$$
+$$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\ell_1},$$
 
-* existence, uniqueness, stability
+with $K : \ell_2 \rightarrow \ell_2$ a bounded operator. Again, we can easily see that $J$ is bounded from below.
+
+Note that the regularised solution is determined for all $f \in \ell_2$, regardless of the Picard condition.
 
 ```
 

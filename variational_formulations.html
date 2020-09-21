@@ -274,8 +274,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stability">
-     5.1.2. Stability
+    <a class="reference internal nav-link" href="#well-posedness-of-regularised-least-squares-problems">
+     5.1.2. Well-posedness of regularised least-squares problems
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -381,14 +381,14 @@
 <p>Given a bounded linear operator <span class="math notranslate nohighlight">\(K:H^1(\Omega)\rightarrow L^2(\Omega)\)</span> and data <span class="math notranslate nohighlight">\(f^\delta\)</span>, we let <span class="math notranslate nohighlight">\(\nabla\)</span> denote the gradient</p>
 <div class="math notranslate nohighlight">
 \[J(u) = \textstyle{\frac{1}{2}}\|Ku-f^{\delta}\|_{L^2(\Omega)}^2 +  \textstyle{\frac{\alpha}{2}}\|\nabla u\|_{L^2(\Omega)}^2.\]</div>
-<p>This functional is well-defined for <span class="math notranslate nohighlight">\(u \in H^1(\Omega)\)</span>, with <span class="math notranslate nohighlight">\(H^1(\Omega)\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Sobolev_space">Sobolev space</a> of functions <span class="math notranslate nohighlight">\(u\)</span> for which both <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(\nabla u\)</span> are square integrable. Thus, thus regularisation generally leads to smooth solutions.</p>
+<p>This functional is well-defined for <span class="math notranslate nohighlight">\(u \in H^1(\Omega)\)</span>, with <span class="math notranslate nohighlight">\(H^1(\Omega)\)</span> denoting the <a class="reference external" href="https://en.wikipedia.org/wiki/Sobolev_space">Sobolev space</a> of functions <span class="math notranslate nohighlight">\(u\)</span> for which both <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(\nabla u\)</span> are square integrable. Thus, thus regularisation generally leads to smooth solutions.</p>
 </div>
 <div class="admonition-example-ell-1-regularization admonition">
 <p class="admonition-title">Example: <em><span class="math notranslate nohighlight">\(\ell_1\)</span>-regularization</em></p>
 <p>Consider a forward operator <span class="math notranslate nohighlight">\(K:\ell_1 \rightarrow \ell_2\)</span> and let</p>
 <div class="math notranslate nohighlight">
 \[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\ell_1}.\]</div>
-<p>Such regularisation term generally leads to <em>sparse</em> solutions.</p>
+<p>Such regularisation is often used to promote <em>sparse</em> solutions.</p>
 </div>
 <div class="admonition-example-total-variation-regularisation admonition">
 <p class="admonition-title">Example: <em>Total Variation regularisation</em></p>
@@ -429,7 +429,7 @@
 <p>With these, we can establish existence.</p>
 <div class="important admonition">
 <p class="admonition-title">Theorem: <em>Fundamental theorem of optimisation</em></p>
-<p>Let <span class="math notranslate nohighlight">\(J : \mathcal{U} \rightarrow \mathbb{R}\)</span> be a proper, coercive, bounded from below and lower semi-continuous. Then <span class="math notranslate nohighlight">\(J\)</span> has a minimiser.</p>
+<p>Let <span class="math notranslate nohighlight">\(J : \mathcal{U} \rightarrow \mathbb{R}\)</span> be proper, coercive, bounded from below and lower semi-continuous. Then <span class="math notranslate nohighlight">\(J\)</span> has a minimiser.</p>
 </div>
 <div class="admonition-examples-existence-of-minimisers-in-mathbb-r admonition">
 <p class="admonition-title">Examples: <em>existence of minimisers in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span></em></p>
@@ -497,12 +497,21 @@
 <p>Let <span class="math notranslate nohighlight">\(J\)</span> have at least one minimiser and be <a class="reference external" href="https://en.wikipedia.org/wiki/Convex_function">strictly convex</a> then the minimiser is unique.</p>
 </div>
 </div>
-<div class="section" id="stability">
-<h3><span class="section-number">5.1.2. </span>Stability<a class="headerlink" href="#stability" title="Permalink to this headline">¶</a></h3>
-<p>To analyse stability, we focus in particular on variational problems of the form</p>
+<div class="section" id="well-posedness-of-regularised-least-squares-problems">
+<h3><span class="section-number">5.1.2. </span>Well-posedness of regularised least-squares problems<a class="headerlink" href="#well-posedness-of-regularised-least-squares-problems" title="Permalink to this headline">¶</a></h3>
+<p>In this section we focus in particular on variational problems of the form</p>
 <div class="math notranslate nohighlight" id="equation-variational-r">
-<span class="eqno">(5.2)<a class="headerlink" href="#equation-variational-r" title="Permalink to this equation">¶</a></span>\[\textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\mathcal{F}}^2 + \alpha R(u).\]</div>
-<p>We can think of this as defining a (possibly non-linear) regularisation scheme <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha,\delta} = R_{\alpha} f^\delta\)</span> that generalises the pseudo-inverse approach discussed earlier.</p>
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-variational-r" title="Permalink to this equation">¶</a></span>\[\textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\mathcal{F}}^2 + \alpha R(u),\]</div>
+<p>with <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> a bounded linear operator and <span class="math notranslate nohighlight">\(R : \mathcal{U} \rightarrow \mathbb{R}_{\infty}\)</span> is proper and l.s.c. (with respect to an appropriate topology).</p>
+<p>We can think of this as defining a (possibly non-linear) regularisation scheme <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)\)</span> that generalises the pseudo-inverse approach discussed earlier. Note that the notation <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span> is used very loosely to indicate a mapping from <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> to <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> that is supposed to approximate the inverse of <span class="math notranslate nohighlight">\(K\)</span> in some fashion. In general, this will be a non-linear mapping.</p>
+<div class="admonition-theorem-existence-and-uniqueness-of-regularised-least-squares-solutions admonition">
+<p class="admonition-title">Theorem: <em>Existence and uniqueness of regularised least-squares solutions</em></p>
+<p>Let <span class="math notranslate nohighlight">\(K\)</span> be injective or <span class="math notranslate nohighlight">\(J\)</span> be strictly convex, then the variational problem <a class="reference internal" href="#equation-variational-r">(5.2)</a> has a unique minimiser.</p>
+</div>
+<div class="admonition-theorem-stability-of-regularised-least-squares-solutions admonition">
+<p class="admonition-title">Theorem: <em>Stability of regularised least-squares solutions</em></p>
+<p>…</p>
+</div>
 </div>
 <div class="section" id="examples">
 <h3><span class="section-number">5.1.3. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
@@ -511,18 +520,22 @@
 <p>Let</p>
 <div class="math notranslate nohighlight">
 \[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_2^2 + \textstyle{\frac{\alpha}{2}}\|u\|_2^2.\]</div>
-<ul class="simple">
-<li><p>existence, uniqueness, stability</p></li>
-</ul>
+<p>Here, <span class="math notranslate nohighlight">\(J\)</span> is obviously bounded from below and proper. To show that <span class="math notranslate nohighlight">\(J\)</span> is coercive, we note that <span class="math notranslate nohighlight">\(J(u) \geq \textstyle{\frac{\alpha}{2}}\|u\|_2^2\)</span> and hence that <span class="math notranslate nohighlight">\(J(u) \rightarrow \infty\)</span> as <span class="math notranslate nohighlight">\(\|u\|_2 \rightarrow \infty\)</span>. To show that <span class="math notranslate nohighlight">\(J\)</span> is l.s.c., we will show that <span class="math notranslate nohighlight">\(J\)</span> is continuous since this implies l.s.c. First note that</p>
+<div class="math notranslate nohighlight">
+\[J(u + d) = J(u) + \textstyle{\frac{1}{2}}\|Kd\|_2^2 - \langle Kd,Ku - f^\delta \rangle + \textstyle{\frac{\alpha}{2}}\|d\|_2^2 + \alpha \langle d,u\rangle,\]</div>
+<p>from which we can bound</p>
+<div class="math notranslate nohighlight">
+\[|J(v) - J(u)| \leq \textstyle{\frac{1}{2}}\|Kd\|_2^2 + \|Kd\|_2 \|Ku - f^\delta\|_2 + \alpha \|d\|_2 \|u\|_2 + \textstyle{\frac{\alpha}{2}}\|d\|_2^2 \leq A \|d\|_2^2 + B \|d\|_2.\]</div>
+<p>Now, for every <span class="math notranslate nohighlight">\(\epsilon\)</span> we can pick a <span class="math notranslate nohighlight">\(\delta\)</span> such that <span class="math notranslate nohighlight">\(\|u-v\|_2 &lt; \delta\)</span> implies that <span class="math notranslate nohighlight">\(|J(v) - J(u)| &lt; \epsilon\)</span>.</p>
+<p>Finally, we can show that <span class="math notranslate nohighlight">\(J\)</span> is <em>strongly convex</em> with constant <span class="math notranslate nohighlight">\(\alpha\)</span> by showing that <span class="math notranslate nohighlight">\(J(u) - \textstyle{\frac{\alpha}{2}}\|u\|_2^2\)</span> is convex. The fact that <span class="math notranslate nohighlight">\(\|Ku - f^\delta\|_2^2\)</span> is convex follows easily from the triangle inequality and the fact that the function <span class="math notranslate nohighlight">\(\cdot^2\)</span> is convex.</p>
 </div>
 <div class="admonition-example-ell-1-regularisation admonition">
 <p class="admonition-title">Example: <em><span class="math notranslate nohighlight">\(\ell_1-regularisation\)</span></em></p>
 <p>Consider</p>
 <div class="math notranslate nohighlight">
-\[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\ell_1}.\]</div>
-<ul class="simple">
-<li><p>existence, uniqueness, stability</p></li>
-</ul>
+\[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\ell_1},\]</div>
+<p>with <span class="math notranslate nohighlight">\(K : \ell_2 \rightarrow \ell_2\)</span> a bounded operator. Again, we can easily see that <span class="math notranslate nohighlight">\(J\)</span> is bounded from below.</p>
+<p>Note that the regularised solution is determined for all <span class="math notranslate nohighlight">\(f \in \ell_2\)</span>, regardless of the Picard condition.</p>
 </div>
 <div class="admonition-example-sobolev-regularisation admonition">
 <p class="admonition-title">Example: <em>Sobolev regularisation</em></p>
@@ -863,7 +876,7 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10a5e1110&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1268073d0&gt;]
 </pre></div>
 </div>
 <img alt="_images/variational_formulations_13_1.png" src="_images/variational_formulations_13_1.png" />
