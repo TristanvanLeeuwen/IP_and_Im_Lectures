@@ -102,7 +102,7 @@ A functional $J$ is bounded from below if there exists a constant $C > -\infty$ 
 ```{admonition} Definition: *Coercive functionals*
 :class: important
 
-A functional $J$ is called coercive if for all $\{u_j\}_{j\in\mathbb{N}}$ with $\|u_j\|_{\mathcal{U}}\rightarrow \infty$ we have $J(u_j) \rightarrow\infty$.
+A functional $J$ is called coercive if $J(u) \rightarrow\infty$ as $\|u\|_{\mathcal{U}} \rightarrow \infty$.
 ```
 
 ```{admonition} Definition: *Lower semi-continuity*
@@ -110,7 +110,7 @@ A functional $J$ is called coercive if for all $\{u_j\}_{j\in\mathbb{N}}$ with $
 
 A functional $J$ is lower semi-continuous at $u$ if for every $a < J(u)$ there exists a neighbourhood $\mathcal{X}$ of $u$ such that $a < J(v)$ for all $v \in \mathcal{X}$.
 
-Note that the term *neighbourhood* implies an underlying topology, which may be different (in particular, weaker) than the one induced by the norm on $\mathcal{U}$.
+Note that the term *neighbourhood* requires the definition an underlying topology, which may be different (in particular, weaker) than the one induced by the norm on $\mathcal{U}$.
 ```
 
 With these, we can establish existence.
@@ -119,7 +119,13 @@ With these, we can establish existence.
 :class: important
 
 Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be proper, coercive, bounded from below and lower semi-continuous. Then $J$ has a minimiser.
-````
+```
+
+```{admonition} Proof:
+:class: important, dropdown
+
+...
+```
 
 ````{admonition} Examples: *existence of minimisers in $\mathbb{R}$*
 
@@ -188,6 +194,12 @@ glue("functionals", fig, display=False)
 Let $J$ have at least one minimiser and be [strictly convex](https://en.wikipedia.org/wiki/Convex_function) then the minimiser is unique.
 ```
 
+```{admonition} Proof:
+:class: important, dropdown
+
+...
+```
+
 ### Well-posedness of regularised least-squares problems
 
 In this section we focus in particular on variational problems of the form
@@ -203,14 +215,38 @@ We can think of this as defining a (possibly non-linear) regularisation scheme $
 
 ```{admonition} Theorem: *Existence and uniqueness of regularised least-squares solutions*
 
-Let $K$ be injective or $J$ be strictly convex, then the variational problem {eq}`variational_R` has a unique minimiser.
+Let $K$ be injective *or* $J$ be strictly convex, then the variational problem {eq}`variational_R` has a unique minimiser.
 
+```
+
+```{admonition} Proof:
+:class: important, dropdown
+
+...
 ```
 
 ```{admonition} Theorem: *Stability of regularised least-squares solutions*
 
-...
+The operator $K_{\alpha}^\dagger$ for $\alpha > 0$ is continuous.
 
+```
+
+```{admonition} Proof:
+:class: important, dropdown
+
+...
+```
+
+```{admonition} Theorem: *Convergence of regularised least-squares solutions*
+
+The solution $\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)$ converges to the regular minimum-norm solution as $\alpha \rightarrow 0$.
+
+```
+
+```{admonition} Proof:
+:class: important, dropdown
+
+...
 ```
 
 ### Examples
@@ -286,13 +322,14 @@ If this operator exists for all $u \in\mathcal{U}$ we call $J$ Fréchet differen
 
 With this more general notion of differentiation we can pose the first-order optimality conditions.
 
-````{admonition} Definition: *First-order optimality conditions*
+````{admonition} Definition: *First-order optimality condition*
 :class: important
 
-```{math}
-:label: local_minimum
+Let $u^*$ be a local extremum of $J$, and let $J$ be Fréchet-differentiable at $u^*$, then
 
-\langle J'(u), v - u\rangle \geq 0.
+```{math}
+:label: local_extremum
+J'(u^*) = 0.
 ```
 
 ````
@@ -301,7 +338,7 @@ With this more general notion of differentiation we can pose the first-order opt
 
 ```
 
-We need to be careful here, as some important cases $J$ may fail to be Fréchet differentiable at the solution.
+Note that in some important cases $J$ may fail to be Fréchet differentiable at the solution. We will treat this case in more detail in the next chapter on numerical methods.
 
 ```{admonition} Example: *$\ell_1$-regularisation on \mathbb{R}^n*
 
