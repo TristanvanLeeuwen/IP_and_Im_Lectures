@@ -440,11 +440,13 @@ The proximal operator for the $\ell_1$ norm solves
 
 $$\min_u \textstyle{\frac{1}{2}}\|u - v\|_2 + \lambda \|u\|_1.$$
 
-The solution obeys $u - v \in \partial \lambda \|u\|_1$, which yields 
+The solution obeys $u - v \in -\partial \lambda \|u\|_1$, which yields 
 
-$$u_i - v_i \in \begin{cases} \{\lambda\} & u_i > 0 \\ [-\lambda,\lambda] & u_i = 0 \\ \{-\lambda\} & u_i < 0\end{cases}$$
+$$u_i - v_i \in \begin{cases} \{-\lambda\} & u_i > 0 \\ [-\lambda,\lambda] & u_i = 0 \\ \{\lambda\} & u_i < 0\end{cases}$$
 
- 
+This condition is fulfulled by setting 
+
+$$u_i = \begin{cases}v_i - \lambda & v_i > \lambda \\ 0 & |v_i|\leq \lambda \\ v_i + \lambda \\ v_i < -\lambda \end{cases}$$ 
 ```
 
 ### Splitting methods
