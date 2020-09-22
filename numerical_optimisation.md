@@ -151,41 +151,41 @@ We can interpret this method as finding the new iterate $u_{k+1}$ as the (unique
 
 $$J(u) \approx J(u_k) + J'(u_k)(u - u_k) + \textstyle{\frac{1}{2}}(u-u_k)^T J''(u_k)(u-u_k).$$
 
-````{admonition} Theorem: *Convergence of Newton's method*
+```{admonition} Theorem: *Convergence of Newton's method*
 Let $J$ be a smooth functional and $u_*$ be a (local) minimiser. For any $u_0$ sufficiently close to $u_*$, the iteration {eq}`newton` converges quadratically to $u_*$, i.e.,
 
 $$\|u_{k+1} - u_*\|_2 \leq M \|u_k - u_*\|_2^2,$$
 
 with $M = 2\|J'''(u_*)\|_2 \|J''(u_*)^{-1}\|_2$.
 
+
+```
 ```{admonition} Proof
 :class: dropdown
 
-See `cite`{nocedal2006numerical}, Thm. 3.5.
+See {cite}`nocedal2006numerical`, Thm. 3.5.
 ```
-
-````
-
 ---
 
 In some applications, it may be difficult to compute and invert the Hessian. This leads to so-called *quasi-Newton* methods which approximate the Hessian. The basis for such approximations is the *secant relation*
 
 $$H_k (u_{k+1} - u_k) = (J'(u_{k+1}) - J'(u_k)),$$
 
-which is satisfied by the true Hessian $J''$ at a point $\eta_k = u_k + t(u_* - u_k)$ for some $t \in (0,1)$. Obviously, we cannot hope to solve for $H_k \in \mathbb{R}^{n\times n}$ from just these $n$ equations. We can, however, impose some structural assumptions on the Hessian. Assuming a simple diagonal structure $H_k = h_k I$ yields $h_k = (J'(u_{k+1}) - J'(u_k))^T(u_{k+1} - u_k)/\|u_{k+1} - u_k\|_2^2$. In fact, even gradient-descent can be interpreted in this manner by approximating $J''(u_k) \approx L I$.
+which is satisfied by the true Hessian $J''$ at a point $\eta_k = u_k + t(u_{k+1} - u_k)$ for some $t \in (0,1)$. Obviously, we cannot hope to solve for $H_k \in \mathbb{R}^{n\times n}$ from just these $n$ equations. We can, however, impose some structural assumptions on the Hessian. 
+Assuming a simple diagonal structure $H_k = h_k I$ yields $h_k = (J'(u_{k+1}) - J'(u_k))^T(u_{k+1} - u_k)/\|u_{k+1} - u_k\|_2^2$. In fact, even gradient-descent can be interpreted in this manner by approximating $J''(u_k) \approx L \cdot I$.
 
 ---
 
-An often-used approximation is the *Broyden-Fletcher-Goldfarb-Shannon (BFGS)* approximation, which keep track of the steps $s_k = u_{k+1} - u_k$
+An often-used approximation is the *Broyden-Fletcher-Goldfarb-Shannon (BFGS)* approximation, which keeps track of the steps $s_k = u_{k+1} - u_k$
 and gradients $y_k = J'(u_{k+1}) - J'(u_k)$ to recursively construct an approximation of the *inverse* of the Hessian as
 
 $$B_{k+1} = \left(I - \rho_k s_k y_k^T\right)H_k\left(I - \rho_k y_k s_k^T\right) + \rho_k s_ks_k^T,$$
 
-with $\rho_k = (s_k^Ty_k)^{-1}$ and $B_0$ choses appropriately (e.g., B_0 = L^{-1} \cdot I). It can be shown that this approximation is sufficiently accurate to yield *superlinear* convergence when using a Wolfe linesearch.
+with $\rho_k = (s_k^Ty_k)^{-1}$ and $B_0$ choses appropriately (e.g., $B_0 = L^{-1} \cdot I$). It can be shown that this approximation is sufficiently accurate to yield *superlinear* convergence when using a Wolfe linesearch.
 
 ---
 
-The are many practical aspects to implementing such methods. For example, what do we do when the approximated Hessian becomes (near) singular? Discussing these issues is beyond the scope of these lecture notes and we refer to {cite}`nocedal2006numerical` chapter 6 for more details. The `SciPy` library provides an implementation of [various optimisation methods](https://docs.scipy.org/doc/scipy/reference/optimize.html).
+The are many practical aspects to implementing such methods. For example, what do we do when the approximated Hessian becomes (almost) singular? Discussing these issues is beyond the scope of these lecture notes and we refer to {cite}`nocedal2006numerical` chapter 6 for more details. The `SciPy` library provides an implementation of [various optimisation methods](https://docs.scipy.org/doc/scipy/reference/optimize.html).
 
 ## Convex optimisation
 
@@ -200,7 +200,7 @@ Given a convex functional $J$, we call $g \in \mathbb{R}^n$ a subgradient of $J$
 
 $$J(v) \geq J(u) + g^T(v - u) \quad \forall v \in \mathbb{R}^n.$$
 
-This definition is reminiscent of the Taylor expansion and we can indeed easily check that it holds for convex smooth functionals for $g = J'(u)$. For non-smooth functionals there may be multiple vectors $g$ satisfying the inequality. We call the set of all such vectors the *subdifferential* which we will denote as $J'(u)$. Note that we deviate from the more usual notation $\partial J$ to make the transition from the previous section seemless.
+This definition is reminiscent of the Taylor expansion and we can indeed easily check that it holds for convex smooth functionals for $g = J'(u)$. For non-smooth functionals there may be multiple vectors $g$ satisfying the inequality. We call the set of all such vectors the *subdifferential* which we will denote as $\partial J(u)$. We will generally denote an arbritary element of $\partial J(u)$ by $J'(u)$. 
 ```
 
 ````{admonition} Example: Subdifferentials of some functions
@@ -213,9 +213,9 @@ Let
 
 All these functions are convex and exhibit a discontinuity in the derivative at $u = 0$. The subdifferentials at $u=0$ are given by
 
-* $J_1'(u) = [-1,1]$
-* $J_2'(u) = (-\infty,0]$
-* $J_3'(u) = [0,1]$
+* $\partial J_1(u) = [-1,1]$
+* $\partial J_2(u) = (-\infty,0]$
+* $\partial J_3(u) = [0,1]$
 
 ```{glue:figure} convex_examples
 :figwidth: 600px
@@ -269,14 +269,12 @@ glue("convex_examples",fig)
 Some useful calculus rules for subgradients are listed below.
 
 ```{admonition} Theorem: Computing subgradients
-Let $J_i:\mathbb{R}^n \rightarrow \mathbb{R}_{\infty}$ be a proper convex functionals and A\in\mathbb{R}{n\times n}$, $b \in \mathbb{R}^n$.
+Let $J_i:\mathbb{R}^n \rightarrow \mathbb{R}_{\infty}$ be proper convex functionals and let $A\in\mathbb{R}^{n\times n}$, $b \in \mathbb{R}^n$. We then have the following usefull rules
 
-We then have the following usefull rules
+* *Summation:* Let $J = J_1 + J_2$, then $J_1'(u) + J_2'(u) \in \partial J(u)$ for $u$ in the interior of $\text{dom}(J)$.
+* *Affine transformation:* Let $J(u) = J_1(Au + b)$, then $A^T J_1'(Au + b) \in \partial J$ for $u, Au + b$ in the interior of $\text{dom}(J)$.
 
-* *summation:* $J_1'(u) + J_2'(u)$ for $u$ in the interior of $\text{dom}(J)$.
-* *affine transformation:* $\left(J(Au + b)\right)' = A^T J'(Au + b)$ for $u, Au + b$ in the interior of $\text{dom}(J)$.
-
-An overview of more useful relations can be found in e.g., {cite}`Beck2017` section 3.8.
+An overview of other useful relations can be found in e.g., {cite}`Beck2017` section 3.8.
 ```
 ---
 
@@ -348,7 +346,7 @@ ax[0].set_xlim([0,5])
 ax[0].set_ylim([-5,5])
 ax[0].set_xlabel(r'$u$')
 ax[0].set_aspect(.5)
-ax[0].set_title(r'$f = [1,2,3,4]$')
+ax[0].set_title(r'$f = (1,2,3,4)$')
 
 ax[1].plot(u,Jp(u,f2))
 ax[1].plot(u,0*u,'k--')
@@ -356,7 +354,7 @@ ax[1].set_xlim([0,5])
 ax[1].set_ylim([-5,5])
 ax[1].set_xlabel(r'$u$')
 ax[1].set_aspect(.5)
-ax[1].set_title(r'$f = [1,2,3,4,5]$')
+ax[1].set_title(r'$f = (1,2,3,4,5)$')
 
 glue("median_example",fig)
 ```
@@ -367,12 +365,8 @@ A natural extension of the gradient-descent method for smooth problems is the *s
 
 ```{math}
 :label: subgradient_descent
-u_{k+1} = u_k - \lambda g_k, \quad g_k \in J'(u_k).
+u_{k+1} = u_k - \lambda J'(u_k), \quad J'(u_k) \in \partial J(u_k).
 ```
-
-Note that this can be interpreted as a fixed-point iteration
-
-$$u_{k+1} = \left(I - \lambda J'\right)(u_k).$$
 
 ```{admonition} Theorem: *Convergene of subgradient descent*
 :class: important
@@ -387,26 +381,26 @@ While the subgradient descent method is easily implemented, it does not fully ex
 
 ```{math}
 :label: diff_inclusion
-D'(u_*) \in -R'(u_*).
+D'(u_*) \in -\partial R(u_*).
 ```
 
 Finding such a point can be done (again!) by a fixed-point iteration
 
-$$u_{k+1} = \left(I + \lambda R'\right)^{-1}\left(I - \lambda D'\right)(u_k),$$
+$$u_{k+1} = \left(I + \lambda \partial R\right)^{-1}\left(I - \lambda D'\right)(u_k),$$
 
-where $u = \left(I + \lambda R'\right)^{-1}(v)$ yields a point $u$ for which $\lambda^{-1}(v - u) \in R'(u)$. We can easily show that a fixed point of this iteration indeed solves the differential inclusion problem {eq}`diff_inclusion`. Assuming a fixed point $u_*$, we have
+where $u = \left(I + \lambda \partial R\right)^{-1}(v)$ yields a point $u$ for which $\lambda^{-1}(v - u) \in \partial R(u)$. We can easily show that a fixed point of this iteration indeed solves the differential inclusion problem {eq}`diff_inclusion`. Assuming a fixed point $u_*$, we have
 
-$$u_{*} = \left(I + \lambda R'\right)^{-1}\left(I - \lambda D'\right)(u_*),$$
+$$u_{*} = \left(I + \lambda \partial R\right)^{-1}\left(I - \lambda D'\right)(u_*),$$
 
-using the definition of $\left(I + \lambda R'\right)^{-1}$ this yields
+using the definition of $\left(I + \lambda \partial R\right)^{-1}$ this yields
 
-$$\lambda^{-1}\left(u_* - \lambda D'(u_*) - u_*\right) \in R'(u_*),$$
+$$\lambda^{-1}\left(u_* - \lambda D'(u_*) - u_*\right) \in \partial R(u_*),$$
 
-which indeed confirms that $-D'(u_*) \in R'(u_*)$.
+which indeed confirms that $-D'(u_*) \in \partial R(u_*)$.
 
 ---
 
-The operator $\left(I + \lambda R'\right)^{-1}$ is called the *proximal operator* of $\lambda R$, whose action on input $v$ is implicitly defined as solving
+The operator $\left(I + \lambda \partial R\right)^{-1}$ is called the *proximal operator* of $\lambda R$, whose action on input $v$ is implicitly defined as solving
 
 $$\min_u \textstyle{\frac{1}{2}} \|u - v\|_2^2 + \lambda R(u).$$
 
@@ -417,7 +411,7 @@ We usually denote this operator by $\text{prox}_{\lambda R}(v)$. With this, the 
 u_{k+1} = \text{prox}_{\lambda R}\left(u_k - \lambda D'(u_k)\right).
 ```
 
-````{admonition} Theorem: *Convergence of the proximal point iteration*
+```{admonition} Theorem: *Convergence of the proximal point iteration*
 :class: important
 
 Let $J = D + R$ be a functional with $D$ smooth and $R$ convex. Denote the Lipschitz constant of $D'$ by $L_D$. The iterates produced by {eq}`proximal_gradient` with a fixed stepsize $\lambda = 1/L_D$ converge to a stationary point $u_*$ for which $u_* = \text{prox}_{\lambda R}\left(u_* - \lambda D'(u_*)\right).
@@ -430,16 +424,28 @@ If $D$ is $\mu$-strongly convex, the iteration converges linearly to a minimiser
 
 $$\|u_{k+1} - u_*\|_2^2 \leq \left(1 - \mu/L_D\right) \|u_{k} - u_*\|_2^2.$$
 
+```
 ```{admonition} Proof
 :class: dropdown
 
 We refer to {cite}`Beck2017` Thms. 10.15, 10.21, and 10.29 or more details.
 ```
-````
 
 ---
 
 When compared to the subgradient method, we may expect better performance from the proximal gradient method when $D$ is strongly convex and $R$ is convex. Even if $J$ is smooth, the proximal gradient method may be favourable as the convergence constants depend on the Lipschitz constant of $D$ only; not $J$. All this comes at the cost of solving a minimisation problem at each iteration, so these methods are usually only applied when a closed-form expression for the proximal operator exists.
+
+```{admonition} Example: *$\text{prox}_{\|\cdot\|_1}$*
+The proximal operator for the $\ell_1$ norm solves 
+
+$$\min_u \textstyle{\frac{1}{2}}\|u - v\|_2 + \lambda \|u\|_1.$$
+
+The solution obeys $u - v \in \partial \lambda \|u\|_1$, which yields 
+
+$$u_i - v_i \in \begin{cases} \{\lambda\} & u_i > 0 \\ [-\lambda,\lambda] & u_i = 0 \\ \{-\lambda\} & u_i < 0\end{cases}$$
+
+ 
+```
 
 ### Splitting methods
 
