@@ -102,7 +102,7 @@ A functional $J$ is bounded from below if there exists a constant $C > -\infty$ 
 ```{admonition} Definition: *Coercive functionals*
 :class: important
 
-A functional $J$ is called coercive if for all $\{u_j\}_{j\in\mathbb{N}}$ with $\|u_j\|_{\mathcal{U}}\rightarrow \infty$ we have $J(u_j) \rightarrow\infty$.
+A functional $J$ is called coercive if $J(u) \rightarrow\infty$ as $\|u\|_{\mathcal{U}} \rightarrow \infty$.
 ```
 
 ```{admonition} Definition: *Lower semi-continuity*
@@ -110,7 +110,13 @@ A functional $J$ is called coercive if for all $\{u_j\}_{j\in\mathbb{N}}$ with $
 
 A functional $J$ is lower semi-continuous at $u$ if for every $a < J(u)$ there exists a neighbourhood $\mathcal{X}$ of $u$ such that $a < J(v)$ for all $v \in \mathcal{X}$.
 
-Note that the term *neighbourhood* implies an underlying topology, which may be different (in particular, weaker) than the one induced by the norm on $\mathcal{U}$.
+An alternative (slightly weaker) notion is *sequential* lower semi-continuity, which requires that
+
+$$J(u) \leq \lim\inf_{k\rightarrow \infty} E(u_k),$$
+
+for all sequences $\{u_k\}_{k\in\mathbb{N}}$ with $u_k \rightarrow u$ as $k\rightarrow\infty$.
+
+Note that the term *neighbourhood* and the notion of convergence $u_k\rightarrow u$ require the definition an underlying topology, which may be different (in particular, weaker) than the one induced by the norm on $\mathcal{U}$.
 ```
 
 With these, we can establish existence.
@@ -119,7 +125,13 @@ With these, we can establish existence.
 :class: important
 
 Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be proper, coercive, bounded from below and lower semi-continuous. Then $J$ has a minimiser.
-````
+```
+
+```{admonition} Proof:
+:class: important, dropdown
+
+...
+```
 
 ````{admonition} Examples: *existence of minimisers in $\mathbb{R}$*
 
@@ -188,6 +200,37 @@ glue("functionals", fig, display=False)
 Let $J$ have at least one minimiser and be [strictly convex](https://en.wikipedia.org/wiki/Convex_function) then the minimiser is unique.
 ```
 
+```{admonition} Proof:
+:class: important, dropdown
+
+...
+```
+
+```{admonition} Example: *non-coercive least-squares*
+
+Consider $J(u) = \|Ku - f\|_2^2$ with $K : \ell_2 \rightarrow \ell_2$ defined as $(Ku)_i = i^{-1} u_i$
+and $f_i = i^{-1}$.
+
+$J$ is not coercive since for the sequence $\{(1,0,0,\ldots),(1,1,0,\ldots), \ldots\}$ we have $\|u_k\|_2 \rightarrow \infty$ but $J(u_k) \rightarrow 0$.
+
+```
+
+```{admonition} Example: *Lower semi-continuity of TV*
+The total-variation functional
+
+$$TV(u) = \sup_{\phi \in D([0,1],\mathbb{R})} \int_0^1 u(x)\phi'(x)\mathrm{d}x,$$
+
+is l.s.c. w.r.t. $L^1$. To see this, consider a sequence $\{u_k\}_{k\in\mathbb{N}}$ of functions of bounded variation, with $\|u_k - u\|_{L^1} \rightarrow 0$. Then, for any test function $\phi \in D([0,1],\mathbb{R})$ we have
+
+$$\left|\int_0^1 (u_k(x) - u(x))\phi'(x)\mathrm{d}x\right| \leq \|u_k - u\|_{L^1([0,1])} \|\phi'\|_{L^\infty([0,1])}.$$
+
+Thus
+
+$$TV(u) \leq \lim\inf_{k\rightarrow \infty} TV(u_k),$$
+
+showing that $TV(u)$ is indeed l.s.c. w.r.t. $L^1([0,1])$.
+```
+
 ### Well-posedness of regularised least-squares problems
 
 In this section we focus in particular on variational problems of the form
@@ -203,14 +246,38 @@ We can think of this as defining a (possibly non-linear) regularisation scheme $
 
 ```{admonition} Theorem: *Existence and uniqueness of regularised least-squares solutions*
 
-Let $K$ be injective or $J$ be strictly convex, then the variational problem {eq}`variational_R` has a unique minimiser.
+Let $K$ be injective *or* $J$ be strictly convex, then the variational problem {eq}`variational_R` has a unique minimiser.
 
+```
+
+```{admonition} Proof:
+:class: important, dropdown
+
+...
 ```
 
 ```{admonition} Theorem: *Stability of regularised least-squares solutions*
 
-...
+The operator $K_{\alpha}^\dagger$ for $\alpha > 0$ is continuous.
 
+```
+
+```{admonition} Proof:
+:class: important, dropdown
+
+...
+```
+
+```{admonition} Theorem: *Convergence of regularised least-squares solutions*
+
+The solution $\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)$ converges to the regular minimum-norm solution as $\alpha \rightarrow 0$.
+
+```
+
+```{admonition} Proof:
+:class: important, dropdown
+
+...
 ```
 
 ### Examples
@@ -232,7 +299,7 @@ $$|J(v) - J(u)| \leq \textstyle{\frac{1}{2}}\|Kd\|_2^2 + \|Kd\|_2 \|Ku - f^\delt
 
 Now, for every $\epsilon$ we can pick a $\delta$ such that $\|u-v\|_2 < \delta$ implies that $|J(v) - J(u)| < \epsilon$.
 
-Finally, we can show that $J$ is *strongly convex* with constant $\alpha$ by showing that $J(u) - \textstyle{\frac{\alpha}{2}}\|u\|_2^2$ is convex. The fact that $\|Ku - f^\delta\|_2^2$ is convex follows easily from the triangle inequality and the fact that the function $\cdot^2$ is convex.
+Finally, we can show that $J$ is *strongly convex* with constant $\alpha$ by showing that $J(u) - \textstyle{\frac{\alpha}{2}}\|u\|_2^2$ is convex. The fact that $\|Ku - f^\delta\|_2^2$ is convex follows easily from the triangle inequality and the fact that the function $(\cdot)^2$ is convex.
 
 ```
 
@@ -244,7 +311,7 @@ $$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\el
 
 with $K : \ell_2 \rightarrow \ell_2$ a bounded operator. Again, we can easily see that $J$ is bounded from below.
 
-Note that the regularised solution is determined for all $f \in \ell_2$, regardless of the Picard condition.
+Note that the regularised solution is determined for all $f^\delta \in \ell_2$, regardless of the Picard condition.
 
 ```
 
@@ -286,13 +353,14 @@ If this operator exists for all $u \in\mathcal{U}$ we call $J$ Fréchet differen
 
 With this more general notion of differentiation we can pose the first-order optimality conditions.
 
-````{admonition} Definition: *First-order optimality conditions*
+````{admonition} Definition: *First-order optimality condition*
 :class: important
 
-```{math}
-:label: local_minimum
+Let $u^*$ be a local extremum of $J$, and let $J$ be Fréchet-differentiable at $u^*$, then
 
-\langle J'(u), v - u\rangle \geq 0.
+```{math}
+:label: local_extremum
+J'(u^*) = 0.
 ```
 
 ````
@@ -301,7 +369,7 @@ With this more general notion of differentiation we can pose the first-order opt
 
 ```
 
-We need to be careful here, as some important cases $J$ may fail to be Fréchet differentiable at the solution.
+Note that in some important cases $J$ may fail to be Fréchet differentiable at the solution. We will treat this case in more detail in the next chapter on numerical methods.
 
 ```{admonition} Example: *$\ell_1$-regularisation on \mathbb{R}^n*
 

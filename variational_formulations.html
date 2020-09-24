@@ -419,17 +419,25 @@
 </div>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Coercive functionals</em></p>
-<p>A functional <span class="math notranslate nohighlight">\(J\)</span> is called coercive if for all <span class="math notranslate nohighlight">\(\{u_j\}_{j\in\mathbb{N}}\)</span> with <span class="math notranslate nohighlight">\(\|u_j\|_{\mathcal{U}}\rightarrow \infty\)</span> we have <span class="math notranslate nohighlight">\(J(u_j) \rightarrow\infty\)</span>.</p>
+<p>A functional <span class="math notranslate nohighlight">\(J\)</span> is called coercive if <span class="math notranslate nohighlight">\(J(u) \rightarrow\infty\)</span> as <span class="math notranslate nohighlight">\(\|u\|_{\mathcal{U}} \rightarrow \infty\)</span>.</p>
 </div>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Lower semi-continuity</em></p>
 <p>A functional <span class="math notranslate nohighlight">\(J\)</span> is lower semi-continuous at <span class="math notranslate nohighlight">\(u\)</span> if for every <span class="math notranslate nohighlight">\(a &lt; J(u)\)</span> there exists a neighbourhood <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> of <span class="math notranslate nohighlight">\(u\)</span> such that <span class="math notranslate nohighlight">\(a &lt; J(v)\)</span> for all <span class="math notranslate nohighlight">\(v \in \mathcal{X}\)</span>.</p>
-<p>Note that the term <em>neighbourhood</em> implies an underlying topology, which may be different (in particular, weaker) than the one induced by the norm on <span class="math notranslate nohighlight">\(\mathcal{U}\)</span>.</p>
+<p>An alternative (slightly weaker) notion is <em>sequential</em> lower semi-continuity, which requires that</p>
+<div class="math notranslate nohighlight">
+\[J(u) \leq \lim\inf_{k\rightarrow \infty} E(u_k),\]</div>
+<p>for all sequences <span class="math notranslate nohighlight">\(\{u_k\}_{k\in\mathbb{N}}\)</span> with <span class="math notranslate nohighlight">\(u_k \rightarrow u\)</span> as <span class="math notranslate nohighlight">\(k\rightarrow\infty\)</span>.</p>
+<p>Note that the term <em>neighbourhood</em> and the notion of convergence <span class="math notranslate nohighlight">\(u_k\rightarrow u\)</span> require the definition an underlying topology, which may be different (in particular, weaker) than the one induced by the norm on <span class="math notranslate nohighlight">\(\mathcal{U}\)</span>.</p>
 </div>
 <p>With these, we can establish existence.</p>
 <div class="important admonition">
 <p class="admonition-title">Theorem: <em>Fundamental theorem of optimisation</em></p>
 <p>Let <span class="math notranslate nohighlight">\(J : \mathcal{U} \rightarrow \mathbb{R}\)</span> be proper, coercive, bounded from below and lower semi-continuous. Then <span class="math notranslate nohighlight">\(J\)</span> has a minimiser.</p>
+</div>
+<div class="important dropdown admonition">
+<p class="admonition-title">Proof:</p>
+<p>…</p>
 </div>
 <div class="admonition-examples-existence-of-minimisers-in-mathbb-r admonition">
 <p class="admonition-title">Examples: <em>existence of minimisers in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span></em></p>
@@ -496,6 +504,29 @@
 <p class="admonition-title">Theorem: <em>Uniqueness of minimisers</em></p>
 <p>Let <span class="math notranslate nohighlight">\(J\)</span> have at least one minimiser and be <a class="reference external" href="https://en.wikipedia.org/wiki/Convex_function">strictly convex</a> then the minimiser is unique.</p>
 </div>
+<div class="important dropdown admonition">
+<p class="admonition-title">Proof:</p>
+<p>…</p>
+</div>
+<div class="admonition-example-non-coercive-least-squares admonition">
+<p class="admonition-title">Example: <em>non-coercive least-squares</em></p>
+<p>Consider <span class="math notranslate nohighlight">\(J(u) = \|Ku - f\|_2^2\)</span> with <span class="math notranslate nohighlight">\(K : \ell_2 \rightarrow \ell_2\)</span> defined as <span class="math notranslate nohighlight">\((Ku)_i = i^{-1} u_i\)</span>
+and <span class="math notranslate nohighlight">\(f_i = i^{-1}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(J\)</span> is not coercive since for the sequence <span class="math notranslate nohighlight">\(\{(1,0,0,\ldots),(1,1,0,\ldots), \ldots\}\)</span> we have <span class="math notranslate nohighlight">\(\|u_k\|_2 \rightarrow \infty\)</span> but <span class="math notranslate nohighlight">\(J(u_k) \rightarrow 0\)</span>.</p>
+</div>
+<div class="admonition-example-lower-semi-continuity-of-tv admonition">
+<p class="admonition-title">Example: <em>Lower semi-continuity of TV</em></p>
+<p>The total-variation functional</p>
+<div class="math notranslate nohighlight">
+\[TV(u) = \sup_{\phi \in D([0,1],\mathbb{R})} \int_0^1 u(x)\phi'(x)\mathrm{d}x,\]</div>
+<p>is l.s.c. w.r.t. <span class="math notranslate nohighlight">\(L^1\)</span>. To see this, consider a sequence <span class="math notranslate nohighlight">\(\{u_k\}_{k\in\mathbb{N}}\)</span> of functions of bounded variation, with <span class="math notranslate nohighlight">\(\|u_k - u\|_{L^1} \rightarrow 0\)</span>. Then, for any test function <span class="math notranslate nohighlight">\(\phi \in D([0,1],\mathbb{R})\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[\left|\int_0^1 (u_k(x) - u(x))\phi'(x)\mathrm{d}x\right| \leq \|u_k - u\|_{L^1([0,1])} \|\phi'\|_{L^\infty([0,1])}.\]</div>
+<p>Thus</p>
+<div class="math notranslate nohighlight">
+\[TV(u) \leq \lim\inf_{k\rightarrow \infty} TV(u_k),\]</div>
+<p>showing that <span class="math notranslate nohighlight">\(TV(u)\)</span> is indeed l.s.c. w.r.t. <span class="math notranslate nohighlight">\(L^1([0,1])\)</span>.</p>
+</div>
 </div>
 <div class="section" id="well-posedness-of-regularised-least-squares-problems">
 <h3><span class="section-number">5.1.2. </span>Well-posedness of regularised least-squares problems<a class="headerlink" href="#well-posedness-of-regularised-least-squares-problems" title="Permalink to this headline">¶</a></h3>
@@ -506,10 +537,26 @@
 <p>We can think of this as defining a (possibly non-linear) regularisation scheme <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)\)</span> that generalises the pseudo-inverse approach discussed earlier. Note that the notation <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span> is used very loosely to indicate a mapping from <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> to <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> that is supposed to approximate the inverse of <span class="math notranslate nohighlight">\(K\)</span> in some fashion. In general, this will be a non-linear mapping.</p>
 <div class="admonition-theorem-existence-and-uniqueness-of-regularised-least-squares-solutions admonition">
 <p class="admonition-title">Theorem: <em>Existence and uniqueness of regularised least-squares solutions</em></p>
-<p>Let <span class="math notranslate nohighlight">\(K\)</span> be injective or <span class="math notranslate nohighlight">\(J\)</span> be strictly convex, then the variational problem <a class="reference internal" href="#equation-variational-r">(5.2)</a> has a unique minimiser.</p>
+<p>Let <span class="math notranslate nohighlight">\(K\)</span> be injective <em>or</em> <span class="math notranslate nohighlight">\(J\)</span> be strictly convex, then the variational problem <a class="reference internal" href="#equation-variational-r">(5.2)</a> has a unique minimiser.</p>
+</div>
+<div class="important dropdown admonition">
+<p class="admonition-title">Proof:</p>
+<p>…</p>
 </div>
 <div class="admonition-theorem-stability-of-regularised-least-squares-solutions admonition">
 <p class="admonition-title">Theorem: <em>Stability of regularised least-squares solutions</em></p>
+<p>The operator <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span> for <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> is continuous.</p>
+</div>
+<div class="important dropdown admonition">
+<p class="admonition-title">Proof:</p>
+<p>…</p>
+</div>
+<div class="admonition-theorem-convergence-of-regularised-least-squares-solutions admonition">
+<p class="admonition-title">Theorem: <em>Convergence of regularised least-squares solutions</em></p>
+<p>The solution <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)\)</span> converges to the regular minimum-norm solution as <span class="math notranslate nohighlight">\(\alpha \rightarrow 0\)</span>.</p>
+</div>
+<div class="important dropdown admonition">
+<p class="admonition-title">Proof:</p>
 <p>…</p>
 </div>
 </div>
@@ -527,7 +574,7 @@
 <div class="math notranslate nohighlight">
 \[|J(v) - J(u)| \leq \textstyle{\frac{1}{2}}\|Kd\|_2^2 + \|Kd\|_2 \|Ku - f^\delta\|_2 + \alpha \|d\|_2 \|u\|_2 + \textstyle{\frac{\alpha}{2}}\|d\|_2^2 \leq A \|d\|_2^2 + B \|d\|_2.\]</div>
 <p>Now, for every <span class="math notranslate nohighlight">\(\epsilon\)</span> we can pick a <span class="math notranslate nohighlight">\(\delta\)</span> such that <span class="math notranslate nohighlight">\(\|u-v\|_2 &lt; \delta\)</span> implies that <span class="math notranslate nohighlight">\(|J(v) - J(u)| &lt; \epsilon\)</span>.</p>
-<p>Finally, we can show that <span class="math notranslate nohighlight">\(J\)</span> is <em>strongly convex</em> with constant <span class="math notranslate nohighlight">\(\alpha\)</span> by showing that <span class="math notranslate nohighlight">\(J(u) - \textstyle{\frac{\alpha}{2}}\|u\|_2^2\)</span> is convex. The fact that <span class="math notranslate nohighlight">\(\|Ku - f^\delta\|_2^2\)</span> is convex follows easily from the triangle inequality and the fact that the function <span class="math notranslate nohighlight">\(\cdot^2\)</span> is convex.</p>
+<p>Finally, we can show that <span class="math notranslate nohighlight">\(J\)</span> is <em>strongly convex</em> with constant <span class="math notranslate nohighlight">\(\alpha\)</span> by showing that <span class="math notranslate nohighlight">\(J(u) - \textstyle{\frac{\alpha}{2}}\|u\|_2^2\)</span> is convex. The fact that <span class="math notranslate nohighlight">\(\|Ku - f^\delta\|_2^2\)</span> is convex follows easily from the triangle inequality and the fact that the function <span class="math notranslate nohighlight">\((\cdot)^2\)</span> is convex.</p>
 </div>
 <div class="admonition-example-ell-1-regularisation admonition">
 <p class="admonition-title">Example: <em><span class="math notranslate nohighlight">\(\ell_1-regularisation\)</span></em></p>
@@ -535,7 +582,7 @@
 <div class="math notranslate nohighlight">
 \[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\ell_1},\]</div>
 <p>with <span class="math notranslate nohighlight">\(K : \ell_2 \rightarrow \ell_2\)</span> a bounded operator. Again, we can easily see that <span class="math notranslate nohighlight">\(J\)</span> is bounded from below.</p>
-<p>Note that the regularised solution is determined for all <span class="math notranslate nohighlight">\(f \in \ell_2\)</span>, regardless of the Picard condition.</p>
+<p>Note that the regularised solution is determined for all <span class="math notranslate nohighlight">\(f^\delta \in \ell_2\)</span>, regardless of the Picard condition.</p>
 </div>
 <div class="admonition-example-sobolev-regularisation admonition">
 <p class="admonition-title">Example: <em>Sobolev regularisation</em></p>
@@ -567,11 +614,12 @@ there exists a linear operator <span class="math notranslate nohighlight">\(D\)<
 </div>
 <p>With this more general notion of differentiation we can pose the first-order optimality conditions.</p>
 <div class="important admonition">
-<p class="admonition-title">Definition: <em>First-order optimality conditions</em></p>
-<div class="math notranslate nohighlight" id="equation-local-minimum">
-<span class="eqno">(5.4)<a class="headerlink" href="#equation-local-minimum" title="Permalink to this equation">¶</a></span>\[\langle J'(u), v - u\rangle \geq 0.\]</div>
+<p class="admonition-title">Definition: <em>First-order optimality condition</em></p>
+<p>Let <span class="math notranslate nohighlight">\(u^*\)</span> be a local extremum of <span class="math notranslate nohighlight">\(J\)</span>, and let <span class="math notranslate nohighlight">\(J\)</span> be Fréchet-differentiable at <span class="math notranslate nohighlight">\(u^*\)</span>, then</p>
+<div class="math notranslate nohighlight" id="equation-local-extremum">
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-local-extremum" title="Permalink to this equation">¶</a></span>\[J'(u^*) = 0.\]</div>
 </div>
-<p>We need to be careful here, as some important cases <span class="math notranslate nohighlight">\(J\)</span> may fail to be Fréchet differentiable at the solution.</p>
+<p>Note that in some important cases <span class="math notranslate nohighlight">\(J\)</span> may fail to be Fréchet differentiable at the solution. We will treat this case in more detail in the next chapter on numerical methods.</p>
 <hr class="docutils" />
 <p>A well-known method for solving <a class="reference internal" href="#equation-variational">(5.1)</a> is the <em>Landweber</em> iteration</p>
 <div class="math notranslate nohighlight">
@@ -876,7 +924,7 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1268073d0&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1a31cad3d0&gt;]
 </pre></div>
 </div>
 <img alt="_images/variational_formulations_13_1.png" src="_images/variational_formulations_13_1.png" />
