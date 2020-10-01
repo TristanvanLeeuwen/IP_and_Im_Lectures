@@ -13,7 +13,7 @@ kernelspec:
 
 # Numerical optimisation for inverse problems
 
-In this chapter we treat numerical algorithms for solving optimisation problems over $\mathbb{R}^n$. Throughout we will assume that the objective $J(u) = D(u) + R(u)$ satisfies the conditions for a minimiser to exist. We distinguish between two important classes of problems; *smooth* problems and *convex* problems.
+In this chapter we treat numerical algorithms for solving optimisation problems over $\mathbb{R}^n$. Throughout we will assume that the objective $J(u) = D(u) + R(u)$ satisfies the conditions for a unique minimiser to exist. We distinguish between two important classes of problems; *smooth* problems and *convex* problems.
 
 ## Smooth optimisation
 
@@ -57,7 +57,7 @@ with $\lambda \in (0,L/2)$ produces iterates $u_k$ for which
 
 $$\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2^2 \leq \frac{J(u_0) - J_*}{C n},$$
 
-with $C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)$ and $J_* = \min_u J(u)$. To guarantee $\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2 \leq \epsilon$ we thus need $\mathcal{O}(1/\sqrt{\epsilon})$ iterations.
+with $C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)$ and $J_* = \min_u J(u)$. This implies that $\|J'(u_k)\|_2 \righatrrow 0$ as $k\rightarrow \infty$. To guarantee $\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2 \leq \epsilon$ we thus need $\mathcal{O}(1/\sqrt{\epsilon})$ iterations.
 
 ````
 
@@ -79,7 +79,7 @@ $$\sum_{k=0}^n \|J'(u_k)\|_2^2 \leq \frac{J(u_0) - J(u_n)}{C},$$
 with $C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)$. Since $J_* \leq J(u_n)$ we obtain the desired result.
 ```
 
-A stronger statement on convergence can be made by making additional assumptions on $J$ (such as (strong) convexity), but this is left as an exercise.
+Stronger statements about the *rate* of convergence can be made by making additional assumptions on $J$ (such as (strong) convexity), but this is left as an exercise.
 
 ### Linesearch
 
@@ -87,7 +87,7 @@ While the previous results are nice in theory, we usually do not have access to 
 
 $$u_{k+1} = u_k + \lambda_k d_k,$$
 
-where $d_k$ is a *descent direction* satisfying $d_k^TJ'(u_k) < 0$. Obviously, $d_k = - J'(u_k)$ is a descent direction, but other choices may be beneficial in practice. In particular, we can choose $d_k = -B J'(u_k)$ for any positive-definite matrix $B$ to obtain a descent direction. How to choose such a matrix will be discussed in the next section.
+where $d_k$ is a *descent direction* satisfying $\langle d_k, J'(u_k)\rangle < 0$. Obviously, $d_k = - J'(u_k)$ is a descent direction, but other choices may be beneficial in practice. In particular, we can choose $d_k = -B J'(u_k)$ for any positive-definite matrix $B$ to obtain a descent direction. How to choose such a matrix will be discussed in the next section.
 
 Two important linesearch methods are discussed below.
 
@@ -98,7 +98,7 @@ In order to ensure sufficient progress of the iterations, we can choose a steple
 
 ```{math}
 :label: wolfe1
-J(u_k + \lambda d_k) \leq J(u_k) + c_1 \lambda J'(u_k)^Td_k,
+J(u_k + \lambda d_k) \leq J(u_k) + c_1 \lambda \langle d_k, J'(u_k)\rangle,
 ```
 
 with $c_1 \in (0,1)$ a small constant (typically $c_1 = 10^{-4}$). Existence of a $\lambda$ satisfying these conditions is guaranteed by the regularity of $J$. We can find a suitable $\lambda$ by *backtracking*:
@@ -132,7 +132,7 @@ A possible disadvantage of the backtracking linesearch introduced earlier is tha
 
 ```{math}
 :label: wolfe2
-|J'(u_k + \lambda d_k)^Td_k| \leq c_2 |J'(u_k)^Td_k|,
+|\langle J'(u_k + \lambda d_k), d_k\rangle| \leq c_2 |\langle J'(u_k), d_k\rangle|,
 ```
 
 where $c_2$ is a small constant satisfying $0 < c_1 < c_2 < 1$. The conditions {eq}`wolfe1` and {eq}`wolfe2`, are referred to as the *strong Wolfe conditions*. Existence of a stepsize satisfying these conditions is again guaranteed by the regularity of $J$ (cf. {cite}`nocedal2006numerical`, lemma 3.1). Finding such a $\lambda$ is a little more involved than the backtracking procedure outlined above (cf. {cite}`nocedal2006numerical`, algorithm 3.5). Luckily, the `SciPy` library provides an implementation of this algorithm (cf. [`scipy.optimize.line_search`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.line_search.html))
@@ -186,7 +186,7 @@ and gradients $y_k = J'(u_{k+1}) - J'(u_k)$ to recursively construct an approxim
 
 $$B_{k+1} = \left(I - \rho_k s_k y_k^T\right)H_k\left(I - \rho_k y_k s_k^T\right) + \rho_k s_ks_k^T,$$
 
-with $\rho_k = (s_k^Ty_k)^{-1}$ and $B_0$ choses appropriately (e.g., $B_0 = L^{-1} \cdot I$). It can be shown that this approximation is sufficiently accurate to yield *superlinear* convergence when using a Wolfe linesearch.
+with $\rho_k = (\langle s_k, y_k\rangle)^{-1}$ and $B_0$ choses appropriately (e.g., $B_0 = L^{-1} \cdot I$). It can be shown that this approximation is sufficiently accurate to yield *superlinear* convergence when using a Wolfe linesearch.
 
 ---
 
@@ -203,7 +203,7 @@ To deal with convex functionals that are not smooth, we first generalise the not
 
 Given a convex functional $J$, we call $g \in \mathbb{R}^n$ a subgradient of $J$ at $u$ if
 
-$$J(v) \geq J(u) + g^T(v - u) \quad \forall v \in \mathbb{R}^n.$$
+$$J(v) \geq J(u) + \langle g, (v - u)\rangle \quad \forall v \in \mathbb{R}^n.$$
 
 This definition is reminiscent of the Taylor expansion and we can indeed easily check that it holds for convex smooth functionals for $g = J'(u)$. For non-smooth functionals there may be multiple vectors $g$ satisfying the inequality. We call the set of all such vectors the *subdifferential* which we will denote as $\partial J(u)$. We will generally denote an arbritary element of $\partial J(u)$ by $J'(u)$.
 ```
@@ -401,7 +401,7 @@ If we choose $\lambda_k = \lambda$, we get
 
 $$\min_{k\in\{0,1,\ldots,n-1\}} f(u_k) - f(u_*) \leq \frac{\|u_0 - u_*\|_2^2 + L^2 \lambda^2 n^2}{2\lambda n}.$$
 
-we can guarantee that $\min_{k\in\{0,1,\ldots,n-1\}} f(u_k) - f(u_*) \leq \epsilon$ by picking stepsize $\lambda = \epsilon/L^2$ and doing $n = (\|u_0-u_*\|_2L/\epsilon)^2$ iterations. This seems comparable to the rate we derived for gradient descent previously. However, for smooth convex functions we derive a stronger result that gradient-descent requires only $\mathcal{O}(1/\epsilon)$ iterations. The proof is left as an exercise.
+we can guarantee that $\min_{k\in\{0,1,\ldots,n-1\}} f(u_k) - f(u_*) \leq \epsilon$ by picking stepsize $\lambda = \epsilon/L^2$ and doing $n = (\|u_0-u_*\|_2L/\epsilon)^2$ iterations. This seems comparable to the rate we derived for gradient descent previously. However, for *smooth* convex functions we derive a stronger result that gradient-descent requires only $\mathcal{O}(1/\epsilon)$ iterations. For smooth *strongly* convex functionals we can strengthen the result even further and show that we only need $\mathcal{O}(\log 1/\epsilon)$ iterations. The proofs are left as an exercise.
 ```
 
 ### Proximal gradient methods
@@ -429,11 +429,16 @@ which indeed confirms that $-D'(u_*) \in \partial R(u_*)$.
 
 ---
 
+```{admonition} Definition: Proximal operator
+:class: important
 The operator $\left(I + \lambda \partial R\right)^{-1}$ is called the *proximal operator* of $\lambda R$, whose action on input $v$ is implicitly defined as solving
 
 $$\min_u \textstyle{\frac{1}{2}} \|u - v\|_2^2 + \lambda R(u).$$
 
-We usually denote this operator by $\text{prox}_{\lambda R}(v)$. With this, the proximal gradient method for solving {eq}`diff_inclusion` is then denoted as
+We usually denote this operator by $\text{prox}_{\lambda R}(v)$.
+```
+
+With this, the proximal gradient method for solving {eq}`diff_inclusion` is then denoted as
 
 ```{math}
 :label: proximal_gradient
@@ -443,7 +448,7 @@ u_{k+1} = \text{prox}_{\lambda R}\left(u_k - \lambda D'(u_k)\right).
 ```{admonition} Theorem: *Convergence of the proximal point iteration*
 :class: important
 
-Let $J = D + R$ be a functional with $D$ smooth and $R$ convex. Denote the Lipschitz constant of $D'$ by $L_D$. The iterates produced by {eq}`proximal_gradient` with a fixed stepsize $\lambda = 1/L_D$ converge to a stationary point, $u_*$.
+Let $J = D + R$ be a functional with $D$ smooth and $R$ convex. Denote the Lipschitz constant of $D'$ by $L_D$. The iterates produced by {eq}`proximal_gradient` with a fixed stepsize $\lambda = 1/L_D$ converge to a fixed point, $u_*$, of {eq}`proximal_gradient`.
 
 If, in addition, $D$ is convex the iterates converges sublinearly to a minimiser $u_*$:
 
@@ -478,6 +483,19 @@ This condition is fulfulled by setting
 $$u_i = \begin{cases}v_i - \lambda & v_i > \lambda \\ 0 & |v_i|\leq \lambda \\ v_i + \lambda \\ v_i < -\lambda \end{cases}$$
 ```
 
+```{admonition} Example: *$\text{prox}_{\delta_{[a,b]^n}}$*
+
+The Proximal operator of the indicator function of $\delta_{[a,b]^n}$ solves
+
+$$\min_{[a,b]^n} \textstyle{\frac{1}{2}}\|u - v\|_2.$$
+
+The solution is given by
+
+$$u_i = \begin{cases} a & v_i < a \\ v_i & v_i \in [a,b] \\ b & v_i > b\end{cases}.$$
+
+Thus, $u$ is an orthogonal projection of $v$ on $[a,b]^n$.
+```
+
 ### Splitting methods
 
 The proximal point methods require that the proximal operator for $R$ can be evaluated efficiently. In many practical applications this is not the cases, however. Instead, we may have a regulariser of the form $R(Au)$ for some linear operator $A$. Even when $R(\cdot)$ admits an efficient proximal operator $R(A\cdot)$ will, in general, not. In this section we discuss a class of methods that allow us to shift the operator $A$ to the other part of the objective. As a model-problem we will consider solving
@@ -491,7 +509,7 @@ with $D$ smooth and $\mu-$ strongly convex, $R(\cdot)$ convex and $A \in \mathbb
 \min_{u\in \mathbb{R}^n,v\in\mathbb{R}^m} D(u) + R(v), \quad \text{s.t.} \quad Au = v.
 ```
 
-The method of Lagrange multipliers defines the *Lagrangian*
+To solve such constrained optimization problems we employ the method of Lagrange multipliers which defines the *Lagrangian*
 
 $$\Lambda(u,v,\nu) = D(u) + R(v) + \langle \nu, Au - v\rangle,$$
 
@@ -532,7 +550,9 @@ The dual problem related to {eq}`saddle_point` is
 For convex problems, the primal and dual problems are equivalent, giving us freedom when designing algorithms.
 
 ```{admonition} Theorem: *Strong duality*
-...
+The primal {eq}`saddle_point` and dual {eq}`dual_saddle_point` are equivalent in the sense that
+
+$$ \min_{u,v} \max_{\nu} \Lambda(u,v,\nu) = \max_{\nu} \min_{u,v} \Lambda(u,v,\nu).$$
 ```
 
 ```{admonition} Proof
@@ -541,25 +561,30 @@ For convex problems, the primal and dual problems are equivalent, giving us free
 see [these notes](https://sites.math.washington.edu/~burke/crs/516/notes/saddlepoints.pdf)
 ```
 
----
+```{admonition} Example: TV-denoising
 
-We can now proceed to solve {eq}`saddle_point` in a number of ways. We will discuss two routes.
+The TV-denoising problem can be expressed as
 
-```{admonition} *Alternating Direction of Multipliers (ADMM)*
-We augment the Lagrangian by adding a quadratic term:
+$$\min_{\mathbb{R}^n} \textstyle{\frac{1}{2}} \|u - f^\delta\|_2^2 + \lambda \|Du\|_1,$$
 
-$$\Lambda_{\rho}(u,v,\nu) = D(u) + R(v) + \langle\nu,Au - v\rangle + \rho \|Au - v\|_2^2.$$
+with $D \in \mathbb{R}^{m \times n}$ a discretisation of the first derivative. We can express the corresponding dual problem as
 
-We then find the solution by updating the variables in an alternating fashion
+$$\max_{\nu} \min_u \textstyle{\frac{1}{2}} \|u - f^\delta\|_2^2 + \langle \nu,Du\rangle + \min_v \lambda \|v\|_1 - \langle \nu, v\rangle.$$
 
-$$u_{k+1} = \text{arg}\min_{u} \Lambda_{\rho}(u,v_k,\nu_k),$$
-$$v_{k+1} = \text{arg}\min_{v} \Lambda_{\rho}(u_{k+1},v,\nu_k),$$
-$$\nu_{k+1} = \nu_k + \rho(Au_k - v_k).$$
+The first term is minimised by setting $u = f^\delta - D^*\nu$. The second term is a bit trickier. First, we note that $\lambda \|v\|_1 - \langle \nu, v\rangle$ is not bounded from below when $\|\nu\|_{\infty} > \lambda$. Furthermore, for $\|\nu\|_{\infty} \leq \lambda$ it attains a minimum for $v = 0$.
 
-Efficient implementations of this method rely on the proximal operators of $D$ and $R$.
+This leads to
+
+$$\max_{\nu} -\textstyle{\frac{1}{2}} \|D^*\nu\|_2^2 + \langle D^*\nu, f^\delta\rangle - \delta_{\|\cdot\|_\infty \leq \lambda}(\nu),$$
+
+which is a constrained quadratic program. Since the first part is smooth and the proximal operator for the constraint $\|\nu\|_{\infty} \leq \lambda$ is easy we can employ a proximal gradient method to solve the dual problem. Having solved it, we can retrieve the primary variable via the relation $u = f^\delta - D^*\nu$.
 ```
 
+The strategy illustrated in the previous approach is an example of a more general approach to solving problems of form {eq}`splitted`.
+
 ```{admonition} *Dual-based proximal gradient*
+:class: important
+
 We start from the dual problem {eq}`dual_saddle_point`:
 
 $$\max_{\nu} \left(\min_u D(u) + \langle Au,\nu\rangle\right) + \left(\min_v R(v) - \langle \nu, v\rangle\right).$$
@@ -573,19 +598,37 @@ Thus, we have moved the linear map to the other side. We can now apply the proxi
 * We have a closed-form expression for the convex conjugates of $D$ and $R$;
 * $R^*$ has a proximal operator that is easily evaluated.
 
-For many simple functions, we do have such closed-form expressions of their convex conjugates. Moreover, to compute the proximal operator, we can use *Moreau's identity:* $\text{prox}_{J}(u) + \text{prox}_{J^*}(u) = u$.
+For many simple functions, we do have such closed-form expressions of their convex conjugates. Moreover, to compute the proximal operator, we can use *Moreau's identity:* $\text{prox}_{R}(u) + \text{prox}_{R^*}(u) = u$.
 ```
 
-```{admonition} Example: *Bound-constrained least-squares*
-Consider a denoising problem
+---
 
-$$\min_{u\in\mathbb{R}^n} \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \delta_{[-1,1]^n}(Au).$$
+It may not always be feasible to formulate the dual problem explicitly as in the previous example. In such cases we would rather solve {eq}`dual_saddle_point` directly. A popular way of doing this is the *Alternating Direction of Multipliers Method*.
+
+```{admonition} *Alternating Direction of Multipliers Method (ADMM)*
+:class: important
+
+We augment the Lagrangian by adding a quadratic term:
+
+$$\Lambda_{\rho}(u,v,\nu) = D(u) + R(v) + \langle\nu,Au - v\rangle + \textstyle{\frac{\rho}{2}} \|Au - v\|_2^2.$$
+
+We then find the solution by updating the variables in an alternating fashion
+
+$$u_{k+1} = \text{arg}\min_{u} \Lambda_{\rho}(u,v_k,\nu_k),$$
+$$v_{k+1} = \text{arg}\min_{v} \Lambda_{\rho}(u_{k+1},v,\nu_k),$$
+$$\nu_{k+1} = \nu_k + \rho(Au_{k+1} - v_{k+1}).$$
+
+Efficient implementations of this method rely on the proximal operators of $D$ and $R$.
+```
+
+```{admonition} Example:*TV-denoising*
+Consider the TV-denoising problem from the previous example.
 
 The ADMM method find a solution via
 
-$$u_{k+1} = \left(I + \rho A^*A\right)^{-1}\left(f^\delta + A^*(\rho v_k - \nu_k)\right).$$
-$$v_{k+1} = ...$$
-$$\nu_{k+1}= ...$$
+$$u_{k+1} = \left(I + \rho D^*\!D\right)^{-1}\left(f^\delta + D^*(\rho v_k - \nu_k)\right).$$
+$$v_{k+1} = \text{prox}_{(\lambda/\rho)\|\cdot\|_1}\left(Du_{k+1} + \rho^{-1}\nu_k\right).$$
+$$\nu_{k+1}= \nu_k + \rho \left(Du_{k+1} - v_{k+1}\right).$$
 ```
 
 ---
@@ -836,60 +879,53 @@ ax[0].plot(x[:,0],x[:,1],'*')
 ax[1].semilogy(k,np.linalg.norm(x - xs,axis=1),k,(.99993)**k,'k--')
 ```
 
-### Convex conjugates
-
-Compute the convex conjugates of the following primal functionals $J : X \rightarrow \mathbb{R} \cup
-\{ \infty \}$, i.e. the dual functionals $J^*: X^*\rightarrow \mathbb{R} \cup \{ \infty \}$ of,
-* $J(u) = \left\| u \right\|_{L^2(\Omega)}$
-* $J(u) = \frac{\alpha}{2} \left\| u \right\|_{L^2(\Omega)}^2$
-* $J(u) = \left\| u \right\|_{L^1(\Omega)}$.
-
-__Hint__: Remark, that in the dual formulation, due to the supremum, there holds equality in the Hölder inequality.
-
-+++
-
 ### Subdifferentials
 
-Compute the subdifferentials $\partial f(x)$ of the following functions:
-* The Euclidean norm $f:\mathbb{R}^n \rightarrow \mathbb{R}, x \, \mapsto
-	\left\|x\right\|_{\ell^2}$
-* The characteristic function of the positive quadrant,
-	$\,f = \chi_K, \, \text{ with } \, K:=\left\{ x \in \mathbb{R}^n \,:\, x_j \geq 0, \text{ for all } \, 1 \leq j \leq n \right\}$.
+Compute the subdifferentials of the following functionals $J : \mathbb{R}^n \rightarrow \mathbb{R}_+$:
 
-https://en.wikipedia.org/wiki/Characteristic_function_(convex_analysis)
+* The Euclidean norm $J(u) = \|u\|_2^2$.
+* The indicator function of $[0,1]^n$.
+* The elastic net $J(u) = \alpha \|u\|_1 + \beta \|u\|_2^2$
+* The weighted $\ell_1$-norm $J(u) = \|Du\|_1$, with $D \in \mathbb{R}^{m\times n}$ for $m < n$ a full-rank matrix.
 
-### A dual method for TV denoising
+```{admonition} Answer
+:class: tip, dropdown
 
-__Proof__ that the Rudin-Osher-Fatemi (ROF) minimization for denoising with $L^2$ data fidelity and TV regularisation:
-
-$$\frac{1}{2}\|u - f\|_{L^2}^2 + \alpha \text{TV}(u)$$
-
-is equivalent (in the sense of the same local minima) to the following dual minimization problem
-
-$$J(g) := \frac{1}{2} \int_\Omega \left(\alpha \nabla \cdot  g - f\right)^2 \rightarrow \min_g$$
-
-under the constraint $\lVert g \rVert_{L^\infty} \leq 1$. This is a constrained quadratic optimisation problem. The constraint should be interpreted as $|g(x)|_{l^2}^2 \leq 1,\, \forall x \in \Omega$.
-
-__Write code__ which performs the explicit discretisation
-
-$$g_{k+\frac{1}{2}} = g_k + \beta \: \nabla \left(\alpha \nabla \cdot g_k -f\right)$$
-
-$$g_{k+1} = \Pi(g_{k+\frac{1}{2}})\qquad\qquad\quad$$
-
-where $\Pi(g) := \frac{g}{\lVert g \rVert}_{L^\infty}$ denotes a projection onto the unit circle. You can easily discretize the divergence and gradient as
-
-```python
-grad = (np.diag(np.ones(n-1),1) - np.diag(np.ones(n),0))/h
-div = -grad.T
+...
 ```
 
-__Test__ your implementation on a 1D step function with additional random Gaussian noise.
+### Dual problems
 
-__Compare__ the solutions for different values of $\alpha$ and choose the step size $\beta$ adequately.
+Derive the dual problems for the following optimisation problems
 
-Hint: Use the primal optimality condition of the ROF model (with exact, dual definition of TV), to be able to visualise the primal solution $u^*$ out of the corresponding, computed dual solution $g^*$.
+* $\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_1 + \lambda \|u\|_2^2$.
+* $\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \lambda \|u\|_p, \quad p \in \mathbb{N}_{>0}$.
+* $\min_{u \in [0,1]^n} \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2$.
 
-Example code is shown below.
+```{admonition} Answer
+:class: tip, dropdown
+
+...
+```
+
+### TV-denoising
+
+In this exercise we consider a one-dimensional TV-denoising problem
+
+$$\min_{\mathbb{R}^n} \textstyle{\frac{1}{2}} \|u - f^\delta\|_2^2 + \lambda \|Du\|_1,$$
+
+with $D$ a first-order finite difference discretisation of the first derivative.
+
+
+* Show that the problem is equivalent (in terms of solutions) to solving
+
+$$\min_v \textstyle{\frac{1}{2}}\|D^*v - f^\delta\|_2^2 \quad \text{s.t.} \quad \|v\|_{\infty} \leq \lambda.$$
+
+* Implement a proximal-gradient method for solving the dual problem.
+
+* Implement an ADMM method for solving the (primal) denoising problem.
+
+* Test and compare both methods on a noisy signal. Example code is given below.
 
 ```{code-cell} ipython3
 import numpy as np
@@ -907,22 +943,13 @@ sigma = 1e-1
 u = np.heaviside(x - 0.2,0)
 f_delta = u + sigma*np.random.randn(n)
 
+# FD differentiation matrix
+D = (np.diag(np.ones(n-1),1) - np.diag(np.ones(n),0))/h
+
 # plot
 plt.plot(x,u,x,f_delta)
 plt.show()
 ```
-
-### A Prima-dual method for TV denoising
-
-In the lecture we have introduced with Split-Bregman, or equivalently Alternating direction method of multipliers (ADMM), a splitting method, with which we can solve the ROF model
-
-$$ \min_u \frac{1}{2} \left\| u-f \right\|_{L^2(\Omega)} + \alpha \left\| \nabla u \right\|_{L^1(\Omega)}$$
-
-efficiently in an alternating primal-dual fashion.
-
-* Derive the splitting method in 1D $(\Omega \subset \mathbb{R})$ analogous to the lecture for the ROF model, implement it in Python and test it for different step sizes and regularisation parameters for a step function with additive Gaussian noise.
-
-* How do the subproblems of the splitting algorithm change, if we make the transition from denoising to reconstruction with an operator $K:\Omega \rightarrow \Omega$, without introducing additional constraints? Which property would the operator $K$ need, such that the whole method could still be realised efficiently via FFT and DCT inside?
 
 ## Assignments
 
