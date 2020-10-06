@@ -209,15 +209,15 @@ where $V_k = (v_1, v_2, \ldots, v_k)$, $U_k = (u_1, u_2, \ldots, u_k)$ and $\Sig
 Note that the pseudo inverse allows us to define a unique solution, it is not necessarily stable as $\|K\|_2\|K^{\dagger}\|_2 = \sigma_1/\sigma_k$ may still be large. To study this issue in more detail, express the solution as
 
 $$
-\widetilde{u} = V_k\Sigma_k^{-1}U_k^{*}f = \sum_{i=1}^k \frac{u_i^*f}{\sigma_i}v_i.
+\widetilde{u} = V_k\Sigma_k^{-1}U_k^{*}f = \sum_{i=1}^k \frac{\langle u_i, f\rangle}{\sigma_i}v_i.
 $$
 
-We note the component in $f$ corresponding to $v_i$ is amplified by $\sigma_i^{-1}$. Thus if $f$ has (noise) components that correlate with $v_i$'s corresponding to very small singular values, these noise components get amplified. Generally, we do not expect problems if $|u_i^* f|$ decays faster with $i$ than the singular values $\sigma_i$. This is called the *discrete Picard condition* {cite}`hansen1990discrete`.
+We note the component in $f$ corresponding to $v_i$ is amplified by $\sigma_i^{-1}$. Thus if $f$ has (noise) components that correlate with $v_i$'s corresponding to very small singular values, these noise components get amplified. Generally, we do not expect problems if $|\langle u_i, f\rangle|$ decays faster with $i$ than the singular values $\sigma_i$. This is called the *discrete Picard condition* {cite}`hansen1990discrete`.
 
 ```{admonition} Definition: *Discrete Picard Condition*
 :class: important
 
-The vector $f \in \mathbb{R}^m$ satisfies the discrete Picard condition for the problem $Ku=f$ if the coefficients $|u_i^* f|$ decay faster than the singular values $\sigma_i$ of $K$, where $u_i$ denotes the left singular vectors of $K$.
+The vector $f \in \mathbb{R}^m$ satisfies the discrete Picard condition for the problem $Ku=f$ if the coefficients $|\langle u_i, f\rangle|$ decay faster than the singular values $\sigma_i$ of $K$, where $u_i$ denotes the left singular vectors of $K$.
 ```
 
 ```{code-cell} ipython3
@@ -257,8 +257,8 @@ uhat = Vh.T@np.diag(1/s)@U.T@f_delta
 fig, ax = plt.subplots(1,1)
 
 ax.semilogy(s,'*',label=r'$\sigma_i$')
-ax.semilogy(np.abs(U.T@f),'o',label=r'$|u_i^* f|$')
-ax.semilogy(np.abs(U.T@f_delta),'o',label=r'$|u_i^* f^{\delta}|$')
+ax.semilogy(np.abs(U.T@f),'o',label=r'$|\langle u_i, f\rangle|$')
+ax.semilogy(np.abs(U.T@f_delta),'o',label=r'$|\langle u_i, f^{\delta}\rangle|$')
 ax.semilogy(np.abs(U.T@f) + np.sqrt(2/np.pi)*sigma,'k--')
 ax.set_xlabel(r'$i$')
 ax.set_ylim([1e-6,2])
@@ -276,23 +276,23 @@ $$(K)_{ii} = \exp(-5 \cdot i/(n-1))\quad \text{for}\quad i = 0, 2, \ldots, n-1.$
 
 We generate noisy data $f^\delta = K \overline{u} + e$ with $\overline{u}_i = \exp(-10 \cdot i/(n-1))$ and $e_i$ normally distributed with mean zero and variance $\sigma^2$. We then find that
 
-$$|u_i^*f| = |f_i| = \exp(-15 \cdot i/(n-1)),$$
+$$|\langle u_i, f\rangle| = |f_i| = \exp(-15 \cdot i/(n-1)),$$
 
 and
 
-$$|u_i^*f^\delta| = |\exp(-15 \cdot i/(n-1)) + e_i| \leq |u_i^*f| + |e_i|.$$
+$$|\langle u_i, f^\delta\rangle| = |\exp(-15 \cdot i/(n-1)) + e_i| \leq |\langle u_i, f\rangle| + |e_i|.$$
 
 Since $e_i$ is normally distributed, its absolute value follows a [folded normal distribution](https://en.wikipedia.org/wiki/Folded_normal_distribution). This allows us to compute the expected upper bound
 
 $$\mathbb{E}(|e_i|) = \sqrt{\frac{2}{\pi}}\sigma.$$
 
-We conclude that $|u_i^*f^\delta|$ does not decay exponentially as the singular values do and hence do not satisfy the discrete Picard condition.
+We conclude that $|\langle u_i, f^\delta\rangle|$ does not decay exponentially as the singular values do and hence do not satisfy the discrete Picard condition.
 
 ```{glue:figure} picard
 :figwidth: 600px
 :name: "picard"
 
-An example of the singular values and the coefficients $|u_i^*f|$ and $|u_i^*f^\delta|$ for $n = 100$ and $\sigma = 10^{-2}$. We see that $f$ does satisfy the discrete Picard condition while $f^\delta$ does not.
+An example of the singular values and the coefficients $|\langle u_i, f\rangle|$ and $|\langle u_i, f^\delta\rangle|$ for $n = 100$ and $\sigma = 10^{-2}$. We see that $f$ does satisfy the discrete Picard condition while $f^\delta$ does not.
 ```
 
 ````
@@ -326,7 +326,7 @@ The TSVD-regularized solution to the equation $Ku = f$ is given by
 
 
 $$
-\widetilde u_{\alpha} = \sum_{i=1}^{k_{\alpha}} \frac{u_i^*f}{\sigma_i}v_i,
+\widetilde u_{\alpha} = \sum_{i=1}^{k_{\alpha}} \frac{\langle u_i, f\rangle}{\sigma_i}v_i,
 $$
 
 where $\{(u_i,v_i,\sigma_i)\}_{i=1}^k$ denotes the singular system of $K$ and $k_{\alpha} \leq k$ is chosen so that $\sigma_i \geq \alpha$ for $i \leq k_{\alpha}$.
@@ -342,7 +342,7 @@ Another option to avoid dividing by small singular values is to add small positi
 The Tikhonov-regularised solution to the equation $Ku = f$ is given by
 
 $$
-\widetilde u_{\alpha} = \sum_{i=1}^{k} \frac{\sigma_i (u_i^*f)}{\sigma_i^2 + \alpha}v_i,
+\widetilde u_{\alpha} = \sum_{i=1}^{k} \frac{\sigma_i \langle u_i, f\rangle}{\sigma_i^2 + \alpha}v_i,
 $$
 
 where $\{(u_i,v_i,\sigma_i)\}_{i=1}^k$ is the singular system of $K$. This corresponds to setting $r_{\alpha}(s) = s/(s^2 + \alpha)$ in {eq}`regK`.
@@ -518,7 +518,7 @@ Given a system of equations $Ku = f$ with $K\in\mathbb{R}^{m\times n}$:
 
 1. We can construct the solution with the smallest residual by formulating the corresponding normal equations $K^*Ku = K^*f$. Since rank($K$) = $n$, these have a unique solution. Expressing $K$ and $K^\dagger$ in terms of the SVD of $K$ we find that $K^\dagger = (K^*K)^{-1}K^*$ and hence that pseudo-inverse yields the solution to the normal equations.
 
-2. Here, the system solutions of the form $v = u + z$ with $u = K^\dagger f$ and $Kz = 0$. We find that $\|v\|_2^2 = \|u\|_2^2 + 2 z^* K^{\dagger} f + \|z\|_2^2$. Expressing in terms of the SVD we see that the middle term is given by $z^*V_k\Sigma_k^{-1}U_k^*f$. Since $z$ lies in the null-space of $K$ we $V_k^*z = 0$ so $\|v\|_2^2= \|u\|_2^2 + \|z\|_2^2 \geq \|u\|_2^2$. We conclude that $\|u\|_2^2$ is indeed the solution with the smallest norm.
+2. Here, the system solutions of the form $v = u + z$ with $u = K^\dagger f$ and $Kz = 0$. We find that $\|v\|_2^2 = \|u\|_2^2 + 2 \langle z, K^{\dagger} f \rangle + \|z\|_2^2$. Expressing in terms of the SVD we see that the middle term is given by $\langle z, V_k\Sigma_k^{-1}U_k^*f\rangle$. Since $z$ lies in the null-space of $K$ we $V_k^*z = 0$ so $\|v\|_2^2= \|u\|_2^2 + \|z\|_2^2 \geq \|u\|_2^2$. We conclude that $\|u\|_2^2$ is indeed the solution with the smallest norm.
 
 3. We can combine the results of the former to to show that in this case $u = K^\dagger f$ is *a* solution to the normal equations and that it is the one with the smallest norm.
 ```
@@ -531,14 +531,14 @@ $$\min_{u} \|Ku - f\|_2^2 + \alpha \|u\|_2^2$$
 
 is given in terms of the SVD of $K \in \mathbb{R}^{m\times n}$ as
 
-$$\widetilde{u} = \sum_{i=1}^{k} \frac{\sigma_i (u_i^*f)}{\sigma_i^2 + \alpha} v_i,$$
+$$\widetilde{u} = \sum_{i=1}^{k} \frac{\sigma_i \langle u_i, f\rangle}{\sigma_i^2 + \alpha} v_i,$$
 
 where $k = \text{rank}(K)$.
 
 ```{admonition} Answer
 :class: hint, dropdown
 
-First, write down the corresponding normal equations $K^*Ku + \alpha u = K^*f$, so $u = (K^*K + \alpha I)^{-1}K^*f$. Use the *full* SVD of $K = U\Sigma V^*$ with $U\in\mathbb{R}^{m\times m}$, $V\in\mathbb{R}^{n\times n}$ and $\Sigma \in \mathbb{R}^{m\times n}$ whose first $k$ diagonal entries contain the singular values. We find $u = (V^*\Sigma^*\Sigma V + \alpha I)^{-1}V\Sigma^*U^*$. Use that $V^*V = VV^* = I$ and $\Sigma_n^2 = \Sigma^*\Sigma$ an $n \times n$ matrix with $k$ non-zero diagonal elements. Then the normal equations become $u = V(\Sigma_n^2 + \alpha I)^{-1}\Sigma^*U^*f$. We realise that $\Sigma^*U^*f$ will only contain contributions from the $k$ non-zero singular values: $\Sigma^*U^*f = (\sigma_1 u_1^*f,\sigma_2 u_2^*f, \ldots, \sigma_k u_k^*f, 0, 0, \ldots, 0 )$. Thus, we get the desired result.
+First, write down the corresponding normal equations $K^*Ku + \alpha u = K^*f$, so $u = (K^*K + \alpha I)^{-1}K^*f$. Use the *full* SVD of $K = U\Sigma V^*$ with $U\in\mathbb{R}^{m\times m}$, $V\in\mathbb{R}^{n\times n}$ and $\Sigma \in \mathbb{R}^{m\times n}$ whose first $k$ diagonal entries contain the singular values. We find $u = (V^*\Sigma^*\Sigma V + \alpha I)^{-1}V\Sigma^*U^*$. Use that $V^*V = VV^* = I$ and $\Sigma_n^2 = \Sigma^*\Sigma$ an $n \times n$ matrix with $k$ non-zero diagonal elements. Then the normal equations become $u = V(\Sigma_n^2 + \alpha I)^{-1}\Sigma^*U^*f$. We realise that $\Sigma^*U^*f$ will only contain contributions from the $k$ non-zero singular values: $\Sigma^*U^*f = (\sigma_1 u_1^*f,\sigma_2 u_2^*f, \ldots, \sigma_k \langle u_k, f\rangle, 0, 0, \ldots, 0 )$. Thus, we get the desired result.
 ```
 
 ### Gravity surveying
@@ -551,7 +551,7 @@ Upon discretisation with stepsize $h = 1/n$, the inverse problem can be cast as 
 
 You can use the code provided below to generate the matrix and noisy data for $u(x) = ..$
 
-1. Plot the coefficients $u_i^*f$ and the singular values $\sigma_i$ to check the discrete Picard condition. What do you notice ?
+1. Plot the coefficients $\langle u_i, f\rangle$ and the singular values $\sigma_i$ to check the discrete Picard condition. What do you notice ?
 
 2. Solve the inverse problem for noisy data using the (regularised) pseudo-inverse; compute the optimal $\alpha$ by computing the bias and variance components of the error. Is this a practically feasible way to compute the optimal $\alpha$?
 
@@ -654,8 +654,8 @@ for k in range(na):
 fig,ax = plt.subplots(1,3)
 
 ax[0].semilogy(s,'*',label=r'$\sigma_i$')
-ax[0].semilogy(np.abs(U.T@f),'o',label=r'$|u_i^* f|$')
-ax[0].semilogy(np.abs(U.T@f_delta),'o',label=r'$|u_i^* f^{\delta}|$')
+ax[0].semilogy(np.abs(U.T@f),'o',label=r'$|\langle u_i, f\rangle|$')
+ax[0].semilogy(np.abs(U.T@f_delta),'o',label=r'$|\langle u_i, f^\delta\rangle|$')
 ax[0].set_xlabel(r'$i$')
 ax[0].set_xlabel(r'magnitude')
 ax[0].set_ylim([1e-16,2])

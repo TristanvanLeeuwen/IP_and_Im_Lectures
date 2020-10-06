@@ -57,7 +57,7 @@ with $\lambda \in (0,L/2)$ produces iterates $u_k$ for which
 
 $$\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2^2 \leq \frac{J(u_0) - J_*}{C n},$$
 
-with $C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)$ and $J_* = \min_u J(u)$. This implies that $\|J'(u_k)\|_2 \righatrrow 0$ as $k\rightarrow \infty$. To guarantee $\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2 \leq \epsilon$ we thus need $\mathcal{O}(1/\sqrt{\epsilon})$ iterations.
+with $C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)$ and $J_* = \min_u J(u)$. This implies that $\|J'(u_k)\|_2 \rightarrow 0$ as $k\rightarrow \infty$. To guarantee $\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2 \leq \epsilon$ we thus need $\mathcal{O}(1/\sqrt{\epsilon})$ iterations.
 
 ````
 
@@ -149,7 +149,7 @@ u_{k+1} = u_k - J''(u_k)^{-1}J(u_k).
 
 We can interpret this method as finding the new iterate $u_{k+1}$ as the (unique) minimiser of the quadratic approximation of $J$ around $u_k$:
 
-$$J(u) \approx J(u_k) + J'(u_k)(u - u_k) + \textstyle{\frac{1}{2}}(u-u_k)^T J''(u_k)(u-u_k).$$
+$$J(u) \approx J(u_k) + J'(u_k)(u - u_k) + \textstyle{\frac{1}{2}}\langle u-u_k, J''(u_k)(u-u_k)\rangle.$$
 
 ```{admonition} Theorem: *Convergence of Newton's method*
 :class: important
@@ -177,7 +177,7 @@ In some applications, it may be difficult to compute and invert the Hessian. Thi
 $$H_k (u_{k+1} - u_k) = (J'(u_{k+1}) - J'(u_k)),$$
 
 which is satisfied by the true Hessian $J''$ at a point $\eta_k = u_k + t(u_{k+1} - u_k)$ for some $t \in (0,1)$. Obviously, we cannot hope to solve for $H_k \in \mathbb{R}^{n\times n}$ from just these $n$ equations. We can, however, impose some structural assumptions on the Hessian.
-Assuming a simple diagonal structure $H_k = h_k I$ yields $h_k = (J'(u_{k+1}) - J'(u_k))^T(u_{k+1} - u_k)/\|u_{k+1} - u_k\|_2^2$. In fact, even gradient-descent can be interpreted in this manner by approximating $J''(u_k) \approx L \cdot I$.
+Assuming a simple diagonal structure $H_k = h_k I$ yields $h_k = \langle J'(u_{k+1}) - J'(u_k), u_{k+1} - u_k\rangle/\|u_{k+1} - u_k\|_2^2$. In fact, even gradient-descent can be interpreted in this manner by approximating $J''(u_k) \approx L \cdot I$.
 
 ---
 
@@ -883,29 +883,42 @@ ax[1].semilogy(k,np.linalg.norm(x - xs,axis=1),k,(.99993)**k,'k--')
 
 Compute the subdifferentials of the following functionals $J : \mathbb{R}^n \rightarrow \mathbb{R}_+$:
 
-* The Euclidean norm $J(u) = \|u\|_2^2$.
-* The indicator function of $[0,1]^n$.
+* The Euclidean norm $J(u) = \|u\|_2$.
 * The elastic net $J(u) = \alpha \|u\|_1 + \beta \|u\|_2^2$
 * The weighted $\ell_1$-norm $J(u) = \|Du\|_1$, with $D \in \mathbb{R}^{m\times n}$ for $m < n$ a full-rank matrix.
 
 ```{admonition} Answer
 :class: tip, dropdown
 
-...
+* When $\|u\|_2 \not=0$ we have $\partial J(u) = \{u/\|u\|_2\}$. Otherwise we have $\partial J(0) = \{g \in \mathbb{R}^n | \|g\|_2 \leq 1\}$. Indeed, we can check that for all $g \in \partial J(0)$ we have $\langle g,v\rangle \leq \|v\|_2$ for all $v \in \mathbb{R}^n$.
+
+* An element $g$ of $\partial \|u\|_1$ has entries
+
+$$g_i = \begin{cases} -1 & u_i < 0 \\ [-1,1] & u_i = 0 \\ 1 & u_i > 0\end{cases}.$$
+
+For $\|u\|_2^2$ we have $\partial \|u\|_2^2 = {u}$. Combining gives
+
+$$g_i = \begin{cases} -\alpha + \beta u_i & u_i < 0 \\ [-\alpha + \beta u_i,\alpha + \beta u_i] & u_i = 0 \\ \alpha + \beta u_i & u_i > 0\end{cases}.$$
+
+* We get $\partial \|Du\|_1 =  \{D^Tg\}$, with $g$ given by
+
+$$g_i = \begin{cases} -1 & v_i < 0 \\ [-1,1] & v_i = 0 \\ 1 & v_i > 0\end{cases},$$
+
+where $v = Du$.
 ```
 
 ### Dual problems
 
 Derive the dual problems for the following optimisation problems
 
-* $\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_1 + \lambda \|u\|_2^2$.
+* $\min_u \|u - f^\delta\|_1 + \lambda \|u\|_2^2$.
 * $\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \lambda \|u\|_p, \quad p \in \mathbb{N}_{>0}$.
 * $\min_{u \in [0,1]^n} \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2$.
 
 ```{admonition} Answer
 :class: tip, dropdown
 
-...
+* We end up with having to solve $\min_u \|\u-f\|_1 + \langle \nu,u\rangle$ and $\min_v \lambda \|v\|_2^2 - \langle \nu, v \rangle$. The second one is easy, since we can compute the optimality condition easily: $2\lambda v - \nu = 0$ giving $v = (2\lambda)^{-1}\nu$ which leads to $-(4\lambda)^{-1}\|\nu\|_2^2$.
 ```
 
 ### TV-denoising
