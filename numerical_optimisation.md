@@ -911,14 +911,14 @@ where $v = Du$.
 
 Derive the dual problems for the following optimisation problems
 
-* $\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_1 + \lambda \|u\|_2^2$.
+* $\min_u \|u - f^\delta\|_1 + \lambda \|u\|_2^2$.
 * $\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \lambda \|u\|_p, \quad p \in \mathbb{N}_{>0}$.
 * $\min_{u \in [0,1]^n} \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2$.
 
 ```{admonition} Answer
 :class: tip, dropdown
 
-...
+* We end up with having to solve $\min_u \|\u-f\|_1 + \langle \nu,u\rangle$ and $\min_v \lambda \|v\|_2^2 - \langle \nu, v \rangle$. The second one is easy, since we can compute the optimality condition easily: $2\lambda v - \nu = 0$ giving $v = (2\lambda)^{-1}\nu$ which leads to $-(4\lambda)^{-1}\|\nu\|_2^2$.
 ```
 
 ### TV-denoising
