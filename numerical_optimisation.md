@@ -944,7 +944,7 @@ u = np.heaviside(x - 0.2,0)
 f_delta = u + sigma*np.random.randn(n)
 
 # FD differentiation matrix
-D = (np.diag(np.ones(n-1),1) - np.diag(np.ones(n),0))/h.
+D = (np.diag(np.ones(n-1),1) - np.diag(np.ones(n),0))/h
 
 # plot
 plt.plot(x,u,x,f_delta)
