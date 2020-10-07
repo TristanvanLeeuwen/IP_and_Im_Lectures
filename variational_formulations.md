@@ -651,7 +651,7 @@ with boundary conditions $u'(0) = u'(1) = 0$.
 
 $$\partial_t u(t,x) + u(t,x) + \alpha \partial_x^4 u(t,x) = f^\delta(x),$$
 
-with boundary conditions $u'(0) = u'(1) = 0$ and $u'''(0) = u'''(1) = 0$ satisfies the optimality conditions of the variational problem.
+with boundary conditions $u'(t,0) = u'(t,1) = 0$ and $u'''(t,0) = u'''(t,1) = 0$ satisfies the optimality conditions of the variational problem as $t\rightarrow \infty$ .
 
 * Design an explicit finite-difference scheme to solve the diffusion equation and implement it in Python.
 
@@ -661,7 +661,15 @@ with boundary conditions $u'(0) = u'(1) = 0$ and $u'''(0) = u'''(1) = 0$ satisfi
 ````{admonition} Answer
 :class: tip, dropdown
 
-* ...
+* Introduce $\phi(t) = J(u + tv)$. Then
+
+$$\phi'(0) = \int_0^1 v(x)(u(x) - f^\delta(x))\mathrm{d}x + \alpha \int_0^1 u''(x) v''(x)\mathrm{d}x.$$
+
+Integrating by parts, the optimality condition $\phi'(0) = 0$ reads
+
+$$ \int_0^1 v(x)(u(x) + \alpha u''''(x) - f^\delta(x))\mathrm{d}x + \text{boundary terms}.$$
+
+Since it should hold for all $v$, we get the desired result.
 
 * We use a central FD in space and Forward Euler in time:
 
