@@ -643,17 +643,15 @@ $$
 
 Consider the following denoising problem
 
-$$\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_{L^2([0,1])} + \textstyle{\frac{\alpha}{2}} \|u''\|_{L^2([0,1])}^2,$$
-
-with boundary conditions $u'(0) = u'(1) = 0$.
+$$\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_{L^2(\mathbb{R})} + \textstyle{\frac{\alpha}{2}} \|u''\|_{L^2(\mathbb{R})}^2.$$
 
 * Show that the solution to
 
 $$\partial_t u(t,x) + u(t,x) + \alpha \partial_x^4 u(t,x) = f^\delta(x),$$
 
-with boundary conditions $u'(t,0) = u'(t,1) = 0$ and $u'''(t,0) = u'''(t,1) = 0$ satisfies the optimality conditions of the variational problem as $t\rightarrow \infty$ .
+satisfies the optimality conditions of the variational problem as $t\rightarrow \infty$ .
 
-* Design an explicit finite-difference scheme to solve the diffusion equation and implement it in Python.
+* Design an explicit finite-difference scheme to solve the diffusion equation on $[0,1]$ with boundary conditions $\partial_x u = \partial_{xxx}u = 0$ at $x = 0$ and $x=1$ and implement it in Python. 
 
 * Test it on noisy data: $f^\delta(x) = \exp(-10^2(x-1/2)^2) + \epsilon$, with $\epsilon \sim N(0,\sigma^2)$.
 
