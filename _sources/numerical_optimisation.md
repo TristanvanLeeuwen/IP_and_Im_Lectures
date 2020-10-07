@@ -480,7 +480,7 @@ $$u_i - v_i \in \begin{cases} \{-\lambda\} & u_i > 0 \\ [-\lambda,\lambda] & u_i
 
 This condition is fulfulled by setting
 
-$$u_i = \begin{cases}v_i - \lambda & v_i > \lambda \\ 0 & |v_i|\leq \lambda \\ v_i + \lambda \\ v_i < -\lambda \end{cases}$$
+$$u_i = \begin{cases}v_i - \lambda & v_i > \lambda \\ 0 & |v_i|\leq \lambda \\ v_i + \lambda & v_i < -\lambda \end{cases}$$
 ```
 
 ```{admonition} Example: *$\text{prox}_{\delta_{[a,b]^n}}$*
@@ -913,12 +913,40 @@ Derive the dual problems for the following optimisation problems
 
 * $\min_u \|u - f^\delta\|_1 + \lambda \|u\|_2^2$.
 * $\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \lambda \|u\|_p, \quad p \in \mathbb{N}_{>0}$.
-* $\min_{u \in [0,1]^n} \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2$.
+* $\min_{u \in [-1,1]^n} \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2$.
 
 ```{admonition} Answer
 :class: tip, dropdown
 
-* We end up with having to solve $\min_u \|\u-f\|_1 + \langle \nu,u\rangle$ and $\min_v \lambda \|v\|_2^2 - \langle \nu, v \rangle$. The second one is easy, since we can compute the optimality condition easily: $2\lambda v - \nu = 0$ giving $v = (2\lambda)^{-1}\nu$ which leads to $-(4\lambda)^{-1}\|\nu\|_2^2$.
+* We end up with having to solve $\min_u \|u-f\|_1 + \langle \nu,u\rangle$ and $\min_v \lambda \|v\|_2^2 - \langle \nu, v \rangle$. For the first, we note that the optimal value tends to $- \infty$ when $\|\nu\|_{\infty} > 1$. For $\|\nu\|_{\infty} \leq 1$ the minimum is attained at $u = f$, giving $\langle \nu,f\rangle$.
+The second one is easy, since we can compute the optimality condition easily: $2\lambda v - \nu = 0$ giving $v = (2\lambda)^{-1}\nu$ which leads to $-(4\lambda)^{-1}\|\nu\|_2^2$. We end up with
+
+$$\max_{\nu} \langle \nu,f \rangle - (4\lambda)^{-1}\|\nu\|_2^2 \quad \text{s.t.} \quad \|\nu\|_{\infty} \leq 1.$$
+
+In terms of the optimal solution this is equivalent to
+
+$$\min_{\nu} \textstyle{\frac{1}{2}}\|\nu - \lambda f\|_2^2 \quad \text{s.t.} \quad \|\nu\|_{\infty} \leq 1.$$
+
+* From $\min u \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \langle \nu,u\rangle$ we get $-\textstyle{\frac{1}{2}}\|\nu\|_2^2 + \langle \nu,f^\delta\rangle$. From $\min_{v} \lambda \|v\|_p - \langle \nu,v\rangle$ we get the constraint $\|\nu\|_{q}\leq 1$ with $p^{-1} + q^{-1} = 1$. This yields
+
+$$\max_{\nu} -\textstyle{\frac{1}{2}}\|\nu\|_2^2 + \langle \nu,f^\delta\rangle \quad \text{s.t.} \quad \|\nu\|_q \leq 1,$$
+
+ which in terms of the optimal solution is equivalent to
+
+
+ $$\min_{\nu} \textstyle{\frac{1}{2}}\|\nu - f^\delta\|_2^2 \quad \text{s.t.} \quad \|\nu\|_q \leq 1.$$
+
+ * The saddle-point problem is
+
+ $$\max_{\nu} \min_{u\in\mathbb{R}^n} \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \langle \nu,u \rangle + \min_v \delta_{[-1,1]^n}(v) - \langle \nu,v\rangle.$$
+
+The first part is the same as the previous one. The second attains its minimum at $v_i = \text{sign}(\nu_i)$ which yields $-\|\nu\|_1$. Thus the dual problem is
+
+$$\max_{\nu} -\textstyle{\frac{1}{2}}\|\nu\|_2^2 + \langle \nu,f^\delta\rangle - \|\nu\|_1,$$
+
+which in terms of the optimal solution is equivalent to
+
+$$\min_{\nu} \textstyle{\frac{1}{2}}\|\nu - f^\delta\|_2^2 + \|\nu\|_1.$$
 ```
 
 ### TV-denoising
@@ -932,7 +960,7 @@ with $D$ a first-order finite difference discretisation of the first derivative.
 
 * Show that the problem is equivalent (in terms of solutions) to solving
 
-$$\min_v \textstyle{\frac{1}{2}}\|D^*v - f^\delta\|_2^2 \quad \text{s.t.} \quad \|v\|_{\infty} \leq \lambda.$$
+$$\min_{\nu} \textstyle{\frac{1}{2}}\|D^*\nu - f^\delta\|_2^2 \quad \text{s.t.} \quad \|\nu\|_{\infty} \leq \lambda.$$
 
 * Implement a proximal-gradient method for solving the dual problem.
 
@@ -963,6 +991,133 @@ D = (np.diag(np.ones(n-1),1) - np.diag(np.ones(n),0))/h
 plt.plot(x,u,x,f_delta)
 plt.show()
 ```
+
+````{admonition} Answer
+:class: tip, dropdown
+
+* The saddle-point problem is
+
+$$\max_{\nu} \min_{u} \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \langle \nu,Du\rangle + \min_v \lambda \|v\|_1 - \langle \nu,v\rangle.$$
+
+See the example and previous exercise for details.
+
+* The basic iteration for proximal-gradient is
+
+$$\nu_{k+1} = \Pi_{\lambda} \left(\nu_k - \alpha D(D^*\nu_k - f^\delta)\right),$$
+
+with
+
+$$\Pi_{\lambda}(v)_i = \begin{cases} v_i & |v_i| \leq \lambda \\ \lambda \text{sign}(v_i) & |v_i| > \lambda \end{cases}.$$
+
+* The basic iteration for ADMM is
+
+$$u_{k+1} = \left(I + \rho D^*\!D\right)^{-1}\left(f^\delta + D^*(\rho v_k - \nu_k)\right).$$
+$$v_{k+1} = \text{prox}_{(\lambda/\rho)\|\cdot\|_1}\left(Du_{k+1} + \rho^{-1}\nu_k\right).$$
+$$\nu_{k+1}= \nu_k + \rho \left(Du_{k+1} - v_{k+1}\right).$$
+
+* Below we see results for both methods using $\lambda = 5\cdot 10^{-3}$, $\alpha = 1/\|D\|^2$, $\rho = 1$. Both methods give comparable results and exhibit very similar convergence behaviour. 
+
+```{glue:figure} TV_exercise
+:figwidth: 600px
+:name: "TV_exercise"
+
+Results for TV denoising using the proximal gradient method and ADMM.
+```
+````
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+
+import numpy as np
+import matplotlib.pyplot as plt
+from myst_nb import glue
+
+def prox_grad(f,lmbda,D,alpha,niter):
+    nu = np.zeros(D.shape[0])
+    hist = np.zeros((niter,2))
+
+    P = lambda nu : np.piecewise(nu, [np.abs(nu) <= lmbda, np.abs(nu) > lmbda], [lambda x : x, lambda x : lmbda*np.sign(x)])
+
+    for k in range(0,niter):
+        nu = P(nu - alpha*D@(D.T@nu - f))
+        u = f - D.T@nu
+        primal = 0.5*np.linalg.norm(u - f)**2 + lmbda*np.linalg.norm(D@u,ord=1)
+        dual = -0.5*np.linalg.norm(D.T@nu) + f.dot(D.T@nu)
+        hist[k] = primal, dual
+
+    return u, hist
+
+def admm(f,lmbda,D,rho,niter):
+    m,n = D.shape
+    nu = np.zeros(m)
+    v = np.zeros(m)
+    u = np.zeros(n)
+    hist = np.zeros((niter,2))
+
+    T = lambda v : np.piecewise(v, [v < -lmbda/rho, np.abs(v) <= lmbda/rho, v > lmbda/rho], [lambda x : x + lmbda/rho, lambda x : 0, lambda x : x - lmbda/rho])
+
+    for k in range(0,niter):
+        u = np.linalg.solve(np.eye(n) + rho*D.T@D, f + D.T@(rho*v - nu))
+        v = T(D@u + nu/rho)
+        nu = nu + rho*(D@u - v)
+
+        primal = 0.5*np.linalg.norm(u - f)**2 + lmbda*np.linalg.norm(D@u,ord=1)
+        dual = -0.5*np.linalg.norm(D.T@nu) + f.dot(D.T@nu)
+        hist[k] = primal, dual
+
+    return u, hist
+
+# grid \Omega = [0,1]
+n = 100
+h = 1/(n-1)
+x = np.linspace(0,1,n)
+
+# parameters
+sigma = 1e-1
+niter = 10000
+lmbda = 5e-3
+
+# make data
+u = np.heaviside(x - 0.2,0)
+f_delta = u + sigma*np.random.randn(n)
+
+# FD differentiation matrix
+D = (np.diag(np.ones(n-1),1)[:-1,:] - np.diag(np.ones(n),0)[:-1,:])/h
+
+# proximal gradient on dual problem
+alpha = 1/np.linalg.norm(D)**2
+u_prox, hist_prox = prox_grad(f_delta,lmbda,D,alpha,niter)
+
+# ADMM
+rho = 1
+u_admm, hist_admm = admm(f_delta,lmbda,D,rho,niter)
+
+# plot
+fig,ax = plt.subplots(2,2)
+
+ax[0,0].set_title('proximal gradient')
+ax[0,0].plot(x,u,x,f_delta,x,u_prox)
+ax[0,0].set_xlabel('$x$')
+ax[0,0].set_ylabel('$u(x)$')
+
+ax[1,0].plot(hist_prox[:,0],label='primal')
+ax[1,0].plot(hist_prox[:,1],label='dual')
+ax[1,0].legend()
+ax[1,0].set_xlabel('iteration')
+ax[1,0].set_ylabel('objective')
+
+ax[0,1].set_title('ADMM')
+ax[0,1].plot(x,u,x,f_delta,x,u_admm)
+ax[0,1].set_xlabel('$x$')
+ax[1,1].plot(hist_admm[:,0],label='primal')
+ax[1,1].plot(hist_admm[:,1],label='dual')
+ax[1,1].set_xlabel('iteration')
+
+fig.tight_layout()
+
+glue("TV_exercise",fig)
+```
+
 
 ## Assignments
 

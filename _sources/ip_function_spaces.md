@@ -25,7 +25,7 @@ $$\|Ku - Kv\|_{\mathcal{F}} \leq C \|u - v\|_{\mathcal{U}}.$$
 
 ## Well-posedness
 
-We may again wonder wether the equation $Ku = f$ is well-posed. To formally analyse this we introduce the following notation:
+We may again wonder whether the equation $Ku = f$ is well-posed. To formally analyse this we introduce the following notation:
 
 * $\mathcal{D}(K) = \mathcal{U}$ denotes the *domain* of $K$,
 * $\mathcal{R}(K) = \{Ku\,|\,u\in\mathcal{U}\}$ denotes the *range* of $K$,
@@ -40,7 +40,7 @@ When $f \not\in \mathcal{R}(K)$, a solution obviously doesn't exist. We can stil
 
 A solution to {eq}`minres` is a vector $\widetilde{u} \in \mathcal{U}$ for which
 
-$$\|K\widetilde{u} - f\| \leq \|Ku - f\|, \quad \forall u \in \mathcal{U}.$$
+$$\|K\widetilde{u} - f\|_{\mathcal{F}} \leq \|Ku - f\|_{\mathcal{F}}, \quad \forall u \in \mathcal{U}.$$
 
 If such a vector exists we call it the *minimum-residual* solution. If the null-space of $K$ is non-empty, we can construct infinitely many such solutions. We call the one with the smallest norm the *minimum-norm* solution. Note however that we have not yet proven that such a solution exists in general, nor do we have a constructive way of finding it.
 
@@ -58,7 +58,7 @@ We further denote the *orthogonal complement* of a subspace $\mathcal{X} \subset
 
 $$\mathcal{X}^\perp = \{u\in\mathcal{U} \, | \, \langle u, v \rangle_{\mathcal{U}}=0 \, \forall \, v \in \mathcal{X}\}.$$
 
-If $\mathcal{X}$ is a [closed subspace](https://en.wikipedia.org/wiki/Closed_set) we have $(\mathcal{X}^\perp)^\perp = \mathcal{X}$ and we have an orthogonal decomposition of $\mathcal{U}$: $\mathcal{U} = \mathcal{X} \oplus \mathcal{X}^\perp$, meaning that we can express *any* $u\in \mathcal{U}$ as $u = x + x^\perp$ with $x\in\mathcal{X}$ and $x^\perp\in\mathcal{X}^\perp$.
+If $\mathcal{X}$ is a [closed subspace](https://en.wikipedia.org/wiki/Closed_set) we have $(\mathcal{X}^\perp)^\perp = \mathcal{X}$ and we have an orthogonal decomposition of $\mathcal{U}$ given by $\mathcal{U} = \mathcal{X} \oplus \mathcal{X}^\perp$, meaning that we can express *any* $u\in \mathcal{U}$ as $u = x + x^\perp$ with $x\in\mathcal{X}$ and $x^\perp\in\mathcal{X}^\perp$.
 The [orthogonal projection](https://en.wikipedia.org/wiki/Projection_(linear_algebra)) onto $\mathcal{X}$ is denoted by $P_{\mathcal{X}}$. We briefly recall a few usefull relations
 
 ```{admonition} Lemma : *Orthogonal projection*
@@ -128,7 +128,7 @@ The Moore-Penrose pseudo-inverse of $K$ gives us a way to construct the minimum-
 Given an bounded linear operator $K:\mathcal{U}\rightarrow \mathcal{F}$ we denote its restriction to $\mathcal{N}(K)^\perp$ as $\widetilde{K}:\mathcal{N}(K)^\perp\rightarrow\mathcal{R}(K)$. The M-P inverse $K^\dagger: \mathcal{R}(K)\oplus\mathcal{R}(K)^\perp \rightarrow \mathcal{N}(K)^\perp$ is defined as the unique linear extension of $\widetilde{K}^{-1}$ with $\mathcal{N}(K^\dagger) = \mathcal{R}(K)^\perp$.
 ```
 
-```{admonition} *The range of $K$*
+```{admonition} *The range of $K^\dagger$*
 :class: dropdown
 
 Let $u\in\mathcal{R}(K^\dagger)$, then there exists a $f\in\mathcal{D}(K^\dagger)$ such that $u = K^\dagger f$. By definition we can decompose $f = f_1 + f_2$ with $f_1\in\mathcal{R}(K)$, $f_2 \in \mathcal{R}(K)^\perp$. Thus $K^\dagger f = K^\dagger f_1 = \widetilde{K}^{-1}f_1$. Hence, $u \in \mathcal{R}(\widetilde{K}^{-1}) = \mathcal{N}(K)^\perp$. This establishes that $\mathcal{R}(K^\dagger)\subseteq \mathcal{N}(K)^\perp$. Conversely, let $u\in\mathcal{N}(K)^\perp$. Then $u = \widetilde{K}^{-1}\widetilde{K} = K^\dagger K u$, whence $\mathcal{N}(K)^\perp \subseteq \mathcal{R}(K^\dagger)$. We conclude that $\mathcal{R}(K^\dagger) = \mathcal{N}(K)^\perp$.
@@ -140,11 +140,13 @@ The pseudo-inverse satisfies a few useful relations:
 :class: important
 
 The M-P pseudo-inverse $K^{\dagger}: \mathcal{R}(K)^\perp \oplus \mathcal{R}(K) \rightarrow \mathcal{N}(K)^\perp$ of $K$ is unique and obeys the following useful relations:
-    1. $KK^\dagger = \left.P_{\overline{\mathcal{R}(K)}}\right|_{\mathcal{D}(K^\dagger)}.$
-    2. $K^\dagger K = I - P_{\mathcal{N}(K)},$
-    3. $K^\dagger K K^\dagger = K^\dagger,$
-    4. $KK^\dagger K = K,$
+
+1. $KK^\dagger = \left.P_{\overline{\mathcal{R}(K)}}\right|_{\mathcal{D}(K^\dagger)}.$
+2. $K^\dagger K = I - P_{\mathcal{N}(K)},$
+3. $K^\dagger K K^\dagger = K^\dagger,$
+4. $KK^\dagger K = K,$
 ```
+
 ```{admonition} Proof
 :class: dropdown
 
@@ -236,14 +238,14 @@ There are a number of equivalent definitions of compact operators. We will use t
 ```{admonition} Definitition: *Compact operator*
 :class: important
 
-An operator $K: \mathcal{U} \rightarrow \mathcal{F}$ with $\mathcal{U},\mathcal{F}$ Hilbert spaces, is called *compact* it can be expressed as
+An operator $K: \mathcal{U} \rightarrow \mathcal{F}$ with $\mathcal{U},\mathcal{F}$ Hilbert spaces, is called *compact* if it can be expressed as
 
 $$
 K = \sum_{j=1}^{\infty} \sigma_j \langle \cdot, v_j\rangle_{\mathcal{U}}u_j,
 $$
 
 where $\{v_i\}$ and $\{u_i\}$ are orthonormal bases of $\mathcal{N}(K)^\perp$ and $\overline{\mathcal{R}(K)}$ respectively and
-$\{\sigma_i\}$ is a null-sequence (i.e., $\lim_{i\rightarrow \infty} \sigma_i = 0$). We call $\{(u_i, v_i, \sigma_i)\}_{j=0}^\infty$ the singular system of $K$. The singular system obeys
+$\{\sigma_i\}$ is a null-sequence (i.e., $\lim_{i\rightarrow \infty} \sigma_i = 0$). We call $\{(u_i, v_i, \sigma_i)\}_{j=1}^\infty$ the singular system of $K$. The singular system obeys
 
 $$Kv_j = \sigma_k u_j, \quad K^*u_j = \sigma_j v_j.$$
 ```
@@ -267,7 +269,7 @@ $$
 K^{\dagger} = \sum_{j=1}^{\infty} \sigma_j^{-1} \langle \cdot, u_j\rangle_{\mathcal{F}}v_j,
 $$
 
-where $\{(u_i, v_i, \sigma_i)\}_{i=0}^\infty$ is the singular system of $K$
+where $\{(u_i, v_i, \sigma_i)\}_{i=1}^\infty$ is the singular system of $K$
 ```
 
 With this we can precisely state the Picard condition.
@@ -343,7 +345,7 @@ K^{\dagger} =
 \end{matrix}\right)
 $$
 
-This immediately shows that $K^\dagger$ is not bounded. Now consider obtaining a solution for $f = (1,1,\textstyle{\frac{1}{2}}, \textstyle{\frac{1}{3}})$. Applying the pseudo-inverse would yield $K^\dagger f = (0,1, 1, \ldots)$ which is not in $\ell_2$. Indeed, we can show that $f \not\in \mathcal{R}(K) \oplus \mathcal{R}(K)^\perp$. The problem here is that the range of $K$ is not closed.
+This immediately shows that $K^\dagger$ is not bounded. Now consider obtaining a solution for $f = (1,1,\textstyle{\frac{1}{2}}, \textstyle{\frac{1}{3}},\ldots)$. Applying the pseudo-inverse would yield $K^\dagger f = (0,1, 1, \ldots)$ which is not in $\ell_2$. Indeed, we can show that $f \not\in \mathcal{R}(K) \oplus \mathcal{R}(K)^\perp$. The problem here is that the range of $K$ is not closed.
 
 ````
 
@@ -482,7 +484,7 @@ $$
 g_{\alpha}(s) = \begin{cases} s^{-1} & \text{if}\, s > \alpha \\ 0 & \text{otherwise} \end{cases}.
 $$
 
-We can show that the regularized pseudo inverse, $K_{\alpha}^{\dagger}$, is bounded for $\alpha > 0$ and converges pointwise to $K^\dagger$ as $\alpha \rightarrow 0$.
+We can show that the regularized pseudo inverse, $K_{\alpha}^{\dagger}$, is bounded for $\alpha > 0$ and converges to $K^\dagger$ as $\alpha \rightarrow 0$.
 
 Given noisy data $f^{\delta} = f + e$ with $\|e\| \leq \delta$, we can now study the effect of regularisation by studying the error. The total error is now given by
 
@@ -498,7 +500,7 @@ Alternatively, we may express the error in terms of the minimum-norm solution $u
 
 $$\|K_{\alpha}^\dagger f^\delta - K^\dagger f\|_{\mathcal{U}} \leq \|I - K_{\alpha}^\dagger K\| \|u\|_{\mathcal{U}} +  \delta \|K_{\alpha}^\dagger\|.$$
 
-Such upper bounds may be useful to study asymptotic properties of the problem. In particular, one is sometimes interested in the *convergence rate*, which aims to bound the bias and variance in terms of $\delta^\nu$ for some $0 < \nu < 1$. These bounds may be too loose to be used in practice, however, and more detailed analysis incorporating the type of noise and the class of images $u$ that we are interested in is needed.
+Such upper bounds may be useful to study asymptotic properties of the problem but may be too loose to be used in practice. In that case a more detailed analysis incorporating the type of noise and the class of images $u$ that we are interested in is needed.
 
 ```{admonition} Example: Differentiation
 
@@ -568,7 +570,7 @@ $$\lim_{\delta\rightarrow 0} \alpha(\delta) = 0, \quad \lim_{\delta\rightarrow 0
 
 With these requirements, we can easily show that the error $\|K_{\alpha}^\dagger f^{\delta} - K^\dagger f\|_{\mathcal{U}} \rightarrow 0$ as $\delta\rightarrow 0$.
 
-Such parameter-choice rules are nice in theory, but hard to design in practice.
+Such parameter-choice rules are nice in theory, but hard to design in practice. One is sometimes interested in the *convergence rate*, which aims to bound the bias in terms of $\delta^\nu$ for some $0 < \nu < 1$. 
 ```
 
 ```{admonition} Example: *The discrepancy principle*

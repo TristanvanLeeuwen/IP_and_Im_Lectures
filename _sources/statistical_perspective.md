@@ -145,7 +145,7 @@ $$\mu_{\text{post}} = \left(\alpha I + \Sigma\right)^{-1}\Sigma f^\delta,$$
 
 $$\Sigma_{\text{post}} = \alpha \left(\alpha I + \Sigma\right)^{-1}\Sigma.$$
 
-When using $\mu_{\text{post}}$ as an estimate for $u$ we could interpret the diagonal elements of $\Sigma_{\text{post}}$ as variances (and hence their square-root as a standard deviation). However, we should note that this mainly gives information on the *sensitivity* of the estimate to noise, and not necessarily on the *error* between the estimate and the ground truth. Even then, we may grossly underestimate the uncertainty when $\alpha < \sigma^{-2}$. One way to asses wether the assumptions are valid is to study the residuals $r_i = \widehat{u}_i - f_i^\delta$. If the assumptions are valid, we expect these to be normally distributed mean zero and variance $\alpha$. Likewise, we can verify whether $\widehat{u}$ is normally distributed with mean zero and covariance $\Sigma$.
+When using $\mu_{\text{post}}$ as an estimate for $u$ we could interpret the diagonal elements of $\Sigma_{\text{post}}$ as variances (and hence their square-root as a standard deviation). However, we should note that this mainly gives information on the *sensitivity* of the estimate to noise, and not necessarily on the *error* between the estimate and the ground truth. Even then, we may grossly underestimate the uncertainty when $\alpha < \sigma^{-2}$. One way to asses whether the assumptions are valid is to study the residuals $r_i = \mu_{\text{post}} - f_i^\delta$. If the assumptions are valid, we expect these to be normally distributed mean zero and variance $\alpha$. Likewise, we can verify whether $\mu_{\text{post}}$ is normally distributed with mean zero and covariance $\Sigma$.
 
 ```{glue:figure} gaussian_example
 :figwidth: 500px
@@ -213,7 +213,7 @@ plt.show()
 glue("gaussian_example", fig, display=False)
 ```
 
-In many practical applications, however, it may not be feasible to compute all the elements of the posterior covariance matrix as it typically involves solving normal equations. Some useful properties of the covariance matrix may nevertheless be estimated with additional computations. When the posterior is not Gaussian, it may in some cases be usefully approximated by a Gaussian. A popular approach is to approximate the posterior locally around a given MAP estimate. Another approach is to employ samplings methods locally around the MAP estimate to at least generate some uncertainty information. Such methods are the topic of much current research, but we will not go in to further details in this course.
+In many practical applications, however, it may not be feasible to compute all the elements of the posterior covariance matrix as it typically involves solving the normal equations. Some useful properties of the covariance matrix may nevertheless be estimated with additional computations. When the posterior is not Gaussian, it may in some cases be usefully approximated by a Gaussian. A popular approach is to approximate the posterior locally around a given MAP estimate. Another approach is to employ sampling methods locally around the MAP estimate to at least generate some uncertainty information. Such methods are the topic of much current research, but we will not go in to further details in this course.
 
 
 ## Examples

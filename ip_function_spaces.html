@@ -365,7 +365,7 @@
 \[\|Ku - Kv\|_{\mathcal{F}} \leq C \|u - v\|_{\mathcal{U}}.\]</div>
 <div class="section" id="well-posedness">
 <h2><span class="section-number">3.1. </span>Well-posedness<a class="headerlink" href="#well-posedness" title="Permalink to this headline">¶</a></h2>
-<p>We may again wonder wether the equation <span class="math notranslate nohighlight">\(Ku = f\)</span> is well-posed. To formally analyse this we introduce the following notation:</p>
+<p>We may again wonder whether the equation <span class="math notranslate nohighlight">\(Ku = f\)</span> is well-posed. To formally analyse this we introduce the following notation:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathcal{D}(K) = \mathcal{U}\)</span> denotes the <em>domain</em> of <span class="math notranslate nohighlight">\(K\)</span>,</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathcal{R}(K) = \{Ku\,|\,u\in\mathcal{U}\}\)</span> denotes the <em>range</em> of <span class="math notranslate nohighlight">\(K\)</span>,</p></li>
@@ -376,7 +376,7 @@
 <span class="eqno">(3.1)<a class="headerlink" href="#equation-minres" title="Permalink to this equation">¶</a></span>\[\min_{u\in \mathcal{U}}\|Ku - f\|_{\mathcal{F}}.\]</div>
 <p>A solution to <a class="reference internal" href="#equation-minres">(3.1)</a> is a vector <span class="math notranslate nohighlight">\(\widetilde{u} \in \mathcal{U}\)</span> for which</p>
 <div class="math notranslate nohighlight">
-\[\|K\widetilde{u} - f\| \leq \|Ku - f\|, \quad \forall u \in \mathcal{U}.\]</div>
+\[\|K\widetilde{u} - f\|_{\mathcal{F}} \leq \|Ku - f\|_{\mathcal{F}}, \quad \forall u \in \mathcal{U}.\]</div>
 <p>If such a vector exists we call it the <em>minimum-residual</em> solution. If the null-space of <span class="math notranslate nohighlight">\(K\)</span> is non-empty, we can construct infinitely many such solutions. We call the one with the smallest norm the <em>minimum-norm</em> solution. Note however that we have not yet proven that such a solution exists in general, nor do we have a constructive way of finding it.</p>
 </div>
 <div class="section" id="bounded-operators-on-hilbert-spaces">
@@ -389,7 +389,7 @@
 <p>We further denote the <em>orthogonal complement</em> of a subspace <span class="math notranslate nohighlight">\(\mathcal{X} \subset \mathcal{U}\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{X}^\perp = \{u\in\mathcal{U} \, | \, \langle u, v \rangle_{\mathcal{U}}=0 \, \forall \, v \in \mathcal{X}\}.\]</div>
-<p>If <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> is a <a class="reference external" href="https://en.wikipedia.org/wiki/Closed_set">closed subspace</a> we have <span class="math notranslate nohighlight">\((\mathcal{X}^\perp)^\perp = \mathcal{X}\)</span> and we have an orthogonal decomposition of <span class="math notranslate nohighlight">\(\mathcal{U}\)</span>: <span class="math notranslate nohighlight">\(\mathcal{U} = \mathcal{X} \oplus \mathcal{X}^\perp\)</span>, meaning that we can express <em>any</em> <span class="math notranslate nohighlight">\(u\in \mathcal{U}\)</span> as <span class="math notranslate nohighlight">\(u = x + x^\perp\)</span> with <span class="math notranslate nohighlight">\(x\in\mathcal{X}\)</span> and <span class="math notranslate nohighlight">\(x^\perp\in\mathcal{X}^\perp\)</span>.
+<p>If <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> is a <a class="reference external" href="https://en.wikipedia.org/wiki/Closed_set">closed subspace</a> we have <span class="math notranslate nohighlight">\((\mathcal{X}^\perp)^\perp = \mathcal{X}\)</span> and we have an orthogonal decomposition of <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> given by <span class="math notranslate nohighlight">\(\mathcal{U} = \mathcal{X} \oplus \mathcal{X}^\perp\)</span>, meaning that we can express <em>any</em> <span class="math notranslate nohighlight">\(u\in \mathcal{U}\)</span> as <span class="math notranslate nohighlight">\(u = x + x^\perp\)</span> with <span class="math notranslate nohighlight">\(x\in\mathcal{X}\)</span> and <span class="math notranslate nohighlight">\(x^\perp\in\mathcal{X}^\perp\)</span>.
 The <a class="reference external" href="https://en.wikipedia.org/wiki/Projection_(linear_algebra)">orthogonal projection</a> onto <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> is denoted by <span class="math notranslate nohighlight">\(P_{\mathcal{X}}\)</span>. We briefly recall a few usefull relations</p>
 <div class="important admonition">
 <p class="admonition-title">Lemma : <em>Orthogonal projection</em></p>
@@ -445,17 +445,19 @@ The <a class="reference external" href="https://en.wikipedia.org/wiki/Projection
 <p>Given an bounded linear operator <span class="math notranslate nohighlight">\(K:\mathcal{U}\rightarrow \mathcal{F}\)</span> we denote its restriction to <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp\)</span> as <span class="math notranslate nohighlight">\(\widetilde{K}:\mathcal{N}(K)^\perp\rightarrow\mathcal{R}(K)\)</span>. The M-P inverse <span class="math notranslate nohighlight">\(K^\dagger: \mathcal{R}(K)\oplus\mathcal{R}(K)^\perp \rightarrow \mathcal{N}(K)^\perp\)</span> is defined as the unique linear extension of <span class="math notranslate nohighlight">\(\widetilde{K}^{-1}\)</span> with <span class="math notranslate nohighlight">\(\mathcal{N}(K^\dagger) = \mathcal{R}(K)^\perp\)</span>.</p>
 </div>
 <div class="dropdown admonition">
-<p class="admonition-title"><em>The range of <span class="math notranslate nohighlight">\(K\)</span></em></p>
+<p class="admonition-title"><em>The range of <span class="math notranslate nohighlight">\(K^\dagger\)</span></em></p>
 <p>Let <span class="math notranslate nohighlight">\(u\in\mathcal{R}(K^\dagger)\)</span>, then there exists a <span class="math notranslate nohighlight">\(f\in\mathcal{D}(K^\dagger)\)</span> such that <span class="math notranslate nohighlight">\(u = K^\dagger f\)</span>. By definition we can decompose <span class="math notranslate nohighlight">\(f = f_1 + f_2\)</span> with <span class="math notranslate nohighlight">\(f_1\in\mathcal{R}(K)\)</span>, <span class="math notranslate nohighlight">\(f_2 \in \mathcal{R}(K)^\perp\)</span>. Thus <span class="math notranslate nohighlight">\(K^\dagger f = K^\dagger f_1 = \widetilde{K}^{-1}f_1\)</span>. Hence, <span class="math notranslate nohighlight">\(u \in \mathcal{R}(\widetilde{K}^{-1}) = \mathcal{N}(K)^\perp\)</span>. This establishes that <span class="math notranslate nohighlight">\(\mathcal{R}(K^\dagger)\subseteq \mathcal{N}(K)^\perp\)</span>. Conversely, let <span class="math notranslate nohighlight">\(u\in\mathcal{N}(K)^\perp\)</span>. Then <span class="math notranslate nohighlight">\(u = \widetilde{K}^{-1}\widetilde{K} = K^\dagger K u\)</span>, whence <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp \subseteq \mathcal{R}(K^\dagger)\)</span>. We conclude that <span class="math notranslate nohighlight">\(\mathcal{R}(K^\dagger) = \mathcal{N}(K)^\perp\)</span>.</p>
 </div>
 <p>The pseudo-inverse satisfies a few useful relations:</p>
 <div class="important admonition">
 <p class="admonition-title">Theorem: <em>Moore-Penrose equations</em></p>
-<p>The M-P pseudo-inverse <span class="math notranslate nohighlight">\(K^{\dagger}: \mathcal{R}(K)^\perp \oplus \mathcal{R}(K) \rightarrow \mathcal{N}(K)^\perp\)</span> of <span class="math notranslate nohighlight">\(K\)</span> is unique and obeys the following useful relations:
-1. <span class="math notranslate nohighlight">\(KK^\dagger = \left.P_{\overline{\mathcal{R}(K)}}\right|_{\mathcal{D}(K^\dagger)}.\)</span>
-2. <span class="math notranslate nohighlight">\(K^\dagger K = I - P_{\mathcal{N}(K)},\)</span>
-3. <span class="math notranslate nohighlight">\(K^\dagger K K^\dagger = K^\dagger,\)</span>
-4. <span class="math notranslate nohighlight">\(KK^\dagger K = K,\)</span></p>
+<p>The M-P pseudo-inverse <span class="math notranslate nohighlight">\(K^{\dagger}: \mathcal{R}(K)^\perp \oplus \mathcal{R}(K) \rightarrow \mathcal{N}(K)^\perp\)</span> of <span class="math notranslate nohighlight">\(K\)</span> is unique and obeys the following useful relations:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(KK^\dagger = \left.P_{\overline{\mathcal{R}(K)}}\right|_{\mathcal{D}(K^\dagger)}.\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(K^\dagger K = I - P_{\mathcal{N}(K)},\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(K^\dagger K K^\dagger = K^\dagger,\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(KK^\dagger K = K,\)</span></p></li>
+</ol>
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">Proof</p>
@@ -522,13 +524,13 @@ we have <span class="math notranslate nohighlight">\(K^\dagger K u = K^\dagger K
 <p>There are a number of equivalent definitions of compact operators. We will use the following.</p>
 <div class="important admonition">
 <p class="admonition-title">Definitition: <em>Compact operator</em></p>
-<p>An operator <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> with <span class="math notranslate nohighlight">\(\mathcal{U},\mathcal{F}\)</span> Hilbert spaces, is called <em>compact</em> it can be expressed as</p>
+<p>An operator <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> with <span class="math notranslate nohighlight">\(\mathcal{U},\mathcal{F}\)</span> Hilbert spaces, is called <em>compact</em> if it can be expressed as</p>
 <div class="math notranslate nohighlight">
 \[
 K = \sum_{j=1}^{\infty} \sigma_j \langle \cdot, v_j\rangle_{\mathcal{U}}u_j,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\{v_i\}\)</span> and <span class="math notranslate nohighlight">\(\{u_i\}\)</span> are orthonormal bases of <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp\)</span> and <span class="math notranslate nohighlight">\(\overline{\mathcal{R}(K)}\)</span> respectively and
-<span class="math notranslate nohighlight">\(\{\sigma_i\}\)</span> is a null-sequence (i.e., <span class="math notranslate nohighlight">\(\lim_{i\rightarrow \infty} \sigma_i = 0\)</span>). We call <span class="math notranslate nohighlight">\(\{(u_i, v_i, \sigma_i)\}_{j=0}^\infty\)</span> the singular system of <span class="math notranslate nohighlight">\(K\)</span>. The singular system obeys</p>
+<span class="math notranslate nohighlight">\(\{\sigma_i\}\)</span> is a null-sequence (i.e., <span class="math notranslate nohighlight">\(\lim_{i\rightarrow \infty} \sigma_i = 0\)</span>). We call <span class="math notranslate nohighlight">\(\{(u_i, v_i, \sigma_i)\}_{j=1}^\infty\)</span> the singular system of <span class="math notranslate nohighlight">\(K\)</span>. The singular system obeys</p>
 <div class="math notranslate nohighlight">
 \[Kv_j = \sigma_k u_j, \quad K^*u_j = \sigma_j v_j.\]</div>
 </div>
@@ -545,7 +547,7 @@ K = \sum_{j=1}^{\infty} \sigma_j \langle \cdot, v_j\rangle_{\mathcal{U}}u_j,
 \[
 K^{\dagger} = \sum_{j=1}^{\infty} \sigma_j^{-1} \langle \cdot, u_j\rangle_{\mathcal{F}}v_j,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\{(u_i, v_i, \sigma_i)\}_{i=0}^\infty\)</span> is the singular system of <span class="math notranslate nohighlight">\(K\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\{(u_i, v_i, \sigma_i)\}_{i=1}^\infty\)</span> is the singular system of <span class="math notranslate nohighlight">\(K\)</span></p>
 </div>
 <p>With this we can precisely state the Picard condition.</p>
 <div class="important admonition">
@@ -604,7 +606,7 @@ K^{\dagger} =
   &amp;             &amp;             &amp; \ddots &amp; \\
 \end{matrix}\right)
 \end{split}\]</div>
-<p>This immediately shows that <span class="math notranslate nohighlight">\(K^\dagger\)</span> is not bounded. Now consider obtaining a solution for <span class="math notranslate nohighlight">\(f = (1,1,\textstyle{\frac{1}{2}}, \textstyle{\frac{1}{3}})\)</span>. Applying the pseudo-inverse would yield <span class="math notranslate nohighlight">\(K^\dagger f = (0,1, 1, \ldots)\)</span> which is not in <span class="math notranslate nohighlight">\(\ell_2\)</span>. Indeed, we can show that <span class="math notranslate nohighlight">\(f \not\in \mathcal{R}(K) \oplus \mathcal{R}(K)^\perp\)</span>. The problem here is that the range of <span class="math notranslate nohighlight">\(K\)</span> is not closed.</p>
+<p>This immediately shows that <span class="math notranslate nohighlight">\(K^\dagger\)</span> is not bounded. Now consider obtaining a solution for <span class="math notranslate nohighlight">\(f = (1,1,\textstyle{\frac{1}{2}}, \textstyle{\frac{1}{3}},\ldots)\)</span>. Applying the pseudo-inverse would yield <span class="math notranslate nohighlight">\(K^\dagger f = (0,1, 1, \ldots)\)</span> which is not in <span class="math notranslate nohighlight">\(\ell_2\)</span>. Indeed, we can show that <span class="math notranslate nohighlight">\(f \not\in \mathcal{R}(K) \oplus \mathcal{R}(K)^\perp\)</span>. The problem here is that the range of <span class="math notranslate nohighlight">\(K\)</span> is not closed.</p>
 </div>
 <hr class="docutils" />
 <div class="admonition-example-differentiation admonition">
@@ -712,7 +714,7 @@ g_{\alpha}(s) = \frac{s}{s^2 + \alpha}= \frac{1}{s + \alpha/s}.
 \[\begin{split}
 g_{\alpha}(s) = \begin{cases} s^{-1} &amp; \text{if}\, s &gt; \alpha \\ 0 &amp; \text{otherwise} \end{cases}.
 \end{split}\]</div>
-<p>We can show that the regularized pseudo inverse, <span class="math notranslate nohighlight">\(K_{\alpha}^{\dagger}\)</span>, is bounded for <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> and converges pointwise to <span class="math notranslate nohighlight">\(K^\dagger\)</span> as <span class="math notranslate nohighlight">\(\alpha \rightarrow 0\)</span>.</p>
+<p>We can show that the regularized pseudo inverse, <span class="math notranslate nohighlight">\(K_{\alpha}^{\dagger}\)</span>, is bounded for <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> and converges to <span class="math notranslate nohighlight">\(K^\dagger\)</span> as <span class="math notranslate nohighlight">\(\alpha \rightarrow 0\)</span>.</p>
 <p>Given noisy data <span class="math notranslate nohighlight">\(f^{\delta} = f + e\)</span> with <span class="math notranslate nohighlight">\(\|e\| \leq \delta\)</span>, we can now study the effect of regularisation by studying the error. The total error is now given by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -724,7 +726,7 @@ g_{\alpha}(s) = \begin{cases} s^{-1} &amp; \text{if}\, s &gt; \alpha \\ 0 &amp; 
 <p>Alternatively, we may express the error in terms of the minimum-norm solution <span class="math notranslate nohighlight">\(u = K^{\dagger}f\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[\|K_{\alpha}^\dagger f^\delta - K^\dagger f\|_{\mathcal{U}} \leq \|I - K_{\alpha}^\dagger K\| \|u\|_{\mathcal{U}} +  \delta \|K_{\alpha}^\dagger\|.\]</div>
-<p>Such upper bounds may be useful to study asymptotic properties of the problem. In particular, one is sometimes interested in the <em>convergence rate</em>, which aims to bound the bias and variance in terms of <span class="math notranslate nohighlight">\(\delta^\nu\)</span> for some <span class="math notranslate nohighlight">\(0 &lt; \nu &lt; 1\)</span>. These bounds may be too loose to be used in practice, however, and more detailed analysis incorporating the type of noise and the class of images <span class="math notranslate nohighlight">\(u\)</span> that we are interested in is needed.</p>
+<p>Such upper bounds may be useful to study asymptotic properties of the problem but may be too loose to be used in practice. In that case a more detailed analysis incorporating the type of noise and the class of images <span class="math notranslate nohighlight">\(u\)</span> that we are interested in is needed.</p>
 <div class="admonition-example-differentiation admonition">
 <p class="admonition-title">Example: Differentiation</p>
 <p>Consider adding Tikhonov regularisation to stabilise the differentiation problem.
@@ -780,7 +782,7 @@ K^\dagger K u - u + \delta K^{\dagger}\sin(\delta^{-1}\cdot).
 <div class="math notranslate nohighlight">
 \[\lim_{\delta\rightarrow 0} \alpha(\delta) = 0, \quad \lim_{\delta\rightarrow 0} \delta \|K_{\alpha(\delta)}^\dagger\| = 0.\]</div>
 <p>With these requirements, we can easily show that the error <span class="math notranslate nohighlight">\(\|K_{\alpha}^\dagger f^{\delta} - K^\dagger f\|_{\mathcal{U}} \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(\delta\rightarrow 0\)</span>.</p>
-<p>Such parameter-choice rules are nice in theory, but hard to design in practice.</p>
+<p>Such parameter-choice rules are nice in theory, but hard to design in practice. One is sometimes interested in the <em>convergence rate</em>, which aims to bound the bias in terms of <span class="math notranslate nohighlight">\(\delta^\nu\)</span> for some <span class="math notranslate nohighlight">\(0 &lt; \nu &lt; 1\)</span>.</p>
 </div>
 <div class="admonition-example-the-discrepancy-principle admonition">
 <p class="admonition-title">Example: <em>The discrepancy principle</em></p>
@@ -1078,7 +1080,7 @@ Ku = F^{-1}((Fu)\cdot(Fg_T)),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x117d66e50&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x104ceb790&gt;
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_5_1.png" src="_images/ip_function_spaces_5_1.png" />
@@ -1145,7 +1147,7 @@ K = h\cdot\left(\begin{matrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  3.8113027363076943
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  4.380751413325127
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_9_1.png" src="_images/ip_function_spaces_9_1.png" />

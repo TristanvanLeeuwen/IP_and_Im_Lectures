@@ -242,7 +242,7 @@ In this section we focus in particular on variational problems of the form
 
 with $K: \mathcal{U} \rightarrow \mathcal{F}$ a bounded linear operator and $R : \mathcal{U} \rightarrow \mathbb{R}_{\infty}$ is proper and l.s.c. (with respect to an appropriate topology).
 
-We can think of this as defining a (possibly non-linear) regularisation scheme $\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)$ that generalises the pseudo-inverse approach discussed earlier. Note that the notation $K_{\alpha}^\dagger$ is used very loosely to indicate a mapping from $\mathcal{F}$ to $\mathcal{U}$ that is supposed to approximate the inverse of $K$ in some fashion. In general, this will be a non-linear mapping.
+We can think of {eq}`variational_R` as defining a (possibly non-linear) regularisation scheme $\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)$ that generalises the pseudo-inverse approach discussed earlier. Note that the notation $K_{\alpha}^\dagger$ is used very loosely to indicate a mapping from $\mathcal{F}$ to $\mathcal{U}$ that is supposed to approximate the inverse of $K$ in some fashion. In general, this will be a non-linear mapping.
 
 ```{admonition} Theorem: *Existence and uniqueness of regularised least-squares solutions*
 
@@ -258,7 +258,7 @@ Let $K$ be injective *or* $J$ be strictly convex, then the variational problem {
 
 ```{admonition} Theorem: *Stability of regularised least-squares solutions*
 
-The operator $K_{\alpha}^\dagger$ for $\alpha > 0$ is continuous.
+Let $\alpha > 0$, then the operator $K_{\alpha}^\dagger$, defined as the solution operator to {eq}`variational_R`, is continuous.
 
 ```
 
@@ -356,11 +356,11 @@ With this more general notion of differentiation we can pose the first-order opt
 ````{admonition} Definition: *First-order optimality condition*
 :class: important
 
-Let $u^*$ be a local extremum of $J$, and let $J$ be Fréchet-differentiable at $u^*$, then
+Let $u_*$ be a local extremum of $J$, and let $J$ be Fréchet-differentiable at $u_*$, then
 
 ```{math}
 :label: local_extremum
-J'(u^*) = 0.
+J'(u_*) = 0.
 ```
 
 ````
@@ -410,7 +410,7 @@ where $..$
 
 Let
 
-$$R(u) = \|\nabla u\|_{L^2(\Omega)}^2.$$
+$$R(v) = \|v\|_{L^2(\Omega)}^2.$$
 
 The corresponding diffusion equation is given by
 
@@ -497,7 +497,7 @@ glue("linear_diffusion", fig, display=False)
 
 Let
 
-$$R(u) = \int_{\Omega} r\left(\|\nabla u(x)\|^2\right) \mathrm{d}x.$$
+$$R(v) = \int_{\Omega} r\left(\|v\|^2\right) \mathrm{d}x.$$
 
 A popular choice for $r = \log(1 + s/\epsilon^2)$, which leads to the Perona-Malik diffusion equation:
 
@@ -576,7 +576,7 @@ glue("perona_malik", fig, display=False)
 
 Let
 
-$$R(u) = ...$$
+$$R(v) = ...$$
 
 ```
 
@@ -594,41 +594,7 @@ The following functionals are given (for $\alpha > 0$ and $A \in \mathbb{R}^{2 \
 * $J_2: \mathbb{R} \rightarrow \mathbb{R}, u \mapsto |u-f| + \alpha u^2$
 * $J_3: \mathbb{R}^2 \rightarrow \mathbb{R}, u \mapsto \frac{1}2\Vert A u - f\Vert_{\ell^2}^2  + \alpha \Vert u \Vert_{\ell^2}$
 
-For the optimisation problems $J_i(u) \rightarrow \min_u$ perform the following analysis:
-
-__Proof__, that a minimum exists (use the fundamental theorem of optimisation) and __proof__ that it is unique.
-
-__Compute__ the optimality conditions and thereof (using cases) a solution formula dependent on $f$. It holds for $p\in\partial\left\|u\right\|_{\ell^2}$ that
-$$p = \frac{u}{\left\|u\right\|_{\ell^2}} \text{ for } \; u\neq 0 \text{, and }$$
-$$p \in \mathrm{B}_1(0) \quad \text{ for } \; u = 0\, \qquad$$
-where $\mathrm{B}_1(0)$ denotes the unit ball around $0$.
-
-Hint: Remark, that for $J_3$ no explicit solution formula can be given. Hence, use the following substitution
-$c:=\frac{\alpha}{\left\|u\right\|_{\ell^2}}$ and provide a solution formula dependent on $c$ and $f$.
-
-+++
-
-### Well-posedness of the ROF model
-
-* For existence of a solution, verify why the TV functional is lower semi-continuous in the corresponding topology.
-
-* Does the Rudin-Osher-Fatemi model have a unique minimizer? Why or why not?
-
-+++
-
-### Deconvolution using the $L_1$ norm
-
-For given data $f$ and a convolution kernel $k$ we study the following regularized variational method:
-
-$$
-\left\| k \ast u - f \right\|_{L^2(\Omega)}^2 \:+\: \alpha \: \int_\Omega | (\mathcal{F}u)(w) | \: dw \: \rightarrow \: \min_{u}
-$$
-
-where $(\mathcal{F}u)(w)$ denotes the Fourier transform of $u$ at wave number $w$. Similar to the lecture, find an explicit representation of the solution of the problem using the [convolution theorem](https://en.wikipedia.org/wiki/Convolution_theorem) and the [Plancherel theorem](https://en.wikipedia.org/wiki/Plancherel_theorem). For simplicity you can assume that everything is real valued.
-
-Hint: The derivative of the absolute value function is multivalued (you need cases).
-
-+++
+Show that a minimum exists (use the fundamental theorem of optimisation) and that it is unique.
 
 ### Fréchet derivatives
 
@@ -673,131 +639,122 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 $$
 ```
 
-+++
+### High-order diffusion
 
-### $\ell_2$-denoising
+Consider the following denoising problem
 
-Consider the Tikhonov functional for denoising (in $\mathbb{R}^n$):
+$$\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_{L^2(\mathbb{R})} + \textstyle{\frac{\alpha}{2}} \|u''\|_{L^2(\mathbb{R})}^2.$$
 
-$$
-\min\limits_u\textstyle{\frac{1}{2}}\left\|u-f\right\|_2^2 + \frac{\alpha}{2}\left\|u\right\|_2^2.
-$$
+* Show that the solution to
 
-* Give the solution of this variational problem explicitly.
-* Generate in Python a random 1x128 vector with 5 non-zero coefficients (entries) and add aussian noise with standard deviation $\sigma = 0.05$ (see example below)
-* Denoise the vector by solving the variational problem. What happens for different regularisation parameters $\alpha = \left\{0.01, 0.05, 0.1, 0.2\right\}$?. Consider in particular $\alpha=0.1$. *Is the solution sparse?*
+$$\partial_t u(t,x) + u(t,x) + \alpha \partial_x^4 u(t,x) = f^\delta(x),$$
 
-```{code-cell} ipython3
-# import libraries
-import numpy as np
-import matplotlib.pyplot as plt
+satisfies the optimality conditions of the variational problem as $t\rightarrow \infty$ .
 
-# parameters
-n = 128
-k = 5
-sigma = 0.05
+* Design an explicit finite-difference scheme to solve the diffusion equation on $[0,1]$ with boundary conditions $\partial_x u = \partial_{xxx}u = 0$ at $x = 0$ and $x=1$ and implement it in Python. 
 
-# generate spiky signal with random amplitudes
-u = np.zeros(n)
-u[np.random.randint(128,size=k)] = np.random.randn(k)
+* Test it on noisy data: $f^\delta(x) = \exp(-10^2(x-1/2)^2) + \epsilon$, with $\epsilon \sim N(0,\sigma^2)$.
 
-# generate noisy signal
-f = u + sigma*np.random.randn(n)
 
-# plot
-plt.plot(u)
-plt.plot(f)
-```
-
-```{admonition} Answer
+````{admonition} Answer
 :class: tip, dropdown
 
-* The solution is given by $u = (1 + \alpha)^{-1}f.$
-* The results are shown below (click `+` to show the code), showing that (as expected), the result is only scaled down. This obviously reduces the noise level but also effects the amplitude of the spikes.
+* Introduce $\phi(t) = J(u + tv)$. Then
+
+$$\phi'(0) = \int_0^1 v(x)(u(x) - f^\delta(x))\mathrm{d}x + \alpha \int_0^1 u''(x) v''(x)\mathrm{d}x.$$
+
+Integrating by parts, the optimality condition $\phi'(0) = 0$ reads
+
+$$ \int_0^1 v(x)(u(x) + \alpha u''''(x) - f^\delta(x))\mathrm{d}x + \text{boundary terms}.$$
+
+Since it should hold for all $v$, we get the desired result.
+
+* We use a central FD in space and Forward Euler in time:
+
+$$u^{(n+1)} = u^{(n)} + \Delta t \left(f^\delta - u^{(n)} - \alpha D u^{(n)}\right),$$
+
+with $D$ the finite-difference matrix. An overview of the coefficients for central FD are found [here](https://en.wikipedia.org/wiki/Finite_difference_coefficient). For the central grid-points we have
+
+$$u''''(k\cdot \Delta x) \approx (u_{k-2} - 4u_{k-1} + 6u_k - 4u_{k+1} + u_{k+2})/(\Delta x)^2.$$
+
+For $k=0$ and $k=1$ we eliminate $u_{-2}$ and $u_{-1}$ using the boundary conditions:
+
+$$-(1/2)u_{-2} + u_{-1} - u_1 + (1/2)u_2$ = 0,$$
+
+$$(1/2)u_{-1} - (1/2)u_1 = 0.$$
+
+We do the same at the other boundary.
+
+* Running the code for $\Delta x = 10^{-2}$, $\Delta t = 10^{-8}$, $\alpha = 10^{-2}$ on noisy data $f^\delta(x) = \exp(-10^2(x-1/2)^2) + \epsilon$, with $\epsilon \sim N(0,\sigma^2)$, $\sigma=10^{-01}$ gives the following result.
+
+```{glue:figure} fourth_order
+:figwidth: 600px
+:name: "fourth_order"
+
+Example of denoising with fourth order diffusion.
 ```
 
-```{code-cell} ipython3
-:tags: [hide-cell]
+````
 
-# import libraries
+```{code-cell}
+:tags: ["hide-cell"]
+
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.sparse import dia_matrix
+from myst_nb import glue
+
+def getD(n,h):
+    e = np.ones(n)
+    D = (1/h**4)*dia_matrix((np.array([e, -4*e, 6*e, -4*e, e]), np.array([-2,-1,0,1,2])), shape=(n, n)).toarray()
+
+    D[0,:3] = [6/h**4,-8/h**4,2/h**4]
+    D[1,:4] = [-4/h**4,7/h**4,-4/h**4,1/h**4]
+    D[-2,-4:] = [1/h**4,-4/h**4,7/h**4,-4/h**4]
+    D[-1,-3:] = [2/h**4,-8/h**4,6/h**4]
+    return D
+
 
 # parameters
-n = 128
-k = 5
-sigma = 0.05
+nx = 101
+dx = 1/(nx-1)
+dt = 1e-8
+nt = 10001
+sigma = 1e-1
+alpha = 1e-2
 
-# random seed
-np.random.seed(1)
+# operator
+D = getD(nx,dx)
 
-# generate spiky signal with random amplitudes
-u = np.zeros(n)
-u[np.random.randint(128,size=k)] = np.random.randn(k)
+# ground truth and data
+x = np.linspace(0,1,nx)
+u_true = np.exp(-1e2*(x-.5)**2)
+f_delta = u_true + sigma*np.random.randn(nx)
 
-# generate noisy signal
-f = u + sigma*np.random.randn(n)
+# solve
+u = np.zeros((nt,nx))
+u[0] = f_delta
 
-# denoise
-alpha = .1
-uhat = f/(1 + alpha)
-
-# plot
-plt.plot(u, label='ground truth')
-plt.plot(uhat, label='denoised signal')
-plt.legend()
-plt.show()
-```
-
-### $\ell_1$-denoising
-
-Repeat the previous exercise for the $\ell_1$-densoining problem
-
-$$
-\min\limits_u\textstyle{\frac{1}{2}}\left\|u-f\right\|_2^2 + \alpha \left\|u\right\|_1.
-$$
-
-+++
-
-```{admonition} Answer
-:class: tip, dropdown
-
-The exact solution known as *soft tresholding*. A derivation can be found [here](https://math.stackexchange.com/questions/471339/derivation-of-soft-thresholding-operator-proximal-operator-of-l-1-norm)
-```
-
-```{code-cell} ipython3
-:tags: [hide-cell]
-
-# soft tresholding operation
-def soft(y,alpha):
-    return np.sign(y)*np.maximum(np.abs(y) - alpha,0)
-
-# import libraries
-import numpy as np
-import matplotlib.pyplot as plt
-
-# parameters
-n = 128
-k = 5
-sigma = 0.05
-
-# random seed
-np.random.seed(1)
-
-# generate spiky signal with random amplitudes
-u = np.zeros(n)
-u[np.random.randint(128,size=k)] = np.random.randn(k)
-
-# generate noisy signal
-f = u + sigma*np.random.randn(n)
-
-# denoise
-alpha = 0.1
-uhat = soft(f,alpha)
+for k in range(nt-1):
+    u[k+1] = u[k] - dt*(u[k] + alpha*D@u[k] - f_delta)
 
 # plot
-plt.plot(u, label='ground truth')
-plt.plot(uhat, label='denoised signal')
-plt.legend()
-plt.show()
+index = [0, nt-1]
+fig,ax = plt.subplots(1,len(index),sharey=True)
+for k in range(len(index)):
+    ax[k].plot(x,u_true,'k--')
+    ax[k].plot(x,u[index[k]])
+    ax[k].set_title('$t = $' + str(index[k]*dt))
+    ax[k].set_xlabel('$x$')
+    ax[k].set_aspect(1)
+fig.tight_layout()
+
+glue("fourth_order", fig, display=False)
+
 ```
+
+## Assignments
+
+### Total variation
+
+* Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical method to solve it.

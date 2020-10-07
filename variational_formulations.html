@@ -306,40 +306,25 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#well-posedness-of-the-rof-model">
-     5.4.2. Well-posedness of the ROF model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#deconvolution-using-the-l-1-norm">
-     5.4.3. Deconvolution using the
-     <span class="math notranslate nohighlight">
-      \(L_1\)
-     </span>
-     norm
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#frechet-derivatives">
-     5.4.4. Fréchet derivatives
+     5.4.2. Fréchet derivatives
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ell-2-denoising">
-     5.4.5.
-     <span class="math notranslate nohighlight">
-      \(\ell_2\)
-     </span>
-     -denoising
+    <a class="reference internal nav-link" href="#high-order-diffusion">
+     5.4.3. High-order diffusion
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignments">
+   5.5. Assignments
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ell-1-denoising">
-     5.4.6.
-     <span class="math notranslate nohighlight">
-      \(\ell_1\)
-     </span>
-     -denoising
+    <a class="reference internal nav-link" href="#total-variation">
+     5.5.1. Total variation
     </a>
    </li>
   </ul>
@@ -534,7 +519,7 @@ and <span class="math notranslate nohighlight">\(f_i = i^{-1}\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-variational-r">
 <span class="eqno">(5.2)<a class="headerlink" href="#equation-variational-r" title="Permalink to this equation">¶</a></span>\[\textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\mathcal{F}}^2 + \alpha R(u),\]</div>
 <p>with <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> a bounded linear operator and <span class="math notranslate nohighlight">\(R : \mathcal{U} \rightarrow \mathbb{R}_{\infty}\)</span> is proper and l.s.c. (with respect to an appropriate topology).</p>
-<p>We can think of this as defining a (possibly non-linear) regularisation scheme <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)\)</span> that generalises the pseudo-inverse approach discussed earlier. Note that the notation <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span> is used very loosely to indicate a mapping from <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> to <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> that is supposed to approximate the inverse of <span class="math notranslate nohighlight">\(K\)</span> in some fashion. In general, this will be a non-linear mapping.</p>
+<p>We can think of <a class="reference internal" href="#equation-variational-r">(5.2)</a> as defining a (possibly non-linear) regularisation scheme <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)\)</span> that generalises the pseudo-inverse approach discussed earlier. Note that the notation <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span> is used very loosely to indicate a mapping from <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> to <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> that is supposed to approximate the inverse of <span class="math notranslate nohighlight">\(K\)</span> in some fashion. In general, this will be a non-linear mapping.</p>
 <div class="admonition-theorem-existence-and-uniqueness-of-regularised-least-squares-solutions admonition">
 <p class="admonition-title">Theorem: <em>Existence and uniqueness of regularised least-squares solutions</em></p>
 <p>Let <span class="math notranslate nohighlight">\(K\)</span> be injective <em>or</em> <span class="math notranslate nohighlight">\(J\)</span> be strictly convex, then the variational problem <a class="reference internal" href="#equation-variational-r">(5.2)</a> has a unique minimiser.</p>
@@ -545,7 +530,7 @@ and <span class="math notranslate nohighlight">\(f_i = i^{-1}\)</span>.</p>
 </div>
 <div class="admonition-theorem-stability-of-regularised-least-squares-solutions admonition">
 <p class="admonition-title">Theorem: <em>Stability of regularised least-squares solutions</em></p>
-<p>The operator <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span> for <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> is continuous.</p>
+<p>Let <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>, then the operator <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span>, defined as the solution operator to <a class="reference internal" href="#equation-variational-r">(5.2)</a>, is continuous.</p>
 </div>
 <div class="important dropdown admonition">
 <p class="admonition-title">Proof:</p>
@@ -615,9 +600,9 @@ there exists a linear operator <span class="math notranslate nohighlight">\(D\)<
 <p>With this more general notion of differentiation we can pose the first-order optimality conditions.</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>First-order optimality condition</em></p>
-<p>Let <span class="math notranslate nohighlight">\(u^*\)</span> be a local extremum of <span class="math notranslate nohighlight">\(J\)</span>, and let <span class="math notranslate nohighlight">\(J\)</span> be Fréchet-differentiable at <span class="math notranslate nohighlight">\(u^*\)</span>, then</p>
+<p>Let <span class="math notranslate nohighlight">\(u_*\)</span> be a local extremum of <span class="math notranslate nohighlight">\(J\)</span>, and let <span class="math notranslate nohighlight">\(J\)</span> be Fréchet-differentiable at <span class="math notranslate nohighlight">\(u_*\)</span>, then</p>
 <div class="math notranslate nohighlight" id="equation-local-extremum">
-<span class="eqno">(5.4)<a class="headerlink" href="#equation-local-extremum" title="Permalink to this equation">¶</a></span>\[J'(u^*) = 0.\]</div>
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-local-extremum" title="Permalink to this equation">¶</a></span>\[J'(u_*) = 0.\]</div>
 </div>
 <p>Note that in some important cases <span class="math notranslate nohighlight">\(J\)</span> may fail to be Fréchet differentiable at the solution. We will treat this case in more detail in the next chapter on numerical methods.</p>
 <hr class="docutils" />
@@ -646,7 +631,7 @@ We will explore optimality conditions and algorithms for these two classes in mo
 <p class="admonition-title">Example: <em>The heat equation</em></p>
 <p>Let</p>
 <div class="math notranslate nohighlight">
-\[R(u) = \|\nabla u\|_{L^2(\Omega)}^2.\]</div>
+\[R(v) = \|v\|_{L^2(\Omega)}^2.\]</div>
 <p>The corresponding diffusion equation is given by</p>
 <div class="math notranslate nohighlight">
 \[\partial_t u + u - \alpha\nabla^2 u = f^\delta.\]</div>
@@ -731,7 +716,7 @@ We will explore optimality conditions and algorithms for these two classes in mo
 <p class="admonition-title">Example: <em>Non-linear diffusion</em></p>
 <p>Let</p>
 <div class="math notranslate nohighlight">
-\[R(u) = \int_{\Omega} r\left(\|\nabla u(x)\|^2\right) \mathrm{d}x.\]</div>
+\[R(v) = \int_{\Omega} r\left(\|v\|^2\right) \mathrm{d}x.\]</div>
 <p>A popular choice for <span class="math notranslate nohighlight">\(r = \log(1 + s/\epsilon^2)\)</span>, which leads to the Perona-Malik diffusion equation:</p>
 <div class="math notranslate nohighlight">
 \[\partial_t u + u - \alpha\nabla \cdot \left(\frac{\nabla u}{1 + \epsilon^{-2}\|\nabla u\|_2^2}\right) = f^\delta.\]</div>
@@ -809,7 +794,7 @@ We will explore optimality conditions and algorithms for these two classes in mo
 <p class="admonition-title">Example: <em>Total variation</em></p>
 <p>Let</p>
 <div class="math notranslate nohighlight">
-\[R(u) = ...\]</div>
+\[R(v) = ...\]</div>
 </div>
 </div>
 <div class="section" id="exercises">
@@ -822,34 +807,10 @@ We will explore optimality conditions and algorithms for these two classes in mo
 <li><p><span class="math notranslate nohighlight">\(J_2: \mathbb{R} \rightarrow \mathbb{R}, u \mapsto |u-f| + \alpha u^2\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(J_3: \mathbb{R}^2 \rightarrow \mathbb{R}, u \mapsto \frac{1}2\Vert A u - f\Vert_{\ell^2}^2  + \alpha \Vert u \Vert_{\ell^2}\)</span></p></li>
 </ul>
-<p>For the optimisation problems <span class="math notranslate nohighlight">\(J_i(u) \rightarrow \min_u\)</span> perform the following analysis:</p>
-<p><strong>Proof</strong>, that a minimum exists (use the fundamental theorem of optimisation) and <strong>proof</strong> that it is unique.</p>
-<p><strong>Compute</strong> the optimality conditions and thereof (using cases) a solution formula dependent on <span class="math notranslate nohighlight">\(f\)</span>. It holds for <span class="math notranslate nohighlight">\(p\in\partial\left\|u\right\|_{\ell^2}\)</span> that
-<span class="math notranslate nohighlight">\($p = \frac{u}{\left\|u\right\|_{\ell^2}} \text{ for } \; u\neq 0 \text{, and }\)</span>$
-<span class="math notranslate nohighlight">\($p \in \mathrm{B}_1(0) \quad \text{ for } \; u = 0\, \qquad\)</span>$
-where <span class="math notranslate nohighlight">\(\mathrm{B}_1(0)\)</span> denotes the unit ball around <span class="math notranslate nohighlight">\(0\)</span>.</p>
-<p>Hint: Remark, that for <span class="math notranslate nohighlight">\(J_3\)</span> no explicit solution formula can be given. Hence, use the following substitution
-<span class="math notranslate nohighlight">\(c:=\frac{\alpha}{\left\|u\right\|_{\ell^2}}\)</span> and provide a solution formula dependent on <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(f\)</span>.</p>
-</div>
-<div class="section" id="well-posedness-of-the-rof-model">
-<h3><span class="section-number">5.4.2. </span>Well-posedness of the ROF model<a class="headerlink" href="#well-posedness-of-the-rof-model" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>For existence of a solution, verify why the TV functional is lower semi-continuous in the corresponding topology.</p></li>
-<li><p>Does the Rudin-Osher-Fatemi model have a unique minimizer? Why or why not?</p></li>
-</ul>
-</div>
-<div class="section" id="deconvolution-using-the-l-1-norm">
-<h3><span class="section-number">5.4.3. </span>Deconvolution using the <span class="math notranslate nohighlight">\(L_1\)</span> norm<a class="headerlink" href="#deconvolution-using-the-l-1-norm" title="Permalink to this headline">¶</a></h3>
-<p>For given data <span class="math notranslate nohighlight">\(f\)</span> and a convolution kernel <span class="math notranslate nohighlight">\(k\)</span> we study the following regularized variational method:</p>
-<div class="math notranslate nohighlight">
-\[
-\left\| k \ast u - f \right\|_{L^2(\Omega)}^2 \:+\: \alpha \: \int_\Omega | (\mathcal{F}u)(w) | \: dw \: \rightarrow \: \min_{u}
-\]</div>
-<p>where <span class="math notranslate nohighlight">\((\mathcal{F}u)(w)\)</span> denotes the Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> at wave number <span class="math notranslate nohighlight">\(w\)</span>. Similar to the lecture, find an explicit representation of the solution of the problem using the <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution_theorem">convolution theorem</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/Plancherel_theorem">Plancherel theorem</a>. For simplicity you can assume that everything is real valued.</p>
-<p>Hint: The derivative of the absolute value function is multivalued (you need cases).</p>
+<p>Show that a minimum exists (use the fundamental theorem of optimisation) and that it is unique.</p>
 </div>
 <div class="section" id="frechet-derivatives">
-<h3><span class="section-number">5.4.4. </span>Fréchet derivatives<a class="headerlink" href="#frechet-derivatives" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.4.2. </span>Fréchet derivatives<a class="headerlink" href="#frechet-derivatives" title="Permalink to this headline">¶</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(\Omega \subset \mathbb{R}^2\)</span> and <span class="math notranslate nohighlight">\(\Sigma \subset \mathbb{R}^2\)</span>. Compute the Fréchet derivatives of the following functionals:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(J(u) = \frac{1}{2} \left\| \nabla u \right\|_{L^2(\Omega)}^2\)</span> where <span class="math notranslate nohighlight">\(u \in W^{1,2}(\Omega)\)</span>.</p></li>
@@ -887,146 +848,124 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 \]</div>
 </div>
 </div>
-<div class="section" id="ell-2-denoising">
-<h3><span class="section-number">5.4.5. </span><span class="math notranslate nohighlight">\(\ell_2\)</span>-denoising<a class="headerlink" href="#ell-2-denoising" title="Permalink to this headline">¶</a></h3>
-<p>Consider the Tikhonov functional for denoising (in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>):</p>
+<div class="section" id="high-order-diffusion">
+<h3><span class="section-number">5.4.3. </span>High-order diffusion<a class="headerlink" href="#high-order-diffusion" title="Permalink to this headline">¶</a></h3>
+<p>Consider the following denoising problem</p>
 <div class="math notranslate nohighlight">
-\[
-\min\limits_u\textstyle{\frac{1}{2}}\left\|u-f\right\|_2^2 + \frac{\alpha}{2}\left\|u\right\|_2^2.
-\]</div>
+\[\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_{L^2(\mathbb{R})} + \textstyle{\frac{\alpha}{2}} \|u''\|_{L^2(\mathbb{R})}^2.\]</div>
 <ul class="simple">
-<li><p>Give the solution of this variational problem explicitly.</p></li>
-<li><p>Generate in Python a random 1x128 vector with 5 non-zero coefficients (entries) and add aussian noise with standard deviation <span class="math notranslate nohighlight">\(\sigma = 0.05\)</span> (see example below)</p></li>
-<li><p>Denoise the vector by solving the variational problem. What happens for different regularisation parameters <span class="math notranslate nohighlight">\(\alpha = \left\{0.01, 0.05, 0.1, 0.2\right\}\)</span>?. Consider in particular <span class="math notranslate nohighlight">\(\alpha=0.1\)</span>. <em>Is the solution sparse?</em></p></li>
+<li><p>Show that the solution to</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="c1"># parameters</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">128</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.05</span>
-
-<span class="c1"># generate spiky signal with random amplitudes</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="n">u</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">k</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-
-<span class="c1"># generate noisy signal</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-
-<span class="c1"># plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1239e37d0&gt;]
-</pre></div>
-</div>
-<img alt="_images/variational_formulations_13_1.png" src="_images/variational_formulations_13_1.png" />
-</div>
-</div>
+<div class="math notranslate nohighlight">
+\[\partial_t u(t,x) + u(t,x) + \alpha \partial_x^4 u(t,x) = f^\delta(x),\]</div>
+<p>satisfies the optimality conditions of the variational problem as <span class="math notranslate nohighlight">\(t\rightarrow \infty\)</span> .</p>
+<ul class="simple">
+<li><p>Design an explicit finite-difference scheme to solve the diffusion equation on <span class="math notranslate nohighlight">\([0,1]\)</span> with boundary conditions <span class="math notranslate nohighlight">\(\partial_x u = \partial_{xxx}u = 0\)</span> at <span class="math notranslate nohighlight">\(x = 0\)</span> and <span class="math notranslate nohighlight">\(x=1\)</span> and implement it in Python.</p></li>
+<li><p>Test it on noisy data: <span class="math notranslate nohighlight">\(f^\delta(x) = \exp(-10^2(x-1/2)^2) + \epsilon\)</span>, with <span class="math notranslate nohighlight">\(\epsilon \sim N(0,\sigma^2)\)</span>.</p></li>
+</ul>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Answer</p>
 <ul class="simple">
-<li><p>The solution is given by <span class="math notranslate nohighlight">\(u = (1 + \alpha)^{-1}f.\)</span></p></li>
-<li><p>The results are shown below (click <code class="docutils literal notranslate"><span class="pre">+</span></code> to show the code), showing that (as expected), the result is only scaled down. This obviously reduces the noise level but also effects the amplitude of the spikes.</p></li>
+<li><p>Introduce <span class="math notranslate nohighlight">\(\phi(t) = J(u + tv)\)</span>. Then</p></li>
 </ul>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="c1"># parameters</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">128</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.05</span>
-
-<span class="c1"># random seed</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># generate spiky signal with random amplitudes</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="n">u</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">k</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-
-<span class="c1"># generate noisy signal</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-
-<span class="c1"># denoise</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
-<span class="n">uhat</span> <span class="o">=</span> <span class="n">f</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">)</span>
-
-<span class="c1"># plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ground truth&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">uhat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;denoised signal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/variational_formulations_15_0.png" src="_images/variational_formulations_15_0.png" />
-</div>
-</div>
-</div>
-<div class="section" id="ell-1-denoising">
-<h3><span class="section-number">5.4.6. </span><span class="math notranslate nohighlight">\(\ell_1\)</span>-denoising<a class="headerlink" href="#ell-1-denoising" title="Permalink to this headline">¶</a></h3>
-<p>Repeat the previous exercise for the <span class="math notranslate nohighlight">\(\ell_1\)</span>-densoining problem</p>
 <div class="math notranslate nohighlight">
-\[
-\min\limits_u\textstyle{\frac{1}{2}}\left\|u-f\right\|_2^2 + \alpha \left\|u\right\|_1.
-\]</div>
-<div class="tip dropdown admonition">
-<p class="admonition-title">Answer</p>
-<p>The exact solution known as <em>soft tresholding</em>. A derivation can be found <a class="reference external" href="https://math.stackexchange.com/questions/471339/derivation-of-soft-thresholding-operator-proximal-operator-of-l-1-norm">here</a></p>
+\[\phi'(0) = \int_0^1 v(x)(u(x) - f^\delta(x))\mathrm{d}x + \alpha \int_0^1 u''(x) v''(x)\mathrm{d}x.\]</div>
+<p>Integrating by parts, the optimality condition <span class="math notranslate nohighlight">\(\phi'(0) = 0\)</span> reads</p>
+<div class="math notranslate nohighlight">
+\[ \int_0^1 v(x)(u(x) + \alpha u''''(x) - f^\delta(x))\mathrm{d}x + \text{boundary terms}.\]</div>
+<p>Since it should hold for all <span class="math notranslate nohighlight">\(v\)</span>, we get the desired result.</p>
+<ul class="simple">
+<li><p>We use a central FD in space and Forward Euler in time:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[u^{(n+1)} = u^{(n)} + \Delta t \left(f^\delta - u^{(n)} - \alpha D u^{(n)}\right),\]</div>
+<p>with <span class="math notranslate nohighlight">\(D\)</span> the finite-difference matrix. An overview of the coefficients for central FD are found <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference_coefficient">here</a>. For the central grid-points we have</p>
+<div class="math notranslate nohighlight">
+\[u''''(k\cdot \Delta x) \approx (u_{k-2} - 4u_{k-1} + 6u_k - 4u_{k+1} + u_{k+2})/(\Delta x)^2.\]</div>
+<p>For <span class="math notranslate nohighlight">\(k=0\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span> we eliminate <span class="math notranslate nohighlight">\(u_{-2}\)</span> and <span class="math notranslate nohighlight">\(u_{-1}\)</span> using the boundary conditions:</p>
+<p><span class="math notranslate nohighlight">\($-(1/2)u_{-2} + u_{-1} - u_1 + (1/2)u_2\)</span> = 0,$$</p>
+<div class="math notranslate nohighlight">
+\[(1/2)u_{-1} - (1/2)u_1 = 0.\]</div>
+<p>We do the same at the other boundary.</p>
+<ul class="simple">
+<li><p>Running the code for <span class="math notranslate nohighlight">\(\Delta x = 10^{-2}\)</span>, <span class="math notranslate nohighlight">\(\Delta t = 10^{-8}\)</span>, <span class="math notranslate nohighlight">\(\alpha = 10^{-2}\)</span> on noisy data <span class="math notranslate nohighlight">\(f^\delta(x) = \exp(-10^2(x-1/2)^2) + \epsilon\)</span>, with <span class="math notranslate nohighlight">\(\epsilon \sim N(0,\sigma^2)\)</span>, <span class="math notranslate nohighlight">\(\sigma=10^{-01}\)</span> gives the following result.</p></li>
+</ul>
+<div class="figure align-default" id="fourth-order" style="width: 600px">
+<div class="cell_output docutils container">
+<img alt="_images/variational_formulations_9_0.png" src="_images/variational_formulations_9_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 5.4 </span><span class="caption-text">Example of denoising with fourth order diffusion.</span><a class="headerlink" href="#fourth-order" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># soft tresholding operation</span>
-<span class="k">def</span> <span class="nf">soft</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># import libraries</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">dia_matrix</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+
+<span class="k">def</span> <span class="nf">getD</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">h</span><span class="p">):</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="n">dia_matrix</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">e</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">e</span><span class="p">,</span> <span class="mi">6</span><span class="o">*</span><span class="n">e</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">e</span><span class="p">,</span> <span class="n">e</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+
+    <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">,:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">8</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">,:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">D</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">D</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">8</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">D</span>
+
 
 <span class="c1"># parameters</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">128</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="mi">101</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">1e-8</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="mi">10001</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">1e-1</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">1e-2</span>
 
-<span class="c1"># random seed</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># operator</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">getD</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">dx</span><span class="p">)</span>
 
-<span class="c1"># generate spiky signal with random amplitudes</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="n">u</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">k</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="c1"># ground truth and data</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
+<span class="n">u_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1e2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-.</span><span class="mi">5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="n">u_true</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
 
-<span class="c1"># generate noisy signal</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="c1"># solve</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nt</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+<span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">f_delta</span>
 
-<span class="c1"># denoise</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">uhat</span> <span class="o">=</span> <span class="n">soft</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">alpha</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">D</span><span class="nd">@u</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">f_delta</span><span class="p">)</span>
 
 <span class="c1"># plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ground truth&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">uhat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;denoised signal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">),</span><span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u_true</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="n">index</span><span class="p">[</span><span class="n">k</span><span class="p">]])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$t = $&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;fourth_order&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/variational_formulations_18_0.png" src="_images/variational_formulations_18_0.png" />
+<img alt="_images/variational_formulations_9_1.png" src="_images/variational_formulations_9_1.png" />
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="assignments">
+<h2><span class="section-number">5.5. </span>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="total-variation">
+<h3><span class="section-number">5.5.1. </span>Total variation<a class="headerlink" href="#total-variation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical method to solve it.</p></li>
+</ul>
 </div>
 </div>
 </div>
