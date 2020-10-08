@@ -390,33 +390,61 @@ We will explore optimality conditions and algorithms for these two classes in mo
 
 ## The Euler-Lagrange equations
 
-An alternative viewpoint on optimality is provided by the Euler-lagrange equations, which establishes the link between certain problems of the form {eq}`variational` and PDEs. In particular, we focus in this section on problems of the form
+An alternative viewpoint on optimality is provided by the Euler-lagrange equations, which establishes the link between certain problems of the form {eq}`variational` and PDEs. In particular, we focus in this section on functionals of the form
 
-$$\min_{u\in\mathcal{U}} \textstyle{\frac{1}{2}} \|u - f^\delta\|_{L^2(\Omega)} + \alpha R(\nabla u).$$
+```{math}
+:label: J_denoising
+J(u) = {\textstyle{\frac{1}{2}}} \int_{\Omega} \left(u(x) - f^\delta(x)\right)^2 + r(\nabla u(x)) \mathrm{d}x,
+```
+with $\Omega \subset \mathbb{R}^n$ and $r : \mathbb{R}^n \rightarrow \mathbb{R}$. Such problems occur for example in image-denoising applications. We will see later that such problems also occur as subproblems when solving more general problems of the form {eq}`variational_R`.
 
-Such problems occur for example in image-denoising applications. We will see later that such problems also occur as subproblems when solving more general problems of the form {eq}`variational_R`.
-
-```{admonition} Definition: Euler-Lagrange equations
+```{admonition} Theorem: Euler-Lagrange equations
 :class: important
 
-The first-order optimality condition for $u\in\mathcal{U}$ to be a solution to {eq}`variational` is
+Let $J$ be a functional of the form {eq}`J_denoising`. Then the Euler-Lagrange equations are given by
 
-$$\left.\frac{\mathrm{d}}{\mathrm{d}t} J(u + t\phi)\right|_{t=0} = 0 \quad \forall \phi \in C_c^{\infty},$$
+$$u(x) - \nabla \cdot \nabla r(\nabla u(x)) = f^\delta(x),$$
 
-where $..$
+with boundary condition $\nabla u \cdot n = 0$. The solution to this PDE is a stationary point of the functional $J$.
+
+It is commonly expressed as an evolution equation
+
+$$\partial_t u(t,x) + u(t,x) - \nabla \cdot \nabla r(\nabla u(t,x)) = f^\delta(x),$$
+
+whose solution tends to a stationary point of $J$ as $t \rightarrow \infty$.
+```
+
+```{admonition} Proof
+:class: dropdown
+
+Let $u_*$ be stationary point of $J$, and introduce
+
+$$\phi(t) = J(u_* + t v),$$
+
+then $\phi'(0) = 0$ for all $v$. In this case we have
+
+$$\phi(t) = \int_{\Omega} \textstyle{\frac{1}{2}}\left(u + t v - f^\delta\right)^2 + r(\nabla u + t \nabla v),$$
+
+and hence
+
+$$\phi'(0) = \int_{\Omega} (u - f^\delta)v + \nabla r(\nabla u)\cdot\nabla v.$$
+
+Applyings [Green's first identity](https://en.wikipedia.org/wiki/Green%27s_identities#Green's_first_identity) yields
+
+$$\int_{\Omega} \left(u(x) - f^\delta(x) - \nabla \cdot \nabla r(\nabla u(x))\right) v(x) \mathrm{d}x + \left.v(x)\nabla u(x)\cdot n(x)\right|_{\Omega}.$$
+
+Since it should hold for all $v$, we obtain the desired PDE. The boundary term involves $\nabla u\cdot n$ so this imposes Neumann boundary conditions.
 ```
 
 ````{admonition} Example: *The heat equation*
 
 Let
 
-$$R(v) = \|v\|_{L^2(\Omega)}^2.$$
+$$r(v) = \|v\|_2^2.$$
 
 The corresponding diffusion equation is given by
 
 $$\partial_t u + u - \alpha\nabla^2 u = f^\delta.$$
-
-* definition of underlying spaces, boundary conditions.
 
 A forward Euler discretisation of the PDE leads to
 
@@ -497,9 +525,9 @@ glue("linear_diffusion", fig, display=False)
 
 Let
 
-$$R(v) = \int_{\Omega} r\left(\|v\|^2\right) \mathrm{d}x.$$
+$$r(v) = \log(1 + \|v\|_2^2/\epsilon^2),$$
 
-A popular choice for $r = \log(1 + s/\epsilon^2)$, which leads to the Perona-Malik diffusion equation:
+which leads to the Perona-Malik diffusion equation:
 
 $$\partial_t u + u - \alpha\nabla \cdot \left(\frac{\nabla u}{1 + \epsilon^{-2}\|\nabla u\|_2^2}\right) = f^\delta.$$
 
@@ -572,14 +600,6 @@ glue("perona_malik", fig, display=False)
 
 ```
 
-```{admonition} Example: *Total variation*
-
-Let
-
-$$R(v) = ...$$
-
-```
-
 +++
 
 ## Exercises
@@ -643,15 +663,15 @@ $$
 
 Consider the following denoising problem
 
-$$\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_{L^2(\mathbb{R})} + \textstyle{\frac{\alpha}{2}} \|u''\|_{L^2(\mathbb{R})}^2.$$
+$$\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_{L^2([0,1])} + \textstyle{\frac{\alpha}{2}} \|u''\|_{L^2([0,1])}^2.$$
 
 * Show that the solution to
 
 $$\partial_t u(t,x) + u(t,x) + \alpha \partial_x^4 u(t,x) = f^\delta(x),$$
 
-satisfies the optimality conditions of the variational problem as $t\rightarrow \infty$ .
+with boundary conditions $\partial_x u = \partial_{xxx}u = 0$, satisfies the optimality conditions of the variational problem as $t\rightarrow \infty$ .
 
-* Design an explicit finite-difference scheme to solve the diffusion equation on $[0,1]$ with boundary conditions $\partial_x u = \partial_{xxx}u = 0$ at $x = 0$ and $x=1$ and implement it in Python. 
+* Design an explicit finite-difference scheme to solve the diffusion equation and implement it in Python.
 
 * Test it on noisy data: $f^\delta(x) = \exp(-10^2(x-1/2)^2) + \epsilon$, with $\epsilon \sim N(0,\sigma^2)$.
 
@@ -671,19 +691,19 @@ Since it should hold for all $v$, we get the desired result.
 
 * We use a central FD in space and Forward Euler in time:
 
-$$u^{(n+1)} = u^{(n)} + \Delta t \left(f^\delta - u^{(n)} - \alpha D u^{(n)}\right),$$
+$$u^{(k+1)} = u^{(k)} + \Delta t \left(f^\delta - u^{(k)} - \alpha D u^{(k)}\right),$$
 
 with $D$ the finite-difference matrix. An overview of the coefficients for central FD are found [here](https://en.wikipedia.org/wiki/Finite_difference_coefficient). For the central grid-points we have
 
-$$u''''(k\cdot \Delta x) \approx (u_{k-2} - 4u_{k-1} + 6u_k - 4u_{k+1} + u_{k+2})/(\Delta x)^2.$$
+$$u''''(i\cdot \Delta x) \approx (u_{i-2} - 4u_{i-1} + 6u_i - 4u_{i+1} + u_{i+2})/(\Delta x)^2,$$
 
-For $k=0$ and $k=1$ we eliminate $u_{-2}$ and $u_{-1}$ using the boundary conditions:
+for $i = 0, 1, \ldots, n-1$. For $i=0$ and $i=1$ we eliminate $u_{-2}$ and $u_{-1}$ using the boundary conditions:
 
-$$-(1/2)u_{-2} + u_{-1} - u_1 + (1/2)u_2$ = 0,$$
+$$-(1/2)u_{-2} + u_{-1} - u_1 + (1/2)u_2 = 0,$$
 
 $$(1/2)u_{-1} - (1/2)u_1 = 0.$$
 
-We do the same at the other boundary.
+We do the same for $i = n-2$ and $i=n-1$.
 
 * Running the code for $\Delta x = 10^{-2}$, $\Delta t = 10^{-8}$, $\alpha = 10^{-2}$ on noisy data $f^\delta(x) = \exp(-10^2(x-1/2)^2) + \epsilon$, with $\epsilon \sim N(0,\sigma^2)$, $\sigma=10^{-01}$ gives the following result.
 
@@ -757,4 +777,6 @@ glue("fourth_order", fig, display=False)
 
 ### Total variation
 
-* Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical method to solve it.
+* Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical scheme method to solve it.
+
+* Test your method on the cameraman image and compare it to the Perona-Malik approach.
