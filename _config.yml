@@ -16,9 +16,11 @@ html:
 sphinx:
   config:
     html_show_copyright: false
+  extra_extensions:
+    - sphinx_panels
 
 repository:
   url: https://github.com/TristanvanLeeuwen/IP_and_Im_Lectures
-  
+
 html:
   use_edit_page_button: true
