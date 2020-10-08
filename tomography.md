@@ -342,9 +342,9 @@ $$f_i = \sum_i r_{ij}u_j,$$
 
 where $f_i = f(\theta_i, t_i)$, $u_j = u(x_j)$ denotes the intensity of $u$ in the $j^{\text{th}}$ pixel and $r_{ij}$ indicates the contribution of pixel $j$ to ray $i$. This typically leads to an underdetermined system of equations $Ru = f^\delta$ which we can attempt to solve using an iterative method. Popular method in this application is *SART* {cite}`ANDERSEN198481`:
 
-$$u^{(k+1)} = D_1 R^*D_2\left(f - Ru^{(k)}\right),$$
+$$u^{(k+1)} = u^{(k)} + D_1 R^*D_2\left(f - Ru^{(k)}\right),$$
 
-where $D_1$ and $D_2$ are diagonal matrices containing the column and row sums of $R$ respectively. An example is shown below.
+where $D_1$ and $D_2$ are diagonal matrices containing the row and column sums of $R$ respectively. An example is shown below.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -403,6 +403,15 @@ Show that (for sufficiently regular functions)
 
 $$R \nabla^2 u(\theta,t) = \partial_t^2 R u (\theta,t).$$
 
+### SART
+
+Given a discretisation of the Radon transform $\in \mathbb{R}^{m\times n}$, we apply the SART method to reconstruct the image.
+
+* Show that a stationary point of the SART iteration solves
+
+$$\min_{u} \|Ru - f\|_{W}^2,$$
+
+with $W$ a diagonal elements with elements $w_{ii} = \sum_{j=1}^n r_{ij}$. Here $\|f\|_{W} = \sqrt{\langle f,Wf\rangle}$. You may assume that $R$ has positive row and column sums.
 
 ### FBP in practice
 
@@ -451,6 +460,40 @@ plt.show()
 
 ### The Radon transform as a compact operator
 
-Define the Radon transform on the unit circle $\Omega$ as
+Define the Radon transform $R : L^2(\Omega) \rightarrow L^2([0,\pi) \times [-1,1])$ on the unit circle $\Omega = \{x \in \mathbb{R}^2 | \|x\|_2 \leq 1\}$ by:
 
-$$Ru(\theta,t) = \int ...$$
+$$Ru(\theta,t) = \int_{-\sqrt{1-t^2}}^\sqrt{1-t^2} u(t \xi_\theta + s \eta_\theta)\mathrm{d}s,$$
+
+with $\xi_\theta = (\cos\theta,\sin\theta)$ and $\eta_\theta = (\sin\theta,-\cos\theta)$.
+
+* Introduce
+
+$$\|f\|_{\mathcal{F}}^2 = \int_0^\pi \int_{-1}^1 (1-t)^{-1/2} |f(\theta,t)|^2\mathrm{d}t,$$
+
+and
+
+$$\|u\|_{\mathcal{U}}^2 = \int_{\Omega} |u(x)|^2\mathrm{d}x.$$
+
+Show that $\|Ru\|_{\mathcal{F}} \leq 2\sqrt{\pi}\|u\|_{\mathcal{U}}$.
+
+* Show that the adjoint of $R$ is given by
+
+* Show that the operator $RR^*$ has eigenfunctions
+
+$$u_{k,l}(\theta,t) = (1-t)^{-1/2} U_k(t)e^{-\imath (k-2l)\theta},$$
+
+with eigenvalues
+
+$$\sigma_k^2 = \frac{2\pi}{k+1}.$$
+
+Here, $U_k$ denote the Chebyshev polynomials of the second kind.
+
+* Now compute the eigenfunctions of $R^*R$.
+
+### Discretisation of the Radon transform
+
+Discretise the Radon transform by approximating $u(x)$ as a piece-wise bi-linear function on a regular grid on the domain $[-1,1]^n$:
+
+$$u(x,y) = \sum_{i=0}^n \sum_{j=0}^n u_{ij} \phi\left(\frac{x - x_i}{h}\right)\phi_h\left(\frac{y - y_i}{h}\right),$$
+
+with $h = 2/n$, $x_i = -1 + i\cdot h$, $y_j = -1 + j\cdot h$ and $\phi(x) = \max(1-|x|,0)$.
