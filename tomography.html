@@ -15,6 +15,9 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
@@ -279,13 +282,70 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-radon-transform">
+   2.4. The Radon transform
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fourier-reconstruction">
+   2.5. Fourier reconstruction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filtered-back-projection">
+   2.6. Filtered back projection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ill-posedness-and-regularisation">
+   2.7. Ill-posedness and regularisation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algebraic-reconstruction">
+   2.8. Algebraic reconstruction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beyond-2d">
+   2.9. Beyond 2D
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercises">
-   2.4. Exercises
+   2.10. Exercises
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#fbp">
-     2.4.1. FBP
+    <a class="reference internal nav-link" href="#the-radon-transform-and-derivatives">
+     2.10.1. The Radon transform and derivatives
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sart">
+     2.10.2. SART
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fbp-in-practice">
+     2.10.3. FBP in practice
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignments">
+   2.11. Assignments
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-radon-transform-as-a-compact-operator">
+     2.11.1. The Radon transform as a compact operator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discretisation-of-the-radon-transform">
+     2.11.2. Discretisation of the Radon transform
     </a>
    </li>
   </ul>
@@ -311,13 +371,29 @@
 <li><p><strong>Rayleigh scattering:</strong> refers to an elastic scattering of the X-ray photon, i.e., without loosing energy.</p></li>
 </ul>
 <p>Depending on the energy spectrum of the X-rays and the material, these different processes contribute in different proportions to the overall interaction. As X-rays are ionizing radiation, their administration to biological tissue is harmful and needs to be well justified. An overview of where X-rays fit in the EM spectrum is shown in <a class="reference internal" href="#spectrum"><span class="std std-numref">Fig. 2.3</span></a> Shortly after their discovery, images obtained by placing a target between an X-ray source and a photon detector such as shown Figure <a class="reference internal" href="#xhand"><span class="std std-numref">Fig. 2.4</span></a> were used for medical diagnosis and <em>projectional radiography</em> is still one of the most routinely applied examinations.</p>
+<div class="sphinx-bs container-fluid docutils">
+<div class="row docutils">
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
+<div class="card w-100 shadow-none border-0 docutils">
+<div class="card-body docutils">
 <div class="figure align-default" id="spectrum">
 <a class="reference internal image-reference" href="_images/EM_Spectrum3-new.jpg"><img alt="_images/EM_Spectrum3-new.jpg" src="_images/EM_Spectrum3-new.jpg" style="height: 150px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 2.3 </span><span class="caption-text">Overview of the electromagnetic spectrum.</span><a class="headerlink" href="#spectrum" title="Permalink to this image">¶</a></p>
 </div>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
+<div class="card w-100 shadow-none border-0 docutils">
+<div class="card-body docutils">
 <div class="figure align-default" id="xhand">
 <a class="reference internal image-reference" href="_images/hand.jpg"><img alt="_images/hand.jpg" src="_images/hand.jpg" style="height: 150px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 2.4 </span><span class="caption-text">X-ray photograph of the hand of Röntgen’s wife.</span><a class="headerlink" href="#xhand" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="the-mathematics-of-x-rays">
@@ -342,13 +418,13 @@ I(x) = I_0 \exp \left( - \int_0^x u(x') dx' \right) \qquad ,
 <span class="eqno">(2.2)<a class="headerlink" href="#equation-lineint" title="Permalink to this equation">¶</a></span>\[P_\ell = - \log \left(\frac{I_1}{I_0} \right) =  \int_\ell u(x) dx \quad .\]</div>
 <p>So we see that in this formulation, we measure an integral of the unknown attenuation coefficient <span class="math notranslate nohighlight">\(u(x)\)</span> along a line <span class="math notranslate nohighlight">\(\ell\)</span> for each source-sensor pair.</p>
 <div class="figure align-default" id="radon">
-<a class="reference internal image-reference" href="_images/CT-Illustration.png"><img alt="_images/CT-Illustration.png" src="_images/CT-Illustration.png" style="height: 150px;" /></a>
+<a class="reference internal image-reference" href="_images/CT-Illustration.png"><img alt="_images/CT-Illustration.png" src="_images/CT-Illustration.png" style="height: 250px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 2.5 </span><span class="caption-text">Left: sketch of the auxiliary variables used to describe the two dimensional Radon transform. Right: Sketch of <span class="math notranslate nohighlight">\(R_\theta u(t)\)</span>, the projection of a function <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> onto a detector at angle <span class="math notranslate nohighlight">\(\theta\)</span></span><a class="headerlink" href="#radon" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="id1">
 <h2><span class="section-number">2.3. </span>Computed tomography<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>In projectional radiography, only a particular two dimensional projection of a three dimensional object <span class="math notranslate nohighlight">\(u(x), x \in \mathbb{R}^3\)</span> is obtained, namely its average X-ray attenuation along the projection rays. While this can reveal useful information about the interior properties of an object if patient, source and detector are arranged in a suitable way, it falls short of a complete reconstruction of <span class="math notranslate nohighlight">\(u\)</span>. The idea of computed tomography (CT) is to achieve this by combing projections from different directions by a computational algorithm. We start with the mathematical description of CT in two spatial dimensions, i.e., <span class="math notranslate nohighlight">\(x = [x_y, x_2]^T\)</span>. Let’s assume that the support of <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> is constrained to the unit sphere, <span class="math notranslate nohighlight">\(\{x_1^2 + x_2^2 \leqslant 1 \}\)</span> and that we place a flat detector along the tangent of the unit sphere whose angle to the positive <span class="math notranslate nohighlight">\(x_1\)</span>-axis is given by <span class="math notranslate nohighlight">\(\theta \in [0, \pi)\)</span> (cf. <a class="reference internal" href="#radon"><span class="std std-numref">Fig. 2.5</span></a>). Both the point of contact of this detection line with the unit sphere and its normal in this point are given as <span class="math notranslate nohighlight">\(n = (\cos(\theta - \frac{\pi}{2}), \sin(\theta - \frac{\pi}{2})) = (\sin(\theta), -\cos(\theta))\)</span>, while <span class="math notranslate nohighlight">\(v = (\cos(\theta), \sin(\theta))\)</span> is a unit vector along the tangent (such that for <span class="math notranslate nohighlight">\(\theta = 0\)</span>, it points into positive x direction). Now, any point on the detector line can be described as <span class="math notranslate nohighlight">\(n + t v\)</span>, i.e., parameterized by <span class="math notranslate nohighlight">\(t \in \mathbb{R}\)</span>. A line <span class="math notranslate nohighlight">\(\ell\)</span> that is orthogonal to the detector and crosses it at the point corresponding to <span class="math notranslate nohighlight">\(t \in [-1,1]\)</span> can be parameterized by <span class="math notranslate nohighlight">\(s \in \mathbb{R}\)</span> as</p>
+<p>In projectional radiography, only a particular two dimensional projection of a three dimensional object <span class="math notranslate nohighlight">\(u(x), x \in \mathbb{R}^3\)</span> is obtained, namely its average X-ray attenuation along the projection rays. While this can reveal useful information about the interior properties of an object if patient, source and detector are arranged in a suitable way, it falls short of a complete reconstruction of <span class="math notranslate nohighlight">\(u\)</span>. The idea of computed tomography (CT) is to achieve this by combing projections from different directions by a computational algorithm. We start with the mathematical description of CT in two spatial dimensions, i.e., <span class="math notranslate nohighlight">\(x = (x_y, x_2)\)</span>. Let’s assume that the support of <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> is constrained to the unit sphere, <span class="math notranslate nohighlight">\(\{x_1^2 + x_2^2 \leqslant 1 \}\)</span> and that we place a flat detector along the tangent of the unit sphere whose angle to the positive <span class="math notranslate nohighlight">\(x_1\)</span>-axis is given by <span class="math notranslate nohighlight">\(\theta \in [0, \pi)\)</span> (cf. <a class="reference internal" href="#radon"><span class="std std-numref">Fig. 2.5</span></a>). Both the point of contact of this detection line with the unit sphere and its normal in this point are given as <span class="math notranslate nohighlight">\(n = (\cos(\theta - \frac{\pi}{2}), \sin(\theta - \frac{\pi}{2})) = (\sin(\theta), -\cos(\theta))\)</span>, while <span class="math notranslate nohighlight">\(v = (\cos(\theta), \sin(\theta))\)</span> is a unit vector along the tangent (such that for <span class="math notranslate nohighlight">\(\theta = 0\)</span>, it points into positive x direction). Now, any point on the detector line can be described as <span class="math notranslate nohighlight">\(n + t v\)</span>, i.e., parameterized by <span class="math notranslate nohighlight">\(t \in \mathbb{R}\)</span>. A line <span class="math notranslate nohighlight">\(\ell\)</span> that is orthogonal to the detector and crosses it at the point corresponding to <span class="math notranslate nohighlight">\(t \in [-1,1]\)</span> can be parameterized by <span class="math notranslate nohighlight">\(s \in \mathbb{R}\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}
@@ -367,13 +443,16 @@ x_2(s)
 \end{split}\]</div>
 <p>We can now eliminate <span class="math notranslate nohighlight">\(s\)</span> by solving the equation for <span class="math notranslate nohighlight">\(x_2(s)\)</span> for <span class="math notranslate nohighlight">\(s\)</span> and inserting this expression into the equation for <span class="math notranslate nohighlight">\(x_1(s)\)</span> to obtain a handy implicit equation for all points lying on <span class="math notranslate nohighlight">\(\ell\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-linepara">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-linepara" title="Permalink to this equation">¶</a></span>\[\ell(\theta, t) = \{x \in \mathbb{R} \, | \, x_1 \cos(\theta) + x_2 \sin(\theta) = t\} \quad, \]</div>
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-linepara" title="Permalink to this equation">¶</a></span>\[\ell(\theta, t) = \{x \in \mathbb{R} \, | \, x_1 \cos(\theta) + x_2 \sin(\theta) = t\} \quad,\]</div>
 <p>where we stressed that <span class="math notranslate nohighlight">\(\ell\)</span> is function of <span class="math notranslate nohighlight">\(\theta \in [0, \pi)\)</span> and <span class="math notranslate nohighlight">\(t \in [-1,1]\)</span>. In fact, all lines crossing the unit sphere can be parameterized in this way and inserting this parameterization into <a class="reference internal" href="#equation-lineint">(2.2)</a> yields a linear mapping <span class="math notranslate nohighlight">\(R\)</span> from <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> to a function <span class="math notranslate nohighlight">\(f(\theta, t)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 f(\theta, t) = R u(\theta, t) := \int_{\ell(\theta, t)} u(x) dx \quad .
 \]</div>
-<p>This transform describes all possible X-ray measurements of <span class="math notranslate nohighlight">\(u(x)\)</span> and is called the <em>Radon transform</em> after the Austrian mathematician Johann Radon (1887-1956). Although Radon examined the problem from a purely mathematical perspective, namely as a problem of <em>integral geometry</em>, his work lay the mathematical foundations of CT. To get an intuition of how <span class="math notranslate nohighlight">\(R u (\theta, t)\)</span> looks like, consider <span class="math notranslate nohighlight">\(u = \delta_{(a, b)}\)</span>, i.e., a delta function located at <span class="math notranslate nohighlight">\(x_1 = a, x_2 = b\)</span>. If we call <span class="math notranslate nohighlight">\(R_\theta u(t) := R u (\theta, t)\)</span>, i.e., the measurement on the detector for a fixed angle <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(R_\theta u (t)\)</span> will only be zero except for <span class="math notranslate nohighlight">\(t = a \cos(\theta) + b \sin(\theta)\)</span> (cf. <a class="reference internal" href="#equation-linepara">(2.3)</a>), where it is one. That means that <span class="math notranslate nohighlight">\(R u (\theta, t)\)</span> is an indicator function on the set <span class="math notranslate nohighlight">\(\{(\theta, t) \, | \, t = a \cos(\theta) + b \sin(\theta)\}\)</span>, i.e., on a set where <span class="math notranslate nohighlight">\(t\)</span> can be described by the linear combination of a sine and a cosine function of <span class="math notranslate nohighlight">\(\theta\)</span>. Therefore <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> typically looks like a superposition of sine and cosine waves and is therefore called <em>sinogram</em>. Some examples of functions and their sinograms are shown below.</p>
+</div>
+<div class="section" id="the-radon-transform">
+<h2><span class="section-number">2.4. </span>The Radon transform<a class="headerlink" href="#the-radon-transform" title="Permalink to this headline">¶</a></h2>
+<p>The transform above describes all possible X-ray measurements of <span class="math notranslate nohighlight">\(u(x)\)</span> and is called the <em>Radon transform</em> after the Austrian mathematician Johann Radon (1887-1956). Although Radon examined the problem from a purely mathematical perspective, namely as a problem of <em>integral geometry</em>, his work lay the mathematical foundations of CT. To get an intuition of how <span class="math notranslate nohighlight">\(R u (\theta, t)\)</span> looks like, consider <span class="math notranslate nohighlight">\(u = \delta_{(a, b)}\)</span>, i.e., a delta function located at <span class="math notranslate nohighlight">\(x_1 = a, x_2 = b\)</span>. If we call <span class="math notranslate nohighlight">\(R_\theta u(t) := R u (\theta, t)\)</span>, i.e., the measurement on the detector for a fixed angle <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(R_\theta u (t)\)</span> will only be zero except for <span class="math notranslate nohighlight">\(t = a \cos(\theta) + b \sin(\theta)\)</span> (cf. <a class="reference internal" href="#equation-linepara">(2.3)</a>), where it is one. That means that <span class="math notranslate nohighlight">\(R u (\theta, t)\)</span> is an indicator function on the set <span class="math notranslate nohighlight">\(\{(\theta, t) \, | \, t = a \cos(\theta) + b \sin(\theta)\}\)</span>, i.e., on a set where <span class="math notranslate nohighlight">\(t\)</span> can be described by the linear combination of a sine and a cosine function of <span class="math notranslate nohighlight">\(\theta\)</span>. Therefore <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> typically looks like a superposition of sine and cosine waves and is therefore called <em>sinogram</em>. Some examples of functions and their sinograms are shown below.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -429,16 +508,16 @@ f(\theta, t) = R u(\theta, t) := \int_{\ell(\theta, t)} u(x) dx \quad .
 </div>
 </div>
 <p>Now that we can describe all possible X-ray measurements <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> of an image <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span>  via the Radon transform <span class="math notranslate nohighlight">\(R\)</span>, the interesting question is whether we can also recover <span class="math notranslate nohighlight">\(u\)</span> from <span class="math notranslate nohighlight">\(f\)</span>, i.e., whether <span class="math notranslate nohighlight">\(R\)</span> is invertible. This question is answered by the <em>Fourier slice theorem</em>, which relates the one dimensional Fourier transforms of <span class="math notranslate nohighlight">\(R_\theta u (t)\)</span> to the two dimensional Fourier transform of <span class="math notranslate nohighlight">\(u\)</span>:</p>
-<div class="admonition-fourier-slice-theorem admonition">
-<p class="admonition-title">Fourier Slice Theorem</p>
+<div class="important admonition">
+<p class="admonition-title">Theorem: Fourier Slice Theorem</p>
 <p>The one-dimensional Fourier transform of <span class="math notranslate nohighlight">\(f(\theta,\cdot) = R_{\theta} u\)</span> is related to the two-dimensional Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> as</p>
 <div class="math notranslate nohighlight" id="equation-fourierslicetheo">
 <span class="eqno">(2.4)<a class="headerlink" href="#equation-fourierslicetheo" title="Permalink to this equation">¶</a></span>\[\widehat{f}(\theta,\omega) =  \widehat{u}(\omega v),\]</div>
-<p>with <span class="math notranslate nohighlight">\(v = [\cos \theta, \sin \theta]^T\)</span>.</p>
+<p>with <span class="math notranslate nohighlight">\(v = (\cos \theta, \sin \theta)\)</span>.</p>
 <p>This implies that the projection data for a particular angle <span class="math notranslate nohighlight">\(\theta\)</span> fully determines the radial slice of the Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> with the same angle. Thereby, the complete Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> can be computed from <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> and as the Fourier transform is invertible, we can recover <span class="math notranslate nohighlight">\(u\)</span> from <span class="math notranslate nohighlight">\(f\)</span>.</p>
 </div>
 <div class="dropdown admonition">
-<p class="admonition-title">Proof of the Fourier Slice Theorem</p>
+<p class="admonition-title">Proof</p>
 <p>The proof of the Fourier slice theorem is short and instructive. First, we write out the rhs of <a class="reference internal" href="#equation-fourierslicetheo">(2.4)</a>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -453,25 +532,31 @@ f(\theta, t) = R u(\theta, t) := \int_{\ell(\theta, t)} u(x) dx \quad .
 \end{split}\]</div>
 <p>where we defined <span class="math notranslate nohighlight">\(k = [k_1, k_2]^T := \omega v = [\omega \cos \theta, \omega \sin \theta]^T\)</span>.</p>
 </div>
-<p>The Fourier slice theorem suggests a simple strategy to invert the Radon transform: First, we compute the one dimensional Fourier transform of each angular projection <span class="math notranslate nohighlight">\(R_\theta[u]\)</span> and arrange them in two dimensional Fourier space to obtain the  Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> and then we compute the inverse Fourier transform to obtain <span class="math notranslate nohighlight">\(u\)</span> itself. The main problem with this strategy is that in practice, the amount of measurements is finite. If we assume that we sample <span class="math notranslate nohighlight">\(R_\theta[u](t)\)</span> on a regular <span class="math notranslate nohighlight">\(t\)</span>-grid, we also sample the radial slice <span class="math notranslate nohighlight">\(\hat{u}(\omega v)\)</span> on a regular <span class="math notranslate nohighlight">\(\omega\)</span>-grid. Due to the radial arrangement of the slices, we sample <span class="math notranslate nohighlight">\(\hat{u}\)</span> on circles and not on a regular grid, which would be required to use efficient inverse Fourier transform algorithms such as the <em>fast Fourier transform</em> (<em>FFT</em>). As illustrated in <a class="reference internal" href="#fouriersampling"><span class="std std-numref">Fig. 2.6</span></a>, this means that the density of the frequency samples decreases towards the high frequencies, which contain information about the small scale image features.</p>
+</div>
+<div class="section" id="fourier-reconstruction">
+<h2><span class="section-number">2.5. </span>Fourier reconstruction<a class="headerlink" href="#fourier-reconstruction" title="Permalink to this headline">¶</a></h2>
+<p>The Fourier slice theorem suggests a simple strategy to invert the Radon transform: First, we compute the one dimensional Fourier transform of each angular projection <span class="math notranslate nohighlight">\(R_\theta u\)</span> and arrange them in two dimensional Fourier space to obtain the  Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> and then we compute the inverse Fourier transform to obtain <span class="math notranslate nohighlight">\(u\)</span> itself. The main problem with this strategy is that in practice, the amount of measurements is finite. If we assume that we sample <span class="math notranslate nohighlight">\(R_\theta u(t)\)</span> on a regular <span class="math notranslate nohighlight">\(t\)</span>-grid, we also sample the radial slice <span class="math notranslate nohighlight">\(\hat{u}(\omega v)\)</span> on a regular <span class="math notranslate nohighlight">\(\omega\)</span>-grid. Due to the radial arrangement of the slices, we sample <span class="math notranslate nohighlight">\(\hat{u}\)</span> on circles and not on a regular grid, which would be required to use efficient inverse Fourier transform algorithms such as the <em>fast Fourier transform</em> (<em>FFT</em>). As illustrated in <a class="reference internal" href="#fouriersampling"><span class="std std-numref">Fig. 2.6</span></a>, this means that the density of the frequency samples decreases towards the high frequencies, which contain information about the small scale image features.</p>
 <div class="figure align-default" id="fouriersampling">
-<a class="reference internal image-reference" href="_images/FourierSliceTheorem.png"><img alt="_images/FourierSliceTheorem.png" src="_images/FourierSliceTheorem.png" style="height: 150px;" /></a>
+<a class="reference internal image-reference" href="_images/FourierSliceTheorem.png"><img alt="_images/FourierSliceTheorem.png" src="_images/FourierSliceTheorem.png" style="height: 250px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 2.6 </span><span class="caption-text">Sampling in Fourier space: The Fourier slice theorem <a class="reference internal" href="#equation-fourierslicetheo">(2.4)</a> states that every angular projection <span class="math notranslate nohighlight">\(R_\theta[u](t)\)</span> contains the full information about <span class="math notranslate nohighlight">\(\hat{u}(k_1,k_2)\)</span> along one radial slice (red lines). A finite, regular sampling of <span class="math notranslate nohighlight">\(t\)</span> translates into a finite, regular sampling along these lines (blue dots). It becomes apparent that lower frequencies (<span class="math notranslate nohighlight">\(\sqrt{k_1^2 + k_2^2}\)</span> small) are sampled more densely than high frequencies.</span><a class="headerlink" href="#fouriersampling" title="Permalink to this image">¶</a></p>
 </div>
-<p>Nonetheless, the Fourier slice theorem is the basis the most widely used CT reconstruction technique, the <em>filtered backprojection</em> (<em>FBP</em>). As the name suggests, FBP consists of two steps, a filtering step and a back projection step. We start with the back projection, which is a simple operation to map a sinogram <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> back into the image space: For every angle <span class="math notranslate nohighlight">\(\theta\)</span>, we smear the one dimensional function <span class="math notranslate nohighlight">\(f_\theta(t) := f(\theta, t)\)</span> (which corresponds to the projection <span class="math notranslate nohighlight">\(R_\theta[u]\)</span>) over the image by adding the value <span class="math notranslate nohighlight">\(f_\theta(t)\)</span> to each point on the ray <span class="math notranslate nohighlight">\(\ell(\theta, t)\)</span>, namely to all <span class="math notranslate nohighlight">\((x_1, x_2)\)</span> that satisfy <span class="math notranslate nohighlight">\(t = x_1 \cos \theta + x_2 \sin \theta\)</span>:</p>
+</div>
+<div class="section" id="filtered-back-projection">
+<h2><span class="section-number">2.6. </span>Filtered back projection<a class="headerlink" href="#filtered-back-projection" title="Permalink to this headline">¶</a></h2>
+<p>The Fourier slice theorem is the basis the most widely used CT reconstruction technique, the <em>filtered back projection</em> (<em>FBP</em>). As the name suggests, FBP consists of two steps, a filtering step and a back projection step. We start with the back projection, which is a simple operation to map a sinogram <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> back into the image space: For every angle <span class="math notranslate nohighlight">\(\theta\)</span>, we smear the one dimensional function <span class="math notranslate nohighlight">\(f_\theta(t) := f(\theta, t)\)</span> (which corresponds to the projection <span class="math notranslate nohighlight">\(R_\theta u\)</span>) over the image by adding the value <span class="math notranslate nohighlight">\(f_\theta(t)\)</span> to each point on the ray <span class="math notranslate nohighlight">\(\ell(\theta, t)\)</span>, namely to all <span class="math notranslate nohighlight">\((x_1, x_2)\)</span> that satisfy <span class="math notranslate nohighlight">\(t = x_1 \cos \theta + x_2 \sin \theta\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-bp">
 <span class="eqno">(2.5)<a class="headerlink" href="#equation-bp" title="Permalink to this equation">¶</a></span>\[u_{BP}(x_1, x_2) = \int_0^\pi f(\theta, x_1 \cos \theta + x_2 \sin \theta) d\theta.\]</div>
-<p>It turns out that the backprojection operator is the adjoint <span class="math notranslate nohighlight">\(R^*\)</span> of the Radon transform. Unfortunately, it is not the inverse <span class="math notranslate nohighlight">\(R^{-1}\)</span>. Rather, one can show that</p>
+<p>It turns out that the back projection operator is the adjoint <span class="math notranslate nohighlight">\(R^*\)</span> of the Radon transform. Unfortunately, it is not the inverse <span class="math notranslate nohighlight">\(R^{-1}\)</span>. Rather, one can show that</p>
 <div class="math notranslate nohighlight">
 \[
-R^* R u (x) = \int \frac{u(x)}{\| x -y \|} dy = \frac{1}{\| x \|} \ast u(x),
+R^*\!R u (x) = \int_{\mathbb{R}^2} \frac{u(x)}{\| x -y \|_2} dy,
 \]</div>
-<p>i.e., it only recovers <span class="math notranslate nohighlight">\(u(x)\)</span> convoluted with a smoothing kernel, as will be illustrated below. The reason for this is the non-uniform sampling of <span class="math notranslate nohighlight">\(\hat{u}(k)\)</span>, the Fourier transform of <span class="math notranslate nohighlight">\(u(x)\)</span> (cf. <a class="reference internal" href="#fouriersampling"><span class="std std-numref">Fig. 2.6</span></a>): In proportion, too many low frequencies are projected back, and low frequencies represent the smooth features of the image. A reasonable idea to improve upon this result is therefore to introduce weights that counter-act this imbalance in favor of the high-frequencies before the backprojecting step. This corresponds to a <em>high-pass filtering</em> of the sinogram data <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> in <span class="math notranslate nohighlight">\(t\)</span>-direction, i.e., we convolute it with a suitable filter function <span class="math notranslate nohighlight">\(h(t)\)</span>. It turns out that the correct filter we need is a <em>ramp</em>-filter, whose Fouriertransform is given by <span class="math notranslate nohighlight">\(\hat{h}(\omega) = | \omega |\)</span>. Taken together, the filtered sinogram <span class="math notranslate nohighlight">\(q\)</span> is given as</p>
+<p>i.e., it only recovers <span class="math notranslate nohighlight">\(u(x)\)</span> convoluted with a smoothing kernel, as will be illustrated below. The reason for this is the non-uniform sampling of <span class="math notranslate nohighlight">\(\hat{u}(k)\)</span>, the Fourier transform of <span class="math notranslate nohighlight">\(u(x)\)</span> (cf. <a class="reference internal" href="#fouriersampling"><span class="std std-numref">Fig. 2.6</span></a>): In proportion, too many low frequencies are projected back, and low frequencies represent the smooth features of the image. A reasonable idea to improve upon this result is therefore to introduce weights that counter-act this imbalance in favour of the high-frequencies before the back projecting step. This corresponds to a <em>high-pass filtering</em> of the sinogram data <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> in <span class="math notranslate nohighlight">\(t\)</span>-direction, i.e., we convolute it with a suitable filter function <span class="math notranslate nohighlight">\(h(t)\)</span>. It turns out that the correct filter we need is a <em>ramp</em>-filter, whose Fourier transform is given by <span class="math notranslate nohighlight">\(\hat{h}(\omega) = | \omega |\)</span>. Taken together, the filtered sinogram <span class="math notranslate nohighlight">\(q\)</span> is given as</p>
 <div class="math notranslate nohighlight">
 \[
-q(\theta, t) := H \left[f \right](\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot  F_t \left[f_\theta \right)(\omega) \right](t).
+q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f}(\theta,\omega)\right).
 \]</div>
-<p>Below, we illustrate that if the filtered sinogram is now inserted into the backprojection <a class="reference internal" href="#equation-bp">(2.5)</a>, we converge to the true solution if the number of angles increases, and one can indeed show that <span class="math notranslate nohighlight">\(R^* H R = I\)</span>.</p>
+<p>Below, we illustrate that if the filtered sinogram is now inserted into the back projection <a class="reference internal" href="#equation-bp">(2.5)</a>, we converge to the true solution if the number of angles increases, and one can indeed show that <span class="math notranslate nohighlight">\(R^* H R = I\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -524,12 +609,136 @@ q(\theta, t) := H \left[f \right](\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \c
 <img alt="_images/tomography_5_0.png" src="_images/tomography_5_0.png" />
 </div>
 </div>
-<p>Up to now, both the function <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> and its sinogram <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> where functions of two variables and we saw that this was enough to reconstruct <span class="math notranslate nohighlight">\(u\)</span> from <span class="math notranslate nohighlight">\(f\)</span>. In three spatial dimensions, we need four variables to parameterize all lines going through the unit sphere (two for the orientation and two for the spatial offset), but we do not need to measure all the corresponding line integrals. From the 2D results, we know that all directions lying in a plane are sufficient to fully determine the function in that plane. This is the idea behind the classical CT scanning strategy: The patient is lying on a bed that is traversed through the scanner step-by-step and all projections in a plane orthogonal to this direction are acquired, cf. <a class="reference internal" href="what_is.html#modernct"><span class="std std-numref">Fig. 1.2</span></a>. Then, the whole three dimensional attenuation map can be reconstructed slice-by-slice, which also explains the word <em>tomography</em>, which is derived from the ancient Greek <em>tomos</em>, which means <em>slice</em> or <em>section</em>.</p>
+<p>Alternatively, the filter may be applied <em>after</em> back projection. In this case the filter multiplies the two-dimensional Fourier transform of the back projected image by <span class="math notranslate nohighlight">\(\|\xi\|_2\)</span>.</p>
+</div>
+<div class="section" id="ill-posedness-and-regularisation">
+<h2><span class="section-number">2.7. </span>Ill-posedness and regularisation<a class="headerlink" href="#ill-posedness-and-regularisation" title="Permalink to this headline">¶</a></h2>
+<p>The previous section showed that in order to reconstruct the image from the sinogram we have to multiply either by <span class="math notranslate nohighlight">\(|\omega|\)</span> or by <span class="math notranslate nohighlight">\(\|\xi\|\)</span> in the Fourier domain of the sinogram or the image. This suggests that the inverse of the Radon transform is unbounded. To regularise the FBP method, various modifications to the filters have been proposed, as illustrated in the example below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">skimage.data</span> <span class="kn">import</span> <span class="n">shepp_logan_phantom</span>
+<span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">radon</span><span class="p">,</span> <span class="n">rescale</span><span class="p">,</span> <span class="n">iradon</span>
+
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">180.</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">rescale</span><span class="p">(</span><span class="n">shepp_logan_phantom</span><span class="p">(),</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;reflect&#39;</span><span class="p">,</span> <span class="n">multichannel</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">radon</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="n">circle</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="n">f</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">FBP_ramp</span> <span class="o">=</span> <span class="n">iradon</span><span class="p">(</span><span class="n">f_delta</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="s1">&#39;ramp&#39;</span><span class="p">,</span> <span class="n">circle</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">FBP_cosine</span> <span class="o">=</span> <span class="n">iradon</span><span class="p">(</span><span class="n">f_delta</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">circle</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">FBP_hann</span> <span class="o">=</span> <span class="n">iradon</span><span class="p">(</span><span class="n">f_delta</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">,</span> <span class="n">circle</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">FBP_ramp</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Greys_r</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ramp filter&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">FBP_cosine</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Greys_r</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;cosine filter&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">FBP_hann</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Greys_r</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;hann filter&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/tomography_7_0.png" src="_images/tomography_7_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="algebraic-reconstruction">
+<h2><span class="section-number">2.8. </span>Algebraic reconstruction<a class="headerlink" href="#algebraic-reconstruction" title="Permalink to this headline">¶</a></h2>
+<p>As we’ve seen in the previous sections, the Fourier Slice Theorem only applies when sufficient angular samples are available. An alternative to FBP are so-called <em>algebraic reconstruction techniques</em> which discretize the Radon transform using numerical quadrature and sets up a system of equations</p>
+<div class="math notranslate nohighlight">
+\[f_i = \sum_i r_{ij}u_j,\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_i = f(\theta_i, t_i)\)</span>, <span class="math notranslate nohighlight">\(u_j = u(x_j)\)</span> denotes the intensity of <span class="math notranslate nohighlight">\(u\)</span> in the <span class="math notranslate nohighlight">\(j^{\text{th}}\)</span> pixel and <span class="math notranslate nohighlight">\(r_{ij}\)</span> indicates the contribution of pixel <span class="math notranslate nohighlight">\(j\)</span> to ray <span class="math notranslate nohighlight">\(i\)</span>. This typically leads to an underdetermined system of equations <span class="math notranslate nohighlight">\(Ru = f^\delta\)</span> which we can attempt to solve using an iterative method. Popular method in this application is <em>SART</em> <a class="bibtex reference internal" href="what_is.html#andersen198481" id="id2">[2]</a>:</p>
+<div class="math notranslate nohighlight">
+\[u^{(k+1)} = u^{(k)} + D_1 R^*D_2\left(f - Ru^{(k)}\right),\]</div>
+<p>where <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_2\)</span> are diagonal matrices containing the row and column sums of <span class="math notranslate nohighlight">\(R\)</span> respectively. An example is shown below.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">skimage.data</span> <span class="kn">import</span> <span class="n">shepp_logan_phantom</span>
+<span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">radon</span><span class="p">,</span> <span class="n">rescale</span><span class="p">,</span> <span class="n">iradon</span><span class="p">,</span> <span class="n">iradon_sart</span>
+
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">180.</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">niter</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">rescale</span><span class="p">(</span><span class="n">shepp_logan_phantom</span><span class="p">(),</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;reflect&#39;</span><span class="p">,</span> <span class="n">multichannel</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">radon</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">)</span>
+<span class="n">f_delta</span> <span class="o">=</span> <span class="n">f</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">u_fbp</span> <span class="o">=</span> <span class="n">iradon</span><span class="p">(</span><span class="n">f_delta</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">)</span>
+
+<span class="n">u_sart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">niter</span><span class="p">,</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">u_sart</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">iradon_sart</span><span class="p">(</span><span class="n">f_delta</span><span class="p">,</span><span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">niter</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">u_sart</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">iradon_sart</span><span class="p">(</span><span class="n">f_delta</span><span class="p">,</span><span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span><span class="n">image</span><span class="o">=</span><span class="n">u_sart</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">u_fbp</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Greys_r</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;FBP&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">u_sart</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Greys_r</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SART&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/opt/anaconda3/lib/python3.7/site-packages/skimage/transform/radon_transform.py:87: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray
+  coords = np.array(np.ogrid[:image.shape[0], :image.shape[1]])
+</pre>
+</div>
+<img alt="_images/tomography_9_1.png" src="_images/tomography_9_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="beyond-2d">
+<h2><span class="section-number">2.9. </span>Beyond 2D<a class="headerlink" href="#beyond-2d" title="Permalink to this headline">¶</a></h2>
+<p>Up to now, both the function <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> and its sinogram <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> where functions of two variables and we saw that this was enough to reconstruct <span class="math notranslate nohighlight">\(u\)</span> from <span class="math notranslate nohighlight">\(f\)</span>. In three spatial dimensions, we need four variables to parameterise all lines going through the unit sphere (two for the orientation and two for the spatial offset), but we do not need to measure all the corresponding line integrals. From the 2D results, we know that all directions lying in a plane are sufficient to fully determine the function in that plane. This is the idea behind the classical CT scanning strategy: The patient is lying on a bed that is traversed through the scanner step-by-step and all projections in a plane orthogonal to this direction are acquired, cf. <a class="reference internal" href="what_is.html#modernct"><span class="std std-numref">Fig. 1.2</span></a>. Then, the whole three dimensional attenuation map can be reconstructed slice-by-slice, which also explains the word <em>tomography</em>, which is derived from the ancient Greek <em>tomos</em>, which means <em>slice</em> or <em>section</em>.</p>
 </div>
 <div class="section" id="exercises">
-<h2><span class="section-number">2.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="fbp">
-<h3><span class="section-number">2.4.1. </span>FBP<a class="headerlink" href="#fbp" title="Permalink to this headline">¶</a></h3>
+<h2><span class="section-number">2.10. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-radon-transform-and-derivatives">
+<h3><span class="section-number">2.10.1. </span>The Radon transform and derivatives<a class="headerlink" href="#the-radon-transform-and-derivatives" title="Permalink to this headline">¶</a></h3>
+<p>Given the Radon transform</p>
+<div class="math notranslate nohighlight">
+\[Ru(\theta,t) = \int_{\mathbb{R}} u(t\cos\theta + s \sin\theta, t\sin\theta - s \cos\theta) \mathrm{d}s,\]</div>
+<p>Show that (for sufficiently regular functions)</p>
+<div class="math notranslate nohighlight">
+\[R \nabla^2 u(\theta,t) = \partial_t^2 R u (\theta,t).\]</div>
+</div>
+<div class="section" id="sart">
+<h3><span class="section-number">2.10.2. </span>SART<a class="headerlink" href="#sart" title="Permalink to this headline">¶</a></h3>
+<p>Given a discretisation of the Radon transform <span class="math notranslate nohighlight">\(\in \mathbb{R}^{m\times n}\)</span>, we apply the SART method to reconstruct the image.</p>
+<ul class="simple">
+<li><p>Show that a stationary point of the SART iteration solves</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_{u} \|Ru - f\|_{W}^2,\]</div>
+<p>with <span class="math notranslate nohighlight">\(W\)</span> a diagonal elements with elements <span class="math notranslate nohighlight">\(w_{ii} = \sum_{j=1}^n r_{ij}\)</span>. Here <span class="math notranslate nohighlight">\(\|f\|_{W} = \sqrt{\langle f,Wf\rangle}\)</span>. You may assume that <span class="math notranslate nohighlight">\(R\)</span> has positive row and column sums.</p>
+</div>
+<div class="section" id="fbp-in-practice">
+<h3><span class="section-number">2.10.3. </span>FBP in practice<a class="headerlink" href="#fbp-in-practice" title="Permalink to this headline">¶</a></h3>
 <p>One implementation of the Radon transform and the FBP can be found in the <a class="reference external" href="http://scikit-image.org/"><code class="docutils literal notranslate"><span class="pre">scikit-image</span></code> toolbox</a>. An example of how to load a simple image, compute its Radon transform to simulate sinogram data and how to run a FBP to obtain a reconstruction from this data is shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -569,13 +778,52 @@ q(\theta, t) := H \left[f \right](\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \c
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/tomography_9_0.png" src="_images/tomography_9_0.png" />
+<img alt="_images/tomography_13_0.png" src="_images/tomography_13_0.png" />
 </div>
 </div>
 <ul class="simple">
 <li><p>Now we examine what happens if we add noise to the sinogram data. Let <span class="math notranslate nohighlight">\(f = K u\)</span> be the clean sinogram data arranged as a <span class="math notranslate nohighlight">\(m \times 1\)</span> vector and generate noisy data by setting <span class="math notranslate nohighlight">\(f^\delta = f + \sigma \varepsilon\)</span>, where <span class="math notranslate nohighlight">\(\varepsilon\)</span> is a <span class="math notranslate nohighlight">\(m\times 1\)</span> vector of standard normal distributed random variables and <span class="math notranslate nohighlight">\(\sigma\)</span> determines the noise level. Examine how the FBP reacts to different noise levels and how changing the frequency filter affects the results.</p></li>
 <li><p>In many applications, the range of available projection angles is restricted <span class="math notranslate nohighlight">\(\theta \in [\theta_{min}, \theta_{max}]\)</span>, <span class="math notranslate nohighlight">\(\theta_{min} &gt; 0\)</span>, <span class="math notranslate nohighlight">\(\theta_{max} &lt; \pi\)</span> or the angular resolution is very coarse. Examine the effects of these restrictions on FBP reconstructions. In limited angle tomography, which parts of the image are lost?</p></li>
 </ul>
+</div>
+</div>
+<div class="section" id="assignments">
+<h2><span class="section-number">2.11. </span>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-radon-transform-as-a-compact-operator">
+<h3><span class="section-number">2.11.1. </span>The Radon transform as a compact operator<a class="headerlink" href="#the-radon-transform-as-a-compact-operator" title="Permalink to this headline">¶</a></h3>
+<p>Define the Radon transform <span class="math notranslate nohighlight">\(R : L^2(\Omega) \rightarrow L^2([0,\pi) \times [-1,1])\)</span> on the unit circle <span class="math notranslate nohighlight">\(\Omega = \{x \in \mathbb{R}^2 | \|x\|_2 \leq 1\}\)</span> by:</p>
+<div class="math notranslate nohighlight">
+\[Ru(\theta,t) = \int_{-\sqrt{1-t^2}}^\sqrt{1-t^2} u(t \xi_\theta + s \eta_\theta)\mathrm{d}s,\]</div>
+<p>with <span class="math notranslate nohighlight">\(\xi_\theta = (\cos\theta,\sin\theta)\)</span> and <span class="math notranslate nohighlight">\(\eta_\theta = (\sin\theta,-\cos\theta)\)</span>.</p>
+<ul class="simple">
+<li><p>Introduce</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\|f\|_{\mathcal{F}}^2 = \int_0^\pi \int_{-1}^1 (1-t)^{-1/2} |f(\theta,t)|^2\mathrm{d}t,\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\|u\|_{\mathcal{U}}^2 = \int_{\Omega} |u(x)|^2\mathrm{d}x.\]</div>
+<p>Show that <span class="math notranslate nohighlight">\(\|Ru\|_{\mathcal{F}} \leq 2\sqrt{\pi}\|u\|_{\mathcal{U}}\)</span>.</p>
+<ul class="simple">
+<li><p>Show that the adjoint of <span class="math notranslate nohighlight">\(R\)</span> is given by</p></li>
+<li><p>Show that the operator <span class="math notranslate nohighlight">\(RR^*\)</span> has eigenfunctions</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[u_{k,l}(\theta,t) = (1-t)^{-1/2} U_k(t)e^{-\imath (k-2l)\theta},\]</div>
+<p>with eigenvalues</p>
+<div class="math notranslate nohighlight">
+\[\sigma_k^2 = \frac{2\pi}{k+1}.\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(U_k\)</span> denote the Chebyshev polynomials of the second kind.</p>
+<ul class="simple">
+<li><p>Now compute the eigenfunctions of <span class="math notranslate nohighlight">\(R^*R\)</span>.</p></li>
+</ul>
+</div>
+<div class="section" id="discretisation-of-the-radon-transform">
+<h3><span class="section-number">2.11.2. </span>Discretisation of the Radon transform<a class="headerlink" href="#discretisation-of-the-radon-transform" title="Permalink to this headline">¶</a></h3>
+<p>Discretise the Radon transform by approximating <span class="math notranslate nohighlight">\(u(x)\)</span> as a piece-wise bi-linear function on a regular grid on the domain <span class="math notranslate nohighlight">\([-1,1]^n\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[u(x,y) = \sum_{i=0}^n \sum_{j=0}^n u_{ij} \phi\left(\frac{x - x_i}{h}\right)\phi_h\left(\frac{y - y_i}{h}\right),\]</div>
+<p>with <span class="math notranslate nohighlight">\(h = 2/n\)</span>, <span class="math notranslate nohighlight">\(x_i = -1 + i\cdot h\)</span>, <span class="math notranslate nohighlight">\(y_j = -1 + j\cdot h\)</span> and <span class="math notranslate nohighlight">\(\phi(x) = \max(1-|x|,0)\)</span>.</p>
 </div>
 </div>
 </div>

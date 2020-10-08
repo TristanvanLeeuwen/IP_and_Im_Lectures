@@ -15,6 +15,9 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
@@ -507,7 +510,7 @@ K^{\dagger} = V_k\Sigma_k^{-1}U_k^{*},
 \[
 \widetilde{u} = V_k\Sigma_k^{-1}U_k^{*}f = \sum_{i=1}^k \frac{\langle u_i, f\rangle}{\sigma_i}v_i.
 \]</div>
-<p>We note the component in <span class="math notranslate nohighlight">\(f\)</span> corresponding to <span class="math notranslate nohighlight">\(v_i\)</span> is amplified by <span class="math notranslate nohighlight">\(\sigma_i^{-1}\)</span>. Thus if <span class="math notranslate nohighlight">\(f\)</span> has (noise) components that correlate with <span class="math notranslate nohighlight">\(v_i\)</span>’s corresponding to very small singular values, these noise components get amplified. Generally, we do not expect problems if <span class="math notranslate nohighlight">\(|\langle u_i, f\rangle|\)</span> decays faster with <span class="math notranslate nohighlight">\(i\)</span> than the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span>. This is called the <em>discrete Picard condition</em> <a class="bibtex reference internal" href="#hansen1990discrete" id="id1">[4]</a>.</p>
+<p>We note the component in <span class="math notranslate nohighlight">\(f\)</span> corresponding to <span class="math notranslate nohighlight">\(v_i\)</span> is amplified by <span class="math notranslate nohighlight">\(\sigma_i^{-1}\)</span>. Thus if <span class="math notranslate nohighlight">\(f\)</span> has (noise) components that correlate with <span class="math notranslate nohighlight">\(v_i\)</span>’s corresponding to very small singular values, these noise components get amplified. Generally, we do not expect problems if <span class="math notranslate nohighlight">\(|\langle u_i, f\rangle|\)</span> decays faster with <span class="math notranslate nohighlight">\(i\)</span> than the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span>. This is called the <em>discrete Picard condition</em> <a class="bibtex reference internal" href="what_is.html#hansen1990discrete" id="id1">[4]</a>.</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Discrete Picard Condition</em></p>
 <p>The vector <span class="math notranslate nohighlight">\(f \in \mathbb{R}^m\)</span> satisfies the discrete Picard condition for the problem <span class="math notranslate nohighlight">\(Ku=f\)</span> if the coefficients <span class="math notranslate nohighlight">\(|\langle u_i, f\rangle|\)</span> decay faster than the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span> of <span class="math notranslate nohighlight">\(K\)</span>, where <span class="math notranslate nohighlight">\(u_i\)</span> denotes the left singular vectors of <span class="math notranslate nohighlight">\(K\)</span>.</p>

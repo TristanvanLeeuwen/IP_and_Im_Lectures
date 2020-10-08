@@ -15,6 +15,9 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
@@ -616,28 +619,45 @@ We will explore optimality conditions and algorithms for these two classes in mo
 </div>
 <div class="section" id="the-euler-lagrange-equations">
 <h2><span class="section-number">5.3. </span>The Euler-Lagrange equations<a class="headerlink" href="#the-euler-lagrange-equations" title="Permalink to this headline">¶</a></h2>
-<p>An alternative viewpoint on optimality is provided by the Euler-lagrange equations, which establishes the link between certain problems of the form <a class="reference internal" href="#equation-variational">(5.1)</a> and PDEs. In particular, we focus in this section on problems of the form</p>
-<div class="math notranslate nohighlight">
-\[\min_{u\in\mathcal{U}} \textstyle{\frac{1}{2}} \|u - f^\delta\|_{L^2(\Omega)} + \alpha R(\nabla u).\]</div>
-<p>Such problems occur for example in image-denoising applications. We will see later that such problems also occur as subproblems when solving more general problems of the form <a class="reference internal" href="#equation-variational-r">(5.2)</a>.</p>
+<p>An alternative viewpoint on optimality is provided by the Euler-lagrange equations, which establishes the link between certain problems of the form <a class="reference internal" href="#equation-variational">(5.1)</a> and PDEs. In particular, we focus in this section on functionals of the form</p>
+<div class="math notranslate nohighlight" id="equation-j-denoising">
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-j-denoising" title="Permalink to this equation">¶</a></span>\[J(u) = {\textstyle{\frac{1}{2}}} \int_{\Omega} \left(u(x) - f^\delta(x)\right)^2 + r(\nabla u(x)) \mathrm{d}x,\]</div>
+<p>with <span class="math notranslate nohighlight">\(\Omega \subset \mathbb{R}^n\)</span> and <span class="math notranslate nohighlight">\(r : \mathbb{R}^n \rightarrow \mathbb{R}\)</span>. Such problems occur for example in image-denoising applications. We will see later that such problems also occur as subproblems when solving more general problems of the form <a class="reference internal" href="#equation-variational-r">(5.2)</a>.</p>
 <div class="important admonition">
-<p class="admonition-title">Definition: Euler-Lagrange equations</p>
-<p>The first-order optimality condition for <span class="math notranslate nohighlight">\(u\in\mathcal{U}\)</span> to be a solution to <a class="reference internal" href="#equation-variational">(5.1)</a> is</p>
+<p class="admonition-title">Theorem: Euler-Lagrange equations</p>
+<p>Let <span class="math notranslate nohighlight">\(J\)</span> be a functional of the form <a class="reference internal" href="#equation-j-denoising">(5.5)</a>. Then the Euler-Lagrange equations are given by</p>
 <div class="math notranslate nohighlight">
-\[\left.\frac{\mathrm{d}}{\mathrm{d}t} J(u + t\phi)\right|_{t=0} = 0 \quad \forall \phi \in C_c^{\infty},\]</div>
-<p>where <span class="math notranslate nohighlight">\(..\)</span></p>
+\[u(x) - \nabla \cdot \nabla r(\nabla u(x)) = f^\delta(x),\]</div>
+<p>with boundary condition <span class="math notranslate nohighlight">\(\nabla u \cdot n = 0\)</span>. The solution to this PDE is a stationary point of the functional <span class="math notranslate nohighlight">\(J\)</span>.</p>
+<p>It is commonly expressed as an evolution equation</p>
+<div class="math notranslate nohighlight">
+\[\partial_t u(t,x) + u(t,x) - \nabla \cdot \nabla r(\nabla u(t,x)) = f^\delta(x),\]</div>
+<p>whose solution tends to a stationary point of <span class="math notranslate nohighlight">\(J\)</span> as <span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span>.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="math notranslate nohighlight">\(u_*\)</span> be stationary point of <span class="math notranslate nohighlight">\(J\)</span>, and introduce</p>
+<div class="math notranslate nohighlight">
+\[\phi(t) = J(u_* + t v),\]</div>
+<p>then <span class="math notranslate nohighlight">\(\phi'(0) = 0\)</span> for all <span class="math notranslate nohighlight">\(v\)</span>. In this case we have</p>
+<div class="math notranslate nohighlight">
+\[\phi(t) = \int_{\Omega} \textstyle{\frac{1}{2}}\left(u + t v - f^\delta\right)^2 + r(\nabla u + t \nabla v),\]</div>
+<p>and hence</p>
+<div class="math notranslate nohighlight">
+\[\phi'(0) = \int_{\Omega} (u - f^\delta)v + \nabla r(\nabla u)\cdot\nabla v.\]</div>
+<p>Applyings <a class="reference external" href="https://en.wikipedia.org/wiki/Green%27s_identities#Green%27s_first_identity">Green’s first identity</a> yields</p>
+<div class="math notranslate nohighlight">
+\[\int_{\Omega} \left(u(x) - f^\delta(x) - \nabla \cdot \nabla r(\nabla u(x))\right) v(x) \mathrm{d}x + \left.v(x)\nabla u(x)\cdot n(x)\right|_{\Omega}.\]</div>
+<p>Since it should hold for all <span class="math notranslate nohighlight">\(v\)</span>, we obtain the desired PDE. The boundary term involves <span class="math notranslate nohighlight">\(\nabla u\cdot n\)</span> so this imposes Neumann boundary conditions.</p>
 </div>
 <div class="admonition-example-the-heat-equation admonition">
 <p class="admonition-title">Example: <em>The heat equation</em></p>
 <p>Let</p>
 <div class="math notranslate nohighlight">
-\[R(v) = \|v\|_{L^2(\Omega)}^2.\]</div>
+\[r(v) = \|v\|_2^2.\]</div>
 <p>The corresponding diffusion equation is given by</p>
 <div class="math notranslate nohighlight">
 \[\partial_t u + u - \alpha\nabla^2 u = f^\delta.\]</div>
-<ul class="simple">
-<li><p>definition of underlying spaces, boundary conditions.</p></li>
-</ul>
 <p>A forward Euler discretisation of the PDE leads to</p>
 <div class="math notranslate nohighlight">
 \[u_{k+1} = u_k - \Delta t \left(f^\delta - u + \alpha \nabla^2 u\right),\]</div>
@@ -716,8 +736,8 @@ We will explore optimality conditions and algorithms for these two classes in mo
 <p class="admonition-title">Example: <em>Non-linear diffusion</em></p>
 <p>Let</p>
 <div class="math notranslate nohighlight">
-\[R(v) = \int_{\Omega} r\left(\|v\|^2\right) \mathrm{d}x.\]</div>
-<p>A popular choice for <span class="math notranslate nohighlight">\(r = \log(1 + s/\epsilon^2)\)</span>, which leads to the Perona-Malik diffusion equation:</p>
+\[r(v) = \log(1 + \|v\|_2^2/\epsilon^2),\]</div>
+<p>which leads to the Perona-Malik diffusion equation:</p>
 <div class="math notranslate nohighlight">
 \[\partial_t u + u - \alpha\nabla \cdot \left(\frac{\nabla u}{1 + \epsilon^{-2}\|\nabla u\|_2^2}\right) = f^\delta.\]</div>
 <p>We can interpret intuitively why this would preserve edges by looking at the diffusion coefficient. Wherever <span class="math notranslate nohighlight">\(\|\nabla u\| \ll \epsilon\)</span> we have linear diffusion, if <span class="math notranslate nohighlight">\(\|\nabla u\| \gg \epsilon\)</span>, we hardly have any diffusion. This intuition if confirmed by consider the penalty <span class="math notranslate nohighlight">\(r(s)\)</span>, which for small <span class="math notranslate nohighlight">\(s\)</span> behaves like <span class="math notranslate nohighlight">\(s^2\)</span> but then flattens out and will thus not increasingly penalise larger gradients.</p>
@@ -790,12 +810,6 @@ We will explore optimality conditions and algorithms for these two classes in mo
 <img alt="_images/variational_formulations_5_1.png" src="_images/variational_formulations_5_1.png" />
 </div>
 </div>
-<div class="admonition-example-total-variation admonition">
-<p class="admonition-title">Example: <em>Total variation</em></p>
-<p>Let</p>
-<div class="math notranslate nohighlight">
-\[R(v) = ...\]</div>
-</div>
 </div>
 <div class="section" id="exercises">
 <h2><span class="section-number">5.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
@@ -852,15 +866,15 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 <h3><span class="section-number">5.4.3. </span>High-order diffusion<a class="headerlink" href="#high-order-diffusion" title="Permalink to this headline">¶</a></h3>
 <p>Consider the following denoising problem</p>
 <div class="math notranslate nohighlight">
-\[\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_{L^2(\mathbb{R})} + \textstyle{\frac{\alpha}{2}} \|u''\|_{L^2(\mathbb{R})}^2.\]</div>
+\[\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_{L^2([0,1])} + \textstyle{\frac{\alpha}{2}} \|u''\|_{L^2([0,1])}^2.\]</div>
 <ul class="simple">
 <li><p>Show that the solution to</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\partial_t u(t,x) + u(t,x) + \alpha \partial_x^4 u(t,x) = f^\delta(x),\]</div>
-<p>satisfies the optimality conditions of the variational problem as <span class="math notranslate nohighlight">\(t\rightarrow \infty\)</span> .</p>
+<p>with boundary conditions <span class="math notranslate nohighlight">\(\partial_x u = \partial_{xxx}u = 0\)</span>, satisfies the optimality conditions of the variational problem as <span class="math notranslate nohighlight">\(t\rightarrow \infty\)</span> .</p>
 <ul class="simple">
-<li><p>Design an explicit finite-difference scheme to solve the diffusion equation on <span class="math notranslate nohighlight">\([0,1]\)</span> with boundary conditions <span class="math notranslate nohighlight">\(\partial_x u = \partial_{xxx}u = 0\)</span> at <span class="math notranslate nohighlight">\(x = 0\)</span> and <span class="math notranslate nohighlight">\(x=1\)</span> and implement it in Python.</p></li>
+<li><p>Design an explicit finite-difference scheme to solve the diffusion equation and implement it in Python.</p></li>
 <li><p>Test it on noisy data: <span class="math notranslate nohighlight">\(f^\delta(x) = \exp(-10^2(x-1/2)^2) + \epsilon\)</span>, with <span class="math notranslate nohighlight">\(\epsilon \sim N(0,\sigma^2)\)</span>.</p></li>
 </ul>
 <div class="tip dropdown admonition">
@@ -878,21 +892,22 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 <li><p>We use a central FD in space and Forward Euler in time:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[u^{(n+1)} = u^{(n)} + \Delta t \left(f^\delta - u^{(n)} - \alpha D u^{(n)}\right),\]</div>
+\[u^{(k+1)} = u^{(k)} + \Delta t \left(f^\delta - u^{(k)} - \alpha D u^{(k)}\right),\]</div>
 <p>with <span class="math notranslate nohighlight">\(D\)</span> the finite-difference matrix. An overview of the coefficients for central FD are found <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference_coefficient">here</a>. For the central grid-points we have</p>
 <div class="math notranslate nohighlight">
-\[u''''(k\cdot \Delta x) \approx (u_{k-2} - 4u_{k-1} + 6u_k - 4u_{k+1} + u_{k+2})/(\Delta x)^2.\]</div>
-<p>For <span class="math notranslate nohighlight">\(k=0\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span> we eliminate <span class="math notranslate nohighlight">\(u_{-2}\)</span> and <span class="math notranslate nohighlight">\(u_{-1}\)</span> using the boundary conditions:</p>
-<p><span class="math notranslate nohighlight">\($-(1/2)u_{-2} + u_{-1} - u_1 + (1/2)u_2\)</span> = 0,$$</p>
+\[u''''(i\cdot \Delta x) \approx (u_{i-2} - 4u_{i-1} + 6u_i - 4u_{i+1} + u_{i+2})/(\Delta x)^2,\]</div>
+<p>for <span class="math notranslate nohighlight">\(i = 0, 1, \ldots, n-1\)</span>. For <span class="math notranslate nohighlight">\(i=0\)</span> and <span class="math notranslate nohighlight">\(i=1\)</span> we eliminate <span class="math notranslate nohighlight">\(u_{-2}\)</span> and <span class="math notranslate nohighlight">\(u_{-1}\)</span> using the boundary conditions:</p>
+<div class="math notranslate nohighlight">
+\[-(1/2)u_{-2} + u_{-1} - u_1 + (1/2)u_2 = 0,\]</div>
 <div class="math notranslate nohighlight">
 \[(1/2)u_{-1} - (1/2)u_1 = 0.\]</div>
-<p>We do the same at the other boundary.</p>
+<p>We do the same for <span class="math notranslate nohighlight">\(i = n-2\)</span> and <span class="math notranslate nohighlight">\(i=n-1\)</span>.</p>
 <ul class="simple">
 <li><p>Running the code for <span class="math notranslate nohighlight">\(\Delta x = 10^{-2}\)</span>, <span class="math notranslate nohighlight">\(\Delta t = 10^{-8}\)</span>, <span class="math notranslate nohighlight">\(\alpha = 10^{-2}\)</span> on noisy data <span class="math notranslate nohighlight">\(f^\delta(x) = \exp(-10^2(x-1/2)^2) + \epsilon\)</span>, with <span class="math notranslate nohighlight">\(\epsilon \sim N(0,\sigma^2)\)</span>, <span class="math notranslate nohighlight">\(\sigma=10^{-01}\)</span> gives the following result.</p></li>
 </ul>
 <div class="figure align-default" id="fourth-order" style="width: 600px">
 <div class="cell_output docutils container">
-<img alt="_images/variational_formulations_9_0.png" src="_images/variational_formulations_9_0.png" />
+<img alt="_images/variational_formulations_8_0.png" src="_images/variational_formulations_8_0.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 5.4 </span><span class="caption-text">Example of denoising with fourth order diffusion.</span><a class="headerlink" href="#fourth-order" title="Permalink to this image">¶</a></p>
 </div>
@@ -954,7 +969,7 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/variational_formulations_9_1.png" src="_images/variational_formulations_9_1.png" />
+<img alt="_images/variational_formulations_8_1.png" src="_images/variational_formulations_8_1.png" />
 </div>
 </div>
 </div>
@@ -964,7 +979,8 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 <div class="section" id="total-variation">
 <h3><span class="section-number">5.5.1. </span>Total variation<a class="headerlink" href="#total-variation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical method to solve it.</p></li>
+<li><p>Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical scheme method to solve it.</p></li>
+<li><p>Test your method on the cameraman image and compare it to the Perona-Malik approach.</p></li>
 </ul>
 </div>
 </div>

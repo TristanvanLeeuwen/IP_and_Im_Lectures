@@ -15,6 +15,9 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
@@ -349,7 +352,7 @@
                 
   <div class="section" id="a-statistical-perspective-on-inverse-problems">
 <h1><span class="section-number">4. </span>A statistical perspective on inverse problems<a class="headerlink" href="#a-statistical-perspective-on-inverse-problems" title="Permalink to this headline">¶</a></h1>
-<p>In this chapter we present a statistical perspective on inverse problems. This viewpoint allows us to incorporate prior assumptions and formulate variational problems. To avoid unnecessary technicalities, we’ll stick to the finite-dimensional setting. A formal treatment in the infinite-dimensional setting is given in <a class="bibtex reference internal" href="#dashti2017" id="id1">[3]</a>.</p>
+<p>In this chapter we present a statistical perspective on inverse problems. This viewpoint allows us to incorporate prior assumptions and formulate variational problems. To avoid unnecessary technicalities, we’ll stick to the finite-dimensional setting. A formal treatment in the infinite-dimensional setting is given in <a class="bibtex reference internal" href="what_is.html#dashti2017" id="id1">[3]</a>.</p>
 <div class="section" id="formulating-prior-assumptions">
 <h2><span class="section-number">4.1. </span>Formulating prior assumptions<a class="headerlink" href="#formulating-prior-assumptions" title="Permalink to this headline">¶</a></h2>
 <p>We take the viewpoint that both <span class="math notranslate nohighlight">\(f^{\delta}\)</span> and <span class="math notranslate nohighlight">\(u\)</span> are <a class="reference external" href="https://en.wikipedia.org/wiki/Random_variable">continuous random variables</a>. The prior assumptions are then formulated in terms of multi-variate <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_density_function">probability distributions</a>.</p>
@@ -383,7 +386,7 @@
 <p>Thus, <span class="math notranslate nohighlight">\(w^\delta - \rho v^\delta\)</span> is a normally distributed random variable with mean zero and variance <span class="math notranslate nohighlight">\(\sigma^2(1 + \rho^2)\)</span>. This gives us the following Likelihood</p>
 <div class="math notranslate nohighlight">
 \[\pi_{\text{data}}(u | f^\delta) = \frac{1}{\sigma\sqrt{1+\rho^2}\sqrt{2\pi}}\exp\left(-\frac{(w^\delta - \rho v^\delta)^2}{2\sigma^2(1+\rho^2)}\right).\]</div>
-<p>As prior, we can use statistics of rock samples <a class="bibtex reference internal" href="#johnson1984density" id="id2">[5]</a>. This gives a <a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-normal distribution</a> with parameters <span class="math notranslate nohighlight">\((1.5,0.4)\)</span>. The corresponding distributions are shown in figure <a class="reference internal" href="#rock-samples"><span class="std std-numref">Fig. 4.1</span></a>.</p>
+<p>As prior, we can use statistics of rock samples <a class="bibtex reference internal" href="what_is.html#johnson1984density" id="id2">[5]</a>. This gives a <a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-normal distribution</a> with parameters <span class="math notranslate nohighlight">\((1.5,0.4)\)</span>. The corresponding distributions are shown in figure <a class="reference internal" href="#rock-samples"><span class="std std-numref">Fig. 4.1</span></a>.</p>
 <div class="figure align-default" id="rock-samples" style="width: 500px">
 <div class="cell_output docutils container">
 <img alt="_images/statistical_perspective_1_0.png" src="_images/statistical_perspective_1_0.png" />
