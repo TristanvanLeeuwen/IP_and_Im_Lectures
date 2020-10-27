@@ -337,14 +337,21 @@
      3.4.2. Inverse scattering
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignments">
+   3.5. Assignments
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#non-scattering-potentials">
-     3.4.3. Non-scattering potentials
+     3.5.1. Non-scattering potentials
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#parameter-estimation">
-     3.4.4. Parameter estimation
+     3.5.2. Parameter estimation
     </a>
    </li>
   </ul>
@@ -604,12 +611,12 @@ u = \nabla^2 (K^*f).
 
     <span class="c1"># main loop</span>
     <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="o">**</span><span class="n">n</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
-    
+
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">u</span><span class="p">[:,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">L</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">C</span><span class="nd">@q</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">u</span>
-    
+
 <span class="k">def</span> <span class="nf">getMatrices</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
 
     <span class="c1"># setup matrices</span>
@@ -866,7 +873,7 @@ To show that this a bounded operator consider</p>
 \widehat f(\omega,\xi,\eta) \propto \omega^2\widehat{u}(\omega (\xi - \eta)),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\widehat{u}\)</span> is the spatial Fourier transform of the scattering potential, <span class="math notranslate nohighlight">\(u\)</span>, and <span class="math notranslate nohighlight">\(\xi,\eta\)</span> are points on the unit sphere.</p>
-<div class="clip dropdown admonition">
+<div class="tip dropdown admonition">
 <p class="admonition-title">Answer</p>
 <p>We start from the forward operator</p>
 <div class="math notranslate nohighlight">
@@ -876,20 +883,23 @@ To show that this a bounded operator consider</p>
 \[\widehat{f}(\omega,r,s) = \omega^2\int_{\Omega}u(x)\frac{\exp(\imath\omega(|x-r|+|x-s|))}{|x-r||x-s|}.\]</div>
 <p>With the far-field approximation (<span class="math notranslate nohighlight">\(\rho = |r| = |s| \gg |x|\)</span>) <span class="math notranslate nohighlight">\(|x-s| \approx |s| + x\cdot s / |s|\)</span> and <span class="math notranslate nohighlight">\(|x-r| \approx |r| + x\cdot r / |r|\)</span> and introducing <span class="math notranslate nohighlight">\(\xi = s/|s|\)</span>, <span class="math notranslate nohighlight">\(\eta = r/|r|\)</span> we get</p>
 <div class="math notranslate nohighlight">
-\[\widehat{f}(\omega,\xi,\eta) \approx \frac{\omega^2 e^{2\imath\omega \rho}}{\rho^2}\int_{\Omega} 
+\[\widehat{f}(\omega,\xi,\eta) \approx \frac{\omega^2 e^{2\imath\omega \rho}}{\rho^2}\int_{\Omega}
 \frac{\exp(\imath\omega x\cdot(\xi + \eta))}{\rho^2} u(x)\mathrm{d}x,\]</div>
 <p>which can be interpreted as a Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> evaluated at wavenumber <span class="math notranslate nohighlight">\(\omega (\xi + \eta)\)</span>.</p>
 </div>
 <ul class="simple">
 <li><p>Assuming that measurements are available for <span class="math notranslate nohighlight">\(\omega \in [\omega_0,\omega_1]\)</span>, sketch which wavenumbers of <span class="math notranslate nohighlight">\(u\)</span> can be stably reconstructed. In what sense is the problem ill-posed?</p></li>
 </ul>
-<div class="clip dropdown admonition">
+<div class="tip dropdown admonition">
 <p class="admonition-title">Answer</p>
 <p>We can retrieve <span class="math notranslate nohighlight">\(u\)</span> from <span class="math notranslate nohighlight">\(\widehat{u}\)</span> if we have samples of its Fourier transform everywhere. However, the data only gives us samples <span class="math notranslate nohighlight">\(\omega (\xi + \eta)\)</span>, where <span class="math notranslate nohighlight">\(\xi,\eta \in \mathbb{S}^2\)</span>. We can thus recover all samples in the unit sphere with radius <span class="math notranslate nohighlight">\(2\omega_1\)</span>.</p>
 </div>
 </div>
+</div>
+<div class="section" id="assignments">
+<h2><span class="section-number">3.5. </span>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="non-scattering-potentials">
-<h3><span class="section-number">3.4.3. </span>Non-scattering potentials<a class="headerlink" href="#non-scattering-potentials" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.5.1. </span>Non-scattering potentials<a class="headerlink" href="#non-scattering-potentials" title="Permalink to this headline">¶</a></h3>
 <p>For <span class="math notranslate nohighlight">\(n=2\)</span>, <span class="math notranslate nohighlight">\(L=1\)</span>, <span class="math notranslate nohighlight">\(c=1\)</span>, with a single incident plane wave, <span class="math notranslate nohighlight">\(v_i(t,x) = \sin(\omega(t - \xi\cdot x))\)</span>, with direction <span class="math notranslate nohighlight">\(\xi\)</span> and measurements parallel to the direction of propagation at the opposite end of the scattering potential. Use the Python code shown below to generate data for a given scattering potential, <span class="math notranslate nohighlight">\(r\)</span>.</p>
 <ul class="simple">
 <li><p>Determine suitable <span class="math notranslate nohighlight">\(\Delta t\)</span>, <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(T\)</span> and generate data for scattering potential <span class="math notranslate nohighlight">\(u(x) = \exp(-200|x|^2)\)</span> and an incident plane wave with <span class="math notranslate nohighlight">\(\xi = (1,0)\)</span> and <span class="math notranslate nohighlight">\(\omega = 10\pi\)</span>.</p></li>
@@ -912,13 +922,13 @@ To show that this a bounded operator consider</p>
 	<span class="n">q</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">nx</span><span class="o">**</span><span class="n">n</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
 	<span class="c1"># define matrices</span>
 	<span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">L</span> <span class="o">=</span> <span class="n">getMatrices</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-	
+
 	<span class="c1"># main loop</span>
 	<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="o">**</span><span class="n">n</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
-	
+
 	<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
 		<span class="n">u</span><span class="p">[:,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">L</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">C</span><span class="nd">@q</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span>
-	
+
 	<span class="k">return</span> <span class="n">u</span>
 
 <span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">dt</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -926,19 +936,19 @@ To show that this a bounded operator consider</p>
 	<span class="n">gamma</span> <span class="o">=</span> <span class="n">dt</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="n">dx</span>
 	<span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 	<span class="n">nx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">L</span><span class="o">/</span><span class="n">dx</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
-	
+
 	<span class="c1">#</span>
 	<span class="n">u</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">nx</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
-	
+
 	<span class="c1"># define matrices</span>
 	<span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">L</span> <span class="o">=</span> <span class="n">getMatrices</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-	
+
 	<span class="c1"># main loop</span>
 	<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="o">**</span><span class="n">n</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
-	
+
 	<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
 		<span class="n">q</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="p">[:,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[:,</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">L</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">k</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">c</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-	
+
 	<span class="k">return</span> <span class="n">u</span>
 
 <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="n">xin</span><span class="p">,</span><span class="n">xout1</span><span class="p">,</span><span class="n">xout2</span><span class="o">=</span><span class="p">[]):</span>
@@ -948,14 +958,14 @@ To show that this a bounded operator consider</p>
 		<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 	<span class="k">else</span><span class="p">:</span>
 		<span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
-		
+
 	<span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xout1</span><span class="p">)</span>
 	<span class="n">nx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xin</span><span class="p">)</span>
-	
+
 	<span class="n">rw</span> <span class="o">=</span> <span class="p">[]</span>
 	<span class="n">cl</span> <span class="o">=</span> <span class="p">[]</span>
 	<span class="n">nz</span> <span class="o">=</span> <span class="p">[]</span>
-	
+
 	<span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
 		<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
 			<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
@@ -969,7 +979,7 @@ To show that this a bounded operator consider</p>
 				<span class="n">nz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 				<span class="n">rw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
 				<span class="n">cl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-				<span class="n">nz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> 
+				<span class="n">nz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 		<span class="n">P</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">nz</span><span class="p">,(</span><span class="n">rw</span><span class="p">,</span><span class="n">cl</span><span class="p">)),</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
 	<span class="k">else</span><span class="p">:</span>
 		<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
@@ -978,32 +988,32 @@ To show that this a bounded operator consider</p>
 			<span class="k">while</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">xout1</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
 				<span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
 			<span class="k">while</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">xout2</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
-				<span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>	
+				<span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
 			<span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nx</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
 				<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">xout1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">xout2</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
 				<span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">xout1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">xout2</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
 				<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">xout1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">xout2</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
 				<span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">xout1</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">xout2</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xin</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-				
+
 				<span class="n">rw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
 				<span class="n">cl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">nx</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
 				<span class="n">nz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-				
+
 				<span class="n">rw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
 				<span class="n">cl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">nx</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
 				<span class="n">nz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-				
+
 				<span class="n">rw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
 				<span class="n">cl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">nx</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 				<span class="n">nz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-				
+
 				<span class="n">rw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
 				<span class="n">cl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">nx</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 				<span class="n">nz</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 		<span class="n">P</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">nz</span><span class="p">,(</span><span class="n">rw</span><span class="p">,</span><span class="n">cl</span><span class="p">)),</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">nx</span><span class="o">*</span><span class="n">nx</span><span class="p">))</span>
-		
+
 	<span class="k">return</span> <span class="n">P</span>
-	
+
 <span class="k">def</span> <span class="nf">getMatrices</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
 
 <span class="c1"># setup matrices</span>
@@ -1013,16 +1023,16 @@ To show that this a bounded operator consider</p>
 	<span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma</span>
 	<span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">nx</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma</span>
 	<span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">gamma</span>
-	
+
 	<span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
 		<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
 		<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 		<span class="n">a</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-	
+
 		<span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
 		<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 		<span class="n">b</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-	
+
 		<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">gamma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
 		<span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 		<span class="n">c</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1036,33 +1046,33 @@ To show that this a bounded operator consider</p>
 		<span class="n">a</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 		<span class="n">a</span><span class="p">[:,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 		<span class="n">a</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">nx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-		
+
 		<span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
 		<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
 		<span class="n">b</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
 		<span class="n">b</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 		<span class="n">b</span><span class="p">[:,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 		<span class="n">b</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">nx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-	
+
 		<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">gamma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
 		<span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
 		<span class="n">c</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
 		<span class="n">c</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 		<span class="n">c</span><span class="p">[:,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 		<span class="n">c</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">nx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-		
+
 		<span class="n">L</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">l</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">)),</span><span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">nx</span><span class="p">))</span> <span class="o">+</span> <span class="n">sp</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">l</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">)))</span>
-		
+
 	<span class="n">A</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 	<span class="n">B</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 	<span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-	
+
 	<span class="k">return</span> <span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">L</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># grid</span>
 <span class="n">nt</span> <span class="o">=</span> <span class="mi">201</span>
@@ -1135,93 +1145,12 @@ To show that this a bounded operator consider</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/wavefield_imaging_9_0.png" src="_images/wavefield_imaging_9_0.png" />
-</div>
-</div>
-<div class="tip dropdown admonition">
-<p class="admonition-title">Answer</p>
-<p>The result from the previous exercise
-<span class="math notranslate nohighlight">\(\widehat f(\omega,\xi,\eta) \propto \omega^2\widehat{u}(\omega (\xi - \eta))\)</span> applies equally to the case <span class="math notranslate nohighlight">\(n = 2\)</span> because the Green’s function are the same up to a constant factor (in the far field approximation). We set <span class="math notranslate nohighlight">\(\xi = (1,0)\)</span> and <span class="math notranslate nohighlight">\(\eta = (-1,0)\)</span>, which thus gives us information about <span class="math notranslate nohighlight">\(\widehat{u}((0,0))\)</span>. If we choose <span class="math notranslate nohighlight">\(\widehat{u}((0,0)) = 0\)</span> we get no response. In the code below we simply take a derivative of the scattering potential from the previous example to achieve this. We can apply the same trick to make the potential non-scattering invisible from a few directions, but we can’t do the same for all directions.</p>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># grid</span>
-<span class="n">nt</span> <span class="o">=</span> <span class="mi">201</span>
-<span class="n">nx</span> <span class="o">=</span> <span class="mi">101</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span><span class="p">)</span>
-<span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">tt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
-
-<span class="c1"># velocity</span>
-<span class="n">c</span> <span class="o">=</span> <span class="mf">1.0</span>
-
-<span class="c1"># non-scattering potential</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">xx</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">yy</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-
-<span class="c1"># incident field, plane wave at 10 Hz.</span>
-<span class="n">omega</span>  <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">5</span>
-<span class="n">ui</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">omega</span><span class="o">*</span><span class="p">(</span><span class="n">tt</span> <span class="o">-</span> <span class="p">(</span><span class="n">xx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="p">))</span>
-
-<span class="c1"># solve</span>
-<span class="n">us</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">ui</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="c1"># sample</span>
-<span class="n">xr</span> <span class="o">=</span> <span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
-<span class="n">yr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
-
-<span class="n">P</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xr</span><span class="p">,</span><span class="n">yr</span><span class="p">)</span>
-
-<span class="n">d</span> <span class="o">=</span> <span class="n">P</span><span class="nd">@us</span>
-
-<span class="c1"># plot</span>
-<span class="n">ui</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
-<span class="n">us</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">241</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ui</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">242</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ui</span><span class="p">[:,:,</span><span class="mi">51</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">243</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ui</span><span class="p">[:,:,</span><span class="mi">101</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">244</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ui</span><span class="p">[:,:,</span><span class="mi">151</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">245</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">246</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">51</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">247</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">101</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">248</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">151</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/wavefield_imaging_11_0.png" src="_images/wavefield_imaging_11_0.png" />
+<img alt="_images/wavefield_imaging_8_0.png" src="_images/wavefield_imaging_8_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="parameter-estimation">
-<h3><span class="section-number">3.4.4. </span>Parameter estimation<a class="headerlink" href="#parameter-estimation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.5.2. </span>Parameter estimation<a class="headerlink" href="#parameter-estimation" title="Permalink to this headline">¶</a></h3>
 <p>For <span class="math notranslate nohighlight">\(n=1\)</span>, <span class="math notranslate nohighlight">\(c=1\)</span>, <span class="math notranslate nohighlight">\(L=1\)</span>, <span class="math notranslate nohighlight">\(q(t,x) = w''(t - t_0)\delta(x - x_0)\)</span>, with <span class="math notranslate nohighlight">\(t_0 = 0.2\)</span>, <span class="math notranslate nohighlight">\(x_0 = -0.5\)</span> and where <span class="math notranslate nohighlight">\(w\)</span> is given by
 <span class="math notranslate nohighlight">\($
 w(t) = \exp(-(t/\sigma)^2/2).
@@ -1234,67 +1163,10 @@ $\)</span></p>
 \[
 J(c) = \|K(c) - f\|^2.
 \]</div>
-<div class="tip dropdown admonition">
-<p class="admonition-title">Answer</p>
-<p>We get</p>
-<div class="math notranslate nohighlight">
-\[v(t,x) = \frac{1}{2c}\int\int q(t',x') H(t-t' - |x - x'|/c)\mathrm{d}t'\mathrm{d}x' = \frac{1}{2c}\int  w''(t' - t_0) H(t-t' - |x - x_0|/c)\mathrm{d}t'.\]</div>
-<p>Integrating by parts we get</p>
-<div class="math notranslate nohighlight">
-\[v(t,x) = \frac{1}{2c} w'(t - t_0 - |x-x_0|/c).\]</div>
-<p>This gives</p>
-<div class="math notranslate nohighlight">
-\[K(c) = \frac{-1}{2c} w'(t - 0.2 + 1/c).\]</div>
-</div>
 <ul class="simple">
 <li><p>Plot the objective as a function of <span class="math notranslate nohighlight">\(c\)</span> for various values of <span class="math notranslate nohighlight">\(\sigma\)</span>.</p></li>
-</ul>
-<div class="tip dropdown admonition">
-<p class="admonition-title">Answer</p>
-<p>See the code example below (click ‘+’ to show)</p>
-</div>
-<ul class="simple">
 <li><p>Do you think Newton’s method will be successful in retrieving the correct <span class="math notranslate nohighlight">\(c\)</span>?</p></li>
 </ul>
-<div class="tip dropdown admonition">
-<p class="admonition-title">Answer</p>
-<p>In the plot we see the behaviour of <span class="math notranslate nohighlight">\(J(c)\)</span>; in particular a few stationary points and local minimum away from the global minimizer. This makes it difficult to find the optimal <span class="math notranslate nohighlight">\(c\)</span>.</p>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="c1"># grid and parameters</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="o">.</span><span class="mf">5e-1</span>
-
-<span class="c1"># functions</span>
-<span class="n">w</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">dw</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span> <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">sigma</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">K</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">c</span> <span class="p">:</span> <span class="o">-</span><span class="n">dw</span><span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mf">0.2</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">c</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
-<span class="n">J</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">c</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">K</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
-
-<span class="c1"># sample</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">Js</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)):</span>
-    <span class="n">Js</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">J</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
-
-<span class="c1"># plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">Js</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;J[c]&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;J[c]&#39;)
-</pre></div>
-</div>
-<img alt="_images/wavefield_imaging_13_1.png" src="_images/wavefield_imaging_13_1.png" />
-</div>
-</div>
 </div>
 </div>
 </div>

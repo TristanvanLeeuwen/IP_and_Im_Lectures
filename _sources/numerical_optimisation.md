@@ -203,7 +203,7 @@ To deal with convex functionals that are not smooth, we first generalise the not
 
 Given a convex functional $J$, we call $g \in \mathbb{R}^n$ a subgradient of $J$ at $u$ if
 
-$$J(v) \geq J(u) + \langle g, (v - u)\rangle \quad \forall v \in \mathbb{R}^n.$$
+$$J(v) \geq J(u) + \langle g, v - u\rangle \quad \forall v \in \mathbb{R}^n.$$
 
 This definition is reminiscent of the Taylor expansion and we can indeed easily check that it holds for convex smooth functionals for $g = J'(u)$. For non-smooth functionals there may be multiple vectors $g$ satisfying the inequality. We call the set of all such vectors the *subdifferential* which we will denote as $\partial J(u)$. We will generally denote an arbritary element of $\partial J(u)$ by $J'(u)$.
 ```
@@ -1015,7 +1015,7 @@ $$u_{k+1} = \left(I + \rho D^*\!D\right)^{-1}\left(f^\delta + D^*(\rho v_k - \nu
 $$v_{k+1} = \text{prox}_{(\lambda/\rho)\|\cdot\|_1}\left(Du_{k+1} + \rho^{-1}\nu_k\right).$$
 $$\nu_{k+1}= \nu_k + \rho \left(Du_{k+1} - v_{k+1}\right).$$
 
-* Below we see results for both methods using $\lambda = 5\cdot 10^{-3}$, $\alpha = 1/\|D\|^2$, $\rho = 1$. Both methods give comparable results and exhibit very similar convergence behaviour. 
+* Below we see results for both methods using $\lambda = 5\cdot 10^{-3}$, $\alpha = 1/\|D\|^2$, $\rho = 1$. Both methods give comparable results and exhibit very similar convergence behaviour.
 
 ```{glue:figure} TV_exercise
 :figwidth: 600px

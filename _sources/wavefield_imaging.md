@@ -128,7 +128,7 @@ $$
 
 for $n=3$. Note that these are the *causal* Green functions; they propagate information forward in time. The \*a-causal* or *time-reversed* Green functions also satisfy the wave-equation.
 
-The solution for non-constant $c$ can be constructed by solving an integral equation 
+The solution for non-constant $c$ can be constructed by solving an integral equation
 
 $$
 v = g_0*q - g_0*\left(u\cdot \frac{\partial^2 v}{\partial t^2}\right),
@@ -314,12 +314,12 @@ def solve(q,c,dt,dx,T=1.0,L=1.0,n=1):
 
     # main loop
     u = np.zeros((nx**n,nt))
-    
+
     for k in range(1,nt-1):
         u[:,k+1] = A@u[:,k] + L@u[:,k] + B@u[:,k-1] + (dx**2)*C@q[:,k]
 
     return u
-    
+
 def getMatrices(gamma,nx,n):
 
     # setup matrices
@@ -602,8 +602,8 @@ $$
 
 where $\widehat{u}$ is the spatial Fourier transform of the scattering potential, $u$, and $\xi,\eta$ are points on the unit sphere.
 
-```{admonition} Answer 
-:class: clip, dropdown
+```{admonition} Answer
+:class: tip, dropdown
 
 We start from the forward operator
 
@@ -615,7 +615,7 @@ $$\widehat{f}(\omega,r,s) = \omega^2\int_{\Omega}u(x)\frac{\exp(\imath\omega(|x-
 
 With the far-field approximation ($\rho = |r| = |s| \gg |x|$) $|x-s| \approx |s| + x\cdot s / |s|$ and $|x-r| \approx |r| + x\cdot r / |r|$ and introducing $\xi = s/|s|$, $\eta = r/|r|$ we get
 
-$$\widehat{f}(\omega,\xi,\eta) \approx \frac{\omega^2 e^{2\imath\omega \rho}}{\rho^2}\int_{\Omega} 
+$$\widehat{f}(\omega,\xi,\eta) \approx \frac{\omega^2 e^{2\imath\omega \rho}}{\rho^2}\int_{\Omega}
 \frac{\exp(\imath\omega x\cdot(\xi + \eta))}{\rho^2} u(x)\mathrm{d}x,$$
 
 which can be interpreted as a Fourier transform of $u$ evaluated at wavenumber $\omega (\xi + \eta)$.
@@ -624,13 +624,13 @@ which can be interpreted as a Fourier transform of $u$ evaluated at wavenumber $
 * Assuming that measurements are available for $\omega \in [\omega_0,\omega_1]$, sketch which wavenumbers of $u$ can be stably reconstructed. In what sense is the problem ill-posed?
 
 ```{admonition} Answer
-:class: clip, dropdown
+:class: tip, dropdown
 
 We can retrieve $u$ from $\widehat{u}$ if we have samples of its Fourier transform everywhere. However, the data only gives us samples $\omega (\xi + \eta)$, where $\xi,\eta \in \mathbb{S}^2$. We can thus recover all samples in the unit sphere with radius $2\omega_1$.
 
 ```
 
-+++
+## Assignments
 
 ### Non-scattering potentials
 
@@ -660,13 +660,13 @@ def solve(q,c,dt,dx,T=1.0,L=1.0,n=1):
 	q.resize((nx**n,nt))
 	# define matrices
 	A,B,C,L = getMatrices(gamma,nx,n)
-	
+
 	# main loop
 	u = np.zeros((nx**n,nt))
-	
+
 	for k in range(1,nt-1):
 		u[:,k+1] = A@u[:,k] + L@u[:,k] + B@u[:,k-1] + (dx**2)*C@q[:,k]
-	
+
 	return u
 
 def multiply(u,c,dt,dx,T=1.0,L=1.0,n=1):
@@ -674,19 +674,19 @@ def multiply(u,c,dt,dx,T=1.0,L=1.0,n=1):
 	gamma = dt*c/dx
 	nt = int(T/dt + 1)
 	nx = int(2*L/dx + 2)
-	
+
 	#
 	u.resize((nx**2,nt))
-	
+
 	# define matrices
 	A,B,C,L = getMatrices(gamma,nx,n)
-	
+
 	# main loop
 	q = np.zeros((nx**n,nt))
-	
+
 	for k in range(1,nt-1):
 		q[k] = (u[:,k+1] - 2*u[:,k] + u[:,k-1] - L@u[:,k])/(dt*c)**2
-	
+
 	return u
 
 def sample(xin,xout1,xout2=[]):
@@ -696,14 +696,14 @@ def sample(xin,xout1,xout2=[]):
 		n = 2
 	else:
 		n = 1
-		
+
 	m = len(xout1)
 	nx = len(xin)
-	
+
 	rw = []
 	cl = []
 	nz = []
-	
+
 	if n == 1:
 		for k in range(m):
 			i = 0
@@ -717,7 +717,7 @@ def sample(xin,xout1,xout2=[]):
 				nz.append(a)
 				rw.append(k)
 				cl.append(i+1)
-				nz.append(b) 
+				nz.append(b)
 		P = sp.coo_matrix((nz,(rw,cl)),shape=(m,nx))
 	else:
 		for k in range(m):
@@ -726,32 +726,32 @@ def sample(xin,xout1,xout2=[]):
 			while xin[i] < xout1[k]:
 				i = i + 1
 			while xin[j] < xout2[k]:
-				j = j + 1	
+				j = j + 1
 			if i < nx - 1 and j < nx - 1:
 				a = (xout1[k] - xin[i+1])*(xout2[k] - xin[j+1])/(xin[i] - xin[i+1])/(xin[j] - xin[j+1])
 				b = (xout1[k] - xin[i])*(xout2[k] - xin[j+1])/(xin[i+1] - xin[i])/(xin[j] - xin[j+1])
 				c = (xout1[k] - xin[i+1])*(xout2[k] - xin[j])/(xin[i] - xin[i+1])/(xin[j+1] - xin[j])
 				d = (xout1[k] - xin[i])*(xout2[k] - xin[j])/(xin[i+1] - xin[i])/(xin[j+1] - xin[j])
-				
+
 				rw.append(k)
 				cl.append(i+nx*j)
 				nz.append(a)
-				
+
 				rw.append(k)
 				cl.append(i+1+nx*j)
 				nz.append(b)
-				
+
 				rw.append(k)
 				cl.append(i+nx*(j+1))
 				nz.append(c)
-				
+
 				rw.append(k)
 				cl.append(i+1+nx*(j+1))
 				nz.append(d)
 		P = sp.coo_matrix((nz,(rw,cl)),shape=(m,nx*nx))
-		
+
 	return P
-	
+
 def getMatrices(gamma,nx,n):
 
 # setup matrices
@@ -761,16 +761,16 @@ def getMatrices(gamma,nx,n):
 	l[2,0] = gamma
 	l[0,nx-2] = gamma
 	l[1,nx-1] = -gamma
-	
+
 	if n == 1:
 		a = 2*np.ones(nx)
 		a[0] = 1
 		a[nx-1] = 1
-	
+
 		b = -np.ones(nx)
 		b[0] = 0
 		b[nx-1] = 0
-	
+
 		c = (gamma)**2*np.ones(nx)
 		c[0] = 0
 		c[nx-1] = 0
@@ -784,105 +784,28 @@ def getMatrices(gamma,nx,n):
 		a[:,0] = 1
 		a[:,nx-1] = 1
 		a.resize(nx**2)
-		
+
 		b = -np.ones((nx,nx))
 		b[0,:] = 0
 		b[nx-1,:] = 0
 		b[:,0] = 0
 		b[:,nx-1] = 0
 		b.resize(nx**2)
-	
+
 		c = (gamma)**2*np.ones((nx,nx))
 		c[0,:] = 0
 		c[nx-1,:] = 0
 		c[:,0] = 0
 		c[:,nx-1] = 0
 		c.resize(nx**2)
-		
+
 		L = sp.kron(sp.diags(l,[-1, 0, 1],shape=(nx,nx)),sp.eye(nx)) + sp.kron(sp.eye(nx),sp.diags(l,[-1, 0, 1],shape=(nx,nx)))
-		
+
 	A = sp.diags(a)
 	B = sp.diags(b)
 	C = sp.diags(c)
-	
+
 	return A,B,C,L
-```
-
-```{code-cell} ipython3
-# grid
-nt = 201
-nx = 101
-x = np.linspace(-1,1,nx)
-y = np.linspace(-1,1,nx)
-t = np.linspace(0,1,nt)
-xx,yy,tt = np.meshgrid(x,y,t)
-
-# velocity
-c = 1.0
-
-# scattering potential
-a = 200;
-r = np.exp(-a*xx**2)*np.exp(-a*yy**2);
-
-# incident field, plane wave at 10 Hz.
-omega  = 2*np.pi*5
-ui = np.sin(omega*(tt - (xx + 1)/c))
-
-# solve
-us = solve(r*ui,c,t[1]-t[0],x[1]-x[0],n=2)
-
-# sample
-xr = 0.8*np.ones(101)
-yr = np.linspace(-1,1,101)
-
-P = sample(x,xr,yr)
-
-d = P@us
-
-# plot
-ui.resize((nx,nx,nt))
-us.resize((nx,nx,nt))
-
-plt.subplot(241)
-plt.imshow(ui[:,:,1])
-plt.clim((-1,1))
-
-plt.subplot(242)
-plt.imshow(ui[:,:,51])
-plt.clim((-1,1))
-
-plt.subplot(243)
-plt.imshow(ui[:,:,101])
-plt.clim((-1,1))
-
-plt.subplot(244)
-plt.imshow(ui[:,:,151])
-plt.clim((-1,1))
-
-plt.subplot(245)
-plt.imshow(us[:,:,1])
-plt.clim((-.001,.001))
-
-plt.subplot(246)
-plt.imshow(us[:,:,51])
-plt.clim((-.001,.001))
-
-plt.subplot(247)
-plt.imshow(us[:,:,101])
-plt.clim((-.001,.001))
-
-plt.subplot(248)
-plt.imshow(us[:,:,151])
-plt.clim((-.001,.001))
-
-plt.show()
-```
-
-```{admonition} Answer
-:class: tip, dropdown
-
-The result from the previous exercise 
-$\widehat f(\omega,\xi,\eta) \propto \omega^2\widehat{u}(\omega (\xi - \eta))$ applies equally to the case $n = 2$ because the Green's function are the same up to a constant factor (in the far field approximation). We set $\xi = (1,0)$ and $\eta = (-1,0)$, which thus gives us information about $\widehat{u}((0,0))$. If we choose $\widehat{u}((0,0)) = 0$ we get no response. In the code below we simply take a derivative of the scattering potential from the previous example to achieve this. We can apply the same trick to make the potential non-scattering invisible from a few directions, but we can't do the same for all directions.
 ```
 
 ```{code-cell} ipython3
@@ -899,9 +822,9 @@ xx,yy,tt = np.meshgrid(x,y,t)
 # velocity
 c = 1.0
 
-# non-scattering potential
+# scattering potential
 a = 200;
-r = xx*np.exp(-a*(xx**2 + yy**2))
+r = np.exp(-a*xx**2)*np.exp(-a*yy**2);
 
 # incident field, plane wave at 10 Hz.
 omega  = 2*np.pi*5
@@ -972,63 +895,7 @@ $$
 J(c) = \|K(c) - f\|^2.
 $$
 
-```{admonition} Answer
-:class: tip, dropdown
-
-We get 
-
-$$v(t,x) = \frac{1}{2c}\int\int q(t',x') H(t-t' - |x - x'|/c)\mathrm{d}t'\mathrm{d}x' = \frac{1}{2c}\int  w''(t' - t_0) H(t-t' - |x - x_0|/c)\mathrm{d}t'.$$
-
-Integrating by parts we get 
-
-$$v(t,x) = \frac{1}{2c} w'(t - t_0 - |x-x_0|/c).$$ 
-
-This gives
-
-$$K(c) = \frac{-1}{2c} w'(t - 0.2 + 1/c).$$
-
-```
 
 * Plot the objective as a function of $c$ for various values of $\sigma$.
 
-```{admonition} Answer
-:class: tip, dropdown
-
-See the code example below (click '+' to show)
-```
-
 * Do you think Newton's method will be successful in retrieving the correct $c$?
-
-```{admonition} Answer
-:class: tip, dropdown
-
-In the plot we see the behaviour of $J(c)$; in particular a few stationary points and local minimum away from the global minimizer. This makes it difficult to find the optimal $c$.
-```
-
-```{code-cell} ipython3
-:tags: [hide-cell]
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-# grid and parameters
-t = np.linspace(0,5,100)
-sigma = .5e-1
-
-# functions
-w = lambda t : np.exp(-0.5*(t/sigma)**2)
-dw = lambda t : (-(t/sigma))*np.exp(-0.5*(t/sigma)**2)
-K = lambda c : -dw(t - 0.2 - 1/c)/(2*c)
-J = lambda c : np.linalg.norm(K(c) - K(1))**2
-
-# sample
-c = np.linspace(0.5,1.5,100)
-Js = np.zeros(len(c))
-for k in range(len(c)):
-    Js[k] = J(c[k])
-
-# plot
-plt.plot(c,Js)
-plt.xlabel('c')
-plt.ylabel('J[c]')
-```

@@ -12,7 +12,3 @@ kernelspec:
 ---
 
 # Magnetic Resonance Imaging
-
-```{code-cell} ipython3
-
-```
