@@ -112,7 +112,7 @@ A functional $J$ is lower semi-continuous at $u$ if for every $a < J(u)$ there e
 
 An alternative (slightly weaker) notion is *sequential* lower semi-continuity, which requires that
 
-$$J(u) \leq \lim\inf_{k\rightarrow \infty} E(u_k),$$
+$$J(u) \leq \lim\inf_{k\rightarrow \infty} J(u_k),$$
 
 for all sequences $\{u_k\}_{k\in\mathbb{N}}$ with $u_k \rightarrow u$ as $k\rightarrow\infty$.
 
@@ -207,7 +207,11 @@ Let $J$ have at least one minimiser and be [strictly convex](https://en.wikipedi
 ```{admonition} Proof:
 :class: important, dropdown
 
-...
+Let $u_1, u_2$ be two distinct minimisers; i.e. $J(u_i) \leq J(u) \forall u \in \mathcal{U}$. In particular, we have $J(u_1) \leq J(\alpha u_1 + \beta u_2)$ with $\alpha + \beta = 1$. Because $J$ is strictly convex
+
+$$J(\alpha u_1 + \beta u_2) < \alpha J(u_1) + \beta J(u_2),$$
+
+which would lead to a contradiction: $J(u_1) < J(u_1)$.
 ```
 
 ```{admonition} Example: *non-coercive least-squares*
