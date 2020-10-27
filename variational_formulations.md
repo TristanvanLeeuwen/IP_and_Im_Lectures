@@ -73,7 +73,7 @@ This can be generalised to include certain non-smooth functions by introducing t
 
 $$TV(u) = \sup_{\phi \in D([0,1],\mathbb{R})} \int_0^1 u(x)\phi'(x)\mathrm{d}x,$$
 
-where $D([0,1],\mathbb{R})$ is the space of smooth test functions with $\|\phi\|_{L^\infty([0,1])}\leq 1$. This space is much larger than $H^{1,1}([0,1])$ as it contains certain discontinuous functions (such as the Heaveside stepfunction) and smaller than $L^1(0,1)$ (which also contains less regular functions). For functions in $H^{1,1}$ we have $TV(u) = \|u'\|_{L^1([0,1])}$.
+where $D([0,1],\mathbb{R})$ is the space of smooth test functions with $\|\phi\|_{L^\infty([0,1])}\leq 1$. This space is much larger than $H^{1,1}([0,1])$ as it contains certain discontinuous functions (such as the Heaviside stepfunction) and smaller than $L^1(0,1)$ (which also contains less regular functions). For functions in $H^{1,1}$ we have $TV(u) = \|u'\|_{L^1([0,1])}$.
 ```
 
 ## Analysis
@@ -130,7 +130,11 @@ Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be proper, coercive, bounded from b
 ```{admonition} Proof:
 :class: important, dropdown
 
-...
+The first step is to establish the existence of minimising sequences $\{u_k\}_{k\in\mathbb{N}}$, i.e., $J(u_k) \rightarrow \inf_u J(u)$ and showing that these are bounded. We'll use the fact that $J$ is proper, coercive and bounded from below.
+
+Then, we need to establish that there exists a subsequence $\{u_{j_k}\}_{k\in\mathbb{N}}$ of a minimising sequence and a $u_*$ such that $u_{j_k} \rightarrow u_*$. Here, we'll use the underlying topology.
+
+Finally, we use the fact that $J$ is l.s.c. (w.r.t. the chosen topology) to show that $u_*$ is a minimiser.
 ```
 
 ````{admonition} Examples: *existence of minimisers in $\mathbb{R}$*
