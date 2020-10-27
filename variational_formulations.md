@@ -374,13 +374,13 @@ J'(u_*) = 0.
 ````
 
 ```{admonition} Example: *Tikhonov regularisation on \mathbb{R}^n*
-
+...
 ```
 
 Note that in some important cases $J$ may fail to be Fréchet differentiable at the solution. We will treat this case in more detail in the next chapter on numerical methods.
 
 ```{admonition} Example: *$\ell_1$-regularisation on \mathbb{R}^n*
-
+...
 ```
 
 ---
