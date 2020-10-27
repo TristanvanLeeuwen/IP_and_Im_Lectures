@@ -377,14 +377,14 @@ u_{k+1} = u_k - \lambda_k J'(u_k), \quad J'(u_k) \in \partial J(u_k),
 
 where $\lambda_k$ denote the stepsizes.
 
-```{admonition} Theorem: *Convergene of subgradient descent*
+```{admonition} Theorem: *Convergence of subgradient descent*
 :class: important
 
 Let $J : \mathbb{R}^n \rightarrow \mathbb{R}$ be a convex, $L-$ Lipschitz-continuous function. The iteration {eq}`subgradient_descent` produces iterates for which
 
-$$\min_{k\in\{0,1,\ldots,n-1\}} f(u_k) - f(u_*) \leq \frac{\|u_0 - u_*\|_2^2 + L^2 \sum_{k=0}^{n-1}\lambda_k^2}{2\sum_{k=0}^{n-1}\lambda_k}.$$
+$$\min_{k\in\{0,1,\ldots,n-1\}} J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|_2^2 + L^2 \sum_{k=0}^{n-1}\lambda_k^2}{2\sum_{k=0}^{n-1}\lambda_k}.$$
 
-Thus, $f(u_k) \rightarrow f(u_*)$ as $k\rightarrow \infty$ when the stepsize satisfy
+Thus, $J(u_k) \rightarrow J(u_*)$ as $k\rightarrow \infty$ when the stepsize satisfy
 
 $$\sum_{k=0}^{\infty} \lambda_k = \infty, \quad \sum_{k=0}^{\infty} \lambda_k^2 < \infty.$$
 ```
@@ -392,21 +392,32 @@ $$\sum_{k=0}^{\infty} \lambda_k = \infty, \quad \sum_{k=0}^{\infty} \lambda_k^2 
 ```{admonition} Proof
 :class: important, dropdown
 
-...
+By using the definition of $u_{k+1}$ and the subgradient inequality, we find
 
+$$\|u_{k+1} - u_*\|_2^2 \leq \|u_{k} - u_*\|_2^2 -2 \lambda_k \left(J_k - J_*\right) + \lambda_k^2\|J'_k\|_2^2.$$
+
+Applying this inequality recursively on $u_{k}$ yields
+
+$$\|u_{k+1} - u_*\|_2^2 \leq \|u_0 - u_*\|_2^2 -2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) + \sum_{i=0}^k \lambda_k \|J'_i\|_2^2.$$
+
+Using Lipschitz continuity of $J$, we find $\|J'(u)\|_2 \leq L$ which can be used to yield the desired result.
 ```
 
 ```{admonition} Remark: *Convergence rate for a fixed stepsize*
 If we choose $\lambda_k = \lambda$, we get
 
-$$\min_{k\in\{0,1,\ldots,n-1\}} f(u_k) - f(u_*) \leq \frac{\|u_0 - u_*\|_2^2 + L^2 \lambda^2 n^2}{2\lambda n}.$$
+$$\min_{k\in\{0,1,\ldots,n-1\}} J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|_2^2 + L^2 \lambda^2 n^2}{2\lambda n}.$$
 
-we can guarantee that $\min_{k\in\{0,1,\ldots,n-1\}} f(u_k) - f(u_*) \leq \epsilon$ by picking stepsize $\lambda = \epsilon/L^2$ and doing $n = (\|u_0-u_*\|_2L/\epsilon)^2$ iterations. This seems comparable to the rate we derived for gradient descent previously. However, for *smooth* convex functions we derive a stronger result that gradient-descent requires only $\mathcal{O}(1/\epsilon)$ iterations. For smooth *strongly* convex functionals we can strengthen the result even further and show that we only need $\mathcal{O}(\log 1/\epsilon)$ iterations. The proofs are left as an exercise.
+we can guarantee that $\min_{k\in\{0,1,\ldots,n-1\}} J(u_k) - J(u_*) \leq \epsilon$ by picking stepsize $\lambda = \epsilon/L^2$ and doing $n = (\|u_0-u_*\|_2L/\epsilon)^2$ iterations. This seems comparable to the rate we derived for gradient descent previously. However, for *smooth* convex functions we derive a stronger result that gradient-descent requires only $\mathcal{O}(1/\epsilon)$ iterations. For smooth *strongly* convex functionals we can strengthen the result even further and show that we only need $\mathcal{O}(\log 1/\epsilon)$ iterations. The proofs are left as an exercise.
 ```
 
 ### Proximal gradient methods
 
-While the subgradient descent method is easily implemented, it does not fully exploit the structure of the objective. In particular, we can often split the objective in a *smooth* and a *convex* part. For the discussion we will assume for the moment that $J(u) = D(u) + R(u)$ where $D$ is smooth and $R$ is convex. We are then looking for a point $u_*$ for which
+While the subgradient descent method is easily implemented, it does not fully exploit the structure of the objective. In particular, we can often split the objective in a *smooth* and a *convex* part. For the discussion we will assume for the moment that
+
+$$J(u) = D(u) + R(u),$$
+
+where $D$ is smooth and $R$ is convex. We are then looking for a point $u_*$ for which
 
 ```{math}
 :label: diff_inclusion
@@ -670,20 +681,20 @@ $\|u^{(k+1)} - u^*\| \leq \rho \|u^{(k)} - u*\|$ with $\rho < 1$, for $0 < \alph
 
 $$\|u^{(k+1)} - u^*\| \leq \rho \|u^{(k)} - u*\|,$$
 
-where $u^*$. To show this we start from the iteration and substract the fixed-point and use that $\nabla f(u^*) = 0$ to get
+where $u^*$. To show this we start from the iteration and substract the fixed-point and use that $J'(u^*) = 0$ to get
 
-$$(u^{(k+1)} - u^*) = (u^{(k)} - u^*) - \alpha (\nabla f(u^{(k)}) - \nabla f (u^*)).$$
+$$(u^{(k+1)} - u^*) = (u^{(k)} - u^*) - \alpha (J'(u^{(k)}) - J'(u^*)).$$
 
 Next use Taylor to express
 
-$$\nabla f(u^{(k)}) - \nabla f (u^*) = \nabla^2 f(\eta^{(k)}) (u^{(k)} - u^*),$$
+$$J'(u^{(k)}) - J'(u^*) = J''(\eta^{(k)}) (u^{(k)} - u^*),$$
 
 with $\eta^{(k)} = t u^{(k)} + (1-t)u^*$ for some $t \in [0,1]$. We then get
 
-$$\|u^{(k+1)} - u^*\|_2 \leq \|I - \alpha \nabla^2 f(\eta^{(k)})\|_2 \|u^{(k)} - u^*\|_2.$$
+$$\|u^{(k+1)} - u^*\|_2 \leq \|I - \alpha J''(\eta^{(k)})\|_2 \|u^{(k)} - u^*\|_2.$$
 
-For linear convergence we need $\|I - \alpha \nabla^2 f(\eta^{(k)})\|_2 < 1$. We use that $\|A\|_2 = \sigma_{\max}(A)$. (cf. [Matrix norms](https://en.wikipedia.org/wiki/Matrix_norm#Special_cases))
-Since the eigenvalues of $\nabla^2 f$ are bounded by $L$ we need $0 < \alpha < 2/L$ to ensure this.
+For linear convergence we need $\|I - \alpha J''(\eta^{(k)})\|_2 < 1$. We use that $\|A\|_2 = \sigma_{\max}(A)$. (cf. [Matrix norms](https://en.wikipedia.org/wiki/Matrix_norm#Special_cases))
+Since the eigenvalues of $\J''$ are bounded by $L$ we need $0 < \alpha < 2/L$ to ensure this.
 ```
 
 * Determine the value of $\alpha$ for which the iteration converges fastest.
@@ -693,7 +704,7 @@ Since the eigenvalues of $\nabla^2 f$ are bounded by $L$ we need $0 < \alpha < 2
 
 The smaller the bound on the constant $\rho$, the faster the convergence. We have
 
-$$\|I - \alpha \nabla^2 f(\eta^{(k)})\|_2 = \ \max (|1 - \alpha \mu|, |1 - \alpha L|).$$
+$$\|I - \alpha J''(\eta^{(k)})\|_2 = \ \max (|1 - \alpha \mu|, |1 - \alpha L|).$$
 
 We obtain the smalles possible value by making both terms equal, for which we need
 
