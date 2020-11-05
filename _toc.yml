@@ -15,16 +15,6 @@
   - file: image_processing
   - file: tomography
   - file: wavefield_imaging
-  - file: magnetic_resonance_imaging
-
-- part: Preliminaries
-  chapters:
-  - file: linear_algebra
-  - file: functional_analysis
-  - file: fourier_sampling
-  - file: statistics
-  - file: variational_analysis
-  - file: convex_analysis
 
 - part: Reference
   chapters:
