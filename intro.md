@@ -1,7 +1,7 @@
 # Welcome to Inverse Problems and Imaging
 
-```{warning}
-These lecture notes are currently still under construction.
+```{note}
+This is version 1 of the lecture notes.
 
 <script type="text/javascript">
 function lastModified() {
