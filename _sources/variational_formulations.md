@@ -51,7 +51,7 @@ Given a bounded linear operator $K:H^1(\Omega)\rightarrow L^2(\Omega)$ and data 
 
 $$J(u) = \textstyle{\frac{1}{2}}\|Ku-f^{\delta}\|_{L^2(\Omega)}^2 +  \textstyle{\frac{\alpha}{2}}\|\nabla u\|_{L^2(\Omega)}^2.$$
 
-This functional is well-defined for $u \in H^1(\Omega)$, with $H^1(\Omega)$ denoting the [Sobolev space](https://en.wikipedia.org/wiki/Sobolev_space) of functions $u$ for which both $u$ and $\nabla u$ are square integrable. Thus, thus regularisation generally leads to smooth solutions.
+This functional is well-defined for $u \in H^1(\Omega)$, with $H^1(\Omega)$ denoting the [Sobolev space](https://en.wikipedia.org/wiki/Sobolev_space) of functions $u$ for which both $u$ and $\nabla u$ are square integrable. Thus, this type of regularisation generally leads to smooth solutions.
 ```
 
 ```{admonition} Example: *$\ell_1$-regularization*
@@ -69,23 +69,24 @@ Consider recovering a function $u: [0,1] \rightarrow \mathbb{R}$ from noisy meas
 
 $$J(u) = \textstyle{\frac{1}{2}}\|Ku-f^{\delta}\|_{L^2([0,1])}^2 + \alpha \|u'\|_{L^1([0,1])}.$$
 
-This can be generalised to include certain non-smooth functions by introducing the space of functions of [bounded variation](https://en.wikipedia.org/wiki/Bounded_variation), denoted by $BV([0,1])$. Functions in $BV([0,1])$ are characterised as having a finite [Total Variation](https://en.wikipedia.org/wiki/Total_variation)
+This can be generalised to include certain discontinuous functions by introducing the space of functions of [bounded variation](https://en.wikipedia.org/wiki/Bounded_variation), denoted by $BV([0,1])$. Functions in $BV([0,1])$ are characterised as having a finite [Total Variation](https://en.wikipedia.org/wiki/Total_variation)
 
 $$TV(u) = \sup_{\phi \in D([0,1],\mathbb{R})} \int_0^1 u(x)\phi'(x)\mathrm{d}x,$$
 
-where $D([0,1],\mathbb{R})$ is the space of smooth test functions with $\|\phi\|_{L^\infty([0,1])}\leq 1$. This space is much larger than $H^{1,1}([0,1])$ as it contains certain discontinuous functions (such as the Heaveside stepfunction) and smaller than $L^1(0,1)$ (which also contains less regular functions). For functions in $H^{1,1}$ we have $TV(u) = \|u'\|_{L^1([0,1])}$.
+where $D([0,1],\mathbb{R})$ is the space of smooth test functions with $\|\phi\|_{L^\infty([0,1])}\leq 1$. The space $BV([0,1])$ is much larger than $H^{1,1}([0,1])$ as it contains certain discontinuous functions (such as the Heaviside stepfunction) and smaller than $L^1(0,1)$ (which also contains less regular functions). For functions in $H^{1,1}$ we have $TV(u) = \|u'\|_{L^1([0,1])}$.
 ```
 
 ## Analysis
 
 ### Existence and uniqueness
 
-To establish existence of minimisers, we first need a few definitions.
-
+To establish existence of minimisers, we first need a few definitions. Firstly, what *is* a minimiser?
 ```{admonition} Definition: *Minimisers*
 :class: important
 We say that $\widetilde{u} \in \mathcal{U}$ solves {eq}`variational` iff $J(\widetilde{u}) < \infty$ and $J(\widetilde{u}) \leq J(u)$ for all $u \in \mathcal{U}$.
 ```
+
+Then, we need some definitions regarding the properties of the functional $J$.
 
 ```{admonition} Definition: *Proper functionals*
 :class: important
@@ -112,7 +113,7 @@ A functional $J$ is lower semi-continuous at $u$ if for every $a < J(u)$ there e
 
 An alternative (slightly weaker) notion is *sequential* lower semi-continuity, which requires that
 
-$$J(u) \leq \lim\inf_{k\rightarrow \infty} E(u_k),$$
+$$J(u) \leq \lim\inf_{k\rightarrow \infty} J(u_k),$$
 
 for all sequences $\{u_k\}_{k\in\mathbb{N}}$ with $u_k \rightarrow u$ as $k\rightarrow\infty$.
 
@@ -130,8 +131,14 @@ Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be proper, coercive, bounded from b
 ```{admonition} Proof:
 :class: important, dropdown
 
-...
+The first step is to establish the existence of minimising sequences $\{u_k\}_{k\in\mathbb{N}}$, i.e., $J(u_k) \rightarrow \inf_u J(u)$ and showing that these are bounded. We'll use the fact that $J$ is proper, coercive and bounded from below.
+
+Then, we need to establish that there exists a subsequence $\{u_{j_k}\}_{k\in\mathbb{N}}$ of a minimising sequence and a $u_*$ such that $u_{j_k} \rightarrow u_*$. Here, we'll use the underlying topology.
+
+Finally, we use the fact that $J$ is l.s.c. (w.r.t. the chosen topology) to show that $u_*$ is a minimiser.
 ```
+
+While this theorem is quite general, establishing that $J$ has the required properties can be difficult in practice. In particular, it may involve detailed knowledge of functional analysis in Banach spaces. We will not treat these in general, but instead give some illustrative examples.
 
 ````{admonition} Examples: *existence of minimisers in $\mathbb{R}$*
 
@@ -194,18 +201,6 @@ glue("functionals", fig, display=False)
 
 ```
 
-```{admonition} Theorem: *Uniqueness of minimisers*
-:class: important
-
-Let $J$ have at least one minimiser and be [strictly convex](https://en.wikipedia.org/wiki/Convex_function) then the minimiser is unique.
-```
-
-```{admonition} Proof:
-:class: important, dropdown
-
-...
-```
-
 ```{admonition} Example: *non-coercive least-squares*
 
 Consider $J(u) = \|Ku - f\|_2^2$ with $K : \ell_2 \rightarrow \ell_2$ defined as $(Ku)_i = i^{-1} u_i$
@@ -231,6 +226,24 @@ $$TV(u) \leq \lim\inf_{k\rightarrow \infty} TV(u_k),$$
 showing that $TV(u)$ is indeed l.s.c. w.r.t. $L^1([0,1])$.
 ```
 
+Having established existence, we can wonder about uniqueness. The following theorem gives a sufficient (but not necessary!) condition for uniqueness.
+
+```{admonition} Theorem: *Uniqueness of minimisers*
+:class: important
+
+Let $J$ have at least one minimiser and be [strictly convex](https://en.wikipedia.org/wiki/Convex_function) then the minimiser is unique.
+```
+
+```{admonition} Proof:
+:class: important, dropdown
+
+Let $u_1, u_2$ be two distinct minimisers; i.e. $J(u_i) \leq J(u) \forall u \in \mathcal{U}$. In particular, we have $J(u_1) \leq J(\alpha u_1 + \beta u_2)$ with $\alpha + \beta = 1$. Because $J$ is strictly convex
+
+$$J(\alpha u_1 + \beta u_2) < \alpha J(u_1) + \beta J(u_2),$$
+
+which would lead to a contradiction: $J(u_1) < J(u_1)$.
+```
+
 ### Well-posedness of regularised least-squares problems
 
 In this section we focus in particular on variational problems of the form
@@ -242,43 +255,45 @@ In this section we focus in particular on variational problems of the form
 
 with $K: \mathcal{U} \rightarrow \mathcal{F}$ a bounded linear operator and $R : \mathcal{U} \rightarrow \mathbb{R}_{\infty}$ is proper and l.s.c. (with respect to an appropriate topology).
 
-We can think of {eq}`variational_R` as defining a (possibly non-linear) regularisation scheme $\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)$ that generalises the pseudo-inverse approach discussed earlier. Note that the notation $K_{\alpha}^\dagger$ is used very loosely to indicate a mapping from $\mathcal{F}$ to $\mathcal{U}$ that is supposed to approximate the inverse of $K$ in some fashion. In general, this will be a non-linear mapping.
+We can think of {eq}`variational_R` as defining a (possibly non-linear) regularisation scheme $\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)$ that generalises the pseudo-inverse approach discussed earlier. Note that the notation $K_{\alpha}^\dagger$ is used very loosely to indicate a mapping from $\mathcal{F}$ to $\mathcal{U}$ that is supposed to approximate the inverse of $K$ by solving {eq}`variational_R`. In general, this will be a non-linear mapping.
 
-```{admonition} Theorem: *Existence and uniqueness of regularised least-squares solutions*
+Conditions under which the operator $K_{\alpha}^\dagger$ is well-defined and continuous can be stated quite generally. Similarly, conditions under which the regularised solution converges to the usual pseudo-inverse solution can be stated. This goes beyond the scope of these lecture notes. The interested reader is referred to [the lecture notes from Matthias J. Ehrhardt and Lukas F. Lang](https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf).
 
-Let $K$ be injective *or* $J$ be strictly convex, then the variational problem {eq}`variational_R` has a unique minimiser.
-
-```
-
-```{admonition} Proof:
-:class: important, dropdown
-
-...
-```
-
-```{admonition} Theorem: *Stability of regularised least-squares solutions*
-
-Let $\alpha > 0$, then the operator $K_{\alpha}^\dagger$, defined as the solution operator to {eq}`variational_R`, is continuous.
-
-```
-
-```{admonition} Proof:
-:class: important, dropdown
-
-...
-```
-
-```{admonition} Theorem: *Convergence of regularised least-squares solutions*
-
-The solution $\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)$ converges to the regular minimum-norm solution as $\alpha \rightarrow 0$.
-
-```
-
-```{admonition} Proof:
-:class: important, dropdown
-
-...
-```
+% ```{admonition} Theorem: *Existence and uniqueness of regularised least-squares solutions*
+%
+% Let $K$ be injective *or* $R$ be strictly convex, then the variational problem {eq}`variational_R` has % a unique minimiser.
+%
+% ```
+%
+% ```{admonition} Proof:
+% :class: important, dropdown
+%
+% ...
+% ```
+%
+% ```{admonition} Theorem: *Stability of regularised least-squares solutions*
+%
+% Let $\alpha > 0$, then the operator $K_{\alpha}^\dagger$, defined as the solution operator to % {eq}`variational_R`, is continuous.
+%
+%```
+%
+%```{admonition} Proof:
+%:class: important, dropdown
+%
+%...
+%```
+%
+%```{admonition} Theorem: *Convergence of regularised least-squares solutions*
+%
+%The solution $\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)$ converges to the regular %minimum-norm solution as $\alpha \rightarrow 0$.
+%
+%```
+%
+%```{admonition} Proof:
+%:class: important, dropdown
+%
+%...
+%```
 
 ### Examples
 
@@ -295,9 +310,9 @@ $$J(u + d) = J(u) + \textstyle{\frac{1}{2}}\|Kd\|_2^2 - \langle Kd,Ku - f^\delta
 
 from which we can bound
 
-$$|J(v) - J(u)| \leq \textstyle{\frac{1}{2}}\|Kd\|_2^2 + \|Kd\|_2 \|Ku - f^\delta\|_2 + \alpha \|d\|_2 \|u\|_2 + \textstyle{\frac{\alpha}{2}}\|d\|_2^2 \leq A \|d\|_2^2 + B \|d\|_2.$$
+$$|J(u+d) - J(u)| \leq A \|d\|_2^2 + B \|d\|_2.$$
 
-Now, for every $\epsilon$ we can pick a $\delta$ such that $\|u-v\|_2 < \delta$ implies that $|J(v) - J(u)| < \epsilon$.
+Now, for every $\epsilon$ we can pick a $\delta$ such that $\|d\|_2 < \delta$ implies that $|J(u+d) - J(u)| < \epsilon$.
 
 Finally, we can show that $J$ is *strongly convex* with constant $\alpha$ by showing that $J(u) - \textstyle{\frac{\alpha}{2}}\|u\|_2^2$ is convex. The fact that $\|Ku - f^\delta\|_2^2$ is convex follows easily from the triangle inequality and the fact that the function $(\cdot)^2$ is convex.
 
@@ -326,8 +341,6 @@ $$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{L^2(\Omega)}^2 + \textstyle{\
 Let
 
 $$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{L^2(\Omega)}^2 + \alpha TV(u).$$
-
-* existence, uniqueness, stability
 
 ```
 
@@ -366,13 +379,13 @@ J'(u_*) = 0.
 ````
 
 ```{admonition} Example: *Tikhonov regularisation on \mathbb{R}^n*
-
+...
 ```
 
 Note that in some important cases $J$ may fail to be Fréchet differentiable at the solution. We will treat this case in more detail in the next chapter on numerical methods.
 
 ```{admonition} Example: *$\ell_1$-regularisation on \mathbb{R}^n*
-
+...
 ```
 
 ---

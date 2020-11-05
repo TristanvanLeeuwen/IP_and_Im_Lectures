@@ -134,48 +134,6 @@
    3. Wavefield Imaging
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="magnetic_resonance_imaging.html">
-   4. Magnetic Resonance Imaging
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Preliminaries
- </span>
-</p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="linear_algebra.html">
-   1. Linear algebra
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="functional_analysis.html">
-   2. Functional analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="fourier_sampling.html">
-   3. Fourier transform, distributions and sampling
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="statistics.html">
-   4. Statistics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="variational_analysis.html">
-   5. Variational analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="convex_analysis.html">
-   6. Convex analysis
-  </a>
- </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -380,7 +338,7 @@
 <div class="section" id="smooth-optimisation">
 <h2><span class="section-number">6.1. </span>Smooth optimisation<a class="headerlink" href="#smooth-optimisation" title="Permalink to this headline">¶</a></h2>
 <p>For smooth problems, we assume to have access to as many derivatives of <span class="math notranslate nohighlight">\(J\)</span> as we need. As before, we denote the first derivative (or gradient) by <span class="math notranslate nohighlight">\(J' : \mathbb{R}^n \rightarrow \mathbb{R}^n\)</span>. We denote the second derivative (or Hessian) by <span class="math notranslate nohighlight">\(J'' : \mathbb{R}^n \rightarrow \mathbb{R}^{n\times n}\)</span>. We will additionally assume that the Hessian is globally bounded, i.e. there exists a constant <span class="math notranslate nohighlight">\(L &lt; \infty\)</span> such that <span class="math notranslate nohighlight">\(J''(u) \preceq L\cdot I\)</span> for all <span class="math notranslate nohighlight">\(u\in\mathbb{R}^n\)</span>. Note that this implies that <span class="math notranslate nohighlight">\(J'\)</span> is Lipschitz continous with constant <span class="math notranslate nohighlight">\(L\)</span>: <span class="math notranslate nohighlight">\(\|J'(u) - J'(v)\|_2 \leq L \|u - v\|_2\)</span>.</p>
-<p>For a comprehensive treatment of this topic (and many more), we recommend the seminal book <em>Numerical Optimization</em> by Stephen Wright and Jorge Nocedal <a class="bibtex reference internal" href="#nocedal2006numerical" id="id1">[6]</a>.</p>
+<p>For a comprehensive treatment of this topic (and many more), we recommend the seminal book <em>Numerical Optimization</em> by Stephen Wright and Jorge Nocedal <a class="bibtex reference internal" href="what_is.html#nocedal2006numerical" id="id1">[2]</a>.</p>
 <hr class="docutils" />
 <p>Before discussing optimisation methods, we first introduce the optimality conditions.</p>
 <div class="important admonition">
@@ -460,7 +418,7 @@
 <p>A possible disadvantage of the backtracking linesearch introduced earlier is that it may end up choosing very small stepsizes. To obtain a stepsize that yields a new iterate at which the slope of <span class="math notranslate nohighlight">\(J\)</span> is not too large, we introduce the following condition</p>
 <div class="math notranslate nohighlight" id="equation-wolfe2">
 <span class="eqno">(6.3)<a class="headerlink" href="#equation-wolfe2" title="Permalink to this equation">¶</a></span>\[|\langle J'(u_k + \lambda d_k), d_k\rangle| \leq c_2 |\langle J'(u_k), d_k\rangle|,\]</div>
-<p>where <span class="math notranslate nohighlight">\(c_2\)</span> is a small constant satisfying <span class="math notranslate nohighlight">\(0 &lt; c_1 &lt; c_2 &lt; 1\)</span>. The conditions <a class="reference internal" href="#equation-wolfe1">(6.2)</a> and <a class="reference internal" href="#equation-wolfe2">(6.3)</a>, are referred to as the <em>strong Wolfe conditions</em>. Existence of a stepsize satisfying these conditions is again guaranteed by the regularity of <span class="math notranslate nohighlight">\(J\)</span> (cf. <a class="bibtex reference internal" href="#nocedal2006numerical" id="id2">[6]</a>, lemma 3.1). Finding such a <span class="math notranslate nohighlight">\(\lambda\)</span> is a little more involved than the backtracking procedure outlined above (cf. <a class="bibtex reference internal" href="#nocedal2006numerical" id="id3">[6]</a>, algorithm 3.5). Luckily, the <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of this algorithm (cf. <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.line_search.html"><code class="docutils literal notranslate"><span class="pre">scipy.optimize.line_search</span></code></a>)</p>
+<p>where <span class="math notranslate nohighlight">\(c_2\)</span> is a small constant satisfying <span class="math notranslate nohighlight">\(0 &lt; c_1 &lt; c_2 &lt; 1\)</span>. The conditions <a class="reference internal" href="#equation-wolfe1">(6.2)</a> and <a class="reference internal" href="#equation-wolfe2">(6.3)</a>, are referred to as the <em>strong Wolfe conditions</em>. Existence of a stepsize satisfying these conditions is again guaranteed by the regularity of <span class="math notranslate nohighlight">\(J\)</span> (cf. <a class="bibtex reference internal" href="what_is.html#nocedal2006numerical" id="id2">[2]</a>, lemma 3.1). Finding such a <span class="math notranslate nohighlight">\(\lambda\)</span> is a little more involved than the backtracking procedure outlined above (cf. <a class="bibtex reference internal" href="what_is.html#nocedal2006numerical" id="id3">[2]</a>, algorithm 3.5). Luckily, the <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of this algorithm (cf. <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.line_search.html"><code class="docutils literal notranslate"><span class="pre">scipy.optimize.line_search</span></code></a>)</p>
 </div>
 </div>
 <div class="section" id="second-order-methods">
@@ -480,7 +438,7 @@
 </div>
 <div class="important dropdown admonition">
 <p class="admonition-title">Proof</p>
-<p>See <a class="bibtex reference internal" href="#nocedal2006numerical" id="id4">[6]</a>, Thm. 3.5.</p>
+<p>See <a class="bibtex reference internal" href="what_is.html#nocedal2006numerical" id="id4">[2]</a>, Thm. 3.5.</p>
 </div>
 <p>In practice, the Hessian may not be invertible everywhere and we may not have an initial iterate sufficiently close to a minimiser to ensure convergence. Practical applications therefore include a linesearch and a safeguard against non-invertible Hessians.</p>
 <hr class="docutils" />
@@ -496,7 +454,7 @@ and gradients <span class="math notranslate nohighlight">\(y_k = J'(u_{k+1}) - J
 \[B_{k+1} = \left(I - \rho_k s_k y_k^T\right)H_k\left(I - \rho_k y_k s_k^T\right) + \rho_k s_ks_k^T,\]</div>
 <p>with <span class="math notranslate nohighlight">\(\rho_k = (\langle s_k, y_k\rangle)^{-1}\)</span> and <span class="math notranslate nohighlight">\(B_0\)</span> choses appropriately (e.g., <span class="math notranslate nohighlight">\(B_0 = L^{-1} \cdot I\)</span>). It can be shown that this approximation is sufficiently accurate to yield <em>superlinear</em> convergence when using a Wolfe linesearch.</p>
 <hr class="docutils" />
-<p>The are many practical aspects to implementing such methods. For example, what do we do when the approximated Hessian becomes (almost) singular? Discussing these issues is beyond the scope of these lecture notes and we refer to <a class="bibtex reference internal" href="#nocedal2006numerical" id="id5">[6]</a>, chapter 6 for more details. The <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.html">various optimisation methods</a>.</p>
+<p>The are many practical aspects to implementing such methods. For example, what do we do when the approximated Hessian becomes (almost) singular? Discussing these issues is beyond the scope of these lecture notes and we refer to <a class="bibtex reference internal" href="what_is.html#nocedal2006numerical" id="id5">[2]</a>, chapter 6 for more details. The <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.html">various optimisation methods</a>.</p>
 </div>
 </div>
 <div class="section" id="convex-optimisation">
@@ -585,7 +543,7 @@ and gradients <span class="math notranslate nohighlight">\(y_k = J'(u_{k+1}) - J
 <li><p><em>Summation:</em> Let <span class="math notranslate nohighlight">\(J = J_1 + J_2\)</span>, then <span class="math notranslate nohighlight">\(J_1'(u) + J_2'(u) \in \partial J(u)\)</span> for <span class="math notranslate nohighlight">\(u\)</span> in the interior of <span class="math notranslate nohighlight">\(\text{dom}(J)\)</span>.</p></li>
 <li><p><em>Affine transformation:</em> Let <span class="math notranslate nohighlight">\(J(u) = J_1(Au + b)\)</span>, then <span class="math notranslate nohighlight">\(A^T J_1'(Au + b) \in \partial J\)</span> for <span class="math notranslate nohighlight">\(u, Au + b\)</span> in the interior of <span class="math notranslate nohighlight">\(\text{dom}(J)\)</span>.</p></li>
 </ul>
-<p>An overview of other useful relations can be found in e.g., <a class="bibtex reference internal" href="#beck2017" id="id6">[2]</a> section 3.8.</p>
+<p>An overview of other useful relations can be found in e.g., <a class="bibtex reference internal" href="what_is.html#beck2017" id="id6">[1]</a> section 3.8.</p>
 </div>
 <hr class="docutils" />
 <p>With this we can now formulate optimality conditions for convex optimisation.</p>
@@ -672,29 +630,38 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 <span class="eqno">(6.5)<a class="headerlink" href="#equation-subgradient-descent" title="Permalink to this equation">¶</a></span>\[u_{k+1} = u_k - \lambda_k J'(u_k), \quad J'(u_k) \in \partial J(u_k),\]</div>
 <p>where <span class="math notranslate nohighlight">\(\lambda_k\)</span> denote the stepsizes.</p>
 <div class="important admonition">
-<p class="admonition-title">Theorem: <em>Convergene of subgradient descent</em></p>
+<p class="admonition-title">Theorem: <em>Convergence of subgradient descent</em></p>
 <p>Let <span class="math notranslate nohighlight">\(J : \mathbb{R}^n \rightarrow \mathbb{R}\)</span> be a convex, <span class="math notranslate nohighlight">\(L-\)</span> Lipschitz-continuous function. The iteration <a class="reference internal" href="#equation-subgradient-descent">(6.5)</a> produces iterates for which</p>
 <div class="math notranslate nohighlight">
-\[\min_{k\in\{0,1,\ldots,n-1\}} f(u_k) - f(u_*) \leq \frac{\|u_0 - u_*\|_2^2 + L^2 \sum_{k=0}^{n-1}\lambda_k^2}{2\sum_{k=0}^{n-1}\lambda_k}.\]</div>
-<p>Thus, <span class="math notranslate nohighlight">\(f(u_k) \rightarrow f(u_*)\)</span> as <span class="math notranslate nohighlight">\(k\rightarrow \infty\)</span> when the stepsize satisfy</p>
+\[\min_{k\in\{0,1,\ldots,n-1\}} J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|_2^2 + L^2 \sum_{k=0}^{n-1}\lambda_k^2}{2\sum_{k=0}^{n-1}\lambda_k}.\]</div>
+<p>Thus, <span class="math notranslate nohighlight">\(J(u_k) \rightarrow J(u_*)\)</span> as <span class="math notranslate nohighlight">\(k\rightarrow \infty\)</span> when the stepsize satisfy</p>
 <div class="math notranslate nohighlight">
 \[\sum_{k=0}^{\infty} \lambda_k = \infty, \quad \sum_{k=0}^{\infty} \lambda_k^2 &lt; \infty.\]</div>
 </div>
 <div class="important dropdown admonition">
 <p class="admonition-title">Proof</p>
-<p>…</p>
+<p>By using the definition of <span class="math notranslate nohighlight">\(u_{k+1}\)</span> and the subgradient inequality, we find</p>
+<div class="math notranslate nohighlight">
+\[\|u_{k+1} - u_*\|_2^2 \leq \|u_{k} - u_*\|_2^2 -2 \lambda_k \left(J_k - J_*\right) + \lambda_k^2\|J'_k\|_2^2.\]</div>
+<p>Applying this inequality recursively on <span class="math notranslate nohighlight">\(u_{k}\)</span> yields</p>
+<div class="math notranslate nohighlight">
+\[\|u_{k+1} - u_*\|_2^2 \leq \|u_0 - u_*\|_2^2 -2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) + \sum_{i=0}^k \lambda_k \|J'_i\|_2^2.\]</div>
+<p>Using Lipschitz continuity of <span class="math notranslate nohighlight">\(J\)</span>, we find <span class="math notranslate nohighlight">\(\|J'(u)\|_2 \leq L\)</span> which can be used to yield the desired result.</p>
 </div>
 <div class="admonition-remark-convergence-rate-for-a-fixed-stepsize admonition">
 <p class="admonition-title">Remark: <em>Convergence rate for a fixed stepsize</em></p>
 <p>If we choose <span class="math notranslate nohighlight">\(\lambda_k = \lambda\)</span>, we get</p>
 <div class="math notranslate nohighlight">
-\[\min_{k\in\{0,1,\ldots,n-1\}} f(u_k) - f(u_*) \leq \frac{\|u_0 - u_*\|_2^2 + L^2 \lambda^2 n^2}{2\lambda n}.\]</div>
-<p>we can guarantee that <span class="math notranslate nohighlight">\(\min_{k\in\{0,1,\ldots,n-1\}} f(u_k) - f(u_*) \leq \epsilon\)</span> by picking stepsize <span class="math notranslate nohighlight">\(\lambda = \epsilon/L^2\)</span> and doing <span class="math notranslate nohighlight">\(n = (\|u_0-u_*\|_2L/\epsilon)^2\)</span> iterations. This seems comparable to the rate we derived for gradient descent previously. However, for <em>smooth</em> convex functions we derive a stronger result that gradient-descent requires only <span class="math notranslate nohighlight">\(\mathcal{O}(1/\epsilon)\)</span> iterations. For smooth <em>strongly</em> convex functionals we can strengthen the result even further and show that we only need <span class="math notranslate nohighlight">\(\mathcal{O}(\log 1/\epsilon)\)</span> iterations. The proofs are left as an exercise.</p>
+\[\min_{k\in\{0,1,\ldots,n-1\}} J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|_2^2 + L^2 \lambda^2 n^2}{2\lambda n}.\]</div>
+<p>we can guarantee that <span class="math notranslate nohighlight">\(\min_{k\in\{0,1,\ldots,n-1\}} J(u_k) - J(u_*) \leq \epsilon\)</span> by picking stepsize <span class="math notranslate nohighlight">\(\lambda = \epsilon/L^2\)</span> and doing <span class="math notranslate nohighlight">\(n = (\|u_0-u_*\|_2L/\epsilon)^2\)</span> iterations. This seems comparable to the rate we derived for gradient descent previously. However, for <em>smooth</em> convex functions we derive a stronger result that gradient-descent requires only <span class="math notranslate nohighlight">\(\mathcal{O}(1/\epsilon)\)</span> iterations. For smooth <em>strongly</em> convex functionals we can strengthen the result even further and show that we only need <span class="math notranslate nohighlight">\(\mathcal{O}(\log 1/\epsilon)\)</span> iterations. The proofs are left as an exercise.</p>
 </div>
 </div>
 <div class="section" id="proximal-gradient-methods">
 <h3><span class="section-number">6.2.2. </span>Proximal gradient methods<a class="headerlink" href="#proximal-gradient-methods" title="Permalink to this headline">¶</a></h3>
-<p>While the subgradient descent method is easily implemented, it does not fully exploit the structure of the objective. In particular, we can often split the objective in a <em>smooth</em> and a <em>convex</em> part. For the discussion we will assume for the moment that <span class="math notranslate nohighlight">\(J(u) = D(u) + R(u)\)</span> where <span class="math notranslate nohighlight">\(D\)</span> is smooth and <span class="math notranslate nohighlight">\(R\)</span> is convex. We are then looking for a point <span class="math notranslate nohighlight">\(u_*\)</span> for which</p>
+<p>While the subgradient descent method is easily implemented, it does not fully exploit the structure of the objective. In particular, we can often split the objective in a <em>smooth</em> and a <em>convex</em> part. For the discussion we will assume for the moment that</p>
+<div class="math notranslate nohighlight">
+\[J(u) = D(u) + R(u),\]</div>
+<p>where <span class="math notranslate nohighlight">\(D\)</span> is smooth and <span class="math notranslate nohighlight">\(R\)</span> is convex. We are then looking for a point <span class="math notranslate nohighlight">\(u_*\)</span> for which</p>
 <div class="math notranslate nohighlight" id="equation-diff-inclusion">
 <span class="eqno">(6.6)<a class="headerlink" href="#equation-diff-inclusion" title="Permalink to this equation">¶</a></span>\[D'(u_*) \in -\partial R(u_*).\]</div>
 <p>Finding such a point can be done (again!) by a fixed-point iteration</p>
@@ -730,7 +697,7 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 </div>
 <div class="dropdown important admonition">
 <p class="admonition-title">Proof</p>
-<p>We refer to <a class="bibtex reference internal" href="#beck2017" id="id7">[2]</a> Thms. 10.15, 10.21, and 10.29 or more details.</p>
+<p>We refer to <a class="bibtex reference internal" href="what_is.html#beck2017" id="id7">[1]</a> Thms. 10.15, 10.21, and 10.29 or more details.</p>
 </div>
 <hr class="docutils" />
 <p>When compared to the subgradient method, we may expect better performance from the proximal gradient method when <span class="math notranslate nohighlight">\(D\)</span> is strongly convex and <span class="math notranslate nohighlight">\(R\)</span> is convex. Even if <span class="math notranslate nohighlight">\(J\)</span> is smooth, the proximal gradient method may be favourable as the convergence constants depend on the Lipschitz constant of <span class="math notranslate nohighlight">\(D\)</span> only; not <span class="math notranslate nohighlight">\(J\)</span>. All this comes at the cost of solving a minimisation problem at each iteration, so these methods are usually only applied when a closed-form expression for the proximal operator exists.</p>
@@ -862,10 +829,10 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 <div class="section" id="references">
 <h2><span class="section-number">6.3. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p id="bibtex-bibliography-numerical_optimisation-0"><dl class="citation">
-<dt class="bibtex label" id="beck2017"><span class="brackets">2</span><span class="fn-backref">(<a href="#id6">1</a>,<a href="#id7">2</a>)</span></dt>
+<dt class="bibtex label" id="beck2017"><span class="brackets">1</span><span class="fn-backref">(<a href="#id6">1</a>,<a href="#id7">2</a>)</span></dt>
 <dd><p>Amir Beck. <em>First-Order Methods in Optimization</em>. Society for Industrial and Applied Mathematics, 2017.</p>
 </dd>
-<dt class="bibtex label" id="nocedal2006numerical"><span class="brackets">6</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>,<a href="#id4">4</a>,<a href="#id5">5</a>)</span></dt>
+<dt class="bibtex label" id="nocedal2006numerical"><span class="brackets">2</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>,<a href="#id4">4</a>,<a href="#id5">5</a>)</span></dt>
 <dd><p>Jorge Nocedal and Stephen Wright. <em>Numerical optimization</em>. Springer Science &amp; Business Media, 2006.</p>
 </dd>
 </dl>
@@ -895,17 +862,17 @@ u^{(k+1)} = u^{(k)} - \alpha J'(u^{(k)}),
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Rate_of_convergence#Basic_definition">Linear convergence</a> implies that <span class="math notranslate nohighlight">\(\exists 0 &lt; \rho &lt; 1\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[\|u^{(k+1)} - u^*\| \leq \rho \|u^{(k)} - u*\|,\]</div>
-<p>where <span class="math notranslate nohighlight">\(u^*\)</span>. To show this we start from the iteration and substract the fixed-point and use that <span class="math notranslate nohighlight">\(\nabla f(u^*) = 0\)</span> to get</p>
+<p>where <span class="math notranslate nohighlight">\(u^*\)</span>. To show this we start from the iteration and substract the fixed-point and use that <span class="math notranslate nohighlight">\(J'(u^*) = 0\)</span> to get</p>
 <div class="math notranslate nohighlight">
-\[(u^{(k+1)} - u^*) = (u^{(k)} - u^*) - \alpha (\nabla f(u^{(k)}) - \nabla f (u^*)).\]</div>
+\[(u^{(k+1)} - u^*) = (u^{(k)} - u^*) - \alpha (J'(u^{(k)}) - J'(u^*)).\]</div>
 <p>Next use Taylor to express</p>
 <div class="math notranslate nohighlight">
-\[\nabla f(u^{(k)}) - \nabla f (u^*) = \nabla^2 f(\eta^{(k)}) (u^{(k)} - u^*),\]</div>
+\[J'(u^{(k)}) - J'(u^*) = J''(\eta^{(k)}) (u^{(k)} - u^*),\]</div>
 <p>with <span class="math notranslate nohighlight">\(\eta^{(k)} = t u^{(k)} + (1-t)u^*\)</span> for some <span class="math notranslate nohighlight">\(t \in [0,1]\)</span>. We then get</p>
 <div class="math notranslate nohighlight">
-\[\|u^{(k+1)} - u^*\|_2 \leq \|I - \alpha \nabla^2 f(\eta^{(k)})\|_2 \|u^{(k)} - u^*\|_2.\]</div>
-<p>For linear convergence we need <span class="math notranslate nohighlight">\(\|I - \alpha \nabla^2 f(\eta^{(k)})\|_2 &lt; 1\)</span>. We use that <span class="math notranslate nohighlight">\(\|A\|_2 = \sigma_{\max}(A)\)</span>. (cf. <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_norm#Special_cases">Matrix norms</a>)
-Since the eigenvalues of <span class="math notranslate nohighlight">\(\nabla^2 f\)</span> are bounded by <span class="math notranslate nohighlight">\(L\)</span> we need <span class="math notranslate nohighlight">\(0 &lt; \alpha &lt; 2/L\)</span> to ensure this.</p>
+\[\|u^{(k+1)} - u^*\|_2 \leq \|I - \alpha J''(\eta^{(k)})\|_2 \|u^{(k)} - u^*\|_2.\]</div>
+<p>For linear convergence we need <span class="math notranslate nohighlight">\(\|I - \alpha J''(\eta^{(k)})\|_2 &lt; 1\)</span>. We use that <span class="math notranslate nohighlight">\(\|A\|_2 = \sigma_{\max}(A)\)</span>. (cf. <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_norm#Special_cases">Matrix norms</a>)
+Since the eigenvalues of <span class="math notranslate nohighlight">\(\J''\)</span> are bounded by <span class="math notranslate nohighlight">\(L\)</span> we need <span class="math notranslate nohighlight">\(0 &lt; \alpha &lt; 2/L\)</span> to ensure this.</p>
 </div>
 <ul class="simple">
 <li><p>Determine the value of <span class="math notranslate nohighlight">\(\alpha\)</span> for which the iteration converges fastest.</p></li>
@@ -914,7 +881,7 @@ Since the eigenvalues of <span class="math notranslate nohighlight">\(\nabla^2 f
 <p class="admonition-title">Answer</p>
 <p>The smaller the bound on the constant <span class="math notranslate nohighlight">\(\rho\)</span>, the faster the convergence. We have</p>
 <div class="math notranslate nohighlight">
-\[\|I - \alpha \nabla^2 f(\eta^{(k)})\|_2 = \ \max (|1 - \alpha \mu|, |1 - \alpha L|).\]</div>
+\[\|I - \alpha J''(\eta^{(k)})\|_2 = \ \max (|1 - \alpha \mu|, |1 - \alpha L|).\]</div>
 <p>We obtain the smalles possible value by making both terms equal, for which we need</p>
 <div class="math notranslate nohighlight">
 \[(1 - \alpha \mu) = -(1 - \alpha L),\]</div>
@@ -1025,7 +992,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11b8f0150&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11d620390&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -1047,7 +1014,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11bb32190&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x101f7a49d0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1112,8 +1079,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn('The line search algorithm did not converge', LineSearchWarning)
 </pre>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x101ea92d50&gt;,
- &lt;matplotlib.lines.Line2D at 0x101f188cd0&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10203d7f10&gt;,
+ &lt;matplotlib.lines.Line2D at 0x1020ac2ed0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />

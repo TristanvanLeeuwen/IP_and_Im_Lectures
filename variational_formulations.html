@@ -134,48 +134,6 @@
    3. Wavefield Imaging
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="magnetic_resonance_imaging.html">
-   4. Magnetic Resonance Imaging
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Preliminaries
- </span>
-</p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="linear_algebra.html">
-   1. Linear algebra
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="functional_analysis.html">
-   2. Functional analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="fourier_sampling.html">
-   3. Fourier transform, distributions and sampling
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="statistics.html">
-   4. Statistics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="variational_analysis.html">
-   5. Variational analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="convex_analysis.html">
-   6. Convex analysis
-  </a>
- </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -369,7 +327,7 @@
 <p>Given a bounded linear operator <span class="math notranslate nohighlight">\(K:H^1(\Omega)\rightarrow L^2(\Omega)\)</span> and data <span class="math notranslate nohighlight">\(f^\delta\)</span>, we let <span class="math notranslate nohighlight">\(\nabla\)</span> denote the gradient</p>
 <div class="math notranslate nohighlight">
 \[J(u) = \textstyle{\frac{1}{2}}\|Ku-f^{\delta}\|_{L^2(\Omega)}^2 +  \textstyle{\frac{\alpha}{2}}\|\nabla u\|_{L^2(\Omega)}^2.\]</div>
-<p>This functional is well-defined for <span class="math notranslate nohighlight">\(u \in H^1(\Omega)\)</span>, with <span class="math notranslate nohighlight">\(H^1(\Omega)\)</span> denoting the <a class="reference external" href="https://en.wikipedia.org/wiki/Sobolev_space">Sobolev space</a> of functions <span class="math notranslate nohighlight">\(u\)</span> for which both <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(\nabla u\)</span> are square integrable. Thus, thus regularisation generally leads to smooth solutions.</p>
+<p>This functional is well-defined for <span class="math notranslate nohighlight">\(u \in H^1(\Omega)\)</span>, with <span class="math notranslate nohighlight">\(H^1(\Omega)\)</span> denoting the <a class="reference external" href="https://en.wikipedia.org/wiki/Sobolev_space">Sobolev space</a> of functions <span class="math notranslate nohighlight">\(u\)</span> for which both <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(\nabla u\)</span> are square integrable. Thus, this type of regularisation generally leads to smooth solutions.</p>
 </div>
 <div class="admonition-example-ell-1-regularization admonition">
 <p class="admonition-title">Example: <em><span class="math notranslate nohighlight">\(\ell_1\)</span>-regularization</em></p>
@@ -383,20 +341,21 @@
 <p>Consider recovering a function <span class="math notranslate nohighlight">\(u: [0,1] \rightarrow \mathbb{R}\)</span> from noisy measurements <span class="math notranslate nohighlight">\(f^\delta = Ku + e\)</span>. A popular choice in imaging applications is to put an <span class="math notranslate nohighlight">\(L^1\)</span>-norm on the derivative. For <span class="math notranslate nohighlight">\(u\in W^{1,1}([0,1])\)</span> this yields</p>
 <div class="math notranslate nohighlight">
 \[J(u) = \textstyle{\frac{1}{2}}\|Ku-f^{\delta}\|_{L^2([0,1])}^2 + \alpha \|u'\|_{L^1([0,1])}.\]</div>
-<p>This can be generalised to include certain non-smooth functions by introducing the space of functions of <a class="reference external" href="https://en.wikipedia.org/wiki/Bounded_variation">bounded variation</a>, denoted by <span class="math notranslate nohighlight">\(BV([0,1])\)</span>. Functions in <span class="math notranslate nohighlight">\(BV([0,1])\)</span> are characterised as having a finite <a class="reference external" href="https://en.wikipedia.org/wiki/Total_variation">Total Variation</a></p>
+<p>This can be generalised to include certain discontinuous functions by introducing the space of functions of <a class="reference external" href="https://en.wikipedia.org/wiki/Bounded_variation">bounded variation</a>, denoted by <span class="math notranslate nohighlight">\(BV([0,1])\)</span>. Functions in <span class="math notranslate nohighlight">\(BV([0,1])\)</span> are characterised as having a finite <a class="reference external" href="https://en.wikipedia.org/wiki/Total_variation">Total Variation</a></p>
 <div class="math notranslate nohighlight">
 \[TV(u) = \sup_{\phi \in D([0,1],\mathbb{R})} \int_0^1 u(x)\phi'(x)\mathrm{d}x,\]</div>
-<p>where <span class="math notranslate nohighlight">\(D([0,1],\mathbb{R})\)</span> is the space of smooth test functions with <span class="math notranslate nohighlight">\(\|\phi\|_{L^\infty([0,1])}\leq 1\)</span>. This space is much larger than <span class="math notranslate nohighlight">\(H^{1,1}([0,1])\)</span> as it contains certain discontinuous functions (such as the Heaveside stepfunction) and smaller than <span class="math notranslate nohighlight">\(L^1(0,1)\)</span> (which also contains less regular functions). For functions in <span class="math notranslate nohighlight">\(H^{1,1}\)</span> we have <span class="math notranslate nohighlight">\(TV(u) = \|u'\|_{L^1([0,1])}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(D([0,1],\mathbb{R})\)</span> is the space of smooth test functions with <span class="math notranslate nohighlight">\(\|\phi\|_{L^\infty([0,1])}\leq 1\)</span>. The space <span class="math notranslate nohighlight">\(BV([0,1])\)</span> is much larger than <span class="math notranslate nohighlight">\(H^{1,1}([0,1])\)</span> as it contains certain discontinuous functions (such as the Heaviside stepfunction) and smaller than <span class="math notranslate nohighlight">\(L^1(0,1)\)</span> (which also contains less regular functions). For functions in <span class="math notranslate nohighlight">\(H^{1,1}\)</span> we have <span class="math notranslate nohighlight">\(TV(u) = \|u'\|_{L^1([0,1])}\)</span>.</p>
 </div>
 <div class="section" id="analysis">
 <h2><span class="section-number">5.1. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="existence-and-uniqueness">
 <h3><span class="section-number">5.1.1. </span>Existence and uniqueness<a class="headerlink" href="#existence-and-uniqueness" title="Permalink to this headline">¶</a></h3>
-<p>To establish existence of minimisers, we first need a few definitions.</p>
+<p>To establish existence of minimisers, we first need a few definitions. Firstly, what <em>is</em> a minimiser?</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Minimisers</em></p>
 <p>We say that <span class="math notranslate nohighlight">\(\widetilde{u} \in \mathcal{U}\)</span> solves <a class="reference internal" href="#equation-variational">(5.1)</a> iff <span class="math notranslate nohighlight">\(J(\widetilde{u}) &lt; \infty\)</span> and <span class="math notranslate nohighlight">\(J(\widetilde{u}) \leq J(u)\)</span> for all <span class="math notranslate nohighlight">\(u \in \mathcal{U}\)</span>.</p>
 </div>
+<p>Then, we need some definitions regarding the properties of the functional <span class="math notranslate nohighlight">\(J\)</span>.</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Proper functionals</em></p>
 <p>A functional <span class="math notranslate nohighlight">\(J\)</span> is called proper if its effective domain <span class="math notranslate nohighlight">\(\text{dom}(J) = \{u\in\mathcal{U} \, | \, J(u) &lt; \infty\}\)</span> is not empty.</p>
@@ -414,7 +373,7 @@
 <p>A functional <span class="math notranslate nohighlight">\(J\)</span> is lower semi-continuous at <span class="math notranslate nohighlight">\(u\)</span> if for every <span class="math notranslate nohighlight">\(a &lt; J(u)\)</span> there exists a neighbourhood <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> of <span class="math notranslate nohighlight">\(u\)</span> such that <span class="math notranslate nohighlight">\(a &lt; J(v)\)</span> for all <span class="math notranslate nohighlight">\(v \in \mathcal{X}\)</span>.</p>
 <p>An alternative (slightly weaker) notion is <em>sequential</em> lower semi-continuity, which requires that</p>
 <div class="math notranslate nohighlight">
-\[J(u) \leq \lim\inf_{k\rightarrow \infty} E(u_k),\]</div>
+\[J(u) \leq \lim\inf_{k\rightarrow \infty} J(u_k),\]</div>
 <p>for all sequences <span class="math notranslate nohighlight">\(\{u_k\}_{k\in\mathbb{N}}\)</span> with <span class="math notranslate nohighlight">\(u_k \rightarrow u\)</span> as <span class="math notranslate nohighlight">\(k\rightarrow\infty\)</span>.</p>
 <p>Note that the term <em>neighbourhood</em> and the notion of convergence <span class="math notranslate nohighlight">\(u_k\rightarrow u\)</span> require the definition an underlying topology, which may be different (in particular, weaker) than the one induced by the norm on <span class="math notranslate nohighlight">\(\mathcal{U}\)</span>.</p>
 </div>
@@ -425,8 +384,11 @@
 </div>
 <div class="important dropdown admonition">
 <p class="admonition-title">Proof:</p>
-<p>…</p>
+<p>The first step is to establish the existence of minimising sequences <span class="math notranslate nohighlight">\(\{u_k\}_{k\in\mathbb{N}}\)</span>, i.e., <span class="math notranslate nohighlight">\(J(u_k) \rightarrow \inf_u J(u)\)</span> and showing that these are bounded. We’ll use the fact that <span class="math notranslate nohighlight">\(J\)</span> is proper, coercive and bounded from below.</p>
+<p>Then, we need to establish that there exists a subsequence <span class="math notranslate nohighlight">\(\{u_{j_k}\}_{k\in\mathbb{N}}\)</span> of a minimising sequence and a <span class="math notranslate nohighlight">\(u_*\)</span> such that <span class="math notranslate nohighlight">\(u_{j_k} \rightarrow u_*\)</span>. Here, we’ll use the underlying topology.</p>
+<p>Finally, we use the fact that <span class="math notranslate nohighlight">\(J\)</span> is l.s.c. (w.r.t. the chosen topology) to show that <span class="math notranslate nohighlight">\(u_*\)</span> is a minimiser.</p>
 </div>
+<p>While this theorem is quite general, establishing that <span class="math notranslate nohighlight">\(J\)</span> has the required properties can be difficult in practice. In particular, it may involve detailed knowledge of functional analysis in Banach spaces. We will not treat these in general, but instead give some illustrative examples.</p>
 <div class="admonition-examples-existence-of-minimisers-in-mathbb-r admonition">
 <p class="admonition-title">Examples: <em>existence of minimisers in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span></em></p>
 <p>Consider the following functions <span class="math notranslate nohighlight">\(J:\mathbb{R}\rightarrow \mathbb{R}\)</span> (cf. <a class="reference internal" href="#functionals"><span class="std std-numref">Fig. 5.1</span></a>):</p>
@@ -488,14 +450,6 @@
 <img alt="_images/variational_formulations_1_1.png" src="_images/variational_formulations_1_1.png" />
 </div>
 </div>
-<div class="important admonition">
-<p class="admonition-title">Theorem: <em>Uniqueness of minimisers</em></p>
-<p>Let <span class="math notranslate nohighlight">\(J\)</span> have at least one minimiser and be <a class="reference external" href="https://en.wikipedia.org/wiki/Convex_function">strictly convex</a> then the minimiser is unique.</p>
-</div>
-<div class="important dropdown admonition">
-<p class="admonition-title">Proof:</p>
-<p>…</p>
-</div>
 <div class="admonition-example-non-coercive-least-squares admonition">
 <p class="admonition-title">Example: <em>non-coercive least-squares</em></p>
 <p>Consider <span class="math notranslate nohighlight">\(J(u) = \|Ku - f\|_2^2\)</span> with <span class="math notranslate nohighlight">\(K : \ell_2 \rightarrow \ell_2\)</span> defined as <span class="math notranslate nohighlight">\((Ku)_i = i^{-1} u_i\)</span>
@@ -515,6 +469,18 @@ and <span class="math notranslate nohighlight">\(f_i = i^{-1}\)</span>.</p>
 \[TV(u) \leq \lim\inf_{k\rightarrow \infty} TV(u_k),\]</div>
 <p>showing that <span class="math notranslate nohighlight">\(TV(u)\)</span> is indeed l.s.c. w.r.t. <span class="math notranslate nohighlight">\(L^1([0,1])\)</span>.</p>
 </div>
+<p>Having established existence, we can wonder about uniqueness. The following theorem gives a sufficient (but not necessary!) condition for uniqueness.</p>
+<div class="important admonition">
+<p class="admonition-title">Theorem: <em>Uniqueness of minimisers</em></p>
+<p>Let <span class="math notranslate nohighlight">\(J\)</span> have at least one minimiser and be <a class="reference external" href="https://en.wikipedia.org/wiki/Convex_function">strictly convex</a> then the minimiser is unique.</p>
+</div>
+<div class="important dropdown admonition">
+<p class="admonition-title">Proof:</p>
+<p>Let <span class="math notranslate nohighlight">\(u_1, u_2\)</span> be two distinct minimisers; i.e. <span class="math notranslate nohighlight">\(J(u_i) \leq J(u) \forall u \in \mathcal{U}\)</span>. In particular, we have <span class="math notranslate nohighlight">\(J(u_1) \leq J(\alpha u_1 + \beta u_2)\)</span> with <span class="math notranslate nohighlight">\(\alpha + \beta = 1\)</span>. Because <span class="math notranslate nohighlight">\(J\)</span> is strictly convex</p>
+<div class="math notranslate nohighlight">
+\[J(\alpha u_1 + \beta u_2) &lt; \alpha J(u_1) + \beta J(u_2),\]</div>
+<p>which would lead to a contradiction: <span class="math notranslate nohighlight">\(J(u_1) &lt; J(u_1)\)</span>.</p>
+</div>
 </div>
 <div class="section" id="well-posedness-of-regularised-least-squares-problems">
 <h3><span class="section-number">5.1.2. </span>Well-posedness of regularised least-squares problems<a class="headerlink" href="#well-posedness-of-regularised-least-squares-problems" title="Permalink to this headline">¶</a></h3>
@@ -522,31 +488,8 @@ and <span class="math notranslate nohighlight">\(f_i = i^{-1}\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-variational-r">
 <span class="eqno">(5.2)<a class="headerlink" href="#equation-variational-r" title="Permalink to this equation">¶</a></span>\[\textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\mathcal{F}}^2 + \alpha R(u),\]</div>
 <p>with <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> a bounded linear operator and <span class="math notranslate nohighlight">\(R : \mathcal{U} \rightarrow \mathbb{R}_{\infty}\)</span> is proper and l.s.c. (with respect to an appropriate topology).</p>
-<p>We can think of <a class="reference internal" href="#equation-variational-r">(5.2)</a> as defining a (possibly non-linear) regularisation scheme <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)\)</span> that generalises the pseudo-inverse approach discussed earlier. Note that the notation <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span> is used very loosely to indicate a mapping from <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> to <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> that is supposed to approximate the inverse of <span class="math notranslate nohighlight">\(K\)</span> in some fashion. In general, this will be a non-linear mapping.</p>
-<div class="admonition-theorem-existence-and-uniqueness-of-regularised-least-squares-solutions admonition">
-<p class="admonition-title">Theorem: <em>Existence and uniqueness of regularised least-squares solutions</em></p>
-<p>Let <span class="math notranslate nohighlight">\(K\)</span> be injective <em>or</em> <span class="math notranslate nohighlight">\(J\)</span> be strictly convex, then the variational problem <a class="reference internal" href="#equation-variational-r">(5.2)</a> has a unique minimiser.</p>
-</div>
-<div class="important dropdown admonition">
-<p class="admonition-title">Proof:</p>
-<p>…</p>
-</div>
-<div class="admonition-theorem-stability-of-regularised-least-squares-solutions admonition">
-<p class="admonition-title">Theorem: <em>Stability of regularised least-squares solutions</em></p>
-<p>Let <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>, then the operator <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span>, defined as the solution operator to <a class="reference internal" href="#equation-variational-r">(5.2)</a>, is continuous.</p>
-</div>
-<div class="important dropdown admonition">
-<p class="admonition-title">Proof:</p>
-<p>…</p>
-</div>
-<div class="admonition-theorem-convergence-of-regularised-least-squares-solutions admonition">
-<p class="admonition-title">Theorem: <em>Convergence of regularised least-squares solutions</em></p>
-<p>The solution <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)\)</span> converges to the regular minimum-norm solution as <span class="math notranslate nohighlight">\(\alpha \rightarrow 0\)</span>.</p>
-</div>
-<div class="important dropdown admonition">
-<p class="admonition-title">Proof:</p>
-<p>…</p>
-</div>
+<p>We can think of <a class="reference internal" href="#equation-variational-r">(5.2)</a> as defining a (possibly non-linear) regularisation scheme <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)\)</span> that generalises the pseudo-inverse approach discussed earlier. Note that the notation <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span> is used very loosely to indicate a mapping from <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> to <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> that is supposed to approximate the inverse of <span class="math notranslate nohighlight">\(K\)</span> by solving <a class="reference internal" href="#equation-variational-r">(5.2)</a>. In general, this will be a non-linear mapping.</p>
+<p>Conditions under which the operator <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span> is well-defined and continuous can be stated quite generally. Similarly, conditions under which the regularised solution converges to the usual pseudo-inverse solution can be stated. This goes beyond the scope of these lecture notes. The interested reader is referred to <a class="reference external" href="https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf">the lecture notes from Matthias J. Ehrhardt and Lukas F. Lang</a>.</p>
 </div>
 <div class="section" id="examples">
 <h3><span class="section-number">5.1.3. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
@@ -560,8 +503,8 @@ and <span class="math notranslate nohighlight">\(f_i = i^{-1}\)</span>.</p>
 \[J(u + d) = J(u) + \textstyle{\frac{1}{2}}\|Kd\|_2^2 - \langle Kd,Ku - f^\delta \rangle + \textstyle{\frac{\alpha}{2}}\|d\|_2^2 + \alpha \langle d,u\rangle,\]</div>
 <p>from which we can bound</p>
 <div class="math notranslate nohighlight">
-\[|J(v) - J(u)| \leq \textstyle{\frac{1}{2}}\|Kd\|_2^2 + \|Kd\|_2 \|Ku - f^\delta\|_2 + \alpha \|d\|_2 \|u\|_2 + \textstyle{\frac{\alpha}{2}}\|d\|_2^2 \leq A \|d\|_2^2 + B \|d\|_2.\]</div>
-<p>Now, for every <span class="math notranslate nohighlight">\(\epsilon\)</span> we can pick a <span class="math notranslate nohighlight">\(\delta\)</span> such that <span class="math notranslate nohighlight">\(\|u-v\|_2 &lt; \delta\)</span> implies that <span class="math notranslate nohighlight">\(|J(v) - J(u)| &lt; \epsilon\)</span>.</p>
+\[|J(u+d) - J(u)| \leq A \|d\|_2^2 + B \|d\|_2.\]</div>
+<p>Now, for every <span class="math notranslate nohighlight">\(\epsilon\)</span> we can pick a <span class="math notranslate nohighlight">\(\delta\)</span> such that <span class="math notranslate nohighlight">\(\|d\|_2 &lt; \delta\)</span> implies that <span class="math notranslate nohighlight">\(|J(u+d) - J(u)| &lt; \epsilon\)</span>.</p>
 <p>Finally, we can show that <span class="math notranslate nohighlight">\(J\)</span> is <em>strongly convex</em> with constant <span class="math notranslate nohighlight">\(\alpha\)</span> by showing that <span class="math notranslate nohighlight">\(J(u) - \textstyle{\frac{\alpha}{2}}\|u\|_2^2\)</span> is convex. The fact that <span class="math notranslate nohighlight">\(\|Ku - f^\delta\|_2^2\)</span> is convex follows easily from the triangle inequality and the fact that the function <span class="math notranslate nohighlight">\((\cdot)^2\)</span> is convex.</p>
 </div>
 <div class="admonition-example-ell-1-regularisation admonition">
@@ -583,9 +526,6 @@ and <span class="math notranslate nohighlight">\(f_i = i^{-1}\)</span>.</p>
 <p>Let</p>
 <div class="math notranslate nohighlight">
 \[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{L^2(\Omega)}^2 + \alpha TV(u).\]</div>
-<ul class="simple">
-<li><p>existence, uniqueness, stability</p></li>
-</ul>
 </div>
 </div>
 </div>
@@ -607,7 +547,15 @@ there exists a linear operator <span class="math notranslate nohighlight">\(D\)<
 <div class="math notranslate nohighlight" id="equation-local-extremum">
 <span class="eqno">(5.4)<a class="headerlink" href="#equation-local-extremum" title="Permalink to this equation">¶</a></span>\[J'(u_*) = 0.\]</div>
 </div>
+<div class="admonition-example-tikhonov-regularisation-on-mathbb-r-n admonition">
+<p class="admonition-title">Example: <em>Tikhonov regularisation on \mathbb{R}^n</em></p>
+<p>…</p>
+</div>
 <p>Note that in some important cases <span class="math notranslate nohighlight">\(J\)</span> may fail to be Fréchet differentiable at the solution. We will treat this case in more detail in the next chapter on numerical methods.</p>
+<div class="admonition-example-ell-1-regularisation-on-mathbb-r-n admonition">
+<p class="admonition-title">Example: <em><span class="math notranslate nohighlight">\(\ell_1\)</span>-regularisation on \mathbb{R}^n</em></p>
+<p>…</p>
+</div>
 <hr class="docutils" />
 <p>A well-known method for solving <a class="reference internal" href="#equation-variational">(5.1)</a> is the <em>Landweber</em> iteration</p>
 <div class="math notranslate nohighlight">
