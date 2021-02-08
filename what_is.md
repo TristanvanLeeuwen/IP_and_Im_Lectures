@@ -306,7 +306,7 @@ We conclude that the problem of finding a root of $K(u) - f$ is ill-posed when t
 Matrix inversion is a prime example of a linear inverse problem. These can be written in the form of {eq}`ip` with $u \in \mathbb{C}^n$ and $f \in \mathbb{C}^n$ being $n$-dimensional vectors and $K \in \mathbb{C}^{n \times n}$ being a matrix. For now, we further assume $K$ to be a [Hermitian](https://en.wikipedia.org/wiki/Hermitian_matrix), [positive definite matrix](https://en.wikipedia.org/wiki/Definite_symmetric_matrix). In that case we know from the [spectral theorem](https://en.wikipedia.org/wiki/Spectral_theorem) that there exist real positive eigenvalues $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n > 0$ and corresponding orthonormal eigenvectors $k_j \in \mathbb{C}^n$ for $j \in \{ 1,\cdots,n \}$ such that $K$ can be written as
 
 $$
-K = \sum_{j=1}^n \lambda_k k_j k_j^{*}.
+K = \sum_{j=1}^n \lambda_j k_j k_j^{*}.
 $$
 
 Under these conditions $K$ is invertible so *existence* and *uniqueness* of a solution of {eq}`ip` are guaranteed. Regarding *stability*, however, it is well known from numerical linear algebra that a small perturbation of $f$ may lead to large perturbation of the corresponding solution if the matrix is *ill-conditioned*. In particular, we have
