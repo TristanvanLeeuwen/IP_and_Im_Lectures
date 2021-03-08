@@ -618,7 +618,7 @@ K^*Kv(y) = \int_y^1 \int_0^x v(z) \, \mathrm{d}z\mathrm{d}x = \lambda v(y).
 <p>At <span class="math notranslate nohighlight">\(y = 1\)</span> this yields <span class="math notranslate nohighlight">\(v(1) = 0\)</span>. Differentiating, we find</p>
 <div class="math notranslate nohighlight">
 \[
-\lambda v'(y) = -\int_0^x v(z)\mathrm{d}z,
+\lambda v'(y) = -\int_0^y v(z)\mathrm{d}z,
 \]</div>
 <p>which yields <span class="math notranslate nohighlight">\(v'(0) = 0\)</span>. Differentiating once again, we find</p>
 <div class="math notranslate nohighlight">
@@ -795,19 +795,19 @@ Ku(x) = \int_0^x u(y)\mathrm{d}y.
 \[K_{\alpha}^\dagger = \sum_{k=0}^\infty \frac{\sigma_k \langle u_k, \cdot \rangle}{\sigma_k^2 + \alpha \sigma_k^{-2}} v_k(x),\]</div>
 <p>where <span class="math notranslate nohighlight">\(\{(u_k,v_k,\sigma_k)\}_{k=0}^\infty\)</span> denotes the singular system of <span class="math notranslate nohighlight">\(K\)</span>.</p>
 <ul class="simple">
-<li><p>Take <span class="math notranslate nohighlight">\(f^\delta(x) = f(x) + \sigma_k \sin(\sigma_k^{-1}x)\)</span> with <span class="math notranslate nohighlight">\(\sigma_k\)</span> a singular value of <span class="math notranslate nohighlight">\(K\)</span> and show that for <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> the variance <span class="math notranslate nohighlight">\(\|K_{\alpha}^\dagger (f^\delta - f)\| \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(k \rightarrow 0\)</span></p></li>
+<li><p>Take <span class="math notranslate nohighlight">\(f^\delta(x) = f(x) + \sigma_k \sqrt{2}\sin(\sigma_k^{-1}x)\)</span> with <span class="math notranslate nohighlight">\(\sigma_k\)</span> a singular value of <span class="math notranslate nohighlight">\(K\)</span> and show that for <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> the variance <span class="math notranslate nohighlight">\(\|K_{\alpha}^\dagger (f^\delta - f)\| \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(k \rightarrow 0\)</span></p></li>
 </ul>
 <div class="hint dropdown admonition">
 <p class="admonition-title">Answer</p>
 <p>We will use the SVD of <span class="math notranslate nohighlight">\(K\)</span> to express the solution and derive a least-squares problem for the coefficients of <span class="math notranslate nohighlight">\(u\)</span> using the orthonormality of the singular vectors.</p>
-<p>The right singular vectors are given by <span class="math notranslate nohighlight">\(v_k(x) = \sqrt{2}\cos\left(\sigma_k^{-1}\right)\)</span> with <span class="math notranslate nohighlight">\(\sigma_k = (\pi(k+1/2))^{-1}\)</span>. Since these constitute an orthonormal basis for the orthogonal complement of the kernel of <span class="math notranslate nohighlight">\(K\)</span> we can express <span class="math notranslate nohighlight">\(u\)</span> as</p>
+<p>The right singular vectors are given by <span class="math notranslate nohighlight">\(v_k(x) = \sqrt{2}\cos\left(\sigma_k^{-1} x\right)\)</span> with <span class="math notranslate nohighlight">\(\sigma_k = (\pi(k+1/2))^{-1}\)</span>. Since these constitute an orthonormal basis for the orthogonal complement of the kernel of <span class="math notranslate nohighlight">\(K\)</span> we can express <span class="math notranslate nohighlight">\(u\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[u(x) = \sum_{k=0}^\infty a_k v_k(x) + w, \]</div>
 <p>with <span class="math notranslate nohighlight">\(Kw = 0\)</span>. We’ll ignore <span class="math notranslate nohighlight">\(w\)</span> for the time being and assume without proof that <span class="math notranslate nohighlight">\(\{v_k\}_{k=0}^\infty\)</span> is an orthonormal basis for <span class="math notranslate nohighlight">\(L^2([0,1])\)</span>.</p>
 <p>We can now express the least-squares problem in terms of the coefficients <span class="math notranslate nohighlight">\(a_k\)</span> First note that</p>
 <div class="math notranslate nohighlight">
 \[u'(x) = -\sum_{k=0}^\infty \sigma_k^{-1}a_k u_k(x),\]</div>
-<p>with <span class="math notranslate nohighlight">\(u_k(x)\)</span> denoting the left singular vectors <span class="math notranslate nohighlight">\(u_k(x) = \sqrt{2}\sin\left(\sigma_k^{-1}\right)\)</span>. Then</p>
+<p>with <span class="math notranslate nohighlight">\(u_k(x)\)</span> denoting the left singular vectors <span class="math notranslate nohighlight">\(u_k(x) = \sqrt{2}\sin\left(\sigma_k^{-1} x\right)\)</span>. Then</p>
 <div class="math notranslate nohighlight">
 \[\|u'\|^2 = \sum_{k=0}^\infty \frac{a_k^2}{\sigma_k^2},\]</div>
 <p>and using the fact that <span class="math notranslate nohighlight">\(Kv_k = \sigma_k u_k\)</span>:</p>
@@ -1041,7 +1041,7 @@ Ku = F^{-1}((Fu)\cdot(Fg_T)),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11dde9e90&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x123e8de50&gt;
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_5_1.png" src="_images/ip_function_spaces_5_1.png" />
@@ -1108,7 +1108,7 @@ K = h\cdot\left(\begin{matrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  4.143236166542715
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  4.171565945994761
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_9_1.png" src="_images/ip_function_spaces_9_1.png" />
@@ -1156,7 +1156,7 @@ Ku(x) = \sum_{k=0}^\infty \sigma_k \langle u, v_k \rangle u_k(x).
 <li><p><span class="math notranslate nohighlight">\(K_{\alpha}^\dagger f = \sum_{k=0}^\infty \frac{1}{\sigma_k + \alpha\sigma_k^{-1}}\langle f, u_k \rangle v_k(x).\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(K_{\alpha}^\dagger f = \sum_{k=0}^\infty \frac{1}{\sigma_k + \alpha k^2\sigma_k^{-1}}\langle f, u_k \rangle v_k(x)\)</span></p></li>
 </ol>
-<p><strong>hint:</strong> you can use the fact that the <span class="math notranslate nohighlight">\(v_k\)</span> form an orthonormal basis for functions on <span class="math notranslate nohighlight">\([0,1]\)</span> and hence express the solution in terms of this basis.</p>
+<p><strong>hint:</strong> you can use the fact that the <span class="math notranslate nohighlight">\(v_k\)</span> form an orthonormal basis for functions on <span class="math notranslate nohighlight">\([0,\pi]\)</span> and hence express the solution in terms of this basis.</p>
 <hr class="docutils" />
 <p>We can now study the need for regularisation, assuming that the Fourier coefficients <span class="math notranslate nohighlight">\(f_k = \langle f, u_k \rangle\)</span> of <span class="math notranslate nohighlight">\(f\)</span> are given.</p>
 <p><strong>3.</strong> Determine which type of regularisation (if any) is needed to satisfy the Picard condition in the following cases (you can set <span class="math notranslate nohighlight">\(\alpha = 1\)</span> for this analysis)</p>
