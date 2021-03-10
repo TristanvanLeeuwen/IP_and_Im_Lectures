@@ -310,7 +310,7 @@
                 
   <div class="section" id="a-statistical-perspective-on-inverse-problems">
 <h1><span class="section-number">4. </span>A statistical perspective on inverse problems<a class="headerlink" href="#a-statistical-perspective-on-inverse-problems" title="Permalink to this headline">¶</a></h1>
-<p>In this chapter we present a statistical perspective on inverse problems. This viewpoint allows us to incorporate prior assumptions and formulate variational problems. To avoid unnecessary technicalities, we’ll stick to the finite-dimensional setting. A formal treatment in the infinite-dimensional setting is given in <a class="bibtex reference internal" href="what_is.html#dashti2017" id="id1">[1]</a>.</p>
+<p>In this chapter we present a statistical perspective on inverse problems. This viewpoint allows us to incorporate prior assumptions and formulate variational problems. To avoid unnecessary technicalities, we’ll stick to the finite-dimensional setting. A formal treatment in the infinite-dimensional setting is given in <a class="bibtex reference internal" href="#dashti2017" id="id1">[4]</a>.</p>
 <div class="section" id="formulating-prior-assumptions">
 <h2><span class="section-number">4.1. </span>Formulating prior assumptions<a class="headerlink" href="#formulating-prior-assumptions" title="Permalink to this headline">¶</a></h2>
 <p>We take the viewpoint that both <span class="math notranslate nohighlight">\(f^{\delta}\)</span> and <span class="math notranslate nohighlight">\(u\)</span> are <a class="reference external" href="https://en.wikipedia.org/wiki/Random_variable">continuous random variables</a>. The prior assumptions are then formulated in terms of multi-variate <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_density_function">probability distributions</a>.</p>
@@ -344,7 +344,7 @@
 <p>Thus, <span class="math notranslate nohighlight">\(w^\delta - \rho v^\delta\)</span> is a normally distributed random variable with mean zero and variance <span class="math notranslate nohighlight">\(\sigma^2(1 + \rho^2)\)</span>. This gives us the following Likelihood</p>
 <div class="math notranslate nohighlight">
 \[\pi_{\text{data}}(u | f^\delta) = \frac{1}{\sigma\sqrt{1+\rho^2}\sqrt{2\pi}}\exp\left(-\frac{(w^\delta - \rho v^\delta)^2}{2\sigma^2(1+\rho^2)}\right).\]</div>
-<p>As prior, we can use statistics of rock samples <a class="bibtex reference internal" href="what_is.html#johnson1984density" id="id2">[2]</a>. This gives a <a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-normal distribution</a> with parameters <span class="math notranslate nohighlight">\((1.5,0.4)\)</span>. The corresponding distributions are shown in figure <a class="reference internal" href="#rock-samples"><span class="std std-numref">Fig. 4.1</span></a>.</p>
+<p>As prior, we can use statistics of rock samples <a class="bibtex reference internal" href="#johnson1984density" id="id2">[6]</a>. This gives a <a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-normal distribution</a> with parameters <span class="math notranslate nohighlight">\((1.5,0.4)\)</span>. The corresponding distributions are shown in figure <a class="reference internal" href="#rock-samples"><span class="std std-numref">Fig. 4.1</span></a>.</p>
 <div class="figure align-default" id="rock-samples" style="width: 500px">
 <div class="cell_output docutils container">
 <img alt="_images/statistical_perspective_1_0.png" src="_images/statistical_perspective_1_0.png" />
@@ -423,12 +423,12 @@
 <p>We estimate <span class="math notranslate nohighlight">\(u\)</span> by solving the following regularised least-squares problem:</p>
 <div class="math notranslate nohighlight">
 \[\min_u \|u - f^\delta\|_2^2 + \alpha \|u\|_{\Sigma^{-1}}^2.\]</div>
-<p>Here, <span class="math notranslate nohighlight">\(\alpha\)</span> is an estimate of the reciprocal variance of the noise, so ideally we have <span class="math notranslate nohighlight">\(\alpha \approx \sigma^{-2}\)</span>. The corresponding posterior mean and covariance are given by</p>
+<p>Here, <span class="math notranslate nohighlight">\(\alpha\)</span> is an estimate of the variance of the noise, so ideally we have <span class="math notranslate nohighlight">\(\alpha \approx \sigma^{2}\)</span>. The corresponding posterior mean and covariance are given by</p>
 <div class="math notranslate nohighlight">
 \[\mu_{\text{post}} = \left(\alpha I + \Sigma\right)^{-1}\Sigma f^\delta,\]</div>
 <div class="math notranslate nohighlight">
 \[\Sigma_{\text{post}} = \alpha \left(\alpha I + \Sigma\right)^{-1}\Sigma.\]</div>
-<p>When using <span class="math notranslate nohighlight">\(\mu_{\text{post}}\)</span> as an estimate for <span class="math notranslate nohighlight">\(u\)</span> we could interpret the diagonal elements of <span class="math notranslate nohighlight">\(\Sigma_{\text{post}}\)</span> as variances (and hence their square-root as a standard deviation). However, we should note that this mainly gives information on the <em>sensitivity</em> of the estimate to noise, and not necessarily on the <em>error</em> between the estimate and the ground truth. Even then, we may grossly underestimate the uncertainty when <span class="math notranslate nohighlight">\(\alpha &lt; \sigma^{-2}\)</span>. One way to asses whether the assumptions are valid is to study the residuals <span class="math notranslate nohighlight">\(r_i = \mu_{\text{post}} - f_i^\delta\)</span>. If the assumptions are valid, we expect these to be normally distributed mean zero and variance <span class="math notranslate nohighlight">\(\alpha\)</span>. Likewise, we can verify whether <span class="math notranslate nohighlight">\(\mu_{\text{post}}\)</span> is normally distributed with mean zero and covariance <span class="math notranslate nohighlight">\(\Sigma\)</span>.</p>
+<p>When using <span class="math notranslate nohighlight">\(\mu_{\text{post}}\)</span> as an estimate for <span class="math notranslate nohighlight">\(u\)</span> we could interpret the diagonal elements of <span class="math notranslate nohighlight">\(\Sigma_{\text{post}}\)</span> as variances (and hence their square-root as a standard deviation). However, we should note that this mainly gives information on the <em>sensitivity</em> of the estimate to noise, and not necessarily on the <em>error</em> between the estimate and the ground truth. Even then, we may grossly underestimate the uncertainty when <span class="math notranslate nohighlight">\(\alpha &lt; \sigma^{2}\)</span>. One way to asses whether the assumptions are valid is to study the residuals <span class="math notranslate nohighlight">\(r_i = \mu_{\text{post}} - f_i^\delta\)</span>. If the assumptions are valid, we expect these to be normally distributed mean zero and variance <span class="math notranslate nohighlight">\(\alpha\)</span>. Likewise, we can verify whether <span class="math notranslate nohighlight">\(\mu_{\text{post}}\)</span> is normally distributed with mean zero and covariance <span class="math notranslate nohighlight">\(\Sigma\)</span>.</p>
 <div class="figure align-default" id="gaussian-example" style="width: 500px">
 <div class="cell_output docutils container">
 <img alt="_images/statistical_perspective_3_1.png" src="_images/statistical_perspective_3_1.png" />
@@ -1136,10 +1136,10 @@ In figure <a class="reference internal" href="#expected-error"><span class="std 
 <div class="section" id="references">
 <h2><span class="section-number">4.6. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p id="bibtex-bibliography-statistical_perspective-0"><dl class="citation">
-<dt class="bibtex label" id="dashti2017"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="bibtex label" id="dashti2017"><span class="brackets"><a class="fn-backref" href="#id1">4</a></span></dt>
 <dd><p>Masoumeh Dashti and Andrew M. Stuart. <em>The Bayesian Approach to Inverse Problems</em>, pages 311–428. Springer International Publishing, Cham, 2017. URL: <a class="reference external" href="https://arxiv.org/pdf/1302.6989.pdf">https://arxiv.org/pdf/1302.6989.pdf</a>, <a class="reference external" href="https://doi.org/10.1007/978-3-319-12385-1_7">doi:10.1007/978-3-319-12385-1_7</a>.</p>
 </dd>
-<dt class="bibtex label" id="johnson1984density"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dt class="bibtex label" id="johnson1984density"><span class="brackets"><a class="fn-backref" href="#id2">6</a></span></dt>
 <dd><p>Gordon R Johnson. Density of rocks and minerals. <em>CRC handbook of physical properties of rocks</em>, pages 1–38, 1984.</p>
 </dd>
 </dl>
