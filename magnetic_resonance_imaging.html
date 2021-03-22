@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Magnetic Resonance Imaging &#8212; 10 Lectures on Inverse Problems and Imaging</title>
+    <title>4. Magnetic Resonance Imaging &#8212; 10 Lectures on Inverse Problems and Imaging</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -42,6 +42,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="3. Wavefield Imaging" href="wavefield_imaging.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -116,7 +118,7 @@
   Applications
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="image_processing.html">
    1. Image processing
@@ -130,6 +132,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="wavefield_imaging.html">
    3. Wavefield Imaging
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Magnetic Resonance Imaging
   </a>
  </li>
 </ul>
@@ -221,7 +228,89 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-very-brief-history-of-mri">
+   4.1. A very brief history of MRI
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#physical-principles">
+   4.2. Physical Principles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#an-mri-scan">
+   4.3. An MRI scan
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imaging">
+   4.4. Imaging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#traversing-the-k-space">
+     4.4.1. Traversing the
+     <span class="math notranslate nohighlight">
+      \(k\)
+     </span>
+     -space
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image-reconstruction-beyond-the-fast-fourier-transform">
+     4.4.2. Image reconstruction: beyond the Fast Fourier Transform
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#acceleration-techniques">
+     4.4.3. Acceleration techniques
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   4.5. Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rotation">
+     4.5.1. Rotation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decay">
+     4.5.2. Decay
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     4.5.3.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     4.5.4.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment">
+   4.6. Assignment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mri-reconstruction">
+     4.6.1. MRI-reconstruction
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -231,7 +320,500 @@
               <div>
                 
   <div class="section" id="magnetic-resonance-imaging">
-<h1>Magnetic Resonance Imaging<a class="headerlink" href="#magnetic-resonance-imaging" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">4. </span>Magnetic Resonance Imaging<a class="headerlink" href="#magnetic-resonance-imaging" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="a-very-brief-history-of-mri">
+<h2><span class="section-number">4.1. </span>A very brief history of MRI<a class="headerlink" href="#a-very-brief-history-of-mri" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>1946: Felix Bloch and Edward Purcell independently discover the
+magnetic resonance phenomenon (Nobel Prize in 1952)</p></li>
+<li><p>1971: Raymond Damadian observes different nuclear magnetic
+relaxation times between healthy tissue and tumor. Clinical
+application are envisioned</p></li>
+<li><p>1973/1974: Paul C. Lauterbur and Peter Mansfield apply gradient
+magnetic fields to obtain spatial encoding: first MR images (Nobel
+Prize in 2003)</p></li>
+<li><p>1980’s: MRI scanners enter the clinics.</p></li>
+<li><p>1990’s: enlarging field of clinical application, higher magnetic
+field magnets</p></li>
+<li><p>2000-present: accelerating acquisition protocols.</p></li>
+</ul>
+<p>At the present, more than 100 million MRI scans are worldwide performed
+each year. Most common applications include tumors, multiple sclerosis,
+epilepsy, ischemic stroke, stenosis or aneurysms (MR Angiography),
+sardiac, musculoskeletal system, brain functioning (functional MRI), MR
+guided surgery (e.g. MRI-Linac).</p>
+</div>
+<div class="section" id="physical-principles">
+<h2><span class="section-number">4.2. </span>Physical Principles<a class="headerlink" href="#physical-principles" title="Permalink to this headline">¶</a></h2>
+<p>Central quantity is the <em>magnetization</em> <span class="math notranslate nohighlight">\(\mathbf{m} = (m_x ,m_y ,m_z)^T\in\mathbb{R}^3\)</span>, which describes the net effect of nuclei magnetic moments (in the body mostly <span class="math notranslate nohighlight">\(^1\)</span>H) over a small volume at position <span class="math notranslate nohighlight">\(\mathbf{r} = (x, y, z)^T\)</span>.</p>
+<p>Suppose an external magnetic field <span class="math notranslate nohighlight">\(\mathbf{b}=(b_x,b_y,b_z)^T\)</span> is present, the behavior of the magnetization is given by the following equation (by Felix Bloch):</p>
+<div class="math notranslate nohighlight" id="equation-bloch">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-bloch" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\text{d}\mathbf{m}}{\text{d}t}=
+\left(\begin{array}{ccc}
+-1/T_2 &amp;\gamma b_z(t) &amp; -\gamma b_y(t)\\
+-\gamma b_z(t)&amp; -1/T_2 &amp; \gamma b_x(t)\\
+\gamma b_y(t) &amp; -\gamma b_x(t)&amp;-1/T_1
+\end{array}\right)\mathbf{m}+
+\left(\begin{array}{c}
+0\\0\\ \rho/T_1
+\end{array}\right),\quad
+\mathbf{m}(0)=\left(\begin{array}{c}
+0\\0\\ \rho
+\end{array}\right)\end{split}\]</div>
+<p>The quantities <span class="math notranslate nohighlight">\(T_1\)</span>, <span class="math notranslate nohighlight">\(T_2\)</span> and <span class="math notranslate nohighlight">\(\rho\)</span> are tissue
+properties (parameters) and vary depending on the tissue type and
+structure. This makes it possible to spot abnormalities in tissues.
+<span class="math notranslate nohighlight">\(\gamma\)</span> is a physical constant (gyromagnetic ratio).
+The Bloch equation can be written in a more compact form:</p>
+<div class="math notranslate nohighlight" id="equation-blochmv">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-blochmv" title="Permalink to this equation">¶</a></span>\[\frac{\text{d}\mathbf{m}}{\text{d}t} = A(t)\mathbf{m}+\mathbf{d},\quad \mathbf{m}(0) = \mathbf{m}_0\]</div>
+<p>This equation can look rather complex at a first
+glance. To better understand the dynamics involved let’s separate the
+tissue-parameter (i.e. <span class="math notranslate nohighlight">\(T_1,T_2,\rho\)</span>) dependent and independent parts.</p>
+<div class="math notranslate nohighlight" id="equation-rotation">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-rotation" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\text{d}\mathbf{m}}{\text{d}t}=
+\left(\begin{array}{ccc}
+0 &amp; \gamma b_z(t) &amp; -\gamma b_y(t)\\
+-\gamma b_z(t)&amp; 0 &amp; \gamma b_x(t)\\
+\gamma b_y(t) &amp; -\gamma b_x(t) &amp;0
+\end{array}\right)\mathbf{m}\end{split}\]</div>
+<p>Note that this differential equation is characterized
+by a <em>skew-symmetric</em> matrix. This is equivalent to a <em>rotation</em> of
+<span class="math notranslate nohighlight">\(\mathbf{m}\)</span> around the magnetic field vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The remaining part is given by</p>
+<div class="math notranslate nohighlight" id="equation-decay">
+<span class="eqno">(4.4)<a class="headerlink" href="#equation-decay" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\text{d}\mathbf{m}}{\text{d}t}=
+\left(\begin{array}{ccc}
+-1/T_2 &amp; 0 &amp; 0\\
+0&amp; -1/T_2 &amp; 0\\
+0 &amp; 0 &amp;-1/T_1
+\end{array}\right)\mathbf{m}+
+\left(\begin{array}{c}
+0\\0\\ \rho/T_1
+\end{array}\right)\end{split}\]</div>
+<p>This differential equation clearly describes two
+independent <em>exponential decays</em>, one for
+<span class="math notranslate nohighlight">\(m_{xy}\equiv m_x+\mathrm{i}m_y\)</span> with decay rate <span class="math notranslate nohighlight">\(-1/T_2\)</span> and one for
+<span class="math notranslate nohighlight">\(m_z\)</span> with rate <span class="math notranslate nohighlight">\(-1/T_1\)</span>.</p>
+<p>In conclusion: applied, time-dependent magnetic field <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>
+contributes to rotate the magnetization vector. The tissue properties
+contribute to different decay (or relaxation) behavior for different
+tissue types. During an MRI scan, the interplay of these two kind of
+dynamics makes it possible to generate an image.</p>
+</div>
+<div class="section" id="an-mri-scan">
+<h2><span class="section-number">4.3. </span>An MRI scan<a class="headerlink" href="#an-mri-scan" title="Permalink to this headline">¶</a></h2>
+<p>Let’s start by investigating what happens to a single tissue component
+during an MRI scan. When we lay inside an MRI scanner, the large
+doughnut-shaped magnet generates a very strong magnetic field in the
+feet-head direction. By definition, this is the longitudinal, <span class="math notranslate nohighlight">\(z\)</span>
+component. The transverse component <span class="math notranslate nohighlight">\(m_{xy}\)</span> is randomly distributed
+over a small volume <span class="math notranslate nohighlight">\(V\)</span> (zero net sum over <span class="math notranslate nohighlight">\(V\)</span>). Only the longitudinal component <span class="math notranslate nohighlight">\(m_z\)</span> is slightly different than 0, but since we can only measure the <span class="math notranslate nohighlight">\(m_{xy}\)</span> component, no signal can be
+collected.</p>
+<p>To measure the magnetic moments, we need them to attain a net transverse
+magnetization component which differs from 0. Since the <span class="math notranslate nohighlight">\(\mathbf{m}\)</span> is
+initially aligned along <span class="math notranslate nohighlight">\(z\)</span> we will need a magnetic field component
+perpendicular to that (remember: the magnetic field <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>
+contributes to rotate <span class="math notranslate nohighlight">\(\mathbf{m}\)</span> around itself). For simplicity,
+suppose we superimpose a time-independent magnetic field <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>
+that is aligned along the <span class="math notranslate nohighlight">\(y\)</span> direction: <span class="math notranslate nohighlight">\(\mathbf{b}(t) = (0,b_y,0)^T\)</span>
+for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>. The Bloch equation <a class="reference internal" href="#equation-blochmv">(4.2)</a>
+admits the following solution:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{m}(t) = e^{At}\left(\mathbf{m}_0+A^{-1}\mathbf{d} \right)-A^{-1}\mathbf{d}\]</div>
+<p>A graph of the solution <span class="math notranslate nohighlight">\(m_{xy}\)</span> for three different combinations of
+tissue parameters <span class="math notranslate nohighlight">\((T_1,T_2)\)</span> is plotted in <a class="reference internal" href="#transient"><span class="std std-numref">Fig. 4.4</span></a>. What would have happened if we had chosen a different value for the magnetic field <span class="math notranslate nohighlight">\(b_y\)</span>? Let’s have a look at the steady-states solution of the Bloch equation for time-constant magnetic fields. To derive the
+steady state signal, set <span class="math notranslate nohighlight">\(\text{d}\mathbf{m}/\text{d}t = \mathbf{0}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\text{d}\mathbf{m}}{\text{d}t} = 0\Leftrightarrow 0 = A\mathbf{m}+\mathbf{d}\Leftrightarrow \mathbf{m} = -A^{-1}\mathbf{d}
+\]</div>
+<p>Which leads to</p>
+<div class="math notranslate nohighlight">
+\[
+m_{xy} = \frac{T_2\gamma b_y}{T_1T_2 (\gamma b_y)^2+1} \rho.
+\]</div>
+<p>A plot of <span class="math notranslate nohighlight">\(m_{xy}(t)\)</span> for different values of the magnetic field component
+<span class="math notranslate nohighlight">\(b_y\)</span> is shown in <a class="reference internal" href="#steady"><span class="std std-numref">Fig. 4.5</span></a>. Note that not only the absolute amplitude of each
+signal changes, but, more importantly, also the <em>relative</em> amplitude
+(contrast) changes; for instance, for <span class="math notranslate nohighlight">\(\gamma b_y=3\)</span>, tissue C gives
+higher signal than tissue B. At <span class="math notranslate nohighlight">\(\gamma b_y=8\)</span> the situation is
+inverted. Furthermore, for high magnetic field values, tissue A and B
+generate the same signal amplitude, which means they cannot be
+differentiated at all.</p>
+<div class="sphinx-bs container-fluid docutils">
+<div class="row docutils">
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
+<div class="card w-100 shadow-none border-0 docutils">
+<div class="card-body docutils">
+<div class="figure align-default" id="transient">
+<a class="reference internal image-reference" href="_images/transient.png"><img alt="_images/transient.png" src="_images/transient.png" style="height: 150px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Transient states behavior of <span class="math notranslate nohighlight">\(m_x\)</span> for different tissue types. In these simulations, <span class="math notranslate nohighlight">\(m_y\)</span> = 0.</span><a class="headerlink" href="#transient" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
+<div class="card w-100 shadow-none border-0 docutils">
+<div class="card-body docutils">
+<div class="figure align-default" id="steady">
+<a class="reference internal image-reference" href="_images/steady.png"><img alt="_images/steady.png" src="_images/steady.png" style="height: 150px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Steady states of <span class="math notranslate nohighlight">\(m_x\)</span> as a function of the experimental setting <span class="math notranslate nohighlight">\(\gamma b_y\)</span> for three different tissue types.</span><a class="headerlink" href="#steady" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>To better illustrate this point, I simulated the transverse
+magnetization for a 2D object made of these three tissue types. See <a class="reference internal" href="#contrast"><span class="std std-numref">Fig. 4.6</span></a>.</p>
+<div class="figure align-default" id="contrast">
+<a class="reference internal image-reference" href="_images/contrast.png"><img alt="_images/contrast.png" src="_images/contrast.png" style="height: 150px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.6 </span><span class="caption-text">Contrast obtained for di
+erent experimental settings in a 2D object.</span><a class="headerlink" href="#contrast" title="Permalink to this image">¶</a></p>
+</div>
+<p>Tuning the scanner parameter <span class="math notranslate nohighlight">\(b_y\)</span> to different levels results in
+different contrast images. A more realistic, in-vivo illustration of how
+the scanner settings influence the acquired image is reported in figure
+<a class="reference internal" href="#contrast-invivo"><span class="std std-numref">Fig. 4.7</span></a>. Note that the these four images are
+acquired from the same slice of the same brain! The ability to capture
+different anatomical and functional characteristics just by changing
+magnetic field settings makes MRI probably the richest medical imaging
+modality.</p>
+<div class="figure align-default" id="contrast-invivo">
+<a class="reference internal image-reference" href="_images/contrast_invivo.png"><img alt="_images/contrast_invivo.png" src="_images/contrast_invivo.png" style="height: 150px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.7 </span><span class="caption-text">Four different in-vivo contrast images acquired for the same slice of the same brain.</span><a class="headerlink" href="#contrast-invivo" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="imaging">
+<h2><span class="section-number">4.4. </span>Imaging<a class="headerlink" href="#imaging" title="Permalink to this headline">¶</a></h2>
+<p>In the previous paragraph we have investigate the behavior of an
+individual tissue type. In this section we will see how data from a
+whole object (human body) is acquired and processed into an image.<br />
+Look again at <a class="reference internal" href="#transient"><span class="std std-numref">Fig. 4.4</span></a>. Once the steady-state condition is reached (in
+that specific case for <span class="math notranslate nohighlight">\(t&gt;3\)</span>) the value of <span class="math notranslate nohighlight">\(m_{xy}\)</span> does no longer
+change. This allows to encode the <em>spatial</em> information relative to all
+position in the image <span class="math notranslate nohighlight">\(m_{xy}(\mathbf{r})\)</span>. Spatial encoding can take
+some time thus it is important that the state of <span class="math notranslate nohighlight">\(m_{xy}\)</span> is kept
+constant during the data acquisition period. We now make a distinction
+between two kinds of superimposed magnetic fields:</p>
+<ul class="simple">
+<li><p>the Radiofrequency fields are the transverse components <span class="math notranslate nohighlight">\(b_x\)</span> and
+<span class="math notranslate nohighlight">\(b_y\)</span></p></li>
+<li><p>the Gradient fields describe the longitudinal component <span class="math notranslate nohighlight">\(b_z\)</span> and
+have the form of a gradient:
+<span class="math notranslate nohighlight">\(b_z(t,\mathbf{r}) = \mathbf{g}(t)\cdot\mathbf{r}\)</span> where
+<span class="math notranslate nohighlight">\(\mathbf{g}=(g_x,g_y,g_z)\in\mathbb{R}^3\)</span> can be tuned at the user’s
+discretion. Note that the gradient fields are spatially dependent
+(this is essential to localize the signal contribution form
+different positions in the body).</p></li>
+</ul>
+<p>During an MRI scan, these two types of fields are not played out
+continuously but keep alternating (see <a class="reference internal" href="#sequence"><span class="std std-numref">Fig. 4.8</span></a>).</p>
+<div class="figure align-default" id="sequence">
+<a class="reference internal image-reference" href="_images/sequence.png"><img alt="_images/sequence.png" src="_images/sequence.png" style="height: 250px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.8 </span><span class="caption-text">A simple MRI acquisition sequence.</span><a class="headerlink" href="#sequence" title="Permalink to this image">¶</a></p>
+</div>
+<p>This is a slightly different situation than the scenarios we have
+previously seen but the physical insights are pretty much the same. The
+RF fields are used to drive the magnetization to some kind of desired
+state (for instance a steady-sate) as we have seen in the previous
+section (remember that, in order to record a signal: <span class="math notranslate nohighlight">\(m_{xy}\neq 0\)</span>).
+The gradient fields are used to encode the information, i.e. to collect
+a signal which can be reconstructed into an image. The period of this
+alternation is called <em>repetition time</em> (<span class="math notranslate nohighlight">\(T_R\)</span>) and the time-distance
+between the radiofrequency and the gradient blocks is the <em>echo time</em>
+(<span class="math notranslate nohighlight">\(T_E\)</span>); <span class="math notranslate nohighlight">\(T_R\)</span> and <span class="math notranslate nohighlight">\(T_E\)</span> can be arbitrarily set to modify the contrast
+type.</p>
+<p>Since each data acquisition block (read-out) lasts a very short time
+(few milliseconds) we can ignore the relaxation effects and study their
+behavior at the hand of equation <a class="reference internal" href="#equation-rotation">(4.3)</a>.
+In particular, suppose that at the start of the acquisition (<span class="math notranslate nohighlight">\(t =t_0\)</span>)
+we are in a steady-state <span class="math notranslate nohighlight">\(m_{xy}=u\)</span>; under effect of the gradient
+fields, the transverse magnetization will have the following form:</p>
+<div class="math notranslate nohighlight" id="equation-mss">
+<span class="eqno">(4.5)<a class="headerlink" href="#equation-mss" title="Permalink to this equation">¶</a></span>\[m_{xy}(t,\mathbf{r}) = u(\mathbf{r})e^{-\text{i}\gamma\int_{t_0}^{t}\mathbf{g}(t')\cdot \mathbf{r}\text{d}t'}\]</div>
+<p>which is of course still a localized signal expression. We will now make the final step toward MR Imaging.
+In an MRI scanner, radiofrequency receive coils are used to capture the
+total amount of transverse magnetization present in the object. By using
+Faraday’s induction law, it can be shown that the signal <span class="math notranslate nohighlight">\(s(t)\)</span> recorded
+by the coil is proportional to the volumetric integral of all local
+<span class="math notranslate nohighlight">\(m_{xy}\)</span> contributions:</p>
+<div class="math notranslate nohighlight" id="equation-signal">
+<span class="eqno">(4.6)<a class="headerlink" href="#equation-signal" title="Permalink to this equation">¶</a></span>\[s(t) \propto \int_{\mathbb{R}^n}m_{xy}(t,\mathbf{r})\text{d}\mathbf{r} = \int_{\mathbb{R}^n}u(\mathbf{r})e^{-\text{i}\gamma\int_{t_0}^{t}\mathbf{g}(\tau)\cdot \mathbf{r}\text{d}\tau}\text{d}\mathbf{r}\]</div>
+<p>where we made use of equation <a class="reference internal" href="#equation-mss">(4.5)</a> for the second equality.
+It is important to realize that the measured signal <span class="math notranslate nohighlight">\(s(t)\)</span> does not
+directly tell us how the spatial distribution of <span class="math notranslate nohighlight">\(u\)</span> (i.e. the image)
+look like. In order to reconstruct <span class="math notranslate nohighlight">\(u(\mathbf{r})\)</span> we need to solve the
+integral equation <a class="reference internal" href="#equation-signal">(4.6)</a>. This step is going to be much easier if we rewrite
+this equation by introducing the following variable:</p>
+<div class="math notranslate nohighlight" id="equation-k">
+<span class="eqno">(4.7)<a class="headerlink" href="#equation-k" title="Permalink to this equation">¶</a></span>\[\mathbf{k}(t)\equiv \frac{\gamma}{2\pi}\int_{t_0}^t\mathbf{g}(\tau)\text{d}\tau\]</div>
+<div class="math notranslate nohighlight" id="equation-signalk">
+<span class="eqno">(4.8)<a class="headerlink" href="#equation-signalk" title="Permalink to this equation">¶</a></span>\[\Rightarrow s(t) = s(\mathbf{k}(t))= \int_{\mathbb{R}^n}u(\mathbf{r})e^{-2\pi \text{i}\mathbf{k}(t)\cdot \mathbf{r}}\text{d}\mathbf{r}\]</div>
+<p>Note that, for ease of notation, we have dropped the
+proportionality sign from <a class="reference internal" href="#equation-signal">(4.6)</a> (you
+could think of it as a global, space-independent factor which scales
+<span class="math notranslate nohighlight">\(u\)</span>). Obviously, the equation above unveils a Fourier transform relationship
+between the signal and the image <span class="math notranslate nohighlight">\(u\)</span>. To reconstruct the image we can
+apply inverse (Discrete) Fourier transform to the data <span class="math notranslate nohighlight">\(s\)</span> (see figure
+<a class="reference internal" href="#kspace"><span class="std std-numref">Fig. 4.9</span></a>).</p>
+<div class="figure align-default" id="kspace">
+<a class="reference internal image-reference" href="_images/kspace_image.png"><img alt="_images/kspace_image.png" src="_images/kspace_image.png" style="height: 250px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.9 </span><span class="caption-text"><span class="math notranslate nohighlight">\(k\)</span>-space and image space. The data acquisition process is mathematically equivalent to a Fourier
+transform F of the image. To reconstruct the image, inverse Fourier transform <span class="math notranslate nohighlight">\(\mathcal{F}^{-1}\)</span> can be applied.</span><a class="headerlink" href="#kspace" title="Permalink to this image">¶</a></p>
+</div>
+<p>The new variable <span class="math notranslate nohighlight">\(\mathbf{k}\)</span> denotes a <em>spatial frequency</em> term and the
+signal can be interpreted as the multi-dimensional frequency
+representation of the image. The signal domain is also called the
+<span class="math notranslate nohighlight">\(k\)</span>-space.<br />
+Equation <a class="reference internal" href="#equation-signalk">(4.8)</a> has profound implications not only in the
+reconstruction but also in the data <em>acquisition</em> process. Fourier
+theory tells which sample point in <span class="math notranslate nohighlight">\(k\)</span>-space need to be acquired in
+order to obtain a faithful reconstruction of the true magnetization map
+of the body. In particular, the Nyquist criterion states that for an
+image of size <span class="math notranslate nohighlight">\(L\times L\)</span> and a desired resolution <span class="math notranslate nohighlight">\(\Delta_s\)</span> in both
+directions, samples in <span class="math notranslate nohighlight">\(k\)</span>-space should be acquired at distance <span class="math notranslate nohighlight">\(1/L\)</span>
+over the interval <span class="math notranslate nohighlight">\([-1/\Delta_s, + 1/\Delta_s]\)</span>. See <a class="reference internal" href="#nyquistmri"><span class="std std-numref">Fig. 4.10</span></a>.</p>
+<div class="figure align-default" id="nyquistmri">
+<a class="reference internal image-reference" href="_images/nyquistMRI.png"><img alt="_images/nyquistMRI.png" src="_images/nyquistMRI.png" style="height: 250px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.10 </span><span class="caption-text">Sampling in <span class="math notranslate nohighlight">\(k\)</span>-space</span><a class="headerlink" href="#nyquistmri" title="Permalink to this image">¶</a></p>
+</div>
+<p>In conclusion, the MRI acquisition process is characterized by two main
+components:</p>
+<ul class="simple">
+<li><p>Radiofrequency excitations to drive and keep the magnetization into
+a tissue-dependent state <span class="math notranslate nohighlight">\(u(\mathbf{r})\)</span></p></li>
+<li><p>gradient field encoding to collect the signal <span class="math notranslate nohighlight">\(s(\mathbf{k})\)</span> as
+spatial frequency coefficients of <span class="math notranslate nohighlight">\(u(\mathbf{r})\)</span></p></li>
+</ul>
+<p>The first component is responsible for the different type of contrast
+characteristics of the image. The second component make sure that the
+acquired data can correctly be reconstructed at the desired resolution.</p>
+<div class="section" id="traversing-the-k-space">
+<h3><span class="section-number">4.4.1. </span>Traversing the <span class="math notranslate nohighlight">\(k\)</span>-space<a class="headerlink" href="#traversing-the-k-space" title="Permalink to this headline">¶</a></h3>
+<p>Let’s have a closer look at the data acquisition component (encoding).
+This is achieved by ensuring sufficient portion of the <span class="math notranslate nohighlight">\(k\)</span>-space is
+sampled, with the proper density (Nyquist criterion). In practice, there
+are several ways to sample the <span class="math notranslate nohighlight">\(k\)</span>-space. Equation
+<a class="reference internal" href="#equation-k">(4.7)</a> shows the direct
+relationship between the somehow abstract concept of <span class="math notranslate nohighlight">\(k\)</span>-space
+coordinate and the practical, actually produced gradient field
+<span class="math notranslate nohighlight">\(\mathbf{g}(t)\)</span>; given a desired sampling trajectory, <span class="math notranslate nohighlight">\(\mathbf{k}(t)\)</span>,
+we can easily derive the corresponding scanner’s input parameter
+<span class="math notranslate nohighlight">\(\mathbf{g}(t)\)</span>.</p>
+<p>As a very simple example, consider a 2D cartesian encoding scheme with
+equal time-steps <span class="math notranslate nohighlight">\(\Delta_t\)</span> (<a class="reference internal" href="#kline"><span class="std std-numref">Fig. 4.11</span></a>).</p>
+<div class="figure align-default" id="kline">
+<a class="reference internal image-reference" href="_images/kline.png"><img alt="_images/kline.png" src="_images/kline.png" style="height: 250px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.11 </span><span class="caption-text">Top: a very simple 2D cartesian trajectory in red. Bottom: corresponding gradient waveforms in
+green and blue.</span><a class="headerlink" href="#kline" title="Permalink to this image">¶</a></p>
+</div>
+<p>To traverse a single line, parallel to the <span class="math notranslate nohighlight">\(k_x\)</span> axis and given
+<span class="math notranslate nohighlight">\(k_y=\beta\)</span> coordinate, we first impose</p>
+<div class="math notranslate nohighlight">
+\[
+k_y = \frac{\gamma}{2\pi}\int_{0}^{\Delta_t}g_y(\tau)\text{d}\tau=\beta
+\]</div>
+<p>Assuming a constant <span class="math notranslate nohighlight">\(g_y\)</span>, this leads to
+<span class="math notranslate nohighlight">\(g_y=\frac{2\pi\beta}{\gamma\Delta_t}\)</span>.
+For <span class="math notranslate nohighlight">\(k_x\)</span> a similar argument shows that, in order to move to the
+<span class="math notranslate nohighlight">\(k_x = \alpha\)</span> position at <span class="math notranslate nohighlight">\(t=\Delta_t\)</span>:
+<span class="math notranslate nohighlight">\(g_x=\frac{2\pi}{\gamma\Delta_t}\alpha\)</span>.
+Thus, for <span class="math notranslate nohighlight">\(t\in[0,\Delta_t]\)</span>, we set
+<span class="math notranslate nohighlight">\(\mathbf{g}=(\frac{2\pi}{\gamma\Delta_t}\beta,\frac{2\pi}{\gamma\Delta_t}\alpha)^T\)</span>.
+At time <span class="math notranslate nohighlight">\(t = \Delta_t\)</span> we have <span class="math notranslate nohighlight">\(\mathbf{k}(\Delta_t)=(\alpha,\beta)\)</span>. We
+start acquiring data keeping <span class="math notranslate nohighlight">\(k_y\)</span> constant, thus from now on, <span class="math notranslate nohighlight">\(g_y=0\)</span>
+(why?). Assume that <span class="math notranslate nohighlight">\(\Delta_k\)</span> is the desired distance between
+consecutive <span class="math notranslate nohighlight">\(k\)</span>-space locations. For <span class="math notranslate nohighlight">\(g_x\)</span> we need to solve:</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta_k = \frac{\gamma}{2\pi}\int_{\Delta_t}g_x(\tau)\text{d}\tau \Rightarrow g_x = \frac{2\pi}{\gamma\Delta_t}\Delta_k.
+\]</div>
+<p>Thus, for each <span class="math notranslate nohighlight">\(t&gt;\Delta_t\)</span> we set
+<span class="math notranslate nohighlight">\(\mathbf{g}=(\frac{2\pi}{\gamma\Delta_t}\Delta_k,0)^T\)</span>. See <a class="reference internal" href="#kline"><span class="std std-numref">Fig. 4.11</span></a> for a
+pictorial illustration.
+Although the cartesian sampling is by far the most commonly used scheme
+for clinical MRI exams, other trajectories are gradually entering the
+MRI practice. See <a class="reference internal" href="#trajectories"><span class="std std-numref">Fig. 4.12</span></a> for other 2D and 3D examples.</p>
+<div class="figure align-default" id="trajectories">
+<a class="reference internal image-reference" href="_images/trajectories.png"><img alt="_images/trajectories.png" src="_images/trajectories.png" style="height: 250px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.12 </span><span class="caption-text">Examples of 2D and 3D non-cartesian <span class="math notranslate nohighlight">\(k\)</span>-space trajectories</span><a class="headerlink" href="#trajectories" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="image-reconstruction-beyond-the-fast-fourier-transform">
+<h3><span class="section-number">4.4.2. </span>Image reconstruction: beyond the Fast Fourier Transform<a class="headerlink" href="#image-reconstruction-beyond-the-fast-fourier-transform" title="Permalink to this headline">¶</a></h3>
+<p>We discretize the signal equation <a class="reference internal" href="#equation-signalk">(4.8)</a> as</p>
+<div class="math notranslate nohighlight" id="equation-signalm">
+<span class="eqno">(4.9)<a class="headerlink" href="#equation-signalm" title="Permalink to this equation">¶</a></span>\[\mathbf{s}  = \mathcal{F}\mathbf{u}\]</div>
+<p>where we used the following notation:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{s}\)</span>: the vector of signal samples (<span class="math notranslate nohighlight">\(k\)</span>-space data)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{u}\)</span>: the vector of image values (i.e. a discretized version
+of <span class="math notranslate nohighlight">\(u(\mathbf{r})\)</span> )</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{F}\)</span>: the <span class="math notranslate nohighlight">\(N\)</span>-dimensional sampling (Fourier transform)
+operator: <span class="math notranslate nohighlight">\(\mathcal{F}_{i,j} = \exp\left(-2\pi\text{i}\mathbf{k}_i\cdot \mathbf{r}_j\right)\nu\)</span>
+with volume element <span class="math notranslate nohighlight">\(\nu\)</span>.</p></li>
+</ul>
+<p>For cartesian, equidistant samples of <span class="math notranslate nohighlight">\(k\)</span>-space, the operator
+<span class="math notranslate nohighlight">\(\mathcal{F}\)</span> in equation <a class="reference internal" href="#equation-signalm">(4.9)</a> is unitary and can be implemented by the Fast
+Fourier transform (FFT) algorithm. To reconstruct <span class="math notranslate nohighlight">\(\mathbf{u}\)</span>, the
+inverse FFT can be applied: <span class="math notranslate nohighlight">\(\mathbf{u} = \mathcal{F}^{-1}\mathbf{s}\)</span>
+where in this case <span class="math notranslate nohighlight">\(\mathcal{F}^{-1}=\mathcal{F}^H\)</span>. This is :</p>
+<ul class="simple">
+<li><p>computationally efficient; applying FFT to a <span class="math notranslate nohighlight">\(N\)</span>-long array scales with <span class="math notranslate nohighlight">\(N\log_2 N\)</span> while naive implementation would scale with <span class="math notranslate nohighlight">\(N^2\)</span>.</p></li>
+<li><p>memory efficient, because no operator needs to be stored.</p></li>
+</ul>
+<p>For other, non-cartesian trajectories, the solving strategies are more
+complex. First of, all, note that <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> in most cases will not
+be a unitary, square operator. The problem will be solved by minimizing
+some norm of the residual, usually the squared <span class="math notranslate nohighlight">\(\ell_2\)</span> norm
+(least-squares problems):</p>
+<div class="math notranslate nohighlight">
+\[
+\arg\min_{\mathbf{u}}\|\mathcal{F}\mathbf{u}-\mathbf{s}\|_2^2
+\]</div>
+<p>It is
+interesting to give a closer look at this numerical problem. Suppose we
+acquire data according to a 2D spiral trajectory, which can be
+parametrized as:</p>
+<div class="math notranslate nohighlight">
+\[
+\left(k_x(t),k_y(t)\right)  = \left(\alpha t \cos(\beta t), \alpha t \sin(\beta t)\right).
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\alpha,\beta\in\mathbb{R}\)</span>.</p>
+<p><a class="reference internal" href="#svd"><span class="std std-numref">Fig. 4.13</span></a> shows a portion of the samples at the <span class="math notranslate nohighlight">\(k\)</span>-space center. For design
+constraints, points in the middle are mutually much closer. As a
+consequence, many rows in the operator <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> are almost equal,
+leading to problems with respect to linear dependence and orthogonality.
+This is more clearly demonstrated in <a class="reference internal" href="#svd"><span class="std std-numref">Fig. 4.13</span></a> which show
+the spectrum (singular values) of <span class="math notranslate nohighlight">\(F\)</span>; the singular values are not equal
+(a characteristic of orthogonal operators) but gradually decay to
+machine precision level after a while, leading to ill-conditioning.</p>
+<div class="figure align-default" id="svd">
+<a class="reference internal image-reference" href="_images/svd.png"><img alt="_images/svd.png" src="_images/svd.png" style="height: 250px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.13 </span><span class="caption-text">Magnified portion of <span class="math notranslate nohighlight">\(k\)</span>-space samples for a 2D spiral trajectory and the spectrum of the corresponding <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> operator. Note the decaying singular values.</span><a class="headerlink" href="#svd" title="Permalink to this image">¶</a></p>
+</div>
+<p>To mitigate this problem, regularization needs to be applied. This is
+usually done by introducing a penalty <span class="math notranslate nohighlight">\(R\)</span> on the computed solution
+<span class="math notranslate nohighlight">\(\mathbf{u}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\arg\min_{\mathbf{u}}\|\mathcal{F}\mathbf{u}-\mathbf{s}\|^2_2+\lambda R(\mathbf{u})
+\]</div>
+<p>The most common choice for <span class="math notranslate nohighlight">\(R\)</span> is <span class="math notranslate nohighlight">\(R(\mathbf{u})=\|\mathbf{u}\|_2^2\)</span>
+(Tikhonov regularization). Other common choices will be shown below.</p>
+</div>
+<div class="section" id="acceleration-techniques">
+<h3><span class="section-number">4.4.3. </span>Acceleration techniques<a class="headerlink" href="#acceleration-techniques" title="Permalink to this headline">¶</a></h3>
+<p>Note that the sampling is a time-dependent process; if two consecutive
+samples are acquired at <span class="math notranslate nohighlight">\(\Delta_t\)</span> distance, acquisition of <span class="math notranslate nohighlight">\(N\)</span> samples
+along the trajectory will take <span class="math notranslate nohighlight">\(N\Delta_t\)</span> amount of time. In practice,
+<span class="math notranslate nohighlight">\(\Delta_t\)</span> is in the order of <span class="math notranslate nohighlight">\(10^{-6}\)</span>. Acquiring 2D image of size
+<span class="math notranslate nohighlight">\(256\times 256\)</span> will require <span class="math notranslate nohighlight">\(256^2\approx 65,000\)</span> samples, thus a
+fraction of a second.</p>
+<p>However, a single 2D image is not sufficient for diagnosis and either
+several stacked 2D images (slices) are needed or a full-3D acquisition.
+In both cases, the amount of data needed is multiplied by a factor close
+to 100 (either 100 2D slices or an additional dimension). This time, the
+acquisition would last several seconds or even minutes, depending on the
+sequence timings <span class="math notranslate nohighlight">\(T_R\)</span> and <span class="math notranslate nohighlight">\(T_E\)</span>. In this analysis, I consider only the
+duration of the <em>sampling</em> component, remember (cf. <a class="reference internal" href="#sequence"><span class="std std-numref">Fig. 4.8</span></a>)
+that also RF events need to be played out in order to drive and keep the
+magnetization in a desired state.</p>
+<p>Toward the end of the previous century, a solution strategy was found to
+accelerate the scans. It all began around the year 1990 when multiple
+receive channels were introduced to increase the signal-to-noise-ratio
+(SNR). However, MRI scientists soon realized that using multiple coils
+could also allow for shorter data-acquisition protocols.</p>
+<p>Parallel imaging in MRI works in the following way. Due to
+electromagnetic interference effects (electromagnetism is a wave
+phenomenon), each <span class="math notranslate nohighlight">\(p\)</span>-th receiver coil is characterized by its own
+radiofrequency field (sensitivity map) <span class="math notranslate nohighlight">\(c^p(\mathbf{r})\)</span>. Therefore, the
+signal equation has to be slightly modified:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{s}^p = \mathcal{F}C^p\mathbf{u},\quad p = 1,\dots, N
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(C^p\)</span> is a diagonal matrix with <span class="math notranslate nohighlight">\(C^p_{n,n} = c^p(\mathbf{r}_n)\)</span> and
+<span class="math notranslate nohighlight">\(\mathbf{s}^p\)</span> is the signal from the individual coil. The image is
+obviously the same for all receive coils, thus it can be reconstructed
+by solving the joint reconstruction system:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{c}
+\mathbf{s}^1\\\mathbf{s}_2\\ \vdots\\\mathbf{s}^N
+\end{array}
+\right]=
+\left[
+\begin{array}{c}
+\mathcal{F}C^1\\\mathcal{F}C^2\\ \vdots\\\mathcal{F}C^N
+\end{array}
+\right]\mathbf{u}
+\end{split}\]</div>
+<p>which we can be solved as</p>
+<div class="math notranslate nohighlight" id="equation-joint">
+<span class="eqno">(4.10)<a class="headerlink" href="#equation-joint" title="Permalink to this equation">¶</a></span>\[\arg\min_{\mathbf{u}}\|\mathbf{s}-F\mathbf{u}\|_2^2+\lambda R(\mathbf{u})\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{s}\)</span> now denotes the concatenated
+signal from all coils and <span class="math notranslate nohighlight">\(F\)</span> the joint linear multi-coil model.</p>
+<p>Note that the operator <span class="math notranslate nohighlight">\(F\)</span> is a tall operator, that is, there are (many)
+more data samples (rows) than unknowns (columns). It makes therefore
+sense to <em>under-sample</em> <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> by deleting rows, that is,
+skipping points in <span class="math notranslate nohighlight">\(k\)</span>-space. Since the sensitivity matrices <span class="math notranslate nohighlight">\(C^p\)</span> are
+not equal, the resulting joint operator <span class="math notranslate nohighlight">\(F\)</span> should still have full rank,
+making the inversion possible. Of course, the practical consequence of
+under-sampling the <span class="math notranslate nohighlight">\(k\)</span>-space is a much shorter acquisition protocol.
+Although there are limits to the under-sampling level as set by the
+number of coils, geometry and trade-off SNR/time, acceleration factors
+between 2 and 5 are quite common. For this reason, parallel imaging is
+nowadays applied in almost all clinical protocols.</p>
+<p>The most recent advance in accelerated protocols is the introduction of
+compressed sensing. Basically, the reconstruction problem <a class="reference internal" href="#equation-joint">(4.10)</a> is solved
+with a non-linear regularization term <span class="math notranslate nohighlight">\(R\)</span>, usually in the form
+<span class="math notranslate nohighlight">\(R(\mathbf{u})=\|\mathbf{u}\|_1\)</span>, <span class="math notranslate nohighlight">\(R(\mathbf{u})=\|W\mathbf{u}\|_1\)</span> or
+<span class="math notranslate nohighlight">\(R(\mathbf{u})=TV(\mathbf{u})\)</span> where <span class="math notranslate nohighlight">\(W\)</span> denotes a <em>sparsity</em> operator
+and <span class="math notranslate nohighlight">\(TV\)</span> the total variation functional. The sampling strategy needs to
+be adapted to guarantee <em>incoherence</em>, which can be explained as a
+noise-like behavior of under-sampling artifacts. Pseudo-randomization of
+the <span class="math notranslate nohighlight">\(k\)</span>-space trajectory with higher sampling density in the middle is
+usually the most practical choice. See <a class="reference internal" href="#cs"><span class="std std-numref">Fig. 4.14</span></a>.</p>
+<div class="figure align-default" id="cs">
+<a class="reference internal image-reference" href="_images/CS_philips.png"><img alt="_images/CS_philips.png" src="_images/CS_philips.png" style="height: 250px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.14 </span><span class="caption-text">Compressed sensing in MRI. Top: illustrative sketch of 2D k-space sampling strategy. Bottom:
+Reconstruction by Compressed sensing. Note that the variable-density randomized sampling (right) gives the best reconstruction quality. Image taken from Geerts-Ossevoort et al (Philips). Compressed Sense (2018).</span><a class="headerlink" href="#cs" title="Permalink to this image">¶</a></p>
+</div>
+<p>Compressed sensing has recently entered clinical practice and showed to
+further accelerate exams by about 40%.</p>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2><span class="section-number">4.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rotation">
+<h3><span class="section-number">4.5.1. </span>Rotation<a class="headerlink" href="#rotation" title="Permalink to this headline">¶</a></h3>
+<p>Can you prove that <a class="reference internal" href="#equation-rotation">(4.3)</a> defines a rotation and that the
+rotation axis is aligned along <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>? What is the rotation
+angle?</p>
+</div>
+<div class="section" id="decay">
+<h3><span class="section-number">4.5.2. </span>Decay<a class="headerlink" href="#decay" title="Permalink to this headline">¶</a></h3>
+<p>Rewrite <a class="reference internal" href="#equation-decay">(4.4)</a> as two independent equations, one for the <em>transverse</em> component  <span class="math notranslate nohighlight">\(m_{xy}\)</span> and one for the <em>longitudinal</em> component <span class="math notranslate nohighlight">\(m_z\)</span>. Find the solution for both equations for a generic time point <span class="math notranslate nohighlight">\(t\)</span> with initial values <span class="math notranslate nohighlight">\(m_{xy}(0) =m_{xy}^0\)</span> and <span class="math notranslate nohighlight">\(m_z(0) = m_z^0\)</span>. What happens in the limit case <span class="math notranslate nohighlight">\(t\rightarrow +\infty\)</span>?</p>
+</div>
+<div class="section" id="id1">
+<h3><span class="section-number">4.5.3. </span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Prove Equation <a class="reference internal" href="#equation-mss">(4.5)</a>. You may use the result from the first exercise.</p>
+</div>
+<div class="section" id="id2">
+<h3><span class="section-number">4.5.4. </span><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>By using <a class="reference internal" href="#equation-k">(4.7)</a>, can you derive an expression for <span class="math notranslate nohighlight">\(\mathbf{g}(t)\)</span> for the trajectories in <a class="reference internal" href="#trajectories"><span class="std std-numref">Fig. 4.12</span></a>? You do not need to assume <span class="math notranslate nohighlight">\(\mathbf{g}\)</span> is piece-wise constant as in the cartesian example above.</p>
+</div>
+</div>
+<div class="section" id="assignment">
+<h2><span class="section-number">4.6. </span>Assignment<a class="headerlink" href="#assignment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mri-reconstruction">
+<h3><span class="section-number">4.6.1. </span>MRI-reconstruction<a class="headerlink" href="#mri-reconstruction" title="Permalink to this headline">¶</a></h3>
+<p>Set up a regularised inversion for an MRI scan with standard cartesian sampling. As test data you can use <code class="docutils literal notranslate"><span class="pre">skimage.data.brain</span></code>. You may assume that the data are noisy (subsampled) versions of the Fourier transform of the image slices. Can you get rid of aliasing artefacts using appropriate Tikhonov regularisation?</p>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -262,6 +844,8 @@
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="wavefield_imaging.html" title="previous page"><span class="section-number">3. </span>Wavefield Imaging</a>
+    <a class='right-next' id="next-link" href="bibliography.html" title="next page"><span class="section-number">1. </span>Bibliography</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
