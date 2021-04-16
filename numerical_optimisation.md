@@ -144,7 +144,7 @@ A well-known method for rootfinding is *Newton's method*, which finds a root for
 
 ```{math}
 :label: newton
-u_{k+1} = u_k - J''(u_k)^{-1}J(u_k).
+u_{k+1} = u_k - J''(u_k)^{-1}J'(u_k).
 ```
 
 We can interpret this method as finding the new iterate $u_{k+1}$ as the (unique) minimiser of the quadratic approximation of $J$ around $u_k$:
