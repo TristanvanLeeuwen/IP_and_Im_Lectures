@@ -53,7 +53,7 @@ Let $J:\mathbb{R}^n\rightarrow \mathbb{R}$ be a smooth, Lipschitz-continuos func
 u_{k+1} = \left(I - \lambda J'\right)(u_k),
 ```
 
-with $\lambda \in (0,L/2)$ produces iterates $u_k$ for which
+with $\lambda \in (0,(2L)^{-1})$ produces iterates $u_k$ for which
 
 $$\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2^2 \leq \frac{J(u_0) - J_*}{C n},$$
 
