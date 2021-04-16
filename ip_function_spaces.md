@@ -414,7 +414,7 @@ $$
 At $y = 1$ this yields $v(1) = 0$. Differentiating, we find
 
 $$
-\lambda v'(y) = -\int_0^x v(z)\mathrm{d}z,
+\lambda v'(y) = -\int_0^y v(z)\mathrm{d}z,
 $$
 
 which yields $v'(0) = 0$. Differentiating once again, we find
@@ -632,7 +632,7 @@ $$K_{\alpha}^\dagger = \sum_{k=0}^\infty \frac{\sigma_k \langle u_k, \cdot \rang
 
 where $\{(u_k,v_k,\sigma_k)\}_{k=0}^\infty$ denotes the singular system of $K$.
 
-* Take $f^\delta(x) = f(x) + \sigma_k \sin(\sigma_k^{-1}x)$ with $\sigma_k$ a singular value of $K$ and show that for $\alpha > 0$ the variance $\|K_{\alpha}^\dagger (f^\delta - f)\| \rightarrow 0$ as $k \rightarrow 0$
+* Take $f^\delta(x) = f(x) + \sigma_k \sqrt{2}\sin(\sigma_k^{-1}x)$ with $\sigma_k$ a singular value of $K$ and show that for $\alpha > 0$ the variance $\|K_{\alpha}^\dagger (f^\delta - f)\| \rightarrow 0$ as $k \rightarrow 0$
 
 
 ```{admonition} Answer
@@ -640,7 +640,7 @@ where $\{(u_k,v_k,\sigma_k)\}_{k=0}^\infty$ denotes the singular system of $K$.
 
 We will use the SVD of $K$ to express the solution and derive a least-squares problem for the coefficients of $u$ using the orthonormality of the singular vectors.
 
-The right singular vectors are given by $v_k(x) = \sqrt{2}\cos\left(\sigma_k^{-1}\right)$ with $\sigma_k = (\pi(k+1/2))^{-1}$. Since these constitute an orthonormal basis for the orthogonal complement of the kernel of $K$ we can express $u$ as
+The right singular vectors are given by $v_k(x) = \sqrt{2}\cos\left(\sigma_k^{-1} x\right)$ with $\sigma_k = (\pi(k+1/2))^{-1}$. Since these constitute an orthonormal basis for the orthogonal complement of the kernel of $K$ we can express $u$ as
 
 $$u(x) = \sum_{k=0}^\infty a_k v_k(x) + w, $$
 
@@ -650,7 +650,7 @@ We can now express the least-squares problem in terms of the coefficients $a_k$ 
 
 $$u'(x) = -\sum_{k=0}^\infty \sigma_k^{-1}a_k u_k(x),$$
 
-with $u_k(x)$ denoting the left singular vectors $u_k(x) = \sqrt{2}\sin\left(\sigma_k^{-1}\right)$. Then
+with $u_k(x)$ denoting the left singular vectors $u_k(x) = \sqrt{2}\sin\left(\sigma_k^{-1} x\right)$. Then
 
 $$\|u'\|^2 = \sum_{k=0}^\infty \frac{a_k^2}{\sigma_k^2},$$
 
@@ -995,7 +995,7 @@ where we investigate two types of regularisation
 1. $K_{\alpha}^\dagger f = \sum_{k=0}^\infty \frac{1}{\sigma_k + \alpha\sigma_k^{-1}}\langle f, u_k \rangle v_k(x).$
 2. $K_{\alpha}^\dagger f = \sum_{k=0}^\infty \frac{1}{\sigma_k + \alpha k^2\sigma_k^{-1}}\langle f, u_k \rangle v_k(x)$
 
-**hint:** you can use the fact that the $v_k$ form an orthonormal basis for functions on $[0,1]$ and hence express the solution in terms of this basis.
+**hint:** you can use the fact that the $v_k$ form an orthonormal basis for functions on $[0,\pi]$ and hence express the solution in terms of this basis.
 
 ---
 

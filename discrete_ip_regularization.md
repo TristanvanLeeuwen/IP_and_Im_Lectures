@@ -549,7 +549,7 @@ $$Ku(x) = \int_0^1 \frac{u(y)}{(1 + (x-y)^2)^{3/2}} \mathrm{d}y.$$
 
 Upon discretisation with stepsize $h = 1/n$, the inverse problem can be cast as a system of $n$ equations in $n$ unknowns $Ku = f$.
 
-You can use the code provided below to generate the matrix and noisy data for $u(x) = ..$
+You can use the code provided below to generate the matrix and noisy data for a given $u(x)$
 
 1. Plot the coefficients $\langle u_i, f\rangle$ and the singular values $\sigma_i$ to check the discrete Picard condition. What do you notice ?
 
@@ -713,13 +713,15 @@ where the entries of $e$ are normally distrubuted with mean zero and variance $\
 
 The goal of this assignment is to solve this inverse problem using a (truncated) SVD for two scenario's
 
-1. $u(x) = H(x - 0.3) - H(x - 0.7)$
-2. $u(x) = x(1-x)$
+1. $u(x) = H(x - 0.3) - H(x - 0.7)$,
+2. $u(x) = x(1-x)$,
+
+where $H$ denotes the Heaviside step function.
 
 For each of the two scenarios answer the following questions:
 
 1. Is this problem ill-posed?
-2. Compute the (pseudo-)inverse of $K$ using the SVD and compute the backward error $|u - u^{\delta}|_2$ for noise levels $\delta = 0.001, 0.01, 0.1$ for both scenario's; what do you notice?
+2. Compute the (pseudo-)inverse of $K$ using the SVD and compute the backward error $\|u - u^{\delta}\|_2$ for noise levels $\delta = 0.001, 0.01, 0.1$ for both scenario's; what do you notice?
 3. Compute a regularized solution using a truncated SVD for noise levels $\delta = 0.001, 0.01, 0.1$ for both scenario's. Manually choose the truncation paramater $k$ in each case to get the best possible solution. What do you notice here?
 4. Explain your observations by investigating what the singular vectors look like (think about the discrete Picard condition as well).
 

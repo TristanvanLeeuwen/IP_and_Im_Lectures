@@ -139,13 +139,13 @@ We estimate $u$ by solving the following regularised least-squares problem:
 
 $$\min_u \|u - f^\delta\|_2^2 + \alpha \|u\|_{\Sigma^{-1}}^2.$$
 
-Here, $\alpha$ is an estimate of the reciprocal variance of the noise, so ideally we have $\alpha \approx \sigma^{-2}$. The corresponding posterior mean and covariance are given by
+Here, $\alpha$ is an estimate of the variance of the noise, so ideally we have $\alpha \approx \sigma^{2}$. The corresponding posterior mean and covariance are given by
 
 $$\mu_{\text{post}} = \left(\alpha I + \Sigma\right)^{-1}\Sigma f^\delta,$$
 
 $$\Sigma_{\text{post}} = \alpha \left(\alpha I + \Sigma\right)^{-1}\Sigma.$$
 
-When using $\mu_{\text{post}}$ as an estimate for $u$ we could interpret the diagonal elements of $\Sigma_{\text{post}}$ as variances (and hence their square-root as a standard deviation). However, we should note that this mainly gives information on the *sensitivity* of the estimate to noise, and not necessarily on the *error* between the estimate and the ground truth. Even then, we may grossly underestimate the uncertainty when $\alpha < \sigma^{-2}$. One way to asses whether the assumptions are valid is to study the residuals $r_i = \mu_{\text{post}} - f_i^\delta$. If the assumptions are valid, we expect these to be normally distributed mean zero and variance $\alpha$. Likewise, we can verify whether $\mu_{\text{post}}$ is normally distributed with mean zero and covariance $\Sigma$.
+When using $\mu_{\text{post}}$ as an estimate for $u$ we could interpret the diagonal elements of $\Sigma_{\text{post}}$ as variances (and hence their square-root as a standard deviation). However, we should note that this mainly gives information on the *sensitivity* of the estimate to noise, and not necessarily on the *error* between the estimate and the ground truth. Even then, we may grossly underestimate the uncertainty when $\alpha < \sigma^{2}$. One way to asses whether the assumptions are valid is to study the residuals $r_i = \mu_{\text{post}} - f_i^\delta$. If the assumptions are valid, we expect these to be normally distributed mean zero and variance $\alpha$. Likewise, we can verify whether $\mu_{\text{post}}$ is normally distributed with mean zero and covariance $\Sigma$.
 
 ```{glue:figure} gaussian_example
 :figwidth: 500px
