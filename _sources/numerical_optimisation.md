@@ -53,7 +53,7 @@ Let $J:\mathbb{R}^n\rightarrow \mathbb{R}$ be a smooth, Lipschitz-continuos func
 u_{k+1} = \left(I - \lambda J'\right)(u_k),
 ```
 
-with $\lambda \in (0,L/2)$ produces iterates $u_k$ for which
+with $\lambda \in (0,(2L)^{-1})$ produces iterates $u_k$ for which
 
 $$\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2^2 \leq \frac{J(u_0) - J_*}{C n},$$
 
@@ -144,7 +144,7 @@ A well-known method for rootfinding is *Newton's method*, which finds a root for
 
 ```{math}
 :label: newton
-u_{k+1} = u_k - J''(u_k)^{-1}J(u_k).
+u_{k+1} = u_k - J''(u_k)^{-1}J'(u_k).
 ```
 
 We can interpret this method as finding the new iterate $u_{k+1}$ as the (unique) minimiser of the quadratic approximation of $J$ around $u_k$:
@@ -184,7 +184,7 @@ Assuming a simple diagonal structure $H_k = h_k I$ yields $h_k = \langle J'(u_{k
 An often-used approximation is the *Broyden-Fletcher-Goldfarb-Shannon (BFGS)* approximation, which keeps track of the steps $s_k = u_{k+1} - u_k$
 and gradients $y_k = J'(u_{k+1}) - J'(u_k)$ to recursively construct an approximation of the *inverse* of the Hessian as
 
-$$B_{k+1} = \left(I - \rho_k s_k y_k^T\right)H_k\left(I - \rho_k y_k s_k^T\right) + \rho_k s_ks_k^T,$$
+$$B_{k+1} = \left(I - \rho_k s_k y_k^T\right)B_k\left(I - \rho_k y_k s_k^T\right) + \rho_k s_ks_k^T,$$
 
 with $\rho_k = (\langle s_k, y_k\rangle)^{-1}$ and $B_0$ choses appropriately (e.g., $B_0 = L^{-1} \cdot I$). It can be shown that this approximation is sufficiently accurate to yield *superlinear* convergence when using a Wolfe linesearch.
 
