@@ -706,8 +706,8 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 </div>
 <hr class="docutils" />
 <p>When compared to the subgradient method, we may expect better performance from the proximal gradient method when <span class="math notranslate nohighlight">\(D\)</span> is strongly convex and <span class="math notranslate nohighlight">\(R\)</span> is convex. Even if <span class="math notranslate nohighlight">\(J\)</span> is smooth, the proximal gradient method may be favourable as the convergence constants depend on the Lipschitz constant of <span class="math notranslate nohighlight">\(D\)</span> only; not <span class="math notranslate nohighlight">\(J\)</span>. All this comes at the cost of solving a minimisation problem at each iteration, so these methods are usually only applied when a closed-form expression for the proximal operator exists.</p>
-<div class="admonition-example-text-prox-cdot-1 admonition">
-<p class="admonition-title">Example: <span class="math notranslate nohighlight">\(\text{prox}_{||\cdot||_1}\)</span></p>
+<div class="admonition-example-one-norm admonition">
+<p class="admonition-title">Example: <em>one-norm</em></p>
 <p>The proximal operator for the <span class="math notranslate nohighlight">\(\ell_1\)</span> norm solves</p>
 <div class="math notranslate nohighlight">
 \[\min_u \textstyle{\frac{1}{2}}\|u - v\|_2 + \lambda \|u\|_1.\]</div>
@@ -718,8 +718,8 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 <div class="math notranslate nohighlight">
 \[\begin{split}u_i = \begin{cases}v_i - \lambda &amp; v_i &gt; \lambda \\ 0 &amp; |v_i|\leq \lambda \\ v_i + \lambda &amp; v_i &lt; -\lambda \end{cases}\end{split}\]</div>
 </div>
-<div class="admonition-example-text-prox-delta-a-b-n admonition">
-<p class="admonition-title">Example: <span class="math notranslate nohighlight">\(\text{prox}_{\delta_{[a,b]^n}}\)</span></p>
+<div class="admonition-example-box-constraints admonition">
+<p class="admonition-title">Example: <em>box constraints</em></p>
 <p>The Proximal operator of the indicator function of <span class="math notranslate nohighlight">\(\delta_{[a,b]^n}\)</span> solves</p>
 <div class="math notranslate nohighlight">
 \[\min_{[a,b]^n} \textstyle{\frac{1}{2}}\|u - v\|_2.\]</div>
@@ -997,7 +997,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11ec05250&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11bfd15d0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -1019,7 +1019,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11ec05b10&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x101e67a610&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1084,8 +1084,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn('The line search algorithm did not converge', LineSearchWarning)
 </pre>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1021bd6d50&gt;,
- &lt;matplotlib.lines.Line2D at 0x10222bbc90&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x101f0d3cd0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x101f7b9cd0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />
