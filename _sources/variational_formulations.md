@@ -676,7 +676,7 @@ $$
 
 Consider the following denoising problem
 
-$$\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_{L^2([0,1])} + \textstyle{\frac{\alpha}{2}} \|u''\|_{L^2([0,1])}^2.$$
+$$\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|^2_{L^2([0,1])} + \textstyle{\frac{\alpha}{2}} \|u''\|_{L^2([0,1])}^2.$$
 
 * Show that the solution to
 
