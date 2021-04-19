@@ -480,7 +480,7 @@ We refer to {cite}`Beck2017` Thms. 10.15, 10.21, and 10.29 or more details.
 
 When compared to the subgradient method, we may expect better performance from the proximal gradient method when $D$ is strongly convex and $R$ is convex. Even if $J$ is smooth, the proximal gradient method may be favourable as the convergence constants depend on the Lipschitz constant of $D$ only; not $J$. All this comes at the cost of solving a minimisation problem at each iteration, so these methods are usually only applied when a closed-form expression for the proximal operator exists.
 
-```{admonition} Example: *$\text{prox}_{||\cdot ||_1}$*
+```{admonition} Example: *one-norm*
 The proximal operator for the $\ell_1$ norm solves
 
 $$\min_u \textstyle{\frac{1}{2}}\|u - v\|_2 + \lambda \|u\|_1.$$
@@ -494,7 +494,7 @@ This condition is fulfulled by setting
 $$u_i = \begin{cases}v_i - \lambda & v_i > \lambda \\ 0 & |v_i|\leq \lambda \\ v_i + \lambda & v_i < -\lambda \end{cases}$$
 ```
 
-```{admonition} Example: *$\text{prox}_{\delta_{[a,b]^n}}$*
+```{admonition} Example: *box constraints*
 
 The Proximal operator of the indicator function of $\delta_{[a,b]^n}$ solves
 
