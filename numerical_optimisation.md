@@ -68,7 +68,7 @@ Start from a Taylor expansion:
 
 $$J(u_{k+1}) = J(u_k) + J'(u_k)(u_{k+1} - u_k) + \textstyle{\frac{1}{2}}(u_{k+1} - u_k)^T J''(\eta_k)(u_{k+1} - u_k).$$
 
-Now bound the last term using the fact that $J''(u) \succeq L\cdot I$ and plug in $u_{k+1} - u_k = -\lambda J'(u_k)$ to get
+Now bound the last term using the fact that $J''(u) \preceq L\cdot I$ and plug in $u_{k+1} - u_k = -\lambda J'(u_k)$ to get
 
 $$J(u_{k+1}) - J(u_k) \leq \lambda \left( \textstyle{\frac{\lambda L}{2}} - 1\right) \|J'(u_k)\|_2^2.$$
 
