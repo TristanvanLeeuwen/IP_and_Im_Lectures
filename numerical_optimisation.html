@@ -374,7 +374,7 @@
 <p>Start from a Taylor expansion:</p>
 <div class="math notranslate nohighlight">
 \[J(u_{k+1}) = J(u_k) + J'(u_k)(u_{k+1} - u_k) + \textstyle{\frac{1}{2}}(u_{k+1} - u_k)^T J''(\eta_k)(u_{k+1} - u_k).\]</div>
-<p>Now bound the last term using the fact that <span class="math notranslate nohighlight">\(J''(u) \succeq L\cdot I\)</span> and plug in <span class="math notranslate nohighlight">\(u_{k+1} - u_k = -\lambda J'(u_k)\)</span> to get</p>
+<p>Now bound the last term using the fact that <span class="math notranslate nohighlight">\(J''(u) \preceq L\cdot I\)</span> and plug in <span class="math notranslate nohighlight">\(u_{k+1} - u_k = -\lambda J'(u_k)\)</span> to get</p>
 <div class="math notranslate nohighlight">
 \[J(u_{k+1}) - J(u_k) \leq \lambda \left( \textstyle{\frac{\lambda L}{2}} - 1\right) \|J'(u_k)\|_2^2.\]</div>
 <p>We conclude that for <span class="math notranslate nohighlight">\(0 &lt; \lambda &lt; \textstyle{\frac{1}{2L}}\)</span> we have that <span class="math notranslate nohighlight">\(J(u_{k+1}) &lt; J(u_k)\)</span> unless <span class="math notranslate nohighlight">\(\|J'(u_k)\|_2 = 0\)</span>, in which case <span class="math notranslate nohighlight">\(u_k\)</span> is a stationary point. Now, sum over <span class="math notranslate nohighlight">\(k\)</span> and re-organise to get</p>
@@ -997,7 +997,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11bfd15d0&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10261f1c50&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -1019,7 +1019,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x101e67a610&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x102648fb50&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1084,8 +1084,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn('The line search algorithm did not converge', LineSearchWarning)
 </pre>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x101f0d3cd0&gt;,
- &lt;matplotlib.lines.Line2D at 0x101f7b9cd0&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1026ffa590&gt;,
+ &lt;matplotlib.lines.Line2D at 0x10276e3c10&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />
