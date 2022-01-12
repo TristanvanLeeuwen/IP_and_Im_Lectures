@@ -280,7 +280,7 @@ Given a compact operator $K: \mathcal{U} \rightarrow \mathcal{F}$ and $f \in \ma
 ```{math}
 :label: picard
 
-\sum_{j=1}^{\infty} \frac{|\langle f, u_j\rangle_{\mathcal{V}}|^2}{\sigma_j^2} < \infty.
+\sum_{j=1}^{\infty} \frac{|\langle f, u_j\rangle_{\mathcal{F}}|^2}{\sigma_j^2} < \infty.
 ```
 ````
 
@@ -398,7 +398,13 @@ $$K^*f(y) = \int_0^1 k(x,y)f(x)\mathrm{d}x = \int_y^1 f(x)\mathrm{d}x.$$
 The singular system is given by
 
 $$
-\sigma_k = ((k+1/2)\pi)^{-1}, \quad u_k(x) = \sqrt{2}\sin(\sigma_k^{-1} x), \quad v_k(x) = \sqrt{2}\cos(\sigma_k^{-1} x).
+\sigma_k = ((k+1/2)\pi)^{-1},
+$$
+$$
+u_k(x) = \sqrt{2}\sin(\sigma_k^{-1} x), 
+$$
+$$
+\quad v_k(x) = \sqrt{2}\cos(\sigma_k^{-1} x).
 $$
 
 ```{admonition} derivation

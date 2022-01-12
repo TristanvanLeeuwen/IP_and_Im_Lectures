@@ -69,6 +69,8 @@ i.e. those are neither additive nor multiplicative. Errors in photon counting, f
 
 # import libaries
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from skimage import data
 from skimage.util import random_noise
 from myst_nb import glue
@@ -248,6 +250,8 @@ In particular for $h$ sufficiently small, the mean square error is smaller than 
 # import libaries
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from skimage import data
 from skimage.util import random_noise
 from scipy.signal import convolve2d as conv2
@@ -301,7 +305,7 @@ $$
 	u = F^{-1} ( \psi_\epsilon F(f))
 $$
 
-where $\psi_\epsilon$ denotes a function which dampens or completely eliminates particular frequencies (again dependent on a scale parameter $\epsilon$). The connection with the filter definition \eqref{lokalerGlaettungsfilter} is given by the convolution theorem because with $G_\epsilon := (2 \pi)^{-d/2} {\cal F}^{-1} (\psi_\epsilon)$ it follows that
+where $\psi_\epsilon$ denotes a function which dampens or completely eliminates particular frequencies (again dependent on a scale parameter $\epsilon$). The connection with the filter definition is given by the convolution theorem because with $G_\epsilon := (2 \pi)^{-d/2} {\cal F}^{-1} (\psi_\epsilon)$ it follows that
 
 $$
 	G_\epsilon*f = (2 \pi)^{-d/2} F^{-1} (F(G_\epsilon) F(f)) = F^{-1} ( \psi_\epsilon F(f)) \, .
@@ -313,7 +317,7 @@ $$
 	\psi(\omega)  = \left\{ \begin{array}{ll} 1 & \text{for } |\omega| \leq 1 \\ 0 &\text{otherwise} \end{array} \right.
 $$
 
-In this way $\psi_\epsilon$ cuts off all frequency components above $1/\epsilon$ (note the inverse relation since $\epsilon$ corresponds to the wavelength), and those below $1/\epsilon$ remain unchanged. By computing the inverse Fourier transform one can see that in the form \eqref{lokalerGlaettungsfilter} a sinc function ($G(x) \sim \sin |x| / |x|$) is obtained as convolution kernel. Due to the local oscillation of the sine this yields a slightly unusual local averaging, since the weighting does not decay monotonously with the distance. Hence, without the frequency space interpretation one would likely not have constructed a filter of this form. However, both viewpoints also strongly depend on each other, since the lack of high frequency components automatically implies that the local variation of the grayvalue cannot be extremely strong and vice versa. Thus, the original viewpoint and the frequency space interpretation are based on very similar assumptions. The connection again gets even more obvious for a Gauss distribution as convolution kernel. The Fourier transform of this function again results in a Gauss distribution (besides a constant). Hence, in frequency space one dampens again with this quickly decreasing function.
+In this way $\psi_\epsilon$ cuts off all frequency components above $1/\epsilon$ (note the inverse relation since $\epsilon$ corresponds to the wavelength), and those below $1/\epsilon$ remain unchanged. By computing the inverse Fourier transform one can see that a sinc function ($G(x) \sim \sin |x| / |x|$) is obtained as convolution kernel. Due to the local oscillation of the sine this yields a slightly unusual local averaging, since the weighting does not decay monotonously with the distance. Hence, without the frequency space interpretation one would likely not have constructed a filter of this form. However, both viewpoints also strongly depend on each other, since the lack of high frequency components automatically implies that the local variation of the grayvalue cannot be extremely strong and vice versa. Thus, the original viewpoint and the frequency space interpretation are based on very similar assumptions. The connection again gets even more obvious for a Gauss distribution as convolution kernel. The Fourier transform of this function again results in a Gauss distribution (besides a constant). Hence, in frequency space one dampens again with this quickly decreasing function.
 
 ### Diffusion filters and PDE methods
 Interestingly, one can interpret local smoothing filters also in the context of PDE methods in form of so-called linear diffusion filters. For this, one can see $\alpha$ as a fixed given quantity and simply repeat the filter several times to reduce the variance step-by-step. This yields an iterative procedure, where the filter is always applied to the solution of the previous filter step. With $U^0:=F$ we then obtain
@@ -333,7 +337,7 @@ $$
 	\tau = \alpha h^2 << 1
 $$
 
-with initial value $u(0) = f$. So we obtain a method based on a partial differential equation (PDE). Also for this kind of methods the question of an optimally chosen parameter remains, namely the optimal stopping index in case of the discrete iteration, respectively the optimal termination time of the diffusion equation. The iterative application of the local smoothing filter from the previous subsections we could interpret as a heat diffusion equation. This parabolic differential equation is a simple representative of a linear diffusion filter. As we could see in figure \ref{fig:laplace} edges get blurred by a linear filter. Particularly in biomedical imaging edges could deliver essential information for the image analysis. Therefore it makes sense to use nonlinear filters for denoising instead, which try to avoid the blurring of edges in normal direction. A prominent example for a nonlinear diffusion filter is the Perona-Malik model
+with initial value $u(0) = f$. So we obtain a method based on a partial differential equation (PDE). Also for this kind of methods the question of an optimally chosen parameter remains, namely the optimal stopping index in case of the discrete iteration, respectively the optimal termination time of the diffusion equation. The iterative application of the local smoothing filter from the previous subsections we could interpret as a heat diffusion equation. This parabolic differential equation is a simple representative of a linear diffusion filter. As we could see in the figure, edges get blurred by a linear filter. Particularly in biomedical imaging edges could deliver essential information for the image analysis. Therefore it makes sense to use nonlinear filters for denoising instead, which try to avoid the blurring of edges in normal direction. A prominent example for a nonlinear diffusion filter is the Perona-Malik model
 
 $$
 	\frac{\partial u}{\partial t} = \nabla \cdot \left( g(|\nabla u|^2) \nabla u\right), \qquad u(t=0) = f, \qquad g(s) = \frac{1}{1+\lambda \: s} \label{peronamalik}
@@ -410,6 +414,8 @@ If one restricts to the function space $W^{1,1}$, one can identify $\text{TV}(u)
 # import libaries
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from skimage import data
 from skimage.util import random_noise
 from skimage.restoration import denoise_tv_chambolle
@@ -523,6 +529,8 @@ The SciKit-image package offers many standard image processing algorithms as wel
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from skimage import data
 from skimage.util import random_noise
 
@@ -550,15 +558,10 @@ ax[1].set_title('noisy image')
 plt.show()
 ```
 
-1. Take the coins image and add different types and strengths of noise (Gaussian, Laplace, data dependent Poisson) and plot the results. https://scikit-image.org/docs/dev/api/skimage.util.html?highlight=poisson%20noise#skimage.util.random_noise
+1. Take the coins image and add different types and strengths of noise (Gaussian, Laplace, data dependent Poisson) and plot the results. You can add random noise to an image using the [`random_noise`](https://scikit-image.org/docs/dev/api/skimage.util.html?highlight=poisson%20noise#skimage.util.random_noise) function.
 
 2. Implement the local linear filter learned in the lecture as an iterative scheme to remove the noise. How can you achieve different degrees of smoothness? What do you observe at edges?
 
-3. Apply also different filters available in skimage (Gaussian, Wiener, etc.). Verify the relationship between the amount of noise you add to the image and the strength of the filter you have to apply. Plot a graph with different PSNR values for different smoothness parameters to validate the "best" result. https://scikit-image.org/docs/dev/api/skimage.filters.html?highlight=filter#module-skimage.filters
+3. Apply also different filters available in skimage (Gaussian, Wiener, etc.). Verify the relationship between the amount of noise you add to the image and the strength of the filter you have to apply. Plot a graph with different PSNR values for different smoothness parameters to validate the "best" result. You can easily apply various filters using the [`filters`](https://scikit-image.org/docs/dev/api/skimage.filters.html?highlight=filter#module-skimage.filters) module.
 
-4. Apply the nonlinear total variation (TV) denoising filter (Chambolle version) to your previous test scenario. Verify the preservation of edges of the coins. Vary the regularization paramter. What is the systematic error of TV denoising?
-https://scikit-image.org/docs/dev/auto_examples/filters/plot_denoise.html?highlight=noise
-
-```{code-cell} ipython3
-
-```
+4. Apply the nonlinear total variation (TV) denoising filter to your previous test scenario. Verify the preservation of edges of the coins. Vary the regularization parameter. What is the systematic error of TV denoising? The filter is available in Python as [`denoise_tv_chambolle`](https://scikit-image.org/docs/dev/api/skimage.restoration.html#skimage.restoration.denoise_tv_chambolle)

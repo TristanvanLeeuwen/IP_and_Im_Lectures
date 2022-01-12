@@ -364,21 +364,21 @@
 <p>Now we will describe the attenuation of the intensity of a monochromatic ray of photons traveling through a material by the above processes mathematically. For this, we first assume that the photons are emitted at <span class="math notranslate nohighlight">\(x=0\)</span> with intensity <span class="math notranslate nohighlight">\(I_0\)</span> and detected at <span class="math notranslate nohighlight">\(x = + \infty\)</span> and ignore the <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> coordinate. The Beer-Lambert law states that the attenuation in a small interval of length <span class="math notranslate nohighlight">\(\delta x\)</span> is proportional to the intensity <span class="math notranslate nohighlight">\(I(x)\)</span> of the ray, the attenuation coefficient <span class="math notranslate nohighlight">\(u(x)\)</span> (which summarizes the probabilities for the physical processes mentioned above) in this interval and its length. This can be expressed a</p>
 <div class="math notranslate nohighlight">
 \[
- I(x + \delta x) = I(x) - u(x) I(x) \delta x \qquad \Longleftrightarrow \qquad \frac{I(x + \delta x) - I(x)}{\delta x} = - u(x) I(x)
+ I(x + \delta x) = I(x) - u(x) I(x) \delta x \, \Longleftrightarrow \, \frac{I(x + \delta x) - I(x)}{\delta x} = - u(x) I(x)
 \]</div>
 <p>In the limit <span class="math notranslate nohighlight">\(\delta x \rightarrow 0\)</span>, the expression on the right gives the ordinary differential equation (ODE)</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{d}{dx} I = - u I, \qquad I(0) = I_0 \quad,
+\frac{d}{dx} I = - u I, \, I(0) = I_0,
 \]</div>
 <p>which is solved by</p>
 <div class="math notranslate nohighlight">
 \[
-I(x) = I_0 \exp \left( - \int_0^x u(x') dx' \right) \qquad ,
+I(x) = I_0 \exp \left( - \int_0^x u(x') dx' \right),
 \]</div>
 <p>If we now assume that the X-rays travel along an arbitrary ray <span class="math notranslate nohighlight">\(\ell\)</span> connecting source and sensor element, call the measured intensity <span class="math notranslate nohighlight">\(I_1\)</span> and rearrange the above terms we can write</p>
 <div class="math notranslate nohighlight" id="equation-lineint">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-lineint" title="Permalink to this equation">¶</a></span>\[P_\ell = - \log \left(\frac{I_1}{I_0} \right) =  \int_\ell u(x) dx \quad .\]</div>
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-lineint" title="Permalink to this equation">¶</a></span>\[P_\ell = - \log \left(\frac{I_1}{I_0} \right) =  \int_\ell u(x) dx.\]</div>
 <p>So we see that in this formulation, we measure an integral of the unknown attenuation coefficient <span class="math notranslate nohighlight">\(u(x)\)</span> along a line <span class="math notranslate nohighlight">\(\ell\)</span> for each source-sensor pair.</p>
 <div class="figure align-default" id="radon">
 <a class="reference internal image-reference" href="_images/CT-Illustration.png"><img alt="_images/CT-Illustration.png" src="_images/CT-Illustration.png" style="height: 250px;" /></a>
@@ -406,11 +406,11 @@ x_2(s)
 \end{split}\]</div>
 <p>We can now eliminate <span class="math notranslate nohighlight">\(s\)</span> by solving the equation for <span class="math notranslate nohighlight">\(x_2(s)\)</span> for <span class="math notranslate nohighlight">\(s\)</span> and inserting this expression into the equation for <span class="math notranslate nohighlight">\(x_1(s)\)</span> to obtain a handy implicit equation for all points lying on <span class="math notranslate nohighlight">\(\ell\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-linepara">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-linepara" title="Permalink to this equation">¶</a></span>\[\ell(\theta, t) = \{x \in \mathbb{R} \, | \, x_1 \cos(\theta) + x_2 \sin(\theta) = t\} \quad,\]</div>
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-linepara" title="Permalink to this equation">¶</a></span>\[\ell(\theta, t) = \{x \in \mathbb{R} \, | \, x_1 \cos(\theta) + x_2 \sin(\theta) = t\},\]</div>
 <p>where we stressed that <span class="math notranslate nohighlight">\(\ell\)</span> is function of <span class="math notranslate nohighlight">\(\theta \in [0, \pi)\)</span> and <span class="math notranslate nohighlight">\(t \in [-1,1]\)</span>. In fact, all lines crossing the unit sphere can be parameterized in this way and inserting this parameterization into <a class="reference internal" href="#equation-lineint">(2.2)</a> yields a linear mapping <span class="math notranslate nohighlight">\(R\)</span> from <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> to a function <span class="math notranslate nohighlight">\(f(\theta, t)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-f(\theta, t) = R u(\theta, t) := \int_{\ell(\theta, t)} u(x) dx \quad .
+f(\theta, t) = R u(\theta, t) := \int_{\ell(\theta, t)} u(x) dx.
 \]</div>
 </div>
 <div class="section" id="the-radon-transform">
@@ -420,7 +420,8 @@ f(\theta, t) = R u(\theta, t) := \int_{\ell(\theta, t)} u(x) dx \quad .
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="kn">from</span> <span class="nn">skimage.data</span> <span class="kn">import</span> <span class="n">shepp_logan_phantom</span>
 <span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">radon</span><span class="p">,</span> <span class="n">rescale</span>
 
@@ -524,7 +525,8 @@ q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="kn">from</span> <span class="nn">skimage.data</span> <span class="kn">import</span> <span class="n">shepp_logan_phantom</span>
 <span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">radon</span><span class="p">,</span> <span class="n">rescale</span><span class="p">,</span> <span class="n">iradon</span>
 
@@ -581,7 +583,8 @@ q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="kn">from</span> <span class="nn">skimage.data</span> <span class="kn">import</span> <span class="n">shepp_logan_phantom</span>
 <span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">radon</span><span class="p">,</span> <span class="n">rescale</span><span class="p">,</span> <span class="n">iradon</span>
 
@@ -632,7 +635,8 @@ q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="kn">from</span> <span class="nn">skimage.data</span> <span class="kn">import</span> <span class="n">shepp_logan_phantom</span>
 <span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">radon</span><span class="p">,</span> <span class="n">rescale</span><span class="p">,</span> <span class="n">iradon</span><span class="p">,</span> <span class="n">iradon_sart</span>
 

@@ -152,7 +152,7 @@ Consider the following functions $J:\mathbb{R}\rightarrow \mathbb{R}$ (cf. {numr
 We see that $J_1$ is not bounded from below; $J_2$ is not coercive, $J_3$ is not l.s.c while $J_4$ is.
 
 ```{glue:figure} functionals
-:figwidth: 600px
+:figwidth: 500px
 :name: "functionals"
 
 Examples of various functions.
@@ -165,6 +165,9 @@ Examples of various functions.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
+
 from myst_nb import glue
 
 # grid
@@ -176,11 +179,13 @@ fig,ax = plt.subplots(1,4)
 ax[0].plot(-x,-x**3,'b',x,x**3,'b')
 ax[0].set_xlim([-2,2])
 ax[0].set_ylim([-2,2])
+ax[0].set_xlabel(r'$x$')
 ax[0].set_aspect(1)
 
 ax[1].plot(-x,np.exp(-x),'b',x,np.exp(x),'b')
 ax[1].set_xlim([-2,2])
 ax[1].set_ylim([-0.5,3.5])
+ax[1].set_xlabel(r'$x$')
 ax[1].set_aspect(1)
 
 ax[2].plot(-x[30:],x[30:]**2,'b',x,1+x,'b')
@@ -188,6 +193,7 @@ ax[2].plot(0,0,'bo',fillstyle='none')
 ax[2].plot(0,1,'bo')
 ax[2].set_xlim([-2,2])
 ax[2].set_ylim([-0.5,3.5])
+ax[2].set_xlabel(r'$x$')
 ax[2].set_aspect(1)
 
 ax[3].plot(-x,x**2,'b',x[30:],1+x[30:],'b')
@@ -195,6 +201,7 @@ ax[3].plot(0,0,'bo')
 ax[3].plot(0,1,'bo',fillstyle='none')
 ax[3].set_xlim([-2,2])
 ax[3].set_ylim([-0.5,3.5])
+ax[3].set_xlabel(r'$x$')
 ax[3].set_aspect(1)
 
 glue("functionals", fig, display=False)
@@ -466,7 +473,7 @@ $$u_{k+1} = u_k - \Delta t \left(f^\delta - u + \alpha \nabla^2 u\right),$$
 which is in fact a Landweber iteration applied to the corresponding objective.
 
 ```{glue:figure} linear_diffusion
-:figwidth: 600px
+:figwidth: 500px
 :name: "linear_diffusion"
 
 Example of denoising with linear diffusion.
@@ -479,6 +486,9 @@ Example of denoising with linear diffusion.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
+
 from myst_nb import glue
 
 from skimage import data
@@ -547,7 +557,7 @@ $$\partial_t u + u - \alpha\nabla \cdot \left(\frac{\nabla u}{1 + \epsilon^{-2}\
 We can interpret intuitively why this would preserve edges by looking at the diffusion coefficient. Wherever $\|\nabla u\| \ll \epsilon$ we have linear diffusion, if $\|\nabla u\| \gg \epsilon$, we hardly have any diffusion. This intuition if confirmed by consider the penalty $r(s)$, which for small $s$ behaves like $s^2$ but then flattens out and will thus not increasingly penalise larger gradients.
 
 ```{glue:figure} perona_malik
-:figwidth: 600px
+:figwidth: 500px
 :name: "perona_malik"
 
 Example of denoising with Perona-Malik regularisation.
@@ -559,6 +569,9 @@ Example of denoising with Perona-Malik regularisation.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
+
 from myst_nb import glue
 
 from skimage import data
@@ -734,6 +747,9 @@ Example of denoising with fourth order diffusion.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
+
 from scipy.sparse import dia_matrix
 from myst_nb import glue
 

@@ -520,7 +520,7 @@ K^{\dagger} = \sum_{j=1}^{\infty} \sigma_j^{-1} \langle \cdot, u_j\rangle_{\math
 <p class="admonition-title">Definition: <em>Picard condition</em></p>
 <p>Given a compact operator <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> and <span class="math notranslate nohighlight">\(f \in \mathcal{F}\)</span>, we have that <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)\)</span> iff</p>
 <div class="math notranslate nohighlight" id="equation-picard">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-picard" title="Permalink to this equation">¶</a></span>\[\sum_{j=1}^{\infty} \frac{|\langle f, u_j\rangle_{\mathcal{V}}|^2}{\sigma_j^2} &lt; \infty.\]</div>
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-picard" title="Permalink to this equation">¶</a></span>\[\sum_{j=1}^{\infty} \frac{|\langle f, u_j\rangle_{\mathcal{F}}|^2}{\sigma_j^2} &lt; \infty.\]</div>
 </div>
 <div class="important admonition">
 <p class="admonition-title">Remark : <em>Degree of ill-posedness</em></p>
@@ -610,7 +610,15 @@ K^*f(y) = \int_0^1 k(x,y) f(x)\mathrm{d}x = \int_y^1 f(x)\mathrm{d}x.
 <p>The singular system is given by</p>
 <div class="math notranslate nohighlight">
 \[
-\sigma_k = ((k+1/2)\pi)^{-1}, \quad u_k(x) = \sqrt{2}\sin(\sigma_k^{-1} x), \quad v_k(x) = \sqrt{2}\cos(\sigma_k^{-1} x).
+\sigma_k = ((k+1/2)\pi)^{-1},
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+u_k(x) = \sqrt{2}\sin(\sigma_k^{-1} x), 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\quad v_k(x) = \sqrt{2}\cos(\sigma_k^{-1} x).
 \]</div>
 <div class="dropdown note admonition">
 <p class="admonition-title">derivation</p>
@@ -1046,7 +1054,7 @@ Ku = F^{-1}((Fu)\cdot(Fg_T)),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11b4afe50&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb04ac66c10&gt;
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_5_1.png" src="_images/ip_function_spaces_5_1.png" />
@@ -1113,7 +1121,7 @@ K = h\cdot\left(\begin{matrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  3.986599529781529
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>|u - ur| =  3.892611620350151
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_9_1.png" src="_images/ip_function_spaces_9_1.png" />

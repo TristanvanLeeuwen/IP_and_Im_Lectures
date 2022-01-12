@@ -381,6 +381,8 @@ f(x) = \int_{\Omega} k(x-y)u(y)\mathrm{d}y,
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libaries</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">convolve2d</span> <span class="k">as</span> <span class="n">conv2</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">color</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">restoration</span>
 <span class="kn">from</span> <span class="nn">skimage.restoration</span> <span class="kn">import</span> <span class="n">inpaint</span>
@@ -430,6 +432,8 @@ f(x) = \int_{\Omega} k(x-y)u(y)\mathrm{d}y,
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libaries</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">convolve2d</span> <span class="k">as</span> <span class="n">conv2</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">color</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">restoration</span>
 <span class="kn">from</span> <span class="nn">skimage.restoration</span> <span class="kn">import</span> <span class="n">inpaint</span>
@@ -513,7 +517,7 @@ f_i = \widehat{u}(\xi_i), \quad i = 1, 2, \ldots, m.
 \[
 u(x)= \frac{1}{(2\pi)^{d/2}}\int_{\mathbb{R}^d} \widehat{u}(\xi) e^{-\imath \xi\cdot x}\mathrm{d}\xi.
 \]</div>
-<p>The challenge here lies in retrieving <span class="math notranslate nohighlight">\(u\)</span> from a limited set of samples. As the time needed for a scan is proportional to the number of samples acquired, much research is being done on devising methods to recover images from under sampled Fourier measurements.</p>
+<p>The challenge here lies in retrieving <span class="math notranslate nohighlight">\(u\)</span> from a limited set of samples. As the time needed for a scan is proportional to the number of samples acquired, much research is being done on devising methods to recover images from under-sampled Fourier measurements.</p>
 </div>
 <div class="section" id="seismic-inversion">
 <h3><span class="section-number">1.1.4. </span>Seismic inversion<a class="headerlink" href="#seismic-inversion" title="Permalink to this headline">¶</a></h3>
@@ -538,7 +542,7 @@ f_i(t) = p(t,x_i), \quad i \in \{1, 2, \ldots, m\}.
 \]</div>
 <p>The inverse problem consists of retrieving either <span class="math notranslate nohighlight">\(c\)</span> or <span class="math notranslate nohighlight">\(q\)</span> from the measurements <span class="math notranslate nohighlight">\(\{f_i\}_{i=0}^m\)</span>. In particular we distinguish two inverse problems</p>
 <ul class="simple">
-<li><p><em>Inverse source problem</em>: The measurements <span class="math notranslate nohighlight">\(f\)</span> are linear in terms of <span class="math notranslate nohighlight">\(q\)</span>, leading to a linear inverse problem to retrieve <span class="math notranslate nohighlight">\(q\)</span>. In earth-quake localisation, the source is for example parametrised as <span class="math notranslate nohighlight">\(q(t,x) = w(t)u(x)\)</span> in which case the goal is to retrieve <span class="math notranslate nohighlight">\((u,w)\)</span>.</p></li>
+<li><p><em>Inverse source problem</em>: The measurements <span class="math notranslate nohighlight">\(f\)</span> are linear in terms of <span class="math notranslate nohighlight">\(q\)</span>, leading to a linear inverse problem to retrieve <span class="math notranslate nohighlight">\(q\)</span>. In earth-quake localisation, the source is for example parametrised as <span class="math notranslate nohighlight">\(q(t,x) = u_1(t)u_2(x)\)</span> in which case the goal is to retrieve <span class="math notranslate nohighlight">\((u_1,u_2)\)</span>.</p></li>
 <li><p><em>Inverse medium problem</em>: Here the goal is to retrieve <span class="math notranslate nohighlight">\(c\)</span>, sometimes parametrised as <span class="math notranslate nohighlight">\(c(x) = c_0(1 + u(x))\)</span>. Here, the measurements generally depend non-linearly on <span class="math notranslate nohighlight">\(u\)</span>. However, when <span class="math notranslate nohighlight">\(|u| \ll 1\)</span> the relation between <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(u\)</span> may be linearised.</p></li>
 </ul>
 </div>
@@ -565,7 +569,7 @@ The image/parameters, <span class="math notranslate nohighlight">\(u\)</span>, c
 <p>It may seem strange that equation <a class="reference internal" href="#equation-ip">(1.1)</a> may not have a solution. After all, are the measurements not the result of the forward opertor applied to some ground-truth <span class="math notranslate nohighlight">\(\overline{u}\)</span>? We need to keep in mind here that <span class="math notranslate nohighlight">\(K\)</span> is only a <em>model</em> for the underlying process. In reality, the measurements may include <em>modelling errors</em> and <em>measurement errors</em>. We will denote the noisy data by <span class="math notranslate nohighlight">\(f^{\delta}\)</span>. An often-used model to incorporate such errors is the <em>additive noise model</em></p>
 <div class="math notranslate nohighlight">
 \[
-f^{\delta} = Ku^* + e,
+f^{\delta} = K(\overline{u}) + e,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(e\)</span> represents the combined measurement and modelling error with <span class="math notranslate nohighlight">\(\|e\| \leq \delta\)</span>. If we find a <span class="math notranslate nohighlight">\(u\)</span> for which <span class="math notranslate nohighlight">\(Ku^{\delta} = f^{\delta}\)</span>, we can ask ourselves how big the <em>backward error</em> <span class="math notranslate nohighlight">\(\|u^{\delta} - \overline{u}\|\)</span> is with respect to the <em>forward error</em> <span class="math notranslate nohighlight">\(\|e\| = \delta\)</span>. In practice we call a problem ill-posed if a small error in the data can cause a large error in the reconstruction.</p>
 </div>
@@ -627,11 +631,12 @@ n^{\delta}(x) = \delta \sin(x/\delta).
 <p>In some special cases we can derive an explicit expression for (an approximation) of the solution of <span class="math notranslate nohighlight">\(K(u) = f\)</span>. For example, if <span class="math notranslate nohighlight">\(K\)</span> represents a quadratic equation in one variable or a system of linear equations. In other cases, we may have an explicit expression for the inverse of a slightly modified forward operator, <span class="math notranslate nohighlight">\(\widetilde{K}\)</span>. This modified operator arises when the original inverse problem is ill-posed and is replaced by a modified inverse problem <span class="math notranslate nohighlight">\(\widetilde{K}(u) = f\)</span> which is well-posed. The hope, in the latter case, is that <span class="math notranslate nohighlight">\(\widetilde{K}\)</span> approximates <span class="math notranslate nohighlight">\(K\)</span> well for the class of solututions we are looking for.</p>
 <div class="admonition-example-inverting-a-rank-deficient-matrix admonition">
 <p class="admonition-title">Example: <em>Inverting a rank-deficient matrix.</em></p>
+<p>Consider the matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 K = \left(\begin{matrix} 1 &amp; 1\\ 2 &amp; 2 \end{matrix}\right).
 \end{split}\]</div>
-<p>Obviously this matrix is singular, so there is no way to usefully define the inverse. However, modifying the matrix slightly</p>
+<p>Obviously this matrix is singular, so there is no way to define the inverse in the usual sense. However, modifying the matrix slightly</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \widetilde{K} = \left(\begin{matrix} 1 + \alpha &amp; 1\\ 2 &amp; 2 + \alpha\end{matrix}\right),
@@ -648,6 +653,8 @@ K = \left(\begin{matrix} 1 &amp; 1\\ 2 &amp; 2 \end{matrix}\right).
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
 
 <span class="n">u1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
@@ -685,7 +692,7 @@ The second part is the regularisation functional which incorporates the a-priori
 \[
 \min_{u \in \mathcal{U}} D(u,f) + \alpha R(u)
 \]</div>
-<p>where further a-priori information on the class of images <span class="math notranslate nohighlight">\(u\)</span>, over which we minimise, can be contained, e.g. non-negativity for density images. The data fidelity term <span class="math notranslate nohighlight">\(D\)</span> should be constructed in such a way, that <span class="math notranslate nohighlight">\(D\)</span> attains its minimum (often normalised at zero) if the data are reconstructed exactly. The regularisation functional should be constructed in such a way, that <span class="math notranslate nohighlight">\(R\)</span> attains a small value if the image matches the a-priori information very well, and a very large value, if the image does not fit to the available a-priori information. As a result, such images will hardly become a minimum of the functional. The parameter <span class="math notranslate nohighlight">\(\alpha\)</span> weights the two parts of the functional. For very small <span class="math notranslate nohighlight">\(\alpha\)</span> the emphasis lies on fitting the data, whereas with increasing <span class="math notranslate nohighlight">\(\alpha\)</span> the regularisation gains in importance in this ratio, which is particularly essential if measurement errors or noise can be expected.</p>
+<p>where further a-priori information on the class of images <span class="math notranslate nohighlight">\(u\)</span>, over which we minimise, can be contained, e.g. non-negativity for density images. The data fidelity term <span class="math notranslate nohighlight">\(D\)</span> should be constructed in such a way, that <span class="math notranslate nohighlight">\(D\)</span> attains its minimum (often normalised at zero) if the data are reconstructed exactly. The regularisation functional should be constructed in such a way, that <span class="math notranslate nohighlight">\(R\)</span> attains a small value if the image matches the a-priori information very well, and a very large value, if the image does not fit to the available a-priori information. As a result, such images will be unlikely to minimise the functional. The parameter <span class="math notranslate nohighlight">\(\alpha\)</span> weights the two parts of the functional. For very small <span class="math notranslate nohighlight">\(\alpha\)</span> the emphasis lies on fitting the data, whereas with increasing <span class="math notranslate nohighlight">\(\alpha\)</span> the regularisation gains in importance in this ratio, which is particularly essential if measurement errors or noise can be expected.</p>
 <div class="admonition-example-solving-a-quadratic-equation admonition">
 <p class="admonition-title">Example: <em>Solving a quadratic equation.</em></p>
 <p>We illustrate this principle by a simple example. We search for a <em>small</em> solution of the following quadratic equation</p>

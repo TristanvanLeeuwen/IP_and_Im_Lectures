@@ -596,4 +596,4 @@ By using {eq}`k`, can you derive an expression for $\mathbf{g}(t)$ for the traje
 ## Assignment 
 
 ### MRI-reconstruction
-Set up a regularised inversion for an MRI scan with standard cartesian sampling. As test data you can use `skimage.data.brain`. You may assume that the data are noisy (subsampled) versions of the Fourier transform of the image slices. Can you get rid of aliasing artefacts using appropriate Tikhonov regularisation?
+Set up a regularised inversion for an MRI scan with standard cartesian sampling. As test data you can use [`skimage.data.brain`](https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.brain). You may assume that the data are noisy (subsampled) versions of the Fourier transform of the image slices. Can you get rid of aliasing artefacts using appropriate Tikhonov regularisation?

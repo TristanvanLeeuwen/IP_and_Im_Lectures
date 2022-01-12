@@ -315,7 +315,7 @@
                 
   <div class="section" id="a-statistical-perspective-on-inverse-problems">
 <h1><span class="section-number">4. </span>A statistical perspective on inverse problems<a class="headerlink" href="#a-statistical-perspective-on-inverse-problems" title="Permalink to this headline">¶</a></h1>
-<p>In this chapter we present a statistical perspective on inverse problems. This viewpoint allows us to incorporate prior assumptions and formulate variational problems. To avoid unnecessary technicalities, we’ll stick to the finite-dimensional setting. A formal treatment in the infinite-dimensional setting is given in <a class="bibtex reference internal" href="what_is.html#dashti2017" id="id1">[1]</a>.</p>
+<p>In this chapter we present a statistical perspective on inverse problems. This viewpoint allows us to incorporate prior assumptions and formulate variational problems. To avoid unnecessary technicalities, we’ll stick to the finite-dimensional setting. A formal treatment in the infinite-dimensional setting is given in <a class="bibtex reference internal" href="#dashti2017" id="id1">[4]</a>.</p>
 <div class="section" id="formulating-prior-assumptions">
 <h2><span class="section-number">4.1. </span>Formulating prior assumptions<a class="headerlink" href="#formulating-prior-assumptions" title="Permalink to this headline">¶</a></h2>
 <p>We take the viewpoint that both <span class="math notranslate nohighlight">\(f^{\delta}\)</span> and <span class="math notranslate nohighlight">\(u\)</span> are <a class="reference external" href="https://en.wikipedia.org/wiki/Random_variable">continuous random variables</a>. The prior assumptions are then formulated in terms of multi-variate <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_density_function">probability distributions</a>.</p>
@@ -349,7 +349,7 @@
 <p>Thus, <span class="math notranslate nohighlight">\(w^\delta - \rho v^\delta\)</span> is a normally distributed random variable with mean zero and variance <span class="math notranslate nohighlight">\(\sigma^2(1 + \rho^2)\)</span>. This gives us the following Likelihood</p>
 <div class="math notranslate nohighlight">
 \[\pi_{\text{data}}(u | f^\delta) = \frac{1}{\sigma\sqrt{1+\rho^2}\sqrt{2\pi}}\exp\left(-\frac{(w^\delta - \rho v^\delta)^2}{2\sigma^2(1+\rho^2)}\right).\]</div>
-<p>As prior, we can use statistics of rock samples <a class="bibtex reference internal" href="what_is.html#johnson1984density" id="id2">[2]</a>. This gives a <a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-normal distribution</a> with parameters <span class="math notranslate nohighlight">\((1.5,0.4)\)</span>. The corresponding distributions are shown in figure <a class="reference internal" href="#rock-samples"><span class="std std-numref">Fig. 4.1</span></a>.</p>
+<p>As prior, we can use statistics of rock samples <a class="bibtex reference internal" href="#johnson1984density" id="id2">[6]</a>. This gives a <a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-normal distribution</a> with parameters <span class="math notranslate nohighlight">\((1.5,0.4)\)</span>. The corresponding distributions are shown in figure <a class="reference internal" href="#rock-samples"><span class="std std-numref">Fig. 4.1</span></a>.</p>
 <div class="figure align-default" id="rock-samples" style="width: 500px">
 <div class="cell_output docutils container">
 <img alt="_images/statistical_perspective_1_0.png" src="_images/statistical_perspective_1_0.png" />
@@ -361,6 +361,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
 
 <span class="c1"># parameters</span>
@@ -445,6 +447,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">dia_matrix</span>
 
 <span class="c1"># set random seed</span>
@@ -545,6 +549,8 @@ f^\delta = Ku + \epsilon,
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 
 <span class="c1"># set random seed</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -612,6 +618,8 @@ f^\delta = Ku + \epsilon,
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 
 <span class="c1"># set random seed</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -679,6 +687,8 @@ f^\delta = Ku + \epsilon,
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 
 <span class="c1"># set random seed</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -744,6 +754,8 @@ f^\delta = Ku + \epsilon,
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rc</span>
 <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 
 <span class="c1"># set random seed</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -800,6 +812,8 @@ f^\delta = Ku + \epsilon,
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
@@ -1141,10 +1155,10 @@ In figure <a class="reference internal" href="#expected-error"><span class="std 
 <div class="section" id="references">
 <h2><span class="section-number">4.6. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p id="bibtex-bibliography-statistical_perspective-0"><dl class="citation">
-<dt class="bibtex label" id="dashti2017"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="bibtex label" id="dashti2017"><span class="brackets"><a class="fn-backref" href="#id1">4</a></span></dt>
 <dd><p>Masoumeh Dashti and Andrew M. Stuart. <em>The Bayesian Approach to Inverse Problems</em>, pages 311–428. Springer International Publishing, Cham, 2017. URL: <a class="reference external" href="https://arxiv.org/pdf/1302.6989.pdf">https://arxiv.org/pdf/1302.6989.pdf</a>, <a class="reference external" href="https://doi.org/10.1007/978-3-319-12385-1_7">doi:10.1007/978-3-319-12385-1_7</a>.</p>
 </dd>
-<dt class="bibtex label" id="johnson1984density"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dt class="bibtex label" id="johnson1984density"><span class="brackets"><a class="fn-backref" href="#id2">6</a></span></dt>
 <dd><p>Gordon R Johnson. Density of rocks and minerals. <em>CRC handbook of physical properties of rocks</em>, pages 1–38, 1984.</p>
 </dd>
 </dl>

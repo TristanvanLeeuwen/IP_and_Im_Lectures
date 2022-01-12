@@ -57,6 +57,8 @@ The resulting inverse problem is to undo the convolution. In some cases, $k$ may
 # import libaries
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from scipy.signal import convolve2d as conv2
 from skimage import color, data, restoration
 from skimage.restoration import inpaint
@@ -102,6 +104,8 @@ plt.show()
 # import libaries
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from scipy.signal import convolve2d as conv2
 from skimage import color, data, restoration
 from skimage.restoration import inpaint
@@ -196,7 +200,7 @@ $$
 u(x)= \frac{1}{(2\pi)^{d/2}}\int_{\mathbb{R}^d} \widehat{u}(\xi) e^{-\imath \xi\cdot x}\mathrm{d}\xi.
 $$
 
-The challenge here lies in retrieving $u$ from a limited set of samples. As the time needed for a scan is proportional to the number of samples acquired, much research is being done on devising methods to recover images from under sampled Fourier measurements.
+The challenge here lies in retrieving $u$ from a limited set of samples. As the time needed for a scan is proportional to the number of samples acquired, much research is being done on devising methods to recover images from under-sampled Fourier measurements.
 
 +++
 
@@ -236,7 +240,7 @@ $$
 
 The inverse problem consists of retrieving either $c$ or $q$ from the measurements $\{f_i\}_{i=0}^m$. In particular we distinguish two inverse problems
 
-* *Inverse source problem*: The measurements $f$ are linear in terms of $q$, leading to a linear inverse problem to retrieve $q$. In earth-quake localisation, the source is for example parametrised as $q(t,x) = w(t)u(x)$ in which case the goal is to retrieve $(u,w)$.
+* *Inverse source problem*: The measurements $f$ are linear in terms of $q$, leading to a linear inverse problem to retrieve $q$. In earth-quake localisation, the source is for example parametrised as $q(t,x) = u_1(t)u_2(x)$ in which case the goal is to retrieve $(u_1,u_2)$.
 
 * *Inverse medium problem*: Here the goal is to retrieve $c$, sometimes parametrised as $c(x) = c_0(1 + u(x))$. Here, the measurements generally depend non-linearly on $u$. However, when $|u| \ll 1$ the relation between $f$ and $u$ may be linearised.
 
@@ -273,7 +277,7 @@ If the problem is not well-posed, we call it *ill-posed*.
 It may seem strange that equation {eq}`ip` may not have a solution. After all, are the measurements not the result of the forward opertor applied to some ground-truth $\overline{u}$? We need to keep in mind here that $K$ is only a *model* for the underlying process. In reality, the measurements may include *modelling errors* and *measurement errors*. We will denote the noisy data by $f^{\delta}$. An often-used model to incorporate such errors is the *additive noise model*
 
 $$
-f^{\delta} = Ku^* + e,
+f^{\delta} = K(\overline{u}) + e,
 $$
 
 where $e$ represents the combined measurement and modelling error with $\|e\| \leq \delta$. If we find a $u$ for which $Ku^{\delta} = f^{\delta}$, we can ask ourselves how big the *backward error* $\|u^{\delta} - \overline{u}\|$ is with respect to the *forward error* $\|e\| = \delta$. In practice we call a problem ill-posed if a small error in the data can cause a large error in the reconstruction.
@@ -341,11 +345,13 @@ It is not hard to show in this case that the forward error $\|f^{\delta} - f\|_{
 In some special cases we can derive an explicit expression for (an approximation) of the solution of $K(u) = f$. For example, if $K$ represents a quadratic equation in one variable or a system of linear equations. In other cases, we may have an explicit expression for the inverse of a slightly modified forward operator, $\widetilde{K}$. This modified operator arises when the original inverse problem is ill-posed and is replaced by a modified inverse problem $\widetilde{K}(u) = f$ which is well-posed. The hope, in the latter case, is that $\widetilde{K}$ approximates $K$ well for the class of solututions we are looking for.
 
 ````{admonition} Example: *Inverting a rank-deficient matrix.*
+Consider the matrix 
+
 $$
 K = \left(\begin{matrix} 1 & 1\\ 2 & 2 \end{matrix}\right).
 $$
 
-Obviously this matrix is singular, so there is no way to usefully define the inverse. However, modifying the matrix slightly
+Obviously this matrix is singular, so there is no way to define the inverse in the usual sense. However, modifying the matrix slightly
 
 $$
 \widetilde{K} = \left(\begin{matrix} 1 + \alpha & 1\\ 2 & 2 + \alpha\end{matrix}\right),
@@ -367,6 +373,8 @@ Original and regularized equations. We see that the regularized equations have a
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from myst_nb import glue
 
 u1 = np.linspace(0,5,100)
@@ -398,7 +406,7 @@ $$
 \min_{u \in \mathcal{U}} D(u,f) + \alpha R(u)
 $$
 
-where further a-priori information on the class of images $u$, over which we minimise, can be contained, e.g. non-negativity for density images. The data fidelity term $D$ should be constructed in such a way, that $D$ attains its minimum (often normalised at zero) if the data are reconstructed exactly. The regularisation functional should be constructed in such a way, that $R$ attains a small value if the image matches the a-priori information very well, and a very large value, if the image does not fit to the available a-priori information. As a result, such images will hardly become a minimum of the functional. The parameter $\alpha$ weights the two parts of the functional. For very small $\alpha$ the emphasis lies on fitting the data, whereas with increasing $\alpha$ the regularisation gains in importance in this ratio, which is particularly essential if measurement errors or noise can be expected.
+where further a-priori information on the class of images $u$, over which we minimise, can be contained, e.g. non-negativity for density images. The data fidelity term $D$ should be constructed in such a way, that $D$ attains its minimum (often normalised at zero) if the data are reconstructed exactly. The regularisation functional should be constructed in such a way, that $R$ attains a small value if the image matches the a-priori information very well, and a very large value, if the image does not fit to the available a-priori information. As a result, such images will be unlikely to minimise the functional. The parameter $\alpha$ weights the two parts of the functional. For very small $\alpha$ the emphasis lies on fitting the data, whereas with increasing $\alpha$ the regularisation gains in importance in this ratio, which is particularly essential if measurement errors or noise can be expected.
 
 ````{admonition} Example: *Solving a quadratic equation.*
 
