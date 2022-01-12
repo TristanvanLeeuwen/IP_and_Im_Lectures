@@ -223,7 +223,7 @@ All these functions are convex and exhibit a discontinuity in the derivative at 
 * $\partial J_3(u) = [0,1]$
 
 ```{glue:figure} convex_examples
-:figwidth: 600px
+:figwidth: 500px
 :name: "convex_examples"
 
 Examples of several convex functions and an element of their subdifferential at $u=0$.
@@ -235,6 +235,8 @@ Examples of several convex functions and an element of their subdifferential at 
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from myst_nb import glue
 
 #
@@ -313,7 +315,7 @@ To find a $u$ for which $0\in J'(u)$ we need to consider the middle two cases. I
 When $n$ is odd, we have optimality only for $u = f_{(n+1)/2}$.
 
 ```{glue:figure} median_example
-:figwidth: 600px
+:figwidth: 500px
 :name: "median_example"
 
 Subgradient of $J$ for $f=(1,2,3,4)$ and $f=(1,2,3,4,5)$.
@@ -326,6 +328,8 @@ Subgradient of $J$ for $f=(1,2,3,4)$ and $f=(1,2,3,4,5)$.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from myst_nb import glue
 
 #
@@ -772,6 +776,8 @@ with $a = 1$ and $b = 100$. The function has a global minimum at $(a, a^2)$.
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from scipy.optimize import line_search
 
 # rosenbrock function
@@ -841,6 +847,7 @@ for i in range(n):
 
 plt.contour(xx1,xx2,(e1>0)*(e2>0),levels=50)
 plt.plot(xs[0],xs[1],'*')
+
 ```
 
 ```{code-cell} ipython3
@@ -860,13 +867,14 @@ fig,ax = plt.subplots(1,2)
 ax[0].contour(xx1,xx2,fs,levels=50)
 ax[0].plot(1,1,'*')
 ax[0].plot(x[:,0],x[:,1],'*')
-ax[0].set_xlabel('x')
-ax[0].set_ylabel('y')
+ax[0].set_xlabel(r'$x$')
+ax[0].set_ylabel(r'$y$')
 
 ax[1].semilogy(k,np.linalg.norm(x - xs,axis=1),k,(.99993)**k,'k--')
-ax[1].set_xlabel('k')
+ax[1].set_xlabel(r'$k$')
 ax[1].set_ylabel('error')
 
+fig.tight_layout()
 plt.show()
 ```
 
@@ -982,6 +990,8 @@ $$\min_{\nu} \textstyle{\frac{1}{2}}\|D^*\nu - f^\delta\|_2^2 \quad \text{s.t.} 
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 
 # grid \Omega = [0,1]
 n = 100
@@ -1000,6 +1010,7 @@ D = (np.diag(np.ones(n-1),1) - np.diag(np.ones(n),0))/h
 
 # plot
 plt.plot(x,u,x,f_delta)
+plt.xlabel(r'$x$')
 plt.show()
 ```
 
@@ -1029,7 +1040,7 @@ $$\nu_{k+1}= \nu_k + \rho \left(Du_{k+1} - v_{k+1}\right).$$
 * Below we see results for both methods using $\lambda = 5\cdot 10^{-3}$, $\alpha = 1/\|D\|^2$, $\rho = 1$. Both methods give comparable results and exhibit very similar convergence behaviour.
 
 ```{glue:figure} TV_exercise
-:figwidth: 600px
+:figwidth: 500px
 :name: "TV_exercise"
 
 Results for TV denoising using the proximal gradient method and ADMM.
@@ -1041,6 +1052,8 @@ Results for TV denoising using the proximal gradient method and ADMM.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from myst_nb import glue
 
 def prox_grad(f,lmbda,D,alpha,niter):
@@ -1108,8 +1121,8 @@ fig,ax = plt.subplots(2,2)
 
 ax[0,0].set_title('proximal gradient')
 ax[0,0].plot(x,u,x,f_delta,x,u_prox)
-ax[0,0].set_xlabel('$x$')
-ax[0,0].set_ylabel('$u(x)$')
+ax[0,0].set_xlabel(r'$x$')
+ax[0,0].set_ylabel(r'$u(x)$')
 
 ax[1,0].plot(hist_prox[:,0],label='primal')
 ax[1,0].plot(hist_prox[:,1],label='dual')
@@ -1119,7 +1132,7 @@ ax[1,0].set_ylabel('objective')
 
 ax[0,1].set_title('ADMM')
 ax[0,1].plot(x,u,x,f_delta,x,u_admm)
-ax[0,1].set_xlabel('$x$')
+ax[0,1].set_xlabel(r'$x$')
 ax[1,1].plot(hist_admm[:,0],label='primal')
 ax[1,1].plot(hist_admm[:,1],label='dual')
 ax[1,1].set_xlabel('iteration')
@@ -1150,6 +1163,8 @@ Some code to get you started is shown below.
 # import libraries
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 
 # forward operator
 def getK(n):
@@ -1182,6 +1197,7 @@ f_delta = f + delta*noise
 
 # plot
 plt.plot(x,u,x,f,x,f_delta)
+plt.xlabel(r'$x$')
 plt.show()
 ```
 
@@ -1229,8 +1245,10 @@ ax[0].set_ylabel('objective value')
 
 ax[1].plot(x,u,label='ground truth')
 ax[1].plot(x,uhat,label='reconstruction')
-ax[1].set_xlabel('x')
-ax[1].set_ylabel('u(x)')
+ax[1].set_xlabel(r'$x$')
+ax[1].set_ylabel(r'$u(x)$')
+
+fig.tight_layout()
 ```
 
 ```{code-cell} ipython3
