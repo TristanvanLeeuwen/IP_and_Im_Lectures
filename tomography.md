@@ -54,26 +54,26 @@ X-ray photograph of the hand of Röntgen's wife.
 Now we will describe the attenuation of the intensity of a monochromatic ray of photons traveling through a material by the above processes mathematically. For this, we first assume that the photons are emitted at $x=0$ with intensity $I_0$ and detected at $x = + \infty$ and ignore the $y$ and $z$ coordinate. The Beer-Lambert law states that the attenuation in a small interval of length $\delta x$ is proportional to the intensity $I(x)$ of the ray, the attenuation coefficient $u(x)$ (which summarizes the probabilities for the physical processes mentioned above) in this interval and its length. This can be expressed a
 
 $$
- I(x + \delta x) = I(x) - u(x) I(x) \delta x \qquad \Longleftrightarrow \qquad \frac{I(x + \delta x) - I(x)}{\delta x} = - u(x) I(x)
+ I(x + \delta x) = I(x) - u(x) I(x) \delta x \, \Longleftrightarrow \, \frac{I(x + \delta x) - I(x)}{\delta x} = - u(x) I(x)
 $$
 
 In the limit $\delta x \rightarrow 0$, the expression on the right gives the ordinary differential equation (ODE)
 
 $$
-\frac{d}{dx} I = - u I, \qquad I(0) = I_0 \quad,
+\frac{d}{dx} I = - u I, \, I(0) = I_0,
 $$
 
 which is solved by
 
 $$
-I(x) = I_0 \exp \left( - \int_0^x u(x') dx' \right) \qquad ,
+I(x) = I_0 \exp \left( - \int_0^x u(x') dx' \right),
 $$
 
 If we now assume that the X-rays travel along an arbitrary ray $\ell$ connecting source and sensor element, call the measured intensity $I_1$ and rearrange the above terms we can write
 
 ```{math}
 :label: lineInt
-P_\ell = - \log \left(\frac{I_1}{I_0} \right) =  \int_\ell u(x) dx \quad .
+P_\ell = - \log \left(\frac{I_1}{I_0} \right) =  \int_\ell u(x) dx.
 ```
 
 So we see that in this formulation, we measure an integral of the unknown attenuation coefficient $u(x)$ along a line $\ell$ for each source-sensor pair.
@@ -110,13 +110,13 @@ We can now eliminate $s$ by solving the equation for $x_2(s)$ for $s$ and insert
 
 ```{math}
 :label: LinePara
-\ell(\theta, t) = \{x \in \mathbb{R} \, | \, x_1 \cos(\theta) + x_2 \sin(\theta) = t\} \quad,
+\ell(\theta, t) = \{x \in \mathbb{R} \, | \, x_1 \cos(\theta) + x_2 \sin(\theta) = t\},
 ```
 
 where we stressed that $\ell$ is function of $\theta \in [0, \pi)$ and $t \in [-1,1]$. In fact, all lines crossing the unit sphere can be parameterized in this way and inserting this parameterization into {eq}`lineInt` yields a linear mapping $R$ from $u(x_1,x_2)$ to a function $f(\theta, t)$:
 
 $$
-f(\theta, t) = R u(\theta, t) := \int_{\ell(\theta, t)} u(x) dx \quad .
+f(\theta, t) = R u(\theta, t) := \int_{\ell(\theta, t)} u(x) dx.
 $$
 
 ## The Radon transform
@@ -128,7 +128,8 @@ The transform above describes all possible X-ray measurements of $u(x)$ and is c
 
 import numpy as np
 import matplotlib.pyplot as plt
-
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from skimage.data import shepp_logan_phantom
 from skimage.transform import radon, rescale
 
@@ -248,7 +249,8 @@ Below, we illustrate that if the filtered sinogram is now inserted into the back
 
 import numpy as np
 import matplotlib.pyplot as plt
-
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from skimage.data import shepp_logan_phantom
 from skimage.transform import radon, rescale, iradon
 
@@ -302,7 +304,8 @@ The previous section showed that in order to reconstruct the image from the sino
 
 import numpy as np
 import matplotlib.pyplot as plt
-
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from skimage.data import shepp_logan_phantom
 from skimage.transform import radon, rescale, iradon
 
@@ -351,7 +354,8 @@ where $D_1$ and $D_2$ are diagonal matrices containing the row and column sums o
 
 import numpy as np
 import matplotlib.pyplot as plt
-
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from skimage.data import shepp_logan_phantom
 from skimage.transform import radon, rescale, iradon, iradon_sart
 
