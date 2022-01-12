@@ -57,6 +57,8 @@ The resulting inverse problem is to undo the convolution. In some cases, $k$ may
 # import libaries
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from scipy.signal import convolve2d as conv2
 from skimage import color, data, restoration
 from skimage.restoration import inpaint
@@ -102,6 +104,8 @@ plt.show()
 # import libaries
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from scipy.signal import convolve2d as conv2
 from skimage import color, data, restoration
 from skimage.restoration import inpaint
@@ -369,6 +373,8 @@ Original and regularized equations. We see that the regularized equations have a
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from myst_nb import glue
 
 u1 = np.linspace(0,5,100)

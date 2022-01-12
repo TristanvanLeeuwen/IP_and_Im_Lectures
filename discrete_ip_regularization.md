@@ -225,6 +225,8 @@ The vector $f \in \mathbb{R}^m$ satisfies the discrete Picard condition for the 
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from myst_nb import glue
 
 # define forward operator
@@ -570,6 +572,8 @@ def getK(n):
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 
 # define forward operator
 n = 100
@@ -608,6 +612,8 @@ plt.show()
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 
 # define forward operator
 def getK(n):
@@ -729,6 +735,9 @@ For each of the two scenarios answer the following questions:
 import numpy as np
 import scipy.linalg as la
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
+
 ```
 
 ```{code-cell} ipython3

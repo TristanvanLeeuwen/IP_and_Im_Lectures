@@ -70,6 +70,8 @@ Example of probability densities with $w = 2$, $v=1$, $\sigma = 0.1$.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from myst_nb import glue
 
 # parameters
@@ -160,6 +162,8 @@ An example with $n = 100$, $\sigma^2 = 1$, $L = 10^{-1}$ for various values of $
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 from scipy.sparse import dia_matrix
 
 # set random seed
@@ -265,6 +269,8 @@ An example is shown below.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 
 # set random seed
 np.random.seed(1)
@@ -330,6 +336,8 @@ where $B = \{u \in \mathbb{R}^n \,|\, u_i \in [a_i,b_i]\,\, \text{for}\,\, i = 1
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 
 # set random seed
 np.random.seed(1)
@@ -396,6 +404,8 @@ An example for a non-linear forward model is shown below.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 
 # set random seed
 np.random.seed(1)
@@ -459,6 +469,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import rc
 rc('text', usetex=True)
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 
 # set random seed
 np.random.seed(2)
@@ -515,6 +527,8 @@ Examples of samples are shown below.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 300
 
 np.random.seed(2)
 
