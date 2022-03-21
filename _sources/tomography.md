@@ -480,7 +480,7 @@ $$\|u\|_{\mathcal{U}}^2 = \int_{\Omega} |u(x)|^2\mathrm{d}x.$$
 
 Show that $\|Ru\|_{\mathcal{F}} \leq 2\sqrt{\pi}\|u\|_{\mathcal{U}}$.
 
-* Show that the adjoint of $R$ is given by
+* Derive the adjoint of $R$ (with respect to the weighted inner product defined above).
 
 * Show that the operator $RR^*$ has eigenfunctions
 

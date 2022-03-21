@@ -562,6 +562,6 @@ plt.show()
 
 2. Implement the local linear filter learned in the lecture as an iterative scheme to remove the noise. How can you achieve different degrees of smoothness? What do you observe at edges?
 
-3. Apply also different filters available in skimage (Gaussian, Wiener, etc.). Verify the relationship between the amount of noise you add to the image and the strength of the filter you have to apply. Plot a graph with different PSNR values for different smoothness parameters to validate the "best" result. You can easily apply various filters using the [`filters`](https://scikit-image.org/docs/dev/api/skimage.filters.html?highlight=filter#module-skimage.filters) module.
+3. Apply also different filters available in skimage (e.g., Gaussian). Verify the relationship between the amount of noise you add to the image and the strength of the filter you have to apply. Plot a graph with different PSNR values for different smoothness parameters to validate the "best" result. You can easily apply various filters using the [`filters`](https://scikit-image.org/docs/dev/api/skimage.filters.html?highlight=filter#module-skimage.filters) module.
 
 4. Apply the nonlinear total variation (TV) denoising filter to your previous test scenario. Verify the preservation of edges of the coins. Vary the regularization parameter. What is the systematic error of TV denoising? The filter is available in Python as [`denoise_tv_chambolle`](https://scikit-image.org/docs/dev/api/skimage.restoration.html#skimage.restoration.denoise_tv_chambolle)
