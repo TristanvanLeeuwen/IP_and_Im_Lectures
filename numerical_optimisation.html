@@ -901,7 +901,7 @@ Since the eigenvalues of <span class="math notranslate nohighlight">\(\J''\)</sp
 <h3><span class="section-number">6.4.2. </span>Steepest descent for convex functions<a class="headerlink" href="#steepest-descent-for-convex-functions" title="Permalink to this headline">¶</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(J : \mathbb{R}^n\)</span> be convex and Lipschitz-smooth. Show that the basic steepest-descent iteration with stepsize <span class="math notranslate nohighlight">\(\lambda = 1/L\)</span> produces iterates for which</p>
 <div class="math notranslate nohighlight">
-\[J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|}{2}.\]</div>
+\[J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|}{2Lk}.\]</div>
 <p>The key is to use that</p>
 <div class="math notranslate nohighlight">
 \[J(v) \leq J(u) + \langle J'(u), v - u\rangle + \textstyle{\frac{1}{2}}\|u - v\|_2^2.\]</div>
@@ -1003,7 +1003,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff51fb83ed0&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa7a907b650&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -1025,7 +1025,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff521c47e10&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa7adaa8810&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1091,8 +1091,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn('The line search algorithm did not converge', LineSearchWarning)
 </pre>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff52290c5d0&gt;,
- &lt;matplotlib.lines.Line2D at 0x7ff52389ee10&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa7b084c7d0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7fa7b17d2050&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />
