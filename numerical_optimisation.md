@@ -723,7 +723,7 @@ this gives us an optimal value of $\alpha = 2/(\mu + L)$.
 
 Let $J : \mathbb{R}^n$ be convex and Lipschitz-smooth. Show that the basic steepest-descent iteration with stepsize $\lambda = 1/L$ produces iterates for which
 
-$$J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|}{2}.$$
+$$J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|}{2Lk}.$$
 
 The key is to use that
 
