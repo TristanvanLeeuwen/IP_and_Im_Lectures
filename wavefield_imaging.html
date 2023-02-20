@@ -1,57 +1,70 @@
 
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>3. Wavefield Imaging &#8212; 10 Lectures on Inverse Problems and Imaging</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9. Wavefield Imaging &#8212; 10 Lectures on Inverse Problems and Imaging</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/mystnb.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="4. Magnetic Resonance Imaging" href="magnetic_resonance_imaging.html" />
-    <link rel="prev" title="2. Computed Tomography" href="tomography.html" />
+    <link rel="next" title="10. Magnetic Resonance Imaging" href="magnetic_resonance_imaging.html" />
+    <link rel="prev" title="8. Computed Tomography" href="tomography.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
-
-
-
+    <!-- Google Analytics -->
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -60,28 +73,36 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">10 Lectures on Inverse Problems and Imaging</h1>
-  
-</a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">10 Lectures on Inverse Problems and Imaging</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <p class="caption">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Inverse Problems and Imaging
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Lectures
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is.html">
    1. What is an inverse problem
@@ -113,49 +134,52 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Applications
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="image_processing.html">
-   1. Image processing
+   7. Image processing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="tomography.html">
-   2. Computed Tomography
+   8. Computed Tomography
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   3. Wavefield Imaging
+   9. Wavefield Imaging
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="magnetic_resonance_imaging.html">
-   4. Magnetic Resonance Imaging
+   10. Magnetic Resonance Imaging
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Reference
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   1. Bibliography
+   11. Bibliography
   </a>
  </li>
 </ul>
 
-</nav>
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
- <!-- To handle the deprecated key -->
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
 </div>
 
@@ -166,39 +190,42 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
+        <a class="dropdown-buttons"
+            href="_sources/wavefield_imaging.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="_sources/wavefield_imaging.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
-        <!-- Source interaction buttons -->
+
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -212,144 +239,272 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/TristanvanLeeuwen/IP_and_Im_Lectures/master?urlpath=tree/wavefield_imaging.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
     </div>
+</div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#forward-modelling">
-   3.1. Forward modelling
+   9.1. Forward modelling
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#analytic-solution">
-     3.1.1. Analytic solution
+     9.1.1. Analytic solution
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#numerical-modelling">
-     3.1.2. Numerical modelling
+     9.1.2. Numerical modelling
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#analysis">
-   3.2. Analysis
+   9.2. Analysis
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#source-localization">
-     3.2.1. Source localization
+     9.2.1. Source localization
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#inverse-scattering">
-     3.2.2. Inverse scattering
+     9.2.2. Inverse scattering
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reconstruction">
-   3.3. Reconstruction
+   9.3. Reconstruction
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#inverse-source-problem">
-     3.3.1. Inverse source problem
+     9.3.1. Inverse source problem
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     3.3.2. Inverse scattering
+     9.3.2. Inverse scattering
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#waveform-tomography">
-     3.3.3. Waveform tomography
+     9.3.3. Waveform tomography
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercises">
-   3.4. Exercises
+   9.4. Exercises
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
-     3.4.1. Inverse source problem
+     9.4.1. Inverse source problem
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id3">
-     3.4.2. Inverse scattering
+     9.4.2. Inverse scattering
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#assignments">
-   3.5. Assignments
+   9.5. Assignments
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#non-scattering-potentials">
-     3.5.1. Non-scattering potentials
+     9.5.1. Non-scattering potentials
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#parameter-estimation">
-     3.5.2. Parameter estimation
+     9.5.2. Parameter estimation
     </a>
    </li>
   </ul>
  </li>
 </ul>
 
-        </nav>
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Wavefield Imaging</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#forward-modelling">
+   9.1. Forward modelling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analytic-solution">
+     9.1.1. Analytic solution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-modelling">
+     9.1.2. Numerical modelling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis">
+   9.2. Analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#source-localization">
+     9.2.1. Source localization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inverse-scattering">
+     9.2.2. Inverse scattering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reconstruction">
+   9.3. Reconstruction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inverse-source-problem">
+     9.3.1. Inverse source problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     9.3.2. Inverse scattering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#waveform-tomography">
+     9.3.3. Waveform tomography
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   9.4. Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     9.4.1. Inverse source problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     9.4.2. Inverse scattering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignments">
+   9.5. Assignments
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-scattering-potentials">
+     9.5.1. Non-scattering potentials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parameter-estimation">
+     9.5.2. Parameter estimation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="section" id="wavefield-imaging">
-<h1><span class="section-number">3. </span>Wavefield Imaging<a class="headerlink" href="#wavefield-imaging" title="Permalink to this headline">¶</a></h1>
-<p>In many applications, acoustic or electromagnetic waves are harnessed to <em>see</em> things; under-water acoustics, radar, sonar, medical ultrasound, ground penetrating radar, seismic imaging, global seismology. In some of these applications the measurements are <em>passive</em>; we record waves that are emitted by the object of investigation and we try to infer its location, size, etc. In <em>active</em> measurements, waves are generated and the response of the object is recorded. An example of such an application is shown in <a class="reference internal" href="#seismic"><span class="std std-numref">Fig. 3.1</span></a>.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="wavefield-imaging">
+<h1><span class="section-number">9. </span>Wavefield Imaging<a class="headerlink" href="#wavefield-imaging" title="Permalink to this headline">¶</a></h1>
+<p>In many applications, acoustic or electromagnetic waves are harnessed to <em>see</em> things; under-water acoustics, radar, sonar, medical ultrasound, ground penetrating radar, seismic imaging, global seismology. In some of these applications the measurements are <em>passive</em>; we record waves that are emitted by the object of investigation and we try to infer its location, size, etc. In <em>active</em> measurements, waves are generated and the response of the object is recorded. An example of such an application is shown in <a class="reference internal" href="#seismic"><span class="std std-numref">Fig. 9.1</span></a>.</p>
 <div class="figure align-default" id="seismic">
 <a class="reference internal image-reference" href="_images/seismic.png"><img alt="_images/seismic.png" src="_images/seismic.png" style="height: 150px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Acquisition setup of a bat and an active marine seismic survey.</span><a class="headerlink" href="#seismic" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 9.1 </span><span class="caption-text">Acquisition setup of a bat and an active marine seismic survey.</span><a class="headerlink" href="#seismic" title="Permalink to this image">¶</a></p>
 </div>
 <p>In order to treat the inverse problem, we must first understand the <em>forward problem</em>. In its most rudimentary form, the wave-equation is given by</p>
 <div class="math notranslate nohighlight" id="equation-waveequation">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-waveequation" title="Permalink to this equation">¶</a></span>\[L[c]v(t,x) = q(t,x),\]</div>
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-waveequation" title="Permalink to this equation">¶</a></span>\[L[c]v(t,x) = q(t,x),\]</div>
 <p>with</p>
 <div class="math notranslate nohighlight">
 \[
 L[c] = \left[\frac{1}{c(x)^2}\frac{\partial^2}{\partial t^2} - \nabla^2 \right],
 \]</div>
 <p>and where <span class="math notranslate nohighlight">\(v : \mathbb{R} \times \mathbb{R}^n \rightarrow \mathbb{R}\)</span> denotes the wavefield, <span class="math notranslate nohighlight">\(c : \mathbb{R}^n \rightarrow \mathbb{R}\)</span> is the speed of propagation and <span class="math notranslate nohighlight">\(q : \mathbb{R} \times \mathbb{R}^n \rightarrow \mathbb{R}\)</span> is a source term. We will assume that the source has compact support in both space and time and is square integrable.</p>
-<p>To define a unique solution of <a class="reference internal" href="#equation-waveequation">(3.3)</a> we need to supply boundary and initial conditions. In the applications discussed above one typically considers an unbounded domain (<span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>) and Cauchy initial conditions <span class="math notranslate nohighlight">\(v(0,x) = 0\)</span>, <span class="math notranslate nohighlight">\(\frac{\partial v}{\partial t}(0,x) = 0\)</span>.</p>
+<p>To define a unique solution of <a class="reference internal" href="#equation-waveequation">(9.1)</a> we need to supply boundary and initial conditions. In the applications discussed above one typically considers an unbounded domain (<span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>) and Cauchy initial conditions <span class="math notranslate nohighlight">\(v(0,x) = 0\)</span>, <span class="math notranslate nohighlight">\(\frac{\partial v}{\partial t}(0,x) = 0\)</span>.</p>
 <p>In scattering experiments it is common to rewrite the wave-equation in terms of an incoming and a scattered wavefield, <span class="math notranslate nohighlight">\(v = v_i + v_s\)</span>, and a scattering potential, <span class="math notranslate nohighlight">\(u(x) = c(x)^{-2} - c_0^{-2}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-scattering">
-<span class="eqno">(3.4)<a class="headerlink" href="#equation-scattering" title="Permalink to this equation">¶</a></span>\[L[c_0]v_i(t,x) = q(t,x), \quad L[c_0]v_s(t,x) = -u(x)\frac{\partial^2 v}{\partial t^2}(t,x).\]</div>
-<p>Under a <em>weak scattering</em> assumption, we may ignore the interaction of <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v_s\)</span> and replace <span class="math notranslate nohighlight">\(v\)</span> in <a class="reference internal" href="#equation-scattering">(3.4)</a> by <span class="math notranslate nohighlight">\(v_i\)</span>.</p>
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-scattering" title="Permalink to this equation">¶</a></span>\[L[c_0]v_i(t,x) = q(t,x), \quad L[c_0]v_s(t,x) = -u(x)\frac{\partial^2 v}{\partial t^2}(t,x).\]</div>
+<p>Under a <em>weak scattering</em> assumption, we may ignore the interaction of <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v_s\)</span> and replace <span class="math notranslate nohighlight">\(v\)</span> in <a class="reference internal" href="#equation-scattering">(9.2)</a> by <span class="math notranslate nohighlight">\(v_i\)</span>.</p>
 <p>The measurements are typically taken to be the (scattered) wavefield restricted to <span class="math notranslate nohighlight">\([0,T] \times \Delta\)</span> where <span class="math notranslate nohighlight">\(\Delta \subset \mathbb{R}^n\)</span> may be a manifold or a set of points. The data may then be denoted by <span class="math notranslate nohighlight">\(f(t,r)\)</span>.
 In active experiments, it is common practice to consider measurements for a collection of source terms. The sources may be point-sources, in which case <span class="math notranslate nohighlight">\(q(t,x) = w(t)\delta(x - s)\)</span> with <span class="math notranslate nohighlight">\(s \in  \Sigma\)</span>. Alternatively, the incident field <span class="math notranslate nohighlight">\(v_i\)</span> may be given and parametrized by <span class="math notranslate nohighlight">\(s \in  \Sigma\)</span>. We may then denote the data by <span class="math notranslate nohighlight">\(f(t,s,r)\)</span> with <span class="math notranslate nohighlight">\(s\in \Sigma\)</span>, <span class="math notranslate nohighlight">\(r\in \Delta\)</span> and <span class="math notranslate nohighlight">\(t\in [0,T]\)</span>.</p>
 <p>Based on this basic setup, we will discuss three possible inverse problems:</p>
@@ -373,15 +528,15 @@ In active experiments, it is common practice to consider measurements for a coll
 <li><p><strong>Point-measurements along a hyperplane:</strong> <span class="math notranslate nohighlight">\(\Delta = \{x \in \mathbb{R}^n\, |\, n\cdot x = x_0\}\)</span>.</p></li>
 <li><p><strong>Point-measurements on the sphere:</strong> <span class="math notranslate nohighlight">\(\Delta = \{x \in \mathbb{R}^n \, | \, \|x\| = \rho\}\)</span>.</p></li>
 </ul>
-<p>We will further assume that the quantities of interest are compactly supported in both space and time and that the measurement time <span class="math notranslate nohighlight">\(T\)</span> is large enough to capture all the required information. This situation is sketched in <a class="reference internal" href="#assumption"><span class="std std-numref">Fig. 3.2</span></a>.</p>
+<p>We will further assume that the quantities of interest are compactly supported in both space and time and that the measurement time <span class="math notranslate nohighlight">\(T\)</span> is large enough to capture all the required information. This situation is sketched in <a class="reference internal" href="#assumption"><span class="std std-numref">Fig. 9.2</span></a>.</p>
 <div class="figure align-default" id="assumption">
 <a class="reference internal image-reference" href="_images/assumption.png"><img alt="_images/assumption.png" src="_images/assumption.png" style="height: 150px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3.2 </span><span class="caption-text">All information on the compactly supported source term is captured in the light cone defined by  <span class="math notranslate nohighlight">\(t = c\cdot x\)</span>. We assume that <span class="math notranslate nohighlight">\(T\)</span> is large enough to capture the complete intersection of the light cone with <span class="math notranslate nohighlight">\(\Delta\)</span>.</span><a class="headerlink" href="#assumption" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 9.2 </span><span class="caption-text">All information on the compactly supported source term is captured in the light cone defined by  <span class="math notranslate nohighlight">\(t = c\cdot x\)</span>. We assume that <span class="math notranslate nohighlight">\(T\)</span> is large enough to capture the complete intersection of the light cone with <span class="math notranslate nohighlight">\(\Delta\)</span>.</span><a class="headerlink" href="#assumption" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="forward-modelling">
-<h2><span class="section-number">3.1. </span>Forward modelling<a class="headerlink" href="#forward-modelling" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.1. </span>Forward modelling<a class="headerlink" href="#forward-modelling" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="analytic-solution">
-<h3><span class="section-number">3.1.1. </span>Analytic solution<a class="headerlink" href="#analytic-solution" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.1.1. </span>Analytic solution<a class="headerlink" href="#analytic-solution" title="Permalink to this headline">¶</a></h3>
 <p>For a general source term we may express the solution as a convolution</p>
 <div class="math notranslate nohighlight">
 \[
@@ -416,7 +571,7 @@ v = g_0*q - g_0*\left(u\cdot \frac{\partial^2 v}{\partial t^2}\right),
 <p>where <span class="math notranslate nohighlight">\(*\)</span> denotes convolution, <span class="math notranslate nohighlight">\(g\)</span> is the Green function for <span class="math notranslate nohighlight">\(c(x) \equiv c_0\)</span> and <span class="math notranslate nohighlight">\(u = c^{-2} - c_0^{-2}\)</span>.</p>
 </div>
 <div class="section" id="numerical-modelling">
-<h3><span class="section-number">3.1.2. </span>Numerical modelling<a class="headerlink" href="#numerical-modelling" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.1.2. </span>Numerical modelling<a class="headerlink" href="#numerical-modelling" title="Permalink to this headline">¶</a></h3>
 <p>For non-constant <span class="math notranslate nohighlight">\(c\)</span>, such closed-form expression are generally not available. The most basic method for solving the wave equation numerically is the Leap-Frog method. For <span class="math notranslate nohighlight">\(n=1\)</span>, the method may be expressed as follows. Introducing <span class="math notranslate nohighlight">\(v_{ij} \equiv v(i\Delta t, j\Delta x)\)</span> we have</p>
 <div class="math notranslate nohighlight">
 \[
@@ -452,9 +607,9 @@ g^2 - 2g + 1 = 2\gamma g(\cos(\theta\Delta x)-1),
 </div>
 </div>
 <div class="section" id="analysis">
-<h2><span class="section-number">3.2. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.2. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="source-localization">
-<h3><span class="section-number">3.2.1. </span>Source localization<a class="headerlink" href="#source-localization" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.2.1. </span>Source localization<a class="headerlink" href="#source-localization" title="Permalink to this headline">¶</a></h3>
 <p>Define forward map</p>
 <div class="math notranslate nohighlight">
 \[
@@ -480,7 +635,7 @@ r_0(t,x) = L[c]w_0(t,x),
 <p>This will be explored in more detail in the assignments.</p>
 </div>
 <div class="section" id="inverse-scattering">
-<h3><span class="section-number">3.2.2. </span>Inverse scattering<a class="headerlink" href="#inverse-scattering" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.2.2. </span>Inverse scattering<a class="headerlink" href="#inverse-scattering" title="Permalink to this headline">¶</a></h3>
 <p>Under the weak scatterin assumption, the scattered field is given by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -491,9 +646,9 @@ In the assignments we will explore non-radiating sources in more detail.</p>
 </div>
 </div>
 <div class="section" id="reconstruction">
-<h2><span class="section-number">3.3. </span>Reconstruction<a class="headerlink" href="#reconstruction" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.3. </span>Reconstruction<a class="headerlink" href="#reconstruction" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="inverse-source-problem">
-<h3><span class="section-number">3.3.1. </span>Inverse source problem<a class="headerlink" href="#inverse-source-problem" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.3.1. </span>Inverse source problem<a class="headerlink" href="#inverse-source-problem" title="Permalink to this headline">¶</a></h3>
 <p>We study a variant of the inverse source problem in which <span class="math notranslate nohighlight">\(q(t,x) = \delta(t)u(x)\)</span> and <span class="math notranslate nohighlight">\(u\)</span> is compactly supported on <span class="math notranslate nohighlight">\(\Omega \subset \mathbb{R}^n\)</span>. The foward operator for constant <span class="math notranslate nohighlight">\(c\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -556,7 +711,7 @@ u = \nabla^2 (K^*f).
 <p>This filtering can also be implemented in the Fourier domain by multiplying by <span class="math notranslate nohighlight">\(|\xi|^2\)</span>. An example is shown below.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">laplace</span>
@@ -640,11 +795,11 @@ u = \nabla^2 (K^*f).
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">dx</span> <span class="o">=</span> <span class="mf">1e-2</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="o">.</span><span class="mf">5e-2</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">.5e-2</span>
 <span class="n">nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">nx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">L</span><span class="o">/</span><span class="n">dx</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
@@ -699,18 +854,23 @@ u = \nabla^2 (K^*f).
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/wavefield_imaging_2_0.png" src="_images/wavefield_imaging_2_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_2233/1891252179.py:23: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  I = np.ravel_multi_index(np.array([[xs/dx + nx//2],[ys//dx + nx//2]],dtype=np.int), (nx,nx))
+</pre></div>
+</div>
+<img alt="_images/wavefield_imaging_2_1.png" src="_images/wavefield_imaging_2_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="id1">
-<h3><span class="section-number">3.3.2. </span>Inverse scattering<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.3.2. </span>Inverse scattering<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Assuming point sources for the incident field, <span class="math notranslate nohighlight">\(c = 1\)</span>, and a compactly supported <span class="math notranslate nohighlight">\(u\)</span>, we can express the forward operator as</p>
 <div class="math notranslate nohighlight">
 \[
 Ku(t,r,s) = \int_{\Omega} u(x) \frac{\delta''(t - |x - r| - |x - s|))}{|x - r||x - s|}\mathrm{d}x,
 \]</div>
-<p>so the data <span class="math notranslate nohighlight">\(f(t,s,r)\)</span> is the integral of the scattering potential, <span class="math notranslate nohighlight">\(u\)</span>, along an ellips. Conversely, we can think of the response of a single scattering point <span class="math notranslate nohighlight">\(x'\)</span> as a hyperbola in <span class="math notranslate nohighlight">\((t,s,r)\)</span>. This is illustrated in <a class="reference internal" href="#ellips"><span class="std std-numref">Fig. 3.3</span></a>.</p>
+<p>so the data <span class="math notranslate nohighlight">\(f(t,s,r)\)</span> is the integral of the scattering potential, <span class="math notranslate nohighlight">\(u\)</span>, along an ellips. Conversely, we can think of the response of a single scattering point <span class="math notranslate nohighlight">\(x'\)</span> as a hyperbola in <span class="math notranslate nohighlight">\((t,s,r)\)</span>. This is illustrated in <a class="reference internal" href="#ellips"><span class="std std-numref">Fig. 9.3</span></a>.</p>
 <p>The adjoint operator here is given by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -720,11 +880,11 @@ K^* f(x) = \int_\Delta \int_\Sigma \int_{0}^T f(t,r,s)\frac{\delta''(t - |x - r|
 <p>The foward operator has a nice expression in the Fourier domain when using far field measurements. The derivation is left as an excersise.</p>
 <div class="figure align-default" id="ellips">
 <a class="reference internal image-reference" href="_images/scattering.png"><img alt="_images/scattering.png" src="_images/scattering.png" style="height: 150px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3.3 </span><span class="caption-text">A single data point <span class="math notranslate nohighlight">\(f(t,s,r)\)</span> is the integral of the scattering potential along an ellips: <span class="math notranslate nohighlight">\(|x - s| + |x - r| = t\)</span>. Likewise, a single point of <span class="math notranslate nohighlight">\(f(x)\)</span> contributes to <span class="math notranslate nohighlight">\(d\)</span> along a hyperola <span class="math notranslate nohighlight">\(t = |x - s| + |x - r|\)</span>.</span><a class="headerlink" href="#ellips" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 9.3 </span><span class="caption-text">A single data point <span class="math notranslate nohighlight">\(f(t,s,r)\)</span> is the integral of the scattering potential along an ellips: <span class="math notranslate nohighlight">\(|x - s| + |x - r| = t\)</span>. Likewise, a single point of <span class="math notranslate nohighlight">\(f(x)\)</span> contributes to <span class="math notranslate nohighlight">\(d\)</span> along a hyperola <span class="math notranslate nohighlight">\(t = |x - s| + |x - r|\)</span>.</span><a class="headerlink" href="#ellips" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="waveform-tomography">
-<h3><span class="section-number">3.3.3. </span>Waveform tomography<a class="headerlink" href="#waveform-tomography" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.3.3. </span>Waveform tomography<a class="headerlink" href="#waveform-tomography" title="Permalink to this headline">¶</a></h3>
 <p>Here, we aim to recover <span class="math notranslate nohighlight">\(c\)</span> directly from a non-linear equation</p>
 <div class="math notranslate nohighlight">
 \[
@@ -761,9 +921,9 @@ c_{k+1} = c_k - \alpha_k DK(c_k)^{\dagger}(K(c_k) - d),
 </div>
 </div>
 <div class="section" id="exercises">
-<h2><span class="section-number">3.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id2">
-<h3><span class="section-number">3.4.1. </span>Inverse source problem<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.4.1. </span>Inverse source problem<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Take <span class="math notranslate nohighlight">\(n=1\)</span>, <span class="math notranslate nohighlight">\(c=1\)</span> and source term <span class="math notranslate nohighlight">\(\delta(t)u(x)\)</span> with <span class="math notranslate nohighlight">\(u\)</span> square integrable and supported on <span class="math notranslate nohighlight">\([-\frac{1}{2},\frac{1}{2}]\)</span> and measurements at <span class="math notranslate nohighlight">\(x = 1\)</span> for <span class="math notranslate nohighlight">\(t\in [0,T]\)</span>.</p></li>
 </ul>
@@ -826,7 +986,7 @@ To show that this a bounded operator consider</p>
 </div>
 </div>
 <div class="section" id="id3">
-<h3><span class="section-number">3.4.2. </span>Inverse scattering<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.4.2. </span>Inverse scattering<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Consider the inverse scattering problem for <span class="math notranslate nohighlight">\(n=3\)</span>, <span class="math notranslate nohighlight">\(c=1\)</span>, with the incident field resulting from point-sources on the sphere with radius <span class="math notranslate nohighlight">\(\rho\)</span> and measurements on the same sphere. The scattering potential is supported on the unit sphere.</p>
 <ul class="simple">
 <li><p>Show that for <span class="math notranslate nohighlight">\(\rho \gg 1\)</span>, the measurements are given by</p></li>
@@ -860,9 +1020,9 @@ To show that this a bounded operator consider</p>
 </div>
 </div>
 <div class="section" id="assignments">
-<h2><span class="section-number">3.5. </span>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.5. </span>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="non-scattering-potentials">
-<h3><span class="section-number">3.5.1. </span>Non-scattering potentials<a class="headerlink" href="#non-scattering-potentials" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.5.1. </span>Non-scattering potentials<a class="headerlink" href="#non-scattering-potentials" title="Permalink to this headline">¶</a></h3>
 <p>For <span class="math notranslate nohighlight">\(n=2\)</span>, <span class="math notranslate nohighlight">\(L=1\)</span>, <span class="math notranslate nohighlight">\(c=1\)</span>, with a single incident plane wave, <span class="math notranslate nohighlight">\(v_i(t,x) = \sin(\omega(t - \xi\cdot x))\)</span>, with direction <span class="math notranslate nohighlight">\(\xi\)</span> and measurements parallel to the direction of propagation at the opposite end of the scattering potential. Use the Python code shown below to generate data for a given scattering potential, <span class="math notranslate nohighlight">\(r\)</span>.</p>
 <ul class="simple">
 <li><p>Determine suitable <span class="math notranslate nohighlight">\(\Delta t\)</span>, <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(T\)</span> and generate data for scattering potential <span class="math notranslate nohighlight">\(u(x) = \exp(-200|x|^2)\)</span> and an incident plane wave with <span class="math notranslate nohighlight">\(\xi = (1,0)\)</span> and <span class="math notranslate nohighlight">\(\omega = 10\pi\)</span>.</p></li>
@@ -871,7 +1031,7 @@ To show that this a bounded operator consider</p>
 </ul>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
@@ -1037,7 +1197,7 @@ To show that this a bounded operator consider</p>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># grid</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># grid</span>
 <span class="n">nt</span> <span class="o">=</span> <span class="mi">201</span>
 <span class="n">nx</span> <span class="o">=</span> <span class="mi">101</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
@@ -1089,19 +1249,19 @@ To show that this a bounded operator consider</p>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">245</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mf">.001</span><span class="p">,</span><span class="mf">.001</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">246</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">51</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mf">.001</span><span class="p">,</span><span class="mf">.001</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">247</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">101</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mf">.001</span><span class="p">,</span><span class="mf">.001</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">248</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">us</span><span class="p">[:,:,</span><span class="mi">151</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-.</span><span class="mi">001</span><span class="p">,</span><span class="o">.</span><span class="mi">001</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">((</span><span class="o">-</span><span class="mf">.001</span><span class="p">,</span><span class="mf">.001</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1113,11 +1273,11 @@ To show that this a bounded operator consider</p>
 </div>
 </div>
 <div class="section" id="parameter-estimation">
-<h3><span class="section-number">3.5.2. </span>Parameter estimation<a class="headerlink" href="#parameter-estimation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.5.2. </span>Parameter estimation<a class="headerlink" href="#parameter-estimation" title="Permalink to this headline">¶</a></h3>
 <p>For <span class="math notranslate nohighlight">\(n=1\)</span>, <span class="math notranslate nohighlight">\(c=1\)</span>, <span class="math notranslate nohighlight">\(L=1\)</span>, <span class="math notranslate nohighlight">\(q(t,x) = w''(t - t_0)\delta(x - x_0)\)</span>, with <span class="math notranslate nohighlight">\(t_0 = 0.2\)</span>, <span class="math notranslate nohighlight">\(x_0 = -0.5\)</span> and where <span class="math notranslate nohighlight">\(w\)</span> is given by
-<span class="math notranslate nohighlight">\($
+$<span class="math notranslate nohighlight">\(
 w(t) = \exp(-(t/\sigma)^2/2).
-$\)</span></p>
+\)</span>$</p>
 <ul class="simple">
 <li><p>Express the solution <span class="math notranslate nohighlight">\(v(t,x)\)</span> by using the Green function</p></li>
 </ul>
@@ -1156,32 +1316,41 @@ J(c) = \|K(c) - f\|^2.
 
               </div>
               
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="tomography.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">8. </span>Computed Tomography</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="magnetic_resonance_imaging.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Magnetic Resonance Imaging</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
+    <footer class="footer">
+  <p>
     
+      By Tristan van Leeuwen and Christoph Brune (CC BY-NC 4.0)<br/>
     
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="tomography.html" title="previous page"><span class="section-number">2. </span>Computed Tomography</a>
-    <a class='right-next' id="next-link" href="magnetic_resonance_imaging.html" title="next page"><span class="section-number">4. </span>Magnetic Resonance Imaging</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Tristan van Leeuwen and Christoph Brune (CC BY-NC 4.0)<br/>
-        
-      </p>
-    </div>
-  </footer>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    <script src="_static/js/index.js"></script>
-    
   </body>
 </html>

@@ -1,57 +1,70 @@
 
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>2. Computed Tomography &#8212; 10 Lectures on Inverse Problems and Imaging</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8. Computed Tomography &#8212; 10 Lectures on Inverse Problems and Imaging</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/mystnb.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="3. Wavefield Imaging" href="wavefield_imaging.html" />
-    <link rel="prev" title="1. Image processing" href="image_processing.html" />
+    <link rel="next" title="9. Wavefield Imaging" href="wavefield_imaging.html" />
+    <link rel="prev" title="7. Image processing" href="image_processing.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
-
-
-
+    <!-- Google Analytics -->
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -60,28 +73,36 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">10 Lectures on Inverse Problems and Imaging</h1>
-  
-</a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">10 Lectures on Inverse Problems and Imaging</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <p class="caption">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Inverse Problems and Imaging
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Lectures
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is.html">
    1. What is an inverse problem
@@ -113,49 +134,52 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Applications
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="image_processing.html">
-   1. Image processing
+   7. Image processing
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   2. Computed Tomography
+   8. Computed Tomography
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="wavefield_imaging.html">
-   3. Wavefield Imaging
+   9. Wavefield Imaging
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="magnetic_resonance_imaging.html">
-   4. Magnetic Resonance Imaging
+   10. Magnetic Resonance Imaging
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Reference
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   1. Bibliography
+   11. Bibliography
   </a>
  </li>
 </ul>
 
-</nav>
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
- <!-- To handle the deprecated key -->
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
 </div>
 
@@ -166,39 +190,42 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
+        <a class="dropdown-buttons"
+            href="_sources/tomography.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="_sources/tomography.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
-        <!-- Source interaction buttons -->
+
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -212,128 +239,250 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/TristanvanLeeuwen/IP_and_Im_Lectures/master?urlpath=tree/tomography.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
     </div>
+</div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-physics-of-x-rays">
-   2.1. The physics of X-rays
+   8.1. The physics of X-rays
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-mathematics-of-x-rays">
-   2.2. The mathematics of X-rays
+   8.2. The mathematics of X-rays
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
-   2.3. Computed tomography
+   8.3. Computed tomography
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-radon-transform">
-   2.4. The Radon transform
+   8.4. The Radon transform
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#fourier-reconstruction">
-   2.5. Fourier reconstruction
+   8.5. Fourier reconstruction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#filtered-back-projection">
-   2.6. Filtered back projection
+   8.6. Filtered back projection
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ill-posedness-and-regularisation">
-   2.7. Ill-posedness and regularisation
+   8.7. Ill-posedness and regularisation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#algebraic-reconstruction">
-   2.8. Algebraic reconstruction
+   8.8. Algebraic reconstruction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#beyond-2d">
-   2.9. Beyond 2D
+   8.9. Beyond 2D
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercises">
-   2.10. Exercises
+   8.10. Exercises
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-radon-transform-and-derivatives">
-     2.10.1. The Radon transform and derivatives
+     8.10.1. The Radon transform and derivatives
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sart">
-     2.10.2. SART
+     8.10.2. SART
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#fbp-in-practice">
-     2.10.3. FBP in practice
+     8.10.3. FBP in practice
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#assignments">
-   2.11. Assignments
+   8.11. Assignments
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-radon-transform-as-a-compact-operator">
-     2.11.1. The Radon transform as a compact operator
+     8.11.1. The Radon transform as a compact operator
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#discretisation-of-the-radon-transform">
-     2.11.2. Discretisation of the Radon transform
+     8.11.2. Discretisation of the Radon transform
     </a>
    </li>
   </ul>
  </li>
 </ul>
 
-        </nav>
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Computed Tomography</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-physics-of-x-rays">
+   8.1. The physics of X-rays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-mathematics-of-x-rays">
+   8.2. The mathematics of X-rays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   8.3. Computed tomography
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-radon-transform">
+   8.4. The Radon transform
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fourier-reconstruction">
+   8.5. Fourier reconstruction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filtered-back-projection">
+   8.6. Filtered back projection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ill-posedness-and-regularisation">
+   8.7. Ill-posedness and regularisation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algebraic-reconstruction">
+   8.8. Algebraic reconstruction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beyond-2d">
+   8.9. Beyond 2D
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   8.10. Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-radon-transform-and-derivatives">
+     8.10.1. The Radon transform and derivatives
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sart">
+     8.10.2. SART
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fbp-in-practice">
+     8.10.3. FBP in practice
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignments">
+   8.11. Assignments
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-radon-transform-as-a-compact-operator">
+     8.11.1. The Radon transform as a compact operator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discretisation-of-the-radon-transform">
+     8.11.2. Discretisation of the Radon transform
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="section" id="computed-tomography">
-<h1><span class="section-number">2. </span>Computed Tomography<a class="headerlink" href="#computed-tomography" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="computed-tomography">
+<h1><span class="section-number">8. </span>Computed Tomography<a class="headerlink" href="#computed-tomography" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-physics-of-x-rays">
-<h2><span class="section-number">2.1. </span>The physics of X-rays<a class="headerlink" href="#the-physics-of-x-rays" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">8.1. </span>The physics of X-rays<a class="headerlink" href="#the-physics-of-x-rays" title="Permalink to this headline">¶</a></h2>
 <p>X-rays are a form of electromagnetic radiation with higher energy and therefore shorter wavelength compared to visible or ultra-violet light. They were first described systematically by Wilhelm Röntgen in 1895. As their true nature was unclear to Röntgen at the beginning, he called them <em>X-radiation</em> referring to the letter X often used for the unknown in mathematical formulas. X-rays are produced whenever charged particles, typically electrons, hit a material with a sufficient kinetic energy. This can either happen if the electrons stimulate  characteristic X-ray emission or if they are scattered and slowed down by the strong electric field near nuclei with a high proton number (a radiation still refereed to by the German name <em>Bremsstrahlung</em>). If X-rays transverse through material, they interact with it in three main ways:</p>
 <ul class="simple">
 <li><p><strong>Photoelectric absorption:</strong> occurs if the incoming X-ray photon is absorbed by an atom of the material it hits. In this process, it transfers all its energy to one of the atom’s electrons. This typically allows the electron to leave the atom as a free (negative) charge carrier and leaves the positively charged atom behind.</p></li>
 <li><p><strong>Compton scattering:</strong> refers to the inelastic scattering of the X-ray photon by an electron of the outer atom shell. In this process, part of the energy of the X-ray photon is transferred to the electron, again allowing it to leave the atom. Due to momentum and energy conservation, the X-ray photon changes its direction and has a longer wavelength.</p></li>
 <li><p><strong>Rayleigh scattering:</strong> refers to an elastic scattering of the X-ray photon, i.e., without loosing energy.</p></li>
 </ul>
-<p>Depending on the energy spectrum of the X-rays and the material, these different processes contribute in different proportions to the overall interaction. As X-rays are ionizing radiation, their administration to biological tissue is harmful and needs to be well justified. An overview of where X-rays fit in the EM spectrum is shown in <a class="reference internal" href="#spectrum"><span class="std std-numref">Fig. 2.3</span></a> Shortly after their discovery, images obtained by placing a target between an X-ray source and a photon detector such as shown Figure <a class="reference internal" href="#xhand"><span class="std std-numref">Fig. 2.4</span></a> were used for medical diagnosis and <em>projectional radiography</em> is still one of the most routinely applied examinations.</p>
+<p>Depending on the energy spectrum of the X-rays and the material, these different processes contribute in different proportions to the overall interaction. As X-rays are ionizing radiation, their administration to biological tissue is harmful and needs to be well justified. An overview of where X-rays fit in the EM spectrum is shown in <a class="reference internal" href="#spectrum"><span class="std std-numref">Fig. 8.1</span></a> Shortly after their discovery, images obtained by placing a target between an X-ray source and a photon detector such as shown Figure <a class="reference internal" href="#xhand"><span class="std std-numref">Fig. 8.2</span></a> were used for medical diagnosis and <em>projectional radiography</em> is still one of the most routinely applied examinations.</p>
 <div class="sphinx-bs container-fluid docutils">
 <div class="row docutils">
 <div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
@@ -341,7 +490,7 @@
 <div class="card-body docutils">
 <div class="figure align-default" id="spectrum">
 <a class="reference internal image-reference" href="_images/EM_Spectrum3-new.jpg"><img alt="_images/EM_Spectrum3-new.jpg" src="_images/EM_Spectrum3-new.jpg" style="height: 150px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2.3 </span><span class="caption-text">Overview of the electromagnetic spectrum.</span><a class="headerlink" href="#spectrum" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 8.1 </span><span class="caption-text">Overview of the electromagnetic spectrum.</span><a class="headerlink" href="#spectrum" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -351,7 +500,7 @@
 <div class="card-body docutils">
 <div class="figure align-default" id="xhand">
 <a class="reference internal image-reference" href="_images/hand.jpg"><img alt="_images/hand.jpg" src="_images/hand.jpg" style="height: 150px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2.4 </span><span class="caption-text">X-ray photograph of the hand of Röntgen’s wife.</span><a class="headerlink" href="#xhand" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 8.2 </span><span class="caption-text">X-ray photograph of the hand of Röntgen’s wife.</span><a class="headerlink" href="#xhand" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -360,7 +509,7 @@
 </div>
 </div>
 <div class="section" id="the-mathematics-of-x-rays">
-<h2><span class="section-number">2.2. </span>The mathematics of X-rays<a class="headerlink" href="#the-mathematics-of-x-rays" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">8.2. </span>The mathematics of X-rays<a class="headerlink" href="#the-mathematics-of-x-rays" title="Permalink to this headline">¶</a></h2>
 <p>Now we will describe the attenuation of the intensity of a monochromatic ray of photons traveling through a material by the above processes mathematically. For this, we first assume that the photons are emitted at <span class="math notranslate nohighlight">\(x=0\)</span> with intensity <span class="math notranslate nohighlight">\(I_0\)</span> and detected at <span class="math notranslate nohighlight">\(x = + \infty\)</span> and ignore the <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> coordinate. The Beer-Lambert law states that the attenuation in a small interval of length <span class="math notranslate nohighlight">\(\delta x\)</span> is proportional to the intensity <span class="math notranslate nohighlight">\(I(x)\)</span> of the ray, the attenuation coefficient <span class="math notranslate nohighlight">\(u(x)\)</span> (which summarizes the probabilities for the physical processes mentioned above) in this interval and its length. This can be expressed a</p>
 <div class="math notranslate nohighlight">
 \[
@@ -378,16 +527,16 @@ I(x) = I_0 \exp \left( - \int_0^x u(x') dx' \right),
 \]</div>
 <p>If we now assume that the X-rays travel along an arbitrary ray <span class="math notranslate nohighlight">\(\ell\)</span> connecting source and sensor element, call the measured intensity <span class="math notranslate nohighlight">\(I_1\)</span> and rearrange the above terms we can write</p>
 <div class="math notranslate nohighlight" id="equation-lineint">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-lineint" title="Permalink to this equation">¶</a></span>\[P_\ell = - \log \left(\frac{I_1}{I_0} \right) =  \int_\ell u(x) dx.\]</div>
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-lineint" title="Permalink to this equation">¶</a></span>\[P_\ell = - \log \left(\frac{I_1}{I_0} \right) =  \int_\ell u(x) dx.\]</div>
 <p>So we see that in this formulation, we measure an integral of the unknown attenuation coefficient <span class="math notranslate nohighlight">\(u(x)\)</span> along a line <span class="math notranslate nohighlight">\(\ell\)</span> for each source-sensor pair.</p>
 <div class="figure align-default" id="radon">
 <a class="reference internal image-reference" href="_images/CT-Illustration.png"><img alt="_images/CT-Illustration.png" src="_images/CT-Illustration.png" style="height: 250px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2.5 </span><span class="caption-text">Left: sketch of the auxiliary variables used to describe the two dimensional Radon transform. Right: Sketch of <span class="math notranslate nohighlight">\(R_\theta u(t)\)</span>, the projection of a function <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> onto a detector at angle <span class="math notranslate nohighlight">\(\theta\)</span></span><a class="headerlink" href="#radon" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 8.3 </span><span class="caption-text">Left: sketch of the auxiliary variables used to describe the two dimensional Radon transform. Right: Sketch of <span class="math notranslate nohighlight">\(R_\theta u(t)\)</span>, the projection of a function <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> onto a detector at angle <span class="math notranslate nohighlight">\(\theta\)</span></span><a class="headerlink" href="#radon" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="id1">
-<h2><span class="section-number">2.3. </span>Computed tomography<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>In projectional radiography, only a particular two dimensional projection of a three dimensional object <span class="math notranslate nohighlight">\(u(x), x \in \mathbb{R}^3\)</span> is obtained, namely its average X-ray attenuation along the projection rays. While this can reveal useful information about the interior properties of an object if patient, source and detector are arranged in a suitable way, it falls short of a complete reconstruction of <span class="math notranslate nohighlight">\(u\)</span>. The idea of computed tomography (CT) is to achieve this by combing projections from different directions by a computational algorithm. We start with the mathematical description of CT in two spatial dimensions, i.e., <span class="math notranslate nohighlight">\(x = (x_y, x_2)\)</span>. Let’s assume that the support of <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> is constrained to the unit sphere, <span class="math notranslate nohighlight">\(\{x_1^2 + x_2^2 \leqslant 1 \}\)</span> and that we place a flat detector along the tangent of the unit sphere whose angle to the positive <span class="math notranslate nohighlight">\(x_1\)</span>-axis is given by <span class="math notranslate nohighlight">\(\theta \in [0, \pi)\)</span> (cf. <a class="reference internal" href="#radon"><span class="std std-numref">Fig. 2.5</span></a>). Both the point of contact of this detection line with the unit sphere and its normal in this point are given as <span class="math notranslate nohighlight">\(n = (\cos(\theta - \frac{\pi}{2}), \sin(\theta - \frac{\pi}{2})) = (\sin(\theta), -\cos(\theta))\)</span>, while <span class="math notranslate nohighlight">\(v = (\cos(\theta), \sin(\theta))\)</span> is a unit vector along the tangent (such that for <span class="math notranslate nohighlight">\(\theta = 0\)</span>, it points into positive x direction). Now, any point on the detector line can be described as <span class="math notranslate nohighlight">\(n + t v\)</span>, i.e., parameterized by <span class="math notranslate nohighlight">\(t \in \mathbb{R}\)</span>. A line <span class="math notranslate nohighlight">\(\ell\)</span> that is orthogonal to the detector and crosses it at the point corresponding to <span class="math notranslate nohighlight">\(t \in [-1,1]\)</span> can be parameterized by <span class="math notranslate nohighlight">\(s \in \mathbb{R}\)</span> as</p>
+<h2><span class="section-number">8.3. </span>Computed tomography<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>In projectional radiography, only a particular two dimensional projection of a three dimensional object <span class="math notranslate nohighlight">\(u(x), x \in \mathbb{R}^3\)</span> is obtained, namely its average X-ray attenuation along the projection rays. While this can reveal useful information about the interior properties of an object if patient, source and detector are arranged in a suitable way, it falls short of a complete reconstruction of <span class="math notranslate nohighlight">\(u\)</span>. The idea of computed tomography (CT) is to achieve this by combing projections from different directions by a computational algorithm. We start with the mathematical description of CT in two spatial dimensions, i.e., <span class="math notranslate nohighlight">\(x = (x_y, x_2)\)</span>. Let’s assume that the support of <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> is constrained to the unit sphere, <span class="math notranslate nohighlight">\(\{x_1^2 + x_2^2 \leqslant 1 \}\)</span> and that we place a flat detector along the tangent of the unit sphere whose angle to the positive <span class="math notranslate nohighlight">\(x_1\)</span>-axis is given by <span class="math notranslate nohighlight">\(\theta \in [0, \pi)\)</span> (cf. <a class="reference internal" href="#radon"><span class="std std-numref">Fig. 8.3</span></a>). Both the point of contact of this detection line with the unit sphere and its normal in this point are given as <span class="math notranslate nohighlight">\(n = (\cos(\theta - \frac{\pi}{2}), \sin(\theta - \frac{\pi}{2})) = (\sin(\theta), -\cos(\theta))\)</span>, while <span class="math notranslate nohighlight">\(v = (\cos(\theta), \sin(\theta))\)</span> is a unit vector along the tangent (such that for <span class="math notranslate nohighlight">\(\theta = 0\)</span>, it points into positive x direction). Now, any point on the detector line can be described as <span class="math notranslate nohighlight">\(n + t v\)</span>, i.e., parameterized by <span class="math notranslate nohighlight">\(t \in \mathbb{R}\)</span>. A line <span class="math notranslate nohighlight">\(\ell\)</span> that is orthogonal to the detector and crosses it at the point corresponding to <span class="math notranslate nohighlight">\(t \in [-1,1]\)</span> can be parameterized by <span class="math notranslate nohighlight">\(s \in \mathbb{R}\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}
@@ -406,19 +555,19 @@ x_2(s)
 \end{split}\]</div>
 <p>We can now eliminate <span class="math notranslate nohighlight">\(s\)</span> by solving the equation for <span class="math notranslate nohighlight">\(x_2(s)\)</span> for <span class="math notranslate nohighlight">\(s\)</span> and inserting this expression into the equation for <span class="math notranslate nohighlight">\(x_1(s)\)</span> to obtain a handy implicit equation for all points lying on <span class="math notranslate nohighlight">\(\ell\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-linepara">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-linepara" title="Permalink to this equation">¶</a></span>\[\ell(\theta, t) = \{x \in \mathbb{R} \, | \, x_1 \cos(\theta) + x_2 \sin(\theta) = t\},\]</div>
-<p>where we stressed that <span class="math notranslate nohighlight">\(\ell\)</span> is function of <span class="math notranslate nohighlight">\(\theta \in [0, \pi)\)</span> and <span class="math notranslate nohighlight">\(t \in [-1,1]\)</span>. In fact, all lines crossing the unit sphere can be parameterized in this way and inserting this parameterization into <a class="reference internal" href="#equation-lineint">(2.2)</a> yields a linear mapping <span class="math notranslate nohighlight">\(R\)</span> from <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> to a function <span class="math notranslate nohighlight">\(f(\theta, t)\)</span>:</p>
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-linepara" title="Permalink to this equation">¶</a></span>\[\ell(\theta, t) = \{x \in \mathbb{R} \, | \, x_1 \cos(\theta) + x_2 \sin(\theta) = t\},\]</div>
+<p>where we stressed that <span class="math notranslate nohighlight">\(\ell\)</span> is function of <span class="math notranslate nohighlight">\(\theta \in [0, \pi)\)</span> and <span class="math notranslate nohighlight">\(t \in [-1,1]\)</span>. In fact, all lines crossing the unit sphere can be parameterized in this way and inserting this parameterization into <a class="reference internal" href="#equation-lineint">(8.1)</a> yields a linear mapping <span class="math notranslate nohighlight">\(R\)</span> from <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> to a function <span class="math notranslate nohighlight">\(f(\theta, t)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 f(\theta, t) = R u(\theta, t) := \int_{\ell(\theta, t)} u(x) dx.
 \]</div>
 </div>
 <div class="section" id="the-radon-transform">
-<h2><span class="section-number">2.4. </span>The Radon transform<a class="headerlink" href="#the-radon-transform" title="Permalink to this headline">¶</a></h2>
-<p>The transform above describes all possible X-ray measurements of <span class="math notranslate nohighlight">\(u(x)\)</span> and is called the <em>Radon transform</em> after the Austrian mathematician Johann Radon (1887-1956). Although Radon examined the problem from a purely mathematical perspective, namely as a problem of <em>integral geometry</em>, his work lay the mathematical foundations of CT. To get an intuition of how <span class="math notranslate nohighlight">\(R u (\theta, t)\)</span> looks like, consider <span class="math notranslate nohighlight">\(u = \delta_{(a, b)}\)</span>, i.e., a delta function located at <span class="math notranslate nohighlight">\(x_1 = a, x_2 = b\)</span>. If we call <span class="math notranslate nohighlight">\(R_\theta u(t) := R u (\theta, t)\)</span>, i.e., the measurement on the detector for a fixed angle <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(R_\theta u (t)\)</span> will only be zero except for <span class="math notranslate nohighlight">\(t = a \cos(\theta) + b \sin(\theta)\)</span> (cf. <a class="reference internal" href="#equation-linepara">(2.3)</a>), where it is one. That means that <span class="math notranslate nohighlight">\(R u (\theta, t)\)</span> is an indicator function on the set <span class="math notranslate nohighlight">\(\{(\theta, t) \, | \, t = a \cos(\theta) + b \sin(\theta)\}\)</span>, i.e., on a set where <span class="math notranslate nohighlight">\(t\)</span> can be described by the linear combination of a sine and a cosine function of <span class="math notranslate nohighlight">\(\theta\)</span>. Therefore <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> typically looks like a superposition of sine and cosine waves and is therefore called <em>sinogram</em>. Some examples of functions and their sinograms are shown below.</p>
+<h2><span class="section-number">8.4. </span>The Radon transform<a class="headerlink" href="#the-radon-transform" title="Permalink to this headline">¶</a></h2>
+<p>The transform above describes all possible X-ray measurements of <span class="math notranslate nohighlight">\(u(x)\)</span> and is called the <em>Radon transform</em> after the Austrian mathematician Johann Radon (1887-1956). Although Radon examined the problem from a purely mathematical perspective, namely as a problem of <em>integral geometry</em>, his work lay the mathematical foundations of CT. To get an intuition of how <span class="math notranslate nohighlight">\(R u (\theta, t)\)</span> looks like, consider <span class="math notranslate nohighlight">\(u = \delta_{(a, b)}\)</span>, i.e., a delta function located at <span class="math notranslate nohighlight">\(x_1 = a, x_2 = b\)</span>. If we call <span class="math notranslate nohighlight">\(R_\theta u(t) := R u (\theta, t)\)</span>, i.e., the measurement on the detector for a fixed angle <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(R_\theta u (t)\)</span> will only be zero except for <span class="math notranslate nohighlight">\(t = a \cos(\theta) + b \sin(\theta)\)</span> (cf. <a class="reference internal" href="#equation-linepara">(8.2)</a>), where it is one. That means that <span class="math notranslate nohighlight">\(R u (\theta, t)\)</span> is an indicator function on the set <span class="math notranslate nohighlight">\(\{(\theta, t) \, | \, t = a \cos(\theta) + b \sin(\theta)\}\)</span>, i.e., on a set where <span class="math notranslate nohighlight">\(t\)</span> can be described by the linear combination of a sine and a cosine function of <span class="math notranslate nohighlight">\(\theta\)</span>. Therefore <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> typically looks like a superposition of sine and cosine waves and is therefore called <em>sinogram</em>. Some examples of functions and their sinograms are shown below.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
@@ -476,18 +625,18 @@ f(\theta, t) = R u(\theta, t) := \int_{\ell(\theta, t)} u(x) dx.
 <p class="admonition-title">Theorem: Fourier Slice Theorem</p>
 <p>The one-dimensional Fourier transform of <span class="math notranslate nohighlight">\(f(\theta,\cdot) = R_{\theta} u\)</span> is related to the two-dimensional Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> as</p>
 <div class="math notranslate nohighlight" id="equation-fourierslicetheo">
-<span class="eqno">(2.4)<a class="headerlink" href="#equation-fourierslicetheo" title="Permalink to this equation">¶</a></span>\[\widehat{f}(\theta,\omega) =  \widehat{u}(\omega v),\]</div>
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-fourierslicetheo" title="Permalink to this equation">¶</a></span>\[\widehat{f}(\theta,\omega) =  \widehat{u}(\omega v),\]</div>
 <p>with <span class="math notranslate nohighlight">\(v = (\cos \theta, \sin \theta)\)</span>.</p>
 <p>This implies that the projection data for a particular angle <span class="math notranslate nohighlight">\(\theta\)</span> fully determines the radial slice of the Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> with the same angle. Thereby, the complete Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> can be computed from <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> and as the Fourier transform is invertible, we can recover <span class="math notranslate nohighlight">\(u\)</span> from <span class="math notranslate nohighlight">\(f\)</span>.</p>
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">Proof</p>
-<p>The proof of the Fourier slice theorem is short and instructive. First, we write out the rhs of <a class="reference internal" href="#equation-fourierslicetheo">(2.4)</a>:</p>
+<p>The proof of the Fourier slice theorem is short and instructive. First, we write out the rhs of <a class="reference internal" href="#equation-fourierslicetheo">(8.3)</a>:</p>
 <div class="math notranslate nohighlight">
 \[
 \widehat{R_\theta u}(\omega) = \int_{-\infty}^{\infty} R_\theta[u] (t) e^{- 2 \pi i \omega t} dt = \int_{-\infty}^{\infty} \int_{\ell(\theta, t)} u(x_1,x_2) dx \;\, e^{- 2 \pi i \omega t} dt
 \]</div>
-<p>Then, we use the description of <span class="math notranslate nohighlight">\(\ell(\theta, t)\)</span>, <a class="reference internal" href="#equation-linepara">(2.3)</a>, to substitute <span class="math notranslate nohighlight">\(t = x_1 \cos \theta + x_2 \sin \theta\)</span>:</p>
+<p>Then, we use the description of <span class="math notranslate nohighlight">\(\ell(\theta, t)\)</span>, <a class="reference internal" href="#equation-linepara">(8.2)</a>, to substitute <span class="math notranslate nohighlight">\(t = x_1 \cos \theta + x_2 \sin \theta\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} u(x_1,x_2) e^{- 2 \pi i \omega (x_1 \cos \theta + x_2 \sin \theta)} dx_1 dx_2 \\
@@ -498,32 +647,32 @@ f(\theta, t) = R u(\theta, t) := \int_{\ell(\theta, t)} u(x) dx.
 </div>
 </div>
 <div class="section" id="fourier-reconstruction">
-<h2><span class="section-number">2.5. </span>Fourier reconstruction<a class="headerlink" href="#fourier-reconstruction" title="Permalink to this headline">¶</a></h2>
-<p>The Fourier slice theorem suggests a simple strategy to invert the Radon transform: First, we compute the one dimensional Fourier transform of each angular projection <span class="math notranslate nohighlight">\(R_\theta u\)</span> and arrange them in two dimensional Fourier space to obtain the  Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> and then we compute the inverse Fourier transform to obtain <span class="math notranslate nohighlight">\(u\)</span> itself. The main problem with this strategy is that in practice, the amount of measurements is finite. If we assume that we sample <span class="math notranslate nohighlight">\(R_\theta u(t)\)</span> on a regular <span class="math notranslate nohighlight">\(t\)</span>-grid, we also sample the radial slice <span class="math notranslate nohighlight">\(\hat{u}(\omega v)\)</span> on a regular <span class="math notranslate nohighlight">\(\omega\)</span>-grid. Due to the radial arrangement of the slices, we sample <span class="math notranslate nohighlight">\(\hat{u}\)</span> on circles and not on a regular grid, which would be required to use efficient inverse Fourier transform algorithms such as the <em>fast Fourier transform</em> (<em>FFT</em>). As illustrated in <a class="reference internal" href="#fouriersampling"><span class="std std-numref">Fig. 2.6</span></a>, this means that the density of the frequency samples decreases towards the high frequencies, which contain information about the small scale image features.</p>
+<h2><span class="section-number">8.5. </span>Fourier reconstruction<a class="headerlink" href="#fourier-reconstruction" title="Permalink to this headline">¶</a></h2>
+<p>The Fourier slice theorem suggests a simple strategy to invert the Radon transform: First, we compute the one dimensional Fourier transform of each angular projection <span class="math notranslate nohighlight">\(R_\theta u\)</span> and arrange them in two dimensional Fourier space to obtain the  Fourier transform of <span class="math notranslate nohighlight">\(u\)</span> and then we compute the inverse Fourier transform to obtain <span class="math notranslate nohighlight">\(u\)</span> itself. The main problem with this strategy is that in practice, the amount of measurements is finite. If we assume that we sample <span class="math notranslate nohighlight">\(R_\theta u(t)\)</span> on a regular <span class="math notranslate nohighlight">\(t\)</span>-grid, we also sample the radial slice <span class="math notranslate nohighlight">\(\hat{u}(\omega v)\)</span> on a regular <span class="math notranslate nohighlight">\(\omega\)</span>-grid. Due to the radial arrangement of the slices, we sample <span class="math notranslate nohighlight">\(\hat{u}\)</span> on circles and not on a regular grid, which would be required to use efficient inverse Fourier transform algorithms such as the <em>fast Fourier transform</em> (<em>FFT</em>). As illustrated in <a class="reference internal" href="#fouriersampling"><span class="std std-numref">Fig. 8.4</span></a>, this means that the density of the frequency samples decreases towards the high frequencies, which contain information about the small scale image features.</p>
 <div class="figure align-default" id="fouriersampling">
 <a class="reference internal image-reference" href="_images/FourierSliceTheorem.png"><img alt="_images/FourierSliceTheorem.png" src="_images/FourierSliceTheorem.png" style="height: 250px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2.6 </span><span class="caption-text">Sampling in Fourier space: The Fourier slice theorem <a class="reference internal" href="#equation-fourierslicetheo">(2.4)</a> states that every angular projection <span class="math notranslate nohighlight">\(R_\theta[u](t)\)</span> contains the full information about <span class="math notranslate nohighlight">\(\hat{u}(k_1,k_2)\)</span> along one radial slice (red lines). A finite, regular sampling of <span class="math notranslate nohighlight">\(t\)</span> translates into a finite, regular sampling along these lines (blue dots). It becomes apparent that lower frequencies (<span class="math notranslate nohighlight">\(\sqrt{k_1^2 + k_2^2}\)</span> small) are sampled more densely than high frequencies.</span><a class="headerlink" href="#fouriersampling" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 8.4 </span><span class="caption-text">Sampling in Fourier space: The Fourier slice theorem <a class="reference internal" href="#equation-fourierslicetheo">(8.3)</a> states that every angular projection <span class="math notranslate nohighlight">\(R_\theta[u](t)\)</span> contains the full information about <span class="math notranslate nohighlight">\(\hat{u}(k_1,k_2)\)</span> along one radial slice (red lines). A finite, regular sampling of <span class="math notranslate nohighlight">\(t\)</span> translates into a finite, regular sampling along these lines (blue dots). It becomes apparent that lower frequencies (<span class="math notranslate nohighlight">\(\sqrt{k_1^2 + k_2^2}\)</span> small) are sampled more densely than high frequencies.</span><a class="headerlink" href="#fouriersampling" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="filtered-back-projection">
-<h2><span class="section-number">2.6. </span>Filtered back projection<a class="headerlink" href="#filtered-back-projection" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">8.6. </span>Filtered back projection<a class="headerlink" href="#filtered-back-projection" title="Permalink to this headline">¶</a></h2>
 <p>The Fourier slice theorem is the basis the most widely used CT reconstruction technique, the <em>filtered back projection</em> (<em>FBP</em>). As the name suggests, FBP consists of two steps, a filtering step and a back projection step. We start with the back projection, which is a simple operation to map a sinogram <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> back into the image space: For every angle <span class="math notranslate nohighlight">\(\theta\)</span>, we smear the one dimensional function <span class="math notranslate nohighlight">\(f_\theta(t) := f(\theta, t)\)</span> (which corresponds to the projection <span class="math notranslate nohighlight">\(R_\theta u\)</span>) over the image by adding the value <span class="math notranslate nohighlight">\(f_\theta(t)\)</span> to each point on the ray <span class="math notranslate nohighlight">\(\ell(\theta, t)\)</span>, namely to all <span class="math notranslate nohighlight">\((x_1, x_2)\)</span> that satisfy <span class="math notranslate nohighlight">\(t = x_1 \cos \theta + x_2 \sin \theta\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-bp">
-<span class="eqno">(2.5)<a class="headerlink" href="#equation-bp" title="Permalink to this equation">¶</a></span>\[u_{BP}(x_1, x_2) = \int_0^\pi f(\theta, x_1 \cos \theta + x_2 \sin \theta) d\theta.\]</div>
+<span class="eqno">(8.4)<a class="headerlink" href="#equation-bp" title="Permalink to this equation">¶</a></span>\[u_{BP}(x_1, x_2) = \int_0^\pi f(\theta, x_1 \cos \theta + x_2 \sin \theta) d\theta.\]</div>
 <p>It turns out that the back projection operator is the adjoint <span class="math notranslate nohighlight">\(R^*\)</span> of the Radon transform. Unfortunately, it is not the inverse <span class="math notranslate nohighlight">\(R^{-1}\)</span>. Rather, one can show that</p>
 <div class="math notranslate nohighlight">
 \[
 R^*\!R u (x) = \int_{\mathbb{R}^2} \frac{u(x)}{\| x -y \|_2} dy,
 \]</div>
-<p>i.e., it only recovers <span class="math notranslate nohighlight">\(u(x)\)</span> convoluted with a smoothing kernel, as will be illustrated below. The reason for this is the non-uniform sampling of <span class="math notranslate nohighlight">\(\hat{u}(k)\)</span>, the Fourier transform of <span class="math notranslate nohighlight">\(u(x)\)</span> (cf. <a class="reference internal" href="#fouriersampling"><span class="std std-numref">Fig. 2.6</span></a>): In proportion, too many low frequencies are projected back, and low frequencies represent the smooth features of the image. A reasonable idea to improve upon this result is therefore to introduce weights that counter-act this imbalance in favour of the high-frequencies before the back projecting step. This corresponds to a <em>high-pass filtering</em> of the sinogram data <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> in <span class="math notranslate nohighlight">\(t\)</span>-direction, i.e., we convolute it with a suitable filter function <span class="math notranslate nohighlight">\(h(t)\)</span>. It turns out that the correct filter we need is a <em>ramp</em>-filter, whose Fourier transform is given by <span class="math notranslate nohighlight">\(\hat{h}(\omega) = | \omega |\)</span>. Taken together, the filtered sinogram <span class="math notranslate nohighlight">\(q\)</span> is given as</p>
+<p>i.e., it only recovers <span class="math notranslate nohighlight">\(u(x)\)</span> convoluted with a smoothing kernel, as will be illustrated below. The reason for this is the non-uniform sampling of <span class="math notranslate nohighlight">\(\hat{u}(k)\)</span>, the Fourier transform of <span class="math notranslate nohighlight">\(u(x)\)</span> (cf. <a class="reference internal" href="#fouriersampling"><span class="std std-numref">Fig. 8.4</span></a>): In proportion, too many low frequencies are projected back, and low frequencies represent the smooth features of the image. A reasonable idea to improve upon this result is therefore to introduce weights that counter-act this imbalance in favour of the high-frequencies before the back projecting step. This corresponds to a <em>high-pass filtering</em> of the sinogram data <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> in <span class="math notranslate nohighlight">\(t\)</span>-direction, i.e., we convolute it with a suitable filter function <span class="math notranslate nohighlight">\(h(t)\)</span>. It turns out that the correct filter we need is a <em>ramp</em>-filter, whose Fourier transform is given by <span class="math notranslate nohighlight">\(\hat{h}(\omega) = | \omega |\)</span>. Taken together, the filtered sinogram <span class="math notranslate nohighlight">\(q\)</span> is given as</p>
 <div class="math notranslate nohighlight">
 \[
 q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f}(\theta,\omega)\right).
 \]</div>
-<p>Below, we illustrate that if the filtered sinogram is now inserted into the back projection <a class="reference internal" href="#equation-bp">(2.5)</a>, we converge to the true solution if the number of angles increases, and one can indeed show that <span class="math notranslate nohighlight">\(R^* H R = I\)</span>.</p>
+<p>Below, we illustrate that if the filtered sinogram is now inserted into the back projection <a class="reference internal" href="#equation-bp">(8.4)</a>, we converge to the true solution if the number of angles increases, and one can indeed show that <span class="math notranslate nohighlight">\(R^* H R = I\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
@@ -571,17 +720,31 @@ q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/tomography_5_0.png" src="_images/tomography_5_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_2221/2696548906.py:18: FutureWarning: &#39;filter&#39; is a deprecated argument name for `iradon`. It will be removed in version 0.19. Please use &#39;filter_name&#39; instead.
+  BP1 = iradon(sinogram1, theta=theta1, filter=None, circle = False)
+/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_2221/2696548906.py:19: FutureWarning: &#39;filter&#39; is a deprecated argument name for `iradon`. It will be removed in version 0.19. Please use &#39;filter_name&#39; instead.
+  BP2 = iradon(sinogram2, theta=theta2, filter=None, circle = False)
+/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_2221/2696548906.py:20: FutureWarning: &#39;filter&#39; is a deprecated argument name for `iradon`. It will be removed in version 0.19. Please use &#39;filter_name&#39; instead.
+  BP3 = iradon(sinogram3, theta=theta3, filter=None, circle = False)
+/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_2221/2696548906.py:22: FutureWarning: &#39;filter&#39; is a deprecated argument name for `iradon`. It will be removed in version 0.19. Please use &#39;filter_name&#39; instead.
+  FBP1 = iradon(sinogram1, theta=theta1, filter=&#39;ramp&#39;, circle = False)
+/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_2221/2696548906.py:23: FutureWarning: &#39;filter&#39; is a deprecated argument name for `iradon`. It will be removed in version 0.19. Please use &#39;filter_name&#39; instead.
+  FBP2 = iradon(sinogram2, theta=theta2, filter=&#39;ramp&#39;, circle = False)
+/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_2221/2696548906.py:24: FutureWarning: &#39;filter&#39; is a deprecated argument name for `iradon`. It will be removed in version 0.19. Please use &#39;filter_name&#39; instead.
+  FBP3 = iradon(sinogram3, theta=theta3, filter=&#39;ramp&#39;, circle = False)
+</pre></div>
+</div>
+<img alt="_images/tomography_5_1.png" src="_images/tomography_5_1.png" />
 </div>
 </div>
 <p>Alternatively, the filter may be applied <em>after</em> back projection. In this case the filter multiplies the two-dimensional Fourier transform of the back projected image by <span class="math notranslate nohighlight">\(\|\xi\|_2\)</span>.</p>
 </div>
 <div class="section" id="ill-posedness-and-regularisation">
-<h2><span class="section-number">2.7. </span>Ill-posedness and regularisation<a class="headerlink" href="#ill-posedness-and-regularisation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">8.7. </span>Ill-posedness and regularisation<a class="headerlink" href="#ill-posedness-and-regularisation" title="Permalink to this headline">¶</a></h2>
 <p>The previous section showed that in order to reconstruct the image from the sinogram we have to multiply either by <span class="math notranslate nohighlight">\(|\omega|\)</span> or by <span class="math notranslate nohighlight">\(\|\xi\|\)</span> in the Fourier domain of the sinogram or the image. This suggests that the inverse of the Radon transform is unbounded. To regularise the FBP method, various modifications to the filters have been proposed, as illustrated in the example below.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
@@ -618,22 +781,30 @@ q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/tomography_7_0.png" src="_images/tomography_7_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_2221/4062371152.py:16: FutureWarning: &#39;filter&#39; is a deprecated argument name for `iradon`. It will be removed in version 0.19. Please use &#39;filter_name&#39; instead.
+  FBP_ramp = iradon(f_delta, theta=theta, filter=&#39;ramp&#39;, circle = False)
+/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_2221/4062371152.py:17: FutureWarning: &#39;filter&#39; is a deprecated argument name for `iradon`. It will be removed in version 0.19. Please use &#39;filter_name&#39; instead.
+  FBP_cosine = iradon(f_delta, theta=theta, filter=&#39;cosine&#39;, circle = False)
+/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_2221/4062371152.py:18: FutureWarning: &#39;filter&#39; is a deprecated argument name for `iradon`. It will be removed in version 0.19. Please use &#39;filter_name&#39; instead.
+  FBP_hann = iradon(f_delta, theta=theta, filter=&#39;hann&#39;, circle = False)
+</pre></div>
+</div>
+<img alt="_images/tomography_7_1.png" src="_images/tomography_7_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="algebraic-reconstruction">
-<h2><span class="section-number">2.8. </span>Algebraic reconstruction<a class="headerlink" href="#algebraic-reconstruction" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">8.8. </span>Algebraic reconstruction<a class="headerlink" href="#algebraic-reconstruction" title="Permalink to this headline">¶</a></h2>
 <p>As we’ve seen in the previous sections, the Fourier Slice Theorem only applies when sufficient angular samples are available. An alternative to FBP are so-called <em>algebraic reconstruction techniques</em> which discretize the Radon transform using numerical quadrature and sets up a system of equations</p>
 <div class="math notranslate nohighlight">
 \[f_i = \sum_i r_{ij}u_j,\]</div>
-<p>where <span class="math notranslate nohighlight">\(f_i = f(\theta_i, t_i)\)</span>, <span class="math notranslate nohighlight">\(u_j = u(x_j)\)</span> denotes the intensity of <span class="math notranslate nohighlight">\(u\)</span> in the <span class="math notranslate nohighlight">\(j^{\text{th}}\)</span> pixel and <span class="math notranslate nohighlight">\(r_{ij}\)</span> indicates the contribution of pixel <span class="math notranslate nohighlight">\(j\)</span> to ray <span class="math notranslate nohighlight">\(i\)</span>. This typically leads to an underdetermined system of equations <span class="math notranslate nohighlight">\(Ru = f^\delta\)</span> which we can attempt to solve using an iterative method. Popular method in this application is <em>SART</em> <a class="bibtex reference internal" href="what_is.html#andersen198481" id="id2">[2]</a>:</p>
+<p>where <span class="math notranslate nohighlight">\(f_i = f(\theta_i, t_i)\)</span>, <span class="math notranslate nohighlight">\(u_j = u(x_j)\)</span> denotes the intensity of <span class="math notranslate nohighlight">\(u\)</span> in the <span class="math notranslate nohighlight">\(j^{\text{th}}\)</span> pixel and <span class="math notranslate nohighlight">\(r_{ij}\)</span> indicates the contribution of pixel <span class="math notranslate nohighlight">\(j\)</span> to ray <span class="math notranslate nohighlight">\(i\)</span>. This typically leads to an underdetermined system of equations <span class="math notranslate nohighlight">\(Ru = f^\delta\)</span> which we can attempt to solve using an iterative method. Popular method in this application is <em>SART</em> <a href="#id2"><span class="problematic" id="id3">:cite:`ANDERSEN198481`</span></a>:</p>
 <div class="math notranslate nohighlight">
 \[u^{(k+1)} = u^{(k)} + D_1 R^*D_2\left(f - Ru^{(k)}\right),\]</div>
 <p>where <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_2\)</span> are diagonal matrices containing the row and column sums of <span class="math notranslate nohighlight">\(R\)</span> respectively. An example is shown below.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
@@ -641,7 +812,7 @@ q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f
 <span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">radon</span><span class="p">,</span> <span class="n">rescale</span><span class="p">,</span> <span class="n">iradon</span><span class="p">,</span> <span class="n">iradon_sart</span>
 
 <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">180.</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">.1</span>
 <span class="n">niter</span> <span class="o">=</span> <span class="mi">10</span>
 
 <span class="n">u</span> <span class="o">=</span> <span class="n">rescale</span><span class="p">(</span><span class="n">shepp_logan_phantom</span><span class="p">(),</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;reflect&#39;</span><span class="p">,</span> <span class="n">multichannel</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -670,18 +841,22 @@ q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/tomography_9_0.png" src="_images/tomography_9_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_2221/57260500.py:17: FutureWarning: &#39;filter&#39; is a deprecated argument name for `iradon`. It will be removed in version 0.19. Please use &#39;filter_name&#39; instead.
+  u_fbp = iradon(f_delta, theta=theta, filter=&#39;hann&#39;)
+</pre></div>
+</div>
+<img alt="_images/tomography_9_1.png" src="_images/tomography_9_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="beyond-2d">
-<h2><span class="section-number">2.9. </span>Beyond 2D<a class="headerlink" href="#beyond-2d" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">8.9. </span>Beyond 2D<a class="headerlink" href="#beyond-2d" title="Permalink to this headline">¶</a></h2>
 <p>Up to now, both the function <span class="math notranslate nohighlight">\(u(x_1,x_2)\)</span> and its sinogram <span class="math notranslate nohighlight">\(f(\theta, t)\)</span> where functions of two variables and we saw that this was enough to reconstruct <span class="math notranslate nohighlight">\(u\)</span> from <span class="math notranslate nohighlight">\(f\)</span>. In three spatial dimensions, we need four variables to parameterise all lines going through the unit sphere (two for the orientation and two for the spatial offset), but we do not need to measure all the corresponding line integrals. From the 2D results, we know that all directions lying in a plane are sufficient to fully determine the function in that plane. This is the idea behind the classical CT scanning strategy: The patient is lying on a bed that is traversed through the scanner step-by-step and all projections in a plane orthogonal to this direction are acquired, cf. <a class="reference internal" href="what_is.html#modernct"><span class="std std-numref">Fig. 1.2</span></a>. Then, the whole three dimensional attenuation map can be reconstructed slice-by-slice, which also explains the word <em>tomography</em>, which is derived from the ancient Greek <em>tomos</em>, which means <em>slice</em> or <em>section</em>.</p>
 </div>
 <div class="section" id="exercises">
-<h2><span class="section-number">2.10. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">8.10. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="the-radon-transform-and-derivatives">
-<h3><span class="section-number">2.10.1. </span>The Radon transform and derivatives<a class="headerlink" href="#the-radon-transform-and-derivatives" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">8.10.1. </span>The Radon transform and derivatives<a class="headerlink" href="#the-radon-transform-and-derivatives" title="Permalink to this headline">¶</a></h3>
 <p>Given the Radon transform</p>
 <div class="math notranslate nohighlight">
 \[Ru(\theta,t) = \int_{\mathbb{R}} u(t\cos\theta + s \sin\theta, t\sin\theta - s \cos\theta) \mathrm{d}s,\]</div>
@@ -690,7 +865,7 @@ q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f
 \[R \nabla^2 u(\theta,t) = \partial_t^2 R u (\theta,t).\]</div>
 </div>
 <div class="section" id="sart">
-<h3><span class="section-number">2.10.2. </span>SART<a class="headerlink" href="#sart" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">8.10.2. </span>SART<a class="headerlink" href="#sart" title="Permalink to this headline">¶</a></h3>
 <p>Given a discretisation of the Radon transform <span class="math notranslate nohighlight">\(\in \mathbb{R}^{m\times n}\)</span>, we apply the SART method to reconstruct the image.</p>
 <ul class="simple">
 <li><p>Show that a stationary point of the SART iteration solves</p></li>
@@ -700,11 +875,11 @@ q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f
 <p>with <span class="math notranslate nohighlight">\(W\)</span> a diagonal elements with elements <span class="math notranslate nohighlight">\(w_{ii} = \sum_{j=1}^n r_{ij}\)</span>. Here <span class="math notranslate nohighlight">\(\|f\|_{W} = \sqrt{\langle f,Wf\rangle}\)</span>. You may assume that <span class="math notranslate nohighlight">\(R\)</span> has positive row and column sums.</p>
 </div>
 <div class="section" id="fbp-in-practice">
-<h3><span class="section-number">2.10.3. </span>FBP in practice<a class="headerlink" href="#fbp-in-practice" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">8.10.3. </span>FBP in practice<a class="headerlink" href="#fbp-in-practice" title="Permalink to this headline">¶</a></h3>
 <p>One implementation of the Radon transform and the FBP can be found in the <a class="reference external" href="http://scikit-image.org/"><code class="docutils literal notranslate"><span class="pre">scikit-image</span></code> toolbox</a>. An example of how to load a simple image, compute its Radon transform to simulate sinogram data and how to run a FBP to obtain a reconstruction from this data is shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
@@ -740,7 +915,11 @@ q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/tomography_13_0.png" src="_images/tomography_13_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_2221/593708864.py:21: FutureWarning: &#39;filter&#39; is a deprecated argument name for `iradon`. It will be removed in version 0.19. Please use &#39;filter_name&#39; instead.
+  image_reconstructed = iradon(sinogram_noisy, theta=theta, filter=&#39;ramp&#39;, circle = False)
+</pre></div>
+</div>
+<img alt="_images/tomography_13_1.png" src="_images/tomography_13_1.png" />
 </div>
 </div>
 <ul class="simple">
@@ -750,9 +929,9 @@ q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f
 </div>
 </div>
 <div class="section" id="assignments">
-<h2><span class="section-number">2.11. </span>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">8.11. </span>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="the-radon-transform-as-a-compact-operator">
-<h3><span class="section-number">2.11.1. </span>The Radon transform as a compact operator<a class="headerlink" href="#the-radon-transform-as-a-compact-operator" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">8.11.1. </span>The Radon transform as a compact operator<a class="headerlink" href="#the-radon-transform-as-a-compact-operator" title="Permalink to this headline">¶</a></h3>
 <p>Define the Radon transform <span class="math notranslate nohighlight">\(R : L^2(\Omega) \rightarrow L^2([0,\pi) \times [-1,1])\)</span> on the unit circle <span class="math notranslate nohighlight">\(\Omega = \{x \in \mathbb{R}^2 | \|x\|_2 \leq 1\}\)</span> by:</p>
 <div class="math notranslate nohighlight">
 \[Ru(\theta,t) = \int_{-\sqrt{1-t^2}}^\sqrt{1-t^2} u(t \xi_\theta + s \eta_\theta)\mathrm{d}s,\]</div>
@@ -781,7 +960,7 @@ q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f
 </ul>
 </div>
 <div class="section" id="discretisation-of-the-radon-transform">
-<h3><span class="section-number">2.11.2. </span>Discretisation of the Radon transform<a class="headerlink" href="#discretisation-of-the-radon-transform" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">8.11.2. </span>Discretisation of the Radon transform<a class="headerlink" href="#discretisation-of-the-radon-transform" title="Permalink to this headline">¶</a></h3>
 <p>Discretise the Radon transform by approximating <span class="math notranslate nohighlight">\(u(x)\)</span> as a piece-wise bi-linear function on a regular grid on the domain <span class="math notranslate nohighlight">\([-1,1]^n\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[u(x,y) = \sum_{i=0}^n \sum_{j=0}^n u_{ij} \phi\left(\frac{x - x_i}{h}\right)\phi_h\left(\frac{y - y_i}{h}\right),\]</div>
@@ -812,32 +991,41 @@ q(\theta, t) = H f (\theta, t) := F_t^{-1}\left(\hat{h}(\omega) \cdot \widehat{f
 
               </div>
               
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="image_processing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">7. </span>Image processing</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="wavefield_imaging.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Wavefield Imaging</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
+    <footer class="footer">
+  <p>
     
+      By Tristan van Leeuwen and Christoph Brune (CC BY-NC 4.0)<br/>
     
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="image_processing.html" title="previous page"><span class="section-number">1. </span>Image processing</a>
-    <a class='right-next' id="next-link" href="wavefield_imaging.html" title="next page"><span class="section-number">3. </span>Wavefield Imaging</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Tristan van Leeuwen and Christoph Brune (CC BY-NC 4.0)<br/>
-        
-      </p>
-    </div>
-  </footer>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    <script src="_static/js/index.js"></script>
-    
   </body>
 </html>
