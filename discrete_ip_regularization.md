@@ -115,7 +115,7 @@ u_1 \\ u_2 \\
 =
 \left(
 \begin{matrix}
-4 \\ 4 \\
+1 \\ 1 \\ 1 \\
 \end{matrix}
 \right).
 $$
@@ -125,8 +125,8 @@ The system of equations is obviously not consistent. The corresponding normal eq
 $$
 \left(
 \begin{matrix}
-6 & 4 \\
-4 & 6 \\
+6 & 5 \\
+5 & 6 \\
 \end{matrix}
 \right)
 \left(
@@ -142,7 +142,7 @@ u_1 \\ u_2 \\
 \right)
 $$
 
-do have a unique solution, $u = (2/5,2/5)^T$.
+do have a unique solution, $u = (4/11,4/11)^T$.
 ```
 ---
 
