@@ -523,14 +523,14 @@ Hence, every discrete image immediately corresponds to a continuous image, which
 <p>To avoid scaling issues (and error propagation) it is often more reasonable to consider a relative error with respect to the noise, i.e.</p>
 <div class="math notranslate nohighlight">
 \[
-e_{rel} = \frac{\Vert u - f^{\delta} \Vert}{\Vert f - f^{\delta}\Vert}
+e_{rel} = \frac{\Vert u - f \Vert}{\Vert f^{\delta} - f\Vert}
 \]</div>
 <p>or the scaled error</p>
 <div class="math notranslate nohighlight">
 \[
-e_{skal} = \frac{\Vert u - f^{\delta} \Vert}{\Vert f^{\delta} \Vert} .
+e_{skal} = \frac{\Vert u - f \Vert}{\Vert f \Vert} .
 \]</div>
-<p>A variant of the scaled error is the commonly used Signal-to-Noise ratio (SNR). The naming is based on the idea that <span class="math notranslate nohighlight">\(\Vert u - f^{\delta} \Vert_2\)</span> measures something like the noise of the method (note that <span class="math notranslate nohighlight">\(\Vert f - f^{\delta}\Vert_2\)</span> is the actual noise) and that <span class="math notranslate nohighlight">\(\Vert f^{\delta} \Vert_2\)</span> measures the amount/essence of signal. Here <span class="math notranslate nohighlight">\(\Vert \cdot \Vert_2\)</span> is in the idealised (continuous) case the <span class="math notranslate nohighlight">\(L^2\)</span>-norm;</p>
+<p>A variant of the scaled error is the commonly used Signal-to-Noise ratio (SNR). The naming is based on the idea that <span class="math notranslate nohighlight">\(\Vert u - f \Vert_2\)</span> measures something like the noise of the method (note that <span class="math notranslate nohighlight">\(\Vert f - f^{\delta}\Vert_2\)</span> is the actual noise) and that <span class="math notranslate nohighlight">\(\Vert f \Vert_2\)</span> measures the amount/essence of signal. Here <span class="math notranslate nohighlight">\(\Vert \cdot \Vert_2\)</span> is in the idealised (continuous) case the <span class="math notranslate nohighlight">\(L^2\)</span>-norm;</p>
 <div class="math notranslate nohighlight">
 \[
 	\Vert u \Vert_2 = \sqrt{\int_\Omega u(x)^2~dx}
@@ -543,14 +543,14 @@ e_{skal} = \frac{\Vert u - f^{\delta} \Vert}{\Vert f^{\delta} \Vert} .
 <p>Then as SNR one obtains</p>
 <div class="math notranslate nohighlight">
 \[
-	SNR(u,\hat f) = - \log \left( \frac{\Vert u - \hat f \Vert_2}{\Vert \hat f \Vert_2} \right).
+	SNR(u,f) = - \log \left( \frac{\Vert u - f \Vert_2}{\Vert f \Vert_2} \right).
 \]</div>
 <p>Note the reversal of monotony. The SNR is large for good quality and low for bad quality of a reconstruction. An additional widely used variant of the SNR is the Peak-Signal-to-Noise ratio (PSNR)</p>
 <div class="math notranslate nohighlight">
 \[
-PSNR = - \log \left( \frac{\Vert u - \hat f \Vert_2}{\Vert \hat f \Vert_\infty }\right).
+PSNR = - \log \left( \frac{\Vert u - f \Vert_2}{\Vert f \Vert_\infty }\right).
 \]</div>
-<p>Here one compares the noise with the peak in an image, i.e. <span class="math notranslate nohighlight">\(\Vert \hat f \Vert_\infty = \sup |f^{\delta}|\)</span>. The described error measures are reasonable for additive noise models (e.g. Gauss, Laplace), because one can show a correspondence to <span class="math notranslate nohighlight">\(L^1\)</span> and <span class="math notranslate nohighlight">\(L^2\)</span> norms in a statistical sense. For other noise types, one should take into account other error measures, for instance we will see in later chapters, that the Kullback-Leibler distance represents an adequate error measure for Poisson noise. In some cases it will be necessary to consider error measures different from standard norms, e.g. if one is primarily interested in edges of a reconstruction. In such cases more geometric error measures (in more general metrics) are favourable for the distances of edge sets.</p>
+<p>Here one compares the noise with the peak in an image, i.e. <span class="math notranslate nohighlight">\(\Vert f \Vert_\infty = \sup |f|\)</span>. The described error measures are reasonable for additive noise models (e.g. Gauss, Laplace), because one can show a correspondence to <span class="math notranslate nohighlight">\(L^1\)</span> and <span class="math notranslate nohighlight">\(L^2\)</span> norms in a statistical sense. For other noise types, one should take into account other error measures, for instance we will see in later chapters, that the Kullback-Leibler distance represents an adequate error measure for Poisson noise. In some cases it will be necessary to consider error measures different from standard norms, e.g. if one is primarily interested in edges of a reconstruction. In such cases more geometric error measures (in more general metrics) are favourable for the distances of edge sets.</p>
 </div>
 <div class="section" id="local-smoothing-filters">
 <h3><span class="section-number">7.1.3. </span>Local smoothing filters<a class="headerlink" href="#local-smoothing-filters" title="Permalink to this headline">¶</a></h3>
@@ -618,10 +618,11 @@ To obtain a reasonable convex combination <span class="math notranslate nohighli
 \[
 \hat{F}_{i-1j} + \hat{F}_{i+1j} - 2 \hat{F}_{ij} = \frac{\partial^2\hat{f}}{\partial x_1^2}(\xi_1) h^2
 \]</div>
-<p>and
-$<span class="math notranslate nohighlight">\(
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
 \hat{F}_{ij-1} + \hat{F}_{ij+1}- 2 \hat{F}_{ij} = \frac{\partial^2\hat{f}}{\partial x_2^2}(\xi_2) h^2 .
-\)</span>$</p>
+\]</div>
 <p>Thus we can estimate the second part o the error by</p>
 <div class="math notranslate nohighlight">
 \[
