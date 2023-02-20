@@ -226,6 +226,7 @@ $$
 $$
 
 and
+
 $$
 \hat{F}_{ij-1} + \hat{F}_{ij+1}- 2 \hat{F}_{ij} = \frac{\partial^2\hat{f}}{\partial x_2^2}(\xi_2) h^2 .
 $$
