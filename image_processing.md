@@ -113,16 +113,16 @@ $$
 To avoid scaling issues (and error propagation) it is often more reasonable to consider a relative error with respect to the noise, i.e.
 
 $$
-e_{rel} = \frac{\Vert u - f^{\delta} \Vert}{\Vert f - f^{\delta}\Vert}
+e_{rel} = \frac{\Vert u - f \Vert}{\Vert f^{\delta} - f\Vert}
 $$
 
 or the scaled error
 
 $$
-e_{skal} = \frac{\Vert u - f^{\delta} \Vert}{\Vert f^{\delta} \Vert} .
+e_{skal} = \frac{\Vert u - f \Vert}{\Vert f \Vert} .
 $$
 
-A variant of the scaled error is the commonly used Signal-to-Noise ratio (SNR). The naming is based on the idea that $\Vert u - f^{\delta} \Vert_2$ measures something like the noise of the method (note that $\Vert f - f^{\delta}\Vert_2$ is the actual noise) and that $\Vert f^{\delta} \Vert_2$ measures the amount/essence of signal. Here $\Vert \cdot \Vert_2$ is in the idealised (continuous) case the $L^2$-norm;
+A variant of the scaled error is the commonly used Signal-to-Noise ratio (SNR). The naming is based on the idea that $\Vert u - f \Vert_2$ measures something like the noise of the method (note that $\Vert f - f^{\delta}\Vert_2$ is the actual noise) and that $\Vert f \Vert_2$ measures the amount/essence of signal. Here $\Vert \cdot \Vert_2$ is in the idealised (continuous) case the $L^2$-norm;
 
 $$
 	\Vert u \Vert_2 = \sqrt{\int_\Omega u(x)^2~dx}
@@ -137,16 +137,16 @@ $$
 Then as SNR one obtains
 
 $$
-	SNR(u,\hat f) = - \log \left( \frac{\Vert u - \hat f \Vert_2}{\Vert \hat f \Vert_2} \right).
+	SNR(u,f) = - \log \left( \frac{\Vert u - f \Vert_2}{\Vert f \Vert_2} \right).
 $$
 
 Note the reversal of monotony. The SNR is large for good quality and low for bad quality of a reconstruction. An additional widely used variant of the SNR is the Peak-Signal-to-Noise ratio (PSNR)
 
 $$
-PSNR = - \log \left( \frac{\Vert u - \hat f \Vert_2}{\Vert \hat f \Vert_\infty }\right).
+PSNR = - \log \left( \frac{\Vert u - f \Vert_2}{\Vert f \Vert_\infty }\right).
 $$
 
-Here one compares the noise with the peak in an image, i.e. $\Vert \hat f \Vert_\infty = \sup |f^{\delta}|$. The described error measures are reasonable for additive noise models (e.g. Gauss, Laplace), because one can show a correspondence to $L^1$ and $L^2$ norms in a statistical sense. For other noise types, one should take into account other error measures, for instance we will see in later chapters, that the Kullback-Leibler distance represents an adequate error measure for Poisson noise. In some cases it will be necessary to consider error measures different from standard norms, e.g. if one is primarily interested in edges of a reconstruction. In such cases more geometric error measures (in more general metrics) are favourable for the distances of edge sets.
+Here one compares the noise with the peak in an image, i.e. $\Vert f \Vert_\infty = \sup |f|$. The described error measures are reasonable for additive noise models (e.g. Gauss, Laplace), because one can show a correspondence to $L^1$ and $L^2$ norms in a statistical sense. For other noise types, one should take into account other error measures, for instance we will see in later chapters, that the Kullback-Leibler distance represents an adequate error measure for Poisson noise. In some cases it will be necessary to consider error measures different from standard norms, e.g. if one is primarily interested in edges of a reconstruction. In such cases more geometric error measures (in more general metrics) are favourable for the distances of edge sets.
 
 ### Local smoothing filters
 In this section we focus on filtering methods for image denoising. Denoising is one of the most important tasks in digital image processing because it finds various applications beyond fluorescence microscopy and forms a well understood basis for many other image processing challenges in inverse problems. Denoising is the (inverse) problem of removing the noise from images while keeping significant information in the data. In applications, denoising methods are often applied as pre- or postprocessing methods to better analyse images and to be able to extract specific features, e.g. edges or corners, more effectively. In the following we particularly focus on the relationship between denoising filters, partial differential equations (PDEs) and related variational methods. We will start with simple linear diffusion filters an end with an outlook on a famous nonlinear variational method for denoising.
