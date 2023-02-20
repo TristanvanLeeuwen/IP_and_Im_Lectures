@@ -518,7 +518,7 @@ Hence, every discrete image immediately corresponds to a continuous image, which
 <p>Before we focus on different filtering methods, we should discuss different methods for validating the quality of a method. A simple validation would for sure be a number, which becomes zero in case of perfect denoising, respectively increases with worse quality (or vice versa). To test a denoising method with artificial data one can simply compute the distance between the denoised and the clean image, with regard to an adequate norm. If we use the notation <span class="math notranslate nohighlight">\(f\)</span> for the clean image, <span class="math notranslate nohighlight">\(f^{\delta}\)</span> for the noisy data, and <span class="math notranslate nohighlight">\(u\)</span> for the denoising via a particular method, then an error measure is simply given by</p>
 <div class="math notranslate nohighlight">
 \[
-	e_{abs} = \Vert u - f^{\delta} \Vert.
+	e_{abs} = \Vert u - f \Vert.
 \]</div>
 <p>To avoid scaling issues (and error propagation) it is often more reasonable to consider a relative error with respect to the noise, i.e.</p>
 <div class="math notranslate nohighlight">

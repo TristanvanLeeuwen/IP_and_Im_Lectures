@@ -107,7 +107,7 @@ glue("noisy_images", fig, display=False)
 Before we focus on different filtering methods, we should discuss different methods for validating the quality of a method. A simple validation would for sure be a number, which becomes zero in case of perfect denoising, respectively increases with worse quality (or vice versa). To test a denoising method with artificial data one can simply compute the distance between the denoised and the clean image, with regard to an adequate norm. If we use the notation $f$ for the clean image, $f^{\delta}$ for the noisy data, and $u$ for the denoising via a particular method, then an error measure is simply given by
 
 $$
-	e_{abs} = \Vert u - f^{\delta} \Vert.
+	e_{abs} = \Vert u - f \Vert.
 $$
 
 To avoid scaling issues (and error propagation) it is often more reasonable to consider a relative error with respect to the noise, i.e.
