@@ -247,7 +247,7 @@ $$
 where $\{v_i\}$ and $\{u_i\}$ are orthonormal bases of $\mathcal{N}(K)^\perp$ and $\overline{\mathcal{R}(K)}$ respectively and
 $\{\sigma_i\}$ is a null-sequence (i.e., $\lim_{i\rightarrow \infty} \sigma_i = 0$). We call $\{(u_i, v_i, \sigma_i)\}_{j=1}^\infty$ the singular system of $K$. The singular system obeys
 
-$$Kv_j = \sigma_k u_j, \quad K^*u_j = \sigma_j v_j.$$
+$$Kv_j = \sigma_j u_j, \quad K^*u_j = \sigma_j v_j.$$
 ```
 
 An important subclass of the compact operators are the [Hilbert-Schmidt integral operators](https://en.wikipedia.org/wiki/Hilbert%E2%80%93Schmidt_integral_operator), which can be written as
@@ -276,7 +276,7 @@ With this we can precisely state the Picard condition.
 
 ````{admonition} Definition: *Picard condition*
 :class: important
-Given a compact operator $K: \mathcal{U} \rightarrow \mathcal{F}$ and $f \in \mathcal{F}$, we have that $f \in \mathcal{R}(K)$ iff
+Given a compact operator $K: \mathcal{U} \rightarrow \mathcal{F}$ and $f \in \mathcal{F}$, we have that $f \in \mathcal{R}(K) \cup \mathcal{R}(K)^\perp$ iff
 ```{math}
 :label: picard
 
