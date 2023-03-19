@@ -735,7 +735,7 @@ $$\sum_{k=0}^{\infty} \frac{|\langle f,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}}$$
 
 and substitute $f = K(K^*K)^{\mu} w = \sum_{k=0}^\infty \sigma_k^{2\mu+1}\langle w,u_k\rangle u_k$ to get
 
-$$\sum_{k=0}^{\infty} \sigma_k^{2 + 4\mu}\frac{|\langle w,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}} = \|w\| < \infty.$$
+$$\sum_{k=0}^{\infty} \sigma_k^{2 + 4\mu}\frac{|\langle w,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}} = \|w\|^2 < \infty.$$
 
 * Starting again from the bias term, we can factor out an additional $\sigma^{4\mu}$ term. We then use that $s^{2\mu}(1 - sg_{\alpha}(s)) \leq \alpha^{2\mu} $ to find the desired result.
 
