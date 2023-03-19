@@ -51,9 +51,9 @@ Say we want to estimate the density of a given rock sample. To do this we measur
 
 $$w^\delta - \rho v^\delta = \epsilon_w - \rho \epsilon_v.$$
 
-Thus, $w^\delta - \rho v^\delta$ is a normally distributed random variable with mean zero and variance $\sigma^2(1 + \rho^2)$. This gives us the following Likelihood
+Thus, $w^\delta - \rho v^\delta$ is a normally distributed random variable with mean zero and variance $\sigma^2(1 + \rho^2)$. For $u = \rho$, this gives us the following Likelihood
 
-$$\pi_{\text{data}}(u | f^\delta) = \frac{1}{\sigma\sqrt{1+\rho^2}\sqrt{2\pi}}\exp\left(-\frac{(w^\delta - \rho v^\delta)^2}{2\sigma^2(1+\rho^2)}\right).$$
+$$\pi_{\text{data}}(f^\delta | u) = \frac{1}{\sigma\sqrt{1+\rho^2}\sqrt{2\pi}}\exp\left(-\frac{(w^\delta - \rho v^\delta)^2}{2\sigma^2(1+\rho^2)}\right).$$
 
 As prior, we can use statistics of rock samples {cite}`johnson1984density`. This gives a [log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution) with parameters $(1.5,0.4)$. The corresponding distributions are shown in figure {numref}`rock_samples`.
 
@@ -147,7 +147,7 @@ $$\mu_{\text{post}} = \left(\alpha I + \Sigma\right)^{-1}\Sigma f^\delta,$$
 
 $$\Sigma_{\text{post}} = \alpha \left(\alpha I + \Sigma\right)^{-1}\Sigma.$$
 
-When using $\mu_{\text{post}}$ as an estimate for $u$ we could interpret the diagonal elements of $\Sigma_{\text{post}}$ as variances (and hence their square-root as a standard deviation). However, we should note that this mainly gives information on the *sensitivity* of the estimate to noise, and not necessarily on the *error* between the estimate and the ground truth. Even then, we may grossly underestimate the uncertainty when $\alpha < \sigma^{2}$. One way to asses whether the assumptions are valid is to study the residuals $r_i = \mu_{\text{post}} - f_i^\delta$. If the assumptions are valid, we expect these to be normally distributed mean zero and variance $\alpha$. Likewise, we can verify whether $\mu_{\text{post}}$ is normally distributed with mean zero and covariance $\Sigma$.
+When using $\mu_{\text{post}}$ as an estimate for $u$ we could interpret the diagonal elements of $\Sigma_{\text{post}}$ as variances (and hence their square-root as a standard deviation). However, we should note that this mainly gives information on the *sensitivity* of the estimate to noise, and not necessarily on the *error* between the estimate and the ground truth. Even then, we may grossly underestimate the uncertainty when $\alpha < \sigma^{2}$. One way to asses whether the assumptions are valid is to study the residuals $r_i = \mu_{\text{post}}_i - f_i^\delta$. If the assumptions are valid, we expect these to be normally distributed mean zero and variance $\alpha$. Likewise, we can verify whether $\mu_{\text{post}}$ is normally distributed with mean zero and covariance $\Sigma$.
 
 ```{glue:figure} gaussian_example
 :figwidth: 500px
