@@ -502,7 +502,7 @@ in which we recognise the *bias* and *variance* contributions. Note that we may 
 
 $$\|K_{\alpha}^\dagger f^\delta - K^\dagger f\|_{\mathcal{U}} \leq \|K_{\alpha}^\dagger - K^\dagger\| \|f\|_{\mathcal{F}} + \delta \|K_{\alpha}^\dagger\|.$$
 
-Alternatively, we may express the error in terms of the minimum-norm solution $u = K^{\dagger}f$ as
+Alternatively, we may express the error in terms of the minimum-norm solution $u = K^{\dagger} Ku = K^\dagger f$ as
 
 $$\|K_{\alpha}^\dagger f^\delta - K^\dagger f\|_{\mathcal{U}} \leq \|I - K_{\alpha}^\dagger K\| \|u\|_{\mathcal{U}} +  \delta \|K_{\alpha}^\dagger\|.$$
 
@@ -517,10 +517,10 @@ $$
 K^\dagger K u - u + \delta K^{\dagger}\sin(\delta^{-1}\cdot).
 $$
 
-Because $\delta^{-1} = \sigma_k$ and $\sin(\sigma_k^{-1}x)$ is a singular vector of $K$, this simplifies to
+Because $\delta^{-1} = \sigma_k$ and $\sin(\sigma_k^{-1}x)$ is a singular vector of $K$ (or because the pseudo-inverse acts as taking a derivative), this simplifies to
 
 $$
-\sin(\sigma_k^{-1}x).
+\cos(\sigma_k^{-1}x).
 $$
 
 Thus, the reconstruction error does not go to zero as $\delta\downarrow 0$, even though the error in the data does.
