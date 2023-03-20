@@ -574,7 +574,7 @@ The <a class="reference external" href="https://en.wikipedia.org/wiki/Projection
 <div class="dropdown admonition">
 <p class="admonition-title">Proof</p>
 <ol class="simple">
-<li><p>Decompose <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K^\dagger)\)</span> as <span class="math notranslate nohighlight">\(f = f_1 + f_2\)</span> with <span class="math notranslate nohighlight">\(f_1\in\mathcal{R}(K)\)</span>, <span class="math notranslate nohighlight">\(f_2\in\mathcal{R}(K)^\perp\)</span> and use that <span class="math notranslate nohighlight">\(K = \widetilde{K}\)</span> on <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp\)</span>. Then <span class="math notranslate nohighlight">\(KK^\dagger f = K\widetilde{K}^{-1}f_1 = f_1\)</span>. Hence, <span class="math notranslate nohighlight">\(KK^\dagger\)</span> acts an orthogonal projection of <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K^\dagger)\)</span> on <span class="math notranslate nohighlight">\(\overline{\mathcal{R}(K)}\)</span>.</p></li>
+<li><p>Decompose <span class="math notranslate nohighlight">\(f \in \mathcal{D}(K^\dagger)\)</span> as <span class="math notranslate nohighlight">\(f = f_1 + f_2\)</span> with <span class="math notranslate nohighlight">\(f_1\in\mathcal{R}(K)\)</span>, <span class="math notranslate nohighlight">\(f_2\in\mathcal{R}(K)^\perp\)</span> and use that <span class="math notranslate nohighlight">\(K = \widetilde{K}\)</span> on <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp\)</span>. Then <span class="math notranslate nohighlight">\(KK^\dagger f = K\widetilde{K}^{-1}f_1 = f_1\)</span>. Hence, <span class="math notranslate nohighlight">\(KK^\dagger\)</span> acts an orthogonal projection of <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K^\dagger)\)</span> on <span class="math notranslate nohighlight">\(\overline{\mathcal{R}(K)}\)</span>.</p></li>
 <li><p>Decompose <span class="math notranslate nohighlight">\(u \in \mathcal{U}\)</span> in two parts <span class="math notranslate nohighlight">\(u = u_1 + u_2\)</span> with <span class="math notranslate nohighlight">\(u_1 \in \mathcal{N}(K)\)</span>, <span class="math notranslate nohighlight">\(u_2\in\mathcal{N}(K)^\perp\)</span>
 we have <span class="math notranslate nohighlight">\(K^\dagger K u = K^\dagger K u_1 = u_1\)</span>, so <span class="math notranslate nohighlight">\(KK^\dagger\)</span> acts like an orthogonal projection on <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp\)</span> so <span class="math notranslate nohighlight">\(KK^\dagger = I - P_{\mathcal{N}(K}\)</span> (note that the orthogonal complement of a subspace is always closed).</p></li>
 <li><p>Since <span class="math notranslate nohighlight">\(KK^\dagger\)</span>  projects onto <span class="math notranslate nohighlight">\(\overline{R}(K)\)</span>, it filters out any components in <span class="math notranslate nohighlight">\(f\)</span> in the null-space of <span class="math notranslate nohighlight">\(K^\dagger\)</span> which would disappear anyway.</p></li>
@@ -590,7 +590,7 @@ we have <span class="math notranslate nohighlight">\(K^\dagger K u = K^\dagger K
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">Proof</p>
-<p>We know that for <span class="math notranslate nohighlight">\(f \in \mathcal{D}(K^\dagger)\)</span> the minimum-norm solution <span class="math notranslate nohighlight">\(\widetilde{u} \in \mathcal{N}(K)^\dagger\)</span> exists and unique. Using the fact that <span class="math notranslate nohighlight">\(K\widetilde{u} = P_{\overline{\mathcal{R}(K)}}f\)</span> and the M-R equations, we have <span class="math notranslate nohighlight">\(\widetilde{u} = (I - P_{\mathcal{N}}(K))\widetilde{u} = K^\dagger K\widetilde{u} = K^\dagger P_{\overline{\mathcal{R}(K)}}f = K^\dagger K K^\dagger f = K^\dagger f\)</span>.</p>
+<p>We know that for <span class="math notranslate nohighlight">\(f \in \mathcal{D}(K^\dagger)\)</span> the minimum-norm solution <span class="math notranslate nohighlight">\(\widetilde{u} \in \mathcal{N}(K)^\perp\)</span> exists and unique. Using the fact that <span class="math notranslate nohighlight">\(K\widetilde{u} = P_{\overline{\mathcal{R}(K)}}f\)</span> (due to the \textit{mimimum-residual} solution property) and the M-R equations, we have <span class="math notranslate nohighlight">\(\widetilde{u} = (I - P_{\mathcal{N}}(K))\widetilde{u} = K^\dagger K\widetilde{u} = K^\dagger P_{\overline{\mathcal{R}(K)}}f = K^\dagger K K^\dagger f = K^\dagger f\)</span>.</p>
 </div>
 <p>When defining the the solution through the M-P pseudo-inverse, we have existence uniqueness of the minimum-norm to <a class="reference internal" href="#equation-minres">(3.1)</a>. However, we cannot expect stability in general. For this, we would need <span class="math notranslate nohighlight">\(K^{\dagger}\)</span> to be continuous. To see this, consider noisy data <span class="math notranslate nohighlight">\(f^{\delta} = f + e\)</span> with <span class="math notranslate nohighlight">\(\|e\|\leq \delta\)</span>. For stability of the solution we need to bound the difference between the corresponding solutions <span class="math notranslate nohighlight">\(\widetilde{u}\)</span>, <span class="math notranslate nohighlight">\(\widetilde{u}^\delta\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -644,7 +644,7 @@ K = \sum_{j=1}^{\infty} \sigma_j \langle \cdot, v_j\rangle_{\mathcal{U}}u_j,
 <p>where <span class="math notranslate nohighlight">\(\{v_i\}\)</span> and <span class="math notranslate nohighlight">\(\{u_i\}\)</span> are orthonormal bases of <span class="math notranslate nohighlight">\(\mathcal{N}(K)^\perp\)</span> and <span class="math notranslate nohighlight">\(\overline{\mathcal{R}(K)}\)</span> respectively and
 <span class="math notranslate nohighlight">\(\{\sigma_i\}\)</span> is a null-sequence (i.e., <span class="math notranslate nohighlight">\(\lim_{i\rightarrow \infty} \sigma_i = 0\)</span>). We call <span class="math notranslate nohighlight">\(\{(u_i, v_i, \sigma_i)\}_{j=1}^\infty\)</span> the singular system of <span class="math notranslate nohighlight">\(K\)</span>. The singular system obeys</p>
 <div class="math notranslate nohighlight">
-\[Kv_j = \sigma_k u_j, \quad K^*u_j = \sigma_j v_j.\]</div>
+\[Kv_j = \sigma_j u_j, \quad K^*u_j = \sigma_j v_j.\]</div>
 </div>
 <p>An important subclass of the compact operators are the <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert%E2%80%93Schmidt_integral_operator">Hilbert-Schmidt integral operators</a>, which can be written as</p>
 <div class="math notranslate nohighlight">
@@ -664,7 +664,7 @@ K^{\dagger} = \sum_{j=1}^{\infty} \sigma_j^{-1} \langle \cdot, u_j\rangle_{\math
 <p>With this we can precisely state the Picard condition.</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Picard condition</em></p>
-<p>Given a compact operator <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> and <span class="math notranslate nohighlight">\(f \in \mathcal{F}\)</span>, we have that <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K)\)</span> iff</p>
+<p>Given a compact operator <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> and <span class="math notranslate nohighlight">\(f \in \mathcal{F}\)</span>, we have that <span class="math notranslate nohighlight">\(f \in \mathcal{R}(K) \cup \mathcal{R}(K)^\perp\)</span> iff</p>
 <div class="math notranslate nohighlight" id="equation-picard">
 <span class="eqno">(3.2)<a class="headerlink" href="#equation-picard" title="Permalink to this equation">¶</a></span>\[\sum_{j=1}^{\infty} \frac{|\langle f, u_j\rangle_{\mathcal{F}}|^2}{\sigma_j^2} &lt; \infty.\]</div>
 </div>
@@ -843,7 +843,7 @@ g_{\alpha}(s) = \begin{cases} s^{-1} &amp; \text{if}\, s &gt; \alpha \\ 0 &amp; 
 <p>in which we recognise the <em>bias</em> and <em>variance</em> contributions. Note that we may bound this even further as</p>
 <div class="math notranslate nohighlight">
 \[\|K_{\alpha}^\dagger f^\delta - K^\dagger f\|_{\mathcal{U}} \leq \|K_{\alpha}^\dagger - K^\dagger\| \|f\|_{\mathcal{F}} + \delta \|K_{\alpha}^\dagger\|.\]</div>
-<p>Alternatively, we may express the error in terms of the minimum-norm solution <span class="math notranslate nohighlight">\(u = K^{\dagger}f\)</span> as</p>
+<p>Alternatively, we may express the error in terms of the minimum-norm solution <span class="math notranslate nohighlight">\(u = K^{\dagger} Ku = K^\dagger f\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[\|K_{\alpha}^\dagger f^\delta - K^\dagger f\|_{\mathcal{U}} \leq \|I - K_{\alpha}^\dagger K\| \|u\|_{\mathcal{U}} +  \delta \|K_{\alpha}^\dagger\|.\]</div>
 <p>Such upper bounds may be useful to study asymptotic properties of the problem but may be too loose to be used in practice. In that case a more detailed analysis incorporating the type of noise and the class of images <span class="math notranslate nohighlight">\(u\)</span> that we are interested in is needed.</p>
@@ -855,10 +855,10 @@ Take measurements <span class="math notranslate nohighlight">\(f^{\delta} = Ku +
 \[
 K^\dagger K u - u + \delta K^{\dagger}\sin(\delta^{-1}\cdot).
 \]</div>
-<p>Because <span class="math notranslate nohighlight">\(\delta^{-1} = \sigma_k\)</span> and <span class="math notranslate nohighlight">\(\sin(\sigma_k^{-1}x)\)</span> is a singular vector of <span class="math notranslate nohighlight">\(K\)</span>, this simplifies to</p>
+<p>Because <span class="math notranslate nohighlight">\(\delta^{-1} = \sigma_k\)</span> and <span class="math notranslate nohighlight">\(\sin(\sigma_k^{-1}x)\)</span> is a singular vector of <span class="math notranslate nohighlight">\(K\)</span> (or because the pseudo-inverse acts as taking a derivative), this simplifies to</p>
 <div class="math notranslate nohighlight">
 \[
-\sin(\sigma_k^{-1}x).
+\cos(\sigma_k^{-1}x).
 \]</div>
 <p>Thus, the reconstruction error does not go to zero as <span class="math notranslate nohighlight">\(\delta\downarrow 0\)</span>, even though the error in the data does.</p>
 <p>The eigenvalues of <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger K\)</span> are given by <span class="math notranslate nohighlight">\((1 + \alpha \sigma_k^{-2})^{-1}\)</span>, with <span class="math notranslate nohighlight">\(\sigma_k = (\pi(k + 1/2))^{-1}\)</span>. The bias is thus given by</p>
@@ -1035,7 +1035,7 @@ Ku(x) = \int_0^x u(y)\mathrm{d}y.
 \[\sum_{k=0}^{\infty} \frac{|\langle f,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}}\]</div>
 <p>and substitute <span class="math notranslate nohighlight">\(f = K(K^*K)^{\mu} w = \sum_{k=0}^\infty \sigma_k^{2\mu+1}\langle w,u_k\rangle u_k\)</span> to get</p>
 <div class="math notranslate nohighlight">
-\[\sum_{k=0}^{\infty} \sigma_k^{2 + 4\mu}\frac{|\langle w,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}} = \|w\| &lt; \infty.\]</div>
+\[\sum_{k=0}^{\infty} \sigma_k^{2 + 4\mu}\frac{|\langle w,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}} = \|w\|^2 &lt; \infty.\]</div>
 <ul class="simple">
 <li><p>Starting again from the bias term, we can factor out an additional <span class="math notranslate nohighlight">\(\sigma^{4\mu}\)</span> term. We then use that <span class="math notranslate nohighlight">\(s^{2\mu}(1 - sg_{\alpha}(s)) \leq \alpha^{2\mu} \)</span> to find the desired result.</p></li>
 </ul>
@@ -1200,7 +1200,7 @@ Ku = F^{-1}((Fu)\cdot(Fg_T)),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe766d56760&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ffd88693880&gt;
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_5_1.png" src="_images/ip_function_spaces_5_1.png" />
@@ -1267,7 +1267,7 @@ K = h\cdot\left(\begin{matrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|u - ur| =  4.208107821812669
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|u - ur| =  4.0677442591895865
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_9_1.png" src="_images/ip_function_spaces_9_1.png" />

@@ -150,7 +150,7 @@ The M-P pseudo-inverse $K^{\dagger}: \mathcal{R}(K)^\perp \oplus \mathcal{R}(K) 
 ```{admonition} Proof
 :class: dropdown
 
-1. Decompose $f \in \mathcal{R}(K^\dagger)$ as $f = f_1 + f_2$ with $f_1\in\mathcal{R}(K)$, $f_2\in\mathcal{R}(K)^\perp$ and use that $K = \widetilde{K}$ on $\mathcal{N}(K)^\perp$. Then $KK^\dagger f = K\widetilde{K}^{-1}f_1 = f_1$. Hence, $KK^\dagger$ acts an orthogonal projection of $f \in \mathcal{R}(K^\dagger)$ on $\overline{\mathcal{R}(K)}$.
+1. Decompose $f \in \mathcal{D}(K^\dagger)$ as $f = f_1 + f_2$ with $f_1\in\mathcal{R}(K)$, $f_2\in\mathcal{R}(K)^\perp$ and use that $K = \widetilde{K}$ on $\mathcal{N}(K)^\perp$. Then $KK^\dagger f = K\widetilde{K}^{-1}f_1 = f_1$. Hence, $KK^\dagger$ acts an orthogonal projection of $f \in \mathcal{R}(K^\dagger)$ on $\overline{\mathcal{R}(K)}$.
 
 2. Decompose $u \in \mathcal{U}$ in two parts $u = u_1 + u_2$ with $u_1 \in \mathcal{N}(K)$, $u_2\in\mathcal{N}(K)^\perp$
 we have $K^\dagger K u = K^\dagger K u_1 = u_1$, so $KK^\dagger$ acts like an orthogonal projection on $\mathcal{N}(K)^\perp$ so $KK^\dagger = I - P_{\mathcal{N}(K}$ (note that the orthogonal complement of a subspace is always closed).
@@ -171,7 +171,7 @@ $$\widetilde{u} = K^\dagger f.$$
 ```{admonition} Proof
 :class: dropdown
 
-We know that for $f \in \mathcal{D}(K^\dagger)$ the minimum-norm solution $\widetilde{u} \in \mathcal{N}(K)^\dagger$ exists and unique. Using the fact that $K\widetilde{u} = P_{\overline{\mathcal{R}(K)}}f$ and the M-R equations, we have $\widetilde{u} = (I - P_{\mathcal{N}}(K))\widetilde{u} = K^\dagger K\widetilde{u} = K^\dagger P_{\overline{\mathcal{R}(K)}}f = K^\dagger K K^\dagger f = K^\dagger f$.
+We know that for $f \in \mathcal{D}(K^\dagger)$ the minimum-norm solution $\widetilde{u} \in \mathcal{N}(K)^\perp$ exists and unique. Using the fact that $K\widetilde{u} = P_{\overline{\mathcal{R}(K)}}f$ (due to the \textit{mimimum-residual} solution property) and the M-R equations, we have $\widetilde{u} = (I - P_{\mathcal{N}}(K))\widetilde{u} = K^\dagger K\widetilde{u} = K^\dagger P_{\overline{\mathcal{R}(K)}}f = K^\dagger K K^\dagger f = K^\dagger f$.
 ```
 
 When defining the the solution through the M-P pseudo-inverse, we have existence uniqueness of the minimum-norm to {eq}`minres`. However, we cannot expect stability in general. For this, we would need $K^{\dagger}$ to be continuous. To see this, consider noisy data $f^{\delta} = f + e$ with $\|e\|\leq \delta$. For stability of the solution we need to bound the difference between the corresponding solutions $\widetilde{u}$, $\widetilde{u}^\delta$:
@@ -247,7 +247,7 @@ $$
 where $\{v_i\}$ and $\{u_i\}$ are orthonormal bases of $\mathcal{N}(K)^\perp$ and $\overline{\mathcal{R}(K)}$ respectively and
 $\{\sigma_i\}$ is a null-sequence (i.e., $\lim_{i\rightarrow \infty} \sigma_i = 0$). We call $\{(u_i, v_i, \sigma_i)\}_{j=1}^\infty$ the singular system of $K$. The singular system obeys
 
-$$Kv_j = \sigma_k u_j, \quad K^*u_j = \sigma_j v_j.$$
+$$Kv_j = \sigma_j u_j, \quad K^*u_j = \sigma_j v_j.$$
 ```
 
 An important subclass of the compact operators are the [Hilbert-Schmidt integral operators](https://en.wikipedia.org/wiki/Hilbert%E2%80%93Schmidt_integral_operator), which can be written as
@@ -276,7 +276,7 @@ With this we can precisely state the Picard condition.
 
 ````{admonition} Definition: *Picard condition*
 :class: important
-Given a compact operator $K: \mathcal{U} \rightarrow \mathcal{F}$ and $f \in \mathcal{F}$, we have that $f \in \mathcal{R}(K)$ iff
+Given a compact operator $K: \mathcal{U} \rightarrow \mathcal{F}$ and $f \in \mathcal{F}$, we have that $f \in \mathcal{R}(K) \cup \mathcal{R}(K)^\perp$ iff
 ```{math}
 :label: picard
 
@@ -502,7 +502,7 @@ in which we recognise the *bias* and *variance* contributions. Note that we may 
 
 $$\|K_{\alpha}^\dagger f^\delta - K^\dagger f\|_{\mathcal{U}} \leq \|K_{\alpha}^\dagger - K^\dagger\| \|f\|_{\mathcal{F}} + \delta \|K_{\alpha}^\dagger\|.$$
 
-Alternatively, we may express the error in terms of the minimum-norm solution $u = K^{\dagger}f$ as
+Alternatively, we may express the error in terms of the minimum-norm solution $u = K^{\dagger} Ku = K^\dagger f$ as
 
 $$\|K_{\alpha}^\dagger f^\delta - K^\dagger f\|_{\mathcal{U}} \leq \|I - K_{\alpha}^\dagger K\| \|u\|_{\mathcal{U}} +  \delta \|K_{\alpha}^\dagger\|.$$
 
@@ -517,10 +517,10 @@ $$
 K^\dagger K u - u + \delta K^{\dagger}\sin(\delta^{-1}\cdot).
 $$
 
-Because $\delta^{-1} = \sigma_k$ and $\sin(\sigma_k^{-1}x)$ is a singular vector of $K$, this simplifies to
+Because $\delta^{-1} = \sigma_k$ and $\sin(\sigma_k^{-1}x)$ is a singular vector of $K$ (or because the pseudo-inverse acts as taking a derivative), this simplifies to
 
 $$
-\sin(\sigma_k^{-1}x).
+\cos(\sigma_k^{-1}x).
 $$
 
 Thus, the reconstruction error does not go to zero as $\delta\downarrow 0$, even though the error in the data does.
@@ -735,7 +735,7 @@ $$\sum_{k=0}^{\infty} \frac{|\langle f,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}}$$
 
 and substitute $f = K(K^*K)^{\mu} w = \sum_{k=0}^\infty \sigma_k^{2\mu+1}\langle w,u_k\rangle u_k$ to get
 
-$$\sum_{k=0}^{\infty} \sigma_k^{2 + 4\mu}\frac{|\langle w,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}} = \|w\| < \infty.$$
+$$\sum_{k=0}^{\infty} \sigma_k^{2 + 4\mu}\frac{|\langle w,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}} = \|w\|^2 < \infty.$$
 
 * Starting again from the bias term, we can factor out an additional $\sigma^{4\mu}$ term. We then use that $s^{2\mu}(1 - sg_{\alpha}(s)) \leq \alpha^{2\mu} $ to find the desired result.
 
