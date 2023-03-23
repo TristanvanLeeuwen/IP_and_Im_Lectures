@@ -353,7 +353,7 @@ This immediately shows that $K^\dagger$ is not bounded. Now consider obtaining a
 
 ````{admonition} Example: Differentiation
 
-Consider
+Consider $K:L_2([0,1]) \rightarrow L_2([0,1])$ defined as
 
 $$
 Ku(x) = \int_0^x u(y)\mathrm{d}y.
@@ -970,8 +970,7 @@ with $a_k$ are the Fourier sine coefficients of $u$:
 $$
 a_k = \langle u, \sin(k\cdot) \rangle = \frac{2}{\pi}\int_0^{\pi} u(x) \sin (k x) \mathrm{d}x.
 $$
-
-Define the forward operator $f = Ku$ in terms of the solution of the IBVP as $f(x) = v(1,x)$.
+Assume that we use $ \langle u, v \rangle = \frac{2}{\pi}\int_0^{\pi} u(x) v(x) \mathrm{d}x$ as inner product and define the forward operator $f = Ku$ in terms of the solution of the IBVP as $f(x) = v(1,x)$.
 
 ---
 
