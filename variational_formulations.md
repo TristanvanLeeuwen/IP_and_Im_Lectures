@@ -125,7 +125,7 @@ With these, we can establish existence.
 ```{admonition} Theorem: *Fundamental theorem of optimisation*
 :class: important
 
-Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be proper, coercive, bounded from below and lower semi-continuous. Then $J$ has a minimiser.
+Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be proper, coercive, bounded from below and sequential lower semi-continuous. Then $J$ has a minimiser.
 ```
 
 ```{admonition} Proof:
