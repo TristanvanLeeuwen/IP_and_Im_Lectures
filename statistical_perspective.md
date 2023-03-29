@@ -232,7 +232,7 @@ $$
 f^\delta = Ku + \epsilon,
 $$
 
-where $\epsilon$ is normally with zero mean and variance $\sigma I$. Assuming that the $u_i$ are normally distributed with zero mean and unit variance we get
+where $\epsilon$ is normally with zero mean and variance $\sigma^2 I$. Assuming that the $u_i$ are normally distributed with zero mean and unit variance we get
 
 $$
 \pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\frac{1}{2\sigma^2}\|Ku - f^{\delta}\|_2^2 - \frac{1}{2}\|u\|_2^2\right),
