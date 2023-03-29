@@ -723,7 +723,7 @@ K^{\dagger} =
 <hr class="docutils" />
 <div class="admonition-example-differentiation admonition">
 <p class="admonition-title">Example: Differentiation</p>
-<p>Consider</p>
+<p>Consider <span class="math notranslate nohighlight">\(K:L_2([0,1]) \rightarrow L_2([0,1])\)</span> defined as</p>
 <div class="math notranslate nohighlight">
 \[
 Ku(x) = \int_0^x u(y)\mathrm{d}y.
@@ -1200,7 +1200,7 @@ Ku = F^{-1}((Fu)\cdot(Fg_T)),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ffd88693880&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb295572790&gt;
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_5_1.png" src="_images/ip_function_spaces_5_1.png" />
@@ -1267,7 +1267,7 @@ K = h\cdot\left(\begin{matrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|u - ur| =  4.0677442591895865
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|u - ur| =  4.391010315158971
 </pre></div>
 </div>
 <img alt="_images/ip_function_spaces_9_1.png" src="_images/ip_function_spaces_9_1.png" />
@@ -1291,7 +1291,7 @@ v(t,x) = \sum_{k=1}^{\infty} a_k\exp(- k^2 t)\sin(k x),
 \[
 a_k = \langle u, \sin(k\cdot) \rangle = \frac{2}{\pi}\int_0^{\pi} u(x) \sin (k x) \mathrm{d}x.
 \]</div>
-<p>Define the forward operator <span class="math notranslate nohighlight">\(f = Ku\)</span> in terms of the solution of the IBVP as <span class="math notranslate nohighlight">\(f(x) = v(1,x)\)</span>.</p>
+<p>Assume that we use <span class="math notranslate nohighlight">\( \langle u, v \rangle = \frac{2}{\pi}\int_0^{\pi} u(x) v(x) \mathrm{d}x\)</span> as inner product and define the forward operator <span class="math notranslate nohighlight">\(f = Ku\)</span> in terms of the solution of the IBVP as <span class="math notranslate nohighlight">\(f(x) = v(1,x)\)</span>.</p>
 <hr class="docutils" />
 <p><strong>1.</strong> Give the singular system of <span class="math notranslate nohighlight">\(K\)</span>, i.e., find <span class="math notranslate nohighlight">\((\sigma_k, u_k, v_k)\)</span> such that <span class="math notranslate nohighlight">\(Ku(x)\)</span> can be expressed as</p>
 <div class="math notranslate nohighlight">

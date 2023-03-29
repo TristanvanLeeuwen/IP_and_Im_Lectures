@@ -574,7 +574,7 @@ const thebe_selector_output = ".output, .cell_output"
 \[\mu_{\text{post}} = \left(\alpha I + \Sigma\right)^{-1}\Sigma f^\delta,\]</div>
 <div class="math notranslate nohighlight">
 \[\Sigma_{\text{post}} = \alpha \left(\alpha I + \Sigma\right)^{-1}\Sigma.\]</div>
-<p>When using <span class="math notranslate nohighlight">\(\mu_{\text{post}}\)</span> as an estimate for <span class="math notranslate nohighlight">\(u\)</span> we could interpret the diagonal elements of <span class="math notranslate nohighlight">\(\Sigma_{\text{post}}\)</span> as variances (and hence their square-root as a standard deviation). However, we should note that this mainly gives information on the <em>sensitivity</em> of the estimate to noise, and not necessarily on the <em>error</em> between the estimate and the ground truth. Even then, we may grossly underestimate the uncertainty when <span class="math notranslate nohighlight">\(\alpha &lt; \sigma^{2}\)</span>. One way to asses whether the assumptions are valid is to study the residuals <span class="math notranslate nohighlight">\(r_i = \mu_{\text{post}}_i - f_i^\delta\)</span>. If the assumptions are valid, we expect these to be normally distributed mean zero and variance <span class="math notranslate nohighlight">\(\alpha\)</span>. Likewise, we can verify whether <span class="math notranslate nohighlight">\(\mu_{\text{post}}\)</span> is normally distributed with mean zero and covariance <span class="math notranslate nohighlight">\(\Sigma\)</span>.</p>
+<p>When using <span class="math notranslate nohighlight">\(\mu_{\text{post}}\)</span> as an estimate for <span class="math notranslate nohighlight">\(u\)</span> we could interpret the diagonal elements of <span class="math notranslate nohighlight">\(\Sigma_{\text{post}}\)</span> as variances (and hence their square-root as a standard deviation). However, we should note that this mainly gives information on the <em>sensitivity</em> of the estimate to noise, and not necessarily on the <em>error</em> between the estimate and the ground truth. Even then, we may grossly underestimate the uncertainty when <span class="math notranslate nohighlight">\(\alpha &lt; \sigma^{2}\)</span>. One way to asses whether the assumptions are valid is to study the residuals <span class="math notranslate nohighlight">\(r_i = \mu_{\text{post}i} - f_i^\delta\)</span>. If the assumptions are valid, we expect these to be normally distributed mean zero and variance <span class="math notranslate nohighlight">\(\alpha\)</span>. Likewise, we can verify whether <span class="math notranslate nohighlight">\(\mu_{\text{post}}\)</span> is normally distributed with mean zero and covariance <span class="math notranslate nohighlight">\(\Sigma\)</span>.</p>
 <div class="figure align-default" id="gaussian-example" style="width: 500px">
 <div class="cell_output docutils container">
 <img alt="_images/statistical_perspective_3_1.png" src="_images/statistical_perspective_3_1.png" />
@@ -658,7 +658,7 @@ const thebe_selector_output = ".output, .cell_output"
 \[
 f^\delta = Ku + \epsilon,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is normally with zero mean and variance <span class="math notranslate nohighlight">\(\sigma I\)</span>. Assuming that the <span class="math notranslate nohighlight">\(u_i\)</span> are normally distributed with zero mean and unit variance we get</p>
+<p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is normally with zero mean and variance <span class="math notranslate nohighlight">\(\sigma^2 I\)</span>. Assuming that the <span class="math notranslate nohighlight">\(u_i\)</span> are normally distributed with zero mean and unit variance we get</p>
 <div class="math notranslate nohighlight">
 \[
 \pi_{\text{post}}(u | f^{\delta}) = \exp\left(-\frac{1}{2\sigma^2}\|Ku - f^{\delta}\|_2^2 - \frac{1}{2}\|u\|_2^2\right),
@@ -745,7 +745,7 @@ f^\delta = Ku + \epsilon,
 <p>If we assume Laplace noise with mean <span class="math notranslate nohighlight">\(\mu\)</span> and parameter <span class="math notranslate nohighlight">\(\lambda\)</span>, and a uniform prior <span class="math notranslate nohighlight">\(u_i\in[a_i,b_i]\)</span> we end up with</p>
 <div class="math notranslate nohighlight">
 \[
-\pi_{\text{post}}(u | f) = \exp\left(-\lambda^{-1}\|{K}u - f^{\delta} - \mu\|_1\right)\prod_i I_{[0,1]}\left(\frac{u_i-a_i}{b_i-a_i}\right),
+\pi_{\text{post}}(u | f^\delta) = \exp\left(-\lambda^{-1}\|{K}u - f^{\delta} - \mu\|_1\right)\prod_i I_{[0,1]}\left(\frac{u_i-a_i}{b_i-a_i}\right),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(I[0,1]\)</span> denotes the indicator function for the interval <span class="math notranslate nohighlight">\([0,1]\)</span>. The corresponding MAP estimation problem is given by</p>
 <div class="math notranslate nohighlight">

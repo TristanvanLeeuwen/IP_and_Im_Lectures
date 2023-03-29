@@ -125,7 +125,7 @@ With these, we can establish existence.
 ```{admonition} Theorem: *Fundamental theorem of optimisation*
 :class: important
 
-Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be proper, coercive, bounded from below and lower semi-continuous. Then $J$ has a minimiser.
+Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be proper, coercive, bounded from below and sequential lower semi-continuous. Then $J$ has a minimiser.
 ```
 
 ```{admonition} Proof:
@@ -230,7 +230,7 @@ Thus
 
 $$TV(u) \leq \lim\inf_{k\rightarrow \infty} TV(u_k),$$
 
-showing that $TV(u)$ is indeed l.s.c. w.r.t. $L^1([0,1])$.
+showing that $TV(u)$ is (continuous and hence) indeed l.s.c. w.r.t. $L^1([0,1])$.
 ```
 
 Having established existence, we can wonder about uniqueness. The following theorem gives a sufficient (but not necessary!) condition for uniqueness.
@@ -663,7 +663,7 @@ $$
 ```{admonition} Answer
 :class: tip, dropdown
 
-We have $J(u+h) = J(u) + \langle Ku - f, Kv \rangle + \textstyle{\frac{1}{2}}\|Kv\|^2.$ This suggests letting $DJ(u)v = \langle Ku - f, Kv\rangle = \langle K^*(Ku - f), v\rangle$. Indeed
+We have $J(u+h) = J(u) + \langle Ku - f, Kh \rangle + \textstyle{\frac{1}{2}}\|Kh\|^2.$ This suggests letting $DJ(u)v = \langle Ku - f, Kh\rangle = \langle K^*(Ku - f), h\rangle$. Indeed
 
 $$
 \lim_{\|h\|\rightarrow 0}\frac{\|Kh\|^2_{L^2}}{\|h\|_{L^2}} = 0,
@@ -681,7 +681,7 @@ because $K$ is bounded.
 Here, we have $J(\mathbf{v} + \mathbf{h}) = J(\mathbf{v}) + \langle \partial_t f + \nabla \cdot (f\mathbf{v}),  \nabla \cdot (f\mathbf{h})\rangle + \textstyle{\frac{1}{2}}\|\nabla \cdot (f\mathbf{h})\|^2$, suggesting
 
 $$
-DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nabla \cdot (f(x,t)\mathbf{v}(x,t))\right)\left(\nabla \cdot (f(x,t)\mathbf{v}(x,t))\right) \mathrm{d}t\mathrm{d}x.
+DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nabla \cdot (f(x,t)\mathbf{v}(x,t))\right)\left(\nabla \cdot (f(x,t)\mathbf{h}(x,t))\right) \mathrm{d}t\mathrm{d}x.
 $$
 ```
 

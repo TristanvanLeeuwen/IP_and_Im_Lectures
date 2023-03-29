@@ -516,7 +516,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>With these, we can establish existence.</p>
 <div class="important admonition">
 <p class="admonition-title">Theorem: <em>Fundamental theorem of optimisation</em></p>
-<p>Let <span class="math notranslate nohighlight">\(J : \mathcal{U} \rightarrow \mathbb{R}\)</span> be proper, coercive, bounded from below and lower semi-continuous. Then <span class="math notranslate nohighlight">\(J\)</span> has a minimiser.</p>
+<p>Let <span class="math notranslate nohighlight">\(J : \mathcal{U} \rightarrow \mathbb{R}\)</span> be proper, coercive, bounded from below and sequential lower semi-continuous. Then <span class="math notranslate nohighlight">\(J\)</span> has a minimiser.</p>
 </div>
 <div class="important dropdown admonition">
 <p class="admonition-title">Proof:</p>
@@ -610,7 +610,7 @@ and <span class="math notranslate nohighlight">\(f_i = i^{-1}\)</span>.</p>
 <p>Thus</p>
 <div class="math notranslate nohighlight">
 \[TV(u) \leq \lim\inf_{k\rightarrow \infty} TV(u_k),\]</div>
-<p>showing that <span class="math notranslate nohighlight">\(TV(u)\)</span> is indeed l.s.c. w.r.t. <span class="math notranslate nohighlight">\(L^1([0,1])\)</span>.</p>
+<p>showing that <span class="math notranslate nohighlight">\(TV(u)\)</span> is (continuous and hence) indeed l.s.c. w.r.t. <span class="math notranslate nohighlight">\(L^1([0,1])\)</span>.</p>
 </div>
 <p>Having established existence, we can wonder about uniqueness. The following theorem gives a sufficient (but not necessary!) condition for uniqueness.</p>
 <div class="important admonition">
@@ -939,7 +939,7 @@ We will explore optimality conditions and algorithms for these two classes in mo
 </ul>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Answer</p>
-<p>We have <span class="math notranslate nohighlight">\(J(u+h) = J(u) + \langle Ku - f, Kv \rangle + \textstyle{\frac{1}{2}}\|Kv\|^2.\)</span> This suggests letting <span class="math notranslate nohighlight">\(DJ(u)v = \langle Ku - f, Kv\rangle = \langle K^*(Ku - f), v\rangle\)</span>. Indeed</p>
+<p>We have <span class="math notranslate nohighlight">\(J(u+h) = J(u) + \langle Ku - f, Kh \rangle + \textstyle{\frac{1}{2}}\|Kh\|^2.\)</span> This suggests letting <span class="math notranslate nohighlight">\(DJ(u)v = \langle Ku - f, Kh\rangle = \langle K^*(Ku - f), h\rangle\)</span>. Indeed</p>
 <div class="math notranslate nohighlight">
 \[
 \lim_{\|h\|\rightarrow 0}\frac{\|Kh\|^2_{L^2}}{\|h\|_{L^2}} = 0,
@@ -955,7 +955,7 @@ where <span class="math notranslate nohighlight">\(f\)</span> here represents an
 <p>Here, we have <span class="math notranslate nohighlight">\(J(\mathbf{v} + \mathbf{h}) = J(\mathbf{v}) + \langle \partial_t f + \nabla \cdot (f\mathbf{v}),  \nabla \cdot (f\mathbf{h})\rangle + \textstyle{\frac{1}{2}}\|\nabla \cdot (f\mathbf{h})\|^2\)</span>, suggesting</p>
 <div class="math notranslate nohighlight">
 \[
-DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nabla \cdot (f(x,t)\mathbf{v}(x,t))\right)\left(\nabla \cdot (f(x,t)\mathbf{v}(x,t))\right) \mathrm{d}t\mathrm{d}x.
+DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nabla \cdot (f(x,t)\mathbf{v}(x,t))\right)\left(\nabla \cdot (f(x,t)\mathbf{h}(x,t))\right) \mathrm{d}t\mathrm{d}x.
 \]</div>
 </div>
 </div>
