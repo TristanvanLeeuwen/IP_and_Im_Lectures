@@ -230,7 +230,7 @@ Thus
 
 $$TV(u) \leq \lim\inf_{k\rightarrow \infty} TV(u_k),$$
 
-showing that $TV(u)$ is indeed l.s.c. w.r.t. $L^1([0,1])$.
+showing that $TV(u)$ is (continuous and hence) indeed l.s.c. w.r.t. $L^1([0,1])$.
 ```
 
 Having established existence, we can wonder about uniqueness. The following theorem gives a sufficient (but not necessary!) condition for uniqueness.
