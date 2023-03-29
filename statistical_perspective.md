@@ -320,7 +320,7 @@ plt.show()
 If we assume Laplace noise with mean $\mu$ and parameter $\lambda$, and a uniform prior $u_i\in[a_i,b_i]$ we end up with
 
 $$
-\pi_{\text{post}}(u | f) = \exp\left(-\lambda^{-1}\|{K}u - f^{\delta} - \mu\|_1\right)\prod_i I_{[0,1]}\left(\frac{u_i-a_i}{b_i-a_i}\right),
+\pi_{\text{post}}(u | f^\delta) = \exp\left(-\lambda^{-1}\|{K}u - f^{\delta} - \mu\|_1\right)\prod_i I_{[0,1]}\left(\frac{u_i-a_i}{b_i-a_i}\right),
 $$
 
 where $I[0,1]$ denotes the indicator function for the interval $[0,1]$. The corresponding MAP estimation problem is given by
