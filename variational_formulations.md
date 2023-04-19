@@ -673,12 +673,12 @@ because $K$ is bounded.
 ```
 
 * $J(\mathbf{v}) = \frac{1}{2} \left\| \partial_t f + \nabla\cdot(f \mathbf{v}) \right\|_{L^2(\Omega \times [0,T])}^2$
-	where $f$ here represents an image sequence, i.e. $f: \Omega \times [0,T] \rightarrow \mathbb{R}$, and $\mathbf{v}$ denotes a desired vector field, i.e. $\mathbf{v}: \Omega \times [0,T] \rightarrow \mathbb{R}^2$.
+	where $f$ here represents an image sequence, i.e. $f: \Omega \times [0,T] \rightarrow \mathbb{R}$, and $\mathbf{v}$ denotes a desired vector field, i.e. $\mathbf{v}: \Omega \times [0,T] \rightarrow \mathbb{R}^2$. We assume each component of $v$ satisfies $v_i(\cdot, t) \in W^{1,2}(\Omega)$.
 
 ```{admonition} Answer
 :class: tip, dropdown
 
-Here, we have $J(\mathbf{v} + \mathbf{h}) = J(\mathbf{v}) + \langle \partial_t f + \nabla \cdot (f\mathbf{v}),  \nabla \cdot (f\mathbf{h})\rangle + \textstyle{\frac{1}{2}}\|\nabla \cdot (f\mathbf{h})\|^2$, suggesting
+Here, we have $J(\mathbf{v} + \mathbf{h}) = J(\mathbf{v}) + \langle \partial_t f + \nabla \cdot (f\mathbf{v}),  \nabla \cdot (f\mathbf{h})\rangle_{L^2(\Omega \times [0,T])} + \textstyle{\frac{1}{2}}\|\nabla \cdot (f\mathbf{h})\|_{L^2(\Omega \times [0,T])}^2$, suggesting
 
 $$
 DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nabla \cdot (f(x,t)\mathbf{v}(x,t))\right)\left(\nabla \cdot (f(x,t)\mathbf{h}(x,t))\right) \mathrm{d}t\mathrm{d}x.
@@ -806,6 +806,6 @@ glue("fourth_order", fig, display=False)
 
 ### Total variation
 
-* Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical scheme method to solve it.
+* Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical scheme method to solve it. You can assume $u \in H^{1,1}(\Omega)$. 
 
 * Test your method on the cameraman image and compare it to the Perona-Malik approach.
