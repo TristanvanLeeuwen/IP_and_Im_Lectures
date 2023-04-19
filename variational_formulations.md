@@ -423,13 +423,13 @@ with $\Omega \subset \mathbb{R}^n$ and $r : \mathbb{R}^n \rightarrow \mathbb{R}$
 
 Let $J$ be a functional of the form {eq}`J_denoising`. Then the Euler-Lagrange equations are given by
 
-$$u(x) - \nabla \cdot \nabla r(\nabla u(x)) = f^\delta(x),$$
+$$u(x) - \nabla \cdot \left(\nabla r(\nabla u(x))\right) = f^\delta(x),$$
 
-with boundary condition $\nabla u \cdot n = 0$. The solution to this PDE is a stationary point of the functional $J$.
+with boundary condition $\nabla r( \nabla u) \cdot n = 0$. Here $n(x)$ denotes the normal at $x \in \partial \Omega$ and $\nabla r$ denotes the gradient with respect to its argument (and not with respect to $x$). The solution to this PDE is a stationary point of the functional $J$.
 
 It is commonly expressed as an evolution equation
 
-$$\partial_t u(t,x) + u(t,x) - \nabla \cdot \nabla r(\nabla u(t,x)) = f^\delta(x),$$
+$$\partial_t u(t,x) + u(t,x) - \nabla \cdot \left(\nabla r(\nabla u(t,x))\right) = f^\delta(x),$$
 
 whose solution tends to a stationary point of $J$ as $t \rightarrow \infty$.
 ```
@@ -449,11 +449,11 @@ and hence
 
 $$\phi'(0) = \int_{\Omega} (u - f^\delta)v + \nabla r(\nabla u)\cdot\nabla v.$$
 
-Applyings [Green's first identity](https://en.wikipedia.org/wiki/Green%27s_identities#Green's_first_identity) yields
+Applying [Green's first identity](https://en.wikipedia.org/wiki/Green%27s_identities#Green's_first_identity) yields
 
-$$\int_{\Omega} \left(u(x) - f^\delta(x) - \nabla \cdot \nabla r(\nabla u(x))\right) v(x) \mathrm{d}x + \left.v(x)\nabla u(x)\cdot n(x)\right|_{\Omega}.$$
+$$\int_{\Omega} \left(u(x) - f^\delta(x) - \nabla \cdot \left( \nabla r(\nabla u(x))\right)\right) v(x) \mathrm{d}x + \left.v(x)\nabla r( \nabla u(x))\cdot n(x)\right|_{\Omega}.$$
 
-Since it should hold for all $v$, we obtain the desired PDE. The boundary term involves $\nabla u\cdot n$ so this imposes Neumann boundary conditions.
+Since it should hold for all $v$, we obtain the desired PDE. The boundary term involves $\nabla r( \nabla u) \cdot n$, so this imposes $\nabla r( \nabla u) \cdot n = 0$.
 ```
 
 ````{admonition} Example: *The heat equation*
@@ -554,7 +554,7 @@ which leads to the Perona-Malik diffusion equation:
 
 $$\partial_t u + u - \alpha\nabla \cdot \left(\frac{\nabla u}{1 + \epsilon^{-2}\|\nabla u\|_2^2}\right) = f^\delta.$$
 
-We can interpret intuitively why this would preserve edges by looking at the diffusion coefficient. Wherever $\|\nabla u\| \ll \epsilon$ we have linear diffusion, if $\|\nabla u\| \gg \epsilon$, we hardly have any diffusion. This intuition if confirmed by consider the penalty $r(s)$, which for small $s$ behaves like $s^2$ but then flattens out and will thus not increasingly penalise larger gradients.
+We can interpret intuitively why this would preserve edges by looking at the diffusion coefficient. Wherever $\|\nabla u\| \ll \epsilon$ we have linear diffusion, if $\|\nabla u\| \gg \epsilon$, we hardly have any diffusion. This intuition is confirmed by considering the penalty $r(s)$, which for small $s$ behaves like $s^2$ but then flattens out and will thus not increasingly penalise larger gradients.
 
 ```{glue:figure} perona_malik
 :figwidth: 500px
