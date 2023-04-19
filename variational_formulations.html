@@ -480,7 +480,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>This can be generalised to include certain discontinuous functions by introducing the space of functions of <a class="reference external" href="https://en.wikipedia.org/wiki/Bounded_variation">bounded variation</a>, denoted by <span class="math notranslate nohighlight">\(BV([0,1])\)</span>. Functions in <span class="math notranslate nohighlight">\(BV([0,1])\)</span> are characterised as having a finite <a class="reference external" href="https://en.wikipedia.org/wiki/Total_variation">Total Variation</a></p>
 <div class="math notranslate nohighlight">
 \[TV(u) = \sup_{\phi \in D([0,1],\mathbb{R})} \int_0^1 u(x)\phi'(x)\mathrm{d}x,\]</div>
-<p>where <span class="math notranslate nohighlight">\(D([0,1],\mathbb{R})\)</span> is the space of smooth test functions with <span class="math notranslate nohighlight">\(\|\phi\|_{L^\infty([0,1])}\leq 1\)</span>. The space <span class="math notranslate nohighlight">\(BV([0,1])\)</span> is much larger than <span class="math notranslate nohighlight">\(H^{1,1}([0,1])\)</span> as it contains certain discontinuous functions (such as the Heaviside stepfunction) and smaller than <span class="math notranslate nohighlight">\(L^1(0,1)\)</span> (which also contains less regular functions). For functions in <span class="math notranslate nohighlight">\(H^{1,1}\)</span> we have <span class="math notranslate nohighlight">\(TV(u) = \|u'\|_{L^1([0,1])}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(D([0,1],\mathbb{R})\)</span> is the space of smooth test functions with <span class="math notranslate nohighlight">\(\|\phi\|_{L^\infty([0,1])}\leq 1\)</span>. The space <span class="math notranslate nohighlight">\(BV([0,1])\)</span> is much larger than <span class="math notranslate nohighlight">\(W^{1,1}([0,1])\)</span> as it contains certain discontinuous functions (such as the Heaviside stepfunction) and smaller than <span class="math notranslate nohighlight">\(L^1(0,1)\)</span> (which also contains less regular functions). For functions in <span class="math notranslate nohighlight">\(W^{1,1}\)</span> we have <span class="math notranslate nohighlight">\(TV(u) = \|u'\|_{L^1([0,1])}\)</span>.</p>
 </div>
 <div class="section" id="analysis">
 <h2><span class="section-number">5.1. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
@@ -718,11 +718,11 @@ We will explore optimality conditions and algorithms for these two classes in mo
 <p class="admonition-title">Theorem: Euler-Lagrange equations</p>
 <p>Let <span class="math notranslate nohighlight">\(J\)</span> be a functional of the form <a class="reference internal" href="#equation-j-denoising">(5.5)</a>. Then the Euler-Lagrange equations are given by</p>
 <div class="math notranslate nohighlight">
-\[u(x) - \nabla \cdot \nabla r(\nabla u(x)) = f^\delta(x),\]</div>
-<p>with boundary condition <span class="math notranslate nohighlight">\(\nabla u \cdot n = 0\)</span>. The solution to this PDE is a stationary point of the functional <span class="math notranslate nohighlight">\(J\)</span>.</p>
+\[u(x) - \nabla \cdot \left(\nabla r(\nabla u(x))\right) = f^\delta(x),\]</div>
+<p>with boundary condition <span class="math notranslate nohighlight">\(\nabla r( \nabla u) \cdot n = 0\)</span>. Here <span class="math notranslate nohighlight">\(n(x)\)</span> denotes the normal at <span class="math notranslate nohighlight">\(x \in \partial \Omega\)</span> and <span class="math notranslate nohighlight">\(\nabla r\)</span> denotes the gradient with respect to its argument (and not with respect to <span class="math notranslate nohighlight">\(x\)</span>). The solution to this PDE is a stationary point of the functional <span class="math notranslate nohighlight">\(J\)</span>.</p>
 <p>It is commonly expressed as an evolution equation</p>
 <div class="math notranslate nohighlight">
-\[\partial_t u(t,x) + u(t,x) - \nabla \cdot \nabla r(\nabla u(t,x)) = f^\delta(x),\]</div>
+\[\partial_t u(t,x) + u(t,x) - \nabla \cdot \left(\nabla r(\nabla u(t,x))\right) = f^\delta(x),\]</div>
 <p>whose solution tends to a stationary point of <span class="math notranslate nohighlight">\(J\)</span> as <span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span>.</p>
 </div>
 <div class="dropdown admonition">
@@ -736,10 +736,10 @@ We will explore optimality conditions and algorithms for these two classes in mo
 <p>and hence</p>
 <div class="math notranslate nohighlight">
 \[\phi'(0) = \int_{\Omega} (u - f^\delta)v + \nabla r(\nabla u)\cdot\nabla v.\]</div>
-<p>Applyings <a class="reference external" href="https://en.wikipedia.org/wiki/Green%27s_identities#Green%27s_first_identity">Green’s first identity</a> yields</p>
+<p>Applying <a class="reference external" href="https://en.wikipedia.org/wiki/Green%27s_identities#Green%27s_first_identity">Green’s first identity</a> yields</p>
 <div class="math notranslate nohighlight">
-\[\int_{\Omega} \left(u(x) - f^\delta(x) - \nabla \cdot \nabla r(\nabla u(x))\right) v(x) \mathrm{d}x + \left.v(x)\nabla u(x)\cdot n(x)\right|_{\Omega}.\]</div>
-<p>Since it should hold for all <span class="math notranslate nohighlight">\(v\)</span>, we obtain the desired PDE. The boundary term involves <span class="math notranslate nohighlight">\(\nabla u\cdot n\)</span> so this imposes Neumann boundary conditions.</p>
+\[\int_{\Omega} \left(u(x) - f^\delta(x) - \nabla \cdot \left( \nabla r(\nabla u(x))\right)\right) v(x) \mathrm{d}x + \left.v(x)\nabla r( \nabla u(x))\cdot n(x)\right|_{\Omega}.\]</div>
+<p>Since it should hold for all <span class="math notranslate nohighlight">\(v\)</span>, we obtain the desired PDE. The boundary term involves <span class="math notranslate nohighlight">\(\nabla r( \nabla u) \cdot n\)</span>, so this imposes <span class="math notranslate nohighlight">\(\nabla r( \nabla u) \cdot n = 0\)</span>.</p>
 </div>
 <div class="admonition-example-the-heat-equation admonition">
 <p class="admonition-title">Example: <em>The heat equation</em></p>
@@ -834,7 +834,7 @@ We will explore optimality conditions and algorithms for these two classes in mo
 <p>which leads to the Perona-Malik diffusion equation:</p>
 <div class="math notranslate nohighlight">
 \[\partial_t u + u - \alpha\nabla \cdot \left(\frac{\nabla u}{1 + \epsilon^{-2}\|\nabla u\|_2^2}\right) = f^\delta.\]</div>
-<p>We can interpret intuitively why this would preserve edges by looking at the diffusion coefficient. Wherever <span class="math notranslate nohighlight">\(\|\nabla u\| \ll \epsilon\)</span> we have linear diffusion, if <span class="math notranslate nohighlight">\(\|\nabla u\| \gg \epsilon\)</span>, we hardly have any diffusion. This intuition if confirmed by consider the penalty <span class="math notranslate nohighlight">\(r(s)\)</span>, which for small <span class="math notranslate nohighlight">\(s\)</span> behaves like <span class="math notranslate nohighlight">\(s^2\)</span> but then flattens out and will thus not increasingly penalise larger gradients.</p>
+<p>We can interpret intuitively why this would preserve edges by looking at the diffusion coefficient. Wherever <span class="math notranslate nohighlight">\(\|\nabla u\| \ll \epsilon\)</span> we have linear diffusion, if <span class="math notranslate nohighlight">\(\|\nabla u\| \gg \epsilon\)</span>, we hardly have any diffusion. This intuition is confirmed by considering the penalty <span class="math notranslate nohighlight">\(r(s)\)</span>, which for small <span class="math notranslate nohighlight">\(s\)</span> behaves like <span class="math notranslate nohighlight">\(s^2\)</span> but then flattens out and will thus not increasingly penalise larger gradients.</p>
 <div class="figure align-default" id="perona-malik" style="width: 500px">
 <div class="cell_output docutils container">
 <img alt="_images/variational_formulations_5_0.png" src="_images/variational_formulations_5_0.png" />
@@ -948,11 +948,11 @@ We will explore optimality conditions and algorithms for these two classes in mo
 </div>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(J(\mathbf{v}) = \frac{1}{2} \left\| \partial_t f + \nabla\cdot(f \mathbf{v}) \right\|_{L^2(\Omega \times [0,T])}^2\)</span>
-where <span class="math notranslate nohighlight">\(f\)</span> here represents an image sequence, i.e. <span class="math notranslate nohighlight">\(f: \Omega \times [0,T] \rightarrow \mathbb{R}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> denotes a desired vector field, i.e. <span class="math notranslate nohighlight">\(\mathbf{v}: \Omega \times [0,T] \rightarrow \mathbb{R}^2\)</span>.</p></li>
+where <span class="math notranslate nohighlight">\(f\)</span> here represents an image sequence, i.e. <span class="math notranslate nohighlight">\(f: \Omega \times [0,T] \rightarrow \mathbb{R}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> denotes a desired vector field, i.e. <span class="math notranslate nohighlight">\(\mathbf{v}: \Omega \times [0,T] \rightarrow \mathbb{R}^2\)</span>. We assume each component of <span class="math notranslate nohighlight">\(v\)</span> satisfies <span class="math notranslate nohighlight">\(v_i(\cdot, t) \in W^{1,2}(\Omega)\)</span>.</p></li>
 </ul>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Answer</p>
-<p>Here, we have <span class="math notranslate nohighlight">\(J(\mathbf{v} + \mathbf{h}) = J(\mathbf{v}) + \langle \partial_t f + \nabla \cdot (f\mathbf{v}),  \nabla \cdot (f\mathbf{h})\rangle + \textstyle{\frac{1}{2}}\|\nabla \cdot (f\mathbf{h})\|^2\)</span>, suggesting</p>
+<p>Here, we have <span class="math notranslate nohighlight">\(J(\mathbf{v} + \mathbf{h}) = J(\mathbf{v}) + \langle \partial_t f + \nabla \cdot (f\mathbf{v}),  \nabla \cdot (f\mathbf{h})\rangle_{L^2(\Omega \times [0,T])} + \textstyle{\frac{1}{2}}\|\nabla \cdot (f\mathbf{h})\|_{L^2(\Omega \times [0,T])}^2\)</span>, suggesting</p>
 <div class="math notranslate nohighlight">
 \[
 DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nabla \cdot (f(x,t)\mathbf{v}(x,t))\right)\left(\nabla \cdot (f(x,t)\mathbf{h}(x,t))\right) \mathrm{d}t\mathrm{d}x.
@@ -1079,7 +1079,7 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 <div class="section" id="total-variation">
 <h3><span class="section-number">5.5.1. </span>Total variation<a class="headerlink" href="#total-variation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical scheme method to solve it.</p></li>
+<li><p>Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical scheme method to solve it. You can assume <span class="math notranslate nohighlight">\(u \in H^{1,1}(\Omega)\)</span>.</p></li>
 <li><p>Test your method on the cameraman image and compare it to the Perona-Malik approach.</p></li>
 </ul>
 </div>

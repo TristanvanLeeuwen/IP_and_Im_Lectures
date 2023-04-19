@@ -73,7 +73,7 @@ This can be generalised to include certain discontinuous functions by introducin
 
 $$TV(u) = \sup_{\phi \in D([0,1],\mathbb{R})} \int_0^1 u(x)\phi'(x)\mathrm{d}x,$$
 
-where $D([0,1],\mathbb{R})$ is the space of smooth test functions with $\|\phi\|_{L^\infty([0,1])}\leq 1$. The space $BV([0,1])$ is much larger than $H^{1,1}([0,1])$ as it contains certain discontinuous functions (such as the Heaviside stepfunction) and smaller than $L^1(0,1)$ (which also contains less regular functions). For functions in $H^{1,1}$ we have $TV(u) = \|u'\|_{L^1([0,1])}$.
+where $D([0,1],\mathbb{R})$ is the space of smooth test functions with $\|\phi\|_{L^\infty([0,1])}\leq 1$. The space $BV([0,1])$ is much larger than $W^{1,1}([0,1])$ as it contains certain discontinuous functions (such as the Heaviside stepfunction) and smaller than $L^1(0,1)$ (which also contains less regular functions). For functions in $W^{1,1}$ we have $TV(u) = \|u'\|_{L^1([0,1])}$.
 ```
 
 ## Analysis
@@ -423,13 +423,13 @@ with $\Omega \subset \mathbb{R}^n$ and $r : \mathbb{R}^n \rightarrow \mathbb{R}$
 
 Let $J$ be a functional of the form {eq}`J_denoising`. Then the Euler-Lagrange equations are given by
 
-$$u(x) - \nabla \cdot \nabla r(\nabla u(x)) = f^\delta(x),$$
+$$u(x) - \nabla \cdot \left(\nabla r(\nabla u(x))\right) = f^\delta(x),$$
 
-with boundary condition $\nabla u \cdot n = 0$. The solution to this PDE is a stationary point of the functional $J$.
+with boundary condition $\nabla r( \nabla u) \cdot n = 0$. Here $n(x)$ denotes the normal at $x \in \partial \Omega$ and $\nabla r$ denotes the gradient with respect to its argument (and not with respect to $x$). The solution to this PDE is a stationary point of the functional $J$.
 
 It is commonly expressed as an evolution equation
 
-$$\partial_t u(t,x) + u(t,x) - \nabla \cdot \nabla r(\nabla u(t,x)) = f^\delta(x),$$
+$$\partial_t u(t,x) + u(t,x) - \nabla \cdot \left(\nabla r(\nabla u(t,x))\right) = f^\delta(x),$$
 
 whose solution tends to a stationary point of $J$ as $t \rightarrow \infty$.
 ```
@@ -449,11 +449,11 @@ and hence
 
 $$\phi'(0) = \int_{\Omega} (u - f^\delta)v + \nabla r(\nabla u)\cdot\nabla v.$$
 
-Applyings [Green's first identity](https://en.wikipedia.org/wiki/Green%27s_identities#Green's_first_identity) yields
+Applying [Green's first identity](https://en.wikipedia.org/wiki/Green%27s_identities#Green's_first_identity) yields
 
-$$\int_{\Omega} \left(u(x) - f^\delta(x) - \nabla \cdot \nabla r(\nabla u(x))\right) v(x) \mathrm{d}x + \left.v(x)\nabla u(x)\cdot n(x)\right|_{\Omega}.$$
+$$\int_{\Omega} \left(u(x) - f^\delta(x) - \nabla \cdot \left( \nabla r(\nabla u(x))\right)\right) v(x) \mathrm{d}x + \left.v(x)\nabla r( \nabla u(x))\cdot n(x)\right|_{\Omega}.$$
 
-Since it should hold for all $v$, we obtain the desired PDE. The boundary term involves $\nabla u\cdot n$ so this imposes Neumann boundary conditions.
+Since it should hold for all $v$, we obtain the desired PDE. The boundary term involves $\nabla r( \nabla u) \cdot n$, so this imposes $\nabla r( \nabla u) \cdot n = 0$.
 ```
 
 ````{admonition} Example: *The heat equation*
@@ -554,7 +554,7 @@ which leads to the Perona-Malik diffusion equation:
 
 $$\partial_t u + u - \alpha\nabla \cdot \left(\frac{\nabla u}{1 + \epsilon^{-2}\|\nabla u\|_2^2}\right) = f^\delta.$$
 
-We can interpret intuitively why this would preserve edges by looking at the diffusion coefficient. Wherever $\|\nabla u\| \ll \epsilon$ we have linear diffusion, if $\|\nabla u\| \gg \epsilon$, we hardly have any diffusion. This intuition if confirmed by consider the penalty $r(s)$, which for small $s$ behaves like $s^2$ but then flattens out and will thus not increasingly penalise larger gradients.
+We can interpret intuitively why this would preserve edges by looking at the diffusion coefficient. Wherever $\|\nabla u\| \ll \epsilon$ we have linear diffusion, if $\|\nabla u\| \gg \epsilon$, we hardly have any diffusion. This intuition is confirmed by considering the penalty $r(s)$, which for small $s$ behaves like $s^2$ but then flattens out and will thus not increasingly penalise larger gradients.
 
 ```{glue:figure} perona_malik
 :figwidth: 500px
@@ -673,12 +673,12 @@ because $K$ is bounded.
 ```
 
 * $J(\mathbf{v}) = \frac{1}{2} \left\| \partial_t f + \nabla\cdot(f \mathbf{v}) \right\|_{L^2(\Omega \times [0,T])}^2$
-	where $f$ here represents an image sequence, i.e. $f: \Omega \times [0,T] \rightarrow \mathbb{R}$, and $\mathbf{v}$ denotes a desired vector field, i.e. $\mathbf{v}: \Omega \times [0,T] \rightarrow \mathbb{R}^2$.
+	where $f$ here represents an image sequence, i.e. $f: \Omega \times [0,T] \rightarrow \mathbb{R}$, and $\mathbf{v}$ denotes a desired vector field, i.e. $\mathbf{v}: \Omega \times [0,T] \rightarrow \mathbb{R}^2$. We assume each component of $v$ satisfies $v_i(\cdot, t) \in W^{1,2}(\Omega)$.
 
 ```{admonition} Answer
 :class: tip, dropdown
 
-Here, we have $J(\mathbf{v} + \mathbf{h}) = J(\mathbf{v}) + \langle \partial_t f + \nabla \cdot (f\mathbf{v}),  \nabla \cdot (f\mathbf{h})\rangle + \textstyle{\frac{1}{2}}\|\nabla \cdot (f\mathbf{h})\|^2$, suggesting
+Here, we have $J(\mathbf{v} + \mathbf{h}) = J(\mathbf{v}) + \langle \partial_t f + \nabla \cdot (f\mathbf{v}),  \nabla \cdot (f\mathbf{h})\rangle_{L^2(\Omega \times [0,T])} + \textstyle{\frac{1}{2}}\|\nabla \cdot (f\mathbf{h})\|_{L^2(\Omega \times [0,T])}^2$, suggesting
 
 $$
 DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nabla \cdot (f(x,t)\mathbf{v}(x,t))\right)\left(\nabla \cdot (f(x,t)\mathbf{h}(x,t))\right) \mathrm{d}t\mathrm{d}x.
@@ -806,6 +806,6 @@ glue("fourth_order", fig, display=False)
 
 ### Total variation
 
-* Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical scheme method to solve it.
+* Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical scheme method to solve it. You can assume $u \in H^{1,1}(\Omega)$. 
 
 * Test your method on the cameraman image and compare it to the Perona-Malik approach.
