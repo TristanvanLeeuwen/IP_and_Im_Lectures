@@ -1,7 +1,8 @@
-- file: intro
+format: jb-book
+root: intro
+parts:
+- caption: Lectures
   numbered: true
-
-- part: Lectures
   chapters:
   - file: what_is
   - file: discrete_ip_regularization
@@ -9,14 +10,14 @@
   - file: statistical_perspective
   - file: variational_formulations
   - file: numerical_optimisation
-
-- part: Applications
+- caption: Applications
+  numbered: true
   chapters:
   - file: image_processing
   - file: tomography
   - file: wavefield_imaging
   - file: magnetic_resonance_imaging
-
-- part: Reference
+- caption: Reference
+  numbered: true
   chapters:
   - file: bibliography
