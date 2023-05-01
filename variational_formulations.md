@@ -73,7 +73,13 @@ This can be generalised to include certain discontinuous functions by introducin
 
 $$TV(u) = \sup_{\phi \in D([0,1],\mathbb{R})} \int_0^1 u(x)\phi'(x)\mathrm{d}x,$$
 
-where $D([0,1],\mathbb{R})$ is the space of smooth test functions with $\|\phi\|_{L^\infty([0,1])}\leq 1$. The space $BV([0,1])$ is much larger than $W^{1,1}([0,1])$ as it contains certain discontinuous functions (such as the Heaviside stepfunction) and smaller than $L^1(0,1)$ (which also contains less regular functions). For functions in $W^{1,1}$ we have $TV(u) = \|u'\|_{L^1([0,1])}$.
+where $D([0,1],\mathbb{R})$ is the space of smooth compactly supported test functions with $\|\phi\|_{L^\infty([0,1])}\leq 1$. The space $BV([0,1])$ is much larger than $W^{1,1}([0,1])$ as it contains certain discontinuous functions (such as the Heaviside stepfunction) and smaller than $L^1(0,1)$ (which also contains less regular functions). For functions in $W^{1,1}$ we have $TV(u) = \|u'\|_{L^1([0,1])}$.
+
+For a general domain $\Omega \subset \mathbb{R}^d$ with $d\geq 1$, the Total Variation is given by: 
+
+$$TV(u) = \sup_{\phi \in C^{\infty}_c(\Omega, \mathbb{R}^d), \lVert \phi \rVert_{L^p(\Omega)} \leq 1} \int_\Omega u(x) \nabla \cdot \phi(x) \mathrm{d}x,$$
+
+with $C_c(\Omega, \mathbb{R}^d)$ the set of infinitely differentiable compactly supported vector fields with values in $\mathbb{R}^d$ and $1 \leq p \leq \infty$. The $L^p(\Omega)$ norm is given by $\lVert u \rVert_{L^p(\Omega)} := \lVert (\lVert u \rVert_2) \rVert_{L^p(\Omega)}$ For $p = \infty$ and $u \in W^{1,1}(\Omega)$, we have $TV(u) = \lVert \nabla u \rVert_{L^1(\Omega)} := \lVert (\lVert \nabla u \rVert_2) \rVert_{L^1(\Omega)}$.
 ```
 
 ## Analysis
