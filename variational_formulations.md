@@ -420,7 +420,7 @@ An alternative viewpoint on optimality is provided by the Euler-lagrange equatio
 
 ```{math}
 :label: J_denoising
-J(u) = {\textstyle{\frac{1}{2}}} \int_{\Omega} \left(u(x) - f^\delta(x)\right)^2 + r(\nabla u(x)) \mathrm{d}x,
+J(u) = \int_{\Omega} {\textstyle{\frac{1}{2}}} \left(u(x) - f^\delta(x)\right)^2 + r(\nabla u(x)) \mathrm{d}x,
 ```
 with $\Omega \subset \mathbb{R}^n$ and $r : \mathbb{R}^n \rightarrow \mathbb{R}$. Such problems occur for example in image-denoising applications. We will see later that such problems also occur as subproblems when solving more general problems of the form {eq}`variational_R`.
 
