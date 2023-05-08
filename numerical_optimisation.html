@@ -733,7 +733,7 @@ and gradients <span class="math notranslate nohighlight">\(y_k = J'(u_{k+1}) - J
 \[\begin{split}J_i'(u) = \begin{cases} -1 &amp; u &lt; f_i \\ [-1,1] &amp; u = f_i \\ 1 &amp; u &gt; f_i\end{cases},\end{split}\]</div>
 <p>with which we can compute <span class="math notranslate nohighlight">\(J'(u)\)</span> using the sum-rule:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}J'(u) = \begin{cases} -n &amp; u &lt; f_1 \\ 2i - n &amp; u \in (f_i,f_{i+1})\\ 2i-1-n+[-1,1] &amp; u = f_i\\n &amp; f&gt; f_n\end{cases}.\end{split}\]</div>
+\[\begin{split}J'(u) = \begin{cases} -n &amp; u &lt; f_1 \\ 2i - n &amp; u \in (f_i,f_{i+1})\\ 2i-1-n+[-1,1] &amp; u = f_i\\n &amp; u&gt; f_n\end{cases}.\end{split}\]</div>
 <p>To find a <span class="math notranslate nohighlight">\(u\)</span> for which <span class="math notranslate nohighlight">\(0\in J'(u)\)</span> we need to consider the middle two cases. If <span class="math notranslate nohighlight">\(n\)</span> is even, we can find an <span class="math notranslate nohighlight">\(i\)</span> such that <span class="math notranslate nohighlight">\(2i = n\)</span> and get that for all <span class="math notranslate nohighlight">\(u \in [f_{n/2},f_{n/2+1}]\)</span> we have <span class="math notranslate nohighlight">\(0 \in J'(u)\)</span>.
 When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have optimality only for <span class="math notranslate nohighlight">\(u = f_{(n+1)/2}\)</span>.</p>
 <div class="figure align-default" id="median-example" style="width: 500px">
@@ -1163,7 +1163,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff8194e1280&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd1532a91f0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -1185,7 +1185,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff8159bb8b0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd150191790&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1250,8 +1250,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn(&#39;The line search algorithm did not converge&#39;, LineSearchWarning)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff7fb985550&gt;,
- &lt;matplotlib.lines.Line2D at 0x7ff7fb985700&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd1534d54c0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7fd1534d5670&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />

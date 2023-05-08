@@ -309,7 +309,7 @@ $$J_i'(u) = \begin{cases} -1 & u < f_i \\ [-1,1] & u = f_i \\ 1 & u > f_i\end{ca
 
 with which we can compute $J'(u)$ using the sum-rule:
 
-$$J'(u) = \begin{cases} -n & u < f_1 \\ 2i - n & u \in (f_i,f_{i+1})\\ 2i-1-n+[-1,1] & u = f_i\\n & f> f_n\end{cases}.$$
+$$J'(u) = \begin{cases} -n & u < f_1 \\ 2i - n & u \in (f_i,f_{i+1})\\ 2i-1-n+[-1,1] & u = f_i\\n & u> f_n\end{cases}.$$
 
 To find a $u$ for which $0\in J'(u)$ we need to consider the middle two cases. If $n$ is even, we can find an $i$ such that $2i = n$ and get that for all $u \in [f_{n/2},f_{n/2+1}]$ we have $0 \in J'(u)$.
 When $n$ is odd, we have optimality only for $u = f_{(n+1)/2}$.
