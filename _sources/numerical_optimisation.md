@@ -218,9 +218,9 @@ Let
 
 All these functions are convex and exhibit a discontinuity in the derivative at $u = 0$. The subdifferentials at $u=0$ are given by
 
-* $\partial J_1(u) = [-1,1]$
-* $\partial J_2(u) = (-\infty,0]$
-* $\partial J_3(u) = [0,1]$
+* $\partial J_1(0) = [-1,1]$
+* $\partial J_2(0) = (-\infty,0]$
+* $\partial J_3(0) = [0,1]$
 
 ```{glue:figure} convex_examples
 :figwidth: 500px

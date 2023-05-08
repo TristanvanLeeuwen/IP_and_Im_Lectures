@@ -646,9 +646,9 @@ and gradients <span class="math notranslate nohighlight">\(y_k = J'(u_{k+1}) - J
 </ul>
 <p>All these functions are convex and exhibit a discontinuity in the derivative at <span class="math notranslate nohighlight">\(u = 0\)</span>. The subdifferentials at <span class="math notranslate nohighlight">\(u=0\)</span> are given by</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\partial J_1(u) = [-1,1]\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\partial J_2(u) = (-\infty,0]\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\partial J_3(u) = [0,1]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\partial J_1(0) = [-1,1]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\partial J_2(0) = (-\infty,0]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\partial J_3(0) = [0,1]\)</span></p></li>
 </ul>
 <div class="figure align-default" id="convex-examples" style="width: 500px">
 <div class="cell_output docutils container">
@@ -1163,7 +1163,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f82c994a0a0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff8194e1280&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -1185,7 +1185,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f82c6056760&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff8159bb8b0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1250,8 +1250,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn(&#39;The line search algorithm did not converge&#39;, LineSearchWarning)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f82ac1914c0&gt;,
- &lt;matplotlib.lines.Line2D at 0x7f82ac191670&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff7fb985550&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7ff7fb985700&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />
