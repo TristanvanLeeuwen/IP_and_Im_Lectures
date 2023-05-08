@@ -812,6 +812,6 @@ glue("fourth_order", fig, display=False)
 
 ### Total variation
 
-* Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical scheme method to solve it. You can assume $u \in W^{1,1}(\Omega)$ with $\Omega = [0,1]^2$. 
 
+* Derive the non-linear diffusion equation corresponding to the TV-denoising problem in $\Omega = [0,1]^2$ and design a numerical scheme method to solve it. You can assume that $u$ is sufficiently regular. 
 * Test your method on the cameraman image and compare it to the Perona-Malik approach.
