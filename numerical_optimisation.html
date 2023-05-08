@@ -820,10 +820,10 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 \[\|u_{k+1} - u_*\|_2^2 \leq \|u_{k} - u_*\|_2^2 -2 \lambda_k \left(J_k - J_*\right) + \lambda_k^2\|J'_k\|_2^2.\]</div>
 <p>Applying this inequality recursively on <span class="math notranslate nohighlight">\(u_{k}\)</span> yields</p>
 <div class="math notranslate nohighlight">
-\[0 \leq \|u_{k+1} - u_*\|_2^2 \leq \|u_0 - u_*\|_2^2 -2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) + \sum_{i=0}^k \lambda_i \|J'_i\|_2^2.\]</div>
+\[0 \leq \|u_{k+1} - u_*\|_2^2 \leq \|u_0 - u_*\|_2^2 -2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) + \sum_{i=0}^k \lambda_i^2 \|J'_i\|_2^2.\]</div>
 <p>Using Lipschitz continuity of <span class="math notranslate nohighlight">\(J\)</span>, we find <span class="math notranslate nohighlight">\(\|J'(u)\|_2 \leq L\)</span> which can be used to yield:</p>
 <div class="math notranslate nohighlight">
-\[ 2 \left(\min_{i\in\{0,1,\ldots,k\}} J(u_i) - J(u_*)\right) \sum_{i=0}^k \lambda_i  \leq 2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) \leq \|u_0 - u_*\|_2^2 + \sum_{i=0}^k \lambda_i \|J'_i\|_2^2, \]</div>
+\[ 2 \left(\min_{i\in\{0,1,\ldots,k\}} J(u_i) - J(u_*)\right) \sum_{i=0}^k \lambda_i  \leq 2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) \leq \|u_0 - u_*\|_2^2 + \sum_{i=0}^k \lambda_i^2 \|J'_i\|_2^2, \]</div>
 <p>which can be used to yield the desired result.</p>
 </div>
 <div class="admonition-remark-convergence-rate-for-a-fixed-stepsize admonition">
@@ -1163,7 +1163,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd1532a91f0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fee8ba501c0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -1185,7 +1185,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd150191790&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fee889c07f0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1250,8 +1250,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn(&#39;The line search algorithm did not converge&#39;, LineSearchWarning)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd1534d54c0&gt;,
- &lt;matplotlib.lines.Line2D at 0x7fd1534d5670&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fee8bf45490&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7fee8bf45640&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />
