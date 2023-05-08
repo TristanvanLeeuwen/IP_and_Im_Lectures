@@ -48,3 +48,7 @@ Please go ahead! These lecture notes are freely available and may be distributed
 ## Contributing to the notes  
 
 Did you spot a mistake? Do you want clarify something or add an example or exercise? Click the Github logo at the top of the page to suggest edits! All files are written in [MyST Markdown](https://jupyterbook.org/reference/cheatsheet.html).
+
+## Acknowledgements
+
+Special thanks to Sven Dummer for proofreading and suggesting corrections.
