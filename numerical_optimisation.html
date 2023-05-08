@@ -725,7 +725,7 @@ and gradients <span class="math notranslate nohighlight">\(y_k = J'(u_{k+1}) - J
 </div>
 <div class="admonition-example-computing-the-median admonition">
 <p class="admonition-title">Example: <em>Computing the median</em></p>
-<p>The median <span class="math notranslate nohighlight">\(u\)</span> of a set of numbers <span class="math notranslate nohighlight">\((f_1, f_2, \ldots, f_n)\)</span> is a minimiser of</p>
+<p>The median <span class="math notranslate nohighlight">\(u\)</span> of a set of numbers <span class="math notranslate nohighlight">\((f_1, f_2, \ldots, f_n)\)</span> (with <span class="math notranslate nohighlight">\(f_i &lt; f_{i+1}\)</span>) is a minimiser of</p>
 <div class="math notranslate nohighlight">
 \[J(u) = \sum_{i=1}^n |u - f_i|.\]</div>
 <p>Introducing <span class="math notranslate nohighlight">\(J_i = |u - f_i|\)</span> we have</p>
@@ -733,7 +733,7 @@ and gradients <span class="math notranslate nohighlight">\(y_k = J'(u_{k+1}) - J
 \[\begin{split}J_i'(u) = \begin{cases} -1 &amp; u &lt; f_i \\ [-1,1] &amp; u = f_i \\ 1 &amp; u &gt; f_i\end{cases},\end{split}\]</div>
 <p>with which we can compute <span class="math notranslate nohighlight">\(J'(u)\)</span> using the sum-rule:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}J'(u) = \begin{cases} -n &amp; u &lt; f_1 \\ 2i - n &amp; u \in (a_i,a_{i+1})\\ 2i-1-n+[-1,1] &amp; u = f_i\\n &amp; f&gt; f_n\end{cases}.\end{split}\]</div>
+\[\begin{split}J'(u) = \begin{cases} -n &amp; u &lt; f_1 \\ 2i - n &amp; u \in (f_i,f_{i+1})\\ 2i-1-n+[-1,1] &amp; u = f_i\\n &amp; f&gt; f_n\end{cases}.\end{split}\]</div>
 <p>To find a <span class="math notranslate nohighlight">\(u\)</span> for which <span class="math notranslate nohighlight">\(0\in J'(u)\)</span> we need to consider the middle two cases. If <span class="math notranslate nohighlight">\(n\)</span> is even, we can find an <span class="math notranslate nohighlight">\(i\)</span> such that <span class="math notranslate nohighlight">\(2i = n\)</span> and get that for all <span class="math notranslate nohighlight">\(u \in [f_{n/2},f_{n/2+1}]\)</span> we have <span class="math notranslate nohighlight">\(0 \in J'(u)\)</span>.
 When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have optimality only for <span class="math notranslate nohighlight">\(u = f_{(n+1)/2}\)</span>.</p>
 <div class="figure align-default" id="median-example" style="width: 500px">
@@ -812,20 +812,26 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 </div>
 <div class="important dropdown admonition">
 <p class="admonition-title">Proof</p>
-<p>By using the definition of <span class="math notranslate nohighlight">\(u_{k+1}\)</span> and the subgradient inequality, we find</p>
+<p>First, we expand <span class="math notranslate nohighlight">\(\|u_{k+1} - u_*\|_2^2\)</span> by using the definition of <span class="math notranslate nohighlight">\(u_{k+1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\|u_{k+1} - u_*\|_2^2 = \|u_{k} - \lambda_k J'_k - u_*\|_2^2 = \|u_{k} - u_*\|_2^2 -2 \lambda_k \left \langle J'_k, u_k - u_* \right \rangle + \lambda_k^2\|J'_k\|_2^2. \]</div>
+<p>Using the subgradient inequality, we find</p>
 <div class="math notranslate nohighlight">
 \[\|u_{k+1} - u_*\|_2^2 \leq \|u_{k} - u_*\|_2^2 -2 \lambda_k \left(J_k - J_*\right) + \lambda_k^2\|J'_k\|_2^2.\]</div>
 <p>Applying this inequality recursively on <span class="math notranslate nohighlight">\(u_{k}\)</span> yields</p>
 <div class="math notranslate nohighlight">
-\[\|u_{k+1} - u_*\|_2^2 \leq \|u_0 - u_*\|_2^2 -2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) + \sum_{i=0}^k \lambda_k \|J'_i\|_2^2.\]</div>
-<p>Using Lipschitz continuity of <span class="math notranslate nohighlight">\(J\)</span>, we find <span class="math notranslate nohighlight">\(\|J'(u)\|_2 \leq L\)</span> which can be used to yield the desired result.</p>
+\[0 \leq \|u_{k+1} - u_*\|_2^2 \leq \|u_0 - u_*\|_2^2 -2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) + \sum_{i=0}^k \lambda_i \|J'_i\|_2^2.\]</div>
+<p>Using Lipschitz continuity of <span class="math notranslate nohighlight">\(J\)</span>, we find <span class="math notranslate nohighlight">\(\|J'(u)\|_2 \leq L\)</span> which can be used to yield:</p>
+<div class="math notranslate nohighlight">
+\[ 2 \left(\min_{i\in\{0,1,\ldots,k\}} J(u_i) - J(u_*)\right) \sum_{i=0}^k \lambda_i  \leq 2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) \leq \|u_0 - u_*\|_2^2 + \sum_{i=0}^k \lambda_i \|J'_i\|_2^2, \]</div>
+<p>which can be used to yield the desired result.</p>
 </div>
 <div class="admonition-remark-convergence-rate-for-a-fixed-stepsize admonition">
 <p class="admonition-title">Remark: <em>Convergence rate for a fixed stepsize</em></p>
 <p>If we choose <span class="math notranslate nohighlight">\(\lambda_k = \lambda\)</span>, we get</p>
 <div class="math notranslate nohighlight">
 \[\min_{k\in\{0,1,\ldots,n-1\}} J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|_2^2 + L^2 \lambda^2 n^2}{2\lambda n}.\]</div>
-<p>we can guarantee that <span class="math notranslate nohighlight">\(\min_{k\in\{0,1,\ldots,n-1\}} J(u_k) - J(u_*) \leq \epsilon\)</span> by picking stepsize <span class="math notranslate nohighlight">\(\lambda = \epsilon/L^2\)</span> and doing <span class="math notranslate nohighlight">\(n = (\|u_0-u_*\|_2L/\epsilon)^2\)</span> iterations. This seems comparable to the rate we derived for gradient descent previously. However, for <em>smooth</em> convex functions we derive a stronger result that gradient-descent requires only <span class="math notranslate nohighlight">\(\mathcal{O}(1/\epsilon)\)</span> iterations. For smooth <em>strongly</em> convex functionals we can strengthen the result even further and show that we only need <span class="math notranslate nohighlight">\(\mathcal{O}(\log 1/\epsilon)\)</span> iterations. The proofs are left as an exercise.</p>
+<p>we can guarantee that <span class="math notranslate nohighlight">\(\min_{k\in\{0,1,\ldots,n-1\}} J(u_k) - J(u_*) \leq \epsilon\)</span> by picking stepsize <span class="math notranslate nohighlight">\(\lambda = \epsilon/L^2\)</span> and doing <span class="math notranslate nohighlight">\(n = (\|u_0-u_*\|_2L/\epsilon)^2\)</span> iterations. However, for <em>smooth</em> convex functions we derive a stronger result that gradient-descent requires only <span class="math notranslate nohighlight">\(\mathcal{O}(1/\epsilon)\)</span> iterations (use exercise 6.4.2, the Lipschitz property, and the subgradient inequality). For smooth <em>strongly</em> convex functionals we can strengthen the result even further and show that we only need <span class="math notranslate nohighlight">\(\mathcal{O}(\log 1/\epsilon)\)</span> iterations (see exercise 6.4.1). The proofs are left as an exercise.</p>
 </div>
 </div>
 <div class="section" id="proximal-gradient-methods">
@@ -959,7 +965,7 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 \[\max_{\nu} \left(\min_u D(u) + \langle Au,\nu\rangle\right) + \left(\min_v R(v) - \langle \nu, v\rangle\right).\]</div>
 <p>In this expression we recognise the <a class="reference external" href="https://en.wikipedia.org/wiki/Convex_conjugate"><em>convex conjugates</em></a> of <span class="math notranslate nohighlight">\(D\)</span> and <span class="math notranslate nohighlight">\(R\)</span>. With this, we re-write the problem as</p>
 <div class="math notranslate nohighlight">
-\[\min_{\nu} D^*(A^T\nu) + R^*(-\nu).\]</div>
+\[\min_{\nu} D^*(-A^T\nu) + R^*(\nu).\]</div>
 <p>Thus, we have moved the linear map to the other side. We can now apply the proximal gradient method provided that:</p>
 <ul class="simple">
 <li><p>We have a closed-form expression for the convex conjugates of <span class="math notranslate nohighlight">\(D\)</span> and <span class="math notranslate nohighlight">\(R\)</span>;</p></li>
@@ -1157,7 +1163,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdf7e3ca850&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f82c994a0a0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -1179,7 +1185,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdf75487e50&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f82c6056760&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1244,8 +1250,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn(&#39;The line search algorithm did not converge&#39;, LineSearchWarning)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdf7e7c74f0&gt;,
- &lt;matplotlib.lines.Line2D at 0x7fdf7e7c76a0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f82ac1914c0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7f82ac191670&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />
@@ -1297,17 +1303,17 @@ The second one is easy, since we can compute the optimality condition easily: <s
 \[\max_{\nu} \langle \nu,f \rangle - (4\lambda)^{-1}\|\nu\|_2^2 \quad \text{s.t.} \quad \|\nu\|_{\infty} \leq 1.\]</div>
 <p>In terms of the optimal solution this is equivalent to</p>
 <div class="math notranslate nohighlight">
-\[\min_{\nu} \textstyle{\frac{1}{2}}\|\nu - \lambda f\|_2^2 \quad \text{s.t.} \quad \|\nu\|_{\infty} \leq 1.\]</div>
+\[\min_{\nu} \textstyle{\frac{1}{2}}\|\nu - 2\lambda f\|_2^2 \quad \text{s.t.} \quad \|\nu\|_{\infty} \leq 1.\]</div>
 <ul class="simple">
-<li><p>From <span class="math notranslate nohighlight">\(\min u \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \langle \nu,u\rangle\)</span> we get <span class="math notranslate nohighlight">\(-\textstyle{\frac{1}{2}}\|\nu\|_2^2 + \langle \nu,f^\delta\rangle\)</span>. From <span class="math notranslate nohighlight">\(\min_{v} \lambda \|v\|_p - \langle \nu,v\rangle\)</span> we get the constraint <span class="math notranslate nohighlight">\(\|\nu\|_{q}\leq 1\)</span> with <span class="math notranslate nohighlight">\(p^{-1} + q^{-1} = 1\)</span>. This yields</p></li>
+<li><p>From <span class="math notranslate nohighlight">\(\min_{u} \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \langle \nu,u\rangle\)</span> we get <span class="math notranslate nohighlight">\(-\textstyle{\frac{1}{2}}\|\nu\|_2^2 + \langle \nu,f^\delta\rangle\)</span>. From <span class="math notranslate nohighlight">\(\min_{v} \lambda \|v\|_p - \langle \nu,v\rangle\)</span> we get the constraint <span class="math notranslate nohighlight">\(\|\nu\|_{q}\leq \lambda\)</span> with <span class="math notranslate nohighlight">\(p^{-1} + q^{-1} = 1\)</span> (follows from Hölder’s inequality). Using <span class="math notranslate nohighlight">\(\min_{v} \lambda \|v\|_p - \langle \nu,v\rangle\)</span> when <span class="math notranslate nohighlight">\(\|\nu\|_{q}\leq \lambda\)</span>, we obtain</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\max_{\nu} -\textstyle{\frac{1}{2}}\|\nu\|_2^2 + \langle \nu,f^\delta\rangle \quad \text{s.t.} \quad \|\nu\|_q \leq 1,\]</div>
+\[\max_{\nu} -\textstyle{\frac{1}{2}}\|\nu\|_2^2 + \langle \nu,f^\delta\rangle \quad \text{s.t.} \quad \|\nu\|_q \leq \lambda,\]</div>
 <p>which in terms of the optimal solution is equivalent to</p>
 <div class="math notranslate nohighlight">
 \[\min_{\nu} \textstyle{\frac{1}{2}}\|\nu - f^\delta\|_2^2 \quad \text{s.t.} \quad \|\nu\|_q \leq 1.\]</div>
 <ul class="simple">
-<li><p>The saddle-point problem is</p></li>
+<li><p>Given a function <span class="math notranslate nohighlight">\(\delta_A\)</span> such that <span class="math notranslate nohighlight">\(\delta_A(x)=0\)</span> if <span class="math notranslate nohighlight">\(x\in A\)</span> and <span class="math notranslate nohighlight">\(\delta_A(x)=\infty\)</span> if <span class="math notranslate nohighlight">\(x \notin A\)</span>, the saddle-point problem is</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\max_{\nu} \min_{u\in\mathbb{R}^n} \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \langle \nu,u \rangle + \min_v \delta_{[-1,1]^n}(v) - \langle \nu,v\rangle.\]</div>

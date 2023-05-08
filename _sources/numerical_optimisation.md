@@ -299,7 +299,7 @@ $$0 \in J'(u_*).$$
 
 ````{admonition} Example: *Computing the median*
 
-The median $u$ of a set of numbers $(f_1, f_2, \ldots, f_n)$ is a minimiser of
+The median $u$ of a set of numbers $(f_1, f_2, \ldots, f_n)$ (with $f_i < f_{i+1}$) is a minimiser of
 
 $$J(u) = \sum_{i=1}^n |u - f_i|.$$
 
@@ -309,7 +309,7 @@ $$J_i'(u) = \begin{cases} -1 & u < f_i \\ [-1,1] & u = f_i \\ 1 & u > f_i\end{ca
 
 with which we can compute $J'(u)$ using the sum-rule:
 
-$$J'(u) = \begin{cases} -n & u < f_1 \\ 2i - n & u \in (a_i,a_{i+1})\\ 2i-1-n+[-1,1] & u = f_i\\n & f> f_n\end{cases}.$$
+$$J'(u) = \begin{cases} -n & u < f_1 \\ 2i - n & u \in (f_i,f_{i+1})\\ 2i-1-n+[-1,1] & u = f_i\\n & f> f_n\end{cases}.$$
 
 To find a $u$ for which $0\in J'(u)$ we need to consider the middle two cases. If $n$ is even, we can find an $i$ such that $2i = n$ and get that for all $u \in [f_{n/2},f_{n/2+1}]$ we have $0 \in J'(u)$.
 When $n$ is odd, we have optimality only for $u = f_{(n+1)/2}$.
@@ -396,15 +396,23 @@ $$\sum_{k=0}^{\infty} \lambda_k = \infty, \quad \sum_{k=0}^{\infty} \lambda_k^2 
 ```{admonition} Proof
 :class: important, dropdown
 
-By using the definition of $u_{k+1}$ and the subgradient inequality, we find
+First, we expand $\|u_{k+1} - u_*\|_2^2$ by using the definition of $u_{k+1}$:
+
+$$\|u_{k+1} - u_*\|_2^2 = \|u_{k} - \lambda_k J'_k - u_*\|_2^2 = \|u_{k} - u_*\|_2^2 -2 \lambda_k \left \langle J'_k, u_k - u_* \right \rangle + \lambda_k^2\|J'_k\|_2^2. $$
+
+Using the subgradient inequality, we find
 
 $$\|u_{k+1} - u_*\|_2^2 \leq \|u_{k} - u_*\|_2^2 -2 \lambda_k \left(J_k - J_*\right) + \lambda_k^2\|J'_k\|_2^2.$$
 
 Applying this inequality recursively on $u_{k}$ yields
 
-$$\|u_{k+1} - u_*\|_2^2 \leq \|u_0 - u_*\|_2^2 -2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) + \sum_{i=0}^k \lambda_k \|J'_i\|_2^2.$$
+$$0 \leq \|u_{k+1} - u_*\|_2^2 \leq \|u_0 - u_*\|_2^2 -2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) + \sum_{i=0}^k \lambda_i \|J'_i\|_2^2.$$
 
-Using Lipschitz continuity of $J$, we find $\|J'(u)\|_2 \leq L$ which can be used to yield the desired result.
+Using Lipschitz continuity of $J$, we find $\|J'(u)\|_2 \leq L$ which can be used to yield:
+
+$$ 2 \left(\min_{i\in\{0,1,\ldots,k\}} J(u_i) - J(u_*)\right) \sum_{i=0}^k \lambda_i  \leq 2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) \leq \|u_0 - u_*\|_2^2 + \sum_{i=0}^k \lambda_i \|J'_i\|_2^2, $$
+
+which can be used to yield the desired result.
 ```
 
 ```{admonition} Remark: *Convergence rate for a fixed stepsize*
@@ -412,7 +420,7 @@ If we choose $\lambda_k = \lambda$, we get
 
 $$\min_{k\in\{0,1,\ldots,n-1\}} J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|_2^2 + L^2 \lambda^2 n^2}{2\lambda n}.$$
 
-we can guarantee that $\min_{k\in\{0,1,\ldots,n-1\}} J(u_k) - J(u_*) \leq \epsilon$ by picking stepsize $\lambda = \epsilon/L^2$ and doing $n = (\|u_0-u_*\|_2L/\epsilon)^2$ iterations. This seems comparable to the rate we derived for gradient descent previously. However, for *smooth* convex functions we derive a stronger result that gradient-descent requires only $\mathcal{O}(1/\epsilon)$ iterations. For smooth *strongly* convex functionals we can strengthen the result even further and show that we only need $\mathcal{O}(\log 1/\epsilon)$ iterations. The proofs are left as an exercise.
+we can guarantee that $\min_{k\in\{0,1,\ldots,n-1\}} J(u_k) - J(u_*) \leq \epsilon$ by picking stepsize $\lambda = \epsilon/L^2$ and doing $n = (\|u_0-u_*\|_2L/\epsilon)^2$ iterations. However, for *smooth* convex functions we derive a stronger result that gradient-descent requires only $\mathcal{O}(1/\epsilon)$ iterations (use exercise 6.4.2, the Lipschitz property, and the subgradient inequality). For smooth *strongly* convex functionals we can strengthen the result even further and show that we only need $\mathcal{O}(\log 1/\epsilon)$ iterations (see exercise 6.4.1). The proofs are left as an exercise.
 ```
 
 ### Proximal gradient methods
@@ -606,7 +614,7 @@ $$\max_{\nu} \left(\min_u D(u) + \langle Au,\nu\rangle\right) + \left(\min_v R(v
 
 In this expression we recognise the [*convex conjugates*](https://en.wikipedia.org/wiki/Convex_conjugate) of $D$ and $R$. With this, we re-write the problem as
 
-$$\min_{\nu} D^*(A^T\nu) + R^*(-\nu).$$
+$$\min_{\nu} D^*(-A^T\nu) + R^*(\nu).$$
 
 Thus, we have moved the linear map to the other side. We can now apply the proximal gradient method provided that:
 
@@ -944,18 +952,18 @@ $$\max_{\nu} \langle \nu,f \rangle - (4\lambda)^{-1}\|\nu\|_2^2 \quad \text{s.t.
 
 In terms of the optimal solution this is equivalent to
 
-$$\min_{\nu} \textstyle{\frac{1}{2}}\|\nu - \lambda f\|_2^2 \quad \text{s.t.} \quad \|\nu\|_{\infty} \leq 1.$$
+$$\min_{\nu} \textstyle{\frac{1}{2}}\|\nu - 2\lambda f\|_2^2 \quad \text{s.t.} \quad \|\nu\|_{\infty} \leq 1.$$
 
-* From $\min u \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \langle \nu,u\rangle$ we get $-\textstyle{\frac{1}{2}}\|\nu\|_2^2 + \langle \nu,f^\delta\rangle$. From $\min_{v} \lambda \|v\|_p - \langle \nu,v\rangle$ we get the constraint $\|\nu\|_{q}\leq 1$ with $p^{-1} + q^{-1} = 1$. This yields
+* From $\min_{u} \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \langle \nu,u\rangle$ we get $-\textstyle{\frac{1}{2}}\|\nu\|_2^2 + \langle \nu,f^\delta\rangle$. From $\min_{v} \lambda \|v\|_p - \langle \nu,v\rangle$ we get the constraint $\|\nu\|_{q}\leq \lambda$ with $p^{-1} + q^{-1} = 1$ (follows from Hölder's inequality). Using $\min_{v} \lambda \|v\|_p - \langle \nu,v\rangle$ when $\|\nu\|_{q}\leq \lambda$, we obtain
 
-$$\max_{\nu} -\textstyle{\frac{1}{2}}\|\nu\|_2^2 + \langle \nu,f^\delta\rangle \quad \text{s.t.} \quad \|\nu\|_q \leq 1,$$
+$$\max_{\nu} -\textstyle{\frac{1}{2}}\|\nu\|_2^2 + \langle \nu,f^\delta\rangle \quad \text{s.t.} \quad \|\nu\|_q \leq \lambda,$$
 
  which in terms of the optimal solution is equivalent to
 
 
  $$\min_{\nu} \textstyle{\frac{1}{2}}\|\nu - f^\delta\|_2^2 \quad \text{s.t.} \quad \|\nu\|_q \leq 1.$$
 
- * The saddle-point problem is
+ * Given a function $\delta_A$ such that $\delta_A(x)=0$ if $x\in A$ and $\delta_A(x)=\infty$ if $x \notin A$, the saddle-point problem is
 
  $$\max_{\nu} \min_{u\in\mathbb{R}^n} \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \langle \nu,u \rangle + \min_v \delta_{[-1,1]^n}(v) - \langle \nu,v\rangle.$$
 

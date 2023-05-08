@@ -716,7 +716,7 @@ We will explore optimality conditions and algorithms for these two classes in mo
 <h2><span class="section-number">5.3. </span>The Euler-Lagrange equations<a class="headerlink" href="#the-euler-lagrange-equations" title="Permalink to this headline">¶</a></h2>
 <p>An alternative viewpoint on optimality is provided by the Euler-lagrange equations, which establishes the link between certain problems of the form <a class="reference internal" href="#equation-variational">(5.1)</a> and PDEs. In particular, we focus in this section on functionals of the form</p>
 <div class="math notranslate nohighlight" id="equation-j-denoising">
-<span class="eqno">(5.5)<a class="headerlink" href="#equation-j-denoising" title="Permalink to this equation">¶</a></span>\[J(u) = {\textstyle{\frac{1}{2}}} \int_{\Omega} \left(u(x) - f^\delta(x)\right)^2 + r(\nabla u(x)) \mathrm{d}x,\]</div>
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-j-denoising" title="Permalink to this equation">¶</a></span>\[J(u) = \int_{\Omega} {\textstyle{\frac{1}{2}}} \left(u(x) - f^\delta(x)\right)^2 + r(\nabla u(x)) \mathrm{d}x,\]</div>
 <p>with <span class="math notranslate nohighlight">\(\Omega \subset \mathbb{R}^n\)</span> and <span class="math notranslate nohighlight">\(r : \mathbb{R}^n \rightarrow \mathbb{R}\)</span>. Such problems occur for example in image-denoising applications. We will see later that such problems also occur as subproblems when solving more general problems of the form <a class="reference internal" href="#equation-variational-r">(5.2)</a>.</p>
 <div class="important admonition">
 <p class="admonition-title">Theorem: Euler-Lagrange equations</p>
@@ -1083,7 +1083,7 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
 <div class="section" id="total-variation">
 <h3><span class="section-number">5.5.1. </span>Total variation<a class="headerlink" href="#total-variation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical scheme method to solve it. You can assume <span class="math notranslate nohighlight">\(u \in W^{1,1}(\Omega)\)</span> with <span class="math notranslate nohighlight">\(\Omega = [0,1]^2\)</span>.</p></li>
+<li><p>Derive the non-linear diffusion equation corresponding to the TV-denoising problem in <span class="math notranslate nohighlight">\(\Omega = [0,1]^2\)</span> and design a numerical scheme method to solve it. You can assume that <span class="math notranslate nohighlight">\(u\)</span> is sufficiently regular.</p></li>
 <li><p>Test your method on the cameraman image and compare it to the Perona-Malik approach.</p></li>
 </ul>
 </div>

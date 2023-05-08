@@ -420,7 +420,7 @@ An alternative viewpoint on optimality is provided by the Euler-lagrange equatio
 
 ```{math}
 :label: J_denoising
-J(u) = {\textstyle{\frac{1}{2}}} \int_{\Omega} \left(u(x) - f^\delta(x)\right)^2 + r(\nabla u(x)) \mathrm{d}x,
+J(u) = \int_{\Omega} {\textstyle{\frac{1}{2}}} \left(u(x) - f^\delta(x)\right)^2 + r(\nabla u(x)) \mathrm{d}x,
 ```
 with $\Omega \subset \mathbb{R}^n$ and $r : \mathbb{R}^n \rightarrow \mathbb{R}$. Such problems occur for example in image-denoising applications. We will see later that such problems also occur as subproblems when solving more general problems of the form {eq}`variational_R`.
 
@@ -812,6 +812,6 @@ glue("fourth_order", fig, display=False)
 
 ### Total variation
 
-* Derive the non-linear diffusion equation corresponding to the TV-denoising problem and design a numerical scheme method to solve it. You can assume $u \in W^{1,1}(\Omega)$ with $\Omega = [0,1]^2$. 
 
+* Derive the non-linear diffusion equation corresponding to the TV-denoising problem in $\Omega = [0,1]^2$ and design a numerical scheme method to solve it. You can assume that $u$ is sufficiently regular. 
 * Test your method on the cameraman image and compare it to the Perona-Malik approach.
