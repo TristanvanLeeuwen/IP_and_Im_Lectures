@@ -406,11 +406,11 @@ $$\|u_{k+1} - u_*\|_2^2 \leq \|u_{k} - u_*\|_2^2 -2 \lambda_k \left(J_k - J_*\ri
 
 Applying this inequality recursively on $u_{k}$ yields
 
-$$0 \leq \|u_{k+1} - u_*\|_2^2 \leq \|u_0 - u_*\|_2^2 -2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) + \sum_{i=0}^k \lambda_i \|J'_i\|_2^2.$$
+$$0 \leq \|u_{k+1} - u_*\|_2^2 \leq \|u_0 - u_*\|_2^2 -2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) + \sum_{i=0}^k \lambda_i^2 \|J'_i\|_2^2.$$
 
 Using Lipschitz continuity of $J$, we find $\|J'(u)\|_2 \leq L$ which can be used to yield:
 
-$$ 2 \left(\min_{i\in\{0,1,\ldots,k\}} J(u_i) - J(u_*)\right) \sum_{i=0}^k \lambda_i  \leq 2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) \leq \|u_0 - u_*\|_2^2 + \sum_{i=0}^k \lambda_i \|J'_i\|_2^2, $$
+$$ 2 \left(\min_{i\in\{0,1,\ldots,k\}} J(u_i) - J(u_*)\right) \sum_{i=0}^k \lambda_i  \leq 2\sum_{i=0}^k \lambda_i \left(J_i - J_*\right) \leq \|u_0 - u_*\|_2^2 + \sum_{i=0}^k \lambda_i^2 \|J'_i\|_2^2, $$
 
 which can be used to yield the desired result.
 ```
