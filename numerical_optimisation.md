@@ -525,7 +525,7 @@ The proximal point methods require that the proximal operator for $R$ can be eva
 
 $$\min_{u\in \mathbb{R}^n} D(u) + R(Au),$$
 
-with $D$ smooth and $\mu-$ strongly convex, $R(\cdot)$ convex and $A \in \mathbb{R}^{m\times n}$ a linear map. The basic idea is to introduce an auxiliary variable $v$ and re-formulate the variational problem as
+with $D$ smooth and convex, $R(\cdot)$ convex and $A \in \mathbb{R}^{m\times n}$ a linear map. The basic idea is to introduce an auxiliary variable $v$ and re-formulate the variational problem as
 
 ```{math}
 :label: splitted
@@ -735,7 +735,7 @@ $$J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|}{2Lk}.$$
 
 The key is to use that
 
-$$J(v) \leq J(u) + \langle J'(u), v - u\rangle + \textstyle{\frac{1}{2}}\|u - v\|_2^2.$$
+$$J(v) \leq J(u) + \langle J'(u), v - u\rangle + \textstyle{\frac{L}{2}}\|u - v\|_2^2.$$
 
 ```{admonition} Answer
 :class: tip, dropdown
