@@ -76,7 +76,7 @@ astro_blur = conv2(astro, psf, 'same')
 astro_blur += (np.random.poisson(lam=25, size=astro.shape) - 10) / 255.
 
 # Restore Image using Richardson-Lucy algorithm
-astro_restored = restoration.richardson_lucy(astro_blur, psf, iterations=10)
+astro_restored = restoration.richardson_lucy(astro_blur, psf, num_iter=10)
 
 # plot results
 fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(8, 5))
@@ -126,7 +126,7 @@ astro_defect = astro[0:200, 0:200].copy()
 astro_defect[np.where(mask)] = 0
 
 # inpaint
-astro_inpainted = inpaint.inpaint_biharmonic(astro_defect, mask, multichannel=False)
+astro_inpainted = inpaint.inpaint_biharmonic(astro_defect, mask, channel_axis=None)
 
 # plot results
 fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(8, 5))
