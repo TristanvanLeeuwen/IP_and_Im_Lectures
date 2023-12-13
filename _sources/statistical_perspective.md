@@ -385,7 +385,7 @@ plt.show()
 
 ### Least-squares with positivity constraints
 
-We let $f^\delta = Ku + \epsilon$, with $\epsilon$ normally distributed with zero mean and unit variance. In some cases it may not be natural to define prior information in terms of a probability density. For example, the prior information that $u_i \geq 0$ (all positive values are equally likely) does not have a corresponding probability density function associated with with. We may still add this prior in the Bayesian framework as
+We let $f^\delta = Ku + \epsilon$, with $\epsilon$ normally distributed with zero mean and unit variance. In some cases it may not be natural to define prior information in terms of a probability density. For example, the prior information that $u_i \geq 0$ (all positive values are equally likely) does not have a corresponding probability density function associated with it. We may still add this prior in the Bayesian framework as
 
 $$
 \pi_{\text{prior}}(u) = \prod_i I_{[0,\infty)}(u_i).
@@ -877,11 +877,4 @@ ax[1].legend()
 
 plt.show()
 glue("expected_error",fig,display=False)
-```
-
-## References
-
-```{bibliography} references.bib
-:style: plain
-:filter: docname in docnames
 ```

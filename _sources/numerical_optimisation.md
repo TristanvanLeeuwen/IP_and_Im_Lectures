@@ -525,7 +525,7 @@ The proximal point methods require that the proximal operator for $R$ can be eva
 
 $$\min_{u\in \mathbb{R}^n} D(u) + R(Au),$$
 
-with $D$ smooth and $\mu-$ strongly convex, $R(\cdot)$ convex and $A \in \mathbb{R}^{m\times n}$ a linear map. The basic idea is to introduce an auxiliary variable $v$ and re-formulate the variational problem as
+with $D$ smooth and convex, $R(\cdot)$ convex and $A \in \mathbb{R}^{m\times n}$ a linear map. The basic idea is to introduce an auxiliary variable $v$ and re-formulate the variational problem as
 
 ```{math}
 :label: splitted
@@ -610,7 +610,7 @@ The strategy illustrated in the previous approach is an example of a more genera
 
 We start from the dual problem {eq}`dual_saddle_point`:
 
-$$\max_{\nu} \left(\min_u D(u) + \langle Au,\nu\rangle\right) + \left(\min_v R(v) - \langle \nu, v\rangle\right).$$
+$$\max_{\nu} \left(\min_u \left( D(u) + \langle Au,\nu \rangle \right) \right) + \left(\min_v \left( R(v) - \langle \nu, v\rangle \right) \right).$$
 
 In this expression we recognise the [*convex conjugates*](https://en.wikipedia.org/wiki/Convex_conjugate) of $D$ and $R$. With this, we re-write the problem as
 
@@ -657,13 +657,6 @@ $$\nu_{k+1}= \nu_k + \rho \left(Du_{k+1} - v_{k+1}\right).$$
 ---
 
 We cannot do justice to the breadth and depth of the topics smooth and convex optimisation in one chapter. Rather, we hope that this chapter serves as a starting point for further study in one of these areas for some, and provides useful recipes for others.
-
-## References
-
-```{bibliography} references.bib
-:style: plain
-:filter: docname in docnames
-```
 
 ## Exercises
 
@@ -735,7 +728,7 @@ $$J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|}{2Lk}.$$
 
 The key is to use that
 
-$$J(v) \leq J(u) + \langle J'(u), v - u\rangle + \textstyle{\frac{1}{2}}\|u - v\|_2^2.$$
+$$J(v) \leq J(u) + \langle J'(u), v - u\rangle + \textstyle{\frac{L}{2}}\|u - v\|_2^2.$$
 
 ```{admonition} Answer
 :class: tip, dropdown

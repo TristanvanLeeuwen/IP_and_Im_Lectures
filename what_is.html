@@ -169,7 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   11. Bibliography
+   11. References
   </a>
  </li>
 </ul>
@@ -347,40 +347,35 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   1.5. References
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#excercises">
-   1.6. Excercises
+   1.5. Excercises
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#matrix-inversion-i">
-     1.6.1. Matrix inversion I
+     1.5.1. Matrix inversion I
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#matrix-inversion-ii">
-     1.6.2. Matrix inversion II
+     1.5.2. Matrix inversion II
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#differentiation-i">
-     1.6.3. Differentiation I
+     1.5.3. Differentiation I
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#assignments">
-   1.7. Assignments
+   1.6. Assignments
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#differentiation-ii">
-     1.7.1. Differentiation II
+     1.6.1. Differentiation II
     </a>
    </li>
   </ul>
@@ -477,40 +472,35 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   1.5. References
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#excercises">
-   1.6. Excercises
+   1.5. Excercises
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#matrix-inversion-i">
-     1.6.1. Matrix inversion I
+     1.5.1. Matrix inversion I
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#matrix-inversion-ii">
-     1.6.2. Matrix inversion II
+     1.5.2. Matrix inversion II
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#differentiation-i">
-     1.6.3. Differentiation I
+     1.5.3. Differentiation I
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#assignments">
-   1.7. Assignments
+   1.6. Assignments
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#differentiation-ii">
-     1.7.1. Differentiation II
+     1.6.1. Differentiation II
     </a>
    </li>
   </ul>
@@ -526,7 +516,7 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="what-is-an-inverse-problem">
 <h1><span class="section-number">1. </span>What is an inverse problem<a class="headerlink" href="#what-is-an-inverse-problem" title="Permalink to this headline">¶</a></h1>
-<p>Mathematical models and data play a big role in modern science and engineering. The field of inverse problems bridges these two and studies if and how one can infer model parameters from relevant observations. A prominent example is the famous black hole image, shown in <a class="reference internal" href="#blackhole"><span class="std std-numref">Fig. 1.1</span></a>, that was constructed by merging data from various telescopes <a href="#id1"><span class="problematic" id="id2">:cite:`akiyama`</span></a>.</p>
+<p>Mathematical models and data play a big role in modern science and engineering. The field of inverse problems bridges these two and studies if and how one can infer model parameters from relevant observations. A prominent example is the famous black hole image, shown in <a class="reference internal" href="#blackhole"><span class="std std-numref">Fig. 1.1</span></a>, that was constructed by merging data from various telescopes <span id="id1">[<a class="reference internal" href="bibliography.html#id2" title="Kazunori Akiyama, Antxon Alberdi, Walter Alef, Keiichi Asada, Rebecca Azulay, Anne-Kathrin Baczko, David Ball, Mislav Baloković, John Barrett, Dan Bintley, and others. First m87 event horizon telescope results. iv. imaging the central supermassive black hole. The Astrophysical Journal Letters, 875(1):L4, 2019.">Akiyama <em>et al.</em>, 2019</a>]</span>.</p>
 <div class="figure align-default" id="blackhole">
 <a class="reference internal image-reference" href="_images/blackhole.png"><img alt="_images/blackhole.png" src="_images/blackhole.png" style="height: 150px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 1.1 </span><span class="caption-text">Depiction of a black hole as reconstructed from data recorded by the Event Horizon Telescope.</span><a class="headerlink" href="#blackhole" title="Permalink to this image">¶</a></p>
@@ -727,7 +717,7 @@ f_i(t) = p(t,x_i), \quad i \in \{1, 2, \ldots, m\}.
 <p>We can abstractly formulate most (if not all) inverse problems as finding a solution, <span class="math notranslate nohighlight">\(u \in \mathcal{U}\)</span>, to the operator equation</p>
 <div class="math notranslate nohighlight" id="equation-ip">
 <span class="eqno">(1.1)<a class="headerlink" href="#equation-ip" title="Permalink to this equation">¶</a></span>\[K(u) = f.\]</div>
-<p>Here, <span class="math notranslate nohighlight">\(K\)</span> is called the <em>forward opertor</em>; <span class="math notranslate nohighlight">\(u\)</span> is the <em>image</em> or <em>parameter</em> and <span class="math notranslate nohighlight">\(f \in \mathcal{F}\)</span> are the measurements. The forward operator, <span class="math notranslate nohighlight">\(K : \mathcal{U} \rightarrow \mathcal{F}\)</span>, is a model of the underlying (physical) process and simulates the measurements for given <span class="math notranslate nohighlight">\(u\)</span>. It could represent for example an integral operator, a matrix, or a set of algebraic equations.
+<p>Here, <span class="math notranslate nohighlight">\(K\)</span> is called the <em>forward operator</em>; <span class="math notranslate nohighlight">\(u\)</span> is the <em>image</em> or <em>parameter</em> and <span class="math notranslate nohighlight">\(f \in \mathcal{F}\)</span> are the measurements. The forward operator, <span class="math notranslate nohighlight">\(K : \mathcal{U} \rightarrow \mathcal{F}\)</span>, is a model of the underlying (physical) process and simulates the measurements for given <span class="math notranslate nohighlight">\(u\)</span>. It could represent for example an integral operator, a matrix, or a set of algebraic equations.
 The image/parameters, <span class="math notranslate nohighlight">\(u\)</span>, constitute a mathematical description of the quantity of interest. It could for example be a function or a vector. The measurements, <span class="math notranslate nohighlight">\(f\)</span>, are a mathematical representation of the measured data. For the purposes of analysis, we may think of this a function, but in practice measurements are always a discrete quantity.</p>
 <p>For the purposes of this course, we will assume that <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> are <a class="reference external" href="https://en.wikipedia.org/wiki/Banach_space">Banach spaces</a> so we can measure distances between pairs of images and measurements. In many cases, <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> will additionaly have an inner-product in which case they are <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_space">Hilbert spaces</a>.</p>
 <p>An important notion in inverse problems is <em>ill-posedness</em>. We call a problem <em>ill-posed</em> if it is not <em>well-posed</em>:</p>
@@ -741,7 +731,7 @@ The image/parameters, <span class="math notranslate nohighlight">\(u\)</span>, c
 </ul>
 <p>If the problem is not well-posed, we call it <em>ill-posed</em>.</p>
 </div>
-<p>It may seem strange that equation <a class="reference internal" href="#equation-ip">(1.1)</a> may not have a solution. After all, are the measurements not the result of the forward opertor applied to some ground-truth <span class="math notranslate nohighlight">\(\overline{u}\)</span>? We need to keep in mind here that <span class="math notranslate nohighlight">\(K\)</span> is only a <em>model</em> for the underlying process. In reality, the measurements may include <em>modelling errors</em> and <em>measurement errors</em>. We will denote the noisy data by <span class="math notranslate nohighlight">\(f^{\delta}\)</span>. An often-used model to incorporate such errors is the <em>additive noise model</em></p>
+<p>It may seem strange that equation <a class="reference internal" href="#equation-ip">(1.1)</a> may not have a solution. After all, are the measurements not the result of the forward operator applied to some ground-truth <span class="math notranslate nohighlight">\(\overline{u}\)</span>? We need to keep in mind here that <span class="math notranslate nohighlight">\(K\)</span> is only a <em>model</em> for the underlying process. In reality, the measurements may include <em>modelling errors</em> and <em>measurement errors</em>. We will denote the noisy data by <span class="math notranslate nohighlight">\(f^{\delta}\)</span>. An often-used model to incorporate such errors is the <em>additive noise model</em></p>
 <div class="math notranslate nohighlight">
 \[
 f^{\delta} = K(\overline{u}) + e,
@@ -803,7 +793,7 @@ n^{\delta}(x) = \delta \sin(x/\delta).
 <h2><span class="section-number">1.4. </span>Solving an inverse problem<a class="headerlink" href="#solving-an-inverse-problem" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="direct-methods">
 <h3><span class="section-number">1.4.1. </span>Direct methods<a class="headerlink" href="#direct-methods" title="Permalink to this headline">¶</a></h3>
-<p>In some special cases we can derive an explicit expression for (an approximation) of the solution of <span class="math notranslate nohighlight">\(K(u) = f\)</span>. For example, if <span class="math notranslate nohighlight">\(K\)</span> represents a quadratic equation in one variable or a system of linear equations. In other cases, we may have an explicit expression for the inverse of a slightly modified forward operator, <span class="math notranslate nohighlight">\(\widetilde{K}\)</span>. This modified operator arises when the original inverse problem is ill-posed and is replaced by a modified inverse problem <span class="math notranslate nohighlight">\(\widetilde{K}(u) = f\)</span> which is well-posed. The hope, in the latter case, is that <span class="math notranslate nohighlight">\(\widetilde{K}\)</span> approximates <span class="math notranslate nohighlight">\(K\)</span> well for the class of solututions we are looking for.</p>
+<p>In some special cases we can derive an explicit expression for (an approximation) of the solution of <span class="math notranslate nohighlight">\(K(u) = f\)</span>. For example, if <span class="math notranslate nohighlight">\(K\)</span> represents a quadratic equation in one variable or a system of linear equations. In other cases, we may have an explicit expression for the inverse of a slightly modified forward operator, <span class="math notranslate nohighlight">\(\widetilde{K}\)</span>. This modified operator arises when the original inverse problem is ill-posed and is replaced by a modified inverse problem <span class="math notranslate nohighlight">\(\widetilde{K}(u) = f\)</span> which is well-posed. The hope, in the latter case, is that <span class="math notranslate nohighlight">\(\widetilde{K}\)</span> approximates <span class="math notranslate nohighlight">\(K\)</span> well for the class of solutions we are looking for.</p>
 <div class="admonition-example-inverting-a-rank-deficient-matrix admonition">
 <p class="admonition-title">Example: <em>Inverting a rank-deficient matrix.</em></p>
 <p>Consider the matrix</p>
@@ -816,12 +806,12 @@ K = \left(\begin{matrix} 1 &amp; 1\\ 2 &amp; 2 \end{matrix}\right).
 \[\begin{split}
 \widetilde{K} = \left(\begin{matrix} 1 + \alpha &amp; 1\\ 2 &amp; 2 + \alpha\end{matrix}\right),
 \end{split}\]</div>
-<p>allows us to compute the inverse. Indeed, given <span class="math notranslate nohighlight">\(f = K\overline{u}\)</span> with <span class="math notranslate nohighlight">\(\overline{u} = (1,2)\)</span> we have <span class="math notranslate nohighlight">\(f = (3,6)\)</span>. Applying the inverse of <span class="math notranslate nohighlight">\(\widetilde{K}\)</span> we get <span class="math notranslate nohighlight">\(\widetilde{u} \approx (1,2)\)</span>. The corresponding equations are visualized in <a class="reference internal" href="#id3"><span class="std std-numref">Fig. 1.6</span></a>.</p>
-<div class="figure align-default" id="id3" style="width: 300px">
+<p>allows us to compute the inverse. Indeed, given <span class="math notranslate nohighlight">\(f = K\overline{u}\)</span> with <span class="math notranslate nohighlight">\(\overline{u} = (1,2)\)</span> we have <span class="math notranslate nohighlight">\(f = (3,6)\)</span>. Applying the inverse of <span class="math notranslate nohighlight">\(\widetilde{K}\)</span> we get <span class="math notranslate nohighlight">\(\widetilde{u} \approx (1,2)\)</span>. The corresponding equations are visualized in <a class="reference internal" href="#id2"><span class="std std-numref">Fig. 1.6</span></a>.</p>
+<div class="figure align-default" id="id2" style="width: 300px">
 <div class="cell_output docutils container">
 <img alt="_images/what_is_10_1.png" src="_images/what_is_10_1.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 1.6 </span><span class="caption-text">Original and regularized equations. We see that the regularized equations have a unique solution, but has thereby implicity selected one particular solution of the original system.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 1.6 </span><span class="caption-text">Original and regularized equations. We see that the regularized equations have a unique solution, but has thereby implicity selected one particular solution of the original system.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -929,13 +919,10 @@ With the solution formula for quadratic equations we obtain two solutions</p>
 </div>
 </div>
 </div>
-<div class="section" id="references">
-<h2><span class="section-number">1.5. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-</div>
 <div class="section" id="excercises">
-<h2><span class="section-number">1.6. </span>Excercises<a class="headerlink" href="#excercises" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.5. </span>Excercises<a class="headerlink" href="#excercises" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="matrix-inversion-i">
-<h3><span class="section-number">1.6.1. </span>Matrix inversion I<a class="headerlink" href="#matrix-inversion-i" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.5.1. </span>Matrix inversion I<a class="headerlink" href="#matrix-inversion-i" title="Permalink to this headline">¶</a></h3>
 <p>We want to solve a system of linear equations <span class="math notranslate nohighlight">\(Ku = f\)</span> with :</p>
 <ol>
 <li><div class="math notranslate nohighlight">
@@ -992,7 +979,7 @@ We will learn how to deal with this situation in general in the next chapter.</p
 </div>
 </div>
 <div class="section" id="matrix-inversion-ii">
-<h3><span class="section-number">1.6.2. </span>Matrix inversion II<a class="headerlink" href="#matrix-inversion-ii" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.5.2. </span>Matrix inversion II<a class="headerlink" href="#matrix-inversion-ii" title="Permalink to this headline">¶</a></h3>
 <p>Given a symmetric, positive definite matrix <span class="math notranslate nohighlight">\(K \in \mathbb{R}^{n\times n}\)</span> we want to solve <span class="math notranslate nohighlight">\(Ku = f\)</span>. Such a matrix can be decomposed as</p>
 <div class="math notranslate nohighlight">
 \[K = \sum_{i=1}^n \lambda_i k_ik_i^{*},\]</div>
@@ -1014,7 +1001,7 @@ We will learn how to deal with this situation in general in the next chapter.</p
 </div>
 </div>
 <div class="section" id="differentiation-i">
-<h3><span class="section-number">1.6.3. </span>Differentiation I<a class="headerlink" href="#differentiation-i" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.5.3. </span>Differentiation I<a class="headerlink" href="#differentiation-i" title="Permalink to this headline">¶</a></h3>
 <p>We are given a continuously differentiable function <span class="math notranslate nohighlight">\(f \in C^1([0,1])\)</span> with <span class="math notranslate nohighlight">\(f(0) =0\)</span> and want to solve the following inverse problem</p>
 <div class="math notranslate nohighlight">
 \[ Ku(x) \equiv \int_0^{x} u(y)\mathrm{d}y = f(x), \quad \text{for} \quad x \in [0,1].\]</div>
@@ -1037,9 +1024,9 @@ We will learn how to deal with this situation in general in the next chapter.</p
 </div>
 </div>
 <div class="section" id="assignments">
-<h2><span class="section-number">1.7. </span>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.6. </span>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="differentiation-ii">
-<h3><span class="section-number">1.7.1. </span>Differentiation II<a class="headerlink" href="#differentiation-ii" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.6.1. </span>Differentiation II<a class="headerlink" href="#differentiation-ii" title="Permalink to this headline">¶</a></h3>
 <p>The analysis in the previous exercise depends crucially on the type of noise we allow. If we assume that <span class="math notranslate nohighlight">\(n^{\delta} = f - f^{\delta}\)</span> is bounded by <span class="math notranslate nohighlight">\(\delta\)</span> in a different norm, we can get a well-posed problem. Let</p>
 <div class="math notranslate nohighlight">
 \[\|g\|_{C^{1}([0,1])} = \|g\|_{L^{\infty}[0,1]} + \|g'\|_{L^{\infty}[0,1]},\]</div>

@@ -32,7 +32,7 @@ $$
 
 * If $m > n$ and $K$ has rank $n$, the system of equations may be *inconsistent* in which case a solution does not exist when $f$ is not in the range of $K$.
 
-* If $m < n$ and $K$ has rank $m$, we can always find a solution but it may not be unique because $K$ has a on-trivial *null-space*.
+* If $m < n$ and $K$ has rank $m$, we can always find a solution but it may not be unique because $K$ has a non-trivial *null-space*.
 
 * If $K$ does not have maximal rank, the system of equations may be both inconsistent and $K$ can have a null-space.
 
@@ -480,7 +480,7 @@ in which we recognise the bias and variance terms. In expectation, the upper bou
 :figwidth: 600px
 :name: "bias_variance"
 
-An example of the error $\|\overline{u} - K_{\alpha}^\dagger f^\delta\|_2$ and corresponding bias and variance for $n = 100$ and $\sigma = 10^{-2}$. As predicted, the basis decreases with $k$ while the variance increases. The optimal $k$ for this noise level lies at $k \approx 30$. Look at {numref}`picard`, do you see why this is the optimal $k$?
+An example of the error $\|\overline{u} - K_{\alpha}^\dagger f^\delta\|_2$ and corresponding bias and variance for $n = 100$ and $\sigma = 10^{-2}$. As predicted, the bias decreases with $k$ while the variance increases. The optimal $k$ for this noise level lies at $k \approx 30$. Look at {numref}`picard`, do you see why this is the optimal $k$?
 ```
 
 ````
@@ -782,11 +782,4 @@ plt.plot(x,u,label='u')
 plt.plot(x,f,label='f')
 plt.legend()
 plt.show()
-```
-
-## References
-
-```{bibliography} references.bib
-:style: plain
-:filter: docname in docnames
 ```

@@ -169,7 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   11. Bibliography
+   11. References
   </a>
  </li>
 </ul>
@@ -333,21 +333,16 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
+    <a class="reference internal nav-link" href="#id3">
      4.5.2. Poisson noise
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+    <a class="reference internal nav-link" href="#id4">
      4.5.3. MAP estimation
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   4.6. References
-  </a>
  </li>
 </ul>
 
@@ -427,21 +422,16 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
+    <a class="reference internal nav-link" href="#id3">
      4.5.2. Poisson noise
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+    <a class="reference internal nav-link" href="#id4">
      4.5.3. MAP estimation
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   4.6. References
-  </a>
  </li>
 </ul>
 
@@ -454,7 +444,7 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="a-statistical-perspective-on-inverse-problems">
 <h1><span class="section-number">4. </span>A statistical perspective on inverse problems<a class="headerlink" href="#a-statistical-perspective-on-inverse-problems" title="Permalink to this headline">¶</a></h1>
-<p>In this chapter we present a statistical perspective on inverse problems. This viewpoint allows us to incorporate prior assumptions and formulate variational problems. To avoid unnecessary technicalities, we’ll stick to the finite-dimensional setting. A formal treatment in the infinite-dimensional setting is given in <a href="#id1"><span class="problematic" id="id2">:cite:`Dashti2017`</span></a>.</p>
+<p>In this chapter we present a statistical perspective on inverse problems. This viewpoint allows us to incorporate prior assumptions and formulate variational problems. To avoid unnecessary technicalities, we’ll stick to the finite-dimensional setting. A formal treatment in the infinite-dimensional setting is given in <span id="id1">[<a class="reference internal" href="bibliography.html#id5" title="Masoumeh Dashti and Andrew M. Stuart. The Bayesian Approach to Inverse Problems, pages 311–428. Springer International Publishing, Cham, 2017. URL: https://arxiv.org/pdf/1302.6989.pdf, doi:10.1007/978-3-319-12385-1_7.">Dashti and Stuart, 2017</a>]</span>.</p>
 <div class="section" id="formulating-prior-assumptions">
 <h2><span class="section-number">4.1. </span>Formulating prior assumptions<a class="headerlink" href="#formulating-prior-assumptions" title="Permalink to this headline">¶</a></h2>
 <p>We take the viewpoint that both <span class="math notranslate nohighlight">\(f^{\delta}\)</span> and <span class="math notranslate nohighlight">\(u\)</span> are <a class="reference external" href="https://en.wikipedia.org/wiki/Random_variable">continuous random variables</a>. The prior assumptions are then formulated in terms of multi-variate <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_density_function">probability distributions</a>.</p>
@@ -488,7 +478,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Thus, <span class="math notranslate nohighlight">\(w^\delta - \rho v^\delta\)</span> is a normally distributed random variable with mean zero and variance <span class="math notranslate nohighlight">\(\sigma^2(1 + \rho^2)\)</span>. For <span class="math notranslate nohighlight">\(u = \rho\)</span>, this gives us the following Likelihood</p>
 <div class="math notranslate nohighlight">
 \[\pi_{\text{data}}(f^\delta | u) = \frac{1}{\sigma\sqrt{1+\rho^2}\sqrt{2\pi}}\exp\left(-\frac{(w^\delta - \rho v^\delta)^2}{2\sigma^2(1+\rho^2)}\right).\]</div>
-<p>As prior, we can use statistics of rock samples <a href="#id3"><span class="problematic" id="id4">:cite:`johnson1984density`</span></a>. This gives a <a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-normal distribution</a> with parameters <span class="math notranslate nohighlight">\((1.5,0.4)\)</span>. The corresponding distributions are shown in figure <a class="reference internal" href="#rock-samples"><span class="std std-numref">Fig. 4.1</span></a>.</p>
+<p>As prior, we can use statistics of rock samples <span id="id2">[<a class="reference internal" href="bibliography.html#id6" title="Gordon R Johnson. Density of rocks and minerals. CRC handbook of physical properties of rocks, pages 1–38, 1984.">Johnson, 1984</a>]</span>. This gives a <a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-normal distribution</a> with parameters <span class="math notranslate nohighlight">\((1.5,0.4)\)</span>. The corresponding distributions are shown in figure <a class="reference internal" href="#rock-samples"><span class="std std-numref">Fig. 4.1</span></a>.</p>
 <div class="figure align-default" id="rock-samples" style="width: 500px">
 <div class="cell_output docutils container">
 <img alt="_images/statistical_perspective_1_0.png" src="_images/statistical_perspective_1_0.png" />
@@ -811,7 +801,7 @@ f^\delta = Ku + \epsilon,
 </div>
 <div class="section" id="least-squares-with-positivity-constraints">
 <h3><span class="section-number">4.4.3. </span>Least-squares with positivity constraints<a class="headerlink" href="#least-squares-with-positivity-constraints" title="Permalink to this headline">¶</a></h3>
-<p>We let <span class="math notranslate nohighlight">\(f^\delta = Ku + \epsilon\)</span>, with <span class="math notranslate nohighlight">\(\epsilon\)</span> normally distributed with zero mean and unit variance. In some cases it may not be natural to define prior information in terms of a probability density. For example, the prior information that <span class="math notranslate nohighlight">\(u_i \geq 0\)</span> (all positive values are equally likely) does not have a corresponding probability density function associated with with. We may still add this prior in the Bayesian framework as</p>
+<p>We let <span class="math notranslate nohighlight">\(f^\delta = Ku + \epsilon\)</span>, with <span class="math notranslate nohighlight">\(\epsilon\)</span> normally distributed with zero mean and unit variance. In some cases it may not be natural to define prior information in terms of a probability density. For example, the prior information that <span class="math notranslate nohighlight">\(u_i \geq 0\)</span> (all positive values are equally likely) does not have a corresponding probability density function associated with it. We may still add this prior in the Bayesian framework as</p>
 <div class="math notranslate nohighlight">
 \[
 \pi_{\text{prior}}(u) = \prod_i I_{[0,\infty)}(u_i).
@@ -1059,8 +1049,8 @@ u^*\Sigma_{\text{post}}^{-1}u - 2u^*\Sigma_{\text{post}}^{-1}\mu_{\text{post}} +
 <p>Using the Binomial inverse theorem we find the desired expression for <span class="math notranslate nohighlight">\(\Sigma_{\text{post}}\)</span>. More algebraic manipulations yield the desired expression for <span class="math notranslate nohighlight">\(\mu_{\text{post}}\)</span></p>
 </div>
 </div>
-<div class="section" id="id5">
-<h3><span class="section-number">4.5.2. </span>Poisson noise<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3><span class="section-number">4.5.2. </span>Poisson noise<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Consider a linear inverse problem <span class="math notranslate nohighlight">\(Ku = f^{\delta}\)</span>, where we assume that <span class="math notranslate nohighlight">\(f^{\delta}\)</span> follows a Poisson distribution with mean <span class="math notranslate nohighlight">\(\overline f = K\overline{u}\)</span>.</p>
 <ul class="simple">
 <li><p>Show that the MAP estimate may be obtained by solving the following minimization problem</p></li>
@@ -1096,8 +1086,8 @@ u^*\Sigma_{\text{post}}^{-1}u - 2u^*\Sigma_{\text{post}}^{-1}\mu_{\text{post}} +
 <p>Plugging this in in gives the desired expression.</p>
 </div>
 </div>
-<div class="section" id="id6">
-<h3><span class="section-number">4.5.3. </span>MAP estimation<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3><span class="section-number">4.5.3. </span>MAP estimation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>Consider the inverse problem</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1290,9 +1280,6 @@ In figure <a class="reference internal" href="#expected-error"><span class="std 
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="references">
-<h2><span class="section-number">4.6. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

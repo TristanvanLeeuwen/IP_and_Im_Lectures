@@ -255,7 +255,7 @@ We can abstractly formulate most (if not all) inverse problems as finding a solu
 :label: ip
 K(u) = f.
 ```
-Here, $K$ is called the *forward opertor*; $u$ is the *image* or *parameter* and $f \in \mathcal{F}$ are the measurements. The forward operator, $K : \mathcal{U} \rightarrow \mathcal{F}$, is a model of the underlying (physical) process and simulates the measurements for given $u$. It could represent for example an integral operator, a matrix, or a set of algebraic equations.
+Here, $K$ is called the *forward operator*; $u$ is the *image* or *parameter* and $f \in \mathcal{F}$ are the measurements. The forward operator, $K : \mathcal{U} \rightarrow \mathcal{F}$, is a model of the underlying (physical) process and simulates the measurements for given $u$. It could represent for example an integral operator, a matrix, or a set of algebraic equations.
 The image/parameters, $u$, constitute a mathematical description of the quantity of interest. It could for example be a function or a vector. The measurements, $f$, are a mathematical representation of the measured data. For the purposes of analysis, we may think of this a function, but in practice measurements are always a discrete quantity.
 
 For the purposes of this course, we will assume that $\mathcal{U}$ and $\mathcal{F}$ are [Banach spaces](https://en.wikipedia.org/wiki/Banach_space) so we can measure distances between pairs of images and measurements. In many cases, $\mathcal{U}$ and $\mathcal{F}$ will additionaly have an inner-product in which case they are [Hilbert spaces](https://en.wikipedia.org/wiki/Hilbert_space).
@@ -274,7 +274,7 @@ The equation $K(u) = f$ is *well-posed* if *all* three criteria are met:
 If the problem is not well-posed, we call it *ill-posed*.
 ```
 
-It may seem strange that equation {eq}`ip` may not have a solution. After all, are the measurements not the result of the forward opertor applied to some ground-truth $\overline{u}$? We need to keep in mind here that $K$ is only a *model* for the underlying process. In reality, the measurements may include *modelling errors* and *measurement errors*. We will denote the noisy data by $f^{\delta}$. An often-used model to incorporate such errors is the *additive noise model*
+It may seem strange that equation {eq}`ip` may not have a solution. After all, are the measurements not the result of the forward operator applied to some ground-truth $\overline{u}$? We need to keep in mind here that $K$ is only a *model* for the underlying process. In reality, the measurements may include *modelling errors* and *measurement errors*. We will denote the noisy data by $f^{\delta}$. An often-used model to incorporate such errors is the *additive noise model*
 
 $$
 f^{\delta} = K(\overline{u}) + e,
@@ -342,7 +342,7 @@ It is not hard to show in this case that the forward error $\|f^{\delta} - f\|_{
 ## Solving an inverse problem
 
 ### Direct methods
-In some special cases we can derive an explicit expression for (an approximation) of the solution of $K(u) = f$. For example, if $K$ represents a quadratic equation in one variable or a system of linear equations. In other cases, we may have an explicit expression for the inverse of a slightly modified forward operator, $\widetilde{K}$. This modified operator arises when the original inverse problem is ill-posed and is replaced by a modified inverse problem $\widetilde{K}(u) = f$ which is well-posed. The hope, in the latter case, is that $\widetilde{K}$ approximates $K$ well for the class of solututions we are looking for.
+In some special cases we can derive an explicit expression for (an approximation) of the solution of $K(u) = f$. For example, if $K$ represents a quadratic equation in one variable or a system of linear equations. In other cases, we may have an explicit expression for the inverse of a slightly modified forward operator, $\widetilde{K}$. This modified operator arises when the original inverse problem is ill-posed and is replaced by a modified inverse problem $\widetilde{K}(u) = f$ which is well-posed. The hope, in the latter case, is that $\widetilde{K}$ approximates $K$ well for the class of solutions we are looking for.
 
 ````{admonition} Example: *Inverting a rank-deficient matrix.*
 Consider the matrix 
@@ -466,12 +466,6 @@ ax.set_aspect(3)
 ax.legend()
 plt.show()
 glue("quadratic", fig, display=False)
-```
-
-## References
-
-```{bibliography} references.bib
-:style: plain
 ```
 
 ## Excercises

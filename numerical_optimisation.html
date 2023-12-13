@@ -169,7 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   11. Bibliography
+   11. References
   </a>
  </li>
 </ul>
@@ -320,55 +320,50 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   6.3. References
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercises">
-   6.4. Exercises
+   6.3. Exercises
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#steepest-descent-for-strongly-convex-functionals">
-     6.4.1. Steepest descent for strongly convex functionals
+     6.3.1. Steepest descent for strongly convex functionals
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#steepest-descent-for-convex-functions">
-     6.4.2. Steepest descent for convex functions
+     6.3.2. Steepest descent for convex functions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rosenbrock">
-     6.4.3. Rosenbrock
+     6.3.3. Rosenbrock
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#subdifferentials">
-     6.4.4. Subdifferentials
+     6.3.4. Subdifferentials
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dual-problems">
-     6.4.5. Dual problems
+     6.3.5. Dual problems
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tv-denoising">
-     6.4.6. TV-denoising
+     6.3.6. TV-denoising
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#assignments">
-   6.5. Assignments
+   6.4. Assignments
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#spline-regularisation">
-     6.5.1. Spline regularisation
+     6.4.1. Spline regularisation
     </a>
    </li>
   </ul>
@@ -438,55 +433,50 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   6.3. References
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercises">
-   6.4. Exercises
+   6.3. Exercises
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#steepest-descent-for-strongly-convex-functionals">
-     6.4.1. Steepest descent for strongly convex functionals
+     6.3.1. Steepest descent for strongly convex functionals
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#steepest-descent-for-convex-functions">
-     6.4.2. Steepest descent for convex functions
+     6.3.2. Steepest descent for convex functions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rosenbrock">
-     6.4.3. Rosenbrock
+     6.3.3. Rosenbrock
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#subdifferentials">
-     6.4.4. Subdifferentials
+     6.3.4. Subdifferentials
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dual-problems">
-     6.4.5. Dual problems
+     6.3.5. Dual problems
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tv-denoising">
-     6.4.6. TV-denoising
+     6.3.6. TV-denoising
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#assignments">
-   6.5. Assignments
+   6.4. Assignments
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#spline-regularisation">
-     6.5.1. Spline regularisation
+     6.4.1. Spline regularisation
     </a>
    </li>
   </ul>
@@ -506,7 +496,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="smooth-optimisation">
 <h2><span class="section-number">6.1. </span>Smooth optimisation<a class="headerlink" href="#smooth-optimisation" title="Permalink to this headline">¶</a></h2>
 <p>For smooth problems, we assume to have access to as many derivatives of <span class="math notranslate nohighlight">\(J\)</span> as we need. As before, we denote the first derivative (or gradient) by <span class="math notranslate nohighlight">\(J' : \mathbb{R}^n \rightarrow \mathbb{R}^n\)</span>. We denote the second derivative (or Hessian) by <span class="math notranslate nohighlight">\(J'' : \mathbb{R}^n \rightarrow \mathbb{R}^{n\times n}\)</span>. We will additionally assume that the Hessian is globally bounded, i.e. there exists a constant <span class="math notranslate nohighlight">\(L &lt; \infty\)</span> such that <span class="math notranslate nohighlight">\(J''(u) \preceq L\cdot I\)</span> for all <span class="math notranslate nohighlight">\(u\in\mathbb{R}^n\)</span>. Note that this implies that <span class="math notranslate nohighlight">\(J'\)</span> is Lipschitz continous with constant <span class="math notranslate nohighlight">\(L\)</span>: <span class="math notranslate nohighlight">\(\|J'(u) - J'(v)\|_2 \leq L \|u - v\|_2\)</span>.</p>
-<p>For a comprehensive treatment of this topic (and many more), we recommend the seminal book <em>Numerical Optimization</em> by Stephen Wright and Jorge Nocedal <a href="#id1"><span class="problematic" id="id2">:cite:`nocedal2006numerical`</span></a>.</p>
+<p>For a comprehensive treatment of this topic (and many more), we recommend the seminal book <em>Numerical Optimization</em> by Stephen Wright and Jorge Nocedal <span id="id1">[<a class="reference internal" href="bibliography.html#id7" title="Jorge Nocedal and Stephen Wright. Numerical optimization. Springer Science &amp; Business Media, 2006.">Nocedal and Wright, 2006</a>]</span>.</p>
 <hr class="docutils" />
 <p>Before discussing optimisation methods, we first introduce the optimality conditions.</p>
 <div class="important admonition">
@@ -586,7 +576,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>A possible disadvantage of the backtracking linesearch introduced earlier is that it may end up choosing very small stepsizes. To obtain a stepsize that yields a new iterate at which the slope of <span class="math notranslate nohighlight">\(J\)</span> is not too large, we introduce the following condition</p>
 <div class="math notranslate nohighlight" id="equation-wolfe2">
 <span class="eqno">(6.3)<a class="headerlink" href="#equation-wolfe2" title="Permalink to this equation">¶</a></span>\[|\langle J'(u_k + \lambda d_k), d_k\rangle| \leq c_2 |\langle J'(u_k), d_k\rangle|,\]</div>
-<p>where <span class="math notranslate nohighlight">\(c_2\)</span> is a small constant satisfying <span class="math notranslate nohighlight">\(0 &lt; c_1 &lt; c_2 &lt; 1\)</span>. The conditions <a class="reference internal" href="#equation-wolfe1">(6.2)</a> and <a class="reference internal" href="#equation-wolfe2">(6.3)</a>, are referred to as the <em>strong Wolfe conditions</em>. Existence of a stepsize satisfying these conditions is again guaranteed by the regularity of <span class="math notranslate nohighlight">\(J\)</span> (cf. <a href="#id3"><span class="problematic" id="id4">:cite:`nocedal2006numerical`</span></a>, lemma 3.1). Finding such a <span class="math notranslate nohighlight">\(\lambda\)</span> is a little more involved than the backtracking procedure outlined above (cf. <a href="#id5"><span class="problematic" id="id6">:cite:`nocedal2006numerical`</span></a>, algorithm 3.5). Luckily, the <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of this algorithm (cf. <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.line_search.html"><code class="docutils literal notranslate"><span class="pre">scipy.optimize.line_search</span></code></a>)</p>
+<p>where <span class="math notranslate nohighlight">\(c_2\)</span> is a small constant satisfying <span class="math notranslate nohighlight">\(0 &lt; c_1 &lt; c_2 &lt; 1\)</span>. The conditions <a class="reference internal" href="#equation-wolfe1">(6.2)</a> and <a class="reference internal" href="#equation-wolfe2">(6.3)</a>, are referred to as the <em>strong Wolfe conditions</em>. Existence of a stepsize satisfying these conditions is again guaranteed by the regularity of <span class="math notranslate nohighlight">\(J\)</span> (cf. <span id="id2">[<a class="reference internal" href="bibliography.html#id7" title="Jorge Nocedal and Stephen Wright. Numerical optimization. Springer Science &amp; Business Media, 2006.">Nocedal and Wright, 2006</a>]</span>, lemma 3.1). Finding such a <span class="math notranslate nohighlight">\(\lambda\)</span> is a little more involved than the backtracking procedure outlined above (cf. <span id="id3">[<a class="reference internal" href="bibliography.html#id7" title="Jorge Nocedal and Stephen Wright. Numerical optimization. Springer Science &amp; Business Media, 2006.">Nocedal and Wright, 2006</a>]</span>, algorithm 3.5). Luckily, the <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of this algorithm (cf. <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.line_search.html"><code class="docutils literal notranslate"><span class="pre">scipy.optimize.line_search</span></code></a>)</p>
 </div>
 </div>
 <div class="section" id="second-order-methods">
@@ -606,7 +596,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="important dropdown admonition">
 <p class="admonition-title">Proof</p>
-<p>See <a href="#id7"><span class="problematic" id="id8">:cite:`nocedal2006numerical`</span></a>, Thm. 3.5.</p>
+<p>See <span id="id4">[<a class="reference internal" href="bibliography.html#id7" title="Jorge Nocedal and Stephen Wright. Numerical optimization. Springer Science &amp; Business Media, 2006.">Nocedal and Wright, 2006</a>]</span>, Thm. 3.5.</p>
 </div>
 <p>In practice, the Hessian may not be invertible everywhere and we may not have an initial iterate sufficiently close to a minimiser to ensure convergence. Practical applications therefore include a linesearch and a safeguard against non-invertible Hessians.</p>
 <hr class="docutils" />
@@ -622,7 +612,7 @@ and gradients <span class="math notranslate nohighlight">\(y_k = J'(u_{k+1}) - J
 \[B_{k+1} = \left(I - \rho_k s_k y_k^T\right)B_k\left(I - \rho_k y_k s_k^T\right) + \rho_k s_ks_k^T,\]</div>
 <p>with <span class="math notranslate nohighlight">\(\rho_k = (\langle s_k, y_k\rangle)^{-1}\)</span> and <span class="math notranslate nohighlight">\(B_0\)</span> choses appropriately (e.g., <span class="math notranslate nohighlight">\(B_0 = L^{-1} \cdot I\)</span>). It can be shown that this approximation is sufficiently accurate to yield <em>superlinear</em> convergence when using a Wolfe linesearch.</p>
 <hr class="docutils" />
-<p>The are many practical aspects to implementing such methods. For example, what do we do when the approximated Hessian becomes (almost) singular? Discussing these issues is beyond the scope of these lecture notes and we refer to <a href="#id9"><span class="problematic" id="id10">:cite:`nocedal2006numerical`</span></a>, chapter 6 for more details. The <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.html">various optimisation methods</a>.</p>
+<p>The are many practical aspects to implementing such methods. For example, what do we do when the approximated Hessian becomes (almost) singular? Discussing these issues is beyond the scope of these lecture notes and we refer to <span id="id5">[<a class="reference internal" href="bibliography.html#id7" title="Jorge Nocedal and Stephen Wright. Numerical optimization. Springer Science &amp; Business Media, 2006.">Nocedal and Wright, 2006</a>]</span>, chapter 6 for more details. The <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.html">various optimisation methods</a>.</p>
 </div>
 </div>
 <div class="section" id="convex-optimisation">
@@ -713,7 +703,7 @@ and gradients <span class="math notranslate nohighlight">\(y_k = J'(u_{k+1}) - J
 <li><p><em>Summation:</em> Let <span class="math notranslate nohighlight">\(J = J_1 + J_2\)</span>, then <span class="math notranslate nohighlight">\(J_1'(u) + J_2'(u) \in \partial J(u)\)</span> for <span class="math notranslate nohighlight">\(u\)</span> in the interior of <span class="math notranslate nohighlight">\(\text{dom}(J)\)</span>.</p></li>
 <li><p><em>Affine transformation:</em> Let <span class="math notranslate nohighlight">\(J(u) = J_1(Au + b)\)</span>, then <span class="math notranslate nohighlight">\(A^T J_1'(Au + b) \in \partial J\)</span> for <span class="math notranslate nohighlight">\(u, Au + b\)</span> in the interior of <span class="math notranslate nohighlight">\(\text{dom}(J)\)</span>.</p></li>
 </ul>
-<p>An overview of other useful relations can be found in e.g., <a href="#id11"><span class="problematic" id="id12">:cite:`Beck2017`</span></a> section 3.8.</p>
+<p>An overview of other useful relations can be found in e.g., <span id="id6">[<a class="reference internal" href="bibliography.html#id8" title="Amir Beck. First-Order Methods in Optimization. Society for Industrial and Applied Mathematics, 2017.">Beck, 2017</a>]</span> section 3.8.</p>
 </div>
 <hr class="docutils" />
 <p>With this we can now formulate optimality conditions for convex optimisation.</p>
@@ -875,7 +865,7 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 </div>
 <div class="dropdown important admonition">
 <p class="admonition-title">Proof</p>
-<p>We refer to <a href="#id13"><span class="problematic" id="id14">:cite:`Beck2017`</span></a> Thms. 10.15, 10.21, and 10.29 or more details.</p>
+<p>We refer to <span id="id7">[<a class="reference internal" href="bibliography.html#id8" title="Amir Beck. First-Order Methods in Optimization. Society for Industrial and Applied Mathematics, 2017.">Beck, 2017</a>]</span> Thms. 10.15, 10.21, and 10.29 or more details.</p>
 </div>
 <hr class="docutils" />
 <p>When compared to the subgradient method, we may expect better performance from the proximal gradient method when <span class="math notranslate nohighlight">\(D\)</span> is strongly convex and <span class="math notranslate nohighlight">\(R\)</span> is convex. Even if <span class="math notranslate nohighlight">\(J\)</span> is smooth, the proximal gradient method may be favourable as the convergence constants depend on the Lipschitz constant of <span class="math notranslate nohighlight">\(D\)</span> only; not <span class="math notranslate nohighlight">\(J\)</span>. All this comes at the cost of solving a minimisation problem at each iteration, so these methods are usually only applied when a closed-form expression for the proximal operator exists.</p>
@@ -907,7 +897,7 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 <p>The proximal point methods require that the proximal operator for <span class="math notranslate nohighlight">\(R\)</span> can be evaluated efficiently. In many practical applications this is not the cases, however. Instead, we may have a regulariser of the form <span class="math notranslate nohighlight">\(R(Au)\)</span> for some linear operator <span class="math notranslate nohighlight">\(A\)</span>. Even when <span class="math notranslate nohighlight">\(R(\cdot)\)</span> admits an efficient proximal operator <span class="math notranslate nohighlight">\(R(A\cdot)\)</span> will, in general, not. In this section we discuss a class of methods that allow us to shift the operator <span class="math notranslate nohighlight">\(A\)</span> to the other part of the objective. As a model-problem we will consider solving</p>
 <div class="math notranslate nohighlight">
 \[\min_{u\in \mathbb{R}^n} D(u) + R(Au),\]</div>
-<p>with <span class="math notranslate nohighlight">\(D\)</span> smooth and <span class="math notranslate nohighlight">\(\mu-\)</span> strongly convex, <span class="math notranslate nohighlight">\(R(\cdot)\)</span> convex and <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m\times n}\)</span> a linear map. The basic idea is to introduce an auxiliary variable <span class="math notranslate nohighlight">\(v\)</span> and re-formulate the variational problem as</p>
+<p>with <span class="math notranslate nohighlight">\(D\)</span> smooth and convex, <span class="math notranslate nohighlight">\(R(\cdot)\)</span> convex and <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m\times n}\)</span> a linear map. The basic idea is to introduce an auxiliary variable <span class="math notranslate nohighlight">\(v\)</span> and re-formulate the variational problem as</p>
 <div class="math notranslate nohighlight" id="equation-splitted">
 <span class="eqno">(6.8)<a class="headerlink" href="#equation-splitted" title="Permalink to this equation">¶</a></span>\[\min_{u\in \mathbb{R}^n,v\in\mathbb{R}^m} D(u) + R(v), \quad \text{s.t.} \quad Au = v.\]</div>
 <p>To solve such constrained optimization problems we employ the method of Lagrange multipliers which defines the <em>Lagrangian</em></p>
@@ -962,7 +952,7 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 <p class="admonition-title"><em>Dual-based proximal gradient</em></p>
 <p>We start from the dual problem <a class="reference internal" href="#equation-dual-saddle-point">(6.10)</a>:</p>
 <div class="math notranslate nohighlight">
-\[\max_{\nu} \left(\min_u D(u) + \langle Au,\nu\rangle\right) + \left(\min_v R(v) - \langle \nu, v\rangle\right).\]</div>
+\[\max_{\nu} \left(\min_u \left( D(u) + \langle Au,\nu \rangle \right) \right) + \left(\min_v \left( R(v) - \langle \nu, v\rangle \right) \right).\]</div>
 <p>In this expression we recognise the <a class="reference external" href="https://en.wikipedia.org/wiki/Convex_conjugate"><em>convex conjugates</em></a> of <span class="math notranslate nohighlight">\(D\)</span> and <span class="math notranslate nohighlight">\(R\)</span>. With this, we re-write the problem as</p>
 <div class="math notranslate nohighlight">
 \[\min_{\nu} D^*(-A^T\nu) + R^*(\nu).\]</div>
@@ -1004,13 +994,10 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 <p>We cannot do justice to the breadth and depth of the topics smooth and convex optimisation in one chapter. Rather, we hope that this chapter serves as a starting point for further study in one of these areas for some, and provides useful recipes for others.</p>
 </div>
 </div>
-<div class="section" id="references">
-<h2><span class="section-number">6.3. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-</div>
 <div class="section" id="exercises">
-<h2><span class="section-number">6.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.3. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="steepest-descent-for-strongly-convex-functionals">
-<h3><span class="section-number">6.4.1. </span>Steepest descent for strongly convex functionals<a class="headerlink" href="#steepest-descent-for-strongly-convex-functionals" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.1. </span>Steepest descent for strongly convex functionals<a class="headerlink" href="#steepest-descent-for-strongly-convex-functionals" title="Permalink to this headline">¶</a></h3>
 <p>Consider the following fixed point iteration for minimizing a given function <span class="math notranslate nohighlight">\(J : \mathbb{R}^n \rightarrow \mathbb{R}\)</span></p>
 <div class="math notranslate nohighlight">
 \[
@@ -1058,13 +1045,13 @@ Since the eigenvalues of <span class="math notranslate nohighlight">\(\J''\)</sp
 </div>
 </div>
 <div class="section" id="steepest-descent-for-convex-functions">
-<h3><span class="section-number">6.4.2. </span>Steepest descent for convex functions<a class="headerlink" href="#steepest-descent-for-convex-functions" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.2. </span>Steepest descent for convex functions<a class="headerlink" href="#steepest-descent-for-convex-functions" title="Permalink to this headline">¶</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(J : \mathbb{R}^n\)</span> be convex and Lipschitz-smooth. Show that the basic steepest-descent iteration with stepsize <span class="math notranslate nohighlight">\(\lambda = 1/L\)</span> produces iterates for which</p>
 <div class="math notranslate nohighlight">
 \[J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|}{2Lk}.\]</div>
 <p>The key is to use that</p>
 <div class="math notranslate nohighlight">
-\[J(v) \leq J(u) + \langle J'(u), v - u\rangle + \textstyle{\frac{1}{2}}\|u - v\|_2^2.\]</div>
+\[J(v) \leq J(u) + \langle J'(u), v - u\rangle + \textstyle{\frac{L}{2}}\|u - v\|_2^2.\]</div>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Answer</p>
 <p>Start from the inequality and set <span class="math notranslate nohighlight">\(v = u_{k+1} = u_k - \lambda J'(u_k)\)</span> and <span class="math notranslate nohighlight">\(u = u_k\)</span>, yielding</p>
@@ -1077,7 +1064,7 @@ Since the eigenvalues of <span class="math notranslate nohighlight">\(\J''\)</sp
 </div>
 </div>
 <div class="section" id="rosenbrock">
-<h3><span class="section-number">6.4.3. </span>Rosenbrock<a class="headerlink" href="#rosenbrock" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.3. </span>Rosenbrock<a class="headerlink" href="#rosenbrock" title="Permalink to this headline">¶</a></h3>
 <p>We are going to test various optimization methods on the Rosenbrock function</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1163,7 +1150,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fee8ba501c0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc7777d88b0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -1185,7 +1172,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fee889c07f0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc7744c1d00&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1250,8 +1237,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn(&#39;The line search algorithm did not converge&#39;, LineSearchWarning)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fee8bf45490&gt;,
- &lt;matplotlib.lines.Line2D at 0x7fee8bf45640&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc75a433550&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7fc75a433700&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />
@@ -1259,7 +1246,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="section" id="subdifferentials">
-<h3><span class="section-number">6.4.4. </span>Subdifferentials<a class="headerlink" href="#subdifferentials" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.4. </span>Subdifferentials<a class="headerlink" href="#subdifferentials" title="Permalink to this headline">¶</a></h3>
 <p>Compute the subdifferentials of the following functionals <span class="math notranslate nohighlight">\(J : \mathbb{R}^n \rightarrow \mathbb{R}_+\)</span>:</p>
 <ul class="simple">
 <li><p>The Euclidean norm <span class="math notranslate nohighlight">\(J(u) = \|u\|_2\)</span>.</p></li>
@@ -1286,7 +1273,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="section" id="dual-problems">
-<h3><span class="section-number">6.4.5. </span>Dual problems<a class="headerlink" href="#dual-problems" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.5. </span>Dual problems<a class="headerlink" href="#dual-problems" title="Permalink to this headline">¶</a></h3>
 <p>Derive the dual problems for the following optimisation problems</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\min_u \|u - f^\delta\|_1 + \lambda \|u\|_2^2\)</span>.</p></li>
@@ -1326,7 +1313,7 @@ The second one is easy, since we can compute the optimality condition easily: <s
 </div>
 </div>
 <div class="section" id="tv-denoising">
-<h3><span class="section-number">6.4.6. </span>TV-denoising<a class="headerlink" href="#tv-denoising" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.3.6. </span>TV-denoising<a class="headerlink" href="#tv-denoising" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise we consider a one-dimensional TV-denoising problem</p>
 <div class="math notranslate nohighlight">
 \[\min_{\mathbb{R}^n} \textstyle{\frac{1}{2}} \|u - f^\delta\|_2^2 + \lambda \|Du\|_1,\]</div>
@@ -1512,9 +1499,9 @@ The second one is easy, since we can compute the optimality condition easily: <s
 </div>
 </div>
 <div class="section" id="assignments">
-<h2><span class="section-number">6.5. </span>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.4. </span>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="spline-regularisation">
-<h3><span class="section-number">6.5.1. </span>Spline regularisation<a class="headerlink" href="#spline-regularisation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.4.1. </span>Spline regularisation<a class="headerlink" href="#spline-regularisation" title="Permalink to this headline">¶</a></h3>
 <p>The aim is to solve the following variational problem</p>
 <div class="math notranslate nohighlight">
 \[\min_u \frac{1}{2} \|Ku - f^{\delta}\|_2^2 + \alpha \|Lu\|_1,\]</div>

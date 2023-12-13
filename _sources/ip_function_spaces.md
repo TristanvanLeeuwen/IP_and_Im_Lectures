@@ -150,7 +150,7 @@ The M-P pseudo-inverse $K^{\dagger}: \mathcal{R}(K)^\perp \oplus \mathcal{R}(K) 
 ```{admonition} Proof
 :class: dropdown
 
-1. Decompose $f \in \mathcal{D}(K^\dagger)$ as $f = f_1 + f_2$ with $f_1\in\mathcal{R}(K)$, $f_2\in\mathcal{R}(K)^\perp$ and use that $K = \widetilde{K}$ on $\mathcal{N}(K)^\perp$. Then $KK^\dagger f = K\widetilde{K}^{-1}f_1 = f_1$. Hence, $KK^\dagger$ acts an orthogonal projection of $f \in \mathcal{R}(K^\dagger)$ on $\overline{\mathcal{R}(K)}$.
+1. Decompose $f \in \mathcal{D}(K^\dagger)$ as $f = f_1 + f_2$ with $f_1\in\mathcal{R}(K)$, $f_2\in\mathcal{R}(K)^\perp$ and use that $K = \widetilde{K}$ on $\mathcal{N}(K)^\perp$. Then $KK^\dagger f = K\widetilde{K}^{-1}f_1 = f_1$. Hence, $KK^\dagger$ acts as an orthogonal projection of $f \in \mathcal{D}(K^\dagger)$ on $\overline{\mathcal{R}(K)}$.
 
 2. Decompose $u \in \mathcal{U}$ in two parts $u = u_1 + u_2$ with $u_1 \in \mathcal{N}(K)$, $u_2\in\mathcal{N}(K)^\perp$
 we have $K^\dagger K u = K^\dagger K u_1 = u_1$, so $KK^\dagger$ acts like an orthogonal projection on $\mathcal{N}(K)^\perp$ so $KK^\dagger = I - P_{\mathcal{N}(K}$ (note that the orthogonal complement of a subspace is always closed).

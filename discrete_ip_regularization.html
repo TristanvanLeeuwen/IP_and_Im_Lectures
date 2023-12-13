@@ -169,7 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="bibliography.html">
-   11. Bibliography
+   11. References
   </a>
  </li>
 </ul>
@@ -296,7 +296,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
+    <a class="reference internal nav-link" href="#id2">
      2.4.1. Pseudo-inverse
     </a>
    </li>
@@ -328,11 +328,6 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   2.6. References
-  </a>
  </li>
 </ul>
 
@@ -375,7 +370,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
+    <a class="reference internal nav-link" href="#id2">
      2.4.1. Pseudo-inverse
     </a>
    </li>
@@ -408,11 +403,6 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   2.6. References
-  </a>
- </li>
 </ul>
 
                         </nav>
@@ -442,7 +432,7 @@ Ku = f,
 \]</div>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(m &gt; n\)</span> and <span class="math notranslate nohighlight">\(K\)</span> has rank <span class="math notranslate nohighlight">\(n\)</span>, the system of equations may be <em>inconsistent</em> in which case a solution does not exist when <span class="math notranslate nohighlight">\(f\)</span> is not in the range of <span class="math notranslate nohighlight">\(K\)</span>.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(m &lt; n\)</span> and <span class="math notranslate nohighlight">\(K\)</span> has rank <span class="math notranslate nohighlight">\(m\)</span>, we can always find a solution but it may not be unique because <span class="math notranslate nohighlight">\(K\)</span> has a on-trivial <em>null-space</em>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(m &lt; n\)</span> and <span class="math notranslate nohighlight">\(K\)</span> has rank <span class="math notranslate nohighlight">\(m\)</span>, we can always find a solution but it may not be unique because <span class="math notranslate nohighlight">\(K\)</span> has a non-trivial <em>null-space</em>.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(K\)</span> does not have maximal rank, the system of equations may be both inconsistent and <span class="math notranslate nohighlight">\(K\)</span> can have a null-space.</p></li>
 </ul>
 <p>Stability in this context means that errors in the data do not get amplified too much. For now, we’ll only consider stability in case the solution exists and is unique. Consider the systems <span class="math notranslate nohighlight">\(K\widetilde{u} = f\)</span> and <span class="math notranslate nohighlight">\(K\widetilde{u}^{\delta} = f^{\delta}\)</span> for which we have</p>
@@ -597,7 +587,7 @@ K^{\dagger} = V_k\Sigma_k^{-1}U_k^{*},
 \[
 \widetilde{u} = V_k\Sigma_k^{-1}U_k^{*}f = \sum_{i=1}^k \frac{\langle u_i, f\rangle}{\sigma_i}v_i.
 \]</div>
-<p>We note the component in <span class="math notranslate nohighlight">\(f\)</span> corresponding to <span class="math notranslate nohighlight">\(v_i\)</span> is amplified by <span class="math notranslate nohighlight">\(\sigma_i^{-1}\)</span>. Thus if <span class="math notranslate nohighlight">\(f\)</span> has (noise) components that correlate with <span class="math notranslate nohighlight">\(v_i\)</span>’s corresponding to very small singular values, these noise components get amplified. Generally, we do not expect problems if <span class="math notranslate nohighlight">\(|\langle u_i, f\rangle|\)</span> decays faster with <span class="math notranslate nohighlight">\(i\)</span> than the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span>. This is called the <em>discrete Picard condition</em> <a href="#id1"><span class="problematic" id="id2">:cite:`hansen1990discrete`</span></a>.</p>
+<p>We note the component in <span class="math notranslate nohighlight">\(f\)</span> corresponding to <span class="math notranslate nohighlight">\(v_i\)</span> is amplified by <span class="math notranslate nohighlight">\(\sigma_i^{-1}\)</span>. Thus if <span class="math notranslate nohighlight">\(f\)</span> has (noise) components that correlate with <span class="math notranslate nohighlight">\(v_i\)</span>’s corresponding to very small singular values, these noise components get amplified. Generally, we do not expect problems if <span class="math notranslate nohighlight">\(|\langle u_i, f\rangle|\)</span> decays faster with <span class="math notranslate nohighlight">\(i\)</span> than the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span>. This is called the <em>discrete Picard condition</em> <span id="id1">[<a class="reference internal" href="bibliography.html#id3" title="Per Christian Hansen. The discrete picard condition for discrete ill-posed problems. BIT Numerical Mathematics, 30(4):658–672, 1990.">Hansen, 1990</a>]</span>.</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Discrete Picard Condition</em></p>
 <p>The vector <span class="math notranslate nohighlight">\(f \in \mathbb{R}^m\)</span> satisfies the discrete Picard condition for the problem <span class="math notranslate nohighlight">\(Ku=f\)</span> if the coefficients <span class="math notranslate nohighlight">\(|\langle u_i, f\rangle|\)</span> decay faster than the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span> of <span class="math notranslate nohighlight">\(K\)</span>, where <span class="math notranslate nohighlight">\(u_i\)</span> denotes the left singular vectors of <span class="math notranslate nohighlight">\(K\)</span>.</p>
@@ -834,14 +824,14 @@ r_{\alpha}(\sigma) =
 <div class="cell_output docutils container">
 <img alt="_images/discrete_ip_regularization_3_0.png" src="_images/discrete_ip_regularization_3_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 2.2 </span><span class="caption-text">An example of the error <span class="math notranslate nohighlight">\(\|\overline{u} - K_{\alpha}^\dagger f^\delta\|_2\)</span> and corresponding bias and variance for <span class="math notranslate nohighlight">\(n = 100\)</span> and <span class="math notranslate nohighlight">\(\sigma = 10^{-2}\)</span>. As predicted, the basis decreases with <span class="math notranslate nohighlight">\(k\)</span> while the variance increases. The optimal <span class="math notranslate nohighlight">\(k\)</span> for this noise level lies at <span class="math notranslate nohighlight">\(k \approx 30\)</span>. Look at <a class="reference internal" href="#picard"><span class="std std-numref">Fig. 2.1</span></a>, do you see why this is the optimal <span class="math notranslate nohighlight">\(k\)</span>?</span><a class="headerlink" href="#bias-variance" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2.2 </span><span class="caption-text">An example of the error <span class="math notranslate nohighlight">\(\|\overline{u} - K_{\alpha}^\dagger f^\delta\|_2\)</span> and corresponding bias and variance for <span class="math notranslate nohighlight">\(n = 100\)</span> and <span class="math notranslate nohighlight">\(\sigma = 10^{-2}\)</span>. As predicted, the bias decreases with <span class="math notranslate nohighlight">\(k\)</span> while the variance increases. The optimal <span class="math notranslate nohighlight">\(k\)</span> for this noise level lies at <span class="math notranslate nohighlight">\(k \approx 30\)</span>. Look at <a class="reference internal" href="#picard"><span class="std std-numref">Fig. 2.1</span></a>, do you see why this is the optimal <span class="math notranslate nohighlight">\(k\)</span>?</span><a class="headerlink" href="#bias-variance" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
 <div class="section" id="exercises">
 <h2><span class="section-number">2.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id3">
-<h3><span class="section-number">2.4.1. </span>Pseudo-inverse<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3><span class="section-number">2.4.1. </span>Pseudo-inverse<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Show that for a given matrix <span class="math notranslate nohighlight">\(K \in \mathbb{R}^{m\times n}\)</span>:</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(KK^\dagger\)</span> is an orthogonal projection on to the range of <span class="math notranslate nohighlight">\(K\)</span></p></li>
@@ -1148,9 +1138,6 @@ r_{\alpha}(\sigma) =
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="references">
-<h2><span class="section-number">2.6. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
