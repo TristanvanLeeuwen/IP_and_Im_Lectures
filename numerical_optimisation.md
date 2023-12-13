@@ -610,7 +610,7 @@ The strategy illustrated in the previous approach is an example of a more genera
 
 We start from the dual problem {eq}`dual_saddle_point`:
 
-$$\max_{\nu} \left(\min_u D(u) + \langle Au,\nu\rangle\right) + \left(\min_v R(v) - \langle \nu, v\rangle\right).$$
+$$\max_{\nu} \left(\min_u \left( D(u) + \langle Au,\nu \rangle \right) \right) + \left(\min_v \left( R(v) - \langle \nu, v\rangle \right) \right).$$
 
 In this expression we recognise the [*convex conjugates*](https://en.wikipedia.org/wiki/Convex_conjugate) of $D$ and $R$. With this, we re-write the problem as
 
