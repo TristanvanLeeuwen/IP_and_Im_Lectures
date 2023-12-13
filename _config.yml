@@ -24,3 +24,6 @@ repository:
 
 html:
   use_edit_page_button: true
+
+bibtex_bibfiles:
+    - references.bib
