@@ -480,7 +480,7 @@ in which we recognise the bias and variance terms. In expectation, the upper bou
 :figwidth: 600px
 :name: "bias_variance"
 
-An example of the error $\|\overline{u} - K_{\alpha}^\dagger f^\delta\|_2$ and corresponding bias and variance for $n = 100$ and $\sigma = 10^{-2}$. As predicted, the basis decreases with $k$ while the variance increases. The optimal $k$ for this noise level lies at $k \approx 30$. Look at {numref}`picard`, do you see why this is the optimal $k$?
+An example of the error $\|\overline{u} - K_{\alpha}^\dagger f^\delta\|_2$ and corresponding bias and variance for $n = 100$ and $\sigma = 10^{-2}$. As predicted, the bias decreases with $k$ while the variance increases. The optimal $k$ for this noise level lies at $k \approx 30$. Look at {numref}`picard`, do you see why this is the optimal $k$?
 ```
 
 ````
