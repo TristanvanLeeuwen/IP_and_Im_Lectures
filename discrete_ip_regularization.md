@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Discrete Inverse Problems and Regularisation
+# Discrete Inverse Problems and Regularization
 
 In this lecture we consider inverse problems that can be posed as a system of linear equations
 
@@ -22,7 +22,7 @@ $$
 with $K \in \mathbb{R}^{m\times n}$ a given matrix and $f\in \mathbb{R}^{m}$ the data. The goal is to find a solution $u \in \mathbb{R}^n$ that (approximately) satisfies the equations.
 
 ## Well-posedness
-The first questions we adress in detail are those of *existence*, *uniqueness* and *stability* of the solution. We discern the following cases:
+The first questions we address in detail are those of *existence*, *uniqueness* and *stability* of the solution. We discern the following cases:
 
 * If $m = n$ and $K$ has full rank, it is invertible and the solution is given by
 
@@ -300,7 +300,7 @@ An example of the singular values and the coefficients $|\langle u_i, f\rangle|$
 ````
 ## Regularisation
 
-To stabilise the problem we can modify the pseudo inverse in several ways to avoid dividing by small singular values. One option is to simply ignore small singular values and choose a cut-off value and define the solution as
+To stabilize the problem we can modify the pseudo inverse in several ways to avoid dividing by small singular values. One option is to simply ignore small singular values and choose a cut-off value and define the solution as
 
 ```{math}
 :label: regK
@@ -336,7 +336,7 @@ where $\{(u_i,v_i,\sigma_i)\}_{i=1}^k$ denotes the singular system of $K$ and $k
 
 ---
 
-Another option to avoid dividing by small singular values is to add small positive constant to shift the singular values away from zero. This gives rise to Tikhonov regularisation.
+Another option to avoid dividing by small singular values is to add small positive constant to shift the singular values away from zero. This gives rise to Tikhonov regularization.
 
 ```{admonition} Definition: *Tikhonov regularisation*
 :class: important
@@ -366,25 +366,25 @@ Indeed, it is easily verified that $K^* K + \alpha I$ has full rank whenever $\a
 
 ---
 
-Of course, one may think of other types of regularisation by defining an appropriate function $r_{\alpha}$. Intuitively, we would like
+Of course, one may think of other types of regularization by defining an appropriate function $r_{\alpha}$. Intuitively, we would like
 
 * $r_{\alpha}(s) = s^{-1}$ as $\alpha \rightarrow 0$
 * $r_{\alpha}(0) < \infty$ for any $\alpha > 0$
 * $r_{\alpha}(s) \rightarrow 0$ as $\alpha \rightarrow \infty$
 
-One example is *Lavrentiev* regularisation, with:
+One example is *Lavrentiev* regularization, with:
 
 $$r_{\alpha}(s) = (s + \alpha)^{-1}.$$
 
-Conditions on regularisation schemes and methods for choosing $\alpha$ will be discussed in more detail in the chapter on [Inverse Problems in Function Spaces](./ip_function_spaces).
+Conditions on regularization schemes and methods for choosing $\alpha$ will be discussed in more detail in the chapter on [Inverse Problems in Function Spaces](./ip_function_spaces).
 
 ---
 
-In general, we can think of regularisation for linear problems as defining a modified pseudo-inverse of $K$:
+In general, we can think of regularization for linear problems as defining a modified pseudo-inverse of $K$:
 
 $$K_{\alpha}^{\dagger} = V_{k}r_{\alpha}(\Sigma_{k})U_{k}^{*}.$$
 
-Stability of regularised solutions defined by {eq}`regK` then follows by considering the largest singular value of $K_{\alpha}^\dagger$, which can be made arbitrarily small by increasing $\alpha$. On the other hand, increasing $\alpha$ will also introduce a bias in the solution. This trade-off is called the *bias-variance trade-off*:
+Stability of regularized solutions defined by {eq}`regK` then follows by considering the largest singular value of $K_{\alpha}^\dagger$, which can be made arbitrarily small by increasing $\alpha$. On the other hand, increasing $\alpha$ will also introduce a bias in the solution. This trade-off is called the *bias-variance trade-off*:
 
 ```{admonition} Definition: *Bias-variance trade-off*
 :class: important
@@ -513,7 +513,7 @@ Given a system of equations $Ku = f$ with $K\in\mathbb{R}^{m\times n}$:
 
 2. For $m < n$ and rank($K$) = $m$, show that the pseudo-inverse gives the solution $u = K^\dagger f$ with the smallest norm $\|u\|_2$
 
-3. For $m > n$ and rank($K$) = $r < n$, show that the pseudo-inverse gives the solution that minimises both $\|Ku - f\|_2$ and $\|u\|_2$.
+3. For $m > n$ and rank($K$) = $r < n$, show that the pseudo-inverse gives the solution that minimizes both $\|Ku - f\|_2$ and $\|u\|_2$.
 
 ```{admonition} Answer
 :class: hint, dropdown
@@ -525,7 +525,7 @@ Given a system of equations $Ku = f$ with $K\in\mathbb{R}^{m\times n}$:
 3. We can combine the results of the former to to show that in this case $u = K^\dagger f$ is *a* solution to the normal equations and that it is the one with the smallest norm.
 ```
 
-### Tikhonov regularisation
+### Tikhonov regularization
 
 Show that the solution to the variational problem
 
@@ -549,13 +549,13 @@ We can estimate the density distribution in the subsurface by measuring the loca
 
 $$Ku(x) = \int_0^1 \frac{u(y)}{(1 + (x-y)^2)^{3/2}} \mathrm{d}y.$$
 
-Upon discretisation with stepsize $h = 1/n$, the inverse problem can be cast as a system of $n$ equations in $n$ unknowns $Ku = f$.
+Upon discretization with stepsize $h = 1/n$, the inverse problem can be cast as a system of $n$ equations in $n$ unknowns $Ku = f$.
 
 You can use the code provided below to generate the matrix and noisy data for a given $u(x)$
 
 1. Plot the coefficients $\langle u_i, f\rangle$ and the singular values $\sigma_i$ to check the discrete Picard condition. What do you notice ?
 
-2. Solve the inverse problem for noisy data using the (regularised) pseudo-inverse; compute the optimal $\alpha$ by computing the bias and variance components of the error. Is this a practically feasible way to compute the optimal $\alpha$?
+2. Solve the inverse problem for noisy data using the (regularized) pseudo-inverse; compute the optimal $\alpha$ by computing the bias and variance components of the error. Is this a practically feasible way to compute the optimal $\alpha$?
 
 3. Compare the solutions for $\alpha < \alpha_{\text{opt}}$, $\alpha_{\text{opt}}$ and $\alpha > \alpha_{\text{opt}}$ to the ground truth. What do you notice?
 
@@ -715,7 +715,7 @@ and we are given noisy measurements
 
 $$f^{\delta} = Ku + e,$$
 
-where the entries of $e$ are normally distrubuted with mean zero and variance $\delta^2$.
+where the entries of $e$ are normally distributed with mean zero and variance $\delta^2$.
 
 The goal of this assignment is to solve this inverse problem using a (truncated) SVD for two scenario's
 
@@ -728,7 +728,7 @@ For each of the two scenarios answer the following questions:
 
 1. Is this problem ill-posed?
 2. Compute the (pseudo-)inverse of $K$ using the SVD and compute the backward error $\|u - u^{\delta}\|_2$ for noise levels $\delta = 0.001, 0.01, 0.1$ for both scenario's; what do you notice?
-3. Compute a regularized solution using a truncated SVD for noise levels $\delta = 0.001, 0.01, 0.1$ for both scenario's. Manually choose the truncation paramater $k$ in each case to get the best possible solution. What do you notice here?
+3. Compute a regularized solution using a truncated SVD for noise levels $\delta = 0.001, 0.01, 0.1$ for both scenario's. Manually choose the truncation parameter $k$ in each case to get the best possible solution. What do you notice here?
 4. Explain your observations by investigating what the singular vectors look like (think about the discrete Picard condition as well).
 
 ```{code-cell} ipython3
