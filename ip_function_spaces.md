@@ -46,7 +46,7 @@ If such a vector exists we call it the *minimum-residual* solution. If the null-
 
 ## Bounded operators on Hilbert spaces
 
-To study well-posedness of {eq}`minres` and the corresponding minimum-norm problem we will let $\mathcal{U}$ and $\mathcal{F}$ be [Hilbert spaces](https://en.wikipedia.org/wiki/Hilbert_space). We will return to analysing variational problems more generally in a [later chapter](./variational_formulations).
+To study well-posedness of {eq}`minres` and the corresponding minimum-norm problem we will let $\mathcal{U}$ and $\mathcal{F}$ be [Hilbert spaces](https://en.wikipedia.org/wiki/Hilbert_space). We will return to analyzing variational problems more generally in a [later chapter](./variational_formulations).
 
 ---
 
@@ -59,7 +59,7 @@ We further denote the *orthogonal complement* of a subspace $\mathcal{X} \subset
 $$\mathcal{X}^\perp = \{u\in\mathcal{U} \, | \, \langle u, v \rangle_{\mathcal{U}}=0 \, \forall \, v \in \mathcal{X}\}.$$
 
 If $\mathcal{X}$ is a [closed subspace](https://en.wikipedia.org/wiki/Closed_set) we have $(\mathcal{X}^\perp)^\perp = \mathcal{X}$ and we have an orthogonal decomposition of $\mathcal{U}$ given by $\mathcal{U} = \mathcal{X} \oplus \mathcal{X}^\perp$, meaning that we can express *any* $u\in \mathcal{U}$ as $u = x + x^\perp$ with $x\in\mathcal{X}$ and $x^\perp\in\mathcal{X}^\perp$.
-The [orthogonal projection](https://en.wikipedia.org/wiki/Projection_(linear_algebra)) onto $\mathcal{X}$ is denoted by $P_{\mathcal{X}}$. We briefly recall a few usefull relations
+The [orthogonal projection](https://en.wikipedia.org/wiki/Projection_(linear_algebra)) onto $\mathcal{X}$ is denoted by $P_{\mathcal{X}}$. We briefly recall a few useful relations
 
 ```{admonition} Lemma : *Orthogonal projection*
 :class: important
@@ -76,7 +76,7 @@ Let $\mathcal{X} \subset \mathcal{U}$ be a closed subspace. The orthogonal proje
 
 When $\mathcal{X}$ is not closed we have $(\mathcal{X}^\perp)^\perp = \overline{\mathcal{X}}$ (the [closure](https://en.wikipedia.org/wiki/Closure_(topology)) of $\mathcal{X}$). Note that the orthogonal complement of a subspace is always closed.
 
-We now have the following usefull relations
+We now have the following useful relations
 
 * $\mathcal{R}(K)^\perp = \mathcal{N}(K^*),$
 * $\mathcal{N}(K^*)^\perp = \overline{\mathcal{R}(K)},$
@@ -229,7 +229,7 @@ $$B\widehat{f}(\xi) = \begin{cases} \widehat{f}(\xi) & |\xi| \leq 1/2 \\ 0 & \te
 
 ## Compact operators
 
-An important subclass of the Bounded operators are the [compact operators](https://en.wikipedia.org/wiki/Compact_operator). They can be thought of as a natural generalisation of matrices to the infinite-dimensional setting. Hence, we can generalise the notions from the [finite-dimensional setting](discrete_ip_regularization) to the infinite-dimensional setting.
+An important subclass of the Bounded operators are the [compact operators](https://en.wikipedia.org/wiki/Compact_operator). They can be thought of as a natural generalization of matrices to the infinite-dimensional setting. Hence, we can generalize the notions from the [finite-dimensional setting](discrete_ip_regularization) to the infinite-dimensional setting.
 
 ---
 
