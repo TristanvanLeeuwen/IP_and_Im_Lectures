@@ -658,13 +658,6 @@ $$\nu_{k+1}= \nu_k + \rho \left(Du_{k+1} - v_{k+1}\right).$$
 
 We cannot do justice to the breadth and depth of the topics smooth and convex optimisation in one chapter. Rather, we hope that this chapter serves as a starting point for further study in one of these areas for some, and provides useful recipes for others.
 
-## References
-
-```{bibliography} references.bib
-:style: plain
-:filter: docname in docnames
-```
-
 ## Exercises
 
 ### Steepest descent for strongly convex functionals

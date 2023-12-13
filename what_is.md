@@ -468,12 +468,6 @@ plt.show()
 glue("quadratic", fig, display=False)
 ```
 
-## References
-
-```{bibliography} references.bib
-:style: plain
-```
-
 ## Excercises
 
 ### Matrix inversion I

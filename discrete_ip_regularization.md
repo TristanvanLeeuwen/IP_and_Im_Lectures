@@ -783,10 +783,3 @@ plt.plot(x,f,label='f')
 plt.legend()
 plt.show()
 ```
-
-## References
-
-```{bibliography} references.bib
-:style: plain
-:filter: docname in docnames
-```

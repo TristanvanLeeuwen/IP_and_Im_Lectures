@@ -16,6 +16,7 @@ html:
 sphinx:
   config:
     html_show_copyright: false
+    bibtex_reference_style: author_year
   extra_extensions:
     - sphinx_panels
 

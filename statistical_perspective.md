@@ -878,10 +878,3 @@ ax[1].legend()
 plt.show()
 glue("expected_error",fig,display=False)
 ```
-
-## References
-
-```{bibliography} references.bib
-:style: plain
-:filter: docname in docnames
-```
