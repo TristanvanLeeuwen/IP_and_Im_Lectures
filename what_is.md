@@ -23,17 +23,17 @@ name: blackhole
 Depiction of a black hole as reconstructed from data recorded by the Event Horizon Telescope.
 ```
 
-A promiment subfield of inverse problems is that of imaging, with applications in chemistry, biology and medicine. Various methods for imaging have been developed over the previous four decades and have been partly made available for clinical use. What sets many of these imaging modalities aside from conventional photography is that the raw data is not interpretable as an image directly. Instead, significant processing using mathematical models is required to obtain a usuable image. Next, we give a few examples.
+A prominent subfield of inverse problems is that of imaging, with applications in chemistry, biology, geosciences, and medicine. Various methods for imaging have been developed over the previous four decades and have been partly made available for practical use. What sets many of these imaging modalities aside from conventional photography is that the raw data is not interpretable as an image directly. Instead, significant processing using mathematical models is required to obtain a useable image. Next, we give a few examples.
 
 ## Applications
 
 ### Image processing
 
-Images are of great importance in many applications, ranging from microscopy, medicine, to astronomy. In all these applications, the recorded images are distorted or corrupted versions of the ideal image. The inverse problem consists of reconstructing the idealised image from the measured one.
+Images are of great importance in many applications, ranging from microscopy, medicine, to astronomy. In all these applications, the recorded images are distorted or corrupted versions of the ideal image. The inverse problem consists of reconstructing the idealized image from the measured one.
 
-We can think of a (digital) image as a two dimensional array of pixels where each element could, for example, represent the grey value of the corresponding pixel. A colour image could be represented by a tensor containing the RGB intensities for each pixel. Alternatively, we can think of an idealised image as a (vector-valued) function on a bounded domain (say, the unit square).
+We can think of a (digital) image as a two dimensional array of pixels where each element could, for example, represent the grey value of the corresponding pixel. A color image could be represented by a tensor containing the RGB intensities for each pixel. Alternatively, we can think of an idealized image as a (vector-valued) function on a bounded domain (say, the unit square).
 
-A mathematical model for the observed image should model the process by which the image was obtained. This often involves [convolving](https://en.wikipedia.org/wiki/Convolution) the image with a filter and adding noise. For example, for a digital image with pixel values $u_{i}$, the measured image can in many cases be modelled as
+A mathematical model for the observed image should model the process by which the image was obtained. This often involves [convolving](https://en.wikipedia.org/wiki/Convolution) the image with a filter and adding noise. For example, for a digital image with pixel values $u_{i}$, the measured image can in many cases be modeled as
 
 $$
 f_{i} = \sum_{j\in\mathbb{Z}^2} k_{i,j}u_{j},
@@ -150,7 +150,7 @@ plt.show()
 
 ### X-ray tomography
 
-A CT-scanner is a common tool for medical diagonisis, providing detailed images of the anatomy of a patient. An example is shown in {numref}`ModernCT`. In other applications, such as materials science, similar techniques are being used to obtain three-dimensional reconstructions of the inner structure of objects.
+A CT-scanner is a common tool for medical diagnosis, providing detailed images of the anatomy of a patient. An example is shown in {numref}`ModernCT`. In other applications, such as materials science, similar techniques are being used to obtain three-dimensional reconstructions of the inner structure of objects.
 
 ```{figure} ./images/what_is/ModernCT.png
 ---
@@ -160,7 +160,7 @@ name: ModernCT
 Modern CT scanner (left). Slice of high resolution CT scan of a patient's lung (right). Source for both: Wikimedia Commons
 ```
 
-In this case $u: \mathbb{R}^d \rightarrow \mathbb{R}$, represents the density of (a slice of) the object, which may in turn be thought of as an image. Different from the previous section is the relation to the measurements. A useful model for x-ray measurements turns out to be the [*X-ray transform*](https://en.wikipedia.org/wiki/X-ray_transform), which for $d=2$ is equivalent to the [*Radon transform*](https://en.wikipedia.org/wiki/Radon_transform). This transforms the image $u$ to a *sinogram* $f: \mathbb{R}^{d}\times \mathbb{S}^{d-1} \rightarrow \mathbb{R}$ by taking line-integrals along straight lines at various angles and shifts:
+In this case $u: \mathbb{R}^d \rightarrow \mathbb{R}$, represents the density of (a slice of) the object, which may in turn be thought of as an image. Different from the previous section is the relation to the measurements. A useful model for X-ray measurements turns out to be the [*X-ray transform*](https://en.wikipedia.org/wiki/X-ray_transform), which for $d=2$ is equivalent to the [*Radon transform*](https://en.wikipedia.org/wiki/Radon_transform). This transforms the image $u$ to a *sinogram* $f: \mathbb{R}^{d}\times \mathbb{S}^{d-1} \rightarrow \mathbb{R}$ by taking line-integrals along straight lines at various angles and shifts:
 
 $$f(s,\xi) = \int_{\mathbb{R}} u(s + t \xi)\mathrm{d}t,$$
 
@@ -180,7 +180,7 @@ Two-dimensional slice through a walnut and the corresponding sinogram.
 
 ### Magnetic resonance imaging
 
-Magnetic resonance imaging (MRI) is another imaging modality for clinical diagnosis. As opposed to CT, MRI does not rely on ionising radiation and is hence considered much safer. A disadvantage of MRI is that the time needed for a scan is much longer than for CT.
+Magnetic resonance imaging (MRI) is another imaging modality for clinical diagnosis. As opposed to CT, MRI does not rely on ionizing radiation and is hence considered much safer. A disadvantage of MRI is that the time needed for a scan is much longer than for CT.
 
 Here, $u : \mathbb{R}^d \rightarrow \mathbb{C}$, is related to the proton density of the tissue and can be interpreted as an image. The physics behind the measurement process are quite complicated, but for most practical settings a useful model is based on the [*Fourier transform*](https://en.wikipedia.org/wiki/Fourier_transform) of $u$:
 
@@ -240,9 +240,9 @@ $$
 
 The inverse problem consists of retrieving either $c$ or $q$ from the measurements $\{f_i\}_{i=0}^m$. In particular we distinguish two inverse problems
 
-* *Inverse source problem*: The measurements $f$ are linear in terms of $q$, leading to a linear inverse problem to retrieve $q$. In earth-quake localisation, the source is for example parametrised as $q(t,x) = u_1(t)u_2(x)$ in which case the goal is to retrieve $(u_1,u_2)$.
+* *Inverse source problem*: The measurements $f$ are linear in terms of $q$, leading to a linear inverse problem to retrieve $q$. In earth-quake localization, the source is for example parametrized as $q(t,x) = u_1(t)u_2(x)$ in which case the goal is to retrieve $(u_1,u_2)$.
 
-* *Inverse medium problem*: Here the goal is to retrieve $c$, sometimes parametrised as $c(x) = c_0(1 + u(x))$. Here, the measurements generally depend non-linearly on $u$. However, when $|u| \ll 1$ the relation between $f$ and $u$ may be linearised.
+* *Inverse medium problem*: Here the goal is to retrieve $c$, sometimes parametrized as $c(x) = c_0(1 + u(x))$. Here, the measurements generally depend non-linearly on $u$. However, when $|u| \ll 1$ the relation between $f$ and $u$ may be linearized.
 
 +++
 
@@ -258,7 +258,7 @@ K(u) = f.
 Here, $K$ is called the *forward operator*; $u$ is the *image* or *parameter* and $f \in \mathcal{F}$ are the measurements. The forward operator, $K : \mathcal{U} \rightarrow \mathcal{F}$, is a model of the underlying (physical) process and simulates the measurements for given $u$. It could represent for example an integral operator, a matrix, or a set of algebraic equations.
 The image/parameters, $u$, constitute a mathematical description of the quantity of interest. It could for example be a function or a vector. The measurements, $f$, are a mathematical representation of the measured data. For the purposes of analysis, we may think of this a function, but in practice measurements are always a discrete quantity.
 
-For the purposes of this course, we will assume that $\mathcal{U}$ and $\mathcal{F}$ are [Banach spaces](https://en.wikipedia.org/wiki/Banach_space) so we can measure distances between pairs of images and measurements. In many cases, $\mathcal{U}$ and $\mathcal{F}$ will additionaly have an inner-product in which case they are [Hilbert spaces](https://en.wikipedia.org/wiki/Hilbert_space).
+For the purposes of this course, we will assume that $\mathcal{U}$ and $\mathcal{F}$ are [Banach spaces](https://en.wikipedia.org/wiki/Banach_space) so we can measure distances between pairs of images and measurements. In many cases, $\mathcal{U}$ and $\mathcal{F}$ will additionally have an inner-product in which case they are [Hilbert spaces](https://en.wikipedia.org/wiki/Hilbert_space).
 
 An important notion in inverse problems is *ill-posedness*. We call a problem *ill-posed* if it is not *well-posed*:
 
@@ -274,13 +274,13 @@ The equation $K(u) = f$ is *well-posed* if *all* three criteria are met:
 If the problem is not well-posed, we call it *ill-posed*.
 ```
 
-It may seem strange that equation {eq}`ip` may not have a solution. After all, are the measurements not the result of the forward operator applied to some ground-truth $\overline{u}$? We need to keep in mind here that $K$ is only a *model* for the underlying process. In reality, the measurements may include *modelling errors* and *measurement errors*. We will denote the noisy data by $f^{\delta}$. An often-used model to incorporate such errors is the *additive noise model*
+It may seem strange that equation {eq}`ip` may not have a solution. After all, are the measurements not the result of the forward operator applied to some ground-truth $\overline{u}$? We need to keep in mind here that $K$ is only a *model* for the underlying process. In reality, the measurements may include *modeling errors* and *measurement errors*. We will denote the noisy data by $f^{\delta}$. An often-used model to incorporate such errors is the *additive noise model*
 
 $$
 f^{\delta} = K(\overline{u}) + e,
 $$
 
-where $e$ represents the combined measurement and modelling error with $\|e\| \leq \delta$. If we find a $u$ for which $Ku^{\delta} = f^{\delta}$, we can ask ourselves how big the *backward error* $\|u^{\delta} - \overline{u}\|$ is with respect to the *forward error* $\|e\| = \delta$. In practice we call a problem ill-posed if a small error in the data can cause a large error in the reconstruction.
+where $e$ represents the combined measurement and modeling error with $\|e\| \leq \delta$. If we find a $u$ for which $Ku^{\delta} = f^{\delta}$, we can ask ourselves how big the *backward error* $\|u^{\delta} - \overline{u}\|$ is with respect to the *forward error* $\|e\| = \delta$. In practice we call a problem ill-posed if a small error in the data can cause a large error in the reconstruction.
 
 ## Motivating examples
 
@@ -363,7 +363,7 @@ allows us to compute the inverse. Indeed, given $f = K\overline{u}$ with $\overl
 :figwidth: 300px
 :name: "matrix_inversion"
 
-Original and regularized equations. We see that the regularized equations have a unique solution, but has thereby implicity selected one particular solution of the original system.
+Original and regularized equations. We see that the regularized equations have a unique solution, but has thereby implicitly selected one particular solution of the original system.
 ```
 
 ````
@@ -399,14 +399,14 @@ glue("matrix_inversion", fig, display=False)
 ```
 
 ### Variational methods
-Variational methods are a popular and quite generally applicable technique for solving inverse problems. The idea is to replace the original equation $K(u) = f$ by a minimization problem. To do this, one constructs an optimisation problem with a functional consisting of two terms. The first part is the data fidelity and is supposed to ensure that $K(u) \approx f$.
-The second part is the regularisation functional which incorporates the a-priori information on $u$. Thereby, we obtain a problem of the form
+Variational methods are a popular and quite generally applicable technique for solving inverse problems. The idea is to replace the original equation $K(u) = f$ by a minimization problem. To do this, one constructs an optimization problem with a functional consisting of two terms. The first part is the data fidelity and is supposed to ensure that $K(u) \approx f$.
+The second part is the regularization functional which incorporates the a-priori information on $u$. Thereby, we obtain a problem of the form
 
 $$
 \min_{u \in \mathcal{U}} D(u,f) + \alpha R(u)
 $$
 
-where further a-priori information on the class of images $u$, over which we minimise, can be contained, e.g. non-negativity for density images. The data fidelity term $D$ should be constructed in such a way, that $D$ attains its minimum (often normalised at zero) if the data are reconstructed exactly. The regularisation functional should be constructed in such a way, that $R$ attains a small value if the image matches the a-priori information very well, and a very large value, if the image does not fit to the available a-priori information. As a result, such images will be unlikely to minimise the functional. The parameter $\alpha$ weights the two parts of the functional. For very small $\alpha$ the emphasis lies on fitting the data, whereas with increasing $\alpha$ the regularisation gains in importance in this ratio, which is particularly essential if measurement errors or noise can be expected.
+where further a-priori information on the class of images $u$, over which we minimize, can be contained, e.g. non-negativity for density images. The data fidelity term $D$ should be constructed in such a way, that $D$ attains its minimum (often normalized at zero) if the data are reconstructed exactly. The regularization functional should be constructed in such a way, that $R$ attains a small value if the image matches the a-priori information very well, and a very large value, if the image does not fit to the available a-priori information. As a result, such images will be unlikely to minimize the functional. The parameter $\alpha$ weights the two parts of the functional. For very small $\alpha$ the emphasis lies on fitting the data, whereas with increasing $\alpha$ the regularization gains in importance in this ratio, which is particularly essential if measurement errors or noise can be expected.
 
 ````{admonition} Example: *Solving a quadratic equation.*
 
@@ -435,7 +435,7 @@ For $\alpha$ large, this functional has a global minimum around $u = 0$, while f
 :figwidth: 300px
 :name: "quadratic"
 
-Original quadratic equation and functional to be minimized. We see that mimizing the functional picks out one of the two solutions.
+Original quadratic equation and functional to be minimized. We see that minimizing the functional picks out one of the two solutions.
 ```
 ````
 
@@ -551,7 +551,7 @@ It is readily verified that we can find a (unique) solution by differentiation: 
 $$\|g\|_{L^{\infty}([0,1])} = \sup_{x\in[0,1]} |g(x)|.$$
 
 1. Show that the *forward error* $f - f^{\delta}$ is bounded in the $L^{\infty}$ norm, in particular $\|f - f^{\delta}\|_{L^{\infty}([0,1])} = \delta$.
-2. Show that the *backward error* $u - u^{\delta}$ can be arbirarily large, even if $\delta\downarrow 0$: $\|u - u^{\delta}\|_{L^{\infty}([0,1])} = k$.
+2. Show that the *backward error* $u - u^{\delta}$ can be arbitrarily large, even if $\delta\downarrow 0$: $\|u - u^{\delta}\|_{L^{\infty}([0,1])} = k$.
 3. Is the inverse problem ill-posed?
 
 ```{admonition} Answer
