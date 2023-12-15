@@ -11,11 +11,11 @@ kernelspec:
   name: python3
 ---
 
-# Numerical optimisation for inverse problems
+# Numerical optimization for inverse problems
 
-In this chapter we treat numerical algorithms for solving optimisation problems over $\mathbb{R}^n$. Throughout we will assume that the objective $J(u) = D(u) + R(u)$ satisfies the conditions for a unique minimiser to exist. We distinguish between two important classes of problems; *smooth* problems and *convex* problems.
+In this chapter we treat numerical algorithms for solving optimization problems over $\mathbb{R}^n$. Throughout we will assume that the objective $J(u) = D(u) + R(u)$ satisfies the conditions for a unique minimizer to exist. We distinguish between two important classes of problems; *smooth* problems and *convex* problems.
 
-## Smooth optimisation
+## Smooth optimization
 
 For smooth problems, we assume to have access to as many derivatives of $J$ as we need. As before, we denote the first derivative (or gradient) by $J' : \mathbb{R}^n \rightarrow \mathbb{R}^n$. We denote the second derivative (or Hessian) by $J'' : \mathbb{R}^n \rightarrow \mathbb{R}^{n\times n}$. We will additionally assume that the Hessian is globally bounded, i.e. there exists a constant $L < \infty$ such that $J''(u) \preceq L\cdot I$ for all $u\in\mathbb{R}^n$. Note that this implies that $J'$ is Lipschitz continous with constant $L$: $\|J'(u) - J'(v)\|_2 \leq L \|u - v\|_2$.
 
@@ -23,25 +23,25 @@ For a comprehensive treatment of this topic (and many more), we recommend the se
 
 ---
 
-Before discussing optimisation methods, we first introduce the optimality conditions.
+Before discussing optimization methods, we first introduce the optimality conditions.
 
 ```{admonition} Definition: *Optimality conditions*
 :class: important
 
-Given a smooth functional $J:\mathbb{R}^n\rightarrow \mathbb{R}$, a point $u_* \in \mathbb{R}^n$ is local minimiser iff it satisfies the first and second order optimality conditions
+Given a smooth functional $J:\mathbb{R}^n\rightarrow \mathbb{R}$, a point $u_* \in \mathbb{R}^n$ is local minimizer iff it satisfies the first and second order optimality conditions
 
 $$J'(u_*) = 0, \quad J''(u_*) \succeq 0.$$
 
-If $J''(u_*) \succ 0$ we call $u_*$ a *strict* local minimiser.
+If $J''(u_*) \succ 0$ we call $u_*$ a *strict* local minimizer.
 ```
 
 ### Gradient descent
 
-The steepest descent method proceeds to find a minimiser through a fixed-point iteration
+The steepest descent method proceeds to find a minimizer through a fixed-point iteration
 
 $$u_{k+1} = \left(I - \lambda J'\right)(u_k) = u_k - \lambda J'(u_k),$$
 
-where $\lambda > 0$ is the stepsize. The following theorem states that this iteration will yield a fixed point of $J$, regardless of the initial iterate, provided that we pick $\lambda$ small enough.
+where $\lambda > 0$ is the step size. The following theorem states that this iteration will yield a fixed point of $J$, regardless of the initial iterate, provided that we pick $\lambda$ small enough.
 
 ````{admonition} Theorem: *Global convergence of steepest descent*
 :class: important
@@ -81,17 +81,17 @@ with $C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)$. Since $J_*
 
 Stronger statements about the *rate* of convergence can be made by making additional assumptions on $J$ (such as (strong) convexity), but this is left as an exercise.
 
-### Linesearch
+### Line search
 
-While the previous results are nice in theory, we usually do not have access to the Lipschitz constant $L$. Moreover, the global bound on the stepsize provided by the Lipschitz constant may be pessimistic for a particular starting point. This could lead us to pick a very small stepsize, yielding slow convergence in practice. A popular way of choosing a stepsize adaptively is a *linesearch* strategy. To introduce these, we slightly broaden the scope and consider the iteration
+While the previous results are nice in theory, we usually do not have access to the Lipschitz constant $L$. Moreover, the global bound on the step size provided by the Lipschitz constant may be pessimistic for a particular starting point. This could lead us to pick a very small step size, yielding slow convergence in practice. A popular way of choosing a step size adaptively is a *line search* strategy. To introduce these, we slightly broaden the scope and consider the iteration
 
 $$u_{k+1} = u_k + \lambda_k d_k,$$
 
 where $d_k$ is a *descent direction* satisfying $\langle d_k, J'(u_k)\rangle < 0$. Obviously, $d_k = - J'(u_k)$ is a descent direction, but other choices may be beneficial in practice. In particular, we can choose $d_k = -B J'(u_k)$ for any positive-definite matrix $B$ to obtain a descent direction. How to choose such a matrix will be discussed in the next section.
 
-Two important linesearch methods are discussed below.
+Two important line search methods are discussed below.
 
-````{admonition} Definition: *Backtracking linesearch*
+````{admonition} Definition: *Backtracking line search*
 :class: important
 
 In order to ensure sufficient progress of the iterations, we can choose a steplength that guarantees sufficient descent:
@@ -106,18 +106,18 @@ with $c_1 \in (0,1)$ a small constant (typically $c_1 = 10^{-4}$). Existence of 
 ```python
 def backtracking(J,Jp,u,d,lmbda,rho=0.5,c1=1e-4)
 """
-Backtracking linesearch to find a stepsize satisfying J(u + lmbda*d) <= J(u) + lmbda*c1*J(u)^Td
+Backtracking line search to find a step size satisfying J(u + lmbda*d) <= J(u) + lmbda*c1*J(u)^Td
 
 Input:
   J  - Function object returning the value of J at a given input vector
   Jp - Function object returning the gradient of J at a given input vector
   u  - current iterate as array of length n
   d  - descent direction as array of length n
-  lmbda - initial stepsize
+  lmbda - initial step size
   rho,c1 - backtracking parameters, default (0.5,1e-4)
 
 Output:
-  lmbda - stepsize satisfying the sufficient decrease condition
+  lmbda - step size satisfying the sufficient decrease condition
 """
   while J(u + lmbda*d) > J(u) + c*lmbda*Jp(u).dot(d):
     lmbda *= rho
@@ -140,21 +140,21 @@ where $c_2$ is a small constant satisfying $0 < c_1 < c_2 < 1$. The conditions {
 
 ### Second order methods
 
-A well-known method for rootfinding is *Newton's method*, which finds a root for which $J'(u) = 0$ via the fixed point iteration
+A well-known method for root finding is *Newton's method*, which finds a root for which $J'(u) = 0$ via the fixed point iteration
 
 ```{math}
 :label: newton
 u_{k+1} = u_k - J''(u_k)^{-1}J'(u_k).
 ```
 
-We can interpret this method as finding the new iterate $u_{k+1}$ as the (unique) minimiser of the quadratic approximation of $J$ around $u_k$:
+We can interpret this method as finding the new iterate $u_{k+1}$ as the (unique) minimizer of the quadratic approximation of $J$ around $u_k$:
 
 $$J(u) \approx J(u_k) + J'(u_k)(u - u_k) + \textstyle{\frac{1}{2}}\langle u-u_k, J''(u_k)(u-u_k)\rangle.$$
 
 ```{admonition} Theorem: *Convergence of Newton's method*
 :class: important
 
-Let $J$ be a smooth functional and $u_*$ be a (local) minimiser. For any $u_0$ sufficiently close to $u_*$, the iteration {eq}`newton` converges quadratically to $u_*$, i.e.,
+Let $J$ be a smooth functional and $u_*$ be a (local) minimizer. For any $u_0$ sufficiently close to $u_*$, the iteration {eq}`newton` converges quadratically to $u_*$, i.e.,
 
 $$\|u_{k+1} - u_*\|_2 \leq M \|u_k - u_*\|_2^2,$$
 
@@ -168,7 +168,7 @@ with $M = 2\|J'''(u_*)\|_2 \|J''(u_*)^{-1}\|_2$.
 See {cite}`nocedal2006numerical`, Thm. 3.5.
 ```
 
-In practice, the Hessian may not be invertible everywhere and we may not have an initial iterate sufficiently close to a minimiser to ensure convergence. Practical applications therefore include a linesearch and a safeguard against non-invertible Hessians.
+In practice, the Hessian may not be invertible everywhere and we may not have an initial iterate sufficiently close to a minimizer to ensure convergence. Practical applications therefore include a line search and a safeguard against non-invertible Hessians.
 
 ---
 
@@ -186,17 +186,17 @@ and gradients $y_k = J'(u_{k+1}) - J'(u_k)$ to recursively construct an approxim
 
 $$B_{k+1} = \left(I - \rho_k s_k y_k^T\right)B_k\left(I - \rho_k y_k s_k^T\right) + \rho_k s_ks_k^T,$$
 
-with $\rho_k = (\langle s_k, y_k\rangle)^{-1}$ and $B_0$ choses appropriately (e.g., $B_0 = L^{-1} \cdot I$). It can be shown that this approximation is sufficiently accurate to yield *superlinear* convergence when using a Wolfe linesearch.
+with $\rho_k = (\langle s_k, y_k\rangle)^{-1}$ and $B_0$ choses appropriately (e.g., $B_0 = L^{-1} \cdot I$). It can be shown that this approximation is sufficiently accurate to yield *super linear* convergence when using a Wolfe line search.
 
 ---
 
-The are many practical aspects to implementing such methods. For example, what do we do when the approximated Hessian becomes (almost) singular? Discussing these issues is beyond the scope of these lecture notes and we refer to {cite}`nocedal2006numerical`, chapter 6 for more details. The `SciPy` library provides an implementation of [various optimisation methods](https://docs.scipy.org/doc/scipy/reference/optimize.html).
+The are many practical aspects to implementing such methods. For example, what do we do when the approximated Hessian becomes (almost) singular? Discussing these issues is beyond the scope of these lecture notes and we refer to {cite}`nocedal2006numerical`, chapter 6 for more details. The `SciPy` library provides an implementation of [various optimization methods](https://docs.scipy.org/doc/scipy/reference/optimize.html).
 
-## Convex optimisation
+## Convex optimization
 
-In this section, we consider finding a minimiser of a *convex* functional $J : \mathbb{R}^n \rightarrow \mathbb{R}_{\infty}$. Note that we allow the functionals to take values on the extended real line. We accordingly define the domain of $J$ as $\text{dom}(J) = \{u \in \mathbb{R}^n \, | \, J(u) < \infty\}$.
+In this section, we consider finding a minimizer of a *convex* functional $J : \mathbb{R}^n \rightarrow \mathbb{R}_{\infty}$. Note that we allow the functionals to take values on the extended real line. We accordingly define the domain of $J$ as $\text{dom}(J) = \{u \in \mathbb{R}^n \, | \, J(u) < \infty\}$.
 
-To deal with convex functionals that are not smooth, we first generalise the notion of a derivative.
+To deal with convex functionals that are not smooth, we first generalize the notion of a derivative.
 
 ```{admonition} Definition: subgradient
 :class: important
@@ -287,19 +287,19 @@ An overview of other useful relations can be found in e.g., {cite}`Beck2017` sec
 ```
 ---
 
-With this we can now formulate optimality conditions for convex optimisation.
+With this we can now formulate optimality conditions for convex optimization.
 
-```{admonition} Definition: Optimality conditions for convex optimisation
+```{admonition} Definition: Optimality conditions for convex optimization
 :class: important
 
-Let $J:\mathbb{R}^n \rightarrow \mathbb{R}_{\infty}$ be a proper convex functional. A point $u_* \in \mathbb{R}^n$ is a minimiser iff
+Let $J:\mathbb{R}^n \rightarrow \mathbb{R}_{\infty}$ be a proper convex functional. A point $u_* \in \mathbb{R}^n$ is a minimizer iff
 
 $$0 \in J'(u_*).$$
 ```
 
 ````{admonition} Example: *Computing the median*
 
-The median $u$ of a set of numbers $(f_1, f_2, \ldots, f_n)$ (with $f_i < f_{i+1}$) is a minimiser of
+The median $u$ of a set of numbers $(f_1, f_2, \ldots, f_n)$ (with $f_i < f_{i+1}$) is a minimizer of
 
 $$J(u) = \sum_{i=1}^n |u - f_i|.$$
 
@@ -379,7 +379,7 @@ A natural extension of the gradient-descent method for smooth problems is the *s
 u_{k+1} = u_k - \lambda_k J'(u_k), \quad J'(u_k) \in \partial J(u_k),
 ```
 
-where $\lambda_k$ denote the stepsizes.
+where $\lambda_k$ denote the step sizes.
 
 ```{admonition} Theorem: *Convergence of subgradient descent*
 :class: important
@@ -473,11 +473,11 @@ u_{k+1} = \text{prox}_{\lambda R}\left(u_k - \lambda D'(u_k)\right).
 
 Let $J = D + R$ be a functional with $D$ smooth and $R$ convex. Denote the Lipschitz constant of $D'$ by $L_D$. The iterates produced by {eq}`proximal_gradient` with a fixed stepsize $\lambda = 1/L_D$ converge to a fixed point, $u_*$, of {eq}`proximal_gradient`.
 
-If, in addition, $D$ is convex the iterates converges sublinearly to a minimiser $u_*$:
+If, in addition, $D$ is convex the iterates converges sublinearly to a minimizer $u_*$:
 
 $$J(u_k) - J_* \leq \frac{L_D \|u_* - u_0\|_2^2}{2k}.$$
 
-If $D$ is $\mu$-strongly convex, the iteration converges linearly to a minimiser $u_*$:
+If $D$ is $\mu$-strongly convex, the iteration converges linearly to a minimizer $u_*$:
 
 $$\|u_{k+1} - u_*\|_2^2 \leq \left(1 - \mu/L_D\right) \|u_{k} - u_*\|_2^2.$$
 
@@ -490,7 +490,7 @@ We refer to {cite}`Beck2017` Thms. 10.15, 10.21, and 10.29 or more details.
 
 ---
 
-When compared to the subgradient method, we may expect better performance from the proximal gradient method when $D$ is strongly convex and $R$ is convex. Even if $J$ is smooth, the proximal gradient method may be favourable as the convergence constants depend on the Lipschitz constant of $D$ only; not $J$. All this comes at the cost of solving a minimisation problem at each iteration, so these methods are usually only applied when a closed-form expression for the proximal operator exists.
+When compared to the subgradient method, we may expect better performance from the proximal gradient method when $D$ is strongly convex and $R$ is convex. Even if $J$ is smooth, the proximal gradient method may be favorable as the convergence constants depend on the Lipschitz constant of $D$ only; not $J$. All this comes at the cost of solving a minimization problem at each iteration, so these methods are usually only applied when a closed-form expression for the proximal operator exists.
 
 ```{admonition} Example: *one-norm*
 The proximal operator for the $\ell_1$ norm solves
@@ -521,7 +521,7 @@ Thus, $u$ is an orthogonal projection of $v$ on $[a,b]^n$.
 
 ### Splitting methods
 
-The proximal point methods require that the proximal operator for $R$ can be evaluated efficiently. In many practical applications this is not the cases, however. Instead, we may have a regulariser of the form $R(Au)$ for some linear operator $A$. Even when $R(\cdot)$ admits an efficient proximal operator $R(A\cdot)$ will, in general, not. In this section we discuss a class of methods that allow us to shift the operator $A$ to the other part of the objective. As a model-problem we will consider solving
+The proximal point methods require that the proximal operator for $R$ can be evaluated efficiently. In many practical applications this is not the cases, however. Instead, we may have a regularizer of the form $R(Au)$ for some linear operator $A$. Even when $R(\cdot)$ admits an efficient proximal operator $R(A\cdot)$ will, in general, not. In this section we discuss a class of methods that allow us to shift the operator $A$ to the other part of the objective. As a model-problem we will consider solving
 
 $$\min_{u\in \mathbb{R}^n} D(u) + R(Au),$$
 
@@ -656,7 +656,7 @@ $$\nu_{k+1}= \nu_k + \rho \left(Du_{k+1} - v_{k+1}\right).$$
 
 ---
 
-We cannot do justice to the breadth and depth of the topics smooth and convex optimisation in one chapter. Rather, we hope that this chapter serves as a starting point for further study in one of these areas for some, and provides useful recipes for others.
+We cannot do justice to the breadth and depth of the topics smooth and convex optimization in one chapter. Rather, we hope that this chapter serves as a starting point for further study in one of these areas for some, and provides useful recipes for others.
 
 ## Exercises
 
@@ -722,7 +722,7 @@ this gives us an optimal value of $\alpha = 2/(\mu + L)$.
 
 ### Steepest descent for convex functions
 
-Let $J : \mathbb{R}^n$ be convex and Lipschitz-smooth. Show that the basic steepest-descent iteration with stepsize $\lambda = 1/L$ produces iterates for which
+Let $J : \mathbb{R}^n$ be convex and Lipschitz-smooth. Show that the basic steepest-descent iteration with step size $\lambda = 1/L$ produces iterates for which
 
 $$J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|}{2Lk}.$$
 
@@ -929,7 +929,7 @@ where $v = Du$.
 
 ### Dual problems
 
-Derive the dual problems for the following optimisation problems
+Derive the dual problems for the following optimization problems
 
 * $\min_u \|u - f^\delta\|_1 + \lambda \|u\|_2^2$.
 * $\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \lambda \|u\|_p, \quad p \in \mathbb{N}_{>0}$.
@@ -975,7 +975,7 @@ In this exercise we consider a one-dimensional TV-denoising problem
 
 $$\min_{\mathbb{R}^n} \textstyle{\frac{1}{2}} \|u - f^\delta\|_2^2 + \lambda \|Du\|_1,$$
 
-with $D$ a first-order finite difference discretisation of the first derivative.
+with $D$ a first-order finite difference discretization of the first derivative.
 
 
 * Show that the problem is equivalent (in terms of solutions) to solving
@@ -1152,7 +1152,7 @@ The aim is to solve the following variational problem
 
 $$\min_u \frac{1}{2} \|Ku - f^{\delta}\|_2^2 + \alpha \|Lu\|_1,$$
 
-where $K$ is a given forward operator (matrix) and $L$ is a discretisation of the second derivative operator.
+where $K$ is a given forward operator (matrix) and $L$ is a discretization of the second derivative operator.
 
 1. Design and implement a method for solving this variational problem; you can be creative here -- multiple answers are possible
 2. Compare your method with the basic subgradient-descent method implemented below
