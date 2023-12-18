@@ -242,7 +242,7 @@ The inverse problem consists of retrieving either $c$ or $q$ from the measuremen
 
 * *Inverse source problem*: The measurements $f$ are linear in terms of $q$, leading to a linear inverse problem to retrieve $q$. In earth-quake localization, the source is for example parametrized as $q(t,x) = u_1(t)u_2(x)$ in which case the goal is to retrieve $(u_1,u_2)$.
 
-* *Inverse medium problem*: Here the goal is to retrieve $c$, sometimes parametrized as $c(x) = c_0(1 + u(x))$. Here, the measurements generally depend non-linearly on $u$. However, when $|u| \ll 1$ the relation between $f$ and $u$ may be linearized.
+* *Inverse medium problem*: Here the goal is to retrieve $c$, sometimes parametrized as $c(x) = c_0(1 + u(x)).$ Here, the measurements generally depend non-linearly on $u$. However, when $|u| \ll 1$ the relation between $f$ and $u$ may be linearized.
 
 +++
 
@@ -256,7 +256,7 @@ We can abstractly formulate most (if not all) inverse problems as finding a solu
 K(u) = f.
 ```
 Here, $K$ is called the *forward operator*; $u$ is the *image* or *parameter* and $f \in \mathcal{F}$ are the measurements. The forward operator, $K : \mathcal{U} \rightarrow \mathcal{F}$, is a model of the underlying (physical) process and simulates the measurements for given $u$. It could represent for example an integral operator, a matrix, or a set of algebraic equations.
-The image/parameters, $u$, constitute a mathematical description of the quantity of interest. It could for example be a function or a vector. The measurements, $f$, are a mathematical representation of the measured data. For the purposes of analysis, we may think of this a function, but in practice measurements are always a discrete quantity.
+The image/parameters, $u$, constitute a mathematical description of the quantity of interest. It could for example be a function or a vector. The measurements, $f$, are a mathematical representation of the measured data. For the purposes of analysis, we may think of this a function, but in practice measurements are always a finite-dimensional quantity.
 
 For the purposes of this course, we will assume that $\mathcal{U}$ and $\mathcal{F}$ are [Banach spaces](https://en.wikipedia.org/wiki/Banach_space) so we can measure distances between pairs of images and measurements. In many cases, $\mathcal{U}$ and $\mathcal{F}$ will additionally have an inner-product in which case they are [Hilbert spaces](https://en.wikipedia.org/wiki/Hilbert_space).
 
@@ -280,7 +280,7 @@ $$
 f^{\delta} = K(\overline{u}) + e,
 $$
 
-where $e$ represents the combined measurement and modeling error with $\|e\| \leq \delta$. If we find a $u$ for which $Ku^{\delta} = f^{\delta}$, we can ask ourselves how big the *backward error* $\|u^{\delta} - \overline{u}\|$ is with respect to the *forward error* $\|e\| = \delta$. In practice we call a problem ill-posed if a small error in the data can cause a large error in the reconstruction.
+where $e$ represents the combined measurement and modeling error with $\|e\| \leq \delta$. If we find a $u$ for which $Ku^{\delta} = f^{\delta}$, we can ask ourselves how big the *backward error* $\|u^{\delta} - \overline{u}\|$ is with respect to the *forward error* $\|e\|$. In practice we call a problem ill-posed if a small error in the data can cause a large error in the reconstruction.
 
 ## Motivating examples
 
@@ -289,7 +289,7 @@ Given a continuous function $K : \mathbb{R} \rightarrow \mathbb{R}$, and $f \in 
 the inverse of $K$ exists (at least locally around $u$) if $K$ is continuously differentiable at $u$ with $K'(u)\not= 0$. The solution is in this case give by $u = K^{-1}(f)$. For sensitivity we consider $K(u) - K(v) = f - g$, leading to
 
 $$
-u - v = K^{-1}(f) - K^{-1}(g) = \left(K^{-1}\right)'(\xi)(f-g).
+u - v = K^{-1}(f) - K^{-1}(g) = \left(K^{-1}\right)'(\xi)(f-g), \quad \xi \in [f,g].
 $$
 
 We can thus derive the error bound
@@ -301,7 +301,7 @@ $$
 with
 
 $$
-C = \sup_{\xi} |\left(K^{-1}\right)'(\xi)| = \sup_{\xi} |\left(K'(\xi)\right)^{-1}|.
+C = \sup_{\xi\in [f,g]} |\left(K^{-1}\right)'(\xi)| = \sup_{\xi\in [f,g]} |\left(K'(\xi)\right)^{-1}|.
 $$
 
 We conclude that the problem of finding a root of $K(u) - f$ is ill-posed when the derivative of $K$ is small near the root.
@@ -363,7 +363,7 @@ allows us to compute the inverse. Indeed, given $f = K\overline{u}$ with $\overl
 :figwidth: 300px
 :name: "matrix_inversion"
 
-Original and regularized equations. We see that the regularized equations have a unique solution, but has thereby implicitly selected one particular solution of the original system.
+Original and regularized equations. We see that the regularized equations have a unique solution, but this solution is slightly biased towards the origin.
 ```
 
 ````
