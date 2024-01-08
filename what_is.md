@@ -232,7 +232,7 @@ $$
 \partial_t^2 p(t,x) - c(x) \nabla_x p(t,x) = q(t,x), \quad x \in\Omega, \quad t\in [0,T]
 $$
 
-where $p(t,x)$ denotes the *wavefield*, $c(x)$ is related the soundspeed and density of the medium and $q$ is a source term. The measurements are given by
+where $p(t,x)$ denotes the *wave field*, $c(x)$ is related the sound speed and density of the medium and $q$ is a source term. The measurements are given by
 
 $$
 f_i(t) = p(t,x_i), \quad i \in \{1, 2, \ldots, m\}.
