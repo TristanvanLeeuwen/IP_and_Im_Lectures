@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>6. Numerical optimisation for inverse problems &#8212; 10 Lectures on Inverse Problems and Imaging</title>
+    <title>6. Numerical optimization for inverse problems &#8212; 10 Lectures on Inverse Problems and Imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -110,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="discrete_ip_regularization.html">
-   2. Discrete Inverse Problems and Regularisation
+   2. Discrete Inverse Problems and Regularization
   </a>
  </li>
  <li class="toctree-l1">
@@ -130,7 +130,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   6. Numerical optimisation for inverse problems
+   6. Numerical optimization for inverse problems
   </a>
  </li>
 </ul>
@@ -276,8 +276,8 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#smooth-optimisation">
-   6.1. Smooth optimisation
+  <a class="reference internal nav-link" href="#smooth-optimization">
+   6.1. Smooth optimization
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -286,8 +286,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#linesearch">
-     6.1.2. Linesearch
+    <a class="reference internal nav-link" href="#line-search">
+     6.1.2. Line search
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -298,8 +298,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convex-optimisation">
-   6.2. Convex optimisation
+  <a class="reference internal nav-link" href="#convex-optimization">
+   6.2. Convex optimization
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -378,7 +378,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Numerical optimisation for inverse problems</h1>
+                <h1>Numerical optimization for inverse problems</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -389,8 +389,8 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#smooth-optimisation">
-   6.1. Smooth optimisation
+  <a class="reference internal nav-link" href="#smooth-optimization">
+   6.1. Smooth optimization
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -399,8 +399,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#linesearch">
-     6.1.2. Linesearch
+    <a class="reference internal nav-link" href="#line-search">
+     6.1.2. Line search
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -411,8 +411,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convex-optimisation">
-   6.2. Convex optimisation
+  <a class="reference internal nav-link" href="#convex-optimization">
+   6.2. Convex optimization
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -490,28 +490,28 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="numerical-optimisation-for-inverse-problems">
-<h1><span class="section-number">6. </span>Numerical optimisation for inverse problems<a class="headerlink" href="#numerical-optimisation-for-inverse-problems" title="Permalink to this headline">¶</a></h1>
-<p>In this chapter we treat numerical algorithms for solving optimisation problems over <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. Throughout we will assume that the objective <span class="math notranslate nohighlight">\(J(u) = D(u) + R(u)\)</span> satisfies the conditions for a unique minimiser to exist. We distinguish between two important classes of problems; <em>smooth</em> problems and <em>convex</em> problems.</p>
-<div class="section" id="smooth-optimisation">
-<h2><span class="section-number">6.1. </span>Smooth optimisation<a class="headerlink" href="#smooth-optimisation" title="Permalink to this headline">¶</a></h2>
+  <div class="tex2jax_ignore mathjax_ignore section" id="numerical-optimization-for-inverse-problems">
+<h1><span class="section-number">6. </span>Numerical optimization for inverse problems<a class="headerlink" href="#numerical-optimization-for-inverse-problems" title="Permalink to this headline">¶</a></h1>
+<p>In this chapter we treat numerical algorithms for solving optimization problems over <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. Throughout we will assume that the objective <span class="math notranslate nohighlight">\(J(u) = D(u) + R(u)\)</span> satisfies the conditions for a unique minimizer to exist. We distinguish between two important classes of problems; <em>smooth</em> problems and <em>convex</em> problems.</p>
+<div class="section" id="smooth-optimization">
+<h2><span class="section-number">6.1. </span>Smooth optimization<a class="headerlink" href="#smooth-optimization" title="Permalink to this headline">¶</a></h2>
 <p>For smooth problems, we assume to have access to as many derivatives of <span class="math notranslate nohighlight">\(J\)</span> as we need. As before, we denote the first derivative (or gradient) by <span class="math notranslate nohighlight">\(J' : \mathbb{R}^n \rightarrow \mathbb{R}^n\)</span>. We denote the second derivative (or Hessian) by <span class="math notranslate nohighlight">\(J'' : \mathbb{R}^n \rightarrow \mathbb{R}^{n\times n}\)</span>. We will additionally assume that the Hessian is globally bounded, i.e. there exists a constant <span class="math notranslate nohighlight">\(L &lt; \infty\)</span> such that <span class="math notranslate nohighlight">\(J''(u) \preceq L\cdot I\)</span> for all <span class="math notranslate nohighlight">\(u\in\mathbb{R}^n\)</span>. Note that this implies that <span class="math notranslate nohighlight">\(J'\)</span> is Lipschitz continous with constant <span class="math notranslate nohighlight">\(L\)</span>: <span class="math notranslate nohighlight">\(\|J'(u) - J'(v)\|_2 \leq L \|u - v\|_2\)</span>.</p>
 <p>For a comprehensive treatment of this topic (and many more), we recommend the seminal book <em>Numerical Optimization</em> by Stephen Wright and Jorge Nocedal <span id="id1">[<a class="reference internal" href="bibliography.html#id7" title="Jorge Nocedal and Stephen Wright. Numerical optimization. Springer Science &amp; Business Media, 2006.">Nocedal and Wright, 2006</a>]</span>.</p>
 <hr class="docutils" />
-<p>Before discussing optimisation methods, we first introduce the optimality conditions.</p>
+<p>Before discussing optimization methods, we first introduce the optimality conditions.</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Optimality conditions</em></p>
-<p>Given a smooth functional <span class="math notranslate nohighlight">\(J:\mathbb{R}^n\rightarrow \mathbb{R}\)</span>, a point <span class="math notranslate nohighlight">\(u_* \in \mathbb{R}^n\)</span> is local minimiser iff it satisfies the first and second order optimality conditions</p>
+<p>Given a smooth functional <span class="math notranslate nohighlight">\(J:\mathbb{R}^n\rightarrow \mathbb{R}\)</span>, a point <span class="math notranslate nohighlight">\(u_* \in \mathbb{R}^n\)</span> is local minimizer iff it satisfies the first and second order optimality conditions</p>
 <div class="math notranslate nohighlight">
 \[J'(u_*) = 0, \quad J''(u_*) \succeq 0.\]</div>
-<p>If <span class="math notranslate nohighlight">\(J''(u_*) \succ 0\)</span> we call <span class="math notranslate nohighlight">\(u_*\)</span> a <em>strict</em> local minimiser.</p>
+<p>If <span class="math notranslate nohighlight">\(J''(u_*) \succ 0\)</span> we call <span class="math notranslate nohighlight">\(u_*\)</span> a <em>strict</em> local minimizer.</p>
 </div>
 <div class="section" id="gradient-descent">
 <h3><span class="section-number">6.1.1. </span>Gradient descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">¶</a></h3>
-<p>The steepest descent method proceeds to find a minimiser through a fixed-point iteration</p>
+<p>The steepest descent method proceeds to find a minimizer through a fixed-point iteration</p>
 <div class="math notranslate nohighlight">
 \[u_{k+1} = \left(I - \lambda J'\right)(u_k) = u_k - \lambda J'(u_k),\]</div>
-<p>where <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> is the stepsize. The following theorem states that this iteration will yield a fixed point of <span class="math notranslate nohighlight">\(J\)</span>, regardless of the initial iterate, provided that we pick <span class="math notranslate nohighlight">\(\lambda\)</span> small enough.</p>
+<p>where <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> is the step size. The following theorem states that this iteration will yield a fixed point of <span class="math notranslate nohighlight">\(J\)</span>, regardless of the initial iterate, provided that we pick <span class="math notranslate nohighlight">\(\lambda\)</span> small enough.</p>
 <div class="important admonition">
 <p class="admonition-title">Theorem: <em>Global convergence of steepest descent</em></p>
 <p>Let <span class="math notranslate nohighlight">\(J:\mathbb{R}^n\rightarrow \mathbb{R}\)</span> be a smooth, Lipschitz-continuos functional. The fixed point iteration</p>
@@ -537,33 +537,33 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>Stronger statements about the <em>rate</em> of convergence can be made by making additional assumptions on <span class="math notranslate nohighlight">\(J\)</span> (such as (strong) convexity), but this is left as an exercise.</p>
 </div>
-<div class="section" id="linesearch">
-<h3><span class="section-number">6.1.2. </span>Linesearch<a class="headerlink" href="#linesearch" title="Permalink to this headline">¶</a></h3>
-<p>While the previous results are nice in theory, we usually do not have access to the Lipschitz constant <span class="math notranslate nohighlight">\(L\)</span>. Moreover, the global bound on the stepsize provided by the Lipschitz constant may be pessimistic for a particular starting point. This could lead us to pick a very small stepsize, yielding slow convergence in practice. A popular way of choosing a stepsize adaptively is a <em>linesearch</em> strategy. To introduce these, we slightly broaden the scope and consider the iteration</p>
+<div class="section" id="line-search">
+<h3><span class="section-number">6.1.2. </span>Line search<a class="headerlink" href="#line-search" title="Permalink to this headline">¶</a></h3>
+<p>While the previous results are nice in theory, we usually do not have access to the Lipschitz constant <span class="math notranslate nohighlight">\(L\)</span>. Moreover, the global bound on the step size provided by the Lipschitz constant may be pessimistic for a particular starting point. This could lead us to pick a very small step size, yielding slow convergence in practice. A popular way of choosing a step size adaptively is a <em>line search</em> strategy. To introduce these, we slightly broaden the scope and consider the iteration</p>
 <div class="math notranslate nohighlight">
 \[u_{k+1} = u_k + \lambda_k d_k,\]</div>
 <p>where <span class="math notranslate nohighlight">\(d_k\)</span> is a <em>descent direction</em> satisfying <span class="math notranslate nohighlight">\(\langle d_k, J'(u_k)\rangle &lt; 0\)</span>. Obviously, <span class="math notranslate nohighlight">\(d_k = - J'(u_k)\)</span> is a descent direction, but other choices may be beneficial in practice. In particular, we can choose <span class="math notranslate nohighlight">\(d_k = -B J'(u_k)\)</span> for any positive-definite matrix <span class="math notranslate nohighlight">\(B\)</span> to obtain a descent direction. How to choose such a matrix will be discussed in the next section.</p>
-<p>Two important linesearch methods are discussed below.</p>
+<p>Two important line search methods are discussed below.</p>
 <div class="important admonition">
-<p class="admonition-title">Definition: <em>Backtracking linesearch</em></p>
+<p class="admonition-title">Definition: <em>Backtracking line search</em></p>
 <p>In order to ensure sufficient progress of the iterations, we can choose a steplength that guarantees sufficient descent:</p>
 <div class="math notranslate nohighlight" id="equation-wolfe1">
 <span class="eqno">(6.2)<a class="headerlink" href="#equation-wolfe1" title="Permalink to this equation">¶</a></span>\[J(u_k + \lambda d_k) \leq J(u_k) + c_1 \lambda \langle d_k, J'(u_k)\rangle,\]</div>
 <p>with <span class="math notranslate nohighlight">\(c_1 \in (0,1)\)</span> a small constant (typically <span class="math notranslate nohighlight">\(c_1 = 10^{-4}\)</span>). Existence of a <span class="math notranslate nohighlight">\(\lambda\)</span> satisfying these conditions is guaranteed by the regularity of <span class="math notranslate nohighlight">\(J\)</span>. We can find a suitable <span class="math notranslate nohighlight">\(\lambda\)</span> by <em>backtracking</em>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">backtracking</span><span class="p">(</span><span class="n">J</span><span class="p">,</span><span class="n">Jp</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">lmbda</span><span class="p">,</span><span class="n">rho</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">c1</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Backtracking linesearch to find a stepsize satisfying J(u + lmbda*d) &lt;= J(u) + lmbda*c1*J(u)^Td</span>
+<span class="sd">Backtracking line search to find a step size satisfying J(u + lmbda*d) &lt;= J(u) + lmbda*c1*J(u)^Td</span>
 
 <span class="sd">Input:</span>
 <span class="sd">  J  - Function object returning the value of J at a given input vector</span>
 <span class="sd">  Jp - Function object returning the gradient of J at a given input vector</span>
 <span class="sd">  u  - current iterate as array of length n</span>
 <span class="sd">  d  - descent direction as array of length n</span>
-<span class="sd">  lmbda - initial stepsize</span>
+<span class="sd">  lmbda - initial step size</span>
 <span class="sd">  rho,c1 - backtracking parameters, default (0.5,1e-4)</span>
 
 <span class="sd">Output:</span>
-<span class="sd">  lmbda - stepsize satisfying the sufficient decrease condition</span>
+<span class="sd">  lmbda - step size satisfying the sufficient decrease condition</span>
 <span class="sd">&quot;&quot;&quot;</span>
   <span class="k">while</span> <span class="n">J</span><span class="p">(</span><span class="n">u</span> <span class="o">+</span> <span class="n">lmbda</span><span class="o">*</span><span class="n">d</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">J</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">lmbda</span><span class="o">*</span><span class="n">Jp</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
     <span class="n">lmbda</span> <span class="o">*=</span> <span class="n">rho</span>
@@ -581,15 +581,15 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="second-order-methods">
 <h3><span class="section-number">6.1.3. </span>Second order methods<a class="headerlink" href="#second-order-methods" title="Permalink to this headline">¶</a></h3>
-<p>A well-known method for rootfinding is <em>Newton’s method</em>, which finds a root for which <span class="math notranslate nohighlight">\(J'(u) = 0\)</span> via the fixed point iteration</p>
+<p>A well-known method for root finding is <em>Newton’s method</em>, which finds a root for which <span class="math notranslate nohighlight">\(J'(u) = 0\)</span> via the fixed point iteration</p>
 <div class="math notranslate nohighlight" id="equation-newton">
 <span class="eqno">(6.4)<a class="headerlink" href="#equation-newton" title="Permalink to this equation">¶</a></span>\[u_{k+1} = u_k - J''(u_k)^{-1}J'(u_k).\]</div>
-<p>We can interpret this method as finding the new iterate <span class="math notranslate nohighlight">\(u_{k+1}\)</span> as the (unique) minimiser of the quadratic approximation of <span class="math notranslate nohighlight">\(J\)</span> around <span class="math notranslate nohighlight">\(u_k\)</span>:</p>
+<p>We can interpret this method as finding the new iterate <span class="math notranslate nohighlight">\(u_{k+1}\)</span> as the (unique) minimizer of the quadratic approximation of <span class="math notranslate nohighlight">\(J\)</span> around <span class="math notranslate nohighlight">\(u_k\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[J(u) \approx J(u_k) + J'(u_k)(u - u_k) + \textstyle{\frac{1}{2}}\langle u-u_k, J''(u_k)(u-u_k)\rangle.\]</div>
 <div class="important admonition">
 <p class="admonition-title">Theorem: <em>Convergence of Newton’s method</em></p>
-<p>Let <span class="math notranslate nohighlight">\(J\)</span> be a smooth functional and <span class="math notranslate nohighlight">\(u_*\)</span> be a (local) minimiser. For any <span class="math notranslate nohighlight">\(u_0\)</span> sufficiently close to <span class="math notranslate nohighlight">\(u_*\)</span>, the iteration <a class="reference internal" href="#equation-newton">(6.4)</a> converges quadratically to <span class="math notranslate nohighlight">\(u_*\)</span>, i.e.,</p>
+<p>Let <span class="math notranslate nohighlight">\(J\)</span> be a smooth functional and <span class="math notranslate nohighlight">\(u_*\)</span> be a (local) minimizer. For any <span class="math notranslate nohighlight">\(u_0\)</span> sufficiently close to <span class="math notranslate nohighlight">\(u_*\)</span>, the iteration <a class="reference internal" href="#equation-newton">(6.4)</a> converges quadratically to <span class="math notranslate nohighlight">\(u_*\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[\|u_{k+1} - u_*\|_2 \leq M \|u_k - u_*\|_2^2,\]</div>
 <p>with <span class="math notranslate nohighlight">\(M = 2\|J'''(u_*)\|_2 \|J''(u_*)^{-1}\|_2\)</span>.</p>
@@ -598,7 +598,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="admonition-title">Proof</p>
 <p>See <span id="id4">[<a class="reference internal" href="bibliography.html#id7" title="Jorge Nocedal and Stephen Wright. Numerical optimization. Springer Science &amp; Business Media, 2006.">Nocedal and Wright, 2006</a>]</span>, Thm. 3.5.</p>
 </div>
-<p>In practice, the Hessian may not be invertible everywhere and we may not have an initial iterate sufficiently close to a minimiser to ensure convergence. Practical applications therefore include a linesearch and a safeguard against non-invertible Hessians.</p>
+<p>In practice, the Hessian may not be invertible everywhere and we may not have an initial iterate sufficiently close to a minimizer to ensure convergence. Practical applications therefore include a line search and a safeguard against non-invertible Hessians.</p>
 <hr class="docutils" />
 <p>In some applications, it may be difficult to compute and invert the Hessian. This problem is addressed by so-called <em>quasi-Newton</em> methods which approximate the Hessian. The basis for such approximations is the <em>secant relation</em></p>
 <div class="math notranslate nohighlight">
@@ -610,15 +610,15 @@ Assuming a simple diagonal structure <span class="math notranslate nohighlight">
 and gradients <span class="math notranslate nohighlight">\(y_k = J'(u_{k+1}) - J'(u_k)\)</span> to recursively construct an approximation of the <em>inverse</em> of the Hessian as</p>
 <div class="math notranslate nohighlight">
 \[B_{k+1} = \left(I - \rho_k s_k y_k^T\right)B_k\left(I - \rho_k y_k s_k^T\right) + \rho_k s_ks_k^T,\]</div>
-<p>with <span class="math notranslate nohighlight">\(\rho_k = (\langle s_k, y_k\rangle)^{-1}\)</span> and <span class="math notranslate nohighlight">\(B_0\)</span> choses appropriately (e.g., <span class="math notranslate nohighlight">\(B_0 = L^{-1} \cdot I\)</span>). It can be shown that this approximation is sufficiently accurate to yield <em>superlinear</em> convergence when using a Wolfe linesearch.</p>
+<p>with <span class="math notranslate nohighlight">\(\rho_k = (\langle s_k, y_k\rangle)^{-1}\)</span> and <span class="math notranslate nohighlight">\(B_0\)</span> choses appropriately (e.g., <span class="math notranslate nohighlight">\(B_0 = L^{-1} \cdot I\)</span>). It can be shown that this approximation is sufficiently accurate to yield <em>super linear</em> convergence when using a Wolfe line search.</p>
 <hr class="docutils" />
-<p>The are many practical aspects to implementing such methods. For example, what do we do when the approximated Hessian becomes (almost) singular? Discussing these issues is beyond the scope of these lecture notes and we refer to <span id="id5">[<a class="reference internal" href="bibliography.html#id7" title="Jorge Nocedal and Stephen Wright. Numerical optimization. Springer Science &amp; Business Media, 2006.">Nocedal and Wright, 2006</a>]</span>, chapter 6 for more details. The <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.html">various optimisation methods</a>.</p>
+<p>The are many practical aspects to implementing such methods. For example, what do we do when the approximated Hessian becomes (almost) singular? Discussing these issues is beyond the scope of these lecture notes and we refer to <span id="id5">[<a class="reference internal" href="bibliography.html#id7" title="Jorge Nocedal and Stephen Wright. Numerical optimization. Springer Science &amp; Business Media, 2006.">Nocedal and Wright, 2006</a>]</span>, chapter 6 for more details. The <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> library provides an implementation of <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.html">various optimization methods</a>.</p>
 </div>
 </div>
-<div class="section" id="convex-optimisation">
-<h2><span class="section-number">6.2. </span>Convex optimisation<a class="headerlink" href="#convex-optimisation" title="Permalink to this headline">¶</a></h2>
-<p>In this section, we consider finding a minimiser of a <em>convex</em> functional <span class="math notranslate nohighlight">\(J : \mathbb{R}^n \rightarrow \mathbb{R}_{\infty}\)</span>. Note that we allow the functionals to take values on the extended real line. We accordingly define the domain of <span class="math notranslate nohighlight">\(J\)</span> as <span class="math notranslate nohighlight">\(\text{dom}(J) = \{u \in \mathbb{R}^n \, | \, J(u) &lt; \infty\}\)</span>.</p>
-<p>To deal with convex functionals that are not smooth, we first generalise the notion of a derivative.</p>
+<div class="section" id="convex-optimization">
+<h2><span class="section-number">6.2. </span>Convex optimization<a class="headerlink" href="#convex-optimization" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we consider finding a minimizer of a <em>convex</em> functional <span class="math notranslate nohighlight">\(J : \mathbb{R}^n \rightarrow \mathbb{R}_{\infty}\)</span>. Note that we allow the functionals to take values on the extended real line. We accordingly define the domain of <span class="math notranslate nohighlight">\(J\)</span> as <span class="math notranslate nohighlight">\(\text{dom}(J) = \{u \in \mathbb{R}^n \, | \, J(u) &lt; \infty\}\)</span>.</p>
+<p>To deal with convex functionals that are not smooth, we first generalize the notion of a derivative.</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: subgradient</p>
 <p>Given a convex functional <span class="math notranslate nohighlight">\(J\)</span>, we call <span class="math notranslate nohighlight">\(g \in \mathbb{R}^n\)</span> a subgradient of <span class="math notranslate nohighlight">\(J\)</span> at <span class="math notranslate nohighlight">\(u\)</span> if</p>
@@ -706,16 +706,16 @@ and gradients <span class="math notranslate nohighlight">\(y_k = J'(u_{k+1}) - J
 <p>An overview of other useful relations can be found in e.g., <span id="id6">[<a class="reference internal" href="bibliography.html#id8" title="Amir Beck. First-Order Methods in Optimization. Society for Industrial and Applied Mathematics, 2017.">Beck, 2017</a>]</span> section 3.8.</p>
 </div>
 <hr class="docutils" />
-<p>With this we can now formulate optimality conditions for convex optimisation.</p>
+<p>With this we can now formulate optimality conditions for convex optimization.</p>
 <div class="important admonition">
-<p class="admonition-title">Definition: Optimality conditions for convex optimisation</p>
-<p>Let <span class="math notranslate nohighlight">\(J:\mathbb{R}^n \rightarrow \mathbb{R}_{\infty}\)</span> be a proper convex functional. A point <span class="math notranslate nohighlight">\(u_* \in \mathbb{R}^n\)</span> is a minimiser iff</p>
+<p class="admonition-title">Definition: Optimality conditions for convex optimization</p>
+<p>Let <span class="math notranslate nohighlight">\(J:\mathbb{R}^n \rightarrow \mathbb{R}_{\infty}\)</span> be a proper convex functional. A point <span class="math notranslate nohighlight">\(u_* \in \mathbb{R}^n\)</span> is a minimizer iff</p>
 <div class="math notranslate nohighlight">
 \[0 \in J'(u_*).\]</div>
 </div>
 <div class="admonition-example-computing-the-median admonition">
 <p class="admonition-title">Example: <em>Computing the median</em></p>
-<p>The median <span class="math notranslate nohighlight">\(u\)</span> of a set of numbers <span class="math notranslate nohighlight">\((f_1, f_2, \ldots, f_n)\)</span> (with <span class="math notranslate nohighlight">\(f_i &lt; f_{i+1}\)</span>) is a minimiser of</p>
+<p>The median <span class="math notranslate nohighlight">\(u\)</span> of a set of numbers <span class="math notranslate nohighlight">\((f_1, f_2, \ldots, f_n)\)</span> (with <span class="math notranslate nohighlight">\(f_i &lt; f_{i+1}\)</span>) is a minimizer of</p>
 <div class="math notranslate nohighlight">
 \[J(u) = \sum_{i=1}^n |u - f_i|.\]</div>
 <p>Introducing <span class="math notranslate nohighlight">\(J_i = |u - f_i|\)</span> we have</p>
@@ -790,7 +790,7 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 <p>A natural extension of the gradient-descent method for smooth problems is the <em>subgradient descent method</em>:</p>
 <div class="math notranslate nohighlight" id="equation-subgradient-descent">
 <span class="eqno">(6.5)<a class="headerlink" href="#equation-subgradient-descent" title="Permalink to this equation">¶</a></span>\[u_{k+1} = u_k - \lambda_k J'(u_k), \quad J'(u_k) \in \partial J(u_k),\]</div>
-<p>where <span class="math notranslate nohighlight">\(\lambda_k\)</span> denote the stepsizes.</p>
+<p>where <span class="math notranslate nohighlight">\(\lambda_k\)</span> denote the step sizes.</p>
 <div class="important admonition">
 <p class="admonition-title">Theorem: <em>Convergence of subgradient descent</em></p>
 <p>Let <span class="math notranslate nohighlight">\(J : \mathbb{R}^n \rightarrow \mathbb{R}\)</span> be a convex, <span class="math notranslate nohighlight">\(L-\)</span> Lipschitz-continuous function. The iteration <a class="reference internal" href="#equation-subgradient-descent">(6.5)</a> produces iterates for which</p>
@@ -856,10 +856,10 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 <div class="important admonition">
 <p class="admonition-title">Theorem: <em>Convergence of the proximal point iteration</em></p>
 <p>Let <span class="math notranslate nohighlight">\(J = D + R\)</span> be a functional with <span class="math notranslate nohighlight">\(D\)</span> smooth and <span class="math notranslate nohighlight">\(R\)</span> convex. Denote the Lipschitz constant of <span class="math notranslate nohighlight">\(D'\)</span> by <span class="math notranslate nohighlight">\(L_D\)</span>. The iterates produced by <a class="reference internal" href="#equation-proximal-gradient">(6.7)</a> with a fixed stepsize <span class="math notranslate nohighlight">\(\lambda = 1/L_D\)</span> converge to a fixed point, <span class="math notranslate nohighlight">\(u_*\)</span>, of <a class="reference internal" href="#equation-proximal-gradient">(6.7)</a>.</p>
-<p>If, in addition, <span class="math notranslate nohighlight">\(D\)</span> is convex the iterates converges sublinearly to a minimiser <span class="math notranslate nohighlight">\(u_*\)</span>:</p>
+<p>If, in addition, <span class="math notranslate nohighlight">\(D\)</span> is convex the iterates converges sublinearly to a minimizer <span class="math notranslate nohighlight">\(u_*\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[J(u_k) - J_* \leq \frac{L_D \|u_* - u_0\|_2^2}{2k}.\]</div>
-<p>If <span class="math notranslate nohighlight">\(D\)</span> is <span class="math notranslate nohighlight">\(\mu\)</span>-strongly convex, the iteration converges linearly to a minimiser <span class="math notranslate nohighlight">\(u_*\)</span>:</p>
+<p>If <span class="math notranslate nohighlight">\(D\)</span> is <span class="math notranslate nohighlight">\(\mu\)</span>-strongly convex, the iteration converges linearly to a minimizer <span class="math notranslate nohighlight">\(u_*\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\|u_{k+1} - u_*\|_2^2 \leq \left(1 - \mu/L_D\right) \|u_{k} - u_*\|_2^2.\]</div>
 </div>
@@ -868,7 +868,7 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 <p>We refer to <span id="id7">[<a class="reference internal" href="bibliography.html#id8" title="Amir Beck. First-Order Methods in Optimization. Society for Industrial and Applied Mathematics, 2017.">Beck, 2017</a>]</span> Thms. 10.15, 10.21, and 10.29 or more details.</p>
 </div>
 <hr class="docutils" />
-<p>When compared to the subgradient method, we may expect better performance from the proximal gradient method when <span class="math notranslate nohighlight">\(D\)</span> is strongly convex and <span class="math notranslate nohighlight">\(R\)</span> is convex. Even if <span class="math notranslate nohighlight">\(J\)</span> is smooth, the proximal gradient method may be favourable as the convergence constants depend on the Lipschitz constant of <span class="math notranslate nohighlight">\(D\)</span> only; not <span class="math notranslate nohighlight">\(J\)</span>. All this comes at the cost of solving a minimisation problem at each iteration, so these methods are usually only applied when a closed-form expression for the proximal operator exists.</p>
+<p>When compared to the subgradient method, we may expect better performance from the proximal gradient method when <span class="math notranslate nohighlight">\(D\)</span> is strongly convex and <span class="math notranslate nohighlight">\(R\)</span> is convex. Even if <span class="math notranslate nohighlight">\(J\)</span> is smooth, the proximal gradient method may be favorable as the convergence constants depend on the Lipschitz constant of <span class="math notranslate nohighlight">\(D\)</span> only; not <span class="math notranslate nohighlight">\(J\)</span>. All this comes at the cost of solving a minimization problem at each iteration, so these methods are usually only applied when a closed-form expression for the proximal operator exists.</p>
 <div class="admonition-example-one-norm admonition">
 <p class="admonition-title">Example: <em>one-norm</em></p>
 <p>The proximal operator for the <span class="math notranslate nohighlight">\(\ell_1\)</span> norm solves</p>
@@ -894,7 +894,7 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 </div>
 <div class="section" id="splitting-methods">
 <h3><span class="section-number">6.2.3. </span>Splitting methods<a class="headerlink" href="#splitting-methods" title="Permalink to this headline">¶</a></h3>
-<p>The proximal point methods require that the proximal operator for <span class="math notranslate nohighlight">\(R\)</span> can be evaluated efficiently. In many practical applications this is not the cases, however. Instead, we may have a regulariser of the form <span class="math notranslate nohighlight">\(R(Au)\)</span> for some linear operator <span class="math notranslate nohighlight">\(A\)</span>. Even when <span class="math notranslate nohighlight">\(R(\cdot)\)</span> admits an efficient proximal operator <span class="math notranslate nohighlight">\(R(A\cdot)\)</span> will, in general, not. In this section we discuss a class of methods that allow us to shift the operator <span class="math notranslate nohighlight">\(A\)</span> to the other part of the objective. As a model-problem we will consider solving</p>
+<p>The proximal point methods require that the proximal operator for <span class="math notranslate nohighlight">\(R\)</span> can be evaluated efficiently. In many practical applications this is not the cases, however. Instead, we may have a regularizer of the form <span class="math notranslate nohighlight">\(R(Au)\)</span> for some linear operator <span class="math notranslate nohighlight">\(A\)</span>. Even when <span class="math notranslate nohighlight">\(R(\cdot)\)</span> admits an efficient proximal operator <span class="math notranslate nohighlight">\(R(A\cdot)\)</span> will, in general, not. In this section we discuss a class of methods that allow us to shift the operator <span class="math notranslate nohighlight">\(A\)</span> to the other part of the objective. As a model-problem we will consider solving</p>
 <div class="math notranslate nohighlight">
 \[\min_{u\in \mathbb{R}^n} D(u) + R(Au),\]</div>
 <p>with <span class="math notranslate nohighlight">\(D\)</span> smooth and convex, <span class="math notranslate nohighlight">\(R(\cdot)\)</span> convex and <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m\times n}\)</span> a linear map. The basic idea is to introduce an auxiliary variable <span class="math notranslate nohighlight">\(v\)</span> and re-formulate the variational problem as</p>
@@ -991,7 +991,7 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 \[\nu_{k+1}= \nu_k + \rho \left(Du_{k+1} - v_{k+1}\right).\]</div>
 </div>
 <hr class="docutils" />
-<p>We cannot do justice to the breadth and depth of the topics smooth and convex optimisation in one chapter. Rather, we hope that this chapter serves as a starting point for further study in one of these areas for some, and provides useful recipes for others.</p>
+<p>We cannot do justice to the breadth and depth of the topics smooth and convex optimization in one chapter. Rather, we hope that this chapter serves as a starting point for further study in one of these areas for some, and provides useful recipes for others.</p>
 </div>
 </div>
 <div class="section" id="exercises">
@@ -1046,7 +1046,7 @@ Since the eigenvalues of <span class="math notranslate nohighlight">\(\J''\)</sp
 </div>
 <div class="section" id="steepest-descent-for-convex-functions">
 <h3><span class="section-number">6.3.2. </span>Steepest descent for convex functions<a class="headerlink" href="#steepest-descent-for-convex-functions" title="Permalink to this headline">¶</a></h3>
-<p>Let <span class="math notranslate nohighlight">\(J : \mathbb{R}^n\)</span> be convex and Lipschitz-smooth. Show that the basic steepest-descent iteration with stepsize <span class="math notranslate nohighlight">\(\lambda = 1/L\)</span> produces iterates for which</p>
+<p>Let <span class="math notranslate nohighlight">\(J : \mathbb{R}^n\)</span> be convex and Lipschitz-smooth. Show that the basic steepest-descent iteration with step size <span class="math notranslate nohighlight">\(\lambda = 1/L\)</span> produces iterates for which</p>
 <div class="math notranslate nohighlight">
 \[J(u_k) - J(u_*) \leq \frac{\|u_0 - u_*\|}{2Lk}.\]</div>
 <p>The key is to use that</p>
@@ -1150,7 +1150,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc7777d88b0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f79e36a9fa0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -1172,7 +1172,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc7744c1d00&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f79daf614f0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1237,8 +1237,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn(&#39;The line search algorithm did not converge&#39;, LineSearchWarning)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc75a433550&gt;,
- &lt;matplotlib.lines.Line2D at 0x7fc75a433700&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f79e39e3af0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7f79e39e3ca0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />
@@ -1274,7 +1274,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 <div class="section" id="dual-problems">
 <h3><span class="section-number">6.3.5. </span>Dual problems<a class="headerlink" href="#dual-problems" title="Permalink to this headline">¶</a></h3>
-<p>Derive the dual problems for the following optimisation problems</p>
+<p>Derive the dual problems for the following optimization problems</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\min_u \|u - f^\delta\|_1 + \lambda \|u\|_2^2\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\min_u \textstyle{\frac{1}{2}}\|u - f^\delta\|_2^2 + \lambda \|u\|_p, \quad p \in \mathbb{N}_{&gt;0}\)</span>.</p></li>
@@ -1317,7 +1317,7 @@ The second one is easy, since we can compute the optimality condition easily: <s
 <p>In this exercise we consider a one-dimensional TV-denoising problem</p>
 <div class="math notranslate nohighlight">
 \[\min_{\mathbb{R}^n} \textstyle{\frac{1}{2}} \|u - f^\delta\|_2^2 + \lambda \|Du\|_1,\]</div>
-<p>with <span class="math notranslate nohighlight">\(D\)</span> a first-order finite difference discretisation of the first derivative.</p>
+<p>with <span class="math notranslate nohighlight">\(D\)</span> a first-order finite difference discretization of the first derivative.</p>
 <ul class="simple">
 <li><p>Show that the problem is equivalent (in terms of solutions) to solving</p></li>
 </ul>
@@ -1505,7 +1505,7 @@ The second one is easy, since we can compute the optimality condition easily: <s
 <p>The aim is to solve the following variational problem</p>
 <div class="math notranslate nohighlight">
 \[\min_u \frac{1}{2} \|Ku - f^{\delta}\|_2^2 + \alpha \|Lu\|_1,\]</div>
-<p>where <span class="math notranslate nohighlight">\(K\)</span> is a given forward operator (matrix) and <span class="math notranslate nohighlight">\(L\)</span> is a discretisation of the second derivative operator.</p>
+<p>where <span class="math notranslate nohighlight">\(K\)</span> is a given forward operator (matrix) and <span class="math notranslate nohighlight">\(L\)</span> is a discretization of the second derivative operator.</p>
 <ol class="simple">
 <li><p>Design and implement a method for solving this variational problem; you can be creative here – multiple answers are possible</p></li>
 <li><p>Compare your method with the basic subgradient-descent method implemented below</p></li>

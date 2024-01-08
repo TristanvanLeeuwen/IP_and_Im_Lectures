@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2. Discrete Inverse Problems and Regularisation &#8212; 10 Lectures on Inverse Problems and Imaging</title>
+    <title>2. Discrete Inverse Problems and Regularization &#8212; 10 Lectures on Inverse Problems and Imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -110,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   2. Discrete Inverse Problems and Regularisation
+   2. Discrete Inverse Problems and Regularization
   </a>
  </li>
  <li class="toctree-l1">
@@ -130,7 +130,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="numerical_optimisation.html">
-   6. Numerical optimisation for inverse problems
+   6. Numerical optimization for inverse problems
   </a>
  </li>
 </ul>
@@ -306,8 +306,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tikhonov-regularisation">
-     2.4.3. Tikhonov regularisation
+    <a class="reference internal nav-link" href="#tikhonov-regularization">
+     2.4.3. Tikhonov regularization
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -339,7 +339,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Discrete Inverse Problems and Regularisation</h1>
+                <h1>Discrete Inverse Problems and Regularization</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -380,8 +380,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tikhonov-regularisation">
-     2.4.3. Tikhonov regularisation
+    <a class="reference internal nav-link" href="#tikhonov-regularization">
+     2.4.3. Tikhonov regularization
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -412,8 +412,8 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="discrete-inverse-problems-and-regularisation">
-<h1><span class="section-number">2. </span>Discrete Inverse Problems and Regularisation<a class="headerlink" href="#discrete-inverse-problems-and-regularisation" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="discrete-inverse-problems-and-regularization">
+<h1><span class="section-number">2. </span>Discrete Inverse Problems and Regularization<a class="headerlink" href="#discrete-inverse-problems-and-regularization" title="Permalink to this headline">¶</a></h1>
 <p>In this lecture we consider inverse problems that can be posed as a system of linear equations</p>
 <div class="math notranslate nohighlight">
 \[
@@ -422,7 +422,7 @@ Ku = f,
 <p>with <span class="math notranslate nohighlight">\(K \in \mathbb{R}^{m\times n}\)</span> a given matrix and <span class="math notranslate nohighlight">\(f\in \mathbb{R}^{m}\)</span> the data. The goal is to find a solution <span class="math notranslate nohighlight">\(u \in \mathbb{R}^n\)</span> that (approximately) satisfies the equations.</p>
 <div class="section" id="well-posedness">
 <h2><span class="section-number">2.1. </span>Well-posedness<a class="headerlink" href="#well-posedness" title="Permalink to this headline">¶</a></h2>
-<p>The first questions we adress in detail are those of <em>existence</em>, <em>uniqueness</em> and <em>stability</em> of the solution. We discern the following cases:</p>
+<p>The first questions we address in detail are those of <em>existence</em>, <em>uniqueness</em> and <em>stability</em> of the solution. We discern the following cases:</p>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(m = n\)</span> and <span class="math notranslate nohighlight">\(K\)</span> has full rank, it is invertible and the solution is given by</p></li>
 </ul>
@@ -671,7 +671,7 @@ K^{\dagger} = V_k\Sigma_k^{-1}U_k^{*},
 </div>
 <div class="section" id="regularisation">
 <h2><span class="section-number">2.3. </span>Regularisation<a class="headerlink" href="#regularisation" title="Permalink to this headline">¶</a></h2>
-<p>To stabilise the problem we can modify the pseudo inverse in several ways to avoid dividing by small singular values. One option is to simply ignore small singular values and choose a cut-off value and define the solution as</p>
+<p>To stabilize the problem we can modify the pseudo inverse in several ways to avoid dividing by small singular values. One option is to simply ignore small singular values and choose a cut-off value and define the solution as</p>
 <div class="math notranslate nohighlight" id="equation-regk">
 <span class="eqno">(2.1)<a class="headerlink" href="#equation-regk" title="Permalink to this equation">¶</a></span>\[\widetilde u_{\alpha} = V_{k}r_{\alpha}(\Sigma_{k}){U_{k}}^*f,\]</div>
 <p>where <span class="math notranslate nohighlight">\(r_{\alpha}\)</span> is applied component-wise to the diagonal of the matrix <span class="math notranslate nohighlight">\(\Sigma_k\)</span> as</p>
@@ -696,7 +696,7 @@ r_{\alpha}(\sigma) =
 <p>where <span class="math notranslate nohighlight">\(\{(u_i,v_i,\sigma_i)\}_{i=1}^k\)</span> denotes the singular system of <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(k_{\alpha} \leq k\)</span> is chosen so that <span class="math notranslate nohighlight">\(\sigma_i \geq \alpha\)</span> for <span class="math notranslate nohighlight">\(i \leq k_{\alpha}\)</span>.</p>
 </div>
 <hr class="docutils" />
-<p>Another option to avoid dividing by small singular values is to add small positive constant to shift the singular values away from zero. This gives rise to Tikhonov regularisation.</p>
+<p>Another option to avoid dividing by small singular values is to add small positive constant to shift the singular values away from zero. This gives rise to Tikhonov regularization.</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Tikhonov regularisation</em></p>
 <p>The Tikhonov-regularised solution to the equation <span class="math notranslate nohighlight">\(Ku = f\)</span> is given by</p>
@@ -718,21 +718,21 @@ r_{\alpha}(\sigma) =
 <p>Indeed, it is easily verified that <span class="math notranslate nohighlight">\(K^* K + \alpha I\)</span> has full rank whenever <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>.</p>
 </div>
 <hr class="docutils" />
-<p>Of course, one may think of other types of regularisation by defining an appropriate function <span class="math notranslate nohighlight">\(r_{\alpha}\)</span>. Intuitively, we would like</p>
+<p>Of course, one may think of other types of regularization by defining an appropriate function <span class="math notranslate nohighlight">\(r_{\alpha}\)</span>. Intuitively, we would like</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(r_{\alpha}(s) = s^{-1}\)</span> as <span class="math notranslate nohighlight">\(\alpha \rightarrow 0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(r_{\alpha}(0) &lt; \infty\)</span> for any <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(r_{\alpha}(s) \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(\alpha \rightarrow \infty\)</span></p></li>
 </ul>
-<p>One example is <em>Lavrentiev</em> regularisation, with:</p>
+<p>One example is <em>Lavrentiev</em> regularization, with:</p>
 <div class="math notranslate nohighlight">
 \[r_{\alpha}(s) = (s + \alpha)^{-1}.\]</div>
-<p>Conditions on regularisation schemes and methods for choosing <span class="math notranslate nohighlight">\(\alpha\)</span> will be discussed in more detail in the chapter on <a class="reference internal" href="ip_function_spaces.html"><span class="doc std std-doc">Inverse Problems in Function Spaces</span></a>.</p>
+<p>Conditions on regularization schemes and methods for choosing <span class="math notranslate nohighlight">\(\alpha\)</span> will be discussed in more detail in the chapter on <a class="reference internal" href="ip_function_spaces.html"><span class="doc std std-doc">Inverse Problems in Function Spaces</span></a>.</p>
 <hr class="docutils" />
-<p>In general, we can think of regularisation for linear problems as defining a modified pseudo-inverse of <span class="math notranslate nohighlight">\(K\)</span>:</p>
+<p>In general, we can think of regularization for linear problems as defining a modified pseudo-inverse of <span class="math notranslate nohighlight">\(K\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[K_{\alpha}^{\dagger} = V_{k}r_{\alpha}(\Sigma_{k})U_{k}^{*}.\]</div>
-<p>Stability of regularised solutions defined by <a class="reference internal" href="#equation-regk">(2.1)</a> then follows by considering the largest singular value of <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span>, which can be made arbitrarily small by increasing <span class="math notranslate nohighlight">\(\alpha\)</span>. On the other hand, increasing <span class="math notranslate nohighlight">\(\alpha\)</span> will also introduce a bias in the solution. This trade-off is called the <em>bias-variance trade-off</em>:</p>
+<p>Stability of regularized solutions defined by <a class="reference internal" href="#equation-regk">(2.1)</a> then follows by considering the largest singular value of <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span>, which can be made arbitrarily small by increasing <span class="math notranslate nohighlight">\(\alpha\)</span>. On the other hand, increasing <span class="math notranslate nohighlight">\(\alpha\)</span> will also introduce a bias in the solution. This trade-off is called the <em>bias-variance trade-off</em>:</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Bias-variance trade-off</em></p>
 <p>Here, we compare the regularised solution from noisy data <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha, \delta} = K_{\alpha}^\dagger f^{\delta}\)</span> and the ideal solution <span class="math notranslate nohighlight">\(\widetilde{u} = K^{\dagger}f\)</span>:</p>
@@ -852,7 +852,7 @@ r_{\alpha}(\sigma) =
 <ol class="simple">
 <li><p>For <span class="math notranslate nohighlight">\(m &gt; n\)</span> and rank(<span class="math notranslate nohighlight">\(K\)</span>) = <span class="math notranslate nohighlight">\(n\)</span>, show that the pseudo-inverse gives the solution <span class="math notranslate nohighlight">\(u = K^\dagger f\)</span> with the smallest residual <span class="math notranslate nohighlight">\(\|Ku - f\|_2\)</span></p></li>
 <li><p>For <span class="math notranslate nohighlight">\(m &lt; n\)</span> and rank(<span class="math notranslate nohighlight">\(K\)</span>) = <span class="math notranslate nohighlight">\(m\)</span>, show that the pseudo-inverse gives the solution <span class="math notranslate nohighlight">\(u = K^\dagger f\)</span> with the smallest norm <span class="math notranslate nohighlight">\(\|u\|_2\)</span></p></li>
-<li><p>For <span class="math notranslate nohighlight">\(m &gt; n\)</span> and rank(<span class="math notranslate nohighlight">\(K\)</span>) = <span class="math notranslate nohighlight">\(r &lt; n\)</span>, show that the pseudo-inverse gives the solution that minimises both <span class="math notranslate nohighlight">\(\|Ku - f\|_2\)</span> and <span class="math notranslate nohighlight">\(\|u\|_2\)</span>.</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(m &gt; n\)</span> and rank(<span class="math notranslate nohighlight">\(K\)</span>) = <span class="math notranslate nohighlight">\(r &lt; n\)</span>, show that the pseudo-inverse gives the solution that minimizes both <span class="math notranslate nohighlight">\(\|Ku - f\|_2\)</span> and <span class="math notranslate nohighlight">\(\|u\|_2\)</span>.</p></li>
 </ol>
 <div class="hint dropdown admonition">
 <p class="admonition-title">Answer</p>
@@ -863,8 +863,8 @@ r_{\alpha}(\sigma) =
 </ol>
 </div>
 </div>
-<div class="section" id="tikhonov-regularisation">
-<h3><span class="section-number">2.4.3. </span>Tikhonov regularisation<a class="headerlink" href="#tikhonov-regularisation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="tikhonov-regularization">
+<h3><span class="section-number">2.4.3. </span>Tikhonov regularization<a class="headerlink" href="#tikhonov-regularization" title="Permalink to this headline">¶</a></h3>
 <p>Show that the solution to the variational problem</p>
 <div class="math notranslate nohighlight">
 \[\min_{u} \|Ku - f\|_2^2 + \alpha \|u\|_2^2\]</div>
@@ -882,11 +882,11 @@ r_{\alpha}(\sigma) =
 <p>We can estimate the density distribution in the subsurface by measuring the local gravitational pull. The density profile <span class="math notranslate nohighlight">\(u(x)\)</span> is related to such measurements by a linear operator</p>
 <div class="math notranslate nohighlight">
 \[Ku(x) = \int_0^1 \frac{u(y)}{(1 + (x-y)^2)^{3/2}} \mathrm{d}y.\]</div>
-<p>Upon discretisation with stepsize <span class="math notranslate nohighlight">\(h = 1/n\)</span>, the inverse problem can be cast as a system of <span class="math notranslate nohighlight">\(n\)</span> equations in <span class="math notranslate nohighlight">\(n\)</span> unknowns <span class="math notranslate nohighlight">\(Ku = f\)</span>.</p>
+<p>Upon discretization with stepsize <span class="math notranslate nohighlight">\(h = 1/n\)</span>, the inverse problem can be cast as a system of <span class="math notranslate nohighlight">\(n\)</span> equations in <span class="math notranslate nohighlight">\(n\)</span> unknowns <span class="math notranslate nohighlight">\(Ku = f\)</span>.</p>
 <p>You can use the code provided below to generate the matrix and noisy data for a given <span class="math notranslate nohighlight">\(u(x)\)</span></p>
 <ol class="simple">
 <li><p>Plot the coefficients <span class="math notranslate nohighlight">\(\langle u_i, f\rangle\)</span> and the singular values <span class="math notranslate nohighlight">\(\sigma_i\)</span> to check the discrete Picard condition. What do you notice ?</p></li>
-<li><p>Solve the inverse problem for noisy data using the (regularised) pseudo-inverse; compute the optimal <span class="math notranslate nohighlight">\(\alpha\)</span> by computing the bias and variance components of the error. Is this a practically feasible way to compute the optimal <span class="math notranslate nohighlight">\(\alpha\)</span>?</p></li>
+<li><p>Solve the inverse problem for noisy data using the (regularized) pseudo-inverse; compute the optimal <span class="math notranslate nohighlight">\(\alpha\)</span> by computing the bias and variance components of the error. Is this a practically feasible way to compute the optimal <span class="math notranslate nohighlight">\(\alpha\)</span>?</p></li>
 <li><p>Compare the solutions for <span class="math notranslate nohighlight">\(\alpha &lt; \alpha_{\text{opt}}\)</span>, <span class="math notranslate nohighlight">\(\alpha_{\text{opt}}\)</span> and <span class="math notranslate nohighlight">\(\alpha &gt; \alpha_{\text{opt}}\)</span> to the ground truth. What do you notice?</p></li>
 </ol>
 <div class="cell docutils container">
@@ -1056,7 +1056,7 @@ r_{\alpha}(\sigma) =
 <p>and we are given noisy measurements</p>
 <div class="math notranslate nohighlight">
 \[f^{\delta} = Ku + e,\]</div>
-<p>where the entries of <span class="math notranslate nohighlight">\(e\)</span> are normally distrubuted with mean zero and variance <span class="math notranslate nohighlight">\(\delta^2\)</span>.</p>
+<p>where the entries of <span class="math notranslate nohighlight">\(e\)</span> are normally distributed with mean zero and variance <span class="math notranslate nohighlight">\(\delta^2\)</span>.</p>
 <p>The goal of this assignment is to solve this inverse problem using a (truncated) SVD for two scenario’s</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(u(x) = H(x - 0.3) - H(x - 0.7)\)</span>,</p></li>
@@ -1067,7 +1067,7 @@ r_{\alpha}(\sigma) =
 <ol class="simple">
 <li><p>Is this problem ill-posed?</p></li>
 <li><p>Compute the (pseudo-)inverse of <span class="math notranslate nohighlight">\(K\)</span> using the SVD and compute the backward error <span class="math notranslate nohighlight">\(\|u - u^{\delta}\|_2\)</span> for noise levels <span class="math notranslate nohighlight">\(\delta = 0.001, 0.01, 0.1\)</span> for both scenario’s; what do you notice?</p></li>
-<li><p>Compute a regularized solution using a truncated SVD for noise levels <span class="math notranslate nohighlight">\(\delta = 0.001, 0.01, 0.1\)</span> for both scenario’s. Manually choose the truncation paramater <span class="math notranslate nohighlight">\(k\)</span> in each case to get the best possible solution. What do you notice here?</p></li>
+<li><p>Compute a regularized solution using a truncated SVD for noise levels <span class="math notranslate nohighlight">\(\delta = 0.001, 0.01, 0.1\)</span> for both scenario’s. Manually choose the truncation parameter <span class="math notranslate nohighlight">\(k\)</span> in each case to get the best possible solution. What do you notice here?</p></li>
 <li><p>Explain your observations by investigating what the singular vectors look like (think about the discrete Picard condition as well).</p></li>
 </ol>
 <div class="cell docutils container">

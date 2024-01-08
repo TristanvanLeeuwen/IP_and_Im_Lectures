@@ -18,12 +18,12 @@ document.writeln("</div>");
 
 In these lectures we introduce basic concepts related to inverse problems and visit various viewpoints on inverse problems. The main recurring themes are
 
-* Modelling -- *how do we formulate a real-world problem in the language of mathematics*
+* Modeling -- *how do we formulate a real-world problem in the language of mathematics*
 * Analysis -- *is the corresponding mathematical problem well-posed*
 * Solution strategies -- *how do we solve the problem numerically*
 * Applications -- *where do inverse problems arise*
 
-Each chapter contains exercises, assignments and example code in Python. The exercises allow you to practise with the basic concepts and techniques introduced in the chapter. Hints and answers to the exercises are provided in dropdown boxes. The assignments are more challenging and open-ended. They require you to integrate concepts and techniques learned in the course.
+Each chapter contains exercises, assignments and example code in Python. The exercises allow you to practice with the basic concepts and techniques introduced in the chapter. Hints and answers to the exercises are provided in dropdown boxes. The assignments are more challenging and open-ended. They require you to integrate concepts and techniques learned in the course.
 
 To get familiar with Python, we highly recommend [these lecture notes](https://scipy-lectures.org/).
 

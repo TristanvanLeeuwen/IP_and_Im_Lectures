@@ -110,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="discrete_ip_regularization.html">
-   2. Discrete Inverse Problems and Regularisation
+   2. Discrete Inverse Problems and Regularization
   </a>
  </li>
  <li class="toctree-l1">
@@ -130,7 +130,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="numerical_optimisation.html">
-   6. Numerical optimisation for inverse problems
+   6. Numerical optimization for inverse problems
   </a>
  </li>
 </ul>
@@ -528,7 +528,7 @@ const thebe_selector_output = ".output, .cell_output"
 <img alt="_images/statistical_perspective_1_1.png" src="_images/statistical_perspective_1_1.png" />
 </div>
 </div>
-<p>In a way, <span class="math notranslate nohighlight">\(\pi_{\text{post}}(u | f^\delta)\)</span> is the answer to our inverse problem. It gives us information on the likelihood of any particular <span class="math notranslate nohighlight">\(u\)</span> <em>under the assumptions</em> we made on <span class="math notranslate nohighlight">\(f^\delta\)</span> and <span class="math notranslate nohighlight">\(u\)</span>. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those. In many cases, however, we cannot easily characterise the posterior PDF. We may, however, attempt estimate certain properties by drawing samples from the posterior distribution. Such samples can be generated for any distribution using a <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov chain Monte Carlo (MCMC) algorithm</a>. This is not very attractive for high-dimensional problems, however. Further discussion of such algorithms is outside the scope of this lecture.</p>
+<p>In a way, <span class="math notranslate nohighlight">\(\pi_{\text{post}}(u | f^\delta)\)</span> is the answer to our inverse problem. It gives us information on the likelihood of any particular <span class="math notranslate nohighlight">\(u\)</span> <em>under the assumptions</em> we made on <span class="math notranslate nohighlight">\(f^\delta\)</span> and <span class="math notranslate nohighlight">\(u\)</span>. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those. In many cases, however, we cannot easily characterize the posterior PDF. We may, however, attempt estimate certain properties by drawing samples from the posterior distribution. Such samples can be generated for any distribution using a <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov chain Monte Carlo (MCMC) algorithm</a>. This is not very attractive for high-dimensional problems, however. Further discussion of such algorithms is outside the scope of this lecture.</p>
 </div>
 <div class="section" id="map-estimation">
 <h2><span class="section-number">4.2. </span>MAP estimation<a class="headerlink" href="#map-estimation" title="Permalink to this headline">¶</a></h2>
@@ -538,12 +538,12 @@ const thebe_selector_output = ".output, .cell_output"
 \max_{u} \pi_{\text{post}}(u|f^\delta).
 \]</div>
 <p>The <span class="math notranslate nohighlight">\(u\)</span> that attains this maximum is called the <em>maximum a posteriori</em> (MAP) estimate. For some distributions, like the Gaussian, the MAP estimate coincides the mean. For skewed or multi-modal distributions, the MAP may not be very representative.</p>
-<p>Finding the MAP estimate can be naturally cast as a minimisation problem</p>
+<p>Finding the MAP estimate can be naturally cast as a minimization problem</p>
 <div class="math notranslate nohighlight">
 \[
 \min_u -\log \pi_{\text{post}}(u|f^\delta).
 \]</div>
-<p>Analysing and solving such variational problems will be the subject of subsequent chapters.</p>
+<p>Analyzing and solving such variational problems will be the subject of subsequent chapters.</p>
 </div>
 <div class="section" id="uncertainty-quantification">
 <h2><span class="section-number">4.3. </span>Uncertainty quantification<a class="headerlink" href="#uncertainty-quantification" title="Permalink to this headline">¶</a></h2>

@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="6. Numerical optimisation for inverse problems" href="numerical_optimisation.html" />
+    <link rel="next" title="6. Numerical optimization for inverse problems" href="numerical_optimisation.html" />
     <link rel="prev" title="4. A statistical perspective on inverse problems" href="statistical_perspective.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -110,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="discrete_ip_regularization.html">
-   2. Discrete Inverse Problems and Regularisation
+   2. Discrete Inverse Problems and Regularization
   </a>
  </li>
  <li class="toctree-l1">
@@ -130,7 +130,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="numerical_optimisation.html">
-   6. Numerical optimisation for inverse problems
+   6. Numerical optimization for inverse problems
   </a>
  </li>
 </ul>
@@ -286,8 +286,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#well-posedness-of-regularised-least-squares-problems">
-     5.1.2. Well-posedness of regularised least-squares problems
+    <a class="reference internal nav-link" href="#well-posedness-of-regularized-least-squares-problems">
+     5.1.2. Well-posedness of regularized least-squares problems
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -372,8 +372,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#well-posedness-of-regularised-least-squares-problems">
-     5.1.2. Well-posedness of regularised least-squares problems
+    <a class="reference internal nav-link" href="#well-posedness-of-regularized-least-squares-problems">
+     5.1.2. Well-posedness of regularized least-squares problems
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -442,7 +442,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="math notranslate nohighlight" id="equation-variational">
 <span class="eqno">(5.1)<a class="headerlink" href="#equation-variational" title="Permalink to this equation">¶</a></span>\[\min_{u\in\mathcal{U}} J(u),\]</div>
 <p>where the <em>functional</em> <span class="math notranslate nohighlight">\(J : \mathcal{U} \rightarrow \mathbb{R}_{\infty}\)</span> consists of a <em>data-fidelity</em> and <em>regularisation</em> term. Here, <span class="math notranslate nohighlight">\(\mathbb{R}_{\infty} = \mathbb{R} \cup \{\infty\}\)</span> denotes the extended real line and <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> is a Banach space.</p>
-<p>In this chapter we will discuss how to analyse the well-posedness of <a class="reference internal" href="#equation-variational">(5.1)</a> and lay out the connection between variational problems and PDEs through the <em>gradient flow</em>. The contents of this chapter were heavily inspired by the excellent <a class="reference external" href="https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf">lecture notes from Matthias J. Ehrhardt and Lukas F. Lang</a></p>
+<p>In this chapter we will discuss how to analyze the well-posedness of <a class="reference internal" href="#equation-variational">(5.1)</a> and lay out the connection between variational problems and PDEs through the <em>gradient flow</em>. The contents of this chapter were heavily inspired by the excellent <a class="reference external" href="https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf">lecture notes from Matthias J. Ehrhardt and Lukas F. Lang</a></p>
 <hr class="docutils" />
 <p>Some notable examples are highlighted below.</p>
 <div class="admonition-example-box-constraints admonition">
@@ -458,8 +458,8 @@ const thebe_selector_output = ".output, .cell_output"
 \[\begin{split}\delta_{\mathcal{C}}(u) = \begin{cases} 0 &amp; u \in \mathcal{C} \\ \infty &amp; \text{otherwise}\end{cases}.\end{split}\]</div>
 <p>The corresponding functional <span class="math notranslate nohighlight">\(J\)</span> now takes values in the extended real line.</p>
 </div>
-<div class="admonition-example-sobolev-regularisation admonition">
-<p class="admonition-title">Example: <em>Sobolev regularisation</em></p>
+<div class="admonition-example-sobolev-regularization admonition">
+<p class="admonition-title">Example: <em>Sobolev regularization</em></p>
 <p>Given a bounded linear operator <span class="math notranslate nohighlight">\(K:H^1(\Omega)\rightarrow L^2(\Omega)\)</span> and data <span class="math notranslate nohighlight">\(f^\delta\)</span>, we let <span class="math notranslate nohighlight">\(\nabla\)</span> denote the gradient</p>
 <div class="math notranslate nohighlight">
 \[J(u) = \textstyle{\frac{1}{2}}\|Ku-f^{\delta}\|_{L^2(\Omega)}^2 +  \textstyle{\frac{\alpha}{2}}\|\nabla u\|_{L^2(\Omega)}^2.\]</div>
@@ -472,8 +472,8 @@ const thebe_selector_output = ".output, .cell_output"
 \[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\ell_1}.\]</div>
 <p>Such regularisation is often used to promote <em>sparse</em> solutions.</p>
 </div>
-<div class="admonition-example-total-variation-regularisation admonition">
-<p class="admonition-title">Example: <em>Total Variation regularisation</em></p>
+<div class="admonition-example-total-variation-regularization admonition">
+<p class="admonition-title">Example: <em>Total Variation regularization</em></p>
 <p>Consider recovering a function <span class="math notranslate nohighlight">\(u: [0,1] \rightarrow \mathbb{R}\)</span> from noisy measurements <span class="math notranslate nohighlight">\(f^\delta = Ku + e\)</span>. A popular choice in imaging applications is to put an <span class="math notranslate nohighlight">\(L^1\)</span>-norm on the derivative. For <span class="math notranslate nohighlight">\(u\in W^{1,1}([0,1])\)</span> this yields</p>
 <div class="math notranslate nohighlight">
 \[J(u) = \textstyle{\frac{1}{2}}\|Ku-f^{\delta}\|_{L^2([0,1])}^2 + \alpha \|u'\|_{L^1([0,1])}.\]</div>
@@ -490,9 +490,9 @@ const thebe_selector_output = ".output, .cell_output"
 <h2><span class="section-number">5.1. </span>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="existence-and-uniqueness">
 <h3><span class="section-number">5.1.1. </span>Existence and uniqueness<a class="headerlink" href="#existence-and-uniqueness" title="Permalink to this headline">¶</a></h3>
-<p>To establish existence of minimisers, we first need a few definitions. Firstly, what <em>is</em> a minimiser?</p>
+<p>To establish existence of minimizers, we first need a few definitions. Firstly, what <em>is</em> a minimizer?</p>
 <div class="important admonition">
-<p class="admonition-title">Definition: <em>Minimisers</em></p>
+<p class="admonition-title">Definition: <em>Minimizers</em></p>
 <p>We say that <span class="math notranslate nohighlight">\(\widetilde{u} \in \mathcal{U}\)</span> solves <a class="reference internal" href="#equation-variational">(5.1)</a> iff <span class="math notranslate nohighlight">\(J(\widetilde{u}) &lt; \infty\)</span> and <span class="math notranslate nohighlight">\(J(\widetilde{u}) \leq J(u)\)</span> for all <span class="math notranslate nohighlight">\(u \in \mathcal{U}\)</span>.</p>
 </div>
 <p>Then, we need some definitions regarding the properties of the functional <span class="math notranslate nohighlight">\(J\)</span>.</p>
@@ -519,18 +519,18 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>With these, we can establish existence.</p>
 <div class="important admonition">
-<p class="admonition-title">Theorem: <em>Fundamental theorem of optimisation</em></p>
+<p class="admonition-title">Theorem: <em>Fundamental theorem of optimization</em></p>
 <p>Let <span class="math notranslate nohighlight">\(J : \mathcal{U} \rightarrow \mathbb{R}\)</span> be proper, coercive, bounded from below and sequential lower semi-continuous. Then <span class="math notranslate nohighlight">\(J\)</span> has a minimiser.</p>
 </div>
 <div class="important dropdown admonition">
 <p class="admonition-title">Proof:</p>
-<p>The first step is to establish the existence of minimising sequences <span class="math notranslate nohighlight">\(\{u_k\}_{k\in\mathbb{N}}\)</span>, i.e., <span class="math notranslate nohighlight">\(J(u_k) \rightarrow \inf_u J(u)\)</span> and showing that these are bounded. We’ll use the fact that <span class="math notranslate nohighlight">\(J\)</span> is proper, coercive and bounded from below.</p>
-<p>Then, we need to establish that there exists a subsequence <span class="math notranslate nohighlight">\(\{u_{j_k}\}_{k\in\mathbb{N}}\)</span> of a minimising sequence and a <span class="math notranslate nohighlight">\(u_*\)</span> such that <span class="math notranslate nohighlight">\(u_{j_k} \rightarrow u_*\)</span>. Here, we’ll use the underlying topology.</p>
-<p>Finally, we use the fact that <span class="math notranslate nohighlight">\(J\)</span> is l.s.c. (w.r.t. the chosen topology) to show that <span class="math notranslate nohighlight">\(u_*\)</span> is a minimiser.</p>
+<p>The first step is to establish the existence of minimizing sequences <span class="math notranslate nohighlight">\(\{u_k\}_{k\in\mathbb{N}}\)</span>, i.e., <span class="math notranslate nohighlight">\(J(u_k) \rightarrow \inf_u J(u)\)</span> and showing that these are bounded. We’ll use the fact that <span class="math notranslate nohighlight">\(J\)</span> is proper, coercive and bounded from below.</p>
+<p>Then, we need to establish that there exists a subsequence <span class="math notranslate nohighlight">\(\{u_{j_k}\}_{k\in\mathbb{N}}\)</span> of a minimizing sequence and a <span class="math notranslate nohighlight">\(u_*\)</span> such that <span class="math notranslate nohighlight">\(u_{j_k} \rightarrow u_*\)</span>. Here, we’ll use the underlying topology.</p>
+<p>Finally, we use the fact that <span class="math notranslate nohighlight">\(J\)</span> is l.s.c. (w.r.t. the chosen topology) to show that <span class="math notranslate nohighlight">\(u_*\)</span> is a minimizer.</p>
 </div>
 <p>While this theorem is quite general, establishing that <span class="math notranslate nohighlight">\(J\)</span> has the required properties can be difficult in practice. In particular, it may involve detailed knowledge of functional analysis in Banach spaces. We will not treat these in general, but instead give some illustrative examples.</p>
-<div class="admonition-examples-existence-of-minimisers-in-mathbb-r admonition">
-<p class="admonition-title">Examples: <em>existence of minimisers in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span></em></p>
+<div class="admonition-examples-existence-of-minimizers-in-mathbb-r admonition">
+<p class="admonition-title">Examples: <em>existence of minimizers in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span></em></p>
 <p>Consider the following functions <span class="math notranslate nohighlight">\(J:\mathbb{R}\rightarrow \mathbb{R}\)</span> (cf. <a class="reference internal" href="#functionals"><span class="std std-numref">Fig. 5.1</span></a>):</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(J_1(x) = x^3,\)</span></p></li>
@@ -629,14 +629,14 @@ and <span class="math notranslate nohighlight">\(f_i = i^{-1}\)</span>.</p>
 <p>which would lead to a contradiction: <span class="math notranslate nohighlight">\(J(u_1) &lt; J(u_1)\)</span>.</p>
 </div>
 </div>
-<div class="section" id="well-posedness-of-regularised-least-squares-problems">
-<h3><span class="section-number">5.1.2. </span>Well-posedness of regularised least-squares problems<a class="headerlink" href="#well-posedness-of-regularised-least-squares-problems" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="well-posedness-of-regularized-least-squares-problems">
+<h3><span class="section-number">5.1.2. </span>Well-posedness of regularized least-squares problems<a class="headerlink" href="#well-posedness-of-regularized-least-squares-problems" title="Permalink to this headline">¶</a></h3>
 <p>In this section we focus in particular on variational problems of the form</p>
 <div class="math notranslate nohighlight" id="equation-variational-r">
 <span class="eqno">(5.2)<a class="headerlink" href="#equation-variational-r" title="Permalink to this equation">¶</a></span>\[\textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\mathcal{F}}^2 + \alpha R(u),\]</div>
 <p>with <span class="math notranslate nohighlight">\(K: \mathcal{U} \rightarrow \mathcal{F}\)</span> a bounded linear operator and <span class="math notranslate nohighlight">\(R : \mathcal{U} \rightarrow \mathbb{R}_{\infty}\)</span> is proper and l.s.c. (with respect to an appropriate topology).</p>
-<p>We can think of <a class="reference internal" href="#equation-variational-r">(5.2)</a> as defining a (possibly non-linear) regularisation scheme <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)\)</span> that generalises the pseudo-inverse approach discussed earlier. Note that the notation <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span> is used very loosely to indicate a mapping from <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> to <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> that is supposed to approximate the inverse of <span class="math notranslate nohighlight">\(K\)</span> by solving <a class="reference internal" href="#equation-variational-r">(5.2)</a>. In general, this will be a non-linear mapping.</p>
-<p>Conditions under which the operator <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span> is well-defined and continuous can be stated quite generally. Similarly, conditions under which the regularised solution converges to the usual pseudo-inverse solution can be stated. This goes beyond the scope of these lecture notes. The interested reader is referred to <a class="reference external" href="https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf">the lecture notes from Matthias J. Ehrhardt and Lukas F. Lang</a>.</p>
+<p>We can think of <a class="reference internal" href="#equation-variational-r">(5.2)</a> as defining a (possibly non-linear) regularization scheme <span class="math notranslate nohighlight">\(\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)\)</span> that generalizes the pseudo-inverse approach discussed earlier. Note that the notation <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span> is used very loosely to indicate a mapping from <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> to <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> that is supposed to approximate the inverse of <span class="math notranslate nohighlight">\(K\)</span> by solving <a class="reference internal" href="#equation-variational-r">(5.2)</a>. In general, this will be a non-linear mapping.</p>
+<p>Conditions under which the operator <span class="math notranslate nohighlight">\(K_{\alpha}^\dagger\)</span> is well-defined and continuous can be stated quite generally. Similarly, conditions under which the regularized solution converges to the usual pseudo-inverse solution can be stated. This goes beyond the scope of these lecture notes. The interested reader is referred to <a class="reference external" href="https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf">the lecture notes from Matthias J. Ehrhardt and Lukas F. Lang</a>.</p>
 </div>
 <div class="section" id="examples">
 <h3><span class="section-number">5.1.3. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
@@ -654,22 +654,22 @@ and <span class="math notranslate nohighlight">\(f_i = i^{-1}\)</span>.</p>
 <p>Now, for every <span class="math notranslate nohighlight">\(\epsilon\)</span> we can pick a <span class="math notranslate nohighlight">\(\delta\)</span> such that <span class="math notranslate nohighlight">\(\|d\|_2 &lt; \delta\)</span> implies that <span class="math notranslate nohighlight">\(|J(u+d) - J(u)| &lt; \epsilon\)</span>.</p>
 <p>Finally, we can show that <span class="math notranslate nohighlight">\(J\)</span> is <em>strongly convex</em> with constant <span class="math notranslate nohighlight">\(\alpha\)</span> by showing that <span class="math notranslate nohighlight">\(J(u) - \textstyle{\frac{\alpha}{2}}\|u\|_2^2\)</span> is convex. The fact that <span class="math notranslate nohighlight">\(\|Ku - f^\delta\|_2^2\)</span> is convex follows easily from the triangle inequality and the fact that the function <span class="math notranslate nohighlight">\((\cdot)^2\)</span> is convex.</p>
 </div>
-<div class="admonition-example-ell-1-regularisation admonition">
-<p class="admonition-title">Example: <em><span class="math notranslate nohighlight">\(\ell_1-regularisation\)</span></em></p>
+<div class="admonition-example-ell-1-regularization admonition">
+<p class="admonition-title">Example: <em><span class="math notranslate nohighlight">\(\ell_1-regularization\)</span></em></p>
 <p>Consider</p>
 <div class="math notranslate nohighlight">
 \[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\ell_1},\]</div>
 <p>with <span class="math notranslate nohighlight">\(K : \ell_2 \rightarrow \ell_2\)</span> a bounded operator. Again, we can easily see that <span class="math notranslate nohighlight">\(J\)</span> is bounded from below.</p>
 <p>Note that the regularised solution is determined for all <span class="math notranslate nohighlight">\(f^\delta \in \ell_2\)</span>, regardless of the Picard condition.</p>
 </div>
-<div class="admonition-example-sobolev-regularisation admonition">
-<p class="admonition-title">Example: <em>Sobolev regularisation</em></p>
+<div class="admonition-example-sobolev-regularization admonition">
+<p class="admonition-title">Example: <em>Sobolev regularization</em></p>
 <p>Consider</p>
 <div class="math notranslate nohighlight">
 \[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{L^2(\Omega)}^2 + \textstyle{\frac{\alpha}{2}}\|\nabla u\|_{L^2(\Omega)}^2.\]</div>
 </div>
-<div class="admonition-example-total-variation-regularisation admonition">
-<p class="admonition-title">Example: <em>Total variation regularisation</em></p>
+<div class="admonition-example-total-variation-regularization admonition">
+<p class="admonition-title">Example: <em>Total variation regularization</em></p>
 <p>Let</p>
 <div class="math notranslate nohighlight">
 \[J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{L^2(\Omega)}^2 + \alpha TV(u).\]</div>
@@ -678,7 +678,7 @@ and <span class="math notranslate nohighlight">\(f_i = i^{-1}\)</span>.</p>
 </div>
 <div class="section" id="derivatives">
 <h2><span class="section-number">5.2. </span>Derivatives<a class="headerlink" href="#derivatives" title="Permalink to this headline">¶</a></h2>
-<p>Having established well-posedness of <a class="reference internal" href="#equation-variational">(5.1)</a>, we now focus our attention to characterising solutions through the first-order optimality conditions.</p>
+<p>Having established well-posedness of <a class="reference internal" href="#equation-variational">(5.1)</a>, we now focus our attention to characterizing solutions through the first-order optimality conditions.</p>
 <div class="important admonition">
 <p class="admonition-title">Definition: <em>Fréchet derivative</em></p>
 <p>We call a functional <span class="math notranslate nohighlight">\(J:\mathcal{U}\rightarrow \mathbb{R}\)</span> Fréchet differentiable (at <span class="math notranslate nohighlight">\(u\)</span>) if
@@ -694,27 +694,27 @@ there exists a linear operator <span class="math notranslate nohighlight">\(D\)<
 <div class="math notranslate nohighlight" id="equation-local-extremum">
 <span class="eqno">(5.4)<a class="headerlink" href="#equation-local-extremum" title="Permalink to this equation">¶</a></span>\[J'(u_*) = 0.\]</div>
 </div>
-<div class="admonition-example-tikhonov-regularisation-on-mathbb-r-n admonition">
-<p class="admonition-title">Example: <em>Tikhonov regularisation on \mathbb{R}^n</em></p>
+<div class="admonition-example-tikhonov-regularization-on-mathbb-r-n admonition">
+<p class="admonition-title">Example: <em>Tikhonov regularization on \mathbb{R}^n</em></p>
 <p>…</p>
 </div>
 <p>Note that in some important cases <span class="math notranslate nohighlight">\(J\)</span> may fail to be Fréchet differentiable at the solution. We will treat this case in more detail in the next chapter on numerical methods.</p>
-<div class="admonition-example-ell-1-regularisation-on-mathbb-r-n admonition">
-<p class="admonition-title">Example: <em><span class="math notranslate nohighlight">\(\ell_1\)</span>-regularisation on \mathbb{R}^n</em></p>
+<div class="admonition-example-ell-1-regularization-on-mathbb-r-n admonition">
+<p class="admonition-title">Example: <em><span class="math notranslate nohighlight">\(\ell_1\)</span>-regularization on \mathbb{R}^n</em></p>
 <p>…</p>
 </div>
 <hr class="docutils" />
 <p>A well-known method for solving <a class="reference internal" href="#equation-variational">(5.1)</a> is the <em>Landweber</em> iteration</p>
 <div class="math notranslate nohighlight">
 \[u_{k+1} = u_k - \lambda J'(u_k),\]</div>
-<p>where <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> denotes the stepsize. Under certain conditions on <span class="math notranslate nohighlight">\(J'(u)\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> one can show that this converges to a stationary point <span class="math notranslate nohighlight">\(u_{*}\)</span> for which <span class="math notranslate nohighlight">\(J'(u_*) = 0\)</span>. Obviously, this method only applies when <span class="math notranslate nohighlight">\(J'(u)\)</span> is well-defined everywhere along the solution path.</p>
+<p>where <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> denotes the step size. Under certain conditions on <span class="math notranslate nohighlight">\(J'(u)\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> one can show that this converges to a stationary point <span class="math notranslate nohighlight">\(u_{*}\)</span> for which <span class="math notranslate nohighlight">\(J'(u_*) = 0\)</span>. Obviously, this method only applies when <span class="math notranslate nohighlight">\(J'(u)\)</span> is well-defined everywhere along the solution path.</p>
 <hr class="docutils" />
 <p>It turns out that we can make an important distinction between <em>smooth</em> and <em>convex</em> (non-smooth) functionals.
 We will explore optimality conditions and algorithms for these two classes in more detail in a later chapter.</p>
 </div>
 <div class="section" id="the-euler-lagrange-equations">
 <h2><span class="section-number">5.3. </span>The Euler-Lagrange equations<a class="headerlink" href="#the-euler-lagrange-equations" title="Permalink to this headline">¶</a></h2>
-<p>An alternative viewpoint on optimality is provided by the Euler-lagrange equations, which establishes the link between certain problems of the form <a class="reference internal" href="#equation-variational">(5.1)</a> and PDEs. In particular, we focus in this section on functionals of the form</p>
+<p>An alternative viewpoint on optimality is provided by the Euler-Lagrange equations, which establishes the link between certain problems of the form <a class="reference internal" href="#equation-variational">(5.1)</a> and PDEs. In particular, we focus in this section on functionals of the form</p>
 <div class="math notranslate nohighlight" id="equation-j-denoising">
 <span class="eqno">(5.5)<a class="headerlink" href="#equation-j-denoising" title="Permalink to this equation">¶</a></span>\[J(u) = \int_{\Omega} {\textstyle{\frac{1}{2}}} \left(u(x) - f^\delta(x)\right)^2 + r(\nabla u(x)) \mathrm{d}x,\]</div>
 <p>with <span class="math notranslate nohighlight">\(\Omega \subset \mathbb{R}^n\)</span> and <span class="math notranslate nohighlight">\(r : \mathbb{R}^n \rightarrow \mathbb{R}\)</span>. Such problems occur for example in image-denoising applications. We will see later that such problems also occur as subproblems when solving more general problems of the form <a class="reference internal" href="#equation-variational-r">(5.2)</a>.</p>
@@ -922,7 +922,7 @@ We will explore optimality conditions and algorithms for these two classes in mo
 <li><p><span class="math notranslate nohighlight">\(J_2: \mathbb{R} \rightarrow \mathbb{R}, u \mapsto |u-f| + \alpha u^2\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(J_3: \mathbb{R}^2 \rightarrow \mathbb{R}, u \mapsto \frac{1}2\Vert A u - f\Vert_{\ell^2}^2  + \alpha \Vert u \Vert_{\ell^2}\)</span></p></li>
 </ul>
-<p>Show that a minimum exists (use the fundamental theorem of optimisation) and that it is unique.</p>
+<p>Show that a minimum exists (use the fundamental theorem of optimization) and that it is unique.</p>
 </div>
 <div class="section" id="frechet-derivatives">
 <h3><span class="section-number">5.4.2. </span>Fréchet derivatives<a class="headerlink" href="#frechet-derivatives" title="Permalink to this headline">¶</a></h3>
@@ -1125,7 +1125,7 @@ DJ(\mathbf{v})\mathbf{h} = \int_0^T \int_{\Omega} \left(\partial_t f(x,t) + \nab
     <a class='right-next' id="next-link" href="numerical_optimisation.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Numerical optimisation for inverse problems</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Numerical optimization for inverse problems</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -22,7 +22,7 @@ So far, we have seen that inverse problems may generally be formulated as a vari
 
 where the *functional* $J : \mathcal{U} \rightarrow \mathbb{R}_{\infty}$ consists of a *data-fidelity* and *regularisation* term. Here, $\mathbb{R}_{\infty} = \mathbb{R} \cup \{\infty\}$ denotes the extended real line and $\mathcal{U}$ is a Banach space.
 
-In this chapter we will discuss how to analyse the well-posedness of {eq}`variational` and lay out the connection between variational problems and PDEs through the *gradient flow*. The contents of this chapter were heavily inspired by the excellent [lecture notes from Matthias J. Ehrhardt and Lukas F. Lang](https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf)
+In this chapter we will discuss how to analyze the well-posedness of {eq}`variational` and lay out the connection between variational problems and PDEs through the *gradient flow*. The contents of this chapter were heavily inspired by the excellent [lecture notes from Matthias J. Ehrhardt and Lukas F. Lang](https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf)
 
 ---
 
@@ -45,7 +45,7 @@ $$\delta_{\mathcal{C}}(u) = \begin{cases} 0 & u \in \mathcal{C} \\ \infty & \tex
 The corresponding functional $J$ now takes values in the extended real line.
 ```
 
-```{admonition} Example: *Sobolev regularisation*
+```{admonition} Example: *Sobolev regularization*
 
 Given a bounded linear operator $K:H^1(\Omega)\rightarrow L^2(\Omega)$ and data $f^\delta$, we let $\nabla$ denote the gradient
 
@@ -63,7 +63,7 @@ $$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{\ell_2}^2 + \alpha \|u\|_{\el
 Such regularisation is often used to promote *sparse* solutions.
 ```
 
-```{admonition} Example: *Total Variation regularisation*
+```{admonition} Example: *Total Variation regularization*
 
 Consider recovering a function $u: [0,1] \rightarrow \mathbb{R}$ from noisy measurements $f^\delta = Ku + e$. A popular choice in imaging applications is to put an $L^1$-norm on the derivative. For $u\in W^{1,1}([0,1])$ this yields
 
@@ -86,8 +86,8 @@ with $C_c(\Omega, \mathbb{R}^d)$ the set of infinitely differentiable compactly 
 
 ### Existence and uniqueness
 
-To establish existence of minimisers, we first need a few definitions. Firstly, what *is* a minimiser?
-```{admonition} Definition: *Minimisers*
+To establish existence of minimizers, we first need a few definitions. Firstly, what *is* a minimizer?
+```{admonition} Definition: *Minimizers*
 :class: important
 We say that $\widetilde{u} \in \mathcal{U}$ solves {eq}`variational` iff $J(\widetilde{u}) < \infty$ and $J(\widetilde{u}) \leq J(u)$ for all $u \in \mathcal{U}$.
 ```
@@ -128,7 +128,7 @@ Note that the term *neighbourhood* and the notion of convergence $u_k\rightarrow
 
 With these, we can establish existence.
 
-```{admonition} Theorem: *Fundamental theorem of optimisation*
+```{admonition} Theorem: *Fundamental theorem of optimization*
 :class: important
 
 Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be proper, coercive, bounded from below and sequential lower semi-continuous. Then $J$ has a minimiser.
@@ -137,16 +137,16 @@ Let $J : \mathcal{U} \rightarrow \mathbb{R}$ be proper, coercive, bounded from b
 ```{admonition} Proof:
 :class: important, dropdown
 
-The first step is to establish the existence of minimising sequences $\{u_k\}_{k\in\mathbb{N}}$, i.e., $J(u_k) \rightarrow \inf_u J(u)$ and showing that these are bounded. We'll use the fact that $J$ is proper, coercive and bounded from below.
+The first step is to establish the existence of minimizing sequences $\{u_k\}_{k\in\mathbb{N}}$, i.e., $J(u_k) \rightarrow \inf_u J(u)$ and showing that these are bounded. We'll use the fact that $J$ is proper, coercive and bounded from below.
 
-Then, we need to establish that there exists a subsequence $\{u_{j_k}\}_{k\in\mathbb{N}}$ of a minimising sequence and a $u_*$ such that $u_{j_k} \rightarrow u_*$. Here, we'll use the underlying topology.
+Then, we need to establish that there exists a subsequence $\{u_{j_k}\}_{k\in\mathbb{N}}$ of a minimizing sequence and a $u_*$ such that $u_{j_k} \rightarrow u_*$. Here, we'll use the underlying topology.
 
-Finally, we use the fact that $J$ is l.s.c. (w.r.t. the chosen topology) to show that $u_*$ is a minimiser.
+Finally, we use the fact that $J$ is l.s.c. (w.r.t. the chosen topology) to show that $u_*$ is a minimizer.
 ```
 
 While this theorem is quite general, establishing that $J$ has the required properties can be difficult in practice. In particular, it may involve detailed knowledge of functional analysis in Banach spaces. We will not treat these in general, but instead give some illustrative examples.
 
-````{admonition} Examples: *existence of minimisers in $\mathbb{R}$*
+````{admonition} Examples: *existence of minimizers in $\mathbb{R}$*
 
 Consider the following functions $J:\mathbb{R}\rightarrow \mathbb{R}$ (cf. {numref}`functionals`):
 
@@ -257,7 +257,7 @@ $$J(\alpha u_1 + \beta u_2) < \alpha J(u_1) + \beta J(u_2),$$
 which would lead to a contradiction: $J(u_1) < J(u_1)$.
 ```
 
-### Well-posedness of regularised least-squares problems
+### Well-posedness of regularized least-squares problems
 
 In this section we focus in particular on variational problems of the form
 
@@ -268,9 +268,9 @@ In this section we focus in particular on variational problems of the form
 
 with $K: \mathcal{U} \rightarrow \mathcal{F}$ a bounded linear operator and $R : \mathcal{U} \rightarrow \mathbb{R}_{\infty}$ is proper and l.s.c. (with respect to an appropriate topology).
 
-We can think of {eq}`variational_R` as defining a (possibly non-linear) regularisation scheme $\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)$ that generalises the pseudo-inverse approach discussed earlier. Note that the notation $K_{\alpha}^\dagger$ is used very loosely to indicate a mapping from $\mathcal{F}$ to $\mathcal{U}$ that is supposed to approximate the inverse of $K$ by solving {eq}`variational_R`. In general, this will be a non-linear mapping.
+We can think of {eq}`variational_R` as defining a (possibly non-linear) regularization scheme $\widetilde{u}_{\alpha,\delta} = K_{\alpha}^\dagger(f^\delta)$ that generalizes the pseudo-inverse approach discussed earlier. Note that the notation $K_{\alpha}^\dagger$ is used very loosely to indicate a mapping from $\mathcal{F}$ to $\mathcal{U}$ that is supposed to approximate the inverse of $K$ by solving {eq}`variational_R`. In general, this will be a non-linear mapping.
 
-Conditions under which the operator $K_{\alpha}^\dagger$ is well-defined and continuous can be stated quite generally. Similarly, conditions under which the regularised solution converges to the usual pseudo-inverse solution can be stated. This goes beyond the scope of these lecture notes. The interested reader is referred to [the lecture notes from Matthias J. Ehrhardt and Lukas F. Lang](https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf).
+Conditions under which the operator $K_{\alpha}^\dagger$ is well-defined and continuous can be stated quite generally. Similarly, conditions under which the regularized solution converges to the usual pseudo-inverse solution can be stated. This goes beyond the scope of these lecture notes. The interested reader is referred to [the lecture notes from Matthias J. Ehrhardt and Lukas F. Lang](https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf).
 
 % ```{admonition} Theorem: *Existence and uniqueness of regularised least-squares solutions*
 %
@@ -331,7 +331,7 @@ Finally, we can show that $J$ is *strongly convex* with constant $\alpha$ by sho
 
 ```
 
-```{admonition} Example: *$\ell_1-regularisation$*
+```{admonition} Example: *$\ell_1-regularization$*
 
 Consider
 
@@ -343,13 +343,13 @@ Note that the regularised solution is determined for all $f^\delta \in \ell_2$, 
 
 ```
 
-```{admonition} Example: *Sobolev regularisation*
+```{admonition} Example: *Sobolev regularization*
 Consider
 
 $$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{L^2(\Omega)}^2 + \textstyle{\frac{\alpha}{2}}\|\nabla u\|_{L^2(\Omega)}^2.$$
 ```
 
-```{admonition} Example: *Total variation regularisation*
+```{admonition} Example: *Total variation regularization*
 
 Let
 
@@ -360,7 +360,7 @@ $$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_{L^2(\Omega)}^2 + \alpha TV(u)
 
 ## Derivatives
 
-Having established well-posedness of {eq}`variational`, we now focus our attention to characterising solutions through the first-order optimality conditions.
+Having established well-posedness of {eq}`variational`, we now focus our attention to characterizing solutions through the first-order optimality conditions.
 
 ````{admonition} Definition: *Fréchet derivative*
 :class: important
@@ -391,13 +391,13 @@ J'(u_*) = 0.
 
 ````
 
-```{admonition} Example: *Tikhonov regularisation on \mathbb{R}^n*
+```{admonition} Example: *Tikhonov regularization on \mathbb{R}^n*
 ...
 ```
 
 Note that in some important cases $J$ may fail to be Fréchet differentiable at the solution. We will treat this case in more detail in the next chapter on numerical methods.
 
-```{admonition} Example: *$\ell_1$-regularisation on \mathbb{R}^n*
+```{admonition} Example: *$\ell_1$-regularization on \mathbb{R}^n*
 ...
 ```
 
@@ -407,7 +407,7 @@ A well-known method for solving {eq}`variational` is the *Landweber* iteration
 
 $$u_{k+1} = u_k - \lambda J'(u_k),$$
 
-where $\lambda > 0$ denotes the stepsize. Under certain conditions on $J'(u)$ and $\lambda$ one can show that this converges to a stationary point $u_{*}$ for which $J'(u_*) = 0$. Obviously, this method only applies when $J'(u)$ is well-defined everywhere along the solution path.
+where $\lambda > 0$ denotes the step size. Under certain conditions on $J'(u)$ and $\lambda$ one can show that this converges to a stationary point $u_{*}$ for which $J'(u_*) = 0$. Obviously, this method only applies when $J'(u)$ is well-defined everywhere along the solution path.
 
 ---
 
@@ -416,7 +416,7 @@ We will explore optimality conditions and algorithms for these two classes in mo
 
 ## The Euler-Lagrange equations
 
-An alternative viewpoint on optimality is provided by the Euler-lagrange equations, which establishes the link between certain problems of the form {eq}`variational` and PDEs. In particular, we focus in this section on functionals of the form
+An alternative viewpoint on optimality is provided by the Euler-Lagrange equations, which establishes the link between certain problems of the form {eq}`variational` and PDEs. In particular, we focus in this section on functionals of the form
 
 ```{math}
 :label: J_denoising
@@ -646,7 +646,7 @@ The following functionals are given (for $\alpha > 0$ and $A \in \mathbb{R}^{2 \
 * $J_2: \mathbb{R} \rightarrow \mathbb{R}, u \mapsto |u-f| + \alpha u^2$
 * $J_3: \mathbb{R}^2 \rightarrow \mathbb{R}, u \mapsto \frac{1}2\Vert A u - f\Vert_{\ell^2}^2  + \alpha \Vert u \Vert_{\ell^2}$
 
-Show that a minimum exists (use the fundamental theorem of optimisation) and that it is unique.
+Show that a minimum exists (use the fundamental theorem of optimization) and that it is unique.
 
 ### Fréchet derivatives
 

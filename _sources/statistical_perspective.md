@@ -103,7 +103,7 @@ ax.legend()
 glue("rock_samples", fig, display=False)
 ```
 
-In a way, $\pi_{\text{post}}(u | f^\delta)$ is the answer to our inverse problem. It gives us information on the likelihood of any particular $u$ *under the assumptions* we made on $f^\delta$ and $u$. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those. In many cases, however, we cannot easily characterise the posterior PDF. We may, however, attempt estimate certain properties by drawing samples from the posterior distribution. Such samples can be generated for any distribution using a [Markov chain Monte Carlo (MCMC) algorithm](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo). This is not very attractive for high-dimensional problems, however. Further discussion of such algorithms is outside the scope of this lecture.
+In a way, $\pi_{\text{post}}(u | f^\delta)$ is the answer to our inverse problem. It gives us information on the likelihood of any particular $u$ *under the assumptions* we made on $f^\delta$ and $u$. In some cases, we may be able to express the mean and variance of the resulting posterior density and use those. In many cases, however, we cannot easily characterize the posterior PDF. We may, however, attempt estimate certain properties by drawing samples from the posterior distribution. Such samples can be generated for any distribution using a [Markov chain Monte Carlo (MCMC) algorithm](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo). This is not very attractive for high-dimensional problems, however. Further discussion of such algorithms is outside the scope of this lecture.
 
 ## MAP estimation
 
@@ -115,13 +115,13 @@ $$
 
 The $u$ that attains this maximum is called the *maximum a posteriori* (MAP) estimate. For some distributions, like the Gaussian, the MAP estimate coincides the mean. For skewed or multi-modal distributions, the MAP may not be very representative.
 
-Finding the MAP estimate can be naturally cast as a minimisation problem
+Finding the MAP estimate can be naturally cast as a minimization problem
 
 $$
 \min_u -\log \pi_{\text{post}}(u|f^\delta).
 $$
 
-Analysing and solving such variational problems will be the subject of subsequent chapters.
+Analyzing and solving such variational problems will be the subject of subsequent chapters.
 
 ## Uncertainty quantification
 

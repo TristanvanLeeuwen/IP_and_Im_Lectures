@@ -46,7 +46,7 @@ If such a vector exists we call it the *minimum-residual* solution. If the null-
 
 ## Bounded operators on Hilbert spaces
 
-To study well-posedness of {eq}`minres` and the corresponding minimum-norm problem we will let $\mathcal{U}$ and $\mathcal{F}$ be [Hilbert spaces](https://en.wikipedia.org/wiki/Hilbert_space). We will return to analysing variational problems more generally in a [later chapter](./variational_formulations).
+To study well-posedness of {eq}`minres` and the corresponding minimum-norm problem we will let $\mathcal{U}$ and $\mathcal{F}$ be [Hilbert spaces](https://en.wikipedia.org/wiki/Hilbert_space). We will return to analyzing variational problems more generally in a [later chapter](./variational_formulations).
 
 ---
 
@@ -59,7 +59,7 @@ We further denote the *orthogonal complement* of a subspace $\mathcal{X} \subset
 $$\mathcal{X}^\perp = \{u\in\mathcal{U} \, | \, \langle u, v \rangle_{\mathcal{U}}=0 \, \forall \, v \in \mathcal{X}\}.$$
 
 If $\mathcal{X}$ is a [closed subspace](https://en.wikipedia.org/wiki/Closed_set) we have $(\mathcal{X}^\perp)^\perp = \mathcal{X}$ and we have an orthogonal decomposition of $\mathcal{U}$ given by $\mathcal{U} = \mathcal{X} \oplus \mathcal{X}^\perp$, meaning that we can express *any* $u\in \mathcal{U}$ as $u = x + x^\perp$ with $x\in\mathcal{X}$ and $x^\perp\in\mathcal{X}^\perp$.
-The [orthogonal projection](https://en.wikipedia.org/wiki/Projection_(linear_algebra)) onto $\mathcal{X}$ is denoted by $P_{\mathcal{X}}$. We briefly recall a few usefull relations
+The [orthogonal projection](https://en.wikipedia.org/wiki/Projection_(linear_algebra)) onto $\mathcal{X}$ is denoted by $P_{\mathcal{X}}$. We briefly recall a few useful relations
 
 ```{admonition} Lemma : *Orthogonal projection*
 :class: important
@@ -76,7 +76,7 @@ Let $\mathcal{X} \subset \mathcal{U}$ be a closed subspace. The orthogonal proje
 
 When $\mathcal{X}$ is not closed we have $(\mathcal{X}^\perp)^\perp = \overline{\mathcal{X}}$ (the [closure](https://en.wikipedia.org/wiki/Closure_(topology)) of $\mathcal{X}$). Note that the orthogonal complement of a subspace is always closed.
 
-We now have the following usefull relations
+We now have the following useful relations
 
 * $\mathcal{R}(K)^\perp = \mathcal{N}(K^*),$
 * $\mathcal{N}(K^*)^\perp = \overline{\mathcal{R}(K)},$
@@ -229,7 +229,7 @@ $$B\widehat{f}(\xi) = \begin{cases} \widehat{f}(\xi) & |\xi| \leq 1/2 \\ 0 & \te
 
 ## Compact operators
 
-An important subclass of the Bounded operators are the [compact operators](https://en.wikipedia.org/wiki/Compact_operator). They can be thought of as a natural generalisation of matrices to the infinite-dimensional setting. Hence, we can generalise the notions from the [finite-dimensional setting](discrete_ip_regularization) to the infinite-dimensional setting.
+An important subclass of the Bounded operators are the [compact operators](https://en.wikipedia.org/wiki/Compact_operator). They can be thought of as a natural generalization of matrices to the infinite-dimensional setting. Hence, we can generalize the notions from the [finite-dimensional setting](discrete_ip_regularization) to the infinite-dimensional setting.
 
 ---
 
@@ -468,9 +468,9 @@ For this infinite sum to converge, we need strong requirements on $f_k$; for exa
 
 ````
 
-## Regularisation
+## Regularization
 
-### Truncation and Tikhonov regularisation
+### Truncation and Tikhonov regularization
 
 In the previous section we saw that the pseudo-inverse of a compact operator is not bounded (continuous) in general. To counter this, we introduce the regularized pseudo-inverse:
 
@@ -492,13 +492,13 @@ $$
 
 We can show that the regularized pseudo inverse, $K_{\alpha}^{\dagger}$, is bounded for $\alpha > 0$ and converges to $K^\dagger$ as $\alpha \rightarrow 0$.
 
-Given noisy data $f^{\delta} = f + e$ with $\|e\| \leq \delta$, we can now study the effect of regularisation by studying the error. The total error is now given by
+Given noisy data $f^{\delta} = f + e$ with $\|e\| \leq \delta$, we can now study the effect of regularization by studying the error. The total error is now given by
 
 $$
 \|K_{\alpha}^\dagger f^\delta - K^\dagger f\|_{\mathcal{U}} \leq \|K_{\alpha}^\dagger f - K^\dagger f\|_{\mathcal{U}} + \|K_{\alpha}^\dagger(f^\delta - f)\|_{\mathcal{U}},
 $$
 
-in which we recognise the *bias* and *variance* contributions. Note that we may bound this even further as
+in which we recognize the *bias* and *variance* contributions. Note that we may bound this even further as
 
 $$\|K_{\alpha}^\dagger f^\delta - K^\dagger f\|_{\mathcal{U}} \leq \|K_{\alpha}^\dagger - K^\dagger\| \|f\|_{\mathcal{F}} + \delta \|K_{\alpha}^\dagger\|.$$
 
@@ -540,7 +540,7 @@ $$
 
 
 ```
-### Generalised Tikhonov regularisation
+### Generalized Tikhonov regularization
 
 We have seen in the finite-dimensional setting that Tikhonov regularization may be defined through a variational problem:
 
@@ -552,7 +552,7 @@ It turns out we can do the same in the infinite-dimensional setting. Indeed, we 
 
 $$(K^*\!K + \alpha I)u = K^*f.$$
 
-Generalised Tikhonov regularisation is defined in a similar manner through the variation problem
+Generalized Tikhonov regularization is defined in a similar manner through the variation problem
 
 $$
 \min_{u} \|Ku - f\|^2_{\mathcal{F}} + \alpha \|Lu\|^2_{\mathcal{V}},
@@ -566,7 +566,7 @@ We can expect a unique solution when the intersection of the kernels of $K$ and 
 
 ### Parameter-choice strategies
 
-Given a regularisation strategy with parameter $\alpha$, we need to pick $\alpha$. As mentioned earlier, we need to pick $\alpha$ to optimally balance between the bias and variance in the error. To highlight the basic flavours of parameter-choice strategies, we give three examples.
+Given a regularization strategy with parameter $\alpha$, we need to pick $\alpha$. As mentioned earlier, we need to pick $\alpha$ to optimally balance between the bias and variance in the error. To highlight the basic flavors of parameter-choice strategies, we give three examples.
 
 ```{admonition} Example: *A-priori rules*
 
@@ -626,13 +626,13 @@ $$
 Ku(x) = \int_0^x u(y)\mathrm{d}y.
 $$
 
-We've seen in the example that the inverse problem is ill-posed. Consider the regularised least-squares problem
+We've seen in the example that the inverse problem is ill-posed. Consider the regularized least-squares problem
 
 $$\min_{u} \|Ku - f^\delta\|^2 + \alpha \|u'\|^2,$$
 
-with $\|\cdot\|$ denoting the $L^2([0,1])$-norm. In this exercise we are going to analyse how this type of regularisation addresses the ill-posedness by looking at the variance term.
+with $\|\cdot\|$ denoting the $L^2([0,1])$-norm. In this exercise we are going to analyze how this type of regularization addresses the ill-posedness by looking at the variance term.
 
-* Show that the corresponding regularised pseudo-inverse is given by
+* Show that the corresponding regularized pseudo-inverse is given by
 
 $$K_{\alpha}^\dagger = \sum_{k=0}^\infty \frac{\sigma_k \langle u_k, \cdot \rangle}{\sigma_k^2 + \alpha \sigma_k^{-2}} v_k(x),$$
 
@@ -680,9 +680,9 @@ We see, as before, that for $\alpha = 0$ the variance is constant as $k\rightarr
 
 ```
 
-### Convergent regularisation
+### Convergent regularization
 
-Consider the regularised pseudo-inverse
+Consider the regularized pseudo-inverse
 
 $$K^\dagger_{\alpha} = \sum_{k=0}^\infty g_{\alpha}(\sigma_k) \langle u_k,\cdot\rangle v_k,$$
 
@@ -779,7 +779,7 @@ where $\cdot$ denotes point-wise multiplication and $F$ denotes the [Fourier tra
 
 * Express the inverse of $K$ as multiplication with a filter $\widehat{h}$ (in the Fourier domain). How does ill-posed manifest itself here and how does it depend on $T$ ?
 
-We define a regularised filter (in the Fourier domain) by *bandlimitation*:
+We define a regularized filter (in the Fourier domain) by *band limitation*:
 
 $$\widehat{h}_{\alpha}(\xi) = \begin{cases} \widehat{h}(\xi) & \text{for} & |\xi|\leq \alpha^{-1} \\ 0 & \text{for} &|\xi| > \alpha^{-1}\end{cases}.$$
 
@@ -902,7 +902,7 @@ plt.legend()
 
 ### Discretisation
 
-In this exercise, we explore what happens when discretising the operator $K$. We'll see that discretisation implicitly regularises the problem and that refining the discretisation brings out the inherent ill-posedness. Discretise $x_k = k\cdot h$ with $k = 1, \ldots, n$ and $h = 1/(n+1)$.
+In this exercise, we explore what happens when discretizing the operator $K$. We'll see that discretization implicitly regularizes the problem and that refining the discretization brings out the inherent ill-posedness. Discretize $x_k = k\cdot h$ with $k = 1, \ldots, n$ and $h = 1/(n+1)$.
 
 $$
 Ku(x_i)=\int_0^{x_i} u(y)\mathrm{d}y \approx h\sum_{j=0}^n k_{ij} u(x_j),
@@ -982,20 +982,20 @@ $$
 
 ---
 
-We can now define a *regularised* pseudo-inverse through the variational problem
+We can now define a *regularized* pseudo-inverse through the variational problem
 
 $$
 \min_{u} \|Ku - f\|^2 + \alpha R(u),
 $$
 
-where we investigate two types of regularisation
+where we investigate two types of regularization
 
 1. $R(u) = \|u\|^2,$
 2. $R(u) = \|u'\|^2.$
 
 ---
 
-**2.** Show that these lead to the following regularised pseudo-inverses
+**2.** Show that these lead to the following regularized pseudo-inverses
 
 1. $K_{\alpha}^\dagger f = \sum_{k=0}^\infty \frac{1}{\sigma_k + \alpha\sigma_k^{-1}}\langle f, u_k \rangle v_k(x).$
 2. $K_{\alpha}^\dagger f = \sum_{k=0}^\infty \frac{1}{\sigma_k + \alpha k^2\sigma_k^{-1}}\langle f, u_k \rangle v_k(x)$
@@ -1004,9 +1004,9 @@ where we investigate two types of regularisation
 
 ---
 
-We can now study the need for regularisation, assuming that the Fourier coefficients $f_k = \langle f, u_k \rangle$ of $f$ are given.
+We can now study the need for regularization, assuming that the Fourier coefficients $f_k = \langle f, u_k \rangle$ of $f$ are given.
 
-**3.** Determine which type of regularisation (if any) is needed to satisfy the Picard condition in the following cases (you can set $\alpha = 1$ for this analysis)
+**3.** Determine which type of regularization (if any) is needed to satisfy the Picard condition in the following cases (you can set $\alpha = 1$ for this analysis)
 
 1. $f_k = \exp(-2 k^2)$
 2. $f_k = k^{-1}$
