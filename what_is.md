@@ -229,7 +229,7 @@ A typical seismic image depicting various earth layers.
 The simplest example is when the underlying physics can be described by a simple scalar wave equation:
 
 $$
-p_{tt}(t,x) - c(x) \nabla p(t,x) = q(t,x), \quad x \in\Omega, \quad t\in [0,T]
+\partial_t^2 p(t,x) - c(x) \nabla_x p(t,x) = q(t,x), \quad x \in\Omega, \quad t\in [0,T]
 $$
 
 where $p(t,x)$ denotes the *wavefield*, $c(x)$ is related the soundspeed and density of the medium and $q$ is a source term. The measurements are given by
