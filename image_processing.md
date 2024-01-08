@@ -20,29 +20,29 @@ kernelspec:
 
 ### Mathematical concepts of images
 
-We start with an adequate definition of an image, respectively of important structural parts of an image. In view of mathematical generalisation we will not make a specific difference between classical images (2d) and volumetric images (3d). Even movies, e.g. $(2+1)d$ or $(3+1)d$ image sequences, will be called images. We will denote the image dimension with $d\in \{2,3,4\}$. For the mathematical modelling of images we distinguish the following two cases:
+We start with an adequate definition of an image, respectively of important structural parts of an image. In view of mathematical generalization we will not make a specific difference between classical images (2d) and volumetric images (3d). Even movies, e.g. $(2+1)d$ or $(3+1)d$ image sequences, will be called images. We will denote the image dimension with $d\in \{2,3,4\}$. For the mathematical modeling of images we distinguish the following two cases:
 
-* The idealised (continuous) image as a function $u(x)$, $u:\Omega \rightarrow \mathbb{R}$, where $\Omega \subset \mathbb{R}^d$ denotes the domain of the image (usually a rectangle or cube).
+* The idealized (continuous) image as a function $u(x)$, $u:\Omega \rightarrow \mathbb{R}$, where $\Omega \subset \mathbb{R}^d$ denotes the domain of the image (usually a rectangle or cube).
 * The digital (discrete) image as a matrix (tensor) $u_{i_1,\cdots i_d}$, $u \in \mathbb{R}^{N_1 \times N_2 \times \cdots \times N_d}$.
 
-Between the idealised and digital version of images there exists an obvious connection, which is also defined via the visualisation of images. For this, one divides the domain $\Omega$ into $N_1 \times N_2 \times \cdots \times N_d$ small rectangles (pixels) or cubes (voxels), where the grayvalues get defined (coloured) via the corresponding entry of $U$.
+Between the idealized and digital version of images there exists an obvious connection, which is also defined via the visualization of images. For this, one divides the domain $\Omega$ into $N_1 \times N_2 \times \cdots \times N_d$ small rectangles (pixels) or cubes (voxels), where the gray values get defined (colored) via the corresponding entry of $U$.
 Hence, every discrete image immediately corresponds to a continuous image, which in each pixel (for simplicity we do not differentiate between pixel and voxel from now on) is constant. Conversely, one can also generate a discrete image from any continuous image by computing the mean value of $u$ over each pixel.
 
-At first sight, this definition of an idealised (continuous) image seems to be an arbitrary mathematical idealisation. However, in practice it turns out that the definition is fundamental for many different aspects of image processing, e.g. the following:
+At first sight, this definition of an idealized (continuous) image seems to be an arbitrary mathematical idealization. However, in practice it turns out that the definition is fundamental for many different aspects of image processing, e.g. the following:
 
 **Resolution.** Digital (discrete) images can be available in many different resolutions, i.e. with different amount of pixels. To understand the correspondence between different resolutions, it is very useful to interpret all possible digital images as discrete versions (via mean value computation in pixels) of one underlying continuous image. Via this consistency in the transition between continuous and digital images, also transitions between digital images of different resolutions is clearly defined.
 
-**Features.** Many properties of images which can intuitively be perceived clearly, are difficult to define in digital images. An important example of this observation are edges, which we understand as transitions between very different grayvalues. While the definition of edges in the continuous image as the set of discontinuities of the function $u$ is obvious and unique, the definition in the discrete case is difficult and not unique, because often the value changes from one pixel to the next. Therefore, an edge in the digital image can be better obtained as an averaging of the edge in the continuous image over pixels in the respective resolution.
+**Features.** Many properties of images which can intuitively be perceived clearly, are difficult to define in digital images. An important example of this observation are edges, which we understand as transitions between very different gray values. While the definition of edges in the continuous image as the set of discontinuities of the function $u$ is obvious and unique, the definition in the discrete case is difficult and not unique, because often the value changes from one pixel to the next. Therefore, an edge in the digital image can be better obtained as an averaging of the edge in the continuous image over pixels in the respective resolution.
 
-**Modelling.** The mathematical modelling of image processing tasks can be performed in the continuous setup in a unified manner. Here one has all fundamental concepts around integration and differentiation available. We will see that those are in nearly all techniques of enormous importance. Once a variational model has been constructed for a continuous image, via discretisation it can be consistently transferred to all discrete images, independent of the resolution. In particular, also the condition of such a problem is interesting, which, for high resolution with reasonable discretisation, converges to the condition of the continuous problem. Hence, one should try to analyse the condition of the continuous problem, which can be realised especially via an adequate choice of regularisation functionals and leads to interesting mathematical questions, which however in most practical applications can be answered sufficiently.
+**Modeling.** The mathematical modeling of image processing tasks can be performed in the continuous setup in a unified manner. Here one has all fundamental concepts around integration and differentiation available. We will see that those are in nearly all techniques of enormous importance. Once a variational model has been constructed for a continuous image, via discretization it can be consistently transferred to all discrete images, independent of the resolution. In particular, also the condition of such a problem is interesting, which, for high resolution with reasonable discretization, converges to the condition of the continuous problem. Hence, one should try to analyze the condition of the continuous problem, which can be realized especially via an adequate choice of regularization functionals and leads to interesting mathematical questions, which however in most practical applications can be answered sufficiently.
 
-**Algorithms.** Also the design of algorithms gets more consistent if one assumes an underlying continuous image. For example, for an iterative algorithm, while increasing resolution, one wants to avoid a significant increase in number of necessary iterations to achieve a certain resolution. This is guaranteed if one obtains an algorithm as a discretisation of an algorithm for the continuous image. The latter has to be constructed as an algorithm for functions, i.e. in function spaces, in analogy to methods for partial differential equations.
+**Algorithms.** Also the design of algorithms gets more consistent if one assumes an underlying continuous image. For example, for an iterative algorithm, while increasing resolution, one wants to avoid a significant increase in number of necessary iterations to achieve a certain resolution. This is guaranteed if one obtains an algorithm as a discretization of an algorithm for the continuous image. The latter has to be constructed as an algorithm for functions, i.e. in function spaces, in analogy to methods for partial differential equations.
 
 ### Noise models and error measures
 
-We understand noise as the undesired disturbances of intensities in an image. In nearly all imaging devices, like microscopes, different tomographs or even simple digital cameras, one obtains noise effects in measured data. In the following we will introduce the characterisation of different noise models in images.
+We understand noise as the undesired disturbances of intensities in an image. In nearly all imaging devices, like microscopes, different tomographs or even simple digital cameras, one obtains noise effects in measured data. In the following we will introduce the characterization of different noise models in images.
 
-Among different inverse problems in imaging, dependent on the underlying physics, one can observe different types of noise in measured imaging data. Considering the noise as a statistical random process specific noise types can be characterised by specific distributions. To model the noise a-priori, typical choices are Gauss-, Laplace- or Poisson-distributions, but also combinations of those. Obvious errors in the imaging process are intensity errors. One can see those errors as realisations of independent random variables, acting on each pixel separately.
+Among different inverse problems in imaging, dependent on the underlying physics, one can observe different types of noise in measured imaging data. Considering the noise as a statistical random process specific noise types can be characterized by specific distributions. To model the noise a-priori, typical choices are Gauss-, Laplace- or Poisson-distributions, but also combinations of those. Obvious errors in the imaging process are intensity errors. One can see those errors as realizations of independent random variables, acting on each pixel separately.
 
 The simplest model of intensity errors is additive noise. For a discrete image $U$ and noise $\delta$ the measured data $F$ is simply given point-wise by
 
@@ -62,7 +62,7 @@ $$
 	F = \delta(U) \ ,
 $$
 
-i.e. those are neither additive nor multiplicative. Errors in photon counting, for instance in several areas of tomography, microscopy, but also in CCD sensors of digital cameras or astronomy systems, are typically modelled as Poisson noise. Some examples of various noise types applied to a test images are shown below.
+i.e. those are neither additive nor multiplicative. Errors in photon counting, for instance in several areas of tomography, microscopy, but also in CCD sensors of digital cameras or astronomy systems, are typically modeled as Poisson noise. Some examples of various noise types applied to a test images are shown below.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -122,7 +122,7 @@ $$
 e_{skal} = \frac{\Vert u - f \Vert}{\Vert f \Vert} .
 $$
 
-A variant of the scaled error is the commonly used Signal-to-Noise ratio (SNR). The naming is based on the idea that $\Vert u - f \Vert_2$ measures something like the noise of the method (note that $\Vert f - f^{\delta}\Vert_2$ is the actual noise) and that $\Vert f \Vert_2$ measures the amount/essence of signal. Here $\Vert \cdot \Vert_2$ is in the idealised (continuous) case the $L^2$-norm;
+A variant of the scaled error is the commonly used Signal-to-Noise ratio (SNR). The naming is based on the idea that $\Vert u - f \Vert_2$ measures something like the noise of the method (note that $\Vert f - f^{\delta}\Vert_2$ is the actual noise) and that $\Vert f \Vert_2$ measures the amount/essence of signal. Here $\Vert \cdot \Vert_2$ is in the idealized (continuous) case the $L^2$-norm;
 
 $$
 	\Vert u \Vert_2 = \sqrt{\int_\Omega u(x)^2~dx}
@@ -146,19 +146,19 @@ $$
 PSNR = - \log \left( \frac{\Vert u - f \Vert_2}{\Vert f \Vert_\infty }\right).
 $$
 
-Here one compares the noise with the peak in an image, i.e. $\Vert f \Vert_\infty = \sup |f|$. The described error measures are reasonable for additive noise models (e.g. Gauss, Laplace), because one can show a correspondence to $L^1$ and $L^2$ norms in a statistical sense. For other noise types, one should take into account other error measures, for instance we will see in later chapters, that the Kullback-Leibler distance represents an adequate error measure for Poisson noise. In some cases it will be necessary to consider error measures different from standard norms, e.g. if one is primarily interested in edges of a reconstruction. In such cases more geometric error measures (in more general metrics) are favourable for the distances of edge sets.
+Here one compares the noise with the peak in an image, i.e. $\Vert f \Vert_\infty = \sup |f|$. The described error measures are reasonable for additive noise models (e.g. Gauss, Laplace), because one can show a correspondence to $L^1$ and $L^2$ norms in a statistical sense. For other noise types, one should take into account other error measures, for instance we will see in later chapters, that the Kullback-Leibler distance represents an adequate error measure for Poisson noise. In some cases it will be necessary to consider error measures different from standard norms, e.g. if one is primarily interested in edges of a reconstruction. In such cases more geometric error measures (in more general metrics) are favorable for the distances of edge sets.
 
 ### Local smoothing filters
-In this section we focus on filtering methods for image denoising. Denoising is one of the most important tasks in digital image processing because it finds various applications beyond fluorescence microscopy and forms a well understood basis for many other image processing challenges in inverse problems. Denoising is the (inverse) problem of removing the noise from images while keeping significant information in the data. In applications, denoising methods are often applied as pre- or postprocessing methods to better analyse images and to be able to extract specific features, e.g. edges or corners, more effectively. In the following we particularly focus on the relationship between denoising filters, partial differential equations (PDEs) and related variational methods. We will start with simple linear diffusion filters an end with an outlook on a famous nonlinear variational method for denoising.
+In this section we focus on filtering methods for image denoising. Denoising is one of the most important tasks in digital image processing because it finds various applications beyond fluorescence microscopy and forms a well understood basis for many other image processing challenges in inverse problems. Denoising is the (inverse) problem of removing the noise from images while keeping significant information in the data. In applications, denoising methods are often applied as pre- or post processing methods to better analyze images and to be able to extract specific features, e.g. edges or corners, more effectively. In the following we particularly focus on the relationship between denoising filters, partial differential equations (PDEs) and related variational methods. We will start with simple linear diffusion filters an end with an outlook on a famous nonlinear variational method for denoising.
 
-The term filter has its origin in signal analysis, as a procedure which yields only a part of the signal (resp. the image). The hope in denoising is for sure to filter the clean from the noisy signal. Local smoothing filters are based on the idea, that in a local neighbourhood similar gray- or colourvalues occur. Therefore one can try to replace the image by a local averaging. In this process also random distortions (the noise) will be averaged out. If one assumes, as introduced above, noise based on independent and identically distributed (iid) random variables, then also the variance of the signal should be reduced in this way. A local linear smoothing filter has the general forms
+The term filter has its origin in signal analysis, as a procedure which yields only a part of the signal (resp. the image). The hope in denoising is for sure to filter the clean from the noisy signal. Local smoothing filters are based on the idea, that in a local neighborhood similar gray- or color values occur. Therefore one can try to replace the image by a local averaging. In this process also random distortions (the noise) will be averaged out. If one assumes, as introduced above, noise based on independent and identically distributed (iid) random variables, then also the variance of the signal should be reduced in this way. A local linear smoothing filter has the general forms
 
 $$
 	u = G_\epsilon*f, \label{lokalerGlaettungsfilter}
 $$
 
 where $G_\epsilon*f$ is the convolution of the noisy image with a kernel $G_\epsilon = \frac{1}{\epsilon^d} G(\frac{\cdot}\epsilon)$ of specific form.
-To obtain a reasonable convex combination $G$ should be nonnegative and should have a mean value of $1$. To obtain locality, $G$ should attain its maximum around the origin and should decrease towards zero for larger arguments. A simple and commonly used example of such a function is again the Gauss distribution, but also other convolution kernels with local compact support are of interest. The parameter $\epsilon$ measures the scale on which averaging takes place. The convolution can be defined in the idealised (continuous) case as
+To obtain a reasonable convex combination $G$ should be nonnegative and should have a mean value of $1$. To obtain locality, $G$ should attain its maximum around the origin and should decrease towards zero for larger arguments. A simple and commonly used example of such a function is again the Gauss distribution, but also other convolution kernels with local compact support are of interest. The parameter $\epsilon$ measures the scale on which averaging takes place. The convolution can be defined in the idealized (continuous) case as
 
 $$
 	G_\epsilon*f = \frac{1}{\epsilon^d} \int_\Omega G\left(\frac{x-y}\epsilon\right) f(y)~dy
@@ -172,7 +172,7 @@ $$
 
 In the discrete case it is important to choose $\epsilon$ adequately dependent on the underlying grid size. If $\epsilon$ is too small no effective smoothing can be expected.
 
-In practice local smoothing methods actually reduce the noise, however there is also a potential problem of such filters, namely oversmoothing. In particular this affects edges, since at an edge the assumption having locally similar gray values is mostly violated. For example, if we think of a black-white edge, local grayvalues will be averaged to gray at the edge. In this way the edge (discontinuity) is getting averaged to a continuous transition of grayvalues, which as a result looks like an optically blurred edge.
+In practice local smoothing methods actually reduce the noise, however there is also a potential problem of such filters, namely over smoothing. In particular this affects edges, since at an edge the assumption having locally similar gray values is mostly violated. For example, if we think of a black-white edge, local gray values will be averaged to gray at the edge. In this way the edge (discontinuity) is getting averaged to a continuous transition of gray values, which as a result looks like an optically blurred edge.
 
 ### Special local filter and additive noise
 For further understanding we consider the discrete case and the special local filter of the form
@@ -181,7 +181,7 @@ $$
 	U_{ij} = (1-4 \alpha) F_{ij} + \alpha( F_{i-1j} + F_{i+1j} + F_{ij-1} + F_{ij+1}),
 $$
 
-i.e. the filter only acts on neighbouring pixels. Hereby $\alpha \in (0,\frac{1}5)$ is the parameter which controls the weighting. The scaling parameter $\epsilon$ can be identified with the size of the grid. We assume that the observation/measurement originates from point-wise Gaussian noise, i.e.
+i.e. the filter only acts on neighboring pixels. Hereby $\alpha \in (0,\frac{1}5)$ is the parameter which controls the weighting. The scaling parameter $\epsilon$ can be identified with the size of the grid. We assume that the observation/measurement originates from point-wise Gaussian noise, i.e.
 
 $$
 	F_{ij} = \hat F_{ij} + \delta^\sigma_{ij} \, .
@@ -219,7 +219,7 @@ The noise gets reduced by the filter, because this part of the error is smaller 
 $$ \mathbb{E}(\hat{U}_{ij})- \hat F_{ij} = \alpha ( \hat{F}_{i-1j} + \hat{F}_{i+1j} + \hat{F}_{ij-1} + \hat{F}_{ij+1}-4\hat{F}_{ij}) .
 $$
 
-For simplicity we assume that $\hat{F}_{ij}$ is the pixel value at index $(ih,jh)$, where $h$ denotes the (small) pixel size. So we have the idea that $\hat{F}_{ij} = \hat{f}(x_{ij})$ for an adequate grayvalue function $\hat{f}$. If $\hat{f}$ is twice continuously differentiable, then with the mean value theorem we have the existence of $\xi_1 \in ((i-1)h,(i+1)h) \times \{jh\}$ and $\xi_2 \in \{ih\} \times ((j-1)h,(j+1)h)$, such that
+For simplicity we assume that $\hat{F}_{ij}$ is the pixel value at index $(ih,jh)$, where $h$ denotes the (small) pixel size. So we have the idea that $\hat{F}_{ij} = \hat{f}(x_{ij})$ for an adequate gray value function $\hat{f}$. If $\hat{f}$ is twice continuously differentiable, then with the mean value theorem we have the existence of $\xi_1 \in ((i-1)h,(i+1)h) \times \{jh\}$ and $\xi_2 \in \{ih\} \times ((j-1)h,(j+1)h)$, such that
 
 $$
 \hat{F}_{i-1j} + \hat{F}_{i+1j} - 2 \hat{F}_{ij} = \frac{\partial^2\hat{f}}{\partial x_1^2}(\xi_1) h^2
@@ -318,7 +318,7 @@ $$
 	\psi(\omega)  = \left\{ \begin{array}{ll} 1 & \text{for } |\omega| \leq 1 \\ 0 &\text{otherwise} \end{array} \right.
 $$
 
-In this way $\psi_\epsilon$ cuts off all frequency components above $1/\epsilon$ (note the inverse relation since $\epsilon$ corresponds to the wavelength), and those below $1/\epsilon$ remain unchanged. By computing the inverse Fourier transform one can see that a sinc function ($G(x) \sim \sin |x| / |x|$) is obtained as convolution kernel. Due to the local oscillation of the sine this yields a slightly unusual local averaging, since the weighting does not decay monotonously with the distance. Hence, without the frequency space interpretation one would likely not have constructed a filter of this form. However, both viewpoints also strongly depend on each other, since the lack of high frequency components automatically implies that the local variation of the grayvalue cannot be extremely strong and vice versa. Thus, the original viewpoint and the frequency space interpretation are based on very similar assumptions. The connection again gets even more obvious for a Gauss distribution as convolution kernel. The Fourier transform of this function again results in a Gauss distribution (besides a constant). Hence, in frequency space one dampens again with this quickly decreasing function.
+In this way $\psi_\epsilon$ cuts off all frequency components above $1/\epsilon$ (note the inverse relation since $\epsilon$ corresponds to the wavelength), and those below $1/\epsilon$ remain unchanged. By computing the inverse Fourier transform one can see that a sinc function ($G(x) \sim \sin |x| / |x|$) is obtained as convolution kernel. Due to the local oscillation of the sine this yields a slightly unusual local averaging, since the weighting does not decay monotonously with the distance. Hence, without the frequency space interpretation one would likely not have constructed a filter of this form. However, both viewpoints also strongly depend on each other, since the lack of high frequency components automatically implies that the local variation of the gray value cannot be extremely strong and vice versa. Thus, the original viewpoint and the frequency space interpretation are based on very similar assumptions. The connection again gets even more obvious for a Gauss distribution as convolution kernel. The Fourier transform of this function again results in a Gauss distribution (besides a constant). Hence, in frequency space one dampens again with this quickly decreasing function.
 
 ### Diffusion filters and PDE methods
 Interestingly, one can interpret local smoothing filters also in the context of PDE methods in form of so-called linear diffusion filters. For this, one can see $\alpha$ as a fixed given quantity and simply repeat the filter several times to reduce the variance step-by-step. This yields an iterative procedure, where the filter is always applied to the solution of the previous filter step. With $U^0:=F$ we then obtain
@@ -332,7 +332,7 @@ $$
 	\frac{U_{ij}^{k+1}- U^k_{ij}}{h^2 \alpha} = \frac{1}{h^2} (U^k_{i-1j} + U^k_{i+1j} + U^k_{ij-1} + U^k_{ij+1} - 4U_{ij}^k) = \Delta u (x_{ij}) + {\cal O}(h^2),
 $$
 
-where $\Delta = \nabla \cdot \nabla$ denotes the Laplace operator. With $\tau = \alpha h^2 << 1$ we can also interpret this equation as a forward Euler discretisation of the heat equation (diffusion equation)
+where $\Delta = \nabla \cdot \nabla$ denotes the Laplace operator. With $\tau = \alpha h^2 << 1$ we can also interpret this equation as a forward Euler discretization of the heat equation (diffusion equation)
 
 $$
 	\tau = \alpha h^2 << 1
@@ -344,7 +344,7 @@ $$
 	\frac{\partial u}{\partial t} = \nabla \cdot \left( g(|\nabla u|^2) \nabla u\right), \qquad u(t=0) = f, \qquad g(s) = \frac{1}{1+\lambda \: s} \label{peronamalik}
 $$
 
-where $\lambda > 0$ denotes a weighting parameter. The main motivation of the Perona-Malik model is to achieve a smoothing via diffusion in regions with small grayvalue variations, but to avoid smoothing of edges ($g(|\nabla u|^2) \rightarrow 0$ for $|\nabla u| \rightarrow \infty$). Hence, the model reduces the diffusivity in regions where edges are present with high likelihood.
+where $\lambda > 0$ denotes a weighting parameter. The main motivation of the Perona-Malik model is to achieve a smoothing via diffusion in regions with small gray value variations, but to avoid smoothing of edges ($g(|\nabla u|^2) \rightarrow 0$ for $|\nabla u| \rightarrow \infty$). Hence, the model reduces the diffusivity in regions where edges are present with high likelihood.
 
 As we have seen, linear and nonlinear filters lead, in reasonable asymptotics, to the solution of parabolic differential equations of the form
 
@@ -355,7 +355,7 @@ $$
 where the denoised image then corresponds to the solution of this equation at a specific point in time $T > 0$. Because in such cases smoothing is achieved via diffusion, they are called diffusion filters. Also the term scale space method is quite common here because the method eliminates for increasing $T$ the smaller scales and the remaining scales get more coarse.
 
 ### Denoising via variational methods
-In the previous subsection we have related the local smoothing filter to a PDE method. Now we would like to transition to an interpretation in the sense of variational methods. In comparison to the previous subsection we now assume that the parameter $\alpha$ might be variable. For sure one should then choose it optimally. The optimal choice of the parameter has to balance out the two competing effects of the filter. On the one hand, the filter has the positive effect of smoothing out the variance of the noise via averaging, and the variance decreases with $\alpha$ (and attains its minimum at $\alpha = \frac{1}5$, as one can derive from the first part of the mean squared error). On the other hand, the systematic error (see second part of mean square error) increases with $\alpha$. Hence, one can expect an optimal $\alpha$ dependent on the data somewhere in the interval $(0,\frac{1}5)$. This can also be recognised by another characterisation of the denoising as the minimum of the functional (under adequate treatment of grid points at the boundary)
+In the previous subsection we have related the local smoothing filter to a PDE method. Now we would like to transition to an interpretation in the sense of variational methods. In comparison to the previous subsection we now assume that the parameter $\alpha$ might be variable. For sure one should then choose it optimally. The optimal choice of the parameter has to balance out the two competing effects of the filter. On the one hand, the filter has the positive effect of smoothing out the variance of the noise via averaging, and the variance decreases with $\alpha$ (and attains its minimum at $\alpha = \frac{1}5$, as one can derive from the first part of the mean squared error). On the other hand, the systematic error (see second part of mean square error) increases with $\alpha$. Hence, one can expect an optimal $\alpha$ dependent on the data somewhere in the interval $(0,\frac{1}5)$. This can also be recognized by another characterization of the denoising as the minimum of the functional (under adequate treatment of grid points at the boundary)
 
 $$
 	J(U) &=&  \frac{1}2 \sum_{i,j} (U_{ij} - F_{ij})^2 + \frac{\alpha}2 \sum_{i,j} [ (F_{i+1j}-F_{ij})^2 + (F_{ij+1}-F_{ij})^2] +\nonumber \\ && \alpha \sum_{i,j} [ (F_{i+1j}-F_{ij})(U_{i+1j}-U_{ij}) + (F_{ij+1}-F_{ij})(U_{ij+1}-U_{ij})].
@@ -373,14 +373,14 @@ $$
 	\tilde R(U) =  \frac{\alpha}2 \sum_{i,j} [ (U_{i+1j}-U_{ij})^2 + (U_{ij+1}-U_{ij})^2]
 $$
 
-around $F$. Since for a small $\alpha$ value the minimum $U$ will be close to $F$, the difference between $R(U)$ and $\tilde R(U)$ should be small. It is reasonable to assume that $U$ lies close to the minimum of $J - R + \tilde R$, a functional which we will become acquainted with in later chapters regarding the modelling of maximum a-posteriori (MAP) estimators. Following the continuous limit, i.e. grid size $h \rightarrow 0$, this functional can be written dependent of functions $f$ (given) and $u$ (unknown)
+around $F$. Since for a small $\alpha$ value the minimum $U$ will be close to $F$, the difference between $R(U)$ and $\tilde R(U)$ should be small. It is reasonable to assume that $U$ lies close to the minimum of $J - R + \tilde R$, a functional which we will become acquainted with in later chapters regarding the modeling of maximum a-posteriori (MAP) estimators. Following the continuous limit, i.e. grid size $h \rightarrow 0$, this functional can be written dependent of functions $f$ (given) and $u$ (unknown)
 
 ```{math}
 :label: L2L2Denoising
 	\frac{1}{2} \int_\Omega (u-f)^2~dx \:+\: \frac{\alpha}{2}\int_\Omega |\nabla u|^2~dx ~\rightarrow~ \min_u \ .
 ```
 
-Till now, in all previous methods, we have always focussed on additive Gaussian noise. Although the described filter methods can often be realised in a simple and efficient way, variational methods have important advantages in comparison. With variational methods one has the flexibility to model data fidelity terms and regularisation terms. According to a-prior knowledge about the noise as well as about the type (e.g. features) of images to be expected, those terms can easily be adapted, extended and combined.
+Till now, in all previous methods, we have always focussed on additive Gaussian noise. Although the described filter methods can often be realized in a simple and efficient way, variational methods have important advantages in comparison. With variational methods one has the flexibility to model data fidelity terms and regularization terms. According to a-prior knowledge about the noise as well as about the type (e.g. features) of images to be expected, those terms can easily be adapted, extended and combined.
 
 Now we consider for $\alpha > 0$ a general variational problem for denoising
 
@@ -389,13 +389,13 @@ Now we consider for $\alpha > 0$ a general variational problem for denoising
 	D(u,f) \:+\: \alpha \: R(u) ~\rightarrow~ \min_u \ .
 ```
 
-The data fidelity term should be chosen in a way that $D$ becomes minimal if the data gets denoised exactly. Often specific noise models are reasonable for specific applications which gets reflected by different data fidelities. In a later chapter on modelling we will see that via statistical modelling for instance the following data fidelities can be derived:
+The data fidelity term should be chosen in a way that $D$ becomes minimal if the data gets denoised exactly. Often specific noise models are reasonable for specific applications which gets reflected by different data fidelities. In a later chapter on modeling we will see that via statistical modeling for instance the following data fidelities can be derived:
 
 * Additive Gaussian noise leads to $D(u,f) = \frac{1}{2}\left\| u-f \right\|^2_2$
 * Additive Laplacian noise leads to $D(u,f) = \left\| u-f \right\|_1$
 * Poisson noise leads to $D(u,f) = \int_\Omega \left( f \log \frac{f}u \: - \: f \: + \: u \right) \: \mathrm{d}x.$
 
-The regularisation functional in {eq}`denoisingFunktionalAllgemein` should be constructed in such a way that $R$ has a small value, if the image matches the a-priori information about the "type of image" very well. In the quadratic regularisation in {eq}`L2L2Denoising` we also have a homogeneous smoothing similar to the linear smoothing filter, i.e. noise but also edges in in the image get penalised. Often this regularisation with the $L^2$-norm of the gradient is called $H^1$ regularisation, because it assumes implicitly that $u$ should be an element of the Sobolev function space $H^1 = W^{1,2}$. One of the most famous variational method for denoising is the Rudin-Osher-Fatemi (ROF) model
+The regularization functional in {eq}`denoisingFunktionalAllgemein` should be constructed in such a way that $R$ has a small value, if the image matches the a-priori information about the "type of image" very well. In the quadratic regularization in {eq}`L2L2Denoising` we also have a homogeneous smoothing similar to the linear smoothing filter, i.e. noise but also edges in in the image get penalized. Often this regularization with the $L^2$-norm of the gradient is called $H^1$ regularization, because it assumes implicitly that $u$ should be an element of the Sobolev function space $H^1 = W^{1,2}$. One of the most famous variational method for denoising is the Rudin-Osher-Fatemi (ROF) model
 
 $$
 	\frac{1}{2} \int_\Omega (u-f)^2 \:+\: \alpha \: \text{TV}(u) ~\rightarrow~ \min_u \ ,
@@ -451,7 +451,7 @@ plt.show()
 
 ### Deconvolution methods
 
-An interesting problem that occurs in many imaging, image- and signal processing applications, in particular in microscopy, is the deblurring or \textit{deconvolution} of signals from a (known, linear) degradation. Deconvolution of a signal can be modelled as solving the inverse problem of the convolution, which reads as
+An interesting problem that occurs in many imaging, image- and signal processing applications, in particular in microscopy, is the deblurring or \textit{deconvolution} of signals from a (known, linear) degradation. Deconvolution of a signal can be modeled as solving the inverse problem of the convolution, which reads as
 
 ```{math}
 :label: convIP
