@@ -698,9 +698,9 @@ u(x)= \frac{1}{(2\pi)^{d/2}}\int_{\mathbb{R}^d} \widehat{u}(\xi) e^{-\imath \xi\
 <p>The simplest example is when the underlying physics can be described by a simple scalar wave equation:</p>
 <div class="math notranslate nohighlight">
 \[
-p_{tt}(t,x) - c(x) \nabla p(t,x) = q(t,x), \quad x \in\Omega, \quad t\in [0,T]
+\partial_t^2 p(t,x) - c(x) \nabla_x p(t,x) = q(t,x), \quad x \in\Omega, \quad t\in [0,T]
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(p(t,x)\)</span> denotes the <em>wavefield</em>, <span class="math notranslate nohighlight">\(c(x)\)</span> is related the soundspeed and density of the medium and <span class="math notranslate nohighlight">\(q\)</span> is a source term. The measurements are given by</p>
+<p>where <span class="math notranslate nohighlight">\(p(t,x)\)</span> denotes the <em>wave field</em>, <span class="math notranslate nohighlight">\(c(x)\)</span> is related the sound speed and density of the medium and <span class="math notranslate nohighlight">\(q\)</span> is a source term. The measurements are given by</p>
 <div class="math notranslate nohighlight">
 \[
 f_i(t) = p(t,x_i), \quad i \in \{1, 2, \ldots, m\}.
@@ -1009,7 +1009,7 @@ We will learn how to deal with this situation in general in the next chapter.</p
 <div class="math notranslate nohighlight">
 \[\|g\|_{L^{\infty}([0,1])} = \sup_{x\in[0,1]} |g(x)|.\]</div>
 <ol class="simple">
-<li><p>Show that the <em>forward error</em> <span class="math notranslate nohighlight">\(f - f^{\delta}\)</span> is bounded in the <span class="math notranslate nohighlight">\(L^{\infty}\)</span> norm, in particular <span class="math notranslate nohighlight">\(\|f - f^{\delta}\|_{L^{\infty}([0,1])} = \delta\)</span>.</p></li>
+<li><p>Show that the <em>forward error</em> <span class="math notranslate nohighlight">\(f - f^{\delta}\)</span> is bounded in the <span class="math notranslate nohighlight">\(L^{\infty}\)</span> norm, in particular <span class="math notranslate nohighlight">\(\|f - f^{\delta}\|_{L^{\infty}([0,1])} \leq \delta\)</span>.</p></li>
 <li><p>Show that the <em>backward error</em> <span class="math notranslate nohighlight">\(u - u^{\delta}\)</span> can be arbitrarily large, even if <span class="math notranslate nohighlight">\(\delta\downarrow 0\)</span>: <span class="math notranslate nohighlight">\(\|u - u^{\delta}\|_{L^{\infty}([0,1])} = k\)</span>.</p></li>
 <li><p>Is the inverse problem ill-posed?</p></li>
 </ol>
@@ -1017,7 +1017,7 @@ We will learn how to deal with this situation in general in the next chapter.</p
 <p class="admonition-title">Answer</p>
 <ol class="simple">
 <li><p>Since <span class="math notranslate nohighlight">\(|\sin(\cdot)| \leq 1\)</span> we immediately get the desired result.</p></li>
-<li><p>By linearity we have <span class="math notranslate nohighlight">\(u - u^\delta = k \sin(k x)\)</span> and we immediately find the desired result.</p></li>
+<li><p>By linearity we have <span class="math notranslate nohighlight">\(u - u^\delta = k \cos(k x/\delta)\)</span> and we immediately find the desired result.</p></li>
 <li><p>This shows that the problem is <em>ill-conditioned</em>; a small forward error does not guarantee a small backward error, implying that the inverse map is not continuous.</p></li>
 </ol>
 </div>
