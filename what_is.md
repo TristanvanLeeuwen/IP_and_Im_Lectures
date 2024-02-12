@@ -550,7 +550,7 @@ It is readily verified that we can find a (unique) solution by differentiation: 
 
 $$\|g\|_{L^{\infty}([0,1])} = \sup_{x\in[0,1]} |g(x)|.$$
 
-1. Show that the *forward error* $f - f^{\delta}$ is bounded in the $L^{\infty}$ norm, in particular $\|f - f^{\delta}\|_{L^{\infty}([0,1])} = \delta$.
+1. Show that the *forward error* $f - f^{\delta}$ is bounded in the $L^{\infty}$ norm, in particular $\|f - f^{\delta}\|_{L^{\infty}([0,1])} \leq \delta$.
 2. Show that the *backward error* $u - u^{\delta}$ can be arbitrarily large, even if $\delta\downarrow 0$: $\|u - u^{\delta}\|_{L^{\infty}([0,1])} = k$.
 3. Is the inverse problem ill-posed?
 
@@ -559,7 +559,7 @@ $$\|g\|_{L^{\infty}([0,1])} = \sup_{x\in[0,1]} |g(x)|.$$
 
 1. Since $|\sin(\cdot)| \leq 1$ we immediately get the desired result.
 
-2. By linearity we have $u - u^\delta = k \sin(k x)$ and we immediately find the desired result.
+2. By linearity we have $u - u^\delta = k \cos(k x/\delta)$ and we immediately find the desired result.
 
 3. This shows that the problem is *ill-conditioned*; a small forward error does not guarantee a small backward error, implying that the inverse map is not continuous.
 ```
