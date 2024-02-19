@@ -474,7 +474,7 @@ Thus, the error becomes
 $$\|\overline{u} - K_k^\dagger f^{\delta}\|_2^2 = \sum_{i=0}^k e^{10i /(n-1)}e_i^2 + \sum_{i=k+1}^{n-1} e^{-20i /(n-1)},
 $$
 
-in which we recognise the bias and variance terms. In expectation, the upper bound for the error is then given by $(k+1)e^{5k/(n-1)}\sigma + (n-k-1)e^{-10(k+1)/(n-1)}$. While not very tight, it does suggest that there is an optimal $k$.
+in which we recognise the bias and variance terms. In expectation, the upper bound for the error is then given by $(k+1)e^{10k/(n-1)}\sigma + (n-k-1)e^{-10(k+1)/(n-1)}$. While not very tight, it does suggest that there is an optimal $k$.
 
 ```{glue:figure} bias_variance
 :figwidth: 600px
