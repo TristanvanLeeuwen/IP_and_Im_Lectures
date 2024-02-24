@@ -733,7 +733,7 @@ with $\|K^\dagger_{\alpha(\delta)}\| = \sup_k |g_{\alpha(\delta)}(\sigma_k)|$. T
 
 $$\sum_{k=0}^{\infty} \frac{|\langle f,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}}$$
 
-and substitute $f = K(K^*K)^{\mu} w = \sum_{k=0}^\infty \sigma_k^{2\mu+1}\langle w,u_k\rangle u_k$ to get
+and substitute $f = K(K^*K)^{\mu} w = \sum_{k=0}^\infty \sigma_k^{2\mu+1}\langle w,u_k\rangle u_k$ (the first equality follows from the assumption $f \in \mathcal{R}(K)$ and the first property of 'Theorem: Moore-Penrose equations') to get
 
 $$\sum_{k=0}^{\infty} \sigma_k^{2 + 4\mu}\frac{|\langle w,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}} = \|w\|^2 < \infty.$$
 
