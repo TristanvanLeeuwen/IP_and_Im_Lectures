@@ -171,7 +171,7 @@ $$\widetilde{u} = K^\dagger f.$$
 ```{admonition} Proof
 :class: dropdown
 
-We know that for $f \in \mathcal{D}(K^\dagger)$ the minimum-norm solution $\widetilde{u} \in \mathcal{N}(K)^\perp$ exists and unique. Using the fact that $K\widetilde{u} = P_{\overline{\mathcal{R}(K)}}f$ (due to the \textit{mimimum-residual} solution property) and the M-R equations, we have $\widetilde{u} = (I - P_{\mathcal{N}}(K))\widetilde{u} = K^\dagger K\widetilde{u} = K^\dagger P_{\overline{\mathcal{R}(K)}}f = K^\dagger K K^\dagger f = K^\dagger f$.
+We know that for $f \in \mathcal{D}(K^\dagger)$ the minimum-norm solution $\widetilde{u} \in \mathcal{N}(K)^\perp$ exists and unique. The result now follows by $K\widetilde{u} = P_{\overline{\mathcal{R}(K)}}f$ (so we have that $\widetilde{u}$ is a \texit{minimum residual} solution) and that $K^\dagger \widetilde{u} \in \mathcal{N}(K)^\perp$ (so it is a minimum norm solution by Theorem \textit{Existence and uniqueness of the minimum-residual, minimum-norm solution}).
 ```
 
 When defining the the solution through the M-P pseudo-inverse, we have existence uniqueness of the minimum-norm to {eq}`minres`. However, we cannot expect stability in general. For this, we would need $K^{\dagger}$ to be continuous. To see this, consider noisy data $f^{\delta} = f + e$ with $\|e\|\leq \delta$. For stability of the solution we need to bound the difference between the corresponding solutions $\widetilde{u}$, $\widetilde{u}^\delta$:
