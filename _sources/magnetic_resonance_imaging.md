@@ -582,7 +582,7 @@ further accelerate exams by about 40%.
 ### Rotation
 Can you prove that {eq}`rotation` defines a rotation and that the
 rotation axis is aligned along $\mathbf{b}$? What is the rotation
-angle?
+angle? HINT: Write the solution to the differential equation in terms of the matrix-exponential and have a look at [Rodrigues' rotation formula](https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula).
 
 ### Decay
 Rewrite {eq}`decay` as two independent equations, one for the *transverse* component  $m_{xy}$ and one for the *longitudinal* component $m_z$. Find the solution for both equations for a generic time point $t$ with initial values $m_{xy}(0) =m_{xy}^0$ and $m_z(0) = m_z^0$. What happens in the limit case $t\rightarrow +\infty$?
