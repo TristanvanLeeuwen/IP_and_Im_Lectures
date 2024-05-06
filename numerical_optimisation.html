@@ -495,7 +495,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>In this chapter we treat numerical algorithms for solving optimization problems over <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. Throughout we will assume that the objective <span class="math notranslate nohighlight">\(J(u) = D(u) + R(u)\)</span> satisfies the conditions for a unique minimizer to exist. We distinguish between two important classes of problems; <em>smooth</em> problems and <em>convex</em> problems.</p>
 <div class="section" id="smooth-optimization">
 <h2><span class="section-number">6.1. </span>Smooth optimization<a class="headerlink" href="#smooth-optimization" title="Permalink to this headline">¶</a></h2>
-<p>For smooth problems, we assume to have access to as many derivatives of <span class="math notranslate nohighlight">\(J\)</span> as we need. As before, we denote the first derivative (or gradient) by <span class="math notranslate nohighlight">\(J' : \mathbb{R}^n \rightarrow \mathbb{R}^n\)</span>. We denote the second derivative (or Hessian) by <span class="math notranslate nohighlight">\(J'' : \mathbb{R}^n \rightarrow \mathbb{R}^{n\times n}\)</span>. We will additionally assume that the Hessian is globally bounded, i.e. there exists a constant <span class="math notranslate nohighlight">\(L &lt; \infty\)</span> such that <span class="math notranslate nohighlight">\(-L\cdot I \preceq \J''(u) \preceq L\cdot I\)</span> for all <span class="math notranslate nohighlight">\(u\in\mathbb{R}^n\)</span>. Note that this implies that <span class="math notranslate nohighlight">\(J'\)</span> is Lipschitz continous with constant <span class="math notranslate nohighlight">\(L\)</span>: <span class="math notranslate nohighlight">\(\|J'(u) - J'(v)\|_2 \leq L \|u - v\|_2\)</span>.</p>
+<p>For smooth problems, we assume to have access to as many derivatives of <span class="math notranslate nohighlight">\(J\)</span> as we need. As before, we denote the first derivative (or gradient) by <span class="math notranslate nohighlight">\(J' : \mathbb{R}^n \rightarrow \mathbb{R}^n\)</span>. We denote the second derivative (or Hessian) by <span class="math notranslate nohighlight">\(J'' : \mathbb{R}^n \rightarrow \mathbb{R}^{n\times n}\)</span>. We will additionally assume that the Hessian is globally bounded, i.e. there exists a constant <span class="math notranslate nohighlight">\(L &lt; \infty\)</span> such that <span class="math notranslate nohighlight">\(-L\cdot I \preceq J''(u) \preceq L\cdot I\)</span> for all <span class="math notranslate nohighlight">\(u\in\mathbb{R}^n\)</span>. Note that this implies that <span class="math notranslate nohighlight">\(J'\)</span> is Lipschitz continous with constant <span class="math notranslate nohighlight">\(L\)</span>: <span class="math notranslate nohighlight">\(\|J'(u) - J'(v)\|_2 \leq L \|u - v\|_2\)</span>.</p>
 <p>For a comprehensive treatment of this topic (and many more), we recommend the seminal book <em>Numerical Optimization</em> by Stephen Wright and Jorge Nocedal <span id="id1">[<a class="reference internal" href="bibliography.html#id7" title="Jorge Nocedal and Stephen Wright. Numerical optimization. Springer Science &amp; Business Media, 2006.">Nocedal and Wright, 2006</a>]</span>.</p>
 <hr class="docutils" />
 <p>Before discussing optimization methods, we first introduce the optimality conditions.</p>
@@ -1150,7 +1150,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f85ba45f0d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fbac0d7d1c0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -1172,7 +1172,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f85b757a670&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fbabdcc6760&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1237,8 +1237,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn(&#39;The line search algorithm did not converge&#39;, LineSearchWarning)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f859d4903a0&gt;,
- &lt;matplotlib.lines.Line2D at 0x7f859d490550&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fbaa3584490&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7fbaa3584640&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />
