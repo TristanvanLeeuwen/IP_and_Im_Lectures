@@ -574,7 +574,7 @@ $$\|g\|_{W^{1,\infty}([0,1])} = \|g\|_{L^{\infty}[0,1]} + \|g'\|_{L^{\infty}[0,1
 
 denotes the [$W^{1,\infty}$-Sobolev norm](https://en.wikipedia.org/wiki/Sobolev_space#One-dimensional_case)
 
-1. Assuming that $\|n^{\delta}\|_{W^{1,\infty}([0,1])} = \delta$, show that $\|u - u^{\delta}\|_{W^{1,\infty}([0,1])} \rightarrow 0$ when $\delta \rightarrow 0$.
+1. Assuming that $\|n^{\delta}\|_{W^{1,\infty}([0,1])} = \delta$, show that $\|u - u^{\delta}\|_{L^{\infty}([0,1])} \rightarrow 0$ when $\delta \rightarrow 0$.
 
 2. Can you come up with a type of noise that obeys the assumed bound? Is it reasonable to make such assumptions on the noise?
 
