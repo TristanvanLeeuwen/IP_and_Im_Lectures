@@ -301,7 +301,7 @@ $$
 with
 
 $$
-C = \sup_{\xi\in [f,g]} |\left(K^{-1}\right)'(\xi)| = \sup_{\xi\in [f,g]} |\left(K'(\xi)\right)^{-1}|.
+C = \sup_{\xi\in [f,g]} \left|\left(K^{-1}\right)'(\xi)\right| = \sup_{\xi\in [f,g]} \left|\frac{1}{K'\left(K^{-1}(\xi)\right)}\right|.
 $$
 
 We conclude that the problem of finding a root of $K(u) - f$ is ill-posed when the derivative of $K$ is small near the root.
