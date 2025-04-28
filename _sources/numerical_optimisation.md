@@ -495,7 +495,7 @@ When compared to the subgradient method, we may expect better performance from t
 ```{admonition} Example: *one-norm*
 The proximal operator for the $\ell_1$ norm solves
 
-$$\min_u \textstyle{\frac{1}{2}}\|u - v\|_2 + \lambda \|u\|_1.$$
+$$\min_u \textstyle{\frac{1}{2}}\|u - v\|_2^2 + \lambda \|u\|_1.$$
 
 The solution obeys $u - v \in -\partial \lambda \|u\|_1$, which yields
 

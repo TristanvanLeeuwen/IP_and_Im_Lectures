@@ -873,7 +873,7 @@ When <span class="math notranslate nohighlight">\(n\)</span> is odd, we have opt
 <p class="admonition-title">Example: <em>one-norm</em></p>
 <p>The proximal operator for the <span class="math notranslate nohighlight">\(\ell_1\)</span> norm solves</p>
 <div class="math notranslate nohighlight">
-\[\min_u \textstyle{\frac{1}{2}}\|u - v\|_2 + \lambda \|u\|_1.\]</div>
+\[\min_u \textstyle{\frac{1}{2}}\|u - v\|_2^2 + \lambda \|u\|_1.\]</div>
 <p>The solution obeys <span class="math notranslate nohighlight">\(u - v \in -\partial \lambda \|u\|_1\)</span>, which yields</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}u_i - v_i \in \begin{cases} \{-\lambda\} &amp; u_i &gt; 0 \\ [-\lambda,\lambda] &amp; u_i = 0 \\ \{\lambda\} &amp; u_i &lt; 0\end{cases}\end{split}\]</div>
@@ -1150,7 +1150,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fbac0d7d1c0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdc397b6af0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -1172,7 +1172,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fbabdcc6760&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdc304b7fd0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1237,8 +1237,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn(&#39;The line search algorithm did not converge&#39;, LineSearchWarning)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fbaa3584490&gt;,
- &lt;matplotlib.lines.Line2D at 0x7fbaa3584640&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdc39c41c70&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7fdc39c41e20&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />
