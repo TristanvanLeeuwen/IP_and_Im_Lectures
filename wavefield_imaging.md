@@ -76,7 +76,8 @@ Below you will find some typical examples of inverse problems that come up in pr
 A few prominent examples of acquisition setups we will consider here are the following:
 
 * **Point-sources:** $q(t,x) = w(t)\delta(x - s)$.
-\item Incoming plane waves with frequency $\omega$ and direction $\xi$: $v_i(t,x) = \sin(\omega(t - \xi\cdot x/c))$
+  
+* **Incoming plane waves with frequency $\omega$ and direction $\xi$:** $v_i(t,x) = \sin(\omega(t - \xi\cdot x/c))$
 
 * **Point-measurements along a hyperplane:** $\Delta = \{x \in \mathbb{R}^n\, |\, n\cdot x = x_0\}$.
 
