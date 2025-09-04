@@ -57,7 +57,7 @@ with $\lambda \in (0,(2L)^{-1})$ produces iterates $u_k$ for which
 
 $$\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2^2 \leq \frac{J(u_0) - J_*}{C n},$$
 
-with $C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)$ and $J_* = \min_u J(u)$. This implies that $\|J'(u_k)\|_2 \rightarrow 0$ as $k\rightarrow \infty$. To guarantee $\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2 \leq \epsilon$ we thus need $\mathcal{O}(1/\sqrt{\epsilon})$ iterations.
+with $C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)$ and $J_* = \min_u J(u)$. This implies that $\|J'(u_k)\|_2 \rightarrow 0$ as $k\rightarrow \infty$. To guarantee $\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2 \leq \epsilon$ we thus need $\mathcal{O}(1/\epsilon^2)$ iterations.
 
 ````
 
