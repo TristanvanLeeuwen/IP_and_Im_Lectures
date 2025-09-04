@@ -203,12 +203,12 @@ $$
 
 then $Kr_0 = w_0$, which is zero for $x\in \Delta$ and $t\in[0,T]$.
 
-* **Stability.** We can also construct sources that radiate an arbitraliy small amount of energy by picking $w_{\epsilon}$ such that $\|w_{\epsilon}\| = \mathcal{O}(\epsilon)$ and $\|Lw_{\epsilon}\| = \mathcal{O}(1)$ as $\epsilon\downarrow 0$. Then $K(q + r_{\epsilon}) = d + w_{\epsilon}$ and small perturbation in data leads to large perturbation in the solution.
+* **Stability.** We can also construct sources that radiate an arbitrarily small amount of energy by picking $w_{\epsilon}$ such that $\|w_{\epsilon}\| = \mathcal{O}(\epsilon)$ and $\|Lw_{\epsilon}\| = \mathcal{O}(1)$ as $\epsilon\downarrow 0$. Then $K(q + r_{\epsilon}) = d + w_{\epsilon}$ and small perturbation in data leads to large perturbation in the solution.
 
 This will be explored in more detail in the assignments.
 
 ### Inverse scattering
-Under the weak scatterin assumption, the scattered field is given by
+Under the weak scattering assumption, the scattered field is given by
 
 $$
 v_s(t,x) = \int\int u(x')\frac{\partial^2 v_i}{\partial t^2}(t',x')g(t-t',x,x')\mathrm{d}t'\mathrm{d}x',
@@ -227,7 +227,7 @@ Ku(t,x) = \int_{\Omega} u(x')g(t,x-x') \mathrm{d}x',
 $$
 
 with measurements on the sphere with radius $\rho$.
-A popular techique to solve the inverse problem is *backpropagation*, which is based on applying the adjoint of the forward operator to the data. The adjoint operator in this case is given by
+A popular technique to solve the inverse problem is *backpropagation*, which is based on applying the adjoint of the forward operator to the data. The adjoint operator in this case is given by
 
 $$
 K^* f(x) = \int_{\Delta}\int_0^T g(t',x'-x)f(t',x') \mathrm{d}x'\mathrm{d}t'.
@@ -507,7 +507,7 @@ $$
 c_{k+1} = c_k - \alpha_k DK(c_k)^{\dagger}(K(c_k) - d),
 $$
 
-where $\alpha_k$ is a scaling factor. Again, we see that backprojection plays a prominant role. It turns out that this iteration is equivalent to a steepest descent method applied to $J(c) = \|K(c) - d\|^2$.
+where $\alpha_k$ is a scaling factor. Again, we see that backprojection plays a prominent role. It turns out that this iteration is equivalent to a steepest descent method applied to $J(c) = \|K(c) - d\|^2$.
 
 +++
 
@@ -539,8 +539,8 @@ For measurements at $x = 1$ this simplifies to
 
 $$f(t) = v(t,1) = \frac{1}{2}\int_{-1/2}^{1/2} u(x')  H(t - |1 - x'|) \mathrm{d}x'.$$
 
-This leads to the desired expression becuase we need $t \geq (1-x')$.
-To show that this a bounded operator consider
+This leads to the desired expression because we need $t \geq (1-x')$.
+To show that this is a bounded operator consider
 
 $$\|f\|^2 = \int_0^T \left(\frac{1}{2}\int_{\max(\min(1-t,1/2),0)}^{1/2} u(x')\mathrm{d}x'\right)^2 \mathrm{d}t \leq \frac{1}{4}\int_0^T (1/2-\max(\min(1-t,1/2),0))\int_{-1/2}^{1/2} u(x')^2 \mathrm{d}x\mathrm{d}t = C \|u\|_2^2,$$
 
