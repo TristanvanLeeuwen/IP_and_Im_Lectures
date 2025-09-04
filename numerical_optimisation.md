@@ -17,7 +17,7 @@ In this chapter we treat numerical algorithms for solving optimization problems 
 
 ## Smooth optimization
 
-For smooth problems, we assume to have access to as many derivatives of $J$ as we need. As before, we denote the first derivative (or gradient) by $J' : \mathbb{R}^n \rightarrow \mathbb{R}^n$. We denote the second derivative (or Hessian) by $J'' : \mathbb{R}^n \rightarrow \mathbb{R}^{n\times n}$. We will additionally assume that the Hessian is globally bounded, i.e. there exists a constant $L < \infty$ such that $J''(u) \preceq L\cdot I$ for all $u\in\mathbb{R}^n$. Note that this implies that $J'$ is Lipschitz continous with constant $L$: $\|J'(u) - J'(v)\|_2 \leq L \|u - v\|_2$.
+For smooth problems, we assume to have access to as many derivatives of $J$ as we need. As before, we denote the first derivative (or gradient) by $J' : \mathbb{R}^n \rightarrow \mathbb{R}^n$. We denote the second derivative (or Hessian) by $J'' : \mathbb{R}^n \rightarrow \mathbb{R}^{n\times n}$. We will additionally assume that the Hessian is globally bounded, i.e. there exists a constant $L < \infty$ such that $-L\cdot I \preceq J''(u) \preceq L\cdot I$ for all $u\in\mathbb{R}^n$. Note that this implies that $J'$ is Lipschitz continous with constant $L$: $\|J'(u) - J'(v)\|_2 \leq L \|u - v\|_2$.
 
 For a comprehensive treatment of this topic (and many more), we recommend the seminal book *Numerical Optimization* by Stephen Wright and Jorge Nocedal {cite}`nocedal2006numerical`.
 
@@ -57,7 +57,7 @@ with $\lambda \in (0,(2L)^{-1})$ produces iterates $u_k$ for which
 
 $$\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2^2 \leq \frac{J(u_0) - J_*}{C n},$$
 
-with $C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)$ and $J_* = \min_u J(u)$. This implies that $\|J'(u_k)\|_2 \rightarrow 0$ as $k\rightarrow \infty$. To guarantee $\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2 \leq \epsilon$ we thus need $\mathcal{O}(1/\sqrt{\epsilon})$ iterations.
+with $C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)$ and $J_* = \min_u J(u)$. This implies that $\|J'(u_k)\|_2 \rightarrow 0$ as $k\rightarrow \infty$. To guarantee $\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2 \leq \epsilon$ we thus need $\mathcal{O}(1/\epsilon^2)$ iterations.
 
 ````
 
@@ -495,7 +495,7 @@ When compared to the subgradient method, we may expect better performance from t
 ```{admonition} Example: *one-norm*
 The proximal operator for the $\ell_1$ norm solves
 
-$$\min_u \textstyle{\frac{1}{2}}\|u - v\|_2 + \lambda \|u\|_1.$$
+$$\min_u \textstyle{\frac{1}{2}}\|u - v\|_2^2 + \lambda \|u\|_1.$$
 
 The solution obeys $u - v \in -\partial \lambda \|u\|_1$, which yields
 

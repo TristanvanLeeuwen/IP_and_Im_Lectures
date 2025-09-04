@@ -15,7 +15,7 @@ kernelspec:
 
 Many of the notions discussed in the finite-dimensional setting can be extended to the infinite-dimensional setting. We will focus in this chapter on inverse problems where $K$ is a [*bounded linear operator*](https://en.wikipedia.org/wiki/Bounded_operator) and $\mathcal{U}$ and $\mathcal{V}$ are (infinite-dimensional) function spaces. The contents of this chapter were heavily inspired by the excellent [lecture notes from Matthias J. Ehrhardt and Lukas F. Lang](https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf).
 
-Let $K: \mathcal{U} \rightarrow F$ denote the forward operator, with $\mathcal{U}$ and $\mathcal{V}$ [Banach spaces](https://en.wikipedia.org/wiki/Banach_space). The operator is bounded iff there exists a constant $C \geq 0$ such that
+Let $K: \mathcal{U} \rightarrow \mathcal{F}$ denote the forward operator, with $\mathcal{U}$ and $\mathcal{F}$ [Banach spaces](https://en.wikipedia.org/wiki/Banach_space). The operator is bounded iff there exists a constant $C \geq 0$ such that
 
 $$\|Ku\|_{\mathcal{F}} \leq C \|u\|_{\mathcal{U}} \quad \forall u \in \mathcal{U}.$$
 
@@ -114,7 +114,7 @@ Next, we show that the normal equations only allow a solution when $f \in \mathc
 
 * Given a solution $\widetilde{u}$, we find that $f = K\widetilde{u} + g$ with $g\in\mathcal{R}(K)^\perp$. Hence, $f \in \mathcal{R}(K) \oplus \mathcal{R}(K)^\perp$. Conversely, given $f \in \mathcal{R}(K) \oplus \mathcal{R}(K)^\perp$ , there exist $u \in \mathcal{U}$ and $g \in \mathcal{R}(K)^\perp = \left(\overline{\mathcal{R}(K)}\right)^\perp$ such that $f = Ku + g$. Thus, $P_{\overline{\mathcal{R}(K)}}f = Ku$. Such a $u \in \mathcal{U}$ must necessarily be a solution to {eq}`minres` because we have $\|Ku - f\|_{\mathcal{F}} = \|P_{\overline{\mathcal{R}(K)}}f - f\|_{\mathcal{F}} \leq \inf_{g\in \overline{\mathcal{R}(K)}}\|g  - f\|_{\mathcal{F}} \leq \inf_{v\in\mathcal{U}}\|Kv - f\|_{\mathcal{F}}.$ Here, we used the fact that the orthogonal projection on a subspace gives the element closest to the projected element and $\mathcal{R}(K) \subseteq \overline{\mathcal{R}(K)}$ allows to conclude the last inequality.
 
-Finally, we show that the minimum-norm solution is unique. Denote the minimun-norm solution by $\widetilde{u}$. Now suppose we have another solution, $\widetilde{v}$, to {eq}`minres`. Since they both solve the normal equations we have $\widetilde{v} = \widetilde{u} + z$ with $z \in \mathcal{N}(K)$. It follows that $\|\widetilde{v}\|_{\mathcal{U}}^2 = \|\widetilde{u}\|_{\mathcal{U}}^2 + 2\langle \widetilde{u}, z \rangle_{\mathcal{U}} + \|z\|_{\mathcal{U}}^2$. Since $\widetilde{u} \in \mathcal{N}(K)^\perp$ we have  $\langle \widetilde{u}, z \rangle_{\mathcal{U}} = 0$ and hence $\|\widetilde{v}\|_{\mathcal{U}} \geq \|\widetilde{u}\|_{\mathcal{U}}$ with equality only obtained when $z = 0$.
+Finally, we show that the minimum-norm solution is unique. Denote the minimun-norm solution by $\widetilde{u}$. As $\mathcal{U} = \mathcal{N}(K)^\perp \oplus \mathcal{N}(K)},$, we can write $\widetilde{u} = v + z$ with $v \in \mathcal{N}(K)^\perp$ and $z \in \mathcal{N}(K)$. It follows that $\|\widetilde{u}\|_{\mathcal{U}}^2 = \|v\|_{\mathcal{U}}^2 + 2\langle v, z \rangle_{\mathcal{U}} + \|z\|_{\mathcal{U}}^2$. Since $v \in \mathcal{N}(K)^\perp$ and $z \in \mathcal{N}(K)$ we have  $\langle v, z \rangle_{\mathcal{U}} = 0$ and hence $\|\widetilde{u}\|_{\mathcal{U}} \geq \|v\|_{\mathcal{U}}$ with equality only obtained when $z = 0$. So the unique minimum norm solution is $\widetilde{u} = v \in \mathcal{N}(K)^\perp$.
 
 ```
 
@@ -171,7 +171,7 @@ $$\widetilde{u} = K^\dagger f.$$
 ```{admonition} Proof
 :class: dropdown
 
-We know that for $f \in \mathcal{D}(K^\dagger)$ the minimum-norm solution $\widetilde{u} \in \mathcal{N}(K)^\perp$ exists and unique. Using the fact that $K\widetilde{u} = P_{\overline{\mathcal{R}(K)}}f$ (due to the \textit{mimimum-residual} solution property) and the M-R equations, we have $\widetilde{u} = (I - P_{\mathcal{N}}(K))\widetilde{u} = K^\dagger K\widetilde{u} = K^\dagger P_{\overline{\mathcal{R}(K)}}f = K^\dagger K K^\dagger f = K^\dagger f$.
+We know that for $f \in \mathcal{D}(K^\dagger)$ the minimum-norm solution $\widetilde{u} \in \mathcal{N}(K)^\perp$ exists and unique. The result now follows by $K\widetilde{u} = P_{\overline{\mathcal{R}(K)}}f$ (so we have that $\widetilde{u}$ is a \texit{minimum residual} solution) and that $K^\dagger \widetilde{u} \in \mathcal{N}(K)^\perp$ (so it is a minimum norm solution by Theorem \textit{Existence and uniqueness of the minimum-residual, minimum-norm solution}).
 ```
 
 When defining the the solution through the M-P pseudo-inverse, we have existence uniqueness of the minimum-norm to {eq}`minres`. However, we cannot expect stability in general. For this, we would need $K^{\dagger}$ to be continuous. To see this, consider noisy data $f^{\delta} = f + e$ with $\|e\|\leq \delta$. For stability of the solution we need to bound the difference between the corresponding solutions $\widetilde{u}$, $\widetilde{u}^\delta$:
@@ -733,11 +733,11 @@ with $\|K^\dagger_{\alpha(\delta)}\| = \sup_k |g_{\alpha(\delta)}(\sigma_k)|$. T
 
 $$\sum_{k=0}^{\infty} \frac{|\langle f,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}}$$
 
-and substitute $f = K(K^*K)^{\mu} w = \sum_{k=0}^\infty \sigma_k^{2\mu+1}\langle w,u_k\rangle u_k$ to get
+and substitute $f = K(K^*K)^{\mu} w = \sum_{k=0}^\infty \sigma_k^{2\mu+1}\langle w,u_k\rangle u_k$ (the first equality follows from the assumption $f \in \mathcal{R}(K)$ and the first property of 'Theorem: Moore-Penrose equations') to get
 
 $$\sum_{k=0}^{\infty} \sigma_k^{2 + 4\mu}\frac{|\langle w,u_k\rangle|^2}{\sigma_k^{2 + 4\mu}} = \|w\|^2 < \infty.$$
 
-* Starting again from the bias term, we can factor out an additional $\sigma^{4\mu}$ term. We then use that $s^{2\mu}(1 - sg_{\alpha}(s)) \leq \alpha^{2\mu} $ to find the desired result.
+* Starting again from the bias term, we can factor out an additional $\sigma^{4\mu}$ term. We then use that $s^{2\mu}(1 - sg_{\alpha}(s)) \leq \alpha^{2\mu} $ and $\alpha(\delta) = \sqrt(\delta)$ to find the desired result.
 
 
 ```
