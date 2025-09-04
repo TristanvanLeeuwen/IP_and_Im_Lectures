@@ -15,7 +15,7 @@ kernelspec:
 
 Many of the notions discussed in the finite-dimensional setting can be extended to the infinite-dimensional setting. We will focus in this chapter on inverse problems where $K$ is a [*bounded linear operator*](https://en.wikipedia.org/wiki/Bounded_operator) and $\mathcal{U}$ and $\mathcal{V}$ are (infinite-dimensional) function spaces. The contents of this chapter were heavily inspired by the excellent [lecture notes from Matthias J. Ehrhardt and Lukas F. Lang](https://mehrhardt.github.io/data/201803_lecture_notes_invprob.pdf).
 
-Let $K: \mathcal{U} \rightarrow F$ denote the forward operator, with $\mathcal{U}$ and $\mathcal{V}$ [Banach spaces](https://en.wikipedia.org/wiki/Banach_space). The operator is bounded iff there exists a constant $C \geq 0$ such that
+Let $K: \mathcal{U} \rightarrow \mathcal{F}$ denote the forward operator, with $\mathcal{U}$ and $\mathcal{F}$ [Banach spaces](https://en.wikipedia.org/wiki/Banach_space). The operator is bounded iff there exists a constant $C \geq 0$ such that
 
 $$\|Ku\|_{\mathcal{F}} \leq C \|u\|_{\mathcal{U}} \quad \forall u \in \mathcal{U}.$$
 
