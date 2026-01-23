@@ -726,9 +726,9 @@ where $H$ denotes the Heaviside step function.
 
 For each of the two scenarios answer the following questions:
 
-1. Is this problem ill-posed?
-2. Compute the (pseudo-)inverse of $K$ using the SVD and compute the backward error $\|u - u^{\delta}\|_2$ for noise levels $\delta = 0.001, 0.01, 0.1$ for both scenario's; what do you notice?
-3. Compute a regularized solution using a truncated SVD for noise levels $\delta = 0.001, 0.01, 0.1$ for both scenario's. Manually choose the truncation parameter $k$ in each case to get the best possible solution. What do you notice here?
+1. Is this problem ill-posed? Give mathematical arguments in your reasoning and think carefully about the role of numerical parameters $n$, $a$, and $\delta$.
+2. Compute the (pseudo-)inverse of the matrix $K$ using the SVD (for $n=100$, $a=100$) and compute the backward error $\|u - u^{\delta}\|_2$ for noise levels $\delta = 0.001, 0.01, 0.1$ for both scenario's using the code below. What do you observe?
+3. Compute a regularized solution using a truncated SVD for noise levels $\delta = 0.001, 0.01, 0.1$ for both scenario's. Manually choose the truncation parameter $k$ in each case to get the best possible solution. What do you observe?
 4. Explain your observations by investigating what the singular vectors look like (think about the discrete Picard condition as well).
 
 ```{code-cell} ipython3

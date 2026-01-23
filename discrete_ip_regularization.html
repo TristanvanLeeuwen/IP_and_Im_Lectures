@@ -1065,9 +1065,9 @@ r_{\alpha}(\sigma) =
 <p>where <span class="math notranslate nohighlight">\(H\)</span> denotes the Heaviside step function.</p>
 <p>For each of the two scenarios answer the following questions:</p>
 <ol class="simple">
-<li><p>Is this problem ill-posed?</p></li>
-<li><p>Compute the (pseudo-)inverse of <span class="math notranslate nohighlight">\(K\)</span> using the SVD and compute the backward error <span class="math notranslate nohighlight">\(\|u - u^{\delta}\|_2\)</span> for noise levels <span class="math notranslate nohighlight">\(\delta = 0.001, 0.01, 0.1\)</span> for both scenario’s; what do you notice?</p></li>
-<li><p>Compute a regularized solution using a truncated SVD for noise levels <span class="math notranslate nohighlight">\(\delta = 0.001, 0.01, 0.1\)</span> for both scenario’s. Manually choose the truncation parameter <span class="math notranslate nohighlight">\(k\)</span> in each case to get the best possible solution. What do you notice here?</p></li>
+<li><p>Is this problem ill-posed? Give mathematical arguments in your reasoning and think carefully about the role of numerical parameters <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(a\)</span>, and <span class="math notranslate nohighlight">\(\delta\)</span>.</p></li>
+<li><p>Compute the (pseudo-)inverse of the matrix <span class="math notranslate nohighlight">\(K\)</span> using the SVD (for <span class="math notranslate nohighlight">\(n=100\)</span>, <span class="math notranslate nohighlight">\(a=100\)</span>) and compute the backward error <span class="math notranslate nohighlight">\(\|u - u^{\delta}\|_2\)</span> for noise levels <span class="math notranslate nohighlight">\(\delta = 0.001, 0.01, 0.1\)</span> for both scenario’s using the code below. What do you observe?</p></li>
+<li><p>Compute a regularized solution using a truncated SVD for noise levels <span class="math notranslate nohighlight">\(\delta = 0.001, 0.01, 0.1\)</span> for both scenario’s. Manually choose the truncation parameter <span class="math notranslate nohighlight">\(k\)</span> in each case to get the best possible solution. What do you observe?</p></li>
 <li><p>Explain your observations by investigating what the singular vectors look like (think about the discrete Picard condition as well).</p></li>
 </ol>
 <div class="cell docutils container">

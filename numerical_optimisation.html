@@ -520,7 +520,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>with <span class="math notranslate nohighlight">\(\lambda \in (0,(2L)^{-1})\)</span> produces iterates <span class="math notranslate nohighlight">\(u_k\)</span> for which</p>
 <div class="math notranslate nohighlight">
 \[\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2^2 \leq \frac{J(u_0) - J_*}{C n},\]</div>
-<p>with <span class="math notranslate nohighlight">\(C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)\)</span> and <span class="math notranslate nohighlight">\(J_* = \min_u J(u)\)</span>. This implies that <span class="math notranslate nohighlight">\(\|J'(u_k)\|_2 \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(k\rightarrow \infty\)</span>. To guarantee <span class="math notranslate nohighlight">\(\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2 \leq \epsilon\)</span> we thus need <span class="math notranslate nohighlight">\(\mathcal{O}(1/\sqrt{\epsilon})\)</span> iterations.</p>
+<p>with <span class="math notranslate nohighlight">\(C = \lambda \left( 1 - \textstyle{\frac{\lambda L}{2}}\right)\)</span> and <span class="math notranslate nohighlight">\(J_* = \min_u J(u)\)</span>. This implies that <span class="math notranslate nohighlight">\(\|J'(u_k)\|_2 \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(k\rightarrow \infty\)</span>. To guarantee <span class="math notranslate nohighlight">\(\min_{k\in \{0,1,\ldots, n-1\}} \|J'(u_k)\|_2 \leq \epsilon\)</span> we thus need <span class="math notranslate nohighlight">\(\mathcal{O}(1/\epsilon^2)\)</span> iterations.</p>
 </div>
 <div class="dropdown important admonition">
 <p class="admonition-title">Proof</p>
@@ -1150,7 +1150,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdc397b6af0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f9f655d17c0&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_7_1.png" src="_images/numerical_optimisation_7_1.png" />
@@ -1172,7 +1172,7 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdc304b7fd0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f9f624aec10&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_8_1.png" src="_images/numerical_optimisation_8_1.png" />
@@ -1237,8 +1237,8 @@ f(x,y) = (a - x)^2 + b(y - x^2)^2,
   warn(&#39;The line search algorithm did not converge&#39;, LineSearchWarning)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdc39c41c70&gt;,
- &lt;matplotlib.lines.Line2D at 0x7fdc39c41e20&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f9f65908460&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7f9f65908610&gt;]
 </pre></div>
 </div>
 <img alt="_images/numerical_optimisation_10_2.png" src="_images/numerical_optimisation_10_2.png" />

@@ -110,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="discrete_ip_regularization.html">
-   2. Discrete Inverse Problems and Regularisation
+   2. Discrete Inverse Problems and Regularization
   </a>
  </li>
  <li class="toctree-l1">
@@ -130,7 +130,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="numerical_optimisation.html">
-   6. Numerical optimisation for inverse problems
+   6. Numerical optimization for inverse problems
   </a>
  </li>
 </ul>
@@ -523,8 +523,8 @@ In active experiments, it is common practice to consider measurements for a coll
 </ul>
 <p>A few prominent examples of acquisition setups we will consider here are the following:</p>
 <ul class="simple">
-<li><p><strong>Point-sources:</strong> <span class="math notranslate nohighlight">\(q(t,x) = w(t)\delta(x - s)\)</span>.
-\item Incoming plane waves with frequency <span class="math notranslate nohighlight">\(\omega\)</span> and direction <span class="math notranslate nohighlight">\(\xi\)</span>: <span class="math notranslate nohighlight">\(v_i(t,x) = \sin(\omega(t - \xi\cdot x/c))\)</span></p></li>
+<li><p><strong>Point-sources:</strong> <span class="math notranslate nohighlight">\(q(t,x) = w(t)\delta(x - s)\)</span>.</p></li>
+<li><p><strong>Incoming plane waves with frequency <span class="math notranslate nohighlight">\(\omega\)</span> and direction <span class="math notranslate nohighlight">\(\xi\)</span>:</strong> <span class="math notranslate nohighlight">\(v_i(t,x) = \sin(\omega(t - \xi\cdot x/c))\)</span></p></li>
 <li><p><strong>Point-measurements along a hyperplane:</strong> <span class="math notranslate nohighlight">\(\Delta = \{x \in \mathbb{R}^n\, |\, n\cdot x = x_0\}\)</span>.</p></li>
 <li><p><strong>Point-measurements on the sphere:</strong> <span class="math notranslate nohighlight">\(\Delta = \{x \in \mathbb{R}^n \, | \, \|x\| = \rho\}\)</span>.</p></li>
 </ul>
@@ -630,13 +630,13 @@ r_0(t,x) = L[c]w_0(t,x),
 \]</div>
 <p>then <span class="math notranslate nohighlight">\(Kr_0 = w_0\)</span>, which is zero for <span class="math notranslate nohighlight">\(x\in \Delta\)</span> and <span class="math notranslate nohighlight">\(t\in[0,T]\)</span>.</p>
 <ul class="simple">
-<li><p><strong>Stability.</strong> We can also construct sources that radiate an arbitraliy small amount of energy by picking <span class="math notranslate nohighlight">\(w_{\epsilon}\)</span> such that <span class="math notranslate nohighlight">\(\|w_{\epsilon}\| = \mathcal{O}(\epsilon)\)</span> and <span class="math notranslate nohighlight">\(\|Lw_{\epsilon}\| = \mathcal{O}(1)\)</span> as <span class="math notranslate nohighlight">\(\epsilon\downarrow 0\)</span>. Then <span class="math notranslate nohighlight">\(K(q + r_{\epsilon}) = d + w_{\epsilon}\)</span> and small perturbation in data leads to large perturbation in the solution.</p></li>
+<li><p><strong>Stability.</strong> We can also construct sources that radiate an arbitrarily small amount of energy by picking <span class="math notranslate nohighlight">\(w_{\epsilon}\)</span> such that <span class="math notranslate nohighlight">\(\|w_{\epsilon}\| = \mathcal{O}(\epsilon)\)</span> and <span class="math notranslate nohighlight">\(\|Lw_{\epsilon}\| = \mathcal{O}(1)\)</span> as <span class="math notranslate nohighlight">\(\epsilon\downarrow 0\)</span>. Then <span class="math notranslate nohighlight">\(K(q + r_{\epsilon}) = d + w_{\epsilon}\)</span> and small perturbation in data leads to large perturbation in the solution.</p></li>
 </ul>
 <p>This will be explored in more detail in the assignments.</p>
 </div>
 <div class="section" id="inverse-scattering">
 <h3><span class="section-number">9.2.2. </span>Inverse scattering<a class="headerlink" href="#inverse-scattering" title="Permalink to this headline">¶</a></h3>
-<p>Under the weak scatterin assumption, the scattered field is given by</p>
+<p>Under the weak scattering assumption, the scattered field is given by</p>
 <div class="math notranslate nohighlight">
 \[
 v_s(t,x) = \int\int u(x')\frac{\partial^2 v_i}{\partial t^2}(t',x')g(t-t',x,x')\mathrm{d}t'\mathrm{d}x',
@@ -655,7 +655,7 @@ In the assignments we will explore non-radiating sources in more detail.</p>
 Ku(t,x) = \int_{\Omega} u(x')g(t,x-x') \mathrm{d}x',
 \]</div>
 <p>with measurements on the sphere with radius <span class="math notranslate nohighlight">\(\rho\)</span>.
-A popular techique to solve the inverse problem is <em>backpropagation</em>, which is based on applying the adjoint of the forward operator to the data. The adjoint operator in this case is given by</p>
+A popular technique to solve the inverse problem is <em>backpropagation</em>, which is based on applying the adjoint of the forward operator to the data. The adjoint operator in this case is given by</p>
 <div class="math notranslate nohighlight">
 \[
 K^* f(x) = \int_{\Delta}\int_0^T g(t',x'-x)f(t',x') \mathrm{d}x'\mathrm{d}t'.
@@ -854,7 +854,7 @@ u = \nabla^2 (K^*f).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_24865/1891252179.py:23: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/g2/z5xkdjy513j76nkltmmxlkp00000gn/T/ipykernel_8867/1891252179.py:23: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
 Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
   I = np.ravel_multi_index(np.array([[xs/dx + nx//2],[ys//dx + nx//2]],dtype=np.int), (nx,nx))
 </pre></div>
@@ -917,7 +917,7 @@ DK(c)\delta c = -\int\int \frac{\delta c (x')}{2c(x')}\frac{\partial^2 v}{\parti
 \[
 c_{k+1} = c_k - \alpha_k DK(c_k)^{\dagger}(K(c_k) - d),
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\alpha_k\)</span> is a scaling factor. Again, we see that backprojection plays a prominant role. It turns out that this iteration is equivalent to a steepest descent method applied to <span class="math notranslate nohighlight">\(J(c) = \|K(c) - d\|^2\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\alpha_k\)</span> is a scaling factor. Again, we see that backprojection plays a prominent role. It turns out that this iteration is equivalent to a steepest descent method applied to <span class="math notranslate nohighlight">\(J(c) = \|K(c) - d\|^2\)</span>.</p>
 </div>
 </div>
 <div class="section" id="exercises">
@@ -941,8 +941,8 @@ f(t) = Ku(t) = \int_{1-t}^{\frac{1}{2}} u(x')\mathrm{d}x',
 <p>For measurements at <span class="math notranslate nohighlight">\(x = 1\)</span> this simplifies to</p>
 <div class="math notranslate nohighlight">
 \[f(t) = v(t,1) = \frac{1}{2}\int_{-1/2}^{1/2} u(x')  H(t - |1 - x'|) \mathrm{d}x'.\]</div>
-<p>This leads to the desired expression becuase we need <span class="math notranslate nohighlight">\(t \geq (1-x')\)</span>.
-To show that this a bounded operator consider</p>
+<p>This leads to the desired expression because we need <span class="math notranslate nohighlight">\(t \geq (1-x')\)</span>.
+To show that this is a bounded operator consider</p>
 <div class="math notranslate nohighlight">
 \[\|f\|^2 = \int_0^T \left(\frac{1}{2}\int_{\max(\min(1-t,1/2),0)}^{1/2} u(x')\mathrm{d}x'\right)^2 \mathrm{d}t \leq \frac{1}{4}\int_0^T (1/2-\max(\min(1-t,1/2),0))\int_{-1/2}^{1/2} u(x')^2 \mathrm{d}x\mathrm{d}t = C \|u\|_2^2,\]</div>
 <p>where we have used the Cauchy-Schwarz inequality to bound <span class="math notranslate nohighlight">\(\left(\int_a^b u(x) \mathrm{d}x\right)^2 \leq \left(\int_a^b 1 \mathrm{d}x \right)\left(\int_a^b u(x)^2 \mathrm{d}x \right).\)</span></p>
