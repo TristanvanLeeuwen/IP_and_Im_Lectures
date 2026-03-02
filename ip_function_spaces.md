@@ -276,7 +276,7 @@ With this we can precisely state the Picard condition.
 
 ````{admonition} Definition: *Picard condition*
 :class: important
-Given a compact operator $K: \mathcal{U} \rightarrow \mathcal{F}$ and $f \in \mathcal{F}$, we have that $f \in \mathcal{R}(K) \cup \mathcal{R}(K)^\perp$ iff
+Given a compact operator $K: \mathcal{U} \rightarrow \mathcal{F}$ and $f \in \mathcal{F}$, we have that $f \in \mathcal{R}(K) \oplus \mathcal{R}(K)^\perp$ iff
 ```{math}
 :label: picard
 
