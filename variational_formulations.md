@@ -319,7 +319,7 @@ $$J(u) = \textstyle{\frac{1}{2}}\|Ku - f^\delta\|_2^2 + \textstyle{\frac{\alpha}
 
 Here, $J$ is obviously bounded from below and proper. To show that $J$ is coercive, we note that $J(u) \geq \textstyle{\frac{\alpha}{2}}\|u\|_2^2$ and hence that $J(u) \rightarrow \infty$ as $\|u\|_2 \rightarrow \infty$. To show that $J$ is l.s.c., we will show that $J$ is continuous since this implies l.s.c. First note that
 
-$$J(u + d) = J(u) + \textstyle{\frac{1}{2}}\|Kd\|_2^2 - \langle Kd,Ku - f^\delta \rangle + \textstyle{\frac{\alpha}{2}}\|d\|_2^2 + \alpha \langle d,u\rangle,$$
+$$J(u + d) = J(u) + \textstyle{\frac{1}{2}}\|Kd\|_2^2 + \langle Kd,Ku - f^\delta \rangle + \textstyle{\frac{\alpha}{2}}\|d\|_2^2 + \alpha \langle d,u\rangle,$$
 
 from which we can bound
 
