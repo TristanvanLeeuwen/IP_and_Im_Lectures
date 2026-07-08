@@ -62,7 +62,7 @@ Based on this basic setup, we will discuss three possible inverse problems:
 
 Below you will find some typical examples of inverse problems that come up in practice.
 
-* **Earth-quake localization:** An earthquake described by a source term $w(t)q(x)$ is recorded by multiple seimosgraphs at locations $\Delta = \{r_k\}_{k=1}^n$. The goal is to recover $q$ in order to determine the location of the earthquake.
+* **Earth-quake localization:** An earthquake described by a source term $w(t)\delta(x-s)$ is recorded by multiple seimosgraphs at locations $\Delta = \{r_k\}_{k=1}^n$. The goal is to recover $q$ in order to determine the location of the earthquake.
 
 * **Passive sonar:** Soundwaves emitted from an unidentified target are recorded using an array $\Delta = \{x_0 + rp \, | \, r\in[-h,h] \}$, where $p\in\mathbb{S}^2$ denotes the orientation of the array and $h$ its width. The goal is to recover the source term $w(t)q(x)$ to determine the origin and nature of the source.
 
